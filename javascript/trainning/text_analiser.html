@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<title>Text analiser</title>
+<meta charset = "utf-8">
+<meta name = "description" content = "HTML">
+<meta name = "keywords" content = "HTML, CSS3, PHP">
+<meta name = "author" content = "Pablo Santana">
+<meta http-equiv = "refresh" content = "3600">
+</head>
+<body>
+
+
+    <input type="text" id="text">
+    <button onclick="textAnaliser()">Type or past a text</button><br>
+    <h1>Text:</h1><br>
+    <p id="result"></p><br>
+    <p id="analiser"></p><br>
+    
+
+  
+
+    <script>
+        function textAnaliser(){
+            var getText = document.getElementById("text").value;
+            var convertToArray = getText.split(" ");
+            var arrayLen = convertToArray.length;
+            var writeText = document.getElementById("result");
+            var analiser = document.getElementById("analiser");
+            writeText.innerHTML = `The text typed are: ${getText}`;
+            analiser.innerHTML = `The text typed has ${arrayLen} words.`;
+
+        }
+    
+    </script>
+    
+</body>
+</html>
+
+

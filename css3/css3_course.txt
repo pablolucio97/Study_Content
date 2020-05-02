@@ -1,0 +1,883 @@
+=======================================GENERAL SYNTAX========================================
+
+element {
+    property1:unity
+    property2:unity
+    propertyn...:unity
+
+}
+
+====================================== WAYS TO GET AN ELEMENT ===============================
+
+BY ID:
+.IDname {
+    property1:unity
+    property2:unity
+    propertyn...:unity
+
+}
+
+BY CLASS:
+#CLASSname {
+    property1:unity
+    property2:unity
+    propertyn...:unity
+
+}
+
+HTML TAG:
+p {
+  text-align: center;
+  color: red;
+}
+
+=========================================UNITS===========================================
+
+-------------------------------------ABSOLUTE VALUES-------------------------------------
+
+cm           	centimeters
+mm           	millimeters
+in           	inches (1in = 96px = 2.54cm)
+px            pixels (1px = 1/96th of 1in)
+pt           	points (1pt = 1/72 of 1in)
+pc           	picas (1pc = 12 pt)
+
+-------------------------------------RELATIVE VALUES-------------------------------------
+
+em           	Relative to the font-size of the element (2em means 2 times the size of the 
+              current font)	
+ex           	Relative to the x-height of the current font (rarely used)	
+ch           	Relative to width of the "0" (zero)	
+rem           Relative to font-size of the root element	
+vw           	Relative to 1% of the width of the viewport*	
+vh           	Relative to 1% of the height of the viewport*	
+vmin          Relative to 1% of viewport's* smaller dimension	
+vmax          Relative to 1% of viewport's* larger dimension	
+%           	Relative to the parent element
+
+===========================================MAIN ELEMENTS=======================================
+
+===========================================COLOR===============================================
+USING THE RGBA SYSTEM
+R=RED, G=GREEN, B=BLUE, A=TRANSPARENCY (ALPHA)
+
+p {
+  color: rgba(255, 99, 71, 0);
+}
+
+===========================================BACKGROUND==========================================
+
+BACKGROUND-COLOR:
+body {
+  background-color: rgba(255, 99, 71, 0);
+}
+------------------------------------------------------------------------------------------------
+BACKGROUND-IMAGE (LINEAR-GRADIENT):
+
+GERAL SYNTAX: background-image: linear-gradient(direction, color-stop1, color-stop2);
+VALUES: to right, to bottom, to left and to top. 
+body {
+background-image: linear-gradient(to right, rgb(105, 105, 190), rgb(0, 132, 255));
+}
+------------------------------------------------------------------------------------------------
+BACKGROUND-RADIAL-GRADIENT
+body{
+background: radial-gradient(#e66465, #9198e5);
+}
+------------------------------------------------------------------------------------------------
+BACKGROUND-IMAGE
+body {
+  background-image: url("img_tree.png");
+  background-repeat: no-repeat;
+}
+------------------------------------------------------------------------------------------------
+BACKGROUND-POSITION
+.iddiv {
+  background: url("https://mdn.mozillademos.org/files/11987/startransparent.gif") #FFEE99 left 100px bottom 50px no-repeat;
+}
+
+------------------------------------------------------------------------------------------------
+BACKGROUND-ATTACHMENT
+body {
+  background-image: url("img/img_tree.png");
+  background-repeat: no-repeat;
+  background-position: right 50px top 50px;
+  margin-right: 200px;
+  background-attachment: fixed;
+}
+
+------------------------------------------------------------------------------------------------
+
+===========================================BORDERS==============================================
+
+TYPES OF BORDERS - EXAMPLES:
+
+p.dotted {border-style: dotted;}
+p.dashed {border-style: dashed;}
+p.solid {border-style: solid;}
+p.double {border-style: double;}
+p.groove {border-style: groove;}
+p.ridge {border-style: ridge;}
+p.inset {border-style: inset;}
+p.outset {border-style: outset;}
+p.none {border-style: none;}
+p.hidden {border-style: hidden;}
+p.mix {border-style: dotted dashed solid double;}
+
+------------------------------------------------------------------------------------------------
+BORDER-RADIUS
+
+div {
+  border: 2px solid red;
+  border-radius: 5px;
+}
+
+------------------------------------------------------------------------------------------------
+BORDER-WIDTH
+div {
+    border-width: 15px;
+    }
+
+===========================================MARGIN==============================================
+div {
+  margin-top: 100px;
+  margin-bottom: 100px;
+  margin-right: 150px;
+  margin-left: 80px;
+  margin:auto /*center the margin automaticly of an element*/
+}
+
+===========================================PADDING==============================================
+div {
+  padding-top: 50px;
+  padding-right: 30px;
+  padding-bottom: 50px;
+  padding-left: 80px;
+  padding auto /*center the padding automaticly of an element*/
+}
+
+===========================================WIDTH AND HEIGHT==============================================
+div {
+  max-width: 500px;
+  height: 100px;
+  background-color: blue;
+}
+
+
+================================================OUTLINES=================================================
+TYPES OF OUTLINES:
+
+p.dotted {outline-style: dotted;}
+p.dashed {outline-style: dashed;}
+p.solid {outline-style: solid;}
+p.double {outline-style: double;}
+p.groove {outline-style: groove;}
+p.ridge {outline-style: ridge;}
+p.inset {outline-style: inset;}
+p.outset {outline-style: outset;}
+
+p{
+  border: 1px solid black;
+  outline-style: solid;
+  outline-color: red;
+  outline-width: 5px;
+  outline-offset: 2px;
+}
+
+==================================================TEXT===================================================
+TEXT-ALIGN
+VALUES: center, left, right, justify
+
+h1 {
+  text-align: center; 
+}
+
+------------------------------------------------------------------------------------------------
+TEXT-DECORATION
+VALUES: none, overline, line-through, inderline
+
+h3 {
+  text-decoration: underline;
+}
+
+------------------------------------------------------------------------------------------------
+TEXT-TRANSFORM
+VALUES: lowercase, uppercase, capitalize
+
+p.uppercase {
+  text-transform: uppercase;
+}
+
+------------------------------------------------------------------------------------------------
+TEXT-IDENTATION
+
+p {
+  text-indent: 50px;
+}
+
+------------------------------------------------------------------------------------------------
+LETTER-SPACING
+
+h1 {
+  letter-spacing: 3px;
+}
+
+------------------------------------------------------------------------------------------------
+LINE-HEIGHT
+
+p {
+  line-height: 0.8;
+}
+
+------------------------------------------------------------------------------------------------
+TEXT-DIRECTION
+TURN THE TEXT TO OVERDIRECTION
+
+p {
+  direction: rtl;
+}
+
+------------------------------------------------------------------------------------------------
+WORD-SPACING
+
+h1 {
+  word-spacing: 10px;
+}
+
+------------------------------------------------------------------------------------------------
+TEXT SHADOW
+
+h1 {
+  text-shadow: 3px 2px red;
+}
+
+==================================================FONT===================================================
+FONT FAMILY
+p {
+  font-family: "Century Gothic", sans-serif;
+}
+
+------------------------------------------------------------------------------------------------
+FONT STYLE
+VALUES: normal, oblique, italic, bold
+
+p.normal {
+  font-style: normal;
+}
+
+------------------------------------------------------------------------------------------------
+FONT SIZE
+
+h1 {
+  font-size: 2.5em; /* 40px/16=2.5em */
+}
+
+------------------------------------------------------------------------------------------------
+FONT WEIGHT
+VALUES: 0 to 900
+
+p.normal {
+  font-weight: 700;
+}
+
+==================================================ICONS===================================================
+LINK: <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+
+Example:
+<i class="material-icons">cloud</i>
+
+==================================================LIST===================================================
+TYPES OF STYLES
+VALUES: circle, quare, upper-roman, lower-alpha, none
+
+ul{
+  list-style-type: circle;
+}
+
+ul {
+  list-style-type: square;
+}
+
+ol{
+  list-style-type: upper-roman;
+}
+
+ol{
+  list-style-type: lower-alpha;
+}
+
+=========================================DYSPLAY AND VISIBILITY===========================================
+VISIBILITY
+VALUES: hidden, visible
+h1 {
+  visibility: hidden;
+}
+
+------------------------------------------------------------------------------------------------
+DISPLAY
+VALUES: inline, block, none
+EXAPLANATION:
+INLINE: THE ELEMNT IS DISPLAYED INLINE
+BLOCK: THE ELEMENT IS DISPLAYED IN DIV FORMAT, BLOCKS
+NONE: TURN OF THE VISIBILITY OF AN ELEMENT
+
+h1 {
+  display: none;
+}
+
+==================================================POSITION==================================================
+VALUES: static, relative, fixed, absolute, sticky
+
+EXAPLANATION:
+STATIC: THE ELEMENT IS STATIC
+RELATIVE: IS POSSIBLE TO MOVE THE ELEMENT IN THE SCREEN
+FIXED: THE ELEMTN IS FIXED IN A POSITION
+ABSOLUTE: THE ELEMENT IS FIXED FROM THE POSTION OF ANOTHER ELEMENT
+STICKY: THE ELEMENT IS POSITIONED BASED ON THE USER'S SCROLL POSITION
+
+RELATIVE
+div.relative {
+  position: relative;
+  width: 400px;
+  height: 200px;
+  border: 3px solid #73AD21;
+}
+
+------------------------------------------------------------------------------------------------
+ABSOLUTE
+div.absolute {
+  position: absolute;
+  top: 80px;
+  right: 0;
+  width: 200px;
+  height: 100px;
+  border: 3px solid #73AD21;
+}
+
+------------------------------------------------------------------------------------------------
+STICKY
+div.sticky {
+  position: -webkit-sticky; /* Safari */
+  position: sticky;
+  top: 0;
+  background-color: green;
+  border: 2px solid #4CAF50;
+}
+
+==================================================OVERFLOW=================================================
+VALUES: auto, hidden, visible, scroll, auto
+
+EXPANATION:
+VISIBLE: DEFAULT. THE OVERFLOW IS NOT CLIPPED. THE CONTENT RENDERS OUTSIDE THE ELEMENT'S BOX
+HIDDEN: THE OVERFLOW IS CLIPPED, AND THE REST OF THE CONTENT WILL BE INVISIBLE
+SCROLL: THE OVERFLOW IS CLIPPED, AND A SCROLLBAR IS ADDED TO SEE THE REST OF THE CONTENT
+AUTO: SIMILAR TO SCROLL, BUT IT ADDS SCROLLBARS ONLY WHEN NECESSARY
+
+div{
+  overflow: auto;
+}
+
+------------------------------------------------------------------------------------------------
+OVER WHIT X AND Y AXIS
+
+div {
+  overflow-x: hidden; /* Hide horizontal scrollbar */
+  overflow-y: scroll; /* Add vertical scrollbar */
+}
+
+==================================================FLOAT=================================================
+VALUES: left, right, none, inherit
+
+•	LEFT - THE ELEMENT FLOATS TO THE LEFT OF ITS CONTAINER
+•	RIGHT - THE ELEMENT FLOATS TO THE RIGHT OF ITS CONTAINER
+•	NONE - THE ELEMENT DOES NOT FLOAT (WILL BE DISPLAYED JUST WHERE IT OCCURS IN THE TEXT). THIS IS DEFAULT
+•	INHERIT - THE ELEMENT INHERITS THE FLOAT VALUE OF ITS PARENT
+
+
+img {
+  float: left;
+}
+
+==================================================ALIGN=================================================
+margin:auto   /*horizontally center a block element*/
+vertical-align:   /*middle; vertically center a block element*/
+
+==========================================COMBINATOR SELECTORS===========================================
+element element	div p	    /*Selects all <p> elements inside <div> elements*/
+element>element	div > p	    /*Selects all <p> elements where the parent is a <div> element*/
+element+element	div + p	    /*Selects all <p> elements that are placed immediately after <div> elements*/
+element1~element2	p ~ ul	    /*Selects every <ul> element that are preceded by a <p> element*/
+
+===============================================PSEUDOCLASS=================================================
+
+------------------------------------------PSEUDO CLASS IN LINKS--------------------------------------------
+Links can receive various pseudoclasses types by accord of your current state.
+
+Example:
+
+/* unvisited link */
+a:link {
+  color: red;
+}
+
+/* visited link */
+a:visited {
+  color: green;
+}
+
+/* mouse over link */
+a:hover {
+  color: hotpink;
+}
+
+/* selected link */
+a:active {
+  color: blue;
+}
+
+p {
+  display: none;
+  background-color: yellow;
+  padding: 20px;
+}
+
+div:hover p {
+  display: block;
+}
+
+/* unvisited link */
+a:link {
+  color: red;
+}
+
+/* visited link */
+a:visited {
+  color: green;
+}
+
+/* mouse over link */
+a:hover {
+  color: hotpink;
+}
+
+/* selected link */
+a:active {
+  color: blue;
+}
+
+----------------------------------------MAIN CSS PSEUDOCLASS--------------------------------------------
+
+----------------------------------------------CHECKED--------------------------------------------------
+
+input:checked {
+  height: 50px;
+  width: 50px;
+}
+
+----------------------------------------------ACTIVE--------------------------------------------------
+
+a:active {
+  background-color: yellow;
+}
+
+----------------------------------------------FOCUS--------------------------------------------------
+
+input:focus {
+  background-color: yellow;
+}
+
+----------------------------------------------HOVER--------------------------------------------------
+
+a:hover {
+  background-color: yellow;
+}
+
+----------------------------------------------TARGET--------------------------------------------------
+
+:target {
+  border: 2px solid #D4D4D4;
+  background-color: #e5eecc;
+}
+
+<p><a href="#news1">Jump to New content 1</a></p>
+<p id="news1"><b>New content 1...</b></p>
+
+==========================================PSEUDO ELEMENTS==============================================
+
+----------------------------------------------BEFORE--------------------------------------------------
+
+Insert some text before the element.
+
+p::before {
+  content: "Read this -";
+}
+
+-----------------------------------------------AFTER--------------------------------------------------
+
+Insert some text after the element.
+
+p::after {
+  content: "Read this -";
+}
+
+--------------------------------------------FIRST LETTER----------------------------------------------
+
+Gives style for the first letter of all paragraphs.
+
+p::first-letter {
+  font-size: 200%;
+  color: #8A2BE2;
+}
+
+---------------------------------------------FIRST LINE-----------------------------------------------
+
+Gives style for the first line of all paragraphs.
+
+p::first-line {
+  background-color: yellow;
+}
+
+----------------------------------------------SELECTION-----------------------------------------------
+
+Styles the text select by the user trought the mouse cursor.
+
+::-moz-selection { /* Code for Firefox */
+  color: red;
+  background: yellow;
+}
+
+::selection {
+  color: red;
+  background: yellow;
+}
+
+==============================================OPACITY=================================================
+
+img {
+  opacity: 0.5;
+}
+
+---------------------------------------------FIRST LINE-----------------------------------------------
+
+img:hover {
+  opacity: 0.6;
+}
+
+============================================TEXT EFFECTS==============================================
+
+--------------------------------------------TEXT-OVERFLOW---------------------------------------------
+
+Text overflow creates a border around the text elemnt (paragraph) by according the width and word type.
+
+p.test1 {
+  white-space: nowrap;
+  width: 200px;
+  border: 1px solid #000000;
+  overflow: hidden;
+  text-overflow: clip;
+}
+
+---------------------------------------------WORD-BREAK-----------------------------------------------
+
+In this example this line will-break-at-hyphens.
+
+p.test1 {
+  width: 140px; 
+  border: 1px solid #000000;
+  word-break: keep-all;
+}
+
+In this example the lines will break at any character.
+
+p.test2 {
+  width: 140px; 
+  border: 1px solid #000000;
+  word-break: break-all;
+}
+
+============================================2D TRANSFORMS=============================================
+
+---------------------------------------------TRANSLATE------------------------------------------------
+
+This method translate the element by the axis X and Y.
+
+div {
+  transform: translate(50px, 100px);
+}
+
+----------------------------------------------ROTATE-------------------------------------------------
+
+This method  rotate the element by according the counter-clockwise according to a given degree. This
+method acepts same negatives and positive values.
+
+div {
+  transform: rotate(20deg);
+}
+
+-----------------------------------------------SCALE-------------------------------------------------
+
+This method decrease or increase the size of the element.
+
+div {
+  transform: scale(0.2, 3);
+}
+
+
+ ---------------------------------------------MATRIX-------------------------------------------------
+
+This method combines all the 2D transform methods into one. The parameters are as follow: 
+matrix(scaleX(),skewY(),skewX(),scaleY(),translateX(),translateY())
+
+div {
+  transform: matrix(1, -0.3, 0, 1, 0, 0);
+}
+
+============================================3D TRANSFORMS==============================================
+
+--------------------------------------------ROTATE X Y Z-----------------------------------------------
+
+
+div {
+  transform: rotateX(90deg);
+}
+
+div {
+  transform: rotateY(-90deg);
+}
+
+div {
+  transform: rotateZ(90deg);
+}
+
+-------------------------------------------TRANSLATE X Y Z-------------------------------------------
+
+
+div {
+  transform: translateX(90deg);
+}
+
+div {
+  transform: translateY(-180deg);
+}
+
+div {
+  transform: translateZ(210deg);
+}
+
+---------------------------------------------SCALE X Y Z-----------------------------------------------
+
+div {
+  transform: scaleX(3.5);
+}
+
+div {
+  transform: scaleY(-1.5);
+}
+
+div {
+  transform: scaleZ(0.5);
+}
+
+=============================================TRANSITIONS===============================================
+
+To create a transition effect, you must specify two things:
+
+1)the CSS property you want to add an effect to element;
+2)the duration of the effect.
+
+Example:
+
+
+div {
+  width: 100px;
+  height: 100px;
+  background: red;
+  transition: width 2s;
+}
+
+div:hover {
+  width: 300px;
+}
+
+-------------------------------------------TRANSITION-DELAY--------------------------------------------
+
+This property delay the start of the transition by according the time given.
+
+div {
+  width: 100px;
+  height: 100px;
+  background: red;
+  -webkit-transition: width 3s; /* Safari */
+  -webkit-transition-delay: 1s; /* Safari */
+  transition: width 3s;
+  transition-delay: 1s;
+}
+
+div:hover {
+  width: 300px;
+}
+
+--------------------------------------TRANSITION-WITH TRANSFORM---------------------------------------
+
+The transitions with using tranforms allow to use both 2d and 3d porperties tranforms.
+
+Example 01:
+
+div {
+  width: 100px;
+  height: 100px;
+  background: red;
+  border-radius: 15px;
+  -webkit-transition: width 2s, height 2s, -webkit-transform 2s; /* Safari */
+  transition: width 2s, height 2s, transform 2s;
+}
+
+div:hover {
+  width: 300px;
+  height: 300px;
+  -webkit-transform: rotate(180deg); /* Safari */
+  transform: rotate(180deg);
+}
+
+Example 02:
+
+div {
+  width: 200px;
+  height: 200px;
+  background: blue;
+  border-radius: 15px;
+  -webkit-transition: width 2s, height 2s, -webkit-transform 2s; /* Safari */
+  transition: width 3s, height 3s, transform 3s;
+}
+
+div:hover {
+  width: 400px;
+  height: 400px;
+  -webkit-transform: rotate(180deg); /* Safari */
+  transform: rotateY(90deg);
+}
+
+=============================================ANIMATIONS===============================================
+
+The animations are a set of transitions and effects applied an element HTML. At declaring a animation,
+should declare the properites animation-name and animation-duration at the element binded. This options
+animation-iteration-count (number of repetitions of the animation, values go 1,2,3...infinity) and ani-
+mation delay are optionals (time to wait a animation start) are optionals.
+
+In the sequence the keyframe method must receive the name of the animation. The features of the anima-
+tion can be configured in the time percent of the animation progress. The propertie animation-direction 
+defines the forward of the animations, your values are: alternate, reverse and alternate-reverse.
+
+Example:
+
+div {
+  width: 100px;
+  height: 100px;
+  position: relative;
+  background-color: red;
+  animation-name: example;
+  animation-duration: 4s;
+  animation-iteration-count: 3;
+  animation-delay: 2s;
+}
+
+@keyframes example {
+  0%   {background-color:red; left:0px; top:0px;}
+  25%  {background-color:yellow; left:200px; top:0px;}
+  50%  {background-color:blue; left:200px; top:200px;}
+  75%  {background-color:green; left:0px; top:200px;}
+  100% {background-color:red; left:0px; top:0px;}
+}
+
+=============================================FLEXBOX===============================================
+
+Introduction: Flexbox is the techinc of use flex properties that turn more ease work with sec-
+tions and articles in web pages and applications. The flebox properties are divided in the sec-
+tion properties (parent) and itens properties(childs).
+
+Creating a flex container (Parent):
+
+<div class="flex-container">
+  <div>1</div>
+  <div>2</div>
+  <div>3</div>
+</div>
+
+.flex-container {
+  display: flex;
+}
+
+----------------------------------FLEX CONTAINER PROPERTIES----------------------------------------
+
+flex-direction
+flex-wrap
+flex-flow
+justify-content
+align-items
+align-content
+
+---------------------------------------FLEX DIRECTION---------------------------------------------
+ 
+ Defines in which direction the container wants to stack the flex items.
+
+ Main values: colunm, row, column-reverse and row-reverse.
+
+ .flex-container {
+  display: flex;
+  flex-direction: column;
+}
+
+-----------------------------------------FLEX WRAP-------------------------------------------------
+
+Specifies that the flex items will wrap (resize adapt) if necessary.
+
+Main values: wrap, wrap-reverse and nowrap. 
+
+.flex-container {
+  display: flex;
+  flex-wrap: wrap;
+  background-color: DodgerBlue;
+}
+
+-----------------------------------------FLEX FLOW-------------------------------------------------
+
+The flex-flow property is a shorthand property for setting both the flex-direction and 
+flex-wrap properties.
+
+
+.flex-container {
+  display: flex;
+  flex-flow: row wrap;
+
+-----------------------------------------JUSTIFY CONTENT-------------------------------------------------
+
+This property is used to align the flex items:
+
+Main values:
+center: put the elements in the center of the parent element.
+flex-start: put the elements in the left or top (begin) of the parent element.
+flex-end: put the elements in the right or bottom (end) of the parent element.
+space-around: displays the flex items with equal spaces before, between, and after the lines.
+space-between: displays the flex items with only equal spaces between the lines.
+
+
+.flex-container {
+  display: flex;
+  justify-content: center;
+}
+
+--------------------------------------------ALIGN ITEMS------------------------------------------------
+
+Align the items 
+
+center: put the elements in the center of the parent element.
+flex-start: put the elements in the left or top (begin) of the parent element.
+flex-end: put the elements in the right or bottom (end) of the parent element.	
+stretch: strech the element trought the div or view element (works only no fixed elements, %)	
+
+===========================================GENERAL TIPS================================================
+
+If has styles in the page and external styles imported, the browser always put priority to the internal
+styles.
+
+Think in all elements like boxes where the sequence of offsets are: content, padding, border, margin.

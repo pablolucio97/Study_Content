@@ -1,0 +1,294 @@
+===========================USEFUL JS SNIPPETS=========================
+
+=================================ARRAYS===============================
+
+SORTING A NUMERIC ARRAY:
+
+<p>Click the button to sort the array in ascending order.</p>
+
+<button onclick="myFunction()">Try it</button>
+
+<p id="demo"></p>
+
+<script>
+var points = [40, 100, 1, 5, 25, 10];
+document.getElementById("demo").innerHTML = points;  
+
+function myFunction() {
+  points.sort(function(a, b){return a - b});
+  document.getElementById("demo").innerHTML = points;
+}
+</script>
+
+----------------------------------------------------------------------
+
+SORTING AN ARRAY IN RANDOM ORDER:
+
+<p>Click the button (again and again) to sort the array in random order.</p>
+
+<button onclick="myFunction()">Try it</button>
+
+<p id="demo"></p>
+
+<script>
+var points = [40, 100, 1, 5, 25, 10];
+document.getElementById("demo").innerHTML = points;  
+
+function myFunction() {
+  points.sort(function(a, b){return 0.5 - Math.random()});
+  document.getElementById("demo").innerHTML = points;
+}
+</script>
+
+----------------------------------------------------------------------
+
+FINDING THE MIN VALUE IN AN ARRAY:
+
+<p>The lowest number is <span id="demo"></span>.</p>
+
+<script>
+var points = [40, 100, 1, 5, 25, 10];
+document.getElementById("demo").innerHTML = myArrayMin(points);
+
+function myArrayMin(arr) {
+  return Math.min.apply(null, arr);
+}
+</script>
+
+----------------------------------------------------------------------
+
+FINDING THE MAX VALUE IN AN ARRAY (OPTION 01):
+
+<p>The highest number is <span id="demo"></span>.</p>
+
+<script>
+var points = [40, 100, 1, 5, 25, 10];
+document.getElementById("demo").innerHTML = myArrayMax(points);
+
+function myArrayMax(arr) {
+  return Math.max.apply(null, arr);
+}
+</script>
+
+----------------------------------------------------------------------
+
+FINDING THE MAX VALUE IN AN ARRAY (OPTION 02):
+
+<p>The highest number is <span id="demo"></span>.</p>
+
+<script>
+var points = [40, 100, 1, 5, 25, 10];
+document.getElementById("demo").innerHTML = myArrayMax(points);
+
+function myArrayMax(arr) {
+  var len = arr.length;
+  var max = -Infinity;
+  while (len--) {
+    if (arr[len] > max) {
+      max = arr[len];
+    }
+  }
+  return max;
+}
+</script>
+
+----------------------------------------------------------------------
+
+SORTING OBJECTS: 
+
+<p>Click the buttons to sort car objects on age.</p>
+
+<button onclick="myFunction()">Sort</button>
+
+<p id="demo"></p>
+
+<script>
+var cars = [
+  {type:"Volvo", year:2016},
+  {type:"Saab", year:2001},
+  {type:"BMW", year:2010}
+];
+
+displayCars();
+
+function myFunction() {
+  cars.sort(function(a, b){return a.year - b.year});
+  displayCars();
+}
+
+function displayCars() {
+  document.getElementById("demo").innerHTML =
+  cars[0].type + " " + cars[0].year + "<br>" +
+  cars[1].type + " " + cars[1].year + "<br>" +
+  cars[2].type + " " + cars[2].year;
+}
+</script>
+
+----------------------------------------------------------------------
+
+FOREACH - forEach()
+
+<p>Calls a function once for each array element.</p>
+
+<p id="demo"></p>
+
+<script>
+var txt = "";
+var numbers = [45, 4, 9, 16, 25];
+numbers.forEach(myFunction);
+document.getElementById("demo").innerHTML = txt;
+
+function myFunction(value) {
+  txt = txt + value + "<br>"; 
+}
+</script>
+
+//Ouput: 45 4 9 16 25
+
+
+----------------------------------------------------------------------
+
+REDUCE - reduce() - Summing all values of an array.
+
+<p>This example finds the sum of all numbers in an array:</p>
+
+<p id="demo"></p>
+
+<script>
+var numbers = [45, 4, 9, 16, 25];
+var sum = numbers.reduce(myFunction);
+
+document.getElementById("demo").innerHTML = "The sum is " + sum;
+
+function myFunction(total, value) {
+  return total + value;
+}
+</script>
+
+//Output: The sum is 99
+
+----------------------------------------------------------------------
+
+EVERY - every() - Verifying if has values are by according the logical
+test.
+
+<p>The every() method checks if all array values pass a test.</p>
+
+<p id="demo"></p>
+
+<script>
+var numbers = [45, 4, 9, 16, 25];
+var allOver18 = numbers.every(myFunction);
+
+document.getElementById("demo").innerHTML = "All over 18 is " + allOver18;
+
+function myFunction(value) {
+  return value > 18;
+}
+</script>
+
+//Output: All over 18 is false.
+
+----------------------------------------------------------------------
+
+SOME - some() - Verifying if some values are by according the logical
+test.
+
+<p>The some() method checks if some array values pass a test.</p>
+
+<p id="demo"></p>
+
+<script>
+var numbers = [45, 4, 9, 16, 25];
+var someOver18 = numbers.some(myFunction);
+
+document.getElementById("demo").innerHTML = "Some over 18 is " + someOver18;
+
+function myFunction(value, index, array) {
+  return value > 18;
+}
+</script>
+
+//Output: Some over 18 is true.
+
+==============================MATH====================================
+
+GENERATING RAMDOMIC NUMBERS 0 TO 9
+
+<p>Every time you click the button, getRndInteger(min, max) returns a 
+random number between 0 and 9 (both included):</p>
+
+<button onclick="document.getElementById('demo').innerHTML = 
+getRndInteger(0,10)">Click Me</button>
+
+<p id="demo"></p>
+
+<script>
+function getRndInteger(min, max) {
+  return Math.floor(Math.random() * (max - min)) + min;
+}
+</script>
+
+----------------------------------------------------------------------
+
+GENERATING RAMDOMIC NUMBERS 1 TO 9
+<p>Every time you click the button, getRndInteger(min, max) returns a 
+random number between 0 
+and 9 (both included):</p>
+
+<button onclick="document.getElementById('demo').innerHTML = 
+getRndInteger(0,10)">Click Me</button>
+
+<p id="demo"></p>
+
+<script>
+function getRndInteger(min, max) {
+  return Math.floor(Math.random() * (max - min + 1) ) + min;
+}
+</script>
+
+=========================REGULAR EXPRESSIONS=============================
+
+USING A TEST FOR VERIFY IF A REGEX IS VALID
+<p>Search for an "e" in the next paragraph:</p>
+
+<p id="p01">The best things in life are free!</p>
+
+<p id="demo"></p>
+
+<script>
+text = document.getElementById("p01").innerHTML; 
+document.getElementById("demo").innerHTML = /e/.test(text);
+</script>
+//Output: true
+
+----------------------------------------------------------------------
+
+USING THE exec() METHOD FOR VERIFY IF A REGEX IS VALID
+<h2>JavaScript Regular Expressions</h2>
+
+<p id="demo"></p>
+
+<script>
+var obj = /e/.exec("The best things in life are free!");
+document.getElementById("demo").innerHTML =
+"Found " + obj[0] + " in position " + obj.index + " in the text: " + obj.input;
+</script>
+
+
+
+===============================FORMS===================================
+
+RESETING A FORM
+
+<form id="frm1">
+  First name: <input type="text" name="fname"><br>
+  Last name: <input type="text" name="lname"><br><br>
+  <input type="button" onclick="myFunction()" value="Reset">
+</form>
+
+<script>
+function myFunction() {
+  document.getElementById("frm1").reset();
+}
+</script>

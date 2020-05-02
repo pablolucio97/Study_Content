@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Math functions</title>
+</head>
+<body>
+    <h3>Randoming numbers</h3>
+    <p id="n1-sort">Click to in the button bellow to random a number between 1 to 9:</p>
+    <button id="btn-random1" onclick="random1()">Random:</button><br>
+    <p id="result1"></p>
+    <p id="n2-sort">Click to in the button bellow to random a number between 1 to 99</p>
+    <button id="btn-random2" onclick="random2()">Random:</button><br>
+    <p id="result2"></p>
+    <hr>
+    <h3>Treating numbers</h3>
+    <p>Type a numebr to treat:</p>
+    <input type="number" id="numbertreat" min="0" max="9.9" step=".1"><br><br>
+    <button id="btn-treat" onclick=" treatNumber()">Treat</button>
+    <p id="result3"></p>
+    <p id="result4"></p>
+    <p id="result5"></p>
+    <hr>
+    <h3>Max and min</h3>
+    var 
+    <p id="result6"></p>
+    <script>
+        function random1(){
+            //RANDOM 1 TO 9
+            var sort1 = Math.floor(Math.random()*10)+1;
+            var result1 = document.getElementById("result1");
+            result1.innerHTML = sort1;
+        }
+        function random2(){
+            //RNADOM 1 TO 99
+            var sort2 = Math.floor(Math.random()*100)+1;
+            var result2 = document.getElementById("result2");
+            result2.innerHTML = sort2;
+        }
+
+        function treatNumber(){
+            //NUMBER FLOATING
+            var n1 = document.getElementById("numbertreat").value;
+            var numberRound = Math.round(n1);
+            var numberCeil = Math.ceil(n1);
+            var numberFloor = Math.floor(n1)
+            var result3 = document.getElementById("result3");
+            result3.innerHTML = `Number rounding: ${numberRound} `;
+            var result4 = document.getElementById("result4");
+            result4.innerHTML = `Numbernumber ceiling: ${numberCeil} `;
+            var result5 = document.getElementById("result5");
+            result5.innerHTML = `Numbernumber flooring: ${numberFloor} `;
+        }
+    </script>
+</body>
+</html>

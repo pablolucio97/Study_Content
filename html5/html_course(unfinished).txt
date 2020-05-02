@@ -1,0 +1,135 @@
+
+==============================The HTML DOM Document Object===================================
+Properties
+activeElement	Returns the currently focused element in the document
+anchors	Returns a collection of all <a> elements in the document that have a name attribute
+applets	Returns a collection of all <applet> elements in the document
+baseURI	Returns the absolute base URI of a document
+body	Sets or returns the document's body (the <body> element)
+cookie	Returns all name/value pairs of cookies in the document
+charset	Deprecated. Use characterSet instead. Returns the character encoding for the document
+characterSet	Returns the character encoding for the document
+defaultView	Returns the window object associated with a document, or null if none is available.
+designMode	Controls whether the entire document should be editable or not.
+doctype	Returns the Document Type Declaration associated with the document
+documentElement	Returns the Document Element of the document (the <html> element)
+documentMode	Returns the mode used by the browser to render the document
+documentURI	Sets or returns the location of the document
+domain	Returns the domain name of the server that loaded the document
+domConfig	Obsolete. Returns the DOM configuration of the document
+embeds	Returns a collection of all <embed> elements the document
+forms	Returns a collection of all <form> elements in the document
+fullscreenElement	Returns the current element that is displayed in fullscreen mode
+head	Returns the <head> element of the document
+images	Returns a collection of all <img> elements in the document
+implementation	Returns the DOMImplementation object that handles this document
+inputEncoding	Returns the encoding, character set, used for the document
+lastModified	Returns the date and time the document was last modified
+links	Returns a collection of all <a> and <area> elements in the document that have a href attribute
+readyState	Returns the (loading) status of the document
+referrer	Returns the URL of the document that loaded the current document
+scripts	Returns a collection of <script> elements in the document
+strictErrorChecking	Sets or returns whether error-checking is enforced or not
+title	Sets or returns the title of the document
+URL	Returns the full URL of the HTML document
+
+Methods
+addEventListener()	Allow the eleemnt recives various functions E.G:
+
+document.addEventListener("click", function(){
+  document.getElementById("demo").innerHTML = "Hello World";
+});
+-------------------------------------------------------------------------------------------------
+adoptNode()	Adopts a node from another document
+close()	Closes the output stream previously opened with document.open()
+-------------------------------------------------------------------------------------------------
+createAttribute()	Creates an attribute node E.G:
+
+var h1 = document.getElementsByTagName("H1")[0];   // Get the first <h1> element in the document
+var att = document.createAttribute("class");       // Create a "class" attribute
+att.value = "democlass";                           // Set the value of the class attribute
+h1.setAttributeNode(att);                          // Add the class attribute to <h1>
+-------------------------------------------------------------------------------------------------
+createComment()	Creates a Comment node with the specified text - Comments are invisibles.
+createDocumentFragment()	Creates an empty DocumentFragment node E.G:
+-------------------------------------------------------------------------------------------------
+createElement()	Creates an Element node E.G:
+
+var parent = document.getElementById('parent')
+var child = document.createElement("p');                            // Create a <p> element
+var childContent = createTextNode('New element') = "CLICK ME";      // Insert text
+child.appendChild(childContent);                                    //Append the text to <p> 
+parent.appendChild(child);                                          //Append <p> to <div>
+-------------------------------------------------------------------------------------------------
+createEvent()	Creates a new event allowing you to simulate any event.
+-------------------------------------------------------------------------------------------------
+createTextNode()	Creates a Text node E.G:
+var h = document.createElement("H1")                // Create a <h1> element
+var t = document.createTextNode("Hello World");     // Create a text node
+h.appendChild(t);                                   // Append the text to <h1>
+-------------------------------------------------------------------------------------------------
+execCommand()	Invokes the specified clipboard operation on the element currently having focus.
+
+<script>
+document.designMode = "on";
+
+function myFunction(event) {
+  if (event.keyCode == 16) {
+    // Execute command if user presses the SHIFT button:
+    document.execCommand("bold");
+  }
+}
+</script>
+-------------------------------------------------------------------------------------------------
+fullscreenEnabled()	Returns a Boolean value indicating whether the document can be viewed in fullscreen mode
+getElementById()	Returns the element that has the ID attribute with the specified value
+getElementsByClassName()	Returns a HTMLCollection containing all elements with the specified class name
+getElementsByName()	Returns a HTMLCollection containing all elements with a specified name
+getElementsByTagName()	Returns a HTMLCollection containing all elements with the specified tag name
+hasFocus()	Returns a Boolean value indicating whether the document has focus
+importNode()	Imports a node from another document
+normalize()	Removes empty Text nodes, and joins adjacent nodes
+normalizeDocument()	Removes empty Text nodes, and joins adjacent nodes
+open()	Opens an HTML output stream to collect output from document.write()
+querySelector()	Returns the first element that matches a specified CSS selector(s) in the document
+querySelectorAll()	Returns a static NodeList containing all elements that matches a specified CSS selector(s) in the document
+removeEventListener()	Removes an event handler from the document (that has been attached with the addEventListener() method)
+renameNode()	Renames the specified node
+write()	Writes HTML expressions or JavaScript code to a document
+writeln()	Same as write(), but adds a newline character after each statement
+
+
+
+
+==============================The HTML DOM Attribute Object==================================
+
+Properties
+attr.isId	Returns true if the attribute is of type Id, otherwise it returns false
+attr.name	Returns the name of an attribute
+attr.value	Sets or returns the value of the attribute
+attr.specified	Returns true if the attribute has been specified, otherwise it returns false
+
+Methods
+nodemap.getNamedItem()	Returns a specified attribute node from a NamedNodeMap
+nodemap.item()	Returns the attribute node at a specified index in a NamedNodeMap
+nodemap.length	Returns the number of attribute nodes in a NamedNodeMap
+nodemap.removeNamedItem()	Removes a specified attribute node
+nodemap.setNamedItem()	Sets the specified attribute node (by name)
+
+=================================The Console Object DOM======================================
+
+Methods
+assert()	Writes an error message to the console if the assertion is false
+clear()	Clears the console
+count()	Logs the number of times that this particular call to count() has been called
+error()	Outputs an error message to the console
+group()	Creates a new inline group in the console. This indents following console messages by an additional level, until console.groupEnd() is called
+groupCollapsed()	Creates a new inline group in the console. However, the new group is created collapsed. The user will need to use the disclosure button to expand it
+groupEnd()	Exits the current inline group in the console
+info()	Outputs an informational message to the console
+log()	Outputs a message to the console
+table()	Displays tabular data as a table
+time()	Starts a timer (can track how long an operation takes)
+timeEnd()	Stops a timer that was previously started by console.time()
+trace()	Outputs a stack trace to the console
+warn()	Outputs a warning message to the console
