@@ -1,0 +1,108 @@
+=====================STYLED COMPONENTS=====================
+
+----------------Using the Styled components----------------
+
+Component file:
+
+import React, {useContext} from 'react'
+import {Container, Text1} from '../styles/styles_example'
+
+const ExampleComponent = () => {
+    return(
+        <Container>
+		<Text1>I'm an exampple.</Text1>
+        </Container>
+    )
+}
+
+export default ExampleComponent
+
+--  --  --  --  --  --  --  --  --  --  --  --  --  --  --
+
+Styled file:
+
+import styled from 'styled-components/native';
+
+export const Container = styled.View`
+flex: 1;
+background-color: #fff;
+justify-content: flex-start;
+padding: 30px;
+align-items: center
+`
+
+export const Text = styled.Text`
+font-size: 30;
+color: #55ee;
+text-align: center;
+`
+
+-------------------Using Dinamyc Props--------------------
+
+Component file:
+
+import React, {useContext} from 'react'
+import {Container, Text1} from '../styles/styles_example'
+
+const ExampleComponent = () => {
+    return(
+        <Container background-color={"#55ff"} padding={30}>
+        </Container>
+    )
+}
+
+export default ExampleComponent
+
+--  --  --  --  --  --  --  --  --  --  --  --  --  --  --
+
+Styled file:
+
+import styled from 'styled-components/native';
+
+export const Container = styled.View`
+flex: 1;
+background-color: ${props => props.background-color};
+justify-content: flex-start;
+padding: ${props => `${props.padding}px`};
+align-items: center
+`
+
+
+-------------------Using PseudoClasses--------------------
+
+To use pseudoclasses in the styled component, the element
+should be inside another element and by referred inside 
+this element.
+
+Example - Chaging style of the button:
+
+export const DarkContainerSmall = styled.div`
+display: flex;
+flex-direction: column;
+justify-content: center;
+width: 60%;
+height: 22%;
+background-color: #333;
+outline: .05px solid #222;
+color: #fff;
+&:hover ${DarkButtonMedium}{
+    outline: .5px solid cyan
+`
+
+export const DarkButtonMedium = styled.button`
+width: 120px;
+height: 30px;
+background-color: #343434;
+outline: .05px solid #222;
+outline-offset: -3.5px;
+border-radius: 3px;
+border: none;
+margin: 2px;
+padding: 2px;
+color: #fff;
+text-transform: uppercase;
+font-size: .75rem;
+`
+
+
+
