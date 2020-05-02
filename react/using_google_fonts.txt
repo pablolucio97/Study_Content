@@ -1,0 +1,8 @@
+Using Google Fonts in your React Porject
+
+1)Goes to https://fonts.google.com, and click in the font choiced.
+2)Choice the style of the font and click 'Select this style'.
+3)In the tab Embed, click in @import, copy the cody and paste in your css file.
+4)Set the font-family to you new Google font. Example:
+ font-family: 'Comic Neue', cursive;
+5)Import your css in App.js.
