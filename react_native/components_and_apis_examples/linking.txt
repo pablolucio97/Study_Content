@@ -1,0 +1,45 @@
+
+LINKING
+
+import React, { Component } from 'react'
+import { Text, View, Linking, Platform } from 'react-native'
+
+export default class App extends Component {
+  render() {
+    return (
+      <View>
+        <Text
+        //OPENING A LINK
+        onPress={()=> {Linking.openURL('https://about.google')}}
+        > About the  Google </Text>
+
+        <Text
+        //OPENING A MAP - VERIFYING THE SO
+        onPress={()=> {
+          if(Platform.OS === 'ios'){
+            //IOS MAPS
+            Linking.openURL('http://maps.apple.com/?ll=-23.586466,-46.6840798')
+          }else{
+            //GOOGLE MAPS - ANDROID
+            Linking.openURL('geo:-23.586466,-46.6840798')
+          }
+        }}
+        >How to arrive
+        </Text>
+
+        <Text
+        //STARTING A MESSAGE WITH A SPECIFIC WHATSAPP CONTACT
+        onPress={()=> {Linking.openURL('http://api.whatsapp.com/send?phone=5531985187963')}}
+        >Share
+        </Text>
+
+        <Text
+        onPress={()=> {Linking.openURL('mailto:pablolucio_@hotmail.com')}}
+        >
+          Send a e-mail
+        </Text>
+
+      </View>
+    )
+  }
+}

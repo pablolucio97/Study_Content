@@ -1,0 +1,63 @@
+import React, { Component } from 'react'
+import { Text, View, Linking, Switch, TextInput,Button, StyleSheet } from 'react-native'
+
+export default class App extends Component {
+  constructor(props){
+    super(props);
+    this.state = {
+      switchValue : false,
+      email: '',
+      btnSend: true,
+      inputEmail: false
+    }
+  }
+
+  toggleSwitch = (value) => {
+    this.setState({switchValue: value})
+    this.setState({btnSend: false})
+    this.setState({inputEmail: true})
+  }
+
+  sendEmail = () => {
+    Linking.openURL('mailto:' + this.state.email)
+  }
+
+
+  render() {
+    return (
+      <View style={styles.mainContainer}>
+        <Text> Desires to receives our e-mails?</Text>
+        <View 
+          style={styles.switchContainer}
+        >
+        <Switch
+        value = {this.state.switchValue}
+        onValueChange = {this.toggleSwitch.bind(this)}
+        />
+        </View>
+        <Text>{this.state.switchValue? 'Thanks for subscription.' : ''}</Text>
+        <TextInput keyboardType='email-address' placeholder = 'type here your e-mail'
+        editable={this.state.inputEmail}
+        onChangeText={(email)=>{this.setState({email: email})}}></TextInput>
+        <Button
+        title = 'Send'
+        onPress={this.sendEmail}
+        disabled={this.state.btnSend}
+        />
+      </View>
+    )
+  }
+}
+
+const styles = StyleSheet.create({
+  mainContainer: {
+    flex: 1,
+    padding: 30,
+  },
+  switchContainer: {
+    flex: .05,
+    flexDirection: 'row',
+    justifyContent: 'flex-start',
+    padding: 15
+  }
+})

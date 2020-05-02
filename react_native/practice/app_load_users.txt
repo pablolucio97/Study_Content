@@ -1,0 +1,131 @@
+import React from 'react'
+import {useState} from 'react'
+import { View, Text, Image, FlatList, Button, 
+  StyleSheet, TouchableOpacity, TextInput, ScrollView, StatusBar, Alert } from 'react-native'
+
+export default function App () {
+
+  const [dataAPI, setDataAPI] = useState([])
+  const [qtyUsers, setQtyUsers] = useState(0)
+  const [resultMsg, setResultMsg] = useState('')
+
+  function loadUsers(){
+    if(qtyUsers == 0){
+      Alert.alert('Check your data', 'Please type a number.')
+    }else{
+      fetch('https://randomuser.me/api/?results=' + qtyUsers)
+      .then(res => res.json())
+      .then( res => setDataAPI(res.results || []))
+      setResultMsg(qtyUsers + ' users were found.')
+    }
+  }
+
+  
+  return (
+    <View style={styles.container}>
+      <StatusBar
+      backgroundColor='#5ff'
+      barStyle='dark-content'
+      />
+      <FlatList
+        data={dataAPI}
+        renderItem={({item}) => (
+          <View style={styles.ribbon}>
+            <Image source={{uri:item.picture.thumbnail}}
+            width='100'
+            height='100'
+            style={styles.avatar}
+            />
+            <View style={styles.info}>
+              <Text style={styles.name}>{item.name.first} {item.name.last}</Text>
+              <Text style={styles.email}>{item.email}</Text>
+            </View>
+          </View>
+      
+        )}
+        keyExtractor={ item => item.email}
+      />
+        <Text style={styles.text}>Type the quantity of users to load:</Text>
+        <TextInput
+        onChangeText={value => setQtyUsers(value)}
+        keyboardType='numeric'
+        style={styles.textInput}
+        maxLength={3}
+        />
+      <TouchableOpacity title='Load' onPress={loadUsers} style={styles.buttonTouch}>
+        <Text style={styles.buttonText}>Load Users</Text>
+      </TouchableOpacity>
+        <Text style={styles.resultText}>{resultMsg}</Text>
+    </View>
+  )
+}
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    flexDirection: 'column',
+    padding: 7,
+    backgroundColor: '#333',
+    borderTopWidth: 0,
+    borderBottomWidth: 0
+  },
+  ribbon:{
+    height: 50,
+    flexDirection: 'row',
+    borderBottomColor: '#999',
+    borderBottomWidth: .3
+  },
+  avatar:{
+    width: 40,
+    height: 40,
+    borderRadius: 50,
+    margin: 5
+  },
+  name:{
+    color: '#5ff',
+    fontSize: 18
+  },
+  email:{
+    color: '#fff',
+    fontSize: 12
+  },
+  buttonTouch:{
+    width: 130,
+    height: 40,
+    backgroundColor: '#5ff',
+    borderRadius: 5,
+    alignSelf: 'center',
+    marginTop: 10,
+    padding: 5
+  },
+  buttonText:{
+    fontSize: 18,
+    color: '#333',
+    textAlign: 'center'
+  },
+  textInput:{
+    width: "32%",
+    height: 40,
+    alignSelf: 'center',
+    backgroundColor: "#777",
+    marginTop: 7,
+    fontSize: 18,
+    color: '#5ff',
+    textAlign: 'center',
+    borderRadius: 5
+  },
+  text:{
+    fontSize: 22,
+    color: "#5ff",
+    textAlign: 'center',
+    margin: 15
+  },
+  resultText:{
+    fontSize: 20,
+    color: "#5ff",
+    textAlign: 'center',
+    margin: 7
+  }
+})
+
+

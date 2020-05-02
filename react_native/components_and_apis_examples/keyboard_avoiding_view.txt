@@ -1,0 +1,35 @@
+KEYBOARD AVOIDING VIEW
+
+import React, { Component } from 'react'
+import { Text, View, TextInput, KeyboardAvoidingView } from 'react-native'
+
+export default class Main extends Component {
+  render() {
+    return (
+      <KeyboardAvoidingView style={styles.container}  behavior='position'>
+        <Text style={styles.text}>Keyboard Avoind Type Test</Text>
+        <Text style={styles.text}>Keyboard Avoind Type Test</Text>
+        <Text style={styles.text}>Keyboard Avoind Type Test</Text>
+        <Text style={styles.text}>Keyboard Avoind Type Test</Text>
+        <TextInput style = {styles.textInput} placeholder='type here'></TextInput>
+
+      </KeyboardAvoidingView>
+    )
+  }
+}
+
+
+const styles = {
+  text: {
+    fontSize: 35,
+    padding: 28,
+  }, 
+  textInput:{
+    width: '80%',
+    height: '20%',
+    padding: 25
+  },
+  container: {
+    padding: 30
+  }
+}

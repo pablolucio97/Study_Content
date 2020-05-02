@@ -1,0 +1,19 @@
+import * as React from 'react';
+import {useState} from 'react'
+import { Text, View, Switch, StyleSheet } from 'react-native'
+
+   function Options({ navigation }) {
+      const [switcher, setSwitcher] = useState(false)
+  
+      return (
+          <View >
+          <Switch
+          value={switcher}
+          onValueChange={(val) => setSwitcher (val)}
+          />
+          <Text>Changes:{switcher? 'nnn' : 'yyy'}</Text>
+          </View>
+      );
+    }
+  
+    export default Options;

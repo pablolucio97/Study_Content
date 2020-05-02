@@ -1,0 +1,86 @@
+=====================REACT NATIVE COURSE=======================
+
+====================INSTALLINGS ON WINDOWS=====================
+
+------------INSTALLING THE REACT USING CHOCOLATEY--------------
+
+1)Open your Command Prompt on Windows and one of the two codes:
+%systemroot%\System32\WindowsPowerShell\v1.0\powershell.exe -No
+Profile -ExecutionPolicy Bypass -Command "((new-object net.webcli
+ent).DownloadFile('https://chocolatey.org/install.ps1','%DIR%ins
+tall.ps1'))" or: %systemroot%\System32\WindowsPowerShell\v1.0\po
+wershell.exe -NoProfile -ExecutionPolicy Bypass -Command "& 
+'%DIR%install.ps1' %*"
+
+2)Run the follow code: choco install -y nodejs.install python2 
+jdk8. Test it using the code node -v. This will be the version
+of the Node.
+
+3)Run the follow code: npm install -g react-native-cli
+
+-----------------INSTALLING THE ANDROID STUDIO------------------
+
+1)Go to the website: https://developer.android.com/studio and cli-
+ck in Donwlod Android Studio.
+
+2)Install the Android Studio. When arrives in the download compo-
+nets page, select the 
+
+-----------------INSTALLING THE ANDROID STUDIO------------------
+
+1)Open the Geny Motion and run your device choiced.
+
+2)Run the code: npx react-native init name_of_project
+
+3)Run the code: cd name_of_project
+
+4)Run the code: npx react-native run-android
+
+===========================CONCEPTS=============================
+
+-----------------------Class Component--------------------------
+
+Are the components create by class format, these components uses
+the constructor method in your scope.
+
+---------------------Function Component-------------------------
+
+Are the components created by function format, these components
+doesn't uses the constructor method, are availeable to uses Hooks
+and receive parammeters.
+
+
+
+=========================GENERAL TIPS============================
+
+Async events are the events thats depends of the user action, e-
+xample: onPress, onTouch etc... and when this events is appointing
+to objects of the class components, should linked by the bind().
+
+At using arrow functions in TextInput or another elements to change
+the state, the value passed as parammeters even be the same of the
+state value.
+
+To declare variables to styling, import and uses StylesSheet, this
+show automatically the style options during the build styles pro-
+cess.
+
+All additional packge installed by arn or npm should be installed 
+directly in the project wich its will be used.
+
+Objects don't be renderized in components like text in React Nati-
+ve.
+
+Don't pass functions to renders components when using stackNaviga-
+tor to navigate between screens.
+
+Use function to represents a component when working with screen 
+navigation.
+
+Use one useEffect method to treat each change state in your 
+application.
+
+The scope that is inside the main component is executed first 
+than functions outside the component scope.
+
+

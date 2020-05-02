@@ -1,0 +1,20 @@
+
+STATUS BAR
+
+import React, { Component } from 'react'
+import { Text, View, StatusBar } from 'react-native'
+
+export default class App extends Component {
+  render() {
+    return (
+      <View>
+        <Text>Using Status Bar</Text>
+        <StatusBar
+        barStyle='dark-content'
+        hidden={false}
+        backgroundColor='#1e4'
+        />
+      </View>
+    )
+  }
+}

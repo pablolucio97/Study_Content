@@ -1,0 +1,55 @@
+import React, { Component } from 'react'
+import { Text, View, StyleSheet} from 'react-native'
+
+
+export default class RandomMessageGenerator extends Component {
+  constructor(props){
+    super(props);
+    this.state = {
+      message: ''
+    }
+  }
+
+  generateMessage = () => {
+    const messagesIndex = [1,2,3,4]
+    const randomMessage = Math.floor(Math.random(messagesIndex) * 5)
+    this.setState({message: randomMessage})
+    switch(randomMessage){
+      case(0):
+      return this.setState({message: 'A previned man values by two.'})
+      case(1):
+      return this.setState({message: 'Constraints the wise and gain a friend, constraints a foll and gain an enemy.'})
+      case(2):
+      return this.setState({message: 'In blind land, whoes has one eye is king.'})
+      case(3):
+      return this.setState({message: 'More value has one bird in the hand than two birds flying.'})
+      case(4):
+      return this.setState({message: 'Softs water in hard rock, so hits untill drys.'})
+    }
+  }
+
+  componentDidMount(){
+    this.interval = setInterval(this.generateMessage, 3000)
+  }
+
+  render() {
+     return (
+      <View style={styles.mainContainer}>
+        <Text style={styles.text}>{this.state.message}</Text>
+      </View>
+    )
+  }
+}
+
+const styles = StyleSheet.create({
+  mainContainer: {
+    flex: 1,
+    backgroundColor: 'violet',
+    justifyContent: 'center'
+  },
+  text: {
+    padding: 40,
+    fontSize: 35,
+    textAlign: 'center'
+  },
+})

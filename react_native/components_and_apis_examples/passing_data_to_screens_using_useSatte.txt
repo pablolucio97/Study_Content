@@ -1,0 +1,48 @@
+
+import * as React from 'react';
+import {useState} from 'react'
+import { Button, View, Text } from 'react-native';
+
+function HomeScreen({ navigation }) {
+    const [name, setName] = useState('Ken');
+    const handleState = () => {
+        setName('Guile')
+    }
+ 
+    return (
+      <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+        <Text>Home Screen</Text>
+        <Button
+          title="Go to Profile"
+          onPress={() => navigation.navigate('ProfileScreen', {getname: name})}
+          />
+          <Text>My prefered char is {name}</Text>
+           <Button
+          title="Prefered char"
+          onPress={handleState}
+        />
+      </View>
+    );
+  }
+
+  export default HomeScreen;
+
+
+------------------------------------------------------------------------------------
+
+import * as React from 'react';
+import { Button, View, Text } from 'react-native';
+
+function ProfileScreen( {navigation, route} ) {
+    return (
+      <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+        <Text>Details Screen</Text>
+    <Text>Prefered char: {route.params?.getname}</Text>
+        <Button
+        title='Go to Home'
+        onPress={ () => navigation.navigate('HomeScreen')}
+        />
+      </View>
+    );
+  }
+  export default ProfileScreen;

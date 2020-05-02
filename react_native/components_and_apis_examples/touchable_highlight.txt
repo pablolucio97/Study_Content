@@ -1,0 +1,28 @@
+TOUCHABLE HIGHLIGHT
+
+import React, { Component } from 'react'
+import { Text, View, TouchableHighlight, Image } from 'react-native'
+
+export default class App extends Component {
+  myAlert = () => {
+    alert('OK')
+  }
+
+  myAlert2 = () => {
+    alert('OK also')
+  }
+  render() {
+    return (
+      <View>
+        <Text>My Image Embbeded in TouchableHighlight</Text>
+        <TouchableHighlight onPress={this.myAlert}>
+        <Image source={require('./src/assets/react_native.png')}/>
+        </TouchableHighlight>
+        <Text>My Text Embbeded in TouchableHighlight</Text>
+        <TouchableHighlight style={{backgroundColor: "#eb3c"}} onPress={this.myAlert2}>
+        <Text>I'm inside of the Touchable HighLight</Text>
+        </TouchableHighlight>
+      </View>
+    )
+  }
+}

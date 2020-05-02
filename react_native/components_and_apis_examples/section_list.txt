@@ -1,0 +1,24 @@
+SECTIONLIST
+
+import React, { Component } from 'react'
+import { Text, View, SectionList } from 'react-native'
+
+export default class App extends Component {
+  render() {
+    return (
+      <View>
+        <SectionList
+        sections= {
+          [
+            {title: 'Heroes', data:['Batman', 'Superman']},
+            {title: 'Bosses', data: ['Joker' , 'Rino']}
+          ]
+        } renderItem = {({item})=> <Text>{item}</Text>}
+      renderSectionHeader = {({section})=><Text>{section.title}</Text>}
+      keyExtractor = {(item, index)=> index}>
+
+        </SectionList>
+      </View>
+    )
+  }
+}
