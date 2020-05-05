@@ -19,9 +19,9 @@ setNumber(3)
 
 This features should be used when is necessary to uses functions
 that treat with intervals and relation with the life cicle of the
-function component.
-When the second parammeter of the useEffect is empty, it means 
-that the function will be run only one time. Example:
+function component. The useEffect is executed only one time, when the
+application is started. When the second parammeter of the useEffect is 
+empty, it means that the function will be run only one time. Example:
 
 import React from 'react'
 import {useState, useEffect} from 'react'
