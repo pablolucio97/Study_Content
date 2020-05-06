@@ -3,21 +3,9 @@ import { View, Text, FlatList, StyleSheet, Button } from 'react-native'
 
 const App = () => {
   
-    const [users, setUsers] = useState([])
-    const [count, setCount] = useState(0)
+  const [users, setUsers] = useState([])
+  const [count, setCount] = useState(0)
 
-  function markUsers(id){
-    const newUsers = users.map(user => {
-      return user.id === id? {... user, marked: !user.marked} : user
-    })
-    setUsers(newUsers)
-  }
-
-  useEffect(()=> {
-    const markedsTotal = users.filter(user => user.marked)
-    setCount(markedsTotal.length)
-  }, [users])
-  
   useEffect(() => {
   
     const dataUsers = [
@@ -33,6 +21,20 @@ const App = () => {
     setUsers(dataUsers)
   
   },[])
+
+  function markUsers(id){
+    const newUsers = users.map(user => {
+      return user.id === id? {... user, marked: !user.marked} : user
+    })
+    setUsers(newUsers)
+  }
+
+  useEffect(()=> {
+    const markedsTotal = users.filter(user => user.marked)
+    setCount(markedsTotal.length)
+  }, [users])
+  
+
 
   return (
     <View style={styles.container}>

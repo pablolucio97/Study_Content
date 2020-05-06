@@ -307,7 +307,7 @@ export default ExampleComponent
 
 ----------------------------------------------------------------------
 
-4)Improt yours components and the ThemeContext to App.js.
+4)Import yours components and the ThemeContext to App.js.
 
 import React, {useState} from 'react'
 import ThemeContext from './assets/context/ThemeContext'
