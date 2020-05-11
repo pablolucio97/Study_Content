@@ -13,48 +13,6 @@ GitHub is the social network of code where the develo-
 pers can create and update yours and codes of anothers
 developes.
 
----------------------------------------------------------------
-
-The changes in local repository are made by the command commit
-mit and changes in remote repository are made by the command
-push.
-
----CREATING AND COMMITING A PROJECT WITH GITHUB FOR DESKTOP--- 
-
-Creating and using/changing (commiting)repository using GitHub 
-for desktop:
-
-1) Click in new repository, get a name and a description for 
-this, always mark the option "Initialize this repository with 
-a README", select the 'MIT license' and click in "Create reposi-
-tory" (CTRL+Enter).
-
-2)Click in "Publish repository" (CTRL+P) to send your local repo
-sitory to your GitHub.
-
-3)Click in "Open in Visual Studio Code" to open your local repo-
-sitory folder in the Visual Studio Code. Working in your project
-project with the GitHub for Desktop opened, you can se in 
-the tab "Changes" all changes and differences of your pro-
-ject.
-
-4)To save your changes of the local repository to your remote 
-repository (GitHub) type a description for your changes, click 
-in "Commit to master" in sequence click in "Push origin".
-
-
-----------------------CLONING A REPOSITORY---------------------
-
-1)Navigates to desired repository in github.com, click in
-'Clone or download' and click in 'Open with Desktop'.
-
-2)In the GitHubDesktop choice a folder do clone the repostory
-and click in Clone.
-
-3)Is it'is a React/ReactNative project, add the paste node_modu-
-les to the project and install the project dependecies to work
-correctly.
-
 ---------------------USING MARKDOWN LANGUAGE--------------------
 --------------------------TEXT STYLES---------------------------
 *italic* __italic__
@@ -117,13 +75,53 @@ U: Untracked - The file still doesn't pushed to GitHub.
 
 =======================GIT HUB PROCESS=========================
 
+---CREATING AND COMMITING A PROJECT WITH GITHUB FOR DESKTOP--- 
+
+Creating and using/changing (commiting)repository using GitHub 
+for desktop:
+
+1) Click in new repository, get a name and a description for 
+this, always mark the option "Initialize this repository with 
+a README", select the 'MIT license' and click in "Create reposi-
+tory" (CTRL+Enter).
+
+2)Click in "Publish repository" (CTRL+P) to send your local repo
+sitory to your GitHub.
+
+3)Click in "Open in Visual Studio Code" to open your local repo-
+sitory folder in the Visual Studio Code. Working in your project
+project with the GitHub for Desktop opened, you can se in 
+the tab "Changes" all changes and differences of your pro-
+ject.
+
+4)To save your changes of the local repository to your remote 
+repository (GitHub) type a description for your changes, click 
+in "Commit to master" in sequence click in "Push origin".
+
+
+----------------------CLONING A REPOSITORY---------------------
+
+1)Navigates to desired repository in github.com, click in
+'Clone or download' and click in 'Open with Desktop'.
+
+2)In the GitHubDesktop choice a folder to clone the repostory
+and click in Clone.
+
+3)Is it'is a React/ReactNative project, add the paste node_modu-
+les to the project and install the project dependecies to work
+correctly.
+
 -----------CREATING LOCAL REPOSITORY AND ADDING FILES----------
 
 1) git init repository_name: create a new repository.
+
 2) touch file_name: create a new file.
+
 3) git add * or git add file_name.extension: add files 
 to current repository.
+
 4) git status: show all changes of the local files.
+
 5) git commit -m "mesage": moves the changed local files 
 to current local repository and register this commit 
 taged by the message.
@@ -135,14 +133,105 @@ Tracking changes in the local repository
 1) git log --oneline: show the hash of all branchs or use 
 git log --graph: show a graphic of the commits.
 The current branch is identified with the Head.
+
 2) git checkout bash_code: track and return to the 
 branch version.
+
 3) git checkout file_name: discard the current changes 
-and return to previous version of the files
+and return to previous version of the files.
+
 4) git checkout master: undo and return the to the last 
 modified branch. 
 
---------------UNDO CHANGES IN THE LOCAL REPOSITORY------------
+------CREATTING NEW BRACHS, DOING MERHE AND EXCHANIG THEMS------
+
+1) git checkout -b ramfication_name: creates a new ramification 
+branch (from now, all commits will automatically done in this 
+branch).
+
+2) git checkout master: return to the master branch.(from now, 
+all commits will automatically done in the master branch).
+
+3) git merge name_of_new_merge: merge the master branch at an 
+existing ramification (the master branch need is the current to
+ merge two branchs)
+
+
+--------LINKING LOCAL REPOSITORY WITH REMOTE REPOSITORY--------
+
+1) On the github.com create a new reposirory.
+2) git remote: verify if has remote repositories availables.
+
+3) git add remote origin. link_of_repository: links the local 
+repository with the remote repository (if this repository already 
+is used, skip to next step).
+
+4) git push -u origin master: send all files changes to remote 
+repository.
+
+
+--RESOLVING CONFLICTS OF GIT PUSH CAUSED BY FILE DIFFERENCES--
+
+1) git fetch: download the repository content.
+
+2) git remote: get the name of the remote repository.
+
+3) git checkout remote_repository_name: open the remote reposi-
+tory folder in the local machine.
+
+4) git checkout master: changes to master branch of the reposi-
+tory.
+
+5) git pull: synchronize all changes of the remote repository 
+to local repository (will show the files with changes conflict).
+
+6) On the Visual Studio Code open the files with appointed conf-
+licts and change the option to resolve the conflict (Accepts cur-
+rent changes or Accepts incoming changes or Accepts both chan-
+ges) and save the file.
+
+7) git status.
+
+8) git add.
+
+9) git commit.
+
+
+-SYNCHRONIZING CHANGES OF REMOTE REPOSITORY TO LOCAL REPOSITORY-
+
+1) git remote: verify if has remote repositories availables.
+
+2) git add remote origin link_of_repository: links the local 
+reposirory with the remote repository.
+3) On the github.com make your changes.
+4) git pull: synchronize all changes of the remote repository 
+to local repository.
+
+
+-----CONTRIBUING TO ANOTHER PROJECTS (FORK AND PULL REQUEST)----
+
+1) On the github.com, navigates to the reposirory desired and 
+click in Fork.
+
+2) Await to repository clone to yours repositories.
+
+3) Edit the desired files and commit them.
+
+4) To do a new pull request click in New Pull Request and in se-
+quence in Create Pull reques (the owner of the repository will 
+receive a notification and define if accepts your pull request).
+
+
+-------------ADDING A GITHUB PAGE TO YOUR REPOSITORY-----------
+
+1) In your repository goes to settings.
+
+2) In the guide Github Pages (bottom of the page) select the 
+master branch and await (the link of your github page will 
+be generated). 
+
+
+---------------------ANOTHER FUNCTIONALITIES-------------------
 
 git reset --hard Head: remove the current branch to 
 don't be commited.
@@ -150,9 +239,14 @@ don't be commited.
 git reset --hard bash_code: undo the last commit of 
 the current branch.
 
+git log --graph --oneline: show a graphic of the commits.
+
+git branch: show the current branch of the project.
+
+git diff: show the file changes before to commit
 
 
-==========================MAIN COMMANDS========================
+--------------------ISOLATED COMMANDS DESCRIBE------------------
 
 -----------------------SETTINGS-----------------------
 
@@ -338,12 +432,6 @@ Download the history of your GitHub files and incorporates
 the changes by according whts is in the GitHub.
 
 ---------------------------------------------------------
-
-Another functionalities
-
-
-git branch: show the current branch of the project.
-git diff: show the file changes before to commit
 
 
 
