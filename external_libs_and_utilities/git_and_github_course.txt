@@ -113,7 +113,7 @@ correctly.
 
 -----------CREATING LOCAL REPOSITORY AND ADDING FILES----------
 
-1) git init repository_name: create a new repository.
+1) git init repository_name: create a new local repository.
 
 2) touch file_name: create a new file.
 
