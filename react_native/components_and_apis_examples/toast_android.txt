@@ -41,3 +41,7 @@ export default class App extends Component {
     )
   }
 }
+
+class myMessages = {
+	message01: 'I am a message',
+}
