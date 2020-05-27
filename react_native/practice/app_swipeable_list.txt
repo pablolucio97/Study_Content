@@ -1,0 +1,101 @@
+import React, {useState, useEffect} from 'react'
+import { View, Text, FlatList, StyleSheet, Animated, Alert, TouchableOpacity } from 'react-native'
+import {Title, Subheading, Provider, Button, Divider} from 'react-native-paper'
+import Swipeable from 'react-native-gesture-handler/Swipeable'
+
+const App = () => {
+
+  const tasks = [
+    {id: 1, task: 'Study React'},
+    {id: 2, task: 'Study React Native'},
+    {id: 3, task: 'Draw my logos'},
+    {id: 4, task: 'Clean house'},
+    {id: 5, task: 'Stay with my wife'},
+  ]
+
+  function LeftActions (progress, dragX) {
+
+    const scale = dragX.interpolate({
+      inputRange: [0, 100],
+      outputRange: [0,1],
+      extrapolate: 'clamp'
+    })
+
+    return(
+      <View style={styles.LeftActions}>
+        <Animated.Text style={[styles.actionsText,  {transform: [{scale}]}]}>Finished</Animated.Text>
+      </View>
+    )
+  }
+
+  function RightActions (progress, dragX) {
+
+    const scale = dragX.interpolate({
+      inputRange: [-100, 0],
+      outputRange: [1, 0],
+      extrapolate: 'clamp'
+    })
+
+    return(
+      <View style={styles.RightActions}>
+        <TouchableOpacity onPress={() => Alert.alert('Message', 'Item deleted with sucess')}>
+        <Animated.Text style={[styles.actionsText, {transform: [{scale}]}]}>Delete</Animated.Text>
+        </TouchableOpacity>
+      </View>
+    )
+
+  }
+
+
+  return (
+    <View style={styles.container}>
+      <FlatList
+      data={tasks}
+      renderItem={ ({item}) => (
+        <View style={styles.list}>
+          <Swipeable
+          renderLeftActions={LeftActions}
+          renderRightActions={RightActions}
+          >
+          <Text style={styles.text}>{item.task}</Text>
+          </Swipeable>
+        </View>
+      )}
+      keyExtractor={item => item.id}
+      ItemSeparatorComponent={ () => (<Divider style={{margin: 3}}/>)}
+      />
+    </View>
+  )
+}
+
+export default App
+
+const styles = StyleSheet.create({
+  container: {
+    flex:1,
+    backgroundColor: '#fff',
+    paddingHorizontal: 10,
+    paddingVertical: 20,
+  },
+  text:{
+    fontSize: 18,
+    color: '#333',
+    margin: 15
+  },
+  LeftActions:{
+    flex:1,
+    justifyContent: 'center',
+    backgroundColor: '#388e3c',
+    padding: 15,
+  },
+  actionsText:{
+    fontSize: 18,
+    color: '#fff'
+  },
+  RightActions:{
+    backgroundColor: '#ff0000',
+    borderRadius: 2,
+    padding: 15,
+    fontSize: 18
+  }
+})

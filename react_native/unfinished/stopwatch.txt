@@ -1,0 +1,128 @@
+import React, {useState, useEffect} from 'react'
+import { View, StyleSheet, FlatList, Text } from 'react-native'
+import { DefaultTheme, Provider as PaperProvider, FAB} from 'react-native-paper';
+import Slider from '@react-native-community/slider'
+import {Button, Title, Subheading, Caption, TextInput, Divider, Modal, Portal, Provider, IconButton} from 'react-native-paper'
+
+
+
+const theme = {
+  ...DefaultTheme,
+  roundness: 2,
+  colors:{
+    ...DefaultTheme.colors,
+    primary: '#52ff',
+    acent: '#77ff'
+  }
+}
+
+  const Stopwatch = () => {
+
+    const [seconds, setSeconds] = useState(0)
+    const [minutes, setMinutes] = useState(0)
+
+    //CONTROLING TIMER
+
+    const increaseTime = () => {
+      setSeconds(seconds + 5)
+      if(seconds >= 55){
+        setMinutes(minutes + 1)
+        setSeconds(0)
+      }
+    }
+
+    const decreaseTime = () => {
+      setSeconds(seconds - 5)
+      if(seconds < 1){
+        setSeconds(55)
+        setMinutes(minutes-1)
+        if(seconds == 0){
+          setSeconds(55)
+        }
+      }
+      if(minutes == 0 && seconds == 0){
+        setMinutes(0)
+        setSeconds(0)
+      }
+    }
+
+    //RESET TIMER
+
+    const resetTime = () => {
+      setMinutes(0)
+      setSeconds(0)
+    }
+
+    //START TIMER
+
+    const startTime = () => {
+      if (seconds > 0){
+        const degreeTime = setInterval(()=>{setSeconds(seconds -1)}, 1000)
+        clearTimeout(degreeTime)
+      }
+    }
+    
+    return (
+      <View style={styles.mainContainer}>
+        <Title style={{fontSize: 35, padding: 20, fontFamily: 'Manrope-Medium'}}>Stopwatch</Title>
+    <Subheading style={{fontSize: 45, padding: 25, fontFamily: 'Manrope-Medium'}} >
+    {minutes < 10? '0' + minutes : minutes}:{seconds < 10? '0' + seconds : seconds}
+    </Subheading>
+    <View style={styles.rowContainer}>
+    <Button  mode='outlined' onPress={increaseTime} style={styles.buttons}>+</Button>
+    <Button  mode='outlined' onPress={decreaseTime} style={styles.buttons}>-</Button>
+    </View>
+        <View style={styles.mainContainer}>
+        <Slider
+        value={seconds}
+        minimumValue={0}
+        maximumValue={59}
+        minimumTrackTintColor='#55ee'
+        maximumTrackTintColor='#67ff'
+        thumbTintColor='#55ff'
+        style={{width: 300, padding: 10}}
+        step={5}
+        onValueChange={ val => setSeconds(val)}
+        />
+              <Slider
+        value={minutes}
+        minimumValue={0}
+        maximumValue={59}
+        minimumTrackTintColor='#55ee'
+        maximumTrackTintColor='#67ff'
+        thumbTintColor='#55ff'
+        style={{width: 300, padding: 10}}
+        step={1}
+        onValueChange={ val => setMinutes(val)}
+        />
+        </View>
+        <Button mode='outlined' style={styles.buttons} onPress={startTime}>Start</Button>
+        <Button mode='outlined' style={styles.buttons} onPress={resetTime}>Reset</Button>
+        </View>
+    )
+  }
+  
+export default Stopwatch
+
+  const styles = StyleSheet.create({
+  mainContainer: {
+    flex: 1,
+    flexDirection: 'column',
+    padding: 15,
+    alignItems: 'center',
+  },
+  buttons:{
+    margin: 5,
+    height: 38,
+    width: 110,
+    marginBottom: 20
+  },
+  rowContainer:{
+    flex: .1,
+    flexDirection: 'row',
+    justifyContent: 'center',
+    padding: 10,
+  }
+})
+
+
