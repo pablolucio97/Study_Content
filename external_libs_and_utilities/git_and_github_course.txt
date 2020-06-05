@@ -162,7 +162,7 @@ existing ramification (the master branch need is the current to
 1) On the github.com create a new reposirory.
 2) git remote: verify if has remote repositories availables.
 
-3) git add remote origin. link_of_repository: links the local 
+3) git remote add origin link_of_repository: links the local 
 repository with the remote repository (if this repository already 
 is used, skip to next step).
 

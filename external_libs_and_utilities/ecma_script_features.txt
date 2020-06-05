@@ -78,3 +78,6 @@ before.
 
 If an object has a even name to property and value, can be wrote 
 only one. It is the short syntax.
+
+When returning a a arrow function, use () to return html content
+or {} to return javascript code.
