@@ -160,13 +160,17 @@ existing ramification (the master branch need is the current to
 --------LINKING LOCAL REPOSITORY WITH REMOTE REPOSITORY--------
 
 1) On the github.com create a new reposirory.
+
 2) git remote: verify if has remote repositories availables.
 
 3) git remote add origin link_of_repository: links the local 
 repository with the remote repository (if this repository already 
 is used, skip to next step).
 
-4) git push -u origin master: send all files changes to remote 
+4) git pull --rebase origin master: is used to resolve diff
+conflict between the local and remote repositories.
+
+5) git push -u origin master: send all files changes to remote 
 repository.
 
 
