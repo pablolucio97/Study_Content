@@ -1,0 +1,28 @@
+USING MAPBOX
+
+1)Install the MapBox: yarn add @react-native-mapbox-gl/maps
+
+2)Go to MapBOx.com, register, validate your e-mail and copy
+the access token.
+
+3)Activie the location of your device.
+
+4)Usage:
+
+import React from 'react'
+import { View, Text } from 'react-native'
+import MapBoxGL from '@react-native-mapbox-gl/maps'
+
+MapBoxGL.setAccessToken('Paster your acess token here')
+
+export default function App() {
+  return (
+      <MapBoxGL.MapView style={{flex: 1}} 
+	styleURL={MapBoxGL.StyleURL.Dark}>
+        <MapBoxGL.Camera
+        centerCoordinate={[-19.8191365, -43.1374246]}
+        zoomLevel={2}
+        />
+      </MapBoxGL.MapView>
+  )
+}
