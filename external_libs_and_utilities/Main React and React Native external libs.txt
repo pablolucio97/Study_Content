@@ -96,6 +96,7 @@ Icons: React Native Vector Icons
 
 npm install --save react-native-vector-icons
 
+
 -----------------------------------------------------------------
 
 Image Manegament: React Native Image Picker
@@ -170,3 +171,9 @@ add" to "npm install".
 
 You can install two packges a single time, example:
 npm install react-native-gesture-handler react-native-modalize
+
+-----------------------------------------------------------------
+
+If the icons dont be renderized in the screen, add the code 
+apply from: "../../node_modules/react-native-vector-icons/fonts.gradle"
+on  /app/build.gradle.

@@ -26,15 +26,20 @@ ck in Donwlod Android Studio.
 2)Install the Android Studio. When arrives in the download compo-
 nets page, select the 
 
------------------INSTALLING THE ANDROID STUDIO------------------
+---------------------CREATING A NEW PROJECT---------------------
 
-1)Open the Geny Motion and run your device choiced.
+1)Open the emulator and run your device choiced.
 
 2)Run the code: npx react-native init name_of_project
 
 3)Run the code: cd name_of_project
 
 4)Run the code: npx react-native run-android
+
+5)To create a new React Native project using typescript, run:
+
+npx react-native init MyApp --template react-native-template-
+typescript
 
 ===========================CONCEPTS=============================
 

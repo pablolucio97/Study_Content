@@ -1,0 +1,18 @@
+import React,{useState, useEffect} from 'react'
+
+export default function ShowHour() {
+
+
+  const [updateTime, setupdateTime] = useState(new Date())
+
+  useEffect(() => {
+    const updateTime = setInterval(setupdateTime(new Date()),1000)
+    return clearInterval(updateTime)
+  })
+
+  return (
+    <div>
+      <p>Current hour: {updateTime.toLocaleTimeString()}</p>
+    </div>
+  )
+}
