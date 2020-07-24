@@ -51,6 +51,7 @@ console.log(c)
 Spread operator is used to copy and merge equals structures.
 Example:
 
+const myArray = [1,2,3,4,5,6]
 const usingSpread = [...myArray]
 console.log(usingSpread)
 
@@ -69,7 +70,92 @@ const getAdress = async () => {
 	}	
 }
 
----------------------------GENERAL TIPS-------------------------
+---------------------------CLASSES--------------------------------
+
+A class need a constructor method to declare your default value 
+and a new instance to use this class.
+
+Example: Creating a class of an array with a method that add a new
+task.
+
+class todoList {
+  constructor(){
+	this.todods = []		
+  }
+
+	addTodo(){
+	 this.todos.push('New task')
+	 console.log(this.todos)
+  }
+}
+
+const MyTasks = new TodoList()
+
+-----------------------------------------------------------------
+
+Creating a new class  inheriting another class. Classes that i-
+nherite another class, need a super() method to inherit the props 
+of another class.
+
+Example using the class above:
+
+const todoList2 extends todoList{
+  constructor(){
+    super()  
+  }
+}
+
+const MyTasks = new TodoList2()
+
+-----------------------------------------------------------------
+
+Creating a class with a static method.
+
+Example:
+
+class Calc {
+  static sum(a,b){
+    return a +b
+ }
+}
+
+
+console.log(Calc.sum(1,2))
+
+
+-----------------------TEMPLATE LITERALS-------------------------
+
+Template literas is a shorcut for print messages with variables.
+Example: `My names is ${name} and I'm working with ${language}`
+
+----------------------OBJECT SHOR SYNTAX-------------------------
+
+It's a shortcut for use variables in objects. Example:
+
+const name = 'Pablo';
+const age = 25;
+
+const user = {
+	name,
+	age,
+	enterprise: 'Rocketseat
+}
+
+-------------------------ASYNC AWAIT----------------------------
+
+const myPromise =  () => new Promise((resolve, reject) => {
+    setTimeout(() => {resolve('OK')}, 2000)
+})
+
+const runPromise = async () => {
+     console.log(await myPromise())
+     console.log(await myPromise())
+     console.log(await myPromise())
+     console.log(await myPromise())
+ }
+
+runPromise()
+-------------------------GENERAL TIPS----------------------------
 
 The variable this refer to current scope which is inserted.
 
@@ -81,3 +167,12 @@ only one. It is the short syntax.
 
 When returning a a arrow function, use () to return html content
 or {} to return javascript code.
+
+To import a default component you don't need for {} in the import
+statement, to import a component that doesn't default, you will 
+need it.
+
+Use the statement import * as myName to import all components in-
+side a file js.	The variable 'myName' becames an object and to u-
+se each component, is necessary declare object syntax.
+

@@ -829,7 +829,7 @@ align-content
 
 -----------------------------------------FLEX WRAP-------------------------------------------------
 
-Specifies that the flex items will wrap (resize adapt) if necessary.
+Specifies that the flex items will wrap (resize adapt, gives a line break) if necessary.
 
 Main values: wrap, wrap-reverse and nowrap. 
 
@@ -866,7 +866,7 @@ space-between: displays the flex items with only equal spaces between the lines.
   justify-content: center;
 }
 
---------------------------------------------ALIGN ITEMS------------------------------------------------
+------------------------------------ALIGN ITEMS-----------------------------------------------
 
 Align the items 
 
@@ -874,6 +874,63 @@ center: put the elements in the center of the parent element.
 flex-start: put the elements in the left or top (begin) of the parent element.
 flex-end: put the elements in the right or bottom (end) of the parent element.	
 stretch: strech the element trought the div or view element (works only no fixed elements, %)	
+
+
+=================================CSS GRID LAYOUT==============================================
+
+-------------------------------WITH COLUMNS AND ROWS------------------------------------------
+
+Css Grid Layout is a grid system based in columns and rows allowing to build flexbilbe layouts
+and positioning the itens in any position.
+
+Properties of the container:
+
+display: defines the display to grid.
+
+grid-template-columns: defines the quantity and proportionality of the columns. Example: 
+grid-template-columns: 3f3 1fr; (means 2 columns where the first has 3x the width of the second)
+
+grid-tmplate-rows: defines the quantity and proportionality of the rows. Exmaple:
+grid-template-rows: 20vh 70vh 10 10vh; (always 100vh in total. means the height of each line)
+
+grid-gap: Is the gap between elments in the grid system. Example:
+grid-gap: 10px;
+
+-----------------------------------------------------------------------------------------------
+
+Properties of the elements inside the container:
+
+grid-column: Defines in wich column the element should start and fisnish. Exmaple:
+grid-column: 1/3; (the element start in the first coolumn and end in the third)
+
+
+grid-row: Defines in wich row the element should start and fisnish.
+grid-row? 2/5; (the element start in the second column and end in the 5th column)
+
+--------------------------------------WITH AREAS-----------------------------------------------
+
+Properties of the container:
+
+grid-template-areas: Define the positon of each element in order of the columns where each quo-
+tation of code is a row of the grid. Example:
+
+grid-template-areas: "header header header" "menu main menu" "footer footer footer"
+
+-----------------------------------------------------------------------------------------------
+
+Properties of the elements inside the container:
+
+
+grid-area: Refers the postion name added in the grid-template-areas property.  Example:
+
+grid-template-areas: 'header header' 'menu main right' 'footer footer footer'; (Property of the 
+cotnainer)
+
+.item1 { grid-area: header; }
+.item2 { grid-area: menu; }
+.item3 { grid-area: main; }
+.item4 { grid-area: right; }
+.item5 { grid-area: footer; }
 
 ===========================================GENERAL TIPS================================================
 

@@ -1703,3 +1703,24 @@ document.getElementById('dvi1').style.transform = "skew(30deg, 30deg)";
 ----------------------------------------------------------------------
 example 05: 
 document.getElementById("GFG").style.transform = "rotateZ(90deg)";
+
+
+
+For of:
+
+For of is used to read simple arrays list.
+
+Example:
+
+     const tasks = [
+            'Read a book',
+            'Study Javascirpt',
+            'Study React Native',
+            'Code my apps',
+            'Workouts',
+            'Clean my house'
+        ]
+
+        for (task of tasks){
+            console.log(task) 
+        }
