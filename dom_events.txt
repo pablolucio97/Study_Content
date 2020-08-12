@@ -1,0 +1,339 @@
+============================DOM EVENTS===============================
+
+------------------------------EVENTS---------------------------------
+
+abort:
+Occurs when the loading of a media is aborted.
+
+afterprint:
+Occurs when the page is printing.
+
+animationend:
+Occurs when css animation finish.
+
+animationinteration:
+Occurs when a css animation repeat.
+
+animationstart:
+Occurs when a css animation start.
+
+beforeprint:
+Occurs when the is about to print.
+
+beforeunload:
+Occurs when the document is about to be unloaded.
+
+blur:
+Occurs when an element loses focus.
+
+canplay:
+Occurs when the browse has buffered enought to start a media.
+
+canplaythrough:
+Occurs when the browser can play trough the media without stop.
+
+click:
+Occurs when the users click on an element.
+
+contextmenu:
+Occurs when the users click with the right button of the mouse.
+
+copy:
+Occurs when the ser copy an content of an element.
+
+cut:
+Occurs when the user cuts the content of an element.
+
+dbclick:
+Occurs when gives a double click on an element.
+
+drag:
+Occurs when an elemnt is being dragged.
+
+dragend:
+Occurs when the user has finished to frag an element.
+
+dragenter:
+Occurs when the dragged element enters in the drop targe zone.
+
+dragleave:
+Occurs when the user leave the element dragged.
+
+dragover:
+Occurs when the dragged element is over the drop target.
+
+dragstart:
+Occurs when the user starts to drag an element.
+
+drop:
+Occurs when the users leave the drgged element in the drop target.
+
+durationchange:
+Occurs when the duration of the media is changed.
+
+ended:
+Occurs when the medias has reach the end successfully.
+
+error:
+Occurs when an error occurs while load an external file.
+
+focus:
+Occurs when an element receives focus.
+
+focusin:
+Occurs when an element is about to get focus.
+
+focusout:
+Occurs when an element is about to lose focus.
+
+fullscreenchange:
+Occurs when an element is displayed in fullscreen mode.
+
+input:
+Occurs when an element gets user input.
+
+keydown:
+Occurs when the user is pressing a key.
+
+keypress:
+Occurs when the user presses a key.
+
+keyup:
+Occurs when the users leaves a key.
+
+load:
+Occurs when an object is loaded.
+
+loadstart:
+Occurs when the browser starts looking for the specified media.
+
+mousedown:
+Occurs when the sers pesses the mouse button over an element.
+
+mouseenter:
+Occurs when the pointer is moved onto an element.
+
+mouseleave:
+Occurs when the pointer is moved out of an element.
+
+mousemove:
+Occurs when the pointer is moving while it is over an element.
+
+mouseover:
+Occurs when is moved onto an element or onto one of its children.
+
+mouseout:
+Occurs when the user moves the mouse pointer out of an element or 
+out of one it children.
+
+mouseup:
+Occurs when a users release the mouse button over an element.
+
+offline:
+Occurs when the browser start to work offline:
+
+online:
+Occurs when the browser start to work online:
+
+open:
+Occurs when a connection with the event source is opened.
+
+pagehide:
+Occurs when the user navigates away from the webpage.
+
+pageshow:
+Occurs when the user navigates to a webpage.
+
+paste:
+Occurs when the user paste a content in an element.
+
+pause:
+Occurs when the media is paused by the user os programmatically.
+
+play:
+Occurs when the media can be start or not is longer paused.
+
+playing:
+Occurs when is playing.
+
+popstate:
+Occurs when the window's history changes.
+
+progress:
+Occurs when the browser is in process of getting media data (down-
+loading the media data).
+
+ratechange:
+Occurs when the speed of a media execution is changed.
+
+resize:
+Occurs when the window is resized.
+
+reset:
+Occurs when a form is reseted.
+
+scroll:
+Occurs when an element is being scrolled
+
+search:
+Occurs when the user writes something in a search field for
+(<input="search">).
+
+seeked:
+Occurs when the user starts moving/skipping to a new position in the
+media progressbar.
+
+select:
+Occurs when the user selects some text (for <input> and <textarea>.
+
+show:
+Occurs when a <menu> eleemnt is shown as context menu.
+
+submit:
+Occurs when a form is submitted.
+
+timeupdate:
+Occurs when when the user advances the player position.
+
+touchcancel:
+Occurs when the touch is interrupted.
+
+touchend:
+Occurs when a finger removed from a touch screeen.
+
+touchmove:
+Occurs when a finge is dragged across the screen.
+
+touchstart:
+Occurs when the user touch the screen.
+
+transitionend:
+Occurs when a css transition has completed.
+
+unload:
+Occurs when the page has unloaded.
+
+volumechange:
+Occurs when  the volume of a media has changed (includes mute).
+
+waiting:
+Occurs when a media is buffering.
+
+wheel:
+Occurs when  the user scrolls the page.
+
+
+------------------------------PROPERTIES-----------------------------------
+
+altKey:
+Returns if the ALT key was pressed when the mouse event has triggered.
+
+animationName:
+Returns the name of the animation.
+
+bubbles:
+Returns if an event is a bubble event or not (bubble event is ...).
+
+button:
+Return which mouse button was pressed when the mouse event as triggered.
+
+buttons:
+Return which mouse buttons was pressed when the mouse event as triggered.
+
+cancelable:
+Returns if an event can be canceled.
+
+charCode:
+Returns the uniocde character of the key that trigered the onkeypress.
+
+clipboardData:
+Returns an object containing the data affected by the clippboard operation.
+
+code:
+Returns the code of the key that triggered the event.
+
+composed:
+Returns if an event is composed (event composed are...)
+
+ctrltKey:
+Returns if the CTRL key was pressed when the mouse evenet has triggered.
+
+currentTarget;
+Returns the element whose event listeners trigged the event.
+
+data:
+Returns the inserted characters of an input.
+
+dataTransfer:
+Returns an object containing the data beign dragged or dropped.
+
+defaultPrevented:
+Returns if the method preventDefault() was called for the event.
+
+detail:
+Returns a number that indicates how many times the mouse was clicked.
+
+keyCode:
+Returns the unicode character of the key that triggered the onkeypress e-
+vent.
+
+lengthComputable:
+Returns if the lenght of the progress can be computable or not.
+
+loaded:
+Retruns how much work has been loaded.
+
+pageY:
+Returns the horizontal coordinate of them ouse pointer, relative to the
+docuemnt when the mouse event was triggered.
+
+persisted:
+
+pageX:
+Returns the horizontal coordinate of them ouse pointer, relative to the
+docuemnt when the mouse event was triggered. 
+
+persisted:
+Returns if the webpage was cached by the browser.
+
+repeat:
+Returns if a key is being hold down repeatedly or not.
+
+screenX:
+Returns the horizontal coordinate of the mouse pointer relative to the 
+screen when an event was triggered.
+
+screenY:
+Returns the vertical coordinate of the mouse pointer relative to the 
+screen when an event was triggered.
+
+shiftKey:
+Returns if the key SHIFT has pressed when an event has pressed.
+
+state:
+Returns an object containing a copy of the history entries.
+
+target:
+Returns the element hat triggered the event.
+
+timeStamp:
+Returns the time at which the event was created.
+
+type:
+Returns the name of the event.
+
+
+-------------------------------METHODS-------------------------------------
+
+createEvent():
+Creates a new event.
+
+preventDefault():
+Cancels the event if it is cancelable, meaning that the default action that 
+belongs to the event will not occur.
+
+stopImmediatePropagation():
+Prevents others listeners of the same event  from being called.
+
+stopPropagation():
+Prevents further propagation of an event durant event flow.
