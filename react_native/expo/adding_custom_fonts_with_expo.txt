@@ -1,0 +1,16 @@
+1) Install the font package: 
+expo install expo-font @expo-google-fonts/archivo
+
+
+2)Import the AppLoading and the font inside the file App.tsx:
+import { AppLoading } from 'expo'
+import {Archivo_400Regular} from '@expo-google-fonts/archivo'
+
+3)Inside of the file App.tsx use fonts with the code: 
+
+export default function App() {
+  let [fontsLoaded] = useFonts({
+    Archivo_400Regular,
+    Archivo_700Bold
+  });
+

@@ -1,0 +1,32 @@
+<html>
+	<head>
+		<title>Loading</title>
+	</head>
+	<body>
+		<div id='div1'></div>
+			<style>
+				#div1{
+				display: flex;
+				flex-direction: row;
+				justify-content: start;
+				width: 10px;
+				height: 10px;
+				margin: auto;
+				margin-top: 30%;
+				outline: 2px solid cyan;
+				animation-name: loading;
+				animation-duration: 3s;
+				animation-iteration-count: infinite;
+				}
+				
+				@keyframes loading{
+				0%{width: 2%}
+				20%{width: 4%}
+				40%{width: 8%}
+				60%{width: 10%}
+				80%{width: 12%}
+				100%{width: 14%}
+				}
+			</style>
+	</body>
+</html>

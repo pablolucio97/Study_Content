@@ -1,0 +1,47 @@
+=======================Useful React External Libs================
+
+
+Animations: Lottie
+-----------------------------------------------------------------
+
+Api manegement: Axios
+
+npm install axios
+
+-----------------------------------------------------------------
+
+Apparence: Material UI
+npm install @material-ui/core
+
+-----------------------------------------------------------------
+Icons: React Icons
+-----------------------------------------------------------------
+Maps: Leaflet
+-----------------------------------------------------------------
+Navigation: React Router
+-----------------------------------------------------------------
+Sharing:
+-----------------------------------------------------------------
+
+Styling: Styled Components
+
+npm install --save styled-components
+
+-----------------------------------------------------------------
+
+========================GENERAL TIPS=============================
+
+If the engine is incompatible with the module:
+
+yarn global add <your app> --ignore-engines
+
+-----------------------------------------------------------------
+
+Even a pack is with yarn installer, try using npm changing "yarn 
+add" to "npm install".
+
+-----------------------------------------------------------------
+
+You can install two packges a single time, example:
+npm install react-leaftlet @material-ui/core
+

@@ -1,0 +1,44 @@
+---------------------------BACK-END-------------------------------------
+
+const cors = require('cors')
+const express = require('express')
+const app = express()
+const axios = require('axios')
+
+app.use(cors())
+
+app.get('/', async (req, res) => {
+
+    const {data} = await axios('https://jsonplaceholder.typicode.com/users')
+    console.log(data)
+    return res.json(data)
+})
+
+app.listen('3335', () => {
+    console.log('Server running at 3335')
+})
+
+--------------------------FRONT-END-----------------------------------
+
+async function getInfo() {
+    try{
+        const response = await fetch('http://localhost:3335/')
+        const data = await response.json()
+        console.log(data)
+        show(data)
+    }catch(error){
+        console.log(error)
+    }
+}
+getInfo()
+
+function show(users){
+
+    let output = ''
+
+    for(let user of users){
+        output += `<li>${user.name}</li>`
+    }
+
+    document.querySelector('main').innerHTML = output
+}

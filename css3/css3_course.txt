@@ -1,4 +1,4 @@
-=======================================GENERAL SYNTAX========================================
+﻿=======================================GENERAL SYNTAX========================================
 
 element {
     property1:unity
@@ -93,7 +93,7 @@ body {
 ------------------------------------------------------------------------------------------------
 BACKGROUND-POSITION
 .iddiv {
-  background: url("https://mdn.mozillademos.org/files/11987/startransparent.gif") #FFEE99 left 100px bottom 50px no-repeat;
+  background: url("https://urldefense.com/v3/__https://mdn.mozillademos.org/files/11987/startransparent.gif__;!!AB_04_y_3-SRqw!qdXwnW7AdlVFVePN8cng2CZXuRosLzGvvwqLyY4T1CyD7ftDkX-FbSjYDlN9tGD2v4GZkBh1$ ") #FFEE99 left 100px bottom 50px no-repeat;
 }
 
 ------------------------------------------------------------------------------------------------
@@ -281,7 +281,7 @@ p.normal {
 }
 
 ==================================================ICONS===================================================
-LINK: <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+LINK: <link rel="stylesheet" href="https://urldefense.com/v3/__https://fonts.googleapis.com/icon?family=Material*Icons__;Kw!!AB_04_y_3-SRqw!qdXwnW7AdlVFVePN8cng2CZXuRosLzGvvwqLyY4T1CyD7ftDkX-FbSjYDlN9tGD2v3gpMEZH$ ">
 
 Example:
 <i class="material-icons">cloud</i>
@@ -880,7 +880,7 @@ stretch: strech the element trought the div or view element (works only no fixed
 
 -------------------------------WITH COLUMNS AND ROWS------------------------------------------
 
-Css Grid Layout is a grid system based in columns and rows allowing to build flexbilbe layouts
+Css Grid Layout is a grid system based in columns and rows allowing to build flexible layouts
 and positioning the itens in any position.
 
 Properties of the container:
@@ -891,9 +891,10 @@ grid-template-columns: defines the quantity and proportionality of the columns. 
 grid-template-columns: 3f3 1fr; (means 2 columns where the first has 3x the width of the second)
 
 grid-tmplate-rows: defines the quantity and proportionality of the rows. Exmaple:
-grid-template-rows: 20vh 70vh 10 10vh; (always 100vh in total. means the height of each line)
+grid-template-rows: 20vh 70vh 10 10vh; (always 100vh in total. means the height of each row, 
+3 rows in the total).
 
-grid-gap: Is the gap between elments in the grid system. Example:
+grid-gap: Is the gap between elements in the grid system. Example:
 grid-gap: 10px;
 
 -----------------------------------------------------------------------------------------------
@@ -938,3 +939,14 @@ If has styles in the page and external styles imported, the browser always put p
 styles.
 
 Think in all elements like boxes where the sequence of offsets are: content, padding, border, margin.
+
+Config the base of your application in the files globals.css and goes modifying another files by accord 
+the necessities.
+
+Always use the measure unitys "rem" to allow faster responsivity.
+
+Always set the :root of the document with the variables of colors of your project and the font size to 
+allow fast layout font change.
+
+Always sets the height of your html and body and the prop font of the body, input and form elements.
+

@@ -1,0 +1,57 @@
+Store images:
+
+https://imgur.com/upload
+
+---------------------------------------------------------
+
+Images databases:
+
+https://pixabay.com/
+https://www.freepik.com/
+https://www.pexels.com
+https://www.xmple.com/
+https://www.unplash.com/
+
+---------------------------------------------------------
+
+Create image and logos
+
+https://www.figma.com
+
+---------------------------------------------------------
+
+Generate Mobile Frame Images
+
+https://mockuphone.com/
+
+---------------------------------------------------------
+
+Create gifs until 15 seconds:
+
+https://giphy.com/
+
+---------------------------------------------------------
+
+Free API's providers:
+
+Generator untill one thousand users:
+
+https://randomuser.me/api/?results=100
+
+---------------------------------------------------------
+
+Site to train typing:
+
+https://sense-lang.org/typing/tutor/keyboarding.php
+
+---------------------------------------------------------
+
+Site to train RegExp:
+
+https://regexr.com/
+---------------------------------------------------------
+
+Convert Excel sheets in JSON:
+
+https://www.aconvert.com/document/xls-to-json/
+

@@ -1,0 +1,58 @@
+==================Doing Validations On Requisitions===============
+
+1)Install the package celebrate: npm install-celebrate
+
+----------------------Body Validations (POST)---------------------
+
+1)In the routes of type post and delete or alter, import the cele-
+brate:
+
+const {celebrate, Segments, Joy} = require('celebrate')
+
+------------------------------------------------------------------
+
+2)route.js:
+routes.post('/users', UserController.create) to:
+routes.post('/users', celebrate ({
+[Segments.BODY]: Joi.object().keys({
+name: Joi.string().required(),
+email: Joi.string.required().email
+age:Joi.number.required().max(3)
+whatsapp:Joi.number.required().min(10).max(11)
+uf:Joi.string.required().length(2)
+})
+})UserController.create)
+
+---------------------Header Validations (GET)---------------------
+
+1)route.js:
+Change routes.get('/profile', UserController.index) to:
+
+routes.get('/profile', celebrate ({
+[Segments.Headers]: Joi.object({
+authorization: Joi.string().required,
+}).unknow(),
+}) ProfileController.index)
+
+---------------------Params Validations (DELETE)---------------------
+
+1)routes.js:
+Change routes.delete('/delete', UserController.delete) to:
+
+routes.delete('/delete/:id', celebrate ({
+[Segments.PARAMS]: Joi.object().keys({
+id: Joi.number().required(),
+})
+})DeleteController.delete)
+
+
+---------------------Query Validations (GET)---------------------
+
+1)route.js:
+Change routes.post('/actions', UserController.create) to:
+
+routes.get('/actions', celebrate ({
+[Segments.QUERY]: Joi.object().keys({
+page: Joi.number(),
+})
+})DeleteController.index)

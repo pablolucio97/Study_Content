@@ -1,0 +1,11 @@
+getButton.addEventListener("click", myAlert);
+getButton.addEventListener("click", showTest);
+
+
+function myAlert() {
+  window.alert("Hello World!");
+}
+
+function showTest() {
+  console.log('Test ok')
+}

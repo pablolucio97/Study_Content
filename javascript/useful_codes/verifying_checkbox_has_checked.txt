@@ -1,0 +1,11 @@
+
+    
+
+check = () => {
+        var verifyCheck = document.getElementById('check-test');
+        if(verifyCheck.checked){
+            window.alert('The element has checked')
+       }else{
+           window.alert('Element doesnt checked');
+     }
+}

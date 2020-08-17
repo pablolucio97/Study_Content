@@ -1,4 +1,4 @@
-============================REACT COURSE=========================
+﻿============================REACT COURSE=========================
 ============================INSTALLATION=========================
 
 1)Install Node.js in your computer
@@ -541,7 +541,7 @@ Example:
 
 ---------------------------------------------------------------------
 
-3º render(): Is always required and is the standar method to generate
+3º render(): Is always required and is the standard method to generate
 output in the DOM.
 
 Example:
@@ -708,7 +708,7 @@ The keyword this used in events represents the objects that are used in
 the own method, which can be the global window object, a HTML button, or
  whatever. It's the cause that we should use arrow functions.
 
-Example - Using thw keyword this in the alert. Will return the object
+Example - Using the keyword this in the alert. Will return the object
 alert of the browser.
 
 class Football extends React.Component {
@@ -743,8 +743,8 @@ export default Football;
 
 In HTML, form data is usually handled by the DOM, alreayd in React, the
 handle occours by the components. When the data is handled by the compo-
-nents, all the data is stored in the component state. You can cotnrol 
-the changes by adding events hnadlers in the onChange attribute.
+nents, all the data is stored in the component state. You can control 
+the changes by adding events handlers in the onChange attribute.
 
 To access the value of a field, you must use the event.target.value syn-
 tax.
@@ -1053,7 +1053,7 @@ import './Name_of_file.css';
 ----------------------------DEFINING THE MOCK---------------------------
 
 1)Defines the mock of the component imagining or drawing the final layout
-of the application where each component shoould represents a information
+of the application where each component should represents a information
 or funcionality. Also think how will be used the props and the states of 
 the components, sames components will be statics and others, dinamics. 
 
@@ -1079,6 +1079,7 @@ directly in the component return() method. Any prop can be created and
 acceesed by another component. You should alway create a variable in the 
 render() method to extract the props of ther anothe component and use in
 the return() method of the desired component.
+
 
 ============================GENERAL TIPS================================
 

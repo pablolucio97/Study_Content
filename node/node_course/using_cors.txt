@@ -1,0 +1,9 @@
+
+=========Using the security module Cors:===========
+
+1)Install the Cors: npm install cors
+
+2)Import the Cors inside the server.ts
+
+3)Use the cors: app.use(cors()) - This always 
+should be used before... ;

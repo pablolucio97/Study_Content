@@ -1,0 +1,6 @@
+========Avoiding the Internal Server Error (500)=========
+
+1)Inside of server.ts import the component 
+error: {errors} from 'celebrate'.
+
+2)Use the component: app.use(errors())

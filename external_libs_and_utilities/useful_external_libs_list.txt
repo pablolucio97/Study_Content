@@ -1,8 +1,0 @@
-Useful external libs for React and React Native
-
-React
-
-Form text format:
-
-react-text-mask: 
-react-number-format

@@ -1,0 +1,150 @@
+
+==========================BACK-END-NOTES========================
+
+--------------------Back-end Responsibilities-------------------
+
+-Business rules;
+-Database connections;
+-Send e-mails;
+-Connection with external services;
+-User authentication and permission;
+-Cryptography and security.
+
+
+-----------------------Back-end concepts:-----------------------
+
+Route: Is the complete URL used to access a resource.
+
+----------------------------------------------------------------
+
+Resource/Feature: Is the way of the route, for example: /about. 
+The entity that will be accessed by the URL. is the string that 
+comes after the '/'.
+
+----------------------------------------------------------------
+
+Pivot Tables: Table that does relations n to n between tables.
+
+----------------------------------------------------------------
+
+Migrations: The history of actions of the database. This allows 
+us to sync changes in the database caused by another's develo-
+pers and patter all changes in all tables.
+
+----------------------------------------------------------------
+
+Entities: Are objects that will do actions and will have data-
+base register.
+
+----------------------------------------------------------------
+
+Functionality: Actions of the entities.
+
+----------------------------------------------------------------
+
+TTD - Teste-driven Development: Is the technic of test the func-
+tionalities of code before deploy your application.
+
+----------------------------------------------------------------
+
+Units test: Test an isolated code.
+
+----------------------------------------------------------------
+
+Integration test: Tes the complete route of the functionality of 
+the application, including the back-end structure.
+
+------------------------HTTP methods----------------------------
+
+GET: This is used to get data from the back-end.
+
+POST: Creates a new data in the back-end.
+
+PUT: Updates data in the back-end.
+
+DELETE: Removes a data in the back-end.
+
+Examples:
+POST: http://localhost:3333/users => Create a new user.
+GET: http://localhost:3333/users => List users.
+GET: http://localhost:3333/users/7 => List the user with ID = 7.
+
+
+---------------------Parameters types---------------------------
+
+Request params: Params that arrive in the self-route that 
+identify fundamental resources. The parammeter used to identify 
+resources should be the same of the request.params.
+
+Example:
+
+app.get('/users/:id', (req, res) => {
+	const getUser = request.params.id
+})
+
+
+----------------------------------------------------------------
+
+Query Params: 
+
+Params that query optionals resources, are useful to filter data. 
+Example: http://localhost:3333/users?page=2&name=Pablo&age=25
+
+----------------------------------------------------------------
+
+Request Body: 
+
+Is the body of the requisition, params to create 
+and update data. the object created should be in JSON format.
+
+----------------------------------------------------------------
+
+Route Params: 
+
+Used to identify unique resources, for example:
+in code: app.get('/users/:id')
+in URL:/users?/1
+
+---------------------Database types----------------------------
+
+SQL Are the databases more structured, are relational. 
+Example: SQL, MySQL, and PostgreSQL. Theses database uses 
+SQL language to run your statements, for example, 
+SELECT * FROM users WHERE id = 5.
+
+---------------------------------------------------------------
+
+NOSQL: Are the databases fewer structured, not are relati-
+onal. Theses databases use query builder syntax to run your 
+statements, example: table('users').select('*').where(id=3).
+
+
+-------------------Controllers methods-------------------------
+
+Show(): Is used to display a filtered item/items.
+
+---------------------------------------------------------------
+
+Index(): Is used to show a not filtered list of items.
+
+---------------------------------------------------------------
+
+Create(): Create a new item.
+
+---------------------------------------------------------------
+
+Update: Update an item.
+
+---------------------------------------------------------------
+
+Delete(): Delete an item.
+
+
+Always put the method await trx.commit() in the last http method 
+in the controller file.
+
+Use the flag --unhandled-rejections=strict inside your start 
+script in the package.json file to ignore try-catch block unhan-
+dled.
+
+An even route can be used in diferent methods.

@@ -1,0 +1,51 @@
+===============Connecting the React to Back-End=================
+
+1)In the folder of your front-end react project 
+install the Axios: run npm install Axios.
+
+2)Inside of the folder src, create a folder named 
+services and inside this, a file named api.js with 
+the content:
+
+import Axios from 'axios'
+const api = axios.create({
+    baseURL: 'http://localhost:3000',
+})
+export default api
+
+3)Import the api const to the file of your appli-
+cation react. 
+
+
+===Creating a register in the database from the react project===
+
+1) Create a state for each input value to register.
+
+2)Create a function to register the values and assign 
+them to your form trough the prop onSubmit, example:
+
+function handleRegister(e){
+ e.preventDefault();
+}
+
+3)Create an async function to use this state const 
+and the api const, example:
+
+import API from '../services./api'
+export default function Register(){
+    const [name, setName] = useState('')
+    const [age, setAge] = useState('')
+
+    async function handleData () {
+        const data = {name, age}
+    } try{
+        const response = await 
+	api.post('name_of_the_route', data)
+       localStorage.setItem('userName', 
+	response.data.name);
+       localStorage.setItem('userAge', 
+	responde.data.age);
+    }catch(err){
+        alert('Error to register data: ' + err)
+    }
+}

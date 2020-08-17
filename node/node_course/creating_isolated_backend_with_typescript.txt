@@ -1,0 +1,22 @@
+========================CREATING BACKEND===============================
+
+1) Make the directiory of your backend and enter inside this.
+
+2) Init a new project with the command npm init -y
+
+3)Crate a new folder named src and inside this a new file named ser-
+ver.ts.
+
+4) Install the typescript: npm install --dev typescript@latest and run 
+the command npx tsc -init to create your json conifg porject file.
+
+5)Inside the file tsconfig.json exchange the content "es5" of the line 
+7 to "ES2017"
+
+6)Install the ts-node-dev running the command npm install ts-node-dev.
+
+6)Inside the file packgae.json create the script named 'start' with 
+the command "ts-node-dev --transpile-only --ignore-watch node_modules
+ --respawn src/server.ts"
+
+7)Install the express and your type: npm install @types/express

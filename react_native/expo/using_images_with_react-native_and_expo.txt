@@ -1,0 +1,6 @@
+1)Create inside the folder src a new folder named @types, and inside
+this a new file named index.d.ts.
+
+2)Inside of this, use the code:
+declare module '*png'
+declare module '*jpg'

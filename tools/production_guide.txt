@@ -1,0 +1,27 @@
+==========================PRODUCTION GUIDE===============================
+
+---------------------------GOOD-PRACTICES--------------------------------
+
+Creates a file read.me to describe your app process during the devlop-
+ment.
+
+Analises the web and mobile interface at same time during back-end func-
+tionalites mapping.
+
+Use HTML native tags rather than div element to represent forms.
+
+-----------------------MAIN-VS-CODE-SHORTCUTS----------------------------
+
+ctrl +: import automactily a component to your file
+
+---------------------------PACKAGE-JSON----------------------------------
+
+Use the flag --transpile-only inside the script "start" of the pack-
+ge.json to acelerate production dev using typescript.
+
+Use the flag --respawn inside the script "start" of the pack-
+ge.json to restart automatically your files with the changes.
+
+Use the flag --unhandled-rejections=strict inside your start 
+script in the package.json file to ignore try-catch block unhan-
+dled.
