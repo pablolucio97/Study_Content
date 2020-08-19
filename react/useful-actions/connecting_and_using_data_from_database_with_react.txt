@@ -32,20 +32,17 @@ function handleRegister(e){
 and the api const, example:
 
 import API from '../services./api'
-export default function Register(){
-    const [name, setName] = useState('')
-    const [age, setAge] = useState('')
 
-    async function handleData () {
-        const data = {name, age}
-    } try{
-        const response = await 
-	api.post('name_of_the_route', data)
-       localStorage.setItem('userName', 
-	response.data.name);
-       localStorage.setItem('userAge', 
-	responde.data.age);
-    }catch(err){
-        alert('Error to register data: ' + err)
-    }
+export default function Register(){
+
+  const [name, setName] = useState('')
+  const [age, setAge] = useState('')
+
+  const createUsers = async () => {
+    
+    api.post('/create-users', {
+      name : userName,
+      age : userAge
+    }).then(response => console.log(response.data))
+  }
 }
