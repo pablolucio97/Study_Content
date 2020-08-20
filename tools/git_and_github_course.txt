@@ -173,6 +173,12 @@ conflict between the local and remote repositories.
 5) git push -u origin master: send all files changes to remote 
 repository.
 
+-----------------EDITING YOUR LAST COMMIT----------------------
+
+1) git commit --amend
+
+2) Edit your text and type the command :wq to exit.
+
 
 --RESOLVING CONFLICTS OF GIT PUSH CAUSED BY FILE DIFFERENCES--
 

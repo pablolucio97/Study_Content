@@ -1,0 +1,177 @@
+
+
+Query builder is a builder for database querys. In this mini course will be 
+exaplained about the knex library that can be found in http://knexjs.org/
+
+---------------------------------------------------------------------------
+
+timeout:
+Sets a timeout for the query and will throw a TimeoutError if the timeout 
+is exceeded. The second parammeter is optional. Examples:
+
+knex.('users').select().timeout(1000)
+//Select users after 1000ms
+
+knex.('users').select().timeout(1000, {cancel: true})
+//Select users after 1000ms or cancels the function after this interval
+
+---------------------------------------------------------------------------
+
+select:
+Creates a select query. Examples:
+
+knex.select('title', 'author', 'year').from('books')
+//Select the columns 'title', 'author', 'year' from the table 'books'.
+
+
+knex.select('*').from('users')
+knex('users').select()
+//Select all columns from the table 'users'
+
+---------------------------------------------------------------------------
+
+column:
+Specifically set the columns to be selected on a select query, taking an 
+array, an object or a list of column names. Examples:
+
+
+knex.column('title', 'author', 'year').select().from('books')
+//Select the columns 'title', 'author', 'year' from the table 'books'.
+
+---------------------------------------------------------------------------
+
+where:
+Do the query by accord the logical test passed in the where statement, the-
+re is various common logical test examples used in the where clausule. E-
+xaple:
+
+knex('users').where({first_name: 'Test', last_name:  'User'}).select('id')
+//Select the id from 'users' where the firs name is 'Test' and the last na-
+me is  'User'.
+
+knex('users').select('*').where('id' {id})
+//Select all user where the id field is equal to the variable {id}. Co-
+mmonly passed in the request.params request.
+
+knex('users').where('id', 1)
+//Select all from `users` where `id` = 1
+
+knex('users').where('votes', '>', 100)
+//select all from `users` where the number of `votes` is > 100
+
+---------------------------------------------------------------------------
+
+orWhere:
+Specific an option value to query. Example:
+
+knex('users').where('id', 1).orWhere({votes: 100, user: 'knex'})
+//Select all from `users` where `id` = 1 or (`votes` = 100 and `user` = 
+'knex')
+
+---------------------------------------------------------------------------
+
+whereNot:
+Filter the search to exclude some results of a query.
+
+knex('users').whereNot('id', 1)
+//Select * from `users` where not `id` = 1 (Select all where id != 1)
+
+---------------------------------------------------------------------------
+
+whereIn:
+
+Filter the search to seek for results inside an interval. Examples:
+
+knex.select('name').from('users').whereIn('id', [1, 2, 3])
+
+//Select `name` from `users` where `id` in (1, 2, 3).
+
+
+knex.select('name').from('users').whereIn('id', [1, 2, 3]).orWhereIn('id',
+ [4, 5, 6])
+
+//Select `name` from `users` where `id` in (1, 2, 3) or `id` in (4, 5, 6)
+
+---------------------------------------------------------------------------
+
+whereNotIn:
+
+Filter the search to seek for results inside an interval. Examples:
+
+knex.select('name').from('users').whereNotIn('id', [1, 2, 3])
+
+//Select `name` from `users` where `id` not in (1, 2, 3).
+
+
+knex.select('name').from('users').whereNotIn('id', [1, 2, 3])
+.orWhereNotIn('id', [4, 5, 6])
+
+//Select `name` from `users` where `id` not in (1, 2, 3) or `id` not in 
+(4, 5, 6).
+
+---------------------------------------------------------------------------
+
+whereNull:
+
+Seek for null values in a query.
+
+knex('users').whereNull('updated_at')
+
+//Select all from `users` where `updated_at` is null
+
+---------------------------------------------------------------------------
+
+whereNotNull:
+
+Seek for not null values in a query.
+
+knex('users').whereNotNull('updated_at')
+
+//Select all from `users` where `updated_at` is not null
+
+---------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

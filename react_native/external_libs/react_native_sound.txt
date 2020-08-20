@@ -1,0 +1,25 @@
+
+--------------------------USING REACT NATIVE SOUND------------------------------
+-
+1)Install the lib:
+npm install react-native-sound --save
+
+2)Import the lib:
+const Sound = require('react-native-sound')
+
+3)Put your mp3 file inside of the directory:
+android/app/src/main/res/raw/filename.mp3
+
+const localSound = require('../../android/app/src/main/res/raw/next_play.mp3')
+
+4)Instance the object and execu your play method: 
+
+ const nextPlaySound = new Sound(localSound, Sound.MAIN_BUNDLE, (error) => {   
+    if (error) {
+    console.warn('failed to load the sound', error);
+    return;
+   }})
+
+const touchSound= () => {
+    nextPlaySound.play()
+}

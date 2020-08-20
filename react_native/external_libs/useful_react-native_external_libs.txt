@@ -107,6 +107,12 @@ npm i react-native-share --save
 
 -----------------------------------------------------------------
 
+Sound: React Native Sound
+
+npm install react-native-sound --save
+
+-----------------------------------------------------------------
+
 Styling: Styled Components, Masked view, Blur, Line-
 ar gradient.
 
