@@ -38,7 +38,8 @@ array, an object or a list of column names. Examples:
 knex.column('title', 'author', 'year').select().from('books')
 //Select the columns 'title', 'author', 'year' from the table 'books'.
 
----------------------------------------------------------------------------
+
+============================WhereMethods===================================
 
 where:
 Do the query by accord the logical test passed in the where statement, the-
@@ -122,56 +123,232 @@ knex('users').whereNull('updated_at')
 ---------------------------------------------------------------------------
 
 whereNotNull:
-
 Seek for not null values in a query.
 
 knex('users').whereNotNull('updated_at')
 
 //Select all from `users` where `updated_at` is not null
 
+
 ---------------------------------------------------------------------------
 
+whereBetween:
+Search of the values in a range.
+
+knex('users').whereBetween('votes', [1, 100])
+//select * from `users` where `votes` between 1 and 100
+
+---------------------------------------------------------------------------
+
+whereNotBetween:
+Search of the values out a range.
+
+knex('users').whereNotBetween('votes', [1, 100])
+//select * from `users` where `votes` not between 1 and 100
 
 
+============================JoinMethods====================================
+
+Is used to two join two columns of diferent tables.
+
+knex('users').join('contacts', 'users.id', '=', 'contacts.user_id')
+.select('users.id', 'contacts.phone')
+//select `users`.`id`, `contacts`.`phone` from `users` of the join `contacts`
+ on `users`.`id` = `contacts`.`user_id`
 
 
+============================HavingClauses==================================
+
+having:
+knex('users').groupBy('count').having('count', '>', 100)
+//select * from `users`having `count` > 100 order by `name` desc
+
+---------------------------------------------------------------------------
+
+havingIn:
+knex.select('*').from('users').havingIn('id', [5, 3, 10, 17])
+//select * from `users` having `id` in (5, 3, 10, 17)
+
+---------------------------------------------------------------------------
+
+havingNotIn:
+knex.select('*').from('users').havingNotIn('id', [5, 3, 10, 17])
+//select * from `users` having `id` not in (5, 3, 10, 17)
+
+---------------------------------------------------------------------------
+havingNull:
+knex.select('*').from('users').havingNull('email')
+//select * from `users` having `email` is null
+
+---------------------------------------------------------------------------
+
+havingNotNull:
+knex.select('*').from('users').havingNotNull('email')
+//select * from `users` having `email` is not null
+
+---------------------------------------------------------------------------
+
+havingBetween 
+knex.select('*').from('users').havingBetween('id', [5, 10])
+//select * from `users` having `id` between 5 and 10
+
+---------------------------------------------------------------------------
+
+havingNotBetween
+knex.select('*').from('users').havingNotBetween('id', [5, 10])
+//select * from `users` having `id` not between 5 and 10
+
+============================ClearClauses===================================
+
+clearSelect:
+Clears all select clauses from the query, excluding subqueries.
+
+knex.select('email', 'name').from('users').clearSelect()
+//Select * from `users`
+
+---------------------------------------------------------------------------
+
+clearWhere :
+
+knex.select('email', 'name').from('users').where('id', 1).clearWhere()
+//select `email`, `name` from `users` (Excluding the id = 1)
+
+---------------------------------------------------------------------------
+
+clearHaving:
+
+knex.select().from('users').having('id', '>', 5).clearHaving()
+//select * from `users`
+
+---------------------------------------------------------------------------
+
+distinct: 
+Do a select without duplcate values.
+
+knex('customers').distinct()
+//select distinct * from `customers`
+
+---------------------------------------------------------------------------
+
+groupBy:
+Do a select listing by the group rule
+
+knex('users').groupBy('count')
+//select * from `users` group by `count`
+
+---------------------------------------------------------------------------
+
+groupByRaw:
+Adds a raw code logic group by clause to the query.
+
+knex.select('year', knex.raw('SUM(profit)')).from('sales').
+groupByRaw('year WITH ROLLUP')
+//select `year`, SUM(profit) from `sales` group by year WITH ROLLUP
+
+---------------------------------------------------------------------------
+
+orderBy: Or the select list by accord rules.
+
+Single column:
+knex('users').orderBy('name', 'desc')
+//select * from `users` order by `name` desc (highter to lower)
+
+knex('users').orderBy('name', 'asc')
+//select * from `users` order by `name` desc (lower to highter)
 
 
+Multiple columns
+knex('users').orderBy(['email', { column: 'age', order: 'desc' }])
+//select * from `users` order by `email` asc, `age` desc
 
+---------------------------------------------------------------------------
 
+offset:
+Do a deslocment to the querires (useful to calculate paginations)
 
+knex.select('*').from('users').offset(10)
+//select * from `users` limit 18446744073709551615 offset 10
 
+---------------------------------------------------------------------------
 
+limit:
+Constraints a limit to whow the select quantity of items.
 
+knex.select('*').from('users').limit(10).offset(30)
+//select * from `users` limit 10 offset 30
 
+---------------------------------------------------------------------------
 
+insert:
+Insert a value in the column of the table.
 
+knex('books').insert({title: 'Slaughterhouse Five'})
+insert into `books` (`title`) values ('Slaughterhouse Five')
 
+knex('coords').insert([{x: 20}, {y: 30},  {x: 10, y: 20}])
+//insert into `coords` (`x`, `y`) values (20, DEFAULT), (DEFAULT, 30), 
+(10, 20)
 
+---------------------------------------------------------------------------
 
+update:
+Updates the value of a column in a table.
 
+knex('books').where({id = 42}).update('title', 'Slaughterhouse Five')
+update `books` set `title` = 'Slaughterhouse Five'
 
+---------------------------------------------------------------------------
 
+delete:
+Deletes a value of a column in a table.
 
+knex('accounts').where('activated', false).del()
+//delete from `accounts` where `activated` = false
 
+---------------------------------------------------------------------------
 
+count:
+Show the quantity of itens by accord the query.
 
+knex('users').count('active')
+//select count(`active`) from `users` (show the quantity)
 
+---------------------------------------------------------------------------
 
+min:
+Gets the minimum value for the specified column or array of columns.
 
+knex('users').min('age')
+//select min(`age`) from `users`
 
+---------------------------------------------------------------------------
 
+max:
+Gets the maximum value for the specified column or array of columns.
 
+knex('users').max('age')
+//select max(`age`) from `users`
 
+---------------------------------------------------------------------------
 
+sum:
+Sum all values of a column or an array of columns.
 
+knex('users').sum('products')
+//select sum(`products`) from `users`
 
+---------------------------------------------------------------------------
 
+sumDistinct:
+Sum only values with distinct value on a column.
 
+knex('users').sumDistinct('products')
+//select sum(distinct `products`) from `users
 
+---------------------------------------------------------------------------
 
+avg:
+Calc the avarage of the values of a column or an array of columns.
 
-
-
-
-
+knex('users').avg('age')
+select avg(`age`) from `users`
