@@ -54,6 +54,13 @@ Units test: Test an isolated code.
 Integration test: Tes the complete route of the functionality of 
 the application, including the back-end structure.
 
+----------------------------------------------------------------
+
+ORM: Object Relation Manager, is used to manager querys in data-
+bases using javascript. Examples of ORM: sequelize, mongoose and
+TypeORM.
+
+
 ------------------------HTTP methods----------------------------
 
 GET: This is used to get data from the back-end.
