@@ -96,7 +96,6 @@ application.
 The scope that is inside the main component is executed first 
 than functions outside the component scope.
 
-
 All components in react native come with display flex by default.
 
 Use the component RectButton from react-native-gesturehandle inste-

@@ -1,0 +1,81 @@
+--------------------------CREATING AND USING TYPES---------------------------
+
+//Types are created trough interfaces, interface  is an object with definitions 
+//types to be used to format data.
+
+//Examples:
+
+//CREATING TYPES
+
+interface IUsers{
+  name: string,
+  email: string
+}
+
+
+
+interface IMessages{
+  subject: string[],
+  body: string,
+  attachment?: string[], //array of strings, use number[] to array of numbers, 
+  //this can be optional
+}
+
+//USING TYPES
+funciton sendMail(to: IUsers, message: IMessages){
+  console.log(`Email with subject ${message.subject} was sented for ${to.name}.`)
+}
+
+---------------------------INHERITING INTERFACES------------------------------
+
+
+interface Users1{
+  name: string,
+  age: number
+}
+
+interface Users2{
+  users: Users1
+}
+
+const User : React.FC<Users2> = ({users}) => {
+  return (
+  <strong>Name: {users.name}</strong>
+  <strong>Age: {users.age}</strong>
+  )
+}
+
+-------------------------------GENERAL TIPS-----------------------------------
+
+At definning types for functions, objects, components and more, this types be-
+came obligatoly when creating this functions, objects and etc.
+
+------------------------------------------------------------------------------
+
+Be carefull to distinc interfaces and types.
+
+------------------------------------------------------------------------------
+
+When using types in another file instead of the original file of the lib import,
+you need to import the type for this parammeter. (Pass the mouse hover the para-
+mmeter type in the original file to see your import to secondary file) Example:
+
+Import {Request, Response} from 'express'
+
+export default {
+  async index(req: Request, res: Response)
+	return res.json()
+}
+
+------------------------------------------------------------------------------
+
+If item of the interface is optional, your renderization method should con-
+tains options. Example: 
+
+interface Users1{
+  name: string,
+  age: number,
+  email?: string
+}
+
+<strong>Age: {users.email || 'Don has e-mail'}</strong>
