@@ -1,0 +1,110 @@
+
+--------------------------------------------------------PT-BR----------------------------------------------------------------------
+
+# Projeto
+
+## :bulb: Projeto
+
+Books Collection é uma aplicação que...
+
+
+## :computer: Web
+ ![image](https://im7.ezgif.com/tmp/ezgif-7-b793fdb8fa5c.gif)
+
+## :iphone: Mobile
+
+
+## :rocket: Tecnologias utilizadas:
+
+* [Javascript](https://developer.mozilla.org/en-US/docs/Web/JavaScript)
+* [Typescript](https://www.typescriptlang.org/docs/)
+* [NodeJs](https://nodejs.org/en/)
+* [Knex](http://knexjs.org/)
+* [Sqlite](https://www.sqlite.org/index.html)
+* [Expo](https://docs.expo.io/)
+* [Axios](https://github.com/axios/axios)
+* [React Router Dom](https://reactrouter.com/web/guides/quick-start)
+* [React Navigation](https://reactnavigation.org/)
+
+
+A lista completa de tecnologias e bibliotecas externas pode ser visualizada nos arquivos package.json das pastas api, web e mobile.
+
+
+## :wrench: Instalação
+
+### 1) Clone este repositório
+ git clone https://github.com/pablolucio97/books-collection.git
+
+### 2) Navegue até a pasta api e execute os seguintes comandos:
+ npm install
+ 
+ npm run knex:migrate
+ 
+ npm start
+
+### 3) Entre na pasta web e execute os comandos:
+ npm install
+
+
+### 4) Entre na pasta mobile e execunte os comandos:
+ yarn
+ expo start
+
+### Observações:
+Não esqueça de mudar a baseURL de configuração do axios no arquivo `src/services/api.ts` das pastas web e mobile para seu IP local.
+
+
+
+--------------------------------------------------------EN-US----------------------------------------------------------------------
+
+# Project Name
+
+## :bulb: Project
+
+This is an application thats...
+
+
+## :computer: Web
+ ! [image] (https://im7.ezgif.com/tmp/ezgif-7-b793fdb8fa5c.gif)
+
+## :iphone: Mobile
+
+
+## :rocket: Technologies used:
+
+* [Javascript] (https://developer.mozilla.org/en-US/docs/Web/JavaScript)
+* [Typescript] (https://www.typescriptlang.org/docs/)
+* [NodeJs] (https://nodejs.org/en/)
+* [Knex] (http://knexjs.org/)
+* [Sqlite] (https://www.sqlite.org/index.html)
+* [Expo] (https://docs.expo.io/)
+* [Axios] (https://github.com/axios/axios)
+* [React Router Dom] (https://reactrouter.com/web/guides/quick-start)
+* [React Navigation] (https://reactnavigation.org/)
+
+
+The complete list of technologies and external libraries can be viewed in the package.json files in the api, web and mobile folders.
+
+
+## :wrench: Installation
+
+### 1) Clone this repository
+ git clone https://github.com/pablolucio97/books-collection.git
+
+### 2) Navigate to the api folder and run the following commands:
+ npm install
+ 
+ npm run knex: migrate
+ 
+ npm start
+
+### 3) Enter the web folder and execute the commands:
+ npm install
+
+
+### 4) Enter the mobile folder and execute the commands:
+ yarn
+ expo start
+
+### Comments:
+Don't forget to change the axios configuration base in the `src / services / api.ts` file of the web and mobile folders to your local IP.

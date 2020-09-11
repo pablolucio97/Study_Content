@@ -45,6 +45,12 @@ const User : React.FC<Users2> = ({users}) => {
   )
 }
 
+---------------------CREATING INTERFACES FOR FUNCTIONS------------------------
+
+interface FunctionInterface{
+    onDoAnyThing: (anyArg: GlobalObject) => void;
+}
+
 -------------------------------GENERAL TIPS-----------------------------------
 
 At definning types for functions, objects, components and more, this types be-
