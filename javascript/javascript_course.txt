@@ -1378,6 +1378,23 @@ var patt1 = /10?/g;
 var result = str.match(patt1);
 //Output: 1,10,10
 
+=============================JSON OBJECT===============================
+
+All data received in the web comes in string format. When storing or 
+reading a data using localstorage or workink with databases, this data 
+should be represented in JSON format.
+
+Json format exmaple:
+
+{ name: "John", age: 31, city: "New York" };
+
+Methods:
+
+parse() - This method converts the string data in a JSON object.
+
+stringfy() - This method converts the JSON object data in a string.
+
+
 ===========================TREATING ERRORS=============================
 
 TRY, CATCH AND TROW
