@@ -1,0 +1,154 @@
+===========================SOFTWARE-ENGINEERING-COURSE===========================
+
+Engineering software is the Engineering that studys the software development,
+your lifecicle, concepts and techiniques.
+
+--------------------------PROCESS TO DEVELOP SOFTWARES---------------------------
+
+-----------------------------Particular Softwares--------------------------------
+
+1)Meet your client and do the techinique interview with forms to get your require-
+ments.
+
+2)Define the requirements, functionals and no functionals.
+
+3)Draw the Class Diagram and the Case Use Diagram.
+
+4)Build your software on Figma.
+
+5)Code your software always thinking in your reuse.
+
+6)Run test in each requirement.
+
+7)Deploy your software by according the client accord.
+
+-------------------------------Public Softwares----------------------------------
+
+1)Meet your client and do the techinique interviw with forms to get your require-
+ments.
+
+2)Define the requirements, functionals and no functionals.
+
+3)Draw the Class Diagram and the Case Use Diagram.
+
+4)Build your software on Figma.
+
+5)Code your software always thinking in your reuse.
+
+6)Run test in each requirement.
+
+7)Deploy your software.
+
+8)Document your project on GitHub.
+
+------------------------------SOFTWARE LIFE CYCLE--------------------------------
+
+Elicitation: Stage where a meeting with the client is realized. Goes to meet with 
+a questionary and be specifi to question the client about he want. The client in 
+most cases don't know what want. Observe the manual work of the client and think 
+how the system can change this. Consult diferent stakeholders.
+
+
+---------------------------MODELS OF SOFTWARE PROCESS----------------------------
+
+The models of software development process represents the life cicle of each mo-
+del process.
+
+CASCADE:
+The process folow a logic sequencial where a task is finished and another is 
+started automatically.
+
+Requirements definition > Project of software and system > Implementation and 
+unity test > Integration and system test > Operation and handling
+
+---------------------------------------------------------------------------------
+
+INCREMENTAL:
+In this process, the kernel of the software is build, and new features are incre-
+menteds to software and validated.
+
+Sketch > Development > < Especification > < Validation (are done various versions
+of the software).
+
+---------------------------------------------------------------------------------
+
+ORIENTED TO REUSE:
+This model described the reuse of components of software already developed. At a-
+dopting this method, you need be careful, because the same functionalities of the
+software already developed perhaps can be to not attend the client requirements.
+At choicing this model, run more tests.
+
+Requirement especification > Components analisys > Requirement changes > Project 
+of system with reuse > Development and integration > System validation
+
+Obs: Unrely of the model development choiced, always to follow the steps:
+Especification > Development > Validation > Evolution
+
+-----------------------MAIN TOOLS OF SOFTWARE ENGINEERING--------------------------
+
+Entity Relationship Diagram
+
+Data Flow Diagram
+
+Case Use Diagram**
+
+Case Use Specification
+
+Class Diagram**
+
+Sequence Diagram
+
+Activities Diagram**
+
+The Diagram Class is the best diagram to define the system structure.
+
+-------------------------------DESING PATERNS-------------------------------------
+
+Design patern is the techinic of to format default software projects and reuse 
+this.
+
+--------------------------------FAST METHODS--------------------------------------
+
+Fast methods are methods more flexibles and focused in more development instead of 
+documentation. Fast methods are borned due the software crysis where the develo-
+pment of software are hard and expansive. Examples of fast methods: XP, SCRUM, 
+TDD(Test driven development)
+
+Principles of fast methods:
+
+Relationshio with the client,
+Incremental delivery,
+Focus on peoples istead of porcess,
+Maintain simple
+
+------------------------------------SCRUM-----------------------------------------
+The SCRUM are composed of various sprints (cycles) where evaluate, select, review 
+and develop the project.
+
+
+....
+
+
+--------------------FUNCTIONAL AND NOT FUNCTIONAL REQUIREMENTS--------------------
+
+Functional requirements: Are the functions that the system will to execute. Exam-
+ples: Do login, calc the buy amount, send a e-mail and etc.
+
+No functional requirements: Are how the functions will executed, are the techs u-
+sed, are the system performance, a time to execute a task.
+
+Main observations on writing requirements:
+
+- All requirements should be implemented;
+- Diferent requirements can't diverge;
+- The requirement should be real and can be tested;
+
+Always review your requirements.
+
+
+--------------------------------GENERAL TIPS--------------------------------------
+
+Changes of requirements are unavoidable in big projects.
+
+You can to combine various development methods in a single project.
+

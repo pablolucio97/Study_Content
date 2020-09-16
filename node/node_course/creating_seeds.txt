@@ -28,7 +28,7 @@ export async function seed(knex : Knex){
     ])
 }
 
-4)Run the script "knex:seed" (nom run knex:seed) to see your seeds inside 
+4)Run the script "knex:seed" (npm run knex:seed) to see your seeds inside 
 the table projects.
 
 OBS: To generate seed, the field sented by the seed should exists in the 
