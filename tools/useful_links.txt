@@ -55,3 +55,14 @@ Convert Excel sheets in JSON:
 
 https://www.aconvert.com/document/xls-to-json/
 
+---------------------------------------------------------
+
+To learn more about hooks:
+
+https://usehooks.com
+
+---------------------------------------------------------
+
+Convert img to .ico
+
+https://image.online-convert.com/convert-to-ico

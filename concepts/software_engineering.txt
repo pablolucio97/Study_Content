@@ -3,6 +3,105 @@
 Engineering software is the Engineering that studys the software development,
 your lifecicle, concepts and techiniques.
 
+
+------------------------------------CONCEPTS-------------------------------------
+
+CR: Changes Request: Is where the client solicite changes in the project. The CR
+need be appraised before to implement.
+
+---------------------------------------------------------------------------------
+
+BaseLine: Are the stable lines that are reliable to implement in the software.
+
+---------------------------------------------------------------------------------
+
+Codeline: Is the line that represent the version each item in the software.
+
+---------------------------------------------------------------------------------
+
+Checkout: Is when a developer copy the realible code of the project to work with
+it. If a developer is doing checkout in a version of code, another developer can
+not doing this together or a merge is done.
+
+---------------------------------------------------------------------------------
+
+Checking: Is when the developer already worked on the reliable code and delive-
+ry again with a new reliable version to the system of changes manager.
+
+---------------------------------------------------------------------------------
+
+Version: Is the current version of the software development. Your changes should 
+be documented within the follow settings: Version, Changer, Data, Author and Re-
+ason of changes.
+
+---------------------------------------------------------------------------------
+
+Release: Is the current version of the software release to the client.
+
+---------------------------------------------------------------------------------
+
+Branch:
+
+
+---------------------------------------------------------------------------------
+
+Merge:
+
+---------------------------------------------------------------------------------
+
+Software Design:
+
+The software desing is responsable for the code level design, watch wich module 
+does and the scope and objectives of each class and function.
+
+---------------------------------------------------------------------------------
+
+Fast Methods:
+
+Fast methods are methods more flexibles and focused in more development instead of 
+documentation. Fast methods are borned due the software crysis where the develo-
+pment of software are hard and expansive. Examples of fast methods: XP, SCRUM, 
+TDD(Test driven development)
+
+Principles of fast methods:
+
+Relationshio with the client,
+Incremental delivery,
+Focus on peoples istead of porcess,
+Maintain simple
+
+---------------------------------------------------------------------------------
+
+SCRUM: 
+
+The SCRUM are composed of various sprints (cycles) where evaluate, select, review 
+and develop the project.
+
+
+....
+---------------------------------------------------------------------------------
+
+Functional requiremnts:
+
+Functional requirements: Are the functions that the system will to execute. Exam-
+ples: Do login, calc the buy amount, send a e-mail and etc.
+
+---------------------------------------------------------------------------------
+
+No functional requirements:
+
+No functional requirements: Are how the functions will executed, are the techs u-
+sed, are the system performance, a time to execute a task.
+
+Main observations on writing requirements:
+
+- All requirements should be implemented;
+- Diferent requirements can't diverge;
+- The requirement should be real and can be tested;
+
+Always review your requirements.
+
+
 --------------------------PROCESS TO DEVELOP SOFTWARES---------------------------
 
 -----------------------------Particular Softwares--------------------------------
@@ -102,48 +201,56 @@ Activities Diagram**
 
 The Diagram Class is the best diagram to define the system structure.
 
--------------------------------DESING PATERNS-------------------------------------
+
+-------------------MAIN ARCHITETURAL MODELS/DESING PATTERNS-----------------------
 
 Design patern is the techinic of to format default software projects and reuse 
-this.
+this. This architeture is responsable for the software structure.
 
---------------------------------FAST METHODS--------------------------------------
+Layered pattern:
 
-Fast methods are methods more flexibles and focused in more development instead of 
-documentation. Fast methods are borned due the software crysis where the develo-
-pment of software are hard and expansive. Examples of fast methods: XP, SCRUM, 
-TDD(Test driven development)
+Is strucutured on stacked layers where the down layers server the up layer and bo-
+th comunicates. In the most bottom layers, has the back-end and in the most top 
+layer has the user interface. The nearster layers access your neightbor and the 
+mostup layer don't acess the most bottom layer.
 
-Principles of fast methods:
+----------------------------------------------------------------------------------
 
-Relationshio with the client,
-Incremental delivery,
-Focus on peoples istead of porcess,
-Maintain simple
+Client-server pattern:
 
-------------------------------------SCRUM-----------------------------------------
-The SCRUM are composed of various sprints (cycles) where evaluate, select, review 
-and develop the project.
+Has a server of a side and another side has a client, where the client request da-
+ta for the server and the server return a response to the client.
 
+----------------------------------------------------------------------------------
 
-....
+MVC pattern:
 
+Model View Controller: Is an architeture where the banck-end is controlled by the 
+Model, the browser is responsable to renver the info (View) and the HTML and Java-
+script act like the Controller.
 
---------------------FUNCTIONAL AND NOT FUNCTIONAL REQUIREMENTS--------------------
+----------------------------------------------------------------------------------
 
-Functional requirements: Are the functions that the system will to execute. Exam-
-ples: Do login, calc the buy amount, send a e-mail and etc.
+Serverless architeture:
 
-No functional requirements: Are how the functions will executed, are the techs u-
-sed, are the system performance, a time to execute a task.
+Is the architetuere where the software rely of third services to manage your back-
+end. It is split in two categories: Back as services and Funções as services. A 
+good example of this architetures is the Amazon Web Services.
 
-Main observations on writing requirements:
+----------------------------------------------------------------------------------
 
-- All requirements should be implemented;
-- Diferent requirements can't diverge;
-- The requirement should be real and can be tested;
+Oriented to events architeture:
 
-Always review your requirements.
+This architeture rely of productors and clients of events where the main goal is 
+split each module of the system and this are called when necessary. 
+
+----------------------------------------------------------------------------------
+
+Microservices architeure:
+
+This architerure rely of modules of micro services small and independents wich ea-
+ch servie solve a porblem and these modules conect yourselves trought a definited 
+API.
 
 
 --------------------------------GENERAL TIPS--------------------------------------
@@ -151,4 +258,8 @@ Always review your requirements.
 Changes of requirements are unavoidable in big projects.
 
 You can to combine various development methods in a single project.
+
+Handler your software chnages trought the Software Changes Manager.
+
+Each new version should be tested before to preced with new version development.
 

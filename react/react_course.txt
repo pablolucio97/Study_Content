@@ -1125,6 +1125,9 @@ than functions outside the component scope.
 
 Use npm install autoprefixer@9.8.0 to fix css load errors.
 
+Always the first element of a map return should be the prop key to identify
+the list items.
+
 
 
 

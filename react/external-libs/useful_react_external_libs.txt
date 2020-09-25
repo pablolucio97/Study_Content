@@ -12,6 +12,7 @@ npm install axios
 
 Apparence: Material UI
 npm install @material-ui/core
+npm i use-dark-mode => https://github.com/donavon/use-dark-mode
 
 -----------------------------------------------------------------
 Icons: React Icons
@@ -31,7 +32,6 @@ Sharing:
 Styling: Styled Components
 
 npm install --save styled-components
-
 -----------------------------------------------------------------
 
 ========================GENERAL TIPS=============================

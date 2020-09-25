@@ -51,6 +51,48 @@ interface FunctionInterface{
     onDoAnyThing: (anyArg: GlobalObject) => void;
 }
 
+---------------------CREATING INTERFACES FOR COMPONENTS-----------------------
+Component file:
+
+import React from 'react'
+
+interface HeaderInterface{
+    title: string,
+    subtitle?: string,
+    index: number
+}
+
+const Header: React.FC<HeaderInterface> = (props) => {
+    return(
+        <div>
+            <h1>{props.title}</h1>
+            <h4>{props.index}</h4>
+        </div>
+    )
+}
+
+export default Header
+
+-----------------------------------------------------------------------------
+
+Using the component:
+
+import React from 'react';
+
+import Header from './components/Header/index'
+
+function App() {
+
+  return (
+    <div>
+      <Header title='Ecolect' index={2}/>
+    </div>
+  );
+}
+
+export default App;
+
+
 -------------------------------GENERAL TIPS-----------------------------------
 
 At definning types for functions, objects, components and more, this types be-
@@ -85,3 +127,15 @@ interface Users1{
 }
 
 <strong>Age: {users.email || 'Don has e-mail'}</strong>
+
+
+------------------------------------------------------------------------------
+
+Whenever create a new state to array or object, you need type it with an in-
+terface.
+
+------------------------------------------------------------------------------
+
+Whenever using an external api of data in object format, the string value of 
+the interface created should be the even of the external api.
+
