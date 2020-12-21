@@ -6,6 +6,13 @@ your lifecicle, concepts and techiniques.
 
 ------------------------------------CONCEPTS-------------------------------------
 
+COT Systems:
+
+Are system that was created genericlly to sell and is adapted to the client ne-
+eds.
+
+---------------------------------------------------------------------------------
+
 CR: Changes Request: Is where the client solicite changes in the project. The CR
 need be appraised before to implement.
 
@@ -37,15 +44,6 @@ ason of changes.
 ---------------------------------------------------------------------------------
 
 Release: Is the current version of the software release to the client.
-
----------------------------------------------------------------------------------
-
-Branch:
-
-
----------------------------------------------------------------------------------
-
-Merge:
 
 ---------------------------------------------------------------------------------
 
@@ -100,6 +98,12 @@ Main observations on writing requirements:
 - The requirement should be real and can be tested;
 
 Always review your requirements.
+
+---------------------------------------------------------------------------------
+
+Legad System:
+
+System that not receives more manutention.
 
 
 --------------------------PROCESS TO DEVELOP SOFTWARES---------------------------
@@ -234,7 +238,7 @@ script act like the Controller.
 Serverless architeture:
 
 Is the architetuere where the software rely of third services to manage your back-
-end. It is split in two categories: Back as services and Funções as services. A 
+end. It is split in two categories: Back as services and Funï¿½ï¿½es as services. A 
 good example of this architetures is the Amazon Web Services.
 
 ----------------------------------------------------------------------------------
@@ -252,6 +256,110 @@ This architerure rely of modules of micro services small and independents wich e
 ch servie solve a porblem and these modules conect yourselves trought a definited 
 API.
 
+ERP System arquiteture:
+
+Database > Business rules > Process > Buy - Suplly Chain - Logistic - CRM
+
+--------------------------------SOFTWARE TEST-------------------------------------
+
+A sofware always containt defaults, what a test do is found current falls. Exists 
+two types of concepts tests:
+
+Validation: Is used to indetify if the software developed is the software that the 
+client really want.
+
+Verification: Verify if the functionalities of the software atend the software re-
+quirements. Here, the performance, assecibility, accurancy, connection, values, 
+platform compatibility and more requirements are tested.
+
+----------------------------------------------------------------------------------
+
+Stages of tests:
+
+Development tests: The tests run while the development persist.
+
+Release tests: Are the test that are done before the client.
+
+User tests: The user usage is monitored.
+
+----------------------------------------------------------------------------------
+
+Types of tests:
+
+Manual: Is used trought the development to test short functionalities.
+
+Automatized: Programed tests that function a specific value corespondence.
+
+Unity tests: Tests that are done in a single component/class or isolated part of 
+the software.
+
+Integration tests: Tests that are done in a set of components.
+
+System test: The system is tested like one.
+
+----------------------------------------------------------------------------------
+
+Tests techiniques:
+
+Test of black box: Only the requirements of the software are tested withou code 
+code Verification.
+
+Test of white box: Only the code is tested without validate the requirements.
+
+TDD - Test Driven Development: Is the thechinic of run test before to implement 
+the desired functionalitie. It not avoid the necessecitie of run tests on the 
+system late.
+
+-------------------------------SOFTWARE REUSE------------------------------------
+
+Advantges:
+
+Fast development, work loans reduce and conforrmity standard.
+
+Penalty:
+
+Without source code, without support.
+
+---------------------------------------------------------------------------------
+
+Techinique to reuse softwares
+
+Maintain all your nucleo code in a generic isolated project of the type of sof-
+ware of your client and show to your client what is obligatoly, alternative and 
+optional functionalities.
+
+---------------------------------------------------------------------------------
+
+Development to reuse:
+
+Is a generic and isolated sofware that is build to provide your components to 
+another softwares.
+
+Development with reuse:
+
+Is the inhrerting of already existing components of a generic software.
+
+---------------------------------------------------------------------------------
+
+Rules to provide components:
+
+The components need be standarted, with a good interface and documentation with 
+use orientations.
+
+The components need be indenpendents.
+
+The component should can be used with another components, passive to componenti-
+zation.
+
+---------------------------------------------------------------------------------
+
+Rules to consume components:
+
+Sketch your system requirements before to use third components.
+
+Identify the components that can be used in your system before to project your 
+architure. If necessary, modifies the component by according your needs.
+
 
 --------------------------------GENERAL TIPS--------------------------------------
 
@@ -262,4 +370,6 @@ You can to combine various development methods in a single project.
 Handler your software chnages trought the Software Changes Manager.
 
 Each new version should be tested before to preced with new version development.
+
+The minimum quanitty of tests should to get the maximum of failures.
 

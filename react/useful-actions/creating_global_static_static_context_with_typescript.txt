@@ -1,0 +1,62 @@
+===================CREATING GLOBAL STATIC GLOBAL STATE=====================
+
+1) Create the context
+
+import {createContext} from 'react'
+
+interface ILike{
+    like: number
+}
+
+const LikeContext = createContext<ILike>({
+    like: 10
+})
+
+export default LikeContext
+
+
+----------------------------------------------------------------------
+
+2)Create the hook to use the context
+
+
+import React, {useContext, useState} from 'react';
+
+import LikeContext from './LikeContext'
+
+
+const AppContext : React.FC = () => {
+    
+    const {like} = useContext(LikeContext)
+    
+    return(
+
+   
+        <div>
+            <p>{like}</p>
+        </div>
+    )
+}
+
+export default AppContext
+
+
+----------------------------------------------------------------------
+
+3)Import and use it in your App.tsx
+
+import React from 'react'
+
+import AppContext from './context/AppContext'
+
+export default function App() {
+  return (
+    <div>
+      <AppContext/>
+    </div>
+  )
+}
+
+
+
+

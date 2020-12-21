@@ -21,7 +21,8 @@ file is returned.
 SPA (Single Page Applications) approach: In this approach, the 
 requisitions bring data in JSON format like responses and with 
 these data, the front-end can fill the info in the screens. The 
-page never reloading, optimizing the performance. 
+page never reloading, optimizing the performance. All applica-
+tion is contained in one only page. 
 
 -----------------------------------------------------------------
 

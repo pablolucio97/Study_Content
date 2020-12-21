@@ -1,0 +1,22 @@
+
+--------------------CREATING A NEW PROJECT WITH TYPEORM-----------------------
+Use the command docker run --name postgres_course -e POSTGRES_PASSWORD=docker 
+-e POSTGRES_USER=docker -p 5432:5432 -d postgres to create a new container on 
+the Docker.
+
+1)Install the typeORM globally: npm i typeorm -g
+
+2)Inside of your project folder, create a new typeorm project using the
+command typeorm init --name learning_typeORM --database pg
+
+3)Enter inside the new typeorm project folder and run the command npm i
+to install the packages necessaries, in the sequence installs the postgres:
+yarn add pg.
+
+4)Download and install the DBeaver and create a new connection and select the 
+database type, put a name to databse and set the port.
+
+5)Inside this... You can se your database created inside the DBeaver environ-
+ment in the directory databse_name>Schemas>Tables>your_table
+
+..........check this file....

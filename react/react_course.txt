@@ -1090,7 +1090,7 @@ Props should by passed inside a variable and used by the or another com-
 ponent trought this.props.props_name
 
 Variables containing props should be declared before the component and 
-exported containg the component. A single variable can store various ob-
+exported containing the component. A single variable can store various ob-
 jects properties (props).
 
 Always declre the variables in the App.js component.
@@ -1100,7 +1100,7 @@ Always declare the variables before of create the component.
 All time when go work with functions with evetns, shoul pass the argument
 event for this function.
 
-When crates a variables assigned at conditional satatement or a function,
+When crates a variables assigned at conditional statement or a function,
 this variables should be delcared in the return() method.
 
 When is working with form inputs handler, notice thats the name of the in-

@@ -1,6 +1,6 @@
 Store images:
 
-https://imgur.com/upload
+https://imgbb.com/
 
 ---------------------------------------------------------
 
@@ -66,3 +66,9 @@ https://usehooks.com
 Convert img to .ico
 
 https://image.online-convert.com/convert-to-ico
+
+---------------------------------------------------------
+
+To combine colors scheme for applications
+
+https://coolors.co/

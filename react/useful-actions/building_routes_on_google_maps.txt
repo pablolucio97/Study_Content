@@ -1,0 +1,6 @@
+=========================BUILDING ROUTES ON GOOGLE MAPS=========================
+
+1)Inside of your link prop past the URL:
+
+{`https://www.google.com/maps/dir/?api=1&destination=${latVal}, ${longVal}`}
+

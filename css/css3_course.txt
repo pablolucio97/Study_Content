@@ -933,7 +933,7 @@ cotnainer)
 .item4 { grid-area: right; }
 .item5 { grid-area: footer; }
 
-===========================================GENERAL TIPS================================================
+============================================GENERAL TIPS=================================================
 
 If has styles in the page and external styles imported, the browser always put priority to the internal
 styles.
@@ -949,4 +949,15 @@ Always set the :root of the document with the variables of colors of your projec
 allow fast layout font change.
 
 Always sets the height of your html and body and the prop font of the body, input and form elements.
+
+All elements in css work like box-model where the propertie box-sizing defines the maximum limits for 
+the box-border calculating the content and padding.The propertie box-sizing together the propertie 
+overflow defines the limits of the box and your behavior.
+
+The css don't sum margin between elements and not aplies margin auto in vertical axios.
+
+The display propertie has default values differents by according the element. Example: span: display in
+line, div: display: block.
+
+
 

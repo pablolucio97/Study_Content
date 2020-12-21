@@ -223,108 +223,76 @@ export default function App(){
 )
 }
 
----------------------------useContext()---------------------------------
+----------------------------useContext()----------------------------------
 
-The hook useContext receives a context object as argument and return the
-current value of the context allowing pass data to any component without
-inherit it by parent component. The createContext hook acepts any data 
-type as value.
+1) Initialize the context, create a functional component to provider your 
+values (can be props or a state) and a custom to hook to use it.
 
-Example to use:
 
-1)Create a folder named context and inside this, a file named 
-ThemeContex.js.
+import React, {createContext, useContext, useState} from 'react'
 
-import {createContext} from 'react'
+export const CounterContext = createContext()
 
-const ThemeContext = createContext(['light', ()=> {}])
 
-export default ThemeContext
+export default function CountProvider({children}) {
 
-----------------------------------------------------------------------
+    const[count, setCount] = useState(123424)
 
-2)Create a folder named themes and inside this, a file named Themes.js
-and set your theme properties.
-
-const AppTheme = {
-    light:{
-        textColor: '#111',
-        fontSize: 30,
-        textAlign: 'center'
-    },
-    dark:{
-        textColor: '#fff',
-        fontSize: 30,
-        textAlign: 'center'
-    },
-    ligthContainer:{
-        flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center',
-        backgroundColor: '#fff'
-    },
-    darkContainer:{
-        flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center',
-        backgroundColor: '#333'
-    }
-}
-
-export default AppTheme;
-
-----------------------------------------------------------------------
-
-3)Create your components that will to use your theme importing your 
-theme provider (AppTheme) and the ThemeContext. Example:
-
-import React, {useContext} from 'react'
-import {View, Text, Switch} from 'react-native'
-import ThemeContext from '../context/ThemeContext'
-import AppTheme from './Themes'
-import App from '../../App'
-
-const ExampleComponent = () => {
-    const theme = useContext(ThemeContext)[0]
-    const [themeMode, setThemeMode] = useContext(ThemeContext)
-    return(
-        <View style={{ flex:1, justifyContent: 'center'}}>
-        <View style={AppTheme[theme + 'Container']}>
-            <Text style={{color: AppTheme[theme].textColor, 
-	fontSize:AppTheme[theme].fontSize, textAlign: AppTheme[theme].textAlign}}>
-		{themeMode === 'light'? 'Light mode' : 'Dark mode'}</Text>
-            <Switch
-            value={themeMode === 'light' ? false : true}
-            onValueChange={()=> setThemeMode(themeMode === 'light' ? 'dark' : 'light')} 
-            style={{alignSelf: 'center'}}
-            />
-        </View>
-        </View>
+    return (
+      <CounterContext.Provider value={{count, setCount}}>
+          {children}
+      </CounterContext.Provider>
     )
 }
 
-export default ExampleComponent
 
-----------------------------------------------------------------------
-
-4)Import yours components and the ThemeContext to App.js.
-
-import React, {useState} from 'react'
-import ThemeContext from './assets/context/ThemeContext'
-import ExampleComponent from './assets/components/ExampleComponent'
-
-const App = () => {
-
-  const themeHook = useState('light')
-
-  return (
-    <ThemeContext.Provider value = {themeHook}>
-      <ExampleComponent/>
-    </ThemeContext.Provider>
-  )
+export function useCounter(){
+    const context = useContext(CounterContext)
+    const {count, setCount} = context
+    return {count, setCount}
 }
 
-export default App
+---------------------------------------------------------------------------
+
+2) Destrucutrue the props of the hook and use in a component
+
+import React from 'react'
+
+import {useCounter} from './context/Countprovider'
+
+export default function Counter() {
+
+    const {count, setCount} = useCounter()
+
+    return (
+        <div>
+           <p>Count: {count}</p> 
+           <button onClick={() => {setCount(count + 1)}}>
+	    Increase count
+          </button>
+        </div>
+    )
+}
+
+----------------------------------------------------------------------------
+
+3) Import the context provider to provider the context for your application 
+and use the component with the context in your application.
+
+import React from 'react'
+
+import Counter from './Counter'
+import CounterProvider from './context/Countprovider'
+
+export default function App() {
+  return (
+
+    <CounterProvider>
+        <Counter/>
+    </CounterProvider>
+
+  )
+}
 
 
 

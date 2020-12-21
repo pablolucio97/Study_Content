@@ -116,6 +116,7 @@ import GlobalStyle from '../../Globals'
 import Switch from  'react-switch'
 
 
+
 interface Props {
     toggleTheme():void
 }
