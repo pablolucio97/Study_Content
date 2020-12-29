@@ -126,6 +126,17 @@ to current repository.
 to current local repository and register this commit 
 taged by the message.
 
+
+-------------RESTORING A DELETED FILTE TO THE PROJECT----------
+
+1) git log: se all commits.
+
+2) git checkout bash_of_commit --name_of_file: return with the 
+desired file to the commit 
+
+Obs: Use git checkout --filename to restore deleted files still 
+not commiteds.
+
 -------------TRACKING CHANGES IN THE LOCAL REPOSITORY----------
 
 Tracking changes in the local repository
@@ -135,7 +146,7 @@ git log --graph: show a graphic of the commits.
 The current branch is identified with the Head.
 
 2) git checkout bash_code: track and return to the 
-branch version.
+branch version (commit moment).
 
 3) git checkout file_name: discard the current changes 
 and return to previous version of the files.
@@ -362,8 +373,7 @@ Removes the file of the diretory and select them to remove.
 
 git rm --cached [name_of_file]
 
-Removes the file of the version control but maintain the 
-file locally.
+Constraints the file to not be  commited after added.
 
 ---------------------------------------------------------
 

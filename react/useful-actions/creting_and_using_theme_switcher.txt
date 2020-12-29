@@ -51,8 +51,8 @@ export default{
 -------------------------------------------------------------------------
 
 4)Create the file of global types for styled-components named styled.d.ts 
-inside the themes folder with the setttings: In sequence goes to the pa-
-ckage.json and include the key "files" with the value of your new confi-
+inside the themes folder with the setttings: In sequence goes to the 
+tsconfig.json and include the key "files" with the value of your new confi-
 guration directory, example:
 
 

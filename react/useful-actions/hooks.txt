@@ -295,4 +295,7 @@ export default function App() {
 }
 
 
+=============================GENERAL TIPS===================================
 
+You can't to use the context directly in your App.js, you need to create a 
+component to use it.
