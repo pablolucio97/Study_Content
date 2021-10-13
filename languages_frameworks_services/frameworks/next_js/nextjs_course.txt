@@ -664,6 +664,17 @@ export const getStaticPaths : GetStaticPaths = async () => {
     ...
 }
 
+------------------------USING DYAMIC FUNCTION IMPORTER----------------------------
+
+Use the dynamic function to do imports of packs that need to interact with the 
+window. Example:
+
+import dynamic from 'next/dynamic'
+
+const Chart = dynamic(() => import('react-apexcharts'), {
+    ssr: false
+})
+
 
 ---------------------------------GENERAL TIPS-------------------------------------
 
@@ -706,7 +717,7 @@ Using a file .env.example you can send it to GitHub and works with a example how
 to fill a .env file in your application.
 
 If a user is in an page that has an action that requires authentication and the 
-user does the authentication, redirect the user for previous page instead of. Ex:
+user does the authentication, redirect the user for the previous page instead of. Ex:
 
 const redirect = router.query?.redirect || '/'
 router.push(redirect as string)
@@ -748,13 +759,13 @@ The content and functionalities of back-end in NextJS works in serverless af-
 ter the deploy (Vercel, Netlify, etc).
 
 There are different types of authentication (NextAuth, JWT, OAuth and etc), 
-you should to define the authentication type according your application. For
-simples application, you can use NextAuth.
+you should define the authentication type according to your application. For
+simples applications, you can use NextAuth.
 
 Use JSON.stringify(your_data, null, 2) to turn cascade objects more redable,
 (use in objects that containds nested arrays).
 
-Always format your data from third API's before to consume it in your compo-
+Always format your data from third API's before consuming it in your compo-
 nent. Do it in Next functions (getServerSideProps or getStaticProps).
 
 All page that is generated with getStaticProps is not protected. If you want
@@ -778,6 +789,11 @@ and should be used for load future pages.
 
 GetStaticPaths only can be used inside dinamic pages/files (pages/files with pa-
 rametrization) [slug].tsx.
+
+The Next mounts your HTML page through the Next server, and it doesn't' has ac-
+cess to the window object, thus, this throws an error in the application 
+'window is not defined'. You should repair this error using the dynamic function 
+from the next.
 
 
 
