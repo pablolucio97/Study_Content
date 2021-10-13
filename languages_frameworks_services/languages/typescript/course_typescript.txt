@@ -463,9 +463,13 @@ export default function ActiveLink({route, children, ...rest} : ActiveLinkProps)
 At definning types for functions, objects, components and more, this types be-
 came obligatoly when creating this functions, objects and etc.
 
+----------------------------------
+
 Use interface when working with third API's and types when internal React com-
 ponents. Interfaces are a type of types that can be exported and useful to 
 avoid write types every time.
+
+----------------------------------
 
 When using types in another file instead of the original file of the lib import,
 you need to import the type for this parammeter. (Pass the mouse hover the para-
@@ -480,7 +484,7 @@ export default {
 
 ------------------------------------------------------------------------------
 
-If item of the interface is optional, your renderization method should con-
+If an item of the interface is optional, your renderization method can con-
 tains options. Example: 
 
 interface Users1{
@@ -494,22 +498,54 @@ interface Users1{
 Whenever create a new state to array or object, you need type it with an in-
 terface.
 
+----------------------------------
+
 Whenever using an external api of data in object format, the string value of 
 the interface created should be the even of the external api.
+
+----------------------------------
 
 Type is more used in functional programming and interface in oriented to obje-
 cts programming and when you're using types, you can retribuite the value of
 a type, it is more dynamic.
 
+----------------------------------
+
 You can to une two or more enum types using a new union type.
 
+----------------------------------
+
 Type async functions as promises, example: firebaseSignin: () => Promise<void>
+
+----------------------------------
 
 Is recomend configure the target of Typescript package.json file as 'es5' be-
 cause this is the version of Javascript that the majority of browser supports.
 
+----------------------------------
+
 Index Signature is...
 
+----------------------------------
+
 The extends keyword only be used with interfaces and not with types.
+
+----------------------------------
+
+Pass a prop as ElementType in components that refer to another component.
+ Ex:
+interface NavLinkProps{
+    icon: ElementType;
+}
+<Icon as={icon} fontSize='20' />
+
+----------------------------------
+
+The prop children pass to components can be a ReactNode or another data type.
+Ex: 
+interface NavLinkProps extends ChakraLinkProps{
+    children: string;
+}
+<Text ml='4' fontWeigth='medium'>{children}</Text>
 
 
