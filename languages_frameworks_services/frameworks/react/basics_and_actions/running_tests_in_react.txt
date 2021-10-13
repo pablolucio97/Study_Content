@@ -1,0 +1,177 @@
+=======================WORKING WITH TESTS IN REACT============================
+
+-----------------------TYPES OF TESTS AND CONCEPTS----------------------------
+
+Unity tests: Are tests that tests only a single function, class or component.
+If this function is integrated with the system, it receives a name of Mock.
+
+Automatizated tests: 
+
+Test Driven Development (TDD): Is the practice of write test before to create 
+your application.
+
+----------------------------DOING UNITY TESTS---------------------------------
+
+1)Install the Jest: import '@testing-library/jest-dom/extend-expect';
+
+------------------------------------------------------------------------------
+
+2)Create a new setuptest.js file in your root project with the statements:
+
+import '@testing-library/jest-dom'
+import '@testing-library/jest-dom/extend-expect';
+
+------------------------------------------------------------------------------
+
+3)Create the file of test of your component. Example: Button.spec.jsx.
+
+------------------------------------------------------------------------------
+
+4)Write your text:
+
+In this example has three tests to check functionalities rely to Button compo-
+nent.
+
+import {fireEvent, render, screen} from '@testing-library/react'
+import {Button} from './index'
+
+describe('<Button/>', () => {
+    it('should render the button with the text', () => {
+        render(<Button text='load more'/>)
+        const button = screen.getByRole('button', {name: /load more/i})
+        expect(button).toBeInTheDocument();
+        //passed
+    })
+
+    it('should call a function when button receiveis a click', () => {
+        const fn = jest.fn()
+        render(<Button text='load more' onClick={fn}/>)
+        const button2 = screen.getByRole('button', {name: /load more/i})
+        fireEvent.click(button2)
+        fireEvent.click(button2)
+        expect(fn).toHaveBeenCalledTimes(2);
+        //passed
+    })
+
+    it('should be disabled when disabled is true', () => {
+        render(<Button text='load more' disabled={true}/>)
+        const button3 = screen.getByRole('button', {name: /load more/i})
+        expect(button3).toBeDisabled()
+        //passed
+    })
+})
+
+------------------------------------------------------------------------------
+
+5)Run yarn test to run your tests.
+
+-----------------------CHECKING THE COVERAGE TESTS %--------------------------
+
+1) Run the command yarn test -- --watchAll='false' --coverage
+
+2)In the browser or in the console your can check the % of covarege of your 
+whole application.
+
+----------------------MOCKING TESTS REQUESTS WITH MWS-------------------------
+
+Mock Service Worker (MSW) is a library for simulate and mock various tests re-
+quests trought handlers that intercepts the requests.
+
+1) Install the MSW: yarn add -D msw
+
+------------------------------------------------------------------------------
+
+2) Import the msw dependencies:
+
+import { rest } from 'msw';
+import { setupServer } from 'msw/node';
+
+------------------------------------------------------------------------------
+
+3) Define your handlers for requests:
+
+const handlers = [
+  rest.get('https://jsonplaceholder.typicode.com/posts',
+  async (req, res, ctx) => {
+  return res(ctx.json([
+      {
+        userId: 1,
+        id: 1,
+        title: 'title1',
+        body: 'body1'
+      },
+      {
+        userId: 2,
+        id: 2,
+        title: 'title2',
+        body: 'body2'
+      },
+      {
+        userId: 3,
+        id: 3,
+        title: 'title3',
+        body: 'body3'
+      },
+  ]))
+
+  }),
+
+  rest.get('https://jsonplaceholder.typicode.com/photos', 
+  async (req, res, ctx) => {
+    return res(ctx.json([
+        {
+          url: 'img1.png',
+        },
+        {
+          url: 'img2.png',
+        },
+
+        {
+          url: 'img3.png',
+        },
+    ]))
+
+    })
+];
+
+------------------------------------------------------------------------------
+
+4) Start, configure and use the server in your test:
+
+const server = setupServer(...handlers);
+
+describe('testing the home render', () => {
+
+  beforeAll(() => {
+    server.listen();
+  })
+
+  afterEach(() => {
+    server.resetHandlers()
+  })
+
+  afterAll(() => {
+    server.close()
+  })
+
+  it('should render post by accordinh the requests', async () => {
+    render(<Home />);
+    const noMorePosts = screen.getByText('NÃ£o existem posts =(');
+    screen.debug();
+    await waitForElementToBeRemoved(noMorePosts);
+  });
+});
+
+
+
+------------------------------GENERAL TIPS-------------------------------------
+
+Use tests on fake databases to tests, send e-mails and crud operatios.
+
+Use coverage to check how much your component is coveraged of tests.
+
+Always write test thinking on accessibility.
+
+You shoult to run tests always thinking in what you want to happens.
+
+Check expect.assertions() when working with async tests.

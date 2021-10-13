@@ -1,0 +1,128 @@
+=============CREATING AND CONSUMING CONTENT WITH PRISMIC================
+
+Prismic is a CMS that allow create content to consume in your apps. Ba-
+sic you can create document, types and images and do relationship bet-
+ween it.
+
+1)Log in the Prismic, goes to dashboard and click in Create Repository.
+Click in your new content and select the idiom to write the content.
+
+-------------------------
+
+2) Click in Custom Type and create a new type that can be "Repeatable ty-
+pe" or  "Single type". In this case w'll using "Rpeatable type", give a 
+name fou your type and click in Create new custom type.
+
+-------------------------
+
+3)Inside your type, drag each "Build mode" according your desired data 
+for create your type strucuture. You can drag "UID", "Title", "Rich Text" 
+and others builds. Provide a name for each build that will be how the da-
+ta will be consumed in your application.
+
+-------------------------
+
+4)If you want, create the content of your types clicking in Document at 
+dashboard, edit and publish it.
+
+-------------------------
+
+5)Go to Settings, Api and Security, in the Repository security defines if
+your content will be private or public and click in Change Api Visibility.
+Copy the end-point url and save it as .env variable to access the prismic.
+In the  Generate an Access Token field, provide a name for your applica-
+tion and click in Add this application. A token will be generated, copy 
+it at Permanet access tokens label and use as env variable.
+
+-------------------------
+
+6)Run yarn add @prismicio/client yarn add prismic-dom and yarn add 
+@types/prismic-dom to install the prismic in your porject.
+
+-------------------------
+
+7)Create a new file named prismic.ts inside your services folder instan-
+cing a new Prismic.client passwing your .env variable as config. Example:
+
+import Prismic from "@prismicio/client";
+
+export function getPrismicClient(req?: unknown) {
+  const prismic = Prismic.client(process.env.PRISMIC_URL, {
+    req,
+    accessToken: process.env.PRISMIC_ACCESS_TOKEN,
+  });
+  return prismic
+}
+
+
+-------------------------
+
+8) Import the getPrismicClient function and the Prismic and consume the
+prismic content in your application. You should to pass a query to get
+your content where document.type is the type of document created on Pris-
+mic. Example:
+
+import { GetStaticProps } from 'next';
+import { getPrismicClient } from '../../services/prismic';
+import Prismic from '@prismicio/client'
+import { RichText } from 'prismic-dom'
+
+type Post = {
+    slug: string;
+    title: string;
+    excerpt: string;
+    updatedAt: string;
+}
+
+type Posts = {
+    posts: Post[]
+}
+
+export default function Posts({ posts } : Posts) {
+    return (
+        <>
+            <main className={styles.container}>
+                <div className={styles.posts}>
+                {posts.map( post => (
+                         <a href="#" key={post.slug}>
+                         <time>{post.updatedAt}</time>
+                         <strong>{post.title}</strong>
+                         <p>{post.excerpt}</p>
+                     </a>
+                ))}
+                </div>
+            </main>
+        </>
+    )
+}
+
+export const getStaticProps: GetStaticProps = async () => {
+
+    const prismic = getPrismicClient()
+
+    const response = await prismic.query([
+        Prismic.predicates.at('document.type', 'post')
+    ], {
+        fetch: ['post.title', 'post.content'],
+        pageSize: 100
+    })
+
+    const posts = response.results.map(post => {
+        return {
+            slug: post.uid,
+            title: RichText.asText(post.data.title),
+            excerpt: post.data.content.find(content => content.type === 'paragraph')?.text ?? '',
+            updatedAt: new Date(post.last_publication_date).toLocaleDateString('pt-BR', {
+                day: '2-digit',
+                month: 'long',
+                year: 'numeric'
+            })
+        }
+    })
+
+    return {
+        props: {
+            posts
+        }
+    }
+}

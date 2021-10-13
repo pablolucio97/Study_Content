@@ -1,0 +1,11 @@
+===============================JAMSATCK====================================
+
+JamStack means Javscript API Markup and is a concept where is possible cre-
+ate funtionalities in the front-end without a back-end.
+
+
+CMS: Content Management System, example: WordPress.
+Headless CMS: Are CMS without the editor panel having only the panel for 
+manage API, examples: Strapi, Ghost, Prismic and Shopfy.
+
+

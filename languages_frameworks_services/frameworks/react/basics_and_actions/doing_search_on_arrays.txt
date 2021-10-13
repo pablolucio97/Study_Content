@@ -1,0 +1,15 @@
+  function searchPost(term: string) {
+
+        const possibleTitles = posts.map(post => post.title.toLowerCase().split(" "))
+
+        const concatTitles = possibleTitles.flat(1)
+
+        if (concatTitles.includes(term)) {
+            const filterFoundPosts = posts.filter(post => post.title?.toLocaleLowerCase().includes(term))
+            console.log(filterFoundPosts)
+            setPosts([...filterFoundPosts])
+        } else {
+            setPosts([])
+        }
+
+    }

@@ -1,0 +1,78 @@
+==DOING AUTHENTICATION WITH GITHUB AND SAVING THE USER IN THE FAUNADB==
+
+1) Run yarn add faunadb to install the Faunadb.
+
+-----------------------
+
+2) Register in the https://fauna.com/ site, in the site, create a new 
+database, a new collection and a new index (a string to use as index 
+ref at leading with queries in your code) passing the collection, the 
+index name (example: get_user_by_email) and the term (example: data.e-
+mail).
+
+-----------------------
+
+3)Configure a new key. Copy this key and store as env variable.
+
+-----------------------
+
+4) Inside the folder services, create a new file named fauna.ts with 
+a instance and an exportation of the Fauna, example:
+
+import {Client} from 'faunadb'
+
+export const fauna = new Client({
+    secret: process.env.FAUNA_API_KEY,
+    domain: 'db.us.fauna.com'
+})
+
+-----------------------
+
+5) Goes to your GitHub account and turn your email public.
+
+-----------------------
+
+6)In the file [...nextauth].tsx import the fauna exported from ser-
+vices and import the query of faunadb. Use the GitHub as provider 
+and use the signIn function as callback getting the desired data 
+and creating a new data inside your collection in the FaunaDB and 
+returning true or false with the error handled by a try catch. Use
+a query to check if the data already exists in the Fauna and only 
+create a new data if not exists. Example:
+
+import NextAuth from "next-auth";
+import Providers from "next-auth/providers";
+import { query as q } from "faunadb";
+import { fauna } from "../../../services/fauna";
+
+export default NextAuth({
+  providers: [
+    Providers.GitHub({
+      clientId: process.env.CLIENT_ID,
+      clientSecret: process.env.CLIENT_SECRET_KEY,
+      scope: "read:user",
+    }),
+  ],
+  callbacks: {
+     async signIn(user, account, profile) {
+      const { email } = user;
+      try {
+        await fauna.query(
+          q.If(
+            q.Not(
+              q.Exists(
+                q.Match(q.Index("get_user_by_email"), q.Casefold(user.email))
+              )
+            ),
+            q.Create(q.Collection("users"), { data: { email } }),
+            q.Get(q.Match(q.Index("get_user_by_email"), q.Casefold(user.email)))
+          )
+        );
+        return true;
+      } catch {
+        return false;
+      }
+    },
+  },
+});
+

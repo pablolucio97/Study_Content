@@ -1,0 +1,178 @@
+===LISTENNING WEBHOOKS WITH STRIPE AND DOING ACTIONS BASED ON EVENTS===
+
+1) Goes to https://github.com/stripe/stripe-cli/releases/tag/v1.7.3 and 
+download the stripe-cli for Windows. Extract the file to a folder and
+open this file runnig stripe.exe inside your cmd at the directory file.
+
+--------------------------
+
+2) Run stripe login and confirm the credentials.
+
+--------------------------
+
+3) In the FaunaDB dashboard Create a new collection named subs-
+criptions and create a new index for search for the user by cus-
+tomerId in the users collection and other for get the subscrip-
+tions by id. Example: index: get_user_by_stripe_customer_id terms: 
+data.stripe_customer_id and index: get_subscription_by_id, term: 
+data.id. 
+
+--------------------------
+
+4) Inside the folder api, create a new folder named _lib and inside 
+this a new file named manageSubscriptions.ts exporting an async func-
+tion receiving subscriptionId and customerId as params. This function
+must search the user on the fauna db by your customerId, create a new
+object passing the user info and save it in the subscriptions database 
+on FaunaDB. Example:
+
+import { fauna } from "../../../services/fauna";
+import { query as q } from "faunadb";
+import { stripe } from "../../../services/stripe";
+
+export async function saveSubscriptions(
+  subscriptionId: string,
+  customerId: string,
+  createAction = false
+) {
+  console.log(subscriptionId, customerId);
+  const userRef = await fauna.query(
+    q.Select(
+      "ref",
+      q.Get(q.Match(q.Index("get_user_by_stripe_customer_id"), customerId))
+    )
+  );
+
+  const subscription = await stripe.subscriptions.retrieve(subscriptionId);
+
+  const subscriptionData = {
+    id: subscription.id,
+    userId: userRef,
+    status: subscription.status,
+    price_id: subscription.items.data[0].price.id,
+  };
+
+  if (createAction) {
+    await fauna.query(
+      q.Create(q.Collection("subscriptions"), { data: subscriptionData })
+    );
+  } else {
+    await fauna.query(
+      q.Replace(
+        q.Select(
+          "ref",
+          q.Get(q.Match(q.Index("get_subscription_by_id"), subscriptionId))
+        ),
+        { data: subscriptionData }
+      )
+    );
+  }
+}
+
+
+--------------------------
+
+5) Inside the routes/api folder, create a file named webhooks to hear
+the webhooks. This file should exports an async function that recives 
+a readable as param and map this with for await and of syntax doing a 
+push in each chunk and returning a concatened chunk. You should also 
+exports a bodyParser config to Next understand the req as string and 
+the method need be a POST. In this function you need also of construct
+a stripe.webooks event with the buf, stripe signature req and and a env
+varaible secret as param and check the type of the event listenned and 
+do actions based on the event type. Example:
+
+import { NextApiResponse, NextApiRequest } from "next";
+import { Readable } from "stream";
+import Stripe from "stripe";
+import { stripe } from "../../services/stripe";
+import { saveSubscriptions } from "./_lib/manageSubscription";
+
+async function buffer(readable: Readable) {
+  const chunks = [];
+
+  for await (const chunk of readable) {
+    chunks.push(typeof chunk === "string" ? Buffer.from(chunk) : chunk);
+  }
+
+  return Buffer.concat(chunks);
+}
+
+export const config = {
+  api: {
+    bodyParser: false,
+  },
+};
+
+const relevantEvents = new Set([
+  "checkout.session.completed",
+  "customer.subscription.updated",
+  "customer.subscription.deleted",
+]);
+
+export default async (req: NextApiRequest, res: NextApiResponse) => {
+  if (req.method === "POST") {
+    const buf = await buffer(req);
+    const secret = req.headers["stripe-signature"];
+
+    let event: Stripe.Event;
+
+    try {
+      event = stripe.webhooks.constructEvent(
+        buf,
+        secret,
+        process.env.STRIPE_WEBHOOK_SECRET
+      );
+    } catch (err) {
+      return res.status(400).send(`Webook error, ${err.message}`);
+    }
+
+    const { type } = event;
+
+    if (relevantEvents.has(type)) {
+      try {
+        switch (type) {
+          case "customer.subscription.updated":
+          case "customer.subscription.deleted":
+            const subscription = event.data.object as Stripe.Subscription;
+
+            await saveSubscriptions(
+              subscription.id,
+              subscription.customer.toString(),
+              false
+            );
+            break;
+
+          case "checkout.session.completed":
+            const checkoutSession = event.data
+              .object as Stripe.Checkout.Session;
+
+            await saveSubscriptions(
+              checkoutSession.subscription.toString(),
+              checkoutSession.customer.toString(),
+              true
+            );
+
+            break;
+          default:
+            new Error("Unhandled event.");
+        }
+      } catch (error) {
+        console.log(error);
+        return res.json({ error: error.message });
+      }
+    }
+
+    res.status(200);
+  } else {
+    res.setHeader("Allow", "POST");
+    res.status(405).end("Method not allowed");
+  }
+};
+
+
+
+--------------------------
+
+4) Run stripe listen --forward-to localhost:3000/api/webhooks
+

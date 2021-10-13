@@ -1,0 +1,22 @@
+
+    function compareObjs (a,b) {
+
+        a = {
+            name: 'Pablo',
+            age: 26
+        }
+
+        b = {
+            name: 'Pablo',
+            age: 26
+        }
+
+        if(JSON.stringify(a) === JSON.stringify(b)){
+            console.log('The objects are equals')
+        }else{
+            console.log('The objects not are equals')
+        }
+
+
+
+    }

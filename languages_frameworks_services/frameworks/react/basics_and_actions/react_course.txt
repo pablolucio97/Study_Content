@@ -1,0 +1,1427 @@
+=================================REACT COURSE====================================
+
+---------------------------------INTRODUCTION------------------------------------
+
+React is a JavaScript library created by Facebook. Is a tool for building UI 
+(user interface) components.
+
+Instead of manipulating the browser's DOM directly, React creates a virtual DOM 
+in memory, where it does all the necessary manipulating, before making the chan-
+ges in the browser DOM. React only changes what needs to be changed!
+
+---------------------------------INSTALLATION------------------------------------
+
+1)Install Node.js in your computer
+2)On VS Code terminal, run this codes:
+2.1) npx create-react-app name_of_project
+2.2) cd name_of_project	
+2.3) npm start
+3) Go to folder of your project, go to the folder called "src"
+and create a two files: "index.html" and "index.js".
+
+-------------------------INSTALLING THE REACT MANUALLY---------------------------
+
+1) Open the folder of your project and run yarn init -y to start a new project.
+
+-------------------------
+
+2) Install the react ad the react-dom.
+
+-------------------------
+
+3) Create a new folder named src and other named public, inside the last, crea-
+te a new file named index.html with a basic html syntax.
+
+-------------------------
+
+4) Install the babel for standard the code between different browsers running:
+yarn add @babel/core @babel/cli @babel/preset-env @babel/preset-react babel-lo-
+ader -D
+
+-------------------------
+
+5) In the root of your project, create a new file named babel.config.js with 
+the configs:
+
+module.exports = {
+    presets: [
+        "@babel/preset-env",
+        ["@babel/preset-react", {
+            runtime: "automatic"
+        }],
+    ]
+}
+
+-------------------------
+
+6) Inside the src folder, create a new file named index.jsx and write your React 
+component. Example:
+
+import {render} from 'react-dom'
+import App from './App'
+
+
+render(<App/>, document.getElementById('root'))
+
+-------------------------
+
+7) Run the command yarn babel src/index.jsx --out-file dist/bundle.js to convert 
+your code inside the index.js file in a default code for all browsers understand
+with a output in /dist folder.
+
+-------------------------
+
+8) Run the command yarn add webpack webpack-cli webpack-dev-server html-webpack-
+plugin-D to install the WebPack for allow import and use css, images and anothers
+files types inside javascript/react files.
+
+-------------------------
+
+9) Run yarn add css-loader style-loader sass-loader sass-node -D to install the loa-
+ders that allows to import css files inside the javascript files.
+
+-------------------------
+
+10) Run yarn add -D @pmmmwh/react-refresh-webpack-plugin to allow the fast re-
+fresh during the development,
+
+
+11)Run yarn add typescript and @babel-preset-typescript -D for enables TypeScript
+in the application.
+-------------------------
+
+12)  Add the preset "@babel/preset-typescript", in the .babel.config.js file.
+
+-------------------------
+
+13) Generate the ts config file running yarn tsc --init and adjust with the following 
+configs: 
+
+{
+  "compilerOptions": {
+    "lib": ["dom", "dom.iterable", "esnext"], //allow use HTML types.
+    "allowJs": true, //allow javascript and typescript together.
+    "jsx": "react-jsx", //allow use jsx syntax.
+    "noEmit": true, //no emit the application code at deploy.
+    "target": "es5", //enables javascript strict mode.
+    "module": "commonjs",
+    "moduleResolution": "node",
+    "isolatedModules": true,
+    "resolveJsonModule": true, //alows to use .json files.
+    "forceConsistentCasingInFileNames": true,
+    "strict": true,
+    "skipLibCheck": true
+  },
+  "include": [
+    "src" //appoints the code application directory
+  ]
+}
+
+-------------------------
+
+14) In the root of application, create a new file named webpack.config.js with
+the configs:
+
+const path = require('path');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const ReactRefreshWebpackPlugin = require('@pmmmwh/react-refresh-webpack-plugin');
+
+const isDevlopemnt = process.env.NODE_ENV !== 'production';
+
+module.exports = {
+    mode: isDevlopemnt ? 'development' : 'production',
+    entry: path.resolve(__dirname, 'src', 'index.tsx'),
+    devtool: isDevlopemnt ? 'eval-source-map' : 'source-map',
+    output: {
+        path: path.resolve(__dirname, 'dist'),
+        filename: 'bundle.js'
+    },
+    resolve: {
+        extensions: ['.js', '.jsx', '.ts', '.tsx']
+    },
+    devServer: {
+        static: path.resolve(__dirname, 'public'),
+        hot: true,
+    },
+    plugins: [
+        new HtmlWebpackPlugin({
+            template: path.resolve(__dirname, 'public', 'index.html')
+        }),
+        isDevlopemnt && new ReactRefreshWebpackPlugin()
+    ].filter(Boolean),
+    module: {
+        rules: [
+            {
+                test: /\.(j|t)sx$/,
+                exclude: /node_modules/,
+                use: {
+                    loader: 'babel-loader',
+                    options: {
+                        plugins: [
+                            isDevlopemnt && require.resolve('react-refresh/babel')
+                        ].filter(Boolean),
+                    }
+                }
+            },
+            {
+                test: /\.scss$/,
+                exclude: /node_modules/,
+                use: ['style-loader', 'css-loader', 'sass-loader']
+            }
+        ]
+    },
+    mode: 'development'
+
+}
+    
+-------------------------
+
+15) Inside the file index.html in public, add a new div with id='root'
+
+-------------------------
+
+16) Run yarn add cross-env -D to install the cross-env and allow create create 
+different scripts for work according to the current environment.
+
+-------------------------
+
+17) Inside your package.json, add the scripts props:
+
+  "scripts": {
+    "dev" : "webpack serve",
+    "build" : "cross-env NODE_ENV=production webpack"
+  },
+
+
+-------------------------
+
+18) Run yarn webpack serve and opens your html file at localhost:8080.
+
+
+----------------------------------NPM COMMANDS-----------------------------------
+
+npm start
+Starts the development server.
+---------------------------------------------------------------------------------
+
+npm run build
+Bundles the app into static files for production.
+---------------------------------------------------------------------------------
+
+npm test
+Starts the test runner.
+---------------------------------------------------------------------------------
+
+npm run eject
+Removes this tool and copies build dependencies, configuration 
+files and scripts into the app directory. If you do this, you 
+canÃ¯Â¿Â½t go back!
+
+-----------------------------------CONCEPTS--------------------------------------
+
+Side effects:
+
+Are collateral effects that happens when we're calling a function directly in a 
+component.
+
+---------------------------------------------------------------------------------
+
+Lazy Initializer: 
+
+Occurs when we're passing a function to the useState hook. It happens to run a 
+value more weight rather single values to state.
+
+---------------------------------------------------------------------------------
+
+MVC: Model View Controller:
+
+In the flow data approach the data flow occurs with a requisition of the browser 
+tothe server and the server responses to the browser with HTML files to the brow-
+ser render them. The HTML is inside the back-end file and whole HTML file is re-
+turned.
+
+---------------------------------------------------------------------------------
+
+SPA (Single Page Applications) approach: In this approach, the requisitions 
+bring data in JSON format like responses and with these data, the front-end can 
+fill the info in the screens. The page never reloading, optimizing the perfor-
+mance. All application is contained in one only page. 
+
+---------------------------------------------------------------------------------
+
+REST: The route returns only the required data in JSON format. The HTML (react) 
+is outside to back-end files, thus the mobile and web can consume the same data.
+
+
+---------------------------REACT HOOKS EXECUTION ORDER---------------------------
+
+1)Run useState() and lazy initializers.
+
+2)Render the component.
+
+3)DOM updates.
+
+4)Run useLayoutEffect() (if there).
+
+5)Render the component.
+
+6)Run useEffect() by according the declaration order.
+
+-----------------------------PROPS COMMUNICATIONS--------------------------------
+
+Direct communication:
+
+Happens the children component read the props of the parent props. The props al-
+ways is wrote on the Parent component and read in the children component. Example:
+
+Parent component:
+
+import React from 'react';
+import DirectChildren from './DirectChildren'
+
+function DirectParent() {
+  return(
+      <div>
+          <DirectChildren name='Pablo' age={26}/>
+      </div>
+  );
+}
+
+export default DirectParent;
+
+--------------------------------------------------------------------------------
+
+Children component:
+
+import React from 'react';
+
+
+function DirectChildren(props) {
+  return(
+      <div>
+          <span>{props.name} </span>
+          <span>{props.age}</span>
+      </div>
+  );
+}
+
+export default DirectChildren;
+
+--------------------------------------------------------------------------------
+
+Indirect communication:
+
+Happens when a children can pass info for the parent trought a callback function
+created on the parent component. Example:
+
+Parent:
+
+import React from "react";
+import IndirectChildren from "./IndirectChildren";
+
+function IndirectParent() {
+
+  function provideInfo(name, age, isNerd) {
+    console.log(name, age, isNerd);
+  }
+  
+  return (
+    <div>
+      <div>Parent</div>
+      <IndirectChildren whenClick={provideInfo} />
+    </div>
+  );
+}
+
+export default IndirectParent;
+
+
+--------------------------------------------------------------------------------
+
+import React from 'react';
+
+
+function InDirectChildren(props) {
+  return(
+      <div>
+          <span>Children</span>
+          <button onClick={() => props.whenClick('Pablo', 26, true)}>
+             Provide info
+          </button>
+      </div>
+  );
+}
+
+export default InDirectChildren;
+
+-------------TYPING COMPONENTS WITH DEFAULT HTML ELMENTS ATTRIBUTES--------------
+
+import {ButtonHTMLAttributes} from 'react'
+
+type ButtonDefaultProps = ButtonHTMLAttributes<HTMLButtonElement>
+
+const Button = (props: ButtonDefaultProps) => {
+    return (
+        <button className='button' {...props}/>
+    )
+}
+
+export {Button}
+
+-------------------------CREATING COMPONENTS WITH PARAMS-------------------------
+
+1)Create the component:
+
+import React from 'react';
+
+function WithParam(props) {
+  return(
+    <div>
+      <h1>{props.title}</h1>
+      <h3>{props.subtitle}</h3>
+    </div>
+  );
+}
+
+export default WithParam;
+
+-----------------------------------------------------------------------------------
+2)Consume it:
+
+
+import WithParam from './components/WithParam'
+
+function App() {
+  return (
+    <div>
+      <WithParam
+      title='Title'
+      subtitle='Subtitle'
+      />
+    </div>
+  );
+}
+
+export default App;
+
+----------------------------------USING PROPS.CHILDREN-----------------------------
+
+1) Create the component that will receive the children:
+
+import React from 'react';
+
+function Card(props) {
+  return (
+      <div>
+          {props.children}
+      </div>
+  );
+}
+
+export default Card;
+
+-----------------------------------------------------------------------------------
+
+2)Consume it puting another components (childrens) inside this.
+
+
+import ChildrenComponent from './components/ChildrenComponent'
+import Card from './components/Card/Card'
+
+function App() {
+  return (
+    <>
+      <Card>
+        <ChildrenComponent>
+      </Card>
+    </>
+  );
+}
+
+export default App;
+
+
+-----------------CONSUMING PROPS OF PARENT IN A CHILDREN COLLECTION-----------------
+
+1)Create the parent component mapping all props
+
+import React, {  cloneElement } from "react";
+
+function Parent(props) {
+  return (
+    <div>
+        {props.children.map((childEl, i) => {
+                return cloneElement(childEl, { ...props, key: i });
+            })}
+    </div>
+  );
+}
+
+export default Parent;
+
+-----------------------------------------------------------------------------------
+
+2)Create the son component receiving the parent props
+
+import React from 'react';
+
+
+function Son(props) {
+  return(
+      <div>
+          <p>{props.name} {props.overname}</p>
+      </div>
+  )
+}
+
+export default Son;
+
+-----------------------------------------------------------------------------------
+
+3) Consume both in your application passing the props like desired, here all childs
+can consume one or various props of parent and your own.
+
+  <Parent overname='Silva'>
+      <Son name='Fulano'/>
+      <Son name='Beltrano'/>
+      <Son name='Ciclano'/>
+  </Parent>
+  
+  
+------------------------------------Rendering lists---------------------------------  
+
+1)Defines the list:
+  
+ const alumns =  [
+    { id: 1, nome: 'Ana', nota: 6.2 },
+    { id: 2, nome: 'Bia', nota: 7.6 },
+    { id: 3, nome: 'Carlos', nota: 8.1 }
+]
+
+export default alumns; 
+
+-----------------------------------------------------------------------------------  
+
+2)Import and redenrize it always with a key: 
+  
+import React from 'react';
+
+import Alumns from '../data/alumns'
+
+function AlumnsList() {
+  return (
+      <div>
+          <h2>Alumns appraisal notes</h2>
+          {Alumns.map((alumn) => {
+              return(
+                  <div>
+                      <ul>
+                          <li key={alumn.id}>{alumn.nome}: {alumn.nota}</li>
+                      </ul>
+                  </div>
+              )
+          })}
+      </div>
+  );
+}
+
+export default AlumnsList;
+
+
+-------------------RENDERING ELEMENTS WITH TROUGHT FUNCTIONS---------------------
+
+1) Write the function:
+
+function renderRows(){
+    return products.map((product, i) => {
+        return (
+            <tr key={i} className={i % 2 === 0 ? 'even' : 'odd'}>
+            <td>{product.id}</td>
+            <td>{product.name}</td>
+            <td>{product.price}</td>
+        </tr>
+        )
+    })
+}
+
+export default renderRows
+
+-----------------------------------------------------------------------------------  
+
+2)Use this function in the scope rendering:
+
+import React from 'react';
+import './styles.css'
+
+import renderRows from './utils.js/renderRows'
+
+function ProductsTable() {
+
+  return(
+      <div>
+          <table className='table'>
+              <thead className='thead'>
+                  <tr>
+                      <td>Id</td>
+                      <td>Product</td>
+                      <td>Price</td>
+                  </tr>
+              </thead>
+              <tbody>
+                {renderRows()}
+              </tbody>
+          </table>
+      </div>
+  );
+}
+
+export default ProductsTable;
+
+
+import React from 'react';
+
+-----------------------------CONDITIONAL RENDERING---------------------------------
+
+function EvenOrOdd() {
+
+    const number = 22
+
+  return (
+      <div>
+          <span>{number % 2 === 0 ? 'Even' : 'Odd'}</span>
+      </div>
+  )
+}
+
+export default EvenOrOdd;
+
+-----------------------CONTROLED AND UNCONTROLED COMPONENTS-------------------------
+
+Controled components are components that your value don't be chanegd on the interfa-
+ce directly but only when the state changes trought the setState function. Are con-
+troled components: Input, textarea and select that changes your valued trought e.tar-
+get value.
+
+Uncontroled components are components that don't are linked with states.
+
+----------------------CHANGING SINGLE VALUES OF CONTEXT OBJECTS---------------------
+
+import React, {useContext} from 'react';
+
+import MyContext from '../context/MyContext'
+
+function Buttons() {
+
+    const usingMyContext = useContext(MyContext)
+
+    function changeContext(n){
+        usingMyContext.setState({
+            ...usingMyContext.state,
+            number: n
+        })
+    }
+  return(
+      <div>
+          <button onClick={() => changeContext(1)}>+1</button>
+      </div>
+  );
+}
+
+export default Buttons
+
+---------------------------------SYNTHETIC EVENTS-----------------------------------
+
+Synthetic events in React are like native events in the Dom. This point to native e-
+vents. Example: Mouse events: onClick, onDblClick.
+
+---------------------------------ERROR BOUNDARIES-----------------------------------
+
+Error Boundry is a native class from React useful to avoid the application renders 
+white screen rendering a component displaying the error for the user. Example:
+
+1)Import and declare the ErrorBoudnary class:
+
+import { useState, useEffect, Component } from 'react';
+
+class ErrorBoundary extends Component {
+  constructor(props) {
+    super(props);
+    this.state = { hasError: false };
+  }
+
+  static getDerivedStateFromError(error) {
+    // Update state so the next render will show the fallback UI.
+    return { hasError: true };
+  }
+
+  componentDidCatch(error, errorInfo) {
+    // You can also log the error to an error reporting service
+    //eslint-disable-next-line
+    logErrorToMyService(error, errorInfo);
+  }
+
+  render() {
+    if (this.state.hasError) {
+      // You can render any custom fallback UI
+      return <h1>Something went wrong.</h1>;
+    }
+
+    return this.props.children;
+  }
+}
+
+-------------------------------------------------------------------------------------
+
+2) Define a component to be watch:
+
+const Button = () => {
+  const [counter, setCounter] = useState(0);
+
+  useEffect(() => {
+    if (counter > 3) {
+      throw new Error('Some goes wrong.');
+    }
+  }, [counter]);
+
+  return <button onClick={() => setCounter((c) => c + 1)}>Counter: {counter}</button>;
+};
+
+-------------------------------------------------------------------------------------
+
+3) Wrap the component that will be watch with class boundary:
+
+export const MyComponent = () => {
+
+  return (
+    <div>
+      <ErrorBoundary>
+        <Button />
+      </ErrorBoundary>
+    </div>
+  );
+};
+
+==============================CLASSES===============================
+
+---------------------CREATING AND USING CLASSES---------------------
+
+A class is a type of function, but instead of using the keyword func-
+ction to initiate it, we use the keyword class, and the properties 
+are assigned inside a constructor() method.
+
+Example:
+class Car {
+  constructor(name) {
+    this.brand = name;
+  }
+}
+
+Now you can create objects using the Car class:
+
+mycar = new Car("Ford");
+
+
+--------------------------METHODS IN CLASSES------------------------
+
+Example: Creating and using a method named how "present":
+
+<script>
+class Car {
+  constructor(name) {
+    this.brand = name;
+  }
+
+  present() {
+    return 'I have a ' + this.brand;
+  }
+}
+
+mycar = new Car("Ford");
+document.write(mycar.present());
+</script>
+
+
+----------------------------CLASS INHERITANCE------------------------
+
+To crate a class inheritance, use the "extends" keyword. A class crea-
+ted with a class inheritance inherits all the methods from another 
+class.
+
+The super() method refers to the parent class. By calling the super() 
+method in the constructor method, we call the parent's constructor me-
+thod and gets access to the parent's properties and methods.
+
+Example:
+
+<script>
+class Car {
+  constructor(name) {
+    this.brand = name;
+  }
+
+  present() {
+    return 'I have a ' + this.brand;
+  }
+}
+
+class Model extends Car {
+  constructor(name, mod) {
+    super(name);
+    this.model = mod;
+  }  
+  show() {
+    return this.present() + ', it is a ' + this.model
+  }
+}
+
+mycar = new Model("Ford", "Mustang");
+document.write(mycar.show());
+</script>
+
+============================ARROW FUNCTIONS===========================
+
+Arrow functions allow us to write shorter function syntax:
+
+Without arrow function:
+
+hello = function() {
+  return "Hello World!";
+}
+
+
+With arrow function:
+
+hello = () => {
+  return "Hello World!";
+}
+
+
+Using a object with arrow function:
+
+class Header {
+  constructor() {
+    this.color = "Red";
+  }
+
+//Arrow function:
+  changeColor = () => {
+    document.getElementById("demo").innerHTML += this;
+  }
+}
+
+myheader = new Header();
+
+
+//The window object calls the function:
+window.addEventListener("load", myheader.changeColor);
+
+//A button object calls the function:
+document.getElementById("btn").addEventListener("click", 
+myheader.changeColor);
+
+==========================REACT HTML RENDER============================
+
+The ReactDOM.render() function takes two arguments, HTML code and an 
+HTML element. The purpose of the function is to display the specified 
+HTML code inside the specified HTML element.
+
+The ReactDom.render() only display one element by time.	
+
+Example 01: Display a paragraph inside a div with id 'root':	
+ReactDOM.render(<p>Hello</p>, document.getElementById('root'));
+
+Example 02: Display a table with assign a variable:
+const myelement = (
+  <table>
+    <tr>
+      <th>Name</th>
+    </tr>
+    <tr>
+      <td>John</td>
+    </tr>
+    <tr>
+      <td>Elsa</td>
+    </tr>
+  </table>
+);
+
+ReactDOM.render(myelement, document.getElementById('root'));
+
+
+=================================JSX===================================
+
+JSX is Javascript using XML syntax. JSX converts HTML tags into react 
+elements. JSX allows write expressions inside curly braces { }, the ex-
+pression can be a variable, property or any value valid in a Javascript
+expression. All tags created in JSX must be closed.
+
+Example01:
+const myelement = const myelement = (
+  <div>
+    <h1>I am a Header.</h1>
+    <h1>I am a Header too.</h1>
+  </div>
+);
+
+ReactDOM.render(myelement, document.getElementById('root'));
+
+==============================COMPONENTS================================
+
+Components are independent and reusable bits of code. They serve the same 
+purpose as JavaScript functions, but work in isolation and returns HTML 
+via a render method. A component is a class. The created component must
+has a render() method to display your content and should be declared in
+the ReactDOM.render() has <Componentname />.
+
+Example: Creating a component with a <h2> element:
+
+import React from 'react';
+import ReactDOM from 'react-dom';
+
+class Car extends React.Component {
+  render() {
+    return <h2>Hi, I am a Car!</h2>;
+  }
+}
+
+ReactDOM.render(<Car />, document.getElementById('root'));
+
+------------------------FUNCTIONS HOW COMPONENTS-------------------------
+
+A component also be a function.
+
+Example:
+
+import React from 'react';
+import ReactDOM from 'react-dom';
+
+function Car() {
+  return <h2>Hi, I am also a Car!</h2>;
+}
+
+ReactDOM.render(<Car />, document.getElementById('root'));
+
+--------------------------COMPONENT CONSTRUCTOR--------------------------
+
+The constructor function is where you initiate the component's properties.
+The component properties should be kept in an object called state. The 
+constructor function is also where you honor the inheritance of the 
+parent component by including the super() statement, which executes the 
+parent component's constructor function, and your component has access to 
+all the functions of the parent component.
+
+The state of a component can be any feature. The state must be declared
+after the constructor method inside brackets.
+
+Example: Setting the state "brand" of the component Car how "Ford".
+
+import React from 'react';
+import ReactDOM from 'react-dom';
+
+class Car extends React.Component {
+  constructor() {
+    super();
+    this.state = {brand: "Ford"};
+  }
+  render() {
+    return <h2>I am a {this.state.brand} Car!</h2>;
+  }
+}
+
+ReactDOM.render(<Car />, document.getElementById('root'));
+
+
+================================PROPS==================================
+
+Props are like function arguments in JavaScript and attributes in 
+HTML.  React Props only read the component. You will get an error if 
+you try to change their value.
+
+Adding a new prop to an component:
+
+const propBrand = <Car brand="Ford" />;
+
+
+Using this new prop in the component:
+
+class Car extends React.Component {
+  render() {
+    return <h2>I am a {this.props.brand}!</h1>;
+  }
+}
+
+-----PASSING PROPS TO ANOTHER COMPONENT USING VARIABLES COMPONENTS-----
+
+Props also allow pass data from one component to another, as parameters.
+
+Example: Passing data variable from the component Garage to the component 
+car.
+
+class Car extends React.Component {
+  render() {
+    return <h2>I am a {this.props.brand}!</h2>;
+  }
+}
+
+class Garage extends React.Component {
+  render() {
+    const brandCar = "Ford";
+    return (
+      <div>
+      <h1>Who lives in my garage?</h1>
+      <Car brand={brandCar} />
+      </div>
+    );
+  }
+}
+
+--PASSING PROPS TO ANOTHER COMPONENT USING OBJECTS VARIABLES COMPONENTS--
+
+class Car extends React.Component {
+  render() {
+    return <h2>I am a {this.props.brand.model}!</h2>;
+  }
+}
+
+class Garage extends React.Component {
+  render() {
+    const carinfo = {name: "Ford", model: "Mustang"};
+    return (
+      <div>
+      <h1>Who lives in my garage?</h1>
+      <Car brand={carinfo} />
+      </div>
+    );
+  }
+}
+
+===============================STATES===================================
+
+React components are a built-in state object. The state object is where 
+you store property values that belongs to the component. When the state 
+changes, the component re-renders. The state object is initialized in 
+the constructor.
+
+The state object can contain as many properties as you like.
+
+----------------------CREATING THE STATE OBJECTS------------------------
+
+class Car extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      brand: "Ford",
+      model: "Mustang",
+      color: "red",
+      year: 1964
+    };
+  }
+}
+-------------USING THE STATE OBJECTS OF THE EXAMPLE ABOVE----------------
+
+ render() {
+    return (
+      <div>
+        <h1>My {this.state.brand}</h1>
+        <p>
+          It is a {this.state.color}
+          {this.state.model}
+          from {this.state.year}.
+        </p>
+      </div>
+    );
+  }
+
+  ----------CHANGING THE STATE OBJECTS OF THE EXAMPLE ABOVE--------------
+
+   changeColor = () => {
+    this.setState({color: "blue"});
+  }
+
+     <button
+          type="button"
+          onClick={this.changeColor}
+        >Change color</button>
+
+Complete example:
+
+class Car extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      brand: "Ford",
+      model: "Mustang",
+      color: "red",
+      year: 1964
+    };
+  }
+  changeColor = () => {
+    this.setState({color: "blue"});
+  }
+  render() {
+    return (
+      <div>
+        <h1>My {this.state.brand}</h1>
+        <p>
+          It is a {this.state.color}
+          {this.state.model}
+          from {this.state.year}.
+        </p>
+        <button
+          type="button"
+          onClick={this.changeColor}
+        >Change color</button>
+      </div>
+    );
+  }
+}
+
+============================LIFE CICLE================================
+
+Each component in React has a lifecycle which you can monitor and mani-
+pulate during its three main phases. The three phases are: Mounting, 
+Updating, and Unmounting.
+
+-----------------------------MOUNTING---------------------------------
+
+Mounting means putting elements into the DOM. There is fours methods 
+that are called when you are mounting a component: 
+
+1Ã‚Âº constructor(): Is called when the component is initialized. Here, 
+we should to set up initial values and settings. This method alway be
+called with the argument props and in the sequence, with the method 
+super(props) to allow that the component inherit methods of your parent.
+
+Example: 
+
+ constructor(props) {
+    super(props);
+    this.state = {favoritecolor: "red"};
+  }
+---------------------------------------------------------------------
+
+2Ã‚Âº getDerivedStateFromProps(): This method is called right before ren-
+dering elements in the DOM. Here, we should to set up state object ba-
+sead on the initial props. It's taking the state with argument and re-
+turn the state object changes.
+
+Example:
+
+  static getDerivedStateFromProps(props, state) {
+    return {favoritecolor: props.favcol };
+  }
+
+   render() {
+    return (
+      <Header favcol="yellow"/>
+    );
+  }
+
+---------------------------------------------------------------------
+
+3Ã‚Âº render(): Is always required and is the standard method to generate
+output in the DOM.
+
+Example:
+
+render() {
+    return (
+      <h1>This is the content of the Header component</h1>
+    );
+  }
+
+---------------------------------------------------------------------
+
+4Ã‚Âº componentDidMount(): This method is called after the component is
+renderized. Is here that you can run statements when the element al-
+ready in the DOM.
+Example: 
+
+  componentDidMount() {
+    setTimeout(() => {
+      this.setState({favoritecolor: "yellow"})
+    }, 2000)
+  }
+
+------------------------------UPDATING---------------------------------
+
+A component is updated whenever there is a change in the component's 
+state or props. React has five built-in methods that gets called, in 
+this order, when a component is updated:
+
+1)getDerivedStateFromProps():  This is the first method that is called
+ when a component gets updated. Here is the best place to set the sta-
+ te object based on the initial props.
+
+Example:
+
+  static getDerivedStateFromProps(props, state) {
+    return {favoritecolor: props.favcol };
+  }
+---------------------------------------------------------------------
+
+2) shouldComponentUpdate(): With this method you can return a boolean
+value that specifies whether React should or not continue the rende-
+ring. The default values is 'true'. This value stop of render and 'di-
+sable' the functions binded at the component.
+
+Example - Stop the component from rendering at any update:
+
+  shouldComponentUpdate() {
+    return true;
+  }
+
+  changeCar = () =>{
+    this.setState({model: 'Focus'})
+  }
+
+  render(){
+    return(
+      <div>
+  <p>I have a {this.state.model} from {this.state.year}.</p>
+  <button type="button" onClick={this.changeCar}>Change car</button>
+      </div>
+    )
+  }
+}
+
+---------------------------------------------------------------------
+
+3Ã‚Âº render(): When working, the render() method render the new value of
+the component.
+
+Example:
+
+render() {
+    return (
+      <h1>This is the {this.state.new}.</h1>
+    );
+  }
+
+---------------------------------------------------------------------
+
+4Ã‚Âº getSnapshotBeforeUpdate(): With this mehtod method you have access 
+to the props and state before the update, meaning that even after the 
+update, you can check what the values were before the update. This me-
+thod requires also the method componentDidUpdate(), otherwhise you 
+will receive an error.
+
+5Ã‚Âº componentDidUpdate(): This method is executed after the component 
+is updated in the DOM. Always should be preceded of the 
+getSnapshotBeforeUpdate() method.
+
+Example: The example attend obligatorily at the two methods above.
+
+import React from 'react';
+
+
+class Header extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {favoritecolor: "red"};
+  }
+  componentDidMount() {
+    setTimeout(() => {
+      this.setState({favoritecolor: "yellow"})
+    }, 1000)
+  }
+  getSnapshotBeforeUpdate(prevProps, prevState) {
+    document.getElementById("div1").innerHTML =
+    "Before the update, the favorite was " + prevState.favoritecolor;
+  }
+  componentDidUpdate() {
+    document.getElementById("div2").innerHTML =
+    "The updated favorite is " + this.state.favoritecolor;
+  }
+  render() {
+    return (
+      <div>
+      <h1>My Favorite Color is {this.state.favoritecolor}</h1>
+      <div id="div1"></div>
+      <div id="div2"></div>
+      </div>
+    );
+  }
+}
+
+export default Header;
+
+-----------------------------UNMOUNTING---------------------------------
+
+The unmounting is the phase where the component is removed from the DOM.
+componentWillUnmount is the method that should be used when want to remove
+a component from the DOM.
+
+Example: 
+
+  componentWillUnmount() {
+    alert("The component named Header is about to be unmounted.");
+  }
+
+==============================EVENTS==================================
+
+Events in React are like in HTML, but the diference is in the syntax,
+React works with events wirted in camel case e inside curly braces.
+
+Example: onClick={shoot} 
+
+Example - Using a function by click event.
+
+class Football extends React.Component {
+  shoot = () => {
+    alert("Great Shot!");
+  }
+  render() {
+    return (
+      <button onClick={this.shoot}>Take the shot!</button>
+    );
+  }
+}
+
+export default Football;
+
+---------------------------THIS ON EVENTS------------------------------
+
+The keyword this used in events represents the objects that are used in
+the own method, which can be the global window object, a HTML button, or
+ whatever. It's the cause that we should use arrow functions.
+
+Example - Using the keyword this in the alert. Will return the object
+alert of the browser.
+
+class Football extends React.Component {
+  shoot = () => {
+    alert(this);
+  }
+  render() {
+    return (
+      <button onClick={this.shoot}>Take the shot!</button>
+    );
+  }
+}
+
+export default Football;
+
+
+==================================GENERAL TIPS========================================
+
+All time when go work with functions with synthetic events, should pass the argument 
+event for this function.
+
+Use spread operator {...} to represents objects and avoid write very lines.
+
+Use the practice 'extract' to pass the props of a component to another component.
+
+Use event.target.valueAsDate to render date input content.
+
+The scope that is inside the main component is executed first than functions outside 
+the component scope.
+
+Use npm install autoprefixer@9.8.0 to fix css load errors.
+
+Always the first element of a map return should be the prop key to identify the list 
+items.
+
+Stateless components don't need of an return, use the syntax => ().
+
+In React not is possible to render two or more elements without a fragment or wraper
+element like a div, this throw the adjacent render error.
+
+Unregardless of the type of communication, the props always will defined on the pa-
+rent component and read in the children. The children can pass props for the parent
+only trought the callback function.
+
+Side effects happens when the setState is called directly in the function scope.
+
+Use returns in if's when treating conditions with setStates handled by functions.
+
+When you are chaning a state from a context and this is an object and you want to 
+preserve the original object and change only a single prop you need to maintain 
+all props trought the rest operator and change only you want. Use useReducer and 
+useContext for this.
+
+Use the [key]:value to change a object props trought a function param.
+
+When you are consuming objects or data from third parts and you need to format 
+the data, create a formatation trought functions or objects before to render in 
+component to your application runs more performaticly.
+
+When working with Typescript, creates a type or interface for each component becau-
+se this can consume different props.
+
+Use the useRef for control HMTL input elements and media elements.
+
+To pass two or more function to a single synthetic event you should to use {} in
+your arrow function.
+
+Always uses two or more types for provider context for your application, one to the
+children prop and another for the data.
+
+Use the setSate, type it with the React Dispatch and SetAction types and provides it
+in contexts for set the value os states on contexts.
+
+Always unearn your events listeners with useEffect, example:
+
+useEffect(() => {
+    const unearn = window.addEventListener('scroll', () => {})
+    return () => {unearn()}
+}, [])
+
+Use functions directly inside a syntethic event when the function doesn't has params
+and use with arrow syntax when has at least one param.
+
+At using React Router Dom, at facing a error, redirect the user to Home.
+
+Return a response for your user at doing requests. Examples: Disalbe buttons at post 
+and login and render login animation during page load.
+
+Avoid the user sent various request disabling the button while the promise is pending.
+
+Use the option devtool:  'eval-source-map' inside your webpack.config.js file to dis-
+play better errors of yout application in the console.
+
+If the useEffect can't execute an external async function,use the function code directly 
+inside the useEffect.
+
+The component will be renderized if the state and props changes, at with a state, the 
+empty state also defines a renderization.
+
+Put the links tags on the top level in the index.html file for better performance.
+
+At working aplications with pure React that will receive back-end later, alreay prepare
+your application with dynamic data, even it is fake, using MirageJS to avoid conflicts 
+at front-end back-end connect.
+
+At working with modal, use the lib react-modal, create a separeted component for each 
+modal, trigger the modal trough other component (ex: header) and let the state in app.tsx.
+
+You can create and use a context or pass props to components and store the state in the
+parent app (app.tsx) to communicate info trought distinct components. 
+
+Use a state as boolean and a comparator operator for check values that can be one or other.
+Example: isActive={type === 'withdraw'}
+
+If your context is an array, you should create it as generic format example: 
+createContext<TransactionProps[]>([]) and consume it without destructuring, example:
+const transactions = useContext(TransactionsContext).
+
+Create your functions on the context and call them in your desired components inside
+other functions at working with functions that works with the global info, ex: addPro-
+duct, removeLead and etc. 
+
+Use a normal function name inside the file of context and a prefix handle inside the 
+file of the component where the user will interact. Example: Use addProduct inside 
+CartContext.tsx and handleAddProduct inside product.tsx.
+
+Always set an array of state passing as rest operator. Example setPosts([...returnedPosts])
+
+Always extends native elements props trought interface extends if your will to componentize 
+an native element.
+
+
+
+
+
+
+
+

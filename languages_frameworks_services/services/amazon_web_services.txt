@@ -1,0 +1,773 @@
+====================AMAZON WEB SERVICES======================
+
+AWS is a platform that offers a broad set of global cloud-ba-
+sed products on-demad to compute, storage, network, database 
+and other resources and management tools.
+
+AWS Region is a geographical area consisted of two or more A-
+vailability Zones.
+
+Monolitcs Applications: Are applications with components 
+highly linkeds.
+
+Microervices: In this type of application, the components a-
+re softly linkeds and each one can works without other. The 
+low linkage avoids that all application falls.
+
+
+----------------------CLOUD COMPUTING------------------------
+
+The advantages of cloud computing:
+
+You don't need to worry with your data center strucuture and 
+can get focus in your projects.
+
+You only paid for the resource that you're using in the right 
+proportion. The data structure will maximize or minimize ac-
+cording your needs.
+
+------------CLOUD COMPUTING DEPLOYMENT TYPES----------------
+
+There are 3 types of clouding computing models:
+
+Cloud: All parts of your application runs on cloud. And allows 
+to migrate your applications to run on cloud.
+
+Hybrid: Part of functionalities of your application are in the
+cloud and other part are stored in phisic servers. You can im-
+plemnt theses resources using virtualization tools.
+
+On-premises: Allow to use dedicaded resources for an aplicat-
+tion. You can use resources from the cloud conecting it in the 
+on-premises (local) infrastructure in private way.
+
+
+----------------MODELS OF CLOUD COMPUTING----------------------
+
+Infrasctrucuture as a Service: 
+
+Contains basic blocks for cloud IT and provide access to net-
+working features of virtual machines an data storage space with 
+highest level of flexiblility.
+
+Platform as a Service:
+
+Allow you to focus on the deployment of your application trought 
+a platform.
+
+Software as a Service:
+
+Allow you focus on the deployment of your application trought 
+a software provider. This works for example like an e-mail pro-
+vider.
+
+
+
+--------------------SELECTING A REGION------------------------
+
+Select your region based on: Data governance legal require-
+ments, proximty to customers, servies available within the 
+region and costs. Each region has a cost.
+
+
+===================AMAZON COMPUTING EC2========================
+
+Advantges of EC2:
+
+You not need buy phisic serves.
+
+You create and stop EC2 instances fastly.
+
+You pay only by what you are using by the time you're using.
+
+--------------------------------------------------------------
+
+Computing EC2 are flexibles servers that allow you access the 
+virutal servers from Amazon. The EC2 is executed on phisic ma-
+chines maneged from AWS using virtualization tecnology (hyper-
+visor).
+
+You can create an or vairous instance of EC2 to use resources 
+from Amazon servers and use the multiple location (hardware 
+sharing subjacent between virtual machines). At crerating a 
+new instance of EC2 you can chose the S.O and softwares for 
+build your application according your type these instances 
+are resizables.
+
+--------------------TYPES OF INSTANCES------------------------
+
+Each instance of EC2 is optimezed for diferent task. Exmaples:
+
+General: Applications, game servers, low and medium databases.
+
+Optimezed for memory: Applications that requires high perfor-
+mance.
+
+Acellerated Computing: Applications that requires high gra-
+phics proccessing and complex calcs.
+
+Optmized for storage: Applications that requires high perfor-
+mance for read and wirte data on databases, data warehousing.
+
+Use Saving Plans for projects that will run during years and 
+Spot Instances for flexbible applications that can support to
+interruptions.
+
+--------------------------------------------------------------
+
+The scalibility is the act of begin a project with only with 
+resources you need and plan your archteture to extends auto-
+matically your needs. The scability should be applied for a-
+voiding situations where has more request that your server 
+can response.
+
+--------------------AWS EC2 AUTO SCALING----------------------
+
+Use the Amazon EC2 Auto Scaling to to add or removes automati-
+cally instances of EC2. Are two types of scability:
+
+Dynamic scability: EC2 expands automatically the number of 
+instances according your application needs.
+
+Predictive scalebility program: Expands the number of instan-
+ces programmatically by according a preview demand, a mini-
+mun and maximum instance number.
+
+
+--------------------------------------------------------------
+
+Using EC2:
+
+1) Executes an E2C instance chosing the S.0, and the hardware 
+config.
+
+2)Conect with your instance trough a login or directly your 
+pc work area.
+
+3) Use your instance. You can run commands to install softwa-
+res, add storage, copy and sort files and others.
+
+
+
+-------------------ELASTIC LOAD BALANCING--------------------
+
+Elastic Load Balancing is a AWS that distribute automatically 
+the request trafic of your applications between the EC2 ins-
+tances. This service  works together with Amazon EC2 Auto 
+Scaling.
+
+------------------------AMAZON SNS---------------------------
+
+Amazon Simple Notification Service is a service of publisher 
+where an editor pubhishes messages for assinants. This assi-
+nants can be servers, e-mail address, AWS lambda functions 
+and more.
+
+------------------------AMAZON SQS---------------------------
+
+Amazon Simple Queue is a service of messages queuing and can 
+be used for sent, store and receives messages between softwa-
+res components and applications. A application sents a messa-
+ge, another application, service or user, recovery this mes-
+sa from queue, proccess it and delete.
+
+------------------------AWS LAMBDA---------------------------
+
+AWS Lambda is a service that allows the code execution with-
+out need manager servers.
+
+---------------AMAZON ELASTIC CONTAINER SERVICE--------------
+
+
+The Amazon ECS is manager container system highly scalable and 
+high perforance that allows to execute and scales applications 
+in containers.
+
+--------------AMAZON ELASTIC KUBERNETES SERVICE---------------
+
+The Amazon EKS is a service that allows to execute Kubernetes 
+on AWS.
+
+----------------------AWS FARGATE-----------------------------
+
+AWS Fargate is a computer mechanism without server for contai-
+ners that works with Amazon ECS and Amazon EKS. With this ser-
+vice you don't need to manager server because the Fargate it-
+self doest it for you.
+
+
+==================AMAZON INFRASTRUCTURE======================
+
+The Amazon infrasctructure are composed for disponibility zo-
+nes that are formed by one or more datacenters inside a re-
+gion that are located least 100km for each one.
+
+Inside the Amazon infrasctructure there are presence points 
+that are sites that Amazon CloudFront uses to store copies 
+in cache of your content most near of your customer.
+
+=====================AMAZON NETWORK==========================
+
+-----------------------AMAZON VPC----------------------------
+
+Amazon Private Cloud is a network service that allow creates 
+isolated sessions in the cloud for private uses. To allow 
+that the public traffic has access at your VPC you need to a-
+nex a gateway internet for your VPC.
+
+An Internet Gateway is the door between the user and the in-
+ternet. You can use a private gateway that is a private net-
+working connection.
+
+Sub-nets: Sub-nets are a section of a VPC and can be private 
+or public. Public sub-nets can be a website for example and 
+private sub-nets can be the database url for example.
+
+In a VPC the sub-nets can comminucate between each one.
+
+During the network traffic, before the content is showed for 
+the client, the Network ACL's that is a virtual firewall con-
+trols the access for contents.
+
+DNS: Domain Name System is a system thats convert your site 
+name to an IP and allows the web understand the real IP of 
+your site in the web.
+
+---------------------AMAZON ROUTE 53-------------------------
+
+IS a web DNS service that router the final users to applica-
+tions hosted on AWS and can router for address outside from 
+Amazon net too. With this resource you also can to manager 
+domains already created in another domain site generator.
+
+
+--------------------AWS DIRECT CONNECT-----------------------
+
+AWS Direct Connect is a service that allows maintain a priva-
+te connection with your datacenter and a VPC.
+
+
+=====================AMAZON DATABASES========================
+
+The Amazon databses are focused in production and avoiding 
+time for settings. These databases can be 5x more faster than 
+MySqland 3x more faster than Postgress and using SSD for sto-
+re the data.
+
+----------------AMAZON ELASTIC BLOCK STORE-------------------
+
+The Amazon EBS is a service that provider sotrage volumes in 
+block level that you can use with EC2 instances to maintain 
+all data available. Is important to do backup of your data 
+and can do it trought snapshot that are complementary back-
+ups.
+
+-------------------AMAZON STORAGE S3--------------------------
+
+Amazon S3 is a static object store in resources named "buck-
+ets", you can read, write and delete items in your buckets. In 
+this database you can store images, any type of files, docs 
+and others.The Amazon S3 offer unlimited space and a single 
+file can sizes until 5TB. There are different types of stora-
+ge category on Amazon S3:
+
+Standard: Delivery high data disponibility.
+
+--------------------------------------------------------------
+
+S3 Standard Infrequent Access: Recomend for data with few ac-
+cess.
+
+--------------------------------------------------------------
+
+S3 One Zone-Infrequent Access: Is a cheaper storage because 
+works only a single disponiblity zone.
+
+--------------------------------------------------------------
+
+S3 Intelligent-Tiering: This storage category monitores your 
+data and sort them according the use, is more expansive.
+
+--------------------------------------------------------------
+
+S3 Glacier: With a low cost storage is useful for data with 
+litte use and can recovery data in few minutes/hours.
+
+--------------------------------------------------------------
+
+S3 Glacier Deep Archive: With a very low cost storage is use-
+ful for data with litte use and can recovery data in until 12 
+hours.
+
+--------------------AMAZON DATABASES--------------------------
+
+Amazon Aurora: Is a SQL database used for suport enterprise, 
+this database provides high disponiblity of data and does con-
+tinuos backup.
+
+Amazon DynamoDB: Is very fast NO-SQL database where tables 
+with data sorted in set of pair of keys and values are crea-
+ted.
+
+----------------AMAZON ELASTIC FILE SYSTEM--------------------
+
+The Amazon EFS is a scalable file system that is used with o-
+ther cloud services mixed with local resources (on-premise).
+
+-----------------------AMAZON RDS-----------------------------
+
+The Amazon Relational Database Service (Amazon RDS) is a ser-
+vice that allows to execute relational databases in the cloud.
+This service offer criptography for the stored data and is 
+compatible with PostgresSQL, MySQL, MariaDB, Oracle, Microsoft 
+SQL Server and Amazon Aurora.
+
+--------------AMAZON DATABASE MIGRATION SERVICE---------------
+
+Thw AWS DMS is a service that allows migrate your database to 
+another database type, you can migrate your MySQL database to
+PostgresSQL for example.
+
+---------------------AMAZON ELASTICACHE-----------------------
+
+The Amazon ElastiCache that add cache for you database to im-
+prove your wirte and read performance.
+
+===========================SAFETY=============================
+
+-----------------SHARED RESPONSABILITY MODEL------------------
+
+The Shared Responsability Model is a model where the Amazon 
+shared with you the response of the safety of your data in 
+cloud. In this concept, your are responsable for all content 
+data that you store and use in the Amazon Web Services and the
+AWS is responsable for whole infrasctruture and cloud securi-
+ty.
+
+--------------AMAZON IDENTITY ACCESS MANEGEMENT---------------
+
+The Amazon IAM is a service that you to manage the users ac-
+cess in your applications. You can create users, groups and 
+functions.
+
+IAM User: Can be an user or application with credentials that 
+interages with your application.
+
+--------------------------------------------------------------
+
+IAM Group: Is a set of user with a defined policy to access 
+your applications.
+
+IAM Functions: Is a temporary identity (user) that can tempo-
+rally access to functionalities of your applications.
+
+----------------------AWS ORGANIZATIONS-----------------------
+
+Is a center to manager your AWS acccounts. In this environment 
+your can control the users and group access and define policy 
+from them. With this service you can agroup accounts in Orga-
+nizational Unities to define policy.
+
+------------------------AWS ARTIFACT--------------------------
+
+The Amazon Artifacts is a service that provider logs of safe-
+ty on demand. AWS Artifact Agreements provides logs for con-
+tracts and AWS Artifact Report for logs.
+
+-------------------------AWS SHIELD----------------------------
+
+The AWS Shield is a service that protects your applications a-
+gainst DoS attacks (massive trafic atack from a single source) 
+and DDoS attacks (massive trafic atack from a various sources).
+You can use Standard and Advanced protection.
+
+------------------AWS KEY MANAGEMENT SERVICE-------------------
+
+The AWS KMS is a service that allow you to manage keys for 
+cryptograph (block) and uncryptograph (unblock) yours data in 
+AWS services. With this service you also can controll the ac-
+ces of the keys for users or groups. You can active and desac-
+tive your keys too.
+
+---------------------------AWS WAF-----------------------------
+
+The AWS WAF is web firewall that controllers the third solici-
+tations in yours applications on AWS and works together with 
+Amazon CloudFront and an Application Load Balancer.
+
+------------------------AWS INSPECTOR--------------------------
+
+AWS Inspector is a service that automatically verifys the safe-
+ty of your applications and generates logs for you with a list 
+of potential threats.
+
+------------------------AWS GUARDDUTY---------------------------
+
+AWS GuardDuty is a smart service of treaths detecion that cons-
+tantly verifys the safety of your applications monitoring your 
+activities and generating logs for you.
+
+===========================METRICS==============================
+
+----------------------AMAZON CLOUDWATCH-------------------------
+
+The Amazon CloudWatch is a service that monitore and allow to 
+manager actions programatically according the metric value. You 
+can create alarms in Cloudwatch to execute functions according a
+metric value.
+
+You can access your all metrics trought the CloudWatch panel.
+
+------------------------AWS CLOUDTRAIL--------------------------
+
+The Amazon CloudTrail is a service that register the API's re-
+quests done in your account. The registered info can contains 
+the identity of caller, the moment and the IP of the caller.
+
+The CloudTrail Insights allows that the CloudTrail detects auto-
+matically weird API's tasks in your AWS account.
+
+----------------------AWS TRUSTED ADVISOR------------------------
+
+The AWS Trusted Advisor is a service that inspect your AWS envi-
+ronment and supply recommendations in real time according the 
+best practices of the AWS. This service compares yours tasks with 
+the best security practices on AWS and provides a action list 
+trought the AWS Trusted Advisor Panel.
+
+=========================PRICING================================
+
+The plans in the AWS there are the following pricing schemes:
+
+---------------------------FREE---------------------------------
+
+Are offers that never expires. All services in this category are
+always free with a large supply. In this category are the Amazon 
+Dynamo DB and AWS Lambda.
+
+-----------------------12 MOTNHS FREE---------------------------
+
+Offers that are avaialable for 12 months since the initial subs-
+cribe date on AWS. By example are the EC2 instances, and Amazon 
+CLoudFront data transference.
+
+----------------------AVALIATIONS PERIOD-------------------------
+
+In this period each service has your own avaliation period and 
+starts to count on subscribe date and is variable for each servi-
+ce.
+
+----------------------PRICING DEFINITIONS------------------------
+
+The Amazon Pricing Definitions are based in 3 rules: Pay on de-
+mand for that you are using, Pay less at doing reservations and 
+Pay less with dscount based on volume for high usage, how much 
+you are using, how much the price decreases.
+
+To gains discounts in reservations, you need to subscribe in Com-
+pute Saving Plans for declare a fidelity usage.
+
+---------------------AWS PRICING CALCULATOR----------------------
+
+Is an useful tool that allows calculate each service pricing, 
+create an estimative for the costs and share it with other one.
+This tool is useful when you don't know how much will costs the 
+services that you want to use in AWS.
+
+-------------------------REVENUES PANEL--------------------------
+
+The Revenues Panel is an useful tool sued for follow yours expen-
+ses in AWS and pay for them. With this panel you can monitore, a-
+nalysis and control your costs. You can compare your costs month 
+by month and generate logs.
+
+----------------------CONSOLIDATED REVENUE------------------------
+
+The consolidated revenus is a practice of join the bill of all 
+your sub accounts in AWS. The consolidated revenues allows possible 
+dscounts due high consmution of service by joining your accounts.
+
+--------------------------AWS BUDGET------------------------------
+
+The service of Budget of AWS is a panel that allow to you create 
+and configure new budgets where is possible defines the max cost 
+value for your bills and be notificated when this value reachs the
+half and you can take decisions with it.
+
+------------------------AWS COST EXPLORER--------------------------
+
+The AWS Cost Explore is an useful tool that allow to you, view, un-
+derstand and manager your cost and usage of AWS during your use.
+This tool provides to you log with costs of the 5 main service of 
+AWS where you can apply filters to sort your data.
+
+---------------------------AWS SUPOPRT------------------------------
+
+AWS Support is service that offers to you diferent plans type to you
+chose according your needs including:
+
+Basic Plan: Is free for all Amazon customer where some services has 
+limited support, but you can buy better support hereafter.
+
+--------------------------------------------------------------------
+
+Developer support: Is more broad than the basic plans and don't need
+of long contracts and you get better oriantation for best practice, 
+access to diagnotics tools and a better support as a whole.
+
+--------------------------------------------------------------------
+
+Business support: Has all access for AWS Trusted Advisor, support for
+third softwares and better orientation for identify resources and de-
+als in AWS.
+
+--------------------------------------------------------------------
+
+Enterpreise support: The enterprise have access to personal support 
+for help you to implement your applications on AWS and access a te-
+chinical manager for your account that will guidance your enterpri-
+se trought the best usages in AWS.
+
+------------------------AWS MARKETPLACE-----------------------------
+
+Is a place to find softwares executed on AWS. In this marketplace 
+you can find especifis sofywares already ready. You can find soft-
+wares for DevOps, infrasctructure, business aplications (softwares 
+for hospital, sales and others by example).
+
+==================CLOUD MIGRATIONS AND INOVATION====================
+
+The process of migration in cloud is a process that requires experi-
+ence and need a better support based on pesperctives.
+
+-------------------AWS CLOUD ADOPTION FRAMEWORK---------------------
+
+The AWS CAF is a concept that sort the orientations in peerspectives 
+where each perspective approachs disitints responsabilities that 
+follow:
+
+Enterprise  perspective: Help you to project and optimize your AWS 
+infrastructure according your buisines needs and results.
+
+--------------------------------------------------------------------
+
+Peoples  perspective: Help the devlopment of a stratgey manager in
+whole organization to a successful cloud adoption.
+
+--------------------------------------------------------------------
+
+Governance  perspective: Are the skills and process to develop TI 
+strategy and business startegy to maximize the comercial value and 
+minimize risks.
+
+--------------------------------------------------------------------
+
+Platform  perspective: Help you to project and optimize your AWS 
+infrastructure according your buisines goals.
+
+--------------------------------------------------------------------
+
+Security  perspective: Gather that the organizatoin attend the safe-
+ty objects, audictory and agility.
+
+--------------------------------------------------------------------
+
+Operations perspective: Helps to execute, use, opere and recovery 
+works of TI according the business interests.
+
+---------------------CLOUD MIGRATION STATEGIES-----------------------
+
+There are 6 types of strategies for migrating apps on AWS cloud. The-
+se strategies are:
+
+Host redefinition: Know as "lift-and-shift' is a strategy that envol-
+ves the movimentation of application without changes and only the host
+is redefined.
+
+----------------------------------------------------------------------
+
+Platform replace: Know as "lift, tinker and shift' consist in do some 
+little changes in the application for improve on cloud without change 
+the application archteture.
+
+--------------------------------------------------------------------
+
+Refatoration: The architerure application need be redone viewing the 
+benetifs of the cloud.
+
+--------------------------------------------------------------------
+
+Rebuild: The license of the application changes for a model "Software 
+as service".
+
+--------------------------------------------------------------------
+
+Retention: Consist in maintain the esentials applications in the o-
+rigin environment and do refatoration before to migrate to cloud.
+
+--------------------------------------------------------------------
+
+Desactivation: Is the process of removes unnecesary applications.
+
+------------------------AWS SNOW FAMILLY----------------------------
+
+The AWS Snow Familli is a collection of phisical devices that help 
+to transport phisiclly until the exabytes the data inside and outside 
+of the AWS. The Snow Familly is composed for:
+
+SnowCone: Is a tiny and robust device that to data transfer, thi ha-
+ve 2 CPUs, 4GB memory and 8TB storage.
+
+--------------------------------------------------------------------
+
+SnowBallEdge for storage: Is a device optimized for storage and data 
+migration, this have 40 vCPUs, 80GiB memory and 80TB storage.
+
+--------------------------------------------------------------------
+
+SnowBallEdge for compute: Is a device optimized for computing, ma-
+chine learning and video analisys. This device has 52 vCPUs, 208GiB 
+memory and 42TB storage.
+
+--------------------------------------------------------------------
+
+SnowMobile: Is a service of data transfer in scale of exabytes used 
+for move big quanity of data to the AWS cloud trought a truck with 
+storage capacity of 100PB.
+
+--------------------------------------------------------------------
+
+----------------------INOVATION IN AMAZON---------------------------
+
+At using the Amazon Web Service you can create applications without
+server trought AWS Lambda. You can also work with IA tools like 
+Amazon Transcribe thats convert the speak in text, you can also cre-
+ate chatbots and others trought Amazon Lex.
+
+You can create Machine Learning models trought the Amazon SageMaker 
+fastly.
+
+======================FEEDBACK AND BENEFITS==========================
+
+------------------AWS WELL-ARCHITECTED FRAMEWORK---------------------
+
+The AWS Well-Architected Framework helps to you undersatnd project 
+and opere trusted systems on the AWS Cloud. Trough this framework 
+you can check if your application was built with good practices ba-
+sed on:
+
+Operacional excellence: Resumes in the capcity of execute, monitore,
+document and prevent falls continuosly.
+
+--------------------------------------------------------------------
+
+Safety: The capacity that yout application has in protect data in 
+transit and retire.
+
+--------------------------------------------------------------------
+
+Confiability: Is the capacity of your application has in get resour-
+ces on demand and recovery data when is needs.
+
+--------------------------------------------------------------------
+
+Performance: Is the capacity of your application has in use compu-
+tional resources to commit with the system requirement according the 
+demands and tecnology evolution.
+
+--------------------------------------------------------------------
+
+Cost optimaztion: The capacity of delivery commercial value with the 
+lowest cost.
+
+---------------------------BENEFITS---------------------------------
+
+At working with Amazon Cloud you can get the following benefits:
+
+Exchange initials budgets for variables budgets where you don't need
+initial investments on servers and goes paying only by used monthly.
+
+--------------------------------------------------------------------
+Benfits for massive scale economy.
+
+--------------------------------------------------------------------
+
+You don't need to know the capacity required and you can maximize 
+and minimize the servers capacity on demand trought Amazon Elastic 
+Compute Cloud.
+
+--------------------------------------------------------------------
+
+More flexbility and speed by working with cloud.
+
+--------------------------------------------------------------------
+
+You don't need wast money with datacenters maintance.
+
+--------------------------------------------------------------------
+
+You can expends your applications globally in minutes with low la-
+tency.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+======================GENERAL TIPS============================
+
+How much is low your ping, better it is. You can test your la-
+tence in www.cloudping.info.
+
+At using a region, uses various available zones, because if a 
+zone is offline your application still run in another server 
+of another region.
+
+The amazon networks create a cache for each request for pro-
+vide this even response for other user more fastly trought 
+presence point.

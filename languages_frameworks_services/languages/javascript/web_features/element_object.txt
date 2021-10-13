@@ -1,0 +1,242 @@
+=======================ELEMENT OBJECT======================
+
+This object describes any HTML element proprieties and
+methods.
+
+---------------------Main Proprieties----------------------
+
+accessKey:
+Sets or return the accesskey of an element.
+
+attributes:
+Return a NamedNodeMap of an element's attributes.
+
+childElementCount: Returns the number of child elements
+an element.
+
+childNodes:
+Returns a collection of an element's child nodes (exclu-
+ding text and comments nodes).
+
+classList:
+Return the class name(s) of an element.
+
+className:
+Sets or returns the value of the class attribute of an ele-
+ment.
+
+contentEditable:
+Sets or returns whetehr the content of an element is edita-
+ble or not.
+
+dir:
+Sets or returns the value of the dir attribute of an ele-
+ment. 
+
+firstChild:
+Returns the first child node of an element.
+
+firstElementChild:
+Returns the first child element of an element.
+
+id:
+Sets or returns the value of the id attribute of an ele-
+ment. 
+
+isContentEditable:
+Sets or returns whether the content of an element is edita-
+ble or not, boolean values.
+
+lang:
+Sets or returns the value of the lang attribute of an ele-
+ment. 
+
+lastChild:
+Returns the last child node of an element.
+
+lastElementChild:
+Returns the last child element of an element.
+
+nextSibling:
+Returns the next node at the same node tree level.
+
+nextElementSibling:
+Returns the next element at the same node tree level.
+
+nodeName:
+Returns the name of a node.
+
+nodeType:
+Returns the type of a node.
+
+
+nodeValue:
+Returns the value of a node.
+
+ownerDocument:
+Returns the root element (document object) for an element.
+
+parentNode:
+Returns the parent node of an element.
+
+parentElement:
+Returns the parent element of an element.
+
+previousSibling:
+Returns the previous node at the same node tree level.
+
+previousElementSibling:
+Returns the previous element at the same node tree level.
+
+scrollLeft:
+Sets or returns the number of pixels an element's content is
+scrolled horizontally.
+
+scrollTop:
+Sets or returns the number of pixels an element's content is
+scrolled vetically.
+
+scrollWidth:
+Returns the entire width of an element, including padding.
+
+style:
+Sets or returns the value of the style attribute of an ele-
+ment. 
+
+tabIndex:
+Sets or returns the value of the tabindex attribute of an ele-
+ment.
+
+tagName:
+Returns the tag name of an element.
+
+textContent:
+Sets or returns the textual content of a node and its descen-
+dants.
+
+title:
+Sets or returns th value of the title attribute of an element.
+
+
+-------------------------Main Methods--------------------------
+
+addEventListener():
+Attaches an envent handler to the specified element.
+
+appendChild():
+Append a new child to the element has the last node.
+
+blur():
+Removes focus from an element.
+
+click():
+Simulates a mouse-clink on an element.
+
+cloneNode():
+Clones an element.
+
+contains():
+Returns true if a node is descendant of another node.
+
+exitFullScreen():
+Cancels an element in fullscreen mode.
+
+focus():
+Gives focus to na element.
+
+getAttribute():
+Returns a specific attribute value of an element.
+
+getAttributeNode():
+Returns a specific attribute node.
+
+getElementById():
+Returns an element by your id.
+
+getElementsByClassName():
+Returns a collection of element with the class name.
+
+getElementsByTagName():
+Returns a collection of element with the tag name.
+
+hasAttribute():
+Rerturns if an element has a specific attribute.
+
+hasAtributes():
+Returns if an element has any attributes.
+
+hasChildNodes():
+Returns if an element has any child nodes.
+
+insertBefore():
+Insert a new child before a specified child node.
+
+isEqualNode():
+Checks if two elements are equals.
+
+isSameNode():
+Checks if two elements are the same node.
+
+isSupported():
+Returns true if a specified feature is supported on the
+element.
+
+querySelector():
+Returns the first element that matches a specified CSS 
+selector or argument passed.
+
+querySelectorAll():
+Returns a collection of element thatS matches a specified CSS 
+selector or argument passed.
+
+remove():
+Removes the element from the DOM.
+
+removeAttribute():
+Removes a specific attribute from an element.
+
+removeAttributeNode():
+Removes a specific attribute node an returns the removed node.
+
+removeChild():
+Removes a child node from an element.
+
+removeEventListenner():
+Removes an event handler that has been added with addEventListenner
+method.
+
+replaceChild():
+Replace a child to another in an element.
+
+requestFullscreen():
+Shows an element in fullscreen mode.
+
+setAttribute():
+Sets or changes an attribute to an element.
+
+setAttributeNode():
+Sets or changes an attribute node.
+
+toString():
+Converts an element to a string.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

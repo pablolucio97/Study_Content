@@ -1,0 +1,3 @@
+Shuffle arrays: 
+
+let shuffled = myArray.sort(() => Math.random() - 0.5)

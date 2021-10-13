@@ -1,0 +1,145 @@
+==================DOING SINGIN WITH GOOGLE FIREBASE===================
+
+1)Go to https://firebase.google.com/ and create a new project.
+
+----------------------------------------------------------------------
+
+2) Go to Authentication, first steps, active the auth, select the Go-
+ogle signin, suply an e-mail and the project name and save it.
+
+----------------------------------------------------------------------
+
+3) Go to RealtimeDatabase, click in create database, select the option
+starts with secure mode and save it.
+
+----------------------------------------------------------------------
+
+4) Go to Porject General Overview and click in Web to use the firebase 
+with a web project.
+
+----------------------------------------------------------------------
+
+5) Install the firebase yarn add firebase.
+
+----------------------------------------------------------------------
+
+6) Create a new folder named services and insisde this a new file named 
+firebase.ts.
+
+----------------------------------------------------------------------
+
+7)Inside this file, import the firabse, firabese/auth and firebase/data-
+base, past your firebaseConfig from your firebase web project, initiali-
+ze the firabase and create instances for auth and databse. Exmaple:
+
+import firebase from 'firebase'
+
+import 'firebase/auth'
+import 'firebase/database'
+
+const firebaseConfig = {
+  apiKey: process.env.REACT_APP_API_KEY,
+  authDomain: process.env.REACT_APP_AUTH_DOMAIN,
+  projectId: process.env.REACT_APP_PROJECT_ID,
+  databaseURL: process.env.REACT_APP_DATABASE_URL,
+  storageBucket: process.env.REACT_APP_STORAGE_BUCKET,
+  messagingSenderId: process.env.REACT_APP_MESSAGING_SENDER_ID,
+  appId: process.env.REACT_APP_APP_ID,
+  measurementId: process.env.REACT_APP_MEASUREMENT_ID,
+  };
+
+  firebase.initializeApp(firebaseConfig)
+
+  const auth = firebase.auth();
+  const database = firebase.database();
+  
+  export {auth, database}
+  
+------------------------------------------------------------------------
+  
+ 8) Create a .env.local file to store your variables and exchange them in 
+ your firebase config.
+ 
+------------------------------------------------------------------------
+
+9) Create a context to handle the user login:
+ 
+import { useState, useEffect, createContext, ReactNode } from 'react'
+import { auth } from '../services/firebase'
+import firebase from 'firebase'
+
+type UserProps = {
+    id: string;
+    name: string;
+    avatar: string
+}
+
+type ChildrenProps = {
+    children: ReactNode
+}
+
+type AuthContextProps = {
+    user: UserProps | undefined;
+    signInWithGoogleFirebase: () => Promise<void>;
+}
+
+export const AuthContext = createContext({} as AuthContextProps)
+
+export const AuthProvider = ({ children }: ChildrenProps) => {
+
+    const [user, setUser] = useState<UserProps>()
+
+    useEffect(() => {
+        const unsubscribe = auth.onAuthStateChanged(user => {
+            if (user) {
+                const { displayName, photoURL, uid } = user
+                if (!displayName || !photoURL) {
+                    throw new Error('Missing information from Google account.')
+                }
+
+                setUser({
+                    id: uid,
+                    name: displayName,
+                    avatar: photoURL
+                })
+            }
+        })
+
+        return () => { unsubscribe() }
+
+    }, [])
+
+    async function signInWithGoogleFirebase() {
+
+        const provider = new firebase.auth.GoogleAuthProvider();
+
+        const result = await auth.signInWithPopup(provider)
+
+        if (result.user) {
+            const { displayName, photoURL, uid } = result.user
+
+
+            if (!displayName || !photoURL) {
+                throw new Error('Missing information from Google account.')
+            }
+
+            setUser({
+                id: uid,
+                name: displayName,
+                avatar: photoURL
+            })
+
+        }
+
+    }
+
+    return (
+        <AuthContext.Provider value={{ user, signInWithGoogleFirebase }}>
+            {children}
+        </AuthContext.Provider>
+    )
+}
+
+------------------------------------------------------------------------
+
+10) 

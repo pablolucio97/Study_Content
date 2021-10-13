@@ -1,0 +1,61 @@
+===================================MONGODB========================================
+
+MongoDb is a database oriented to object (JSON format), is NoSql and without
+schema (if is need to add a new column in new files, you don't need remake the 
+data strucutre for the old files.)
+
+-------------------------INITIALIZING A NEW MONGO DB------------------------------
+
+mongod: starts the mongo server.
+
+mongo: opens the mongo console.
+
+---------------------------------BASIC COMMANDS-----------------------------------
+
+show dbs: shos how much mongo databases are in your machine.
+
+show collections: show all available collections.
+
+use_dbname: switch to db to be used.
+
+db.createCollections('collectionname'): create a new collection (table).
+
+db.collectionname.drop() : drops the collection.
+
+db.collectionname.insert({name: "Pablo", age: 25, sex: "M", isMarried: true}): 
+inserts a new data as JSON object.
+
+db.collectionname.save({name: "Pablo", age: 26, sex: "M", isMarried: true}): in-
+sert a new data saving or updating a collection.
+
+db.collectionname.find(): returns all logs in your collection.
+
+db.collectionname.find().pretty(): returns all logs in your collection formata-
+ble.
+
+db.collectionname.findOne(): return the first log of the collection.
+
+db.collectionname.findOne({name: "Pablo"}): returns the first log by according the 
+filter.
+
+db.collectionname.find({$or: [{month: 1}, {month: 2} ]}): return all register by ac-
+cording the logical test.
+
+db.collectionname.find({$month: {exists: true}).skip(1): return all register by ac-
+cording the logical test skiping a register (in this case the first log).
+
+db.collectionname.find({$month: {exists: true}).limit(5): returns all register limi-
+ted (in this case will be returned 5 registers).
+
+----------------------------------GENERAL TIPS----------------------------------------
+In some cases you need to work with scalement horizontal or scalement vertical 
+or both. This rely of your application and the quanity of acces that your ap-
+plications is receinving.
+
+NoSql databases can to scale easily horizontaly (you can distribute your databa-
+se in various servers) and SQL databases does this vertically (upgrade in a sin-
+gle server machine to store your app).
+
+MongoDb is sensitive case.
+
+The method limit() is useful for paginations.

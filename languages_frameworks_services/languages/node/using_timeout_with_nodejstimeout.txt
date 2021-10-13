@@ -1,0 +1,28 @@
+========================USING TIMEOUT WIHT NODEJS TIMEOUT===========================
+
+1) Declare a let as NodeJS.timeout feature, example:
+
+let countdownTimout : NodeJS.Timeout;
+
+2)Use this in your timer component, example:
+
+    const [time, setTime] = useState(25 * 60)
+    const [isActive, setIsActive] = useState(false)
+
+    const startCoundown = () => {
+        setIsActive(true);
+    }
+
+    const resetCountDown = () => {
+        clearTimeout(countdownTimout)
+        setIsActive(false);
+        setTime(25 * 60);
+    }
+
+    useEffect(() => {
+        if (isActive && time > 0) {
+          countdownTimout =  setTimeout(() => {
+                setTime(time - 1);
+            }, 1000)
+        }
+    }, [isActive, time])

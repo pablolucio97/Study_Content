@@ -1,0 +1,208 @@
+=========================DEVOPS============================
+
+DevOps is a culture of development that integrates the dev 
+team with the operations team boarding the process of Code, 
+Build, Integration, Tests, Releases, Deploy and Operation 
+for gets a continuos delivery for clients. DevOps don't su-
+bstitues the Agile Methods and shoud be used together with 
+it.
+
+The peoples that are inserted in a enterprise with DevOps 
+culture should be openend to learn skills constantlly.
+
+The projects and process should be compreensible for devs 
+and infrastrucuture team. Everybody should be attent what 
+are happening in the organization.
+
+-------------------------CI/CD-----------------------------
+
+Uma confusão frequente é equiparar a entrega contínua e a integração contínua. Esta visão é um grande equívoco. A integração contínua é a prática de integração e testes de um novo código com a base de código existente, e é uma condição necessária para que o processo de entrega contínua possa acontecer da forma correta.
+
+É o processo de merging do seu novo código com uma brench / trunk. A idéia aqui é testar seu código o mais rápido possível para identificar os problemas mais cedo.
+
+A maioria do trabalho é feito por meio de testes automatizados, e esta técnica requer um framework de testes unitários (Unit Tests). Normalmente há um servidor de compilação para realização destes testes, para que os desenvolvedores possam continuar o trabalho enquanto os testes estão sendo realizados.
+
+
+----------
+
+Aqui é onde aparece a maior confusão. As pessoas às vezes usam os termos de entrega contínua e implantação contínua alternadamente. As duas práticas não são a mesma coisa. A Entrega Contínua é um conjunto de práticas que tem como objetivo garantir que o novo código pode ser implantado no ambiente de produção a qualquer momento, já a implantação contínua leva um passo mais longe.
+
+Na prática de entrega contínua tratamos do envio do código para um ambiente, que pode ser DEV, STAGE ou PROD, uma vez que o desenvolvedor sente o código está pronto para enviar. Mas nesta parte do processo a idéia é de que se está entregando o código para uma base de usuários, entenda-se por base de usuários, Testers / QA, clientes homologar ou até usuários finais. Isto é semelhante ao de integração contínua, mas neste momento podemos incrementar o processo de teste com os testes de comportamento (Behavior Tests – BDD) para testar a lógica de negócio ou até mesmo testes visuais.
+
+
+CI: Continuos Integration.
+CD: Continuos Delivery.
+
+The Development Cycle DevOps is splited in five stages: De-
+velopment, Tests, Integration, Deploy and Monitoring:
+
+Continuos Development: Stage where has a control of the app 
+versionament.
+
+-----------------------------------------------------------
+
+Conituos Test: Stage where the new functionalities are tes-
+ted for verify if the system runs perfectly after the new 
+functionlality implantation.
+
+-----------------------------------------------------------
+
+Continuos Integration: Is the satge of automation of builds 
+and tests. In this case is useful to use a tool for check 
+git changes and do deploy automatically, like the Jenkins.
+
+-----------------------------------------------------------
+
+Continuos Deploy: In this stage the application is passed 
+to the production environment and is working for the final 
+user. The difference between Continuos Delivery and Conti-
+nuos Deploy is that the deploy is done automatically whe-
+reas the delivery is done manually.
+
+-----------------------------------------------------------
+
+Continuos Monitoring: In this stage the application is o-
+ver monitoring and tests still should be done.
+
+
+------------------MAIN TOOLS FOR DEVOPS--------------------
+
+------------------TOOLS FOR COLABORATION-------------------
+
+Project Progress:
+
+Jira;
+Trello;
+Basecamp.
+
+-----------------------------------------------------------
+
+Life Cycle manegement:
+
+Azure DevOps;
+Octane.
+
+-----------------------------------------------------------
+
+Comunication:
+
+Discord;
+Teams;
+Slack.
+
+-----------------------------------------------------------
+
+Sahre and code versionament:
+
+GitHub;
+SVN;
+BitBucket
+
+-----------------------------------------------------------
+
+Documentation:
+
+Swagger;
+ApiBluePrint.
+
+------------------TOOLS FOR CONSTRUCTION--------------------
+
+Build:
+
+Webpack; 
+SMSBuild;
+Mavem;
+Gulp.
+
+-----------------------------------------------------------
+
+Continuos integration:
+
+Jenkins;
+Travis Ci;
+BamBoo.
+
+-----------------------------------------------------------
+
+Database Management:
+
+DBMaestro;
+Flyway;
+Redgate.
+
+--------------------TOOLS FOR QUALITY-----------------------
+
+Unity Tests:
+
+Qunit;
+Unit.net
+
+-----------------------------------------------------------
+
+Integration Tests:
+
+Postman;
+Jasmine;
+SoapUI;
+Jmiter.
+
+-----------------------------------------------------------
+
+Security Tests:
+
+OWASP ZAP.
+
+-----------------------------------------------------------
+
+TDD:
+
+VectorCAST.
+
+------------------TOOLS FOR IMPLANTATION--------------------
+
+Deploy:
+
+Netlify;
+Vercel;
+Octopus Deploy.
+
+-----------------------------------------------------------
+
+Package Maneger:
+
+Yarn;
+NPM;
+Bower.
+
+-----------------------------------------------------------
+
+Configuration ad Providing Maneger:
+
+Puppet;
+Ansible.
+
+-------------------TOOLS FOR PRODUCTION----------------------
+
+Cloud:
+
+Amazon Web Services;
+Google Cloud PLatform;
+Heroku;
+MS Azure.
+
+-------------------------------------------------------------
+
+Orquestration and Schedulling:
+
+Kubernetes.
+Docker Swarm.
+
+BI/Monitoring/Loggin:
+
+ElastichSearch;
+Kibana;
+Logstash.
+
+
+
+

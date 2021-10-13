@@ -1,0 +1,20 @@
+-------------------------JSON MATRIZ TRANSPOSE------------------------------
+
+Example:
+
+   const persons = [
+        { name: 'Pablo', age: 25, email: 'pablo@gmail.com', sex: 'M' },
+        { name: 'Camila', age: 26, email: 'camila@gmail.com', sex: 'F' },
+        { name: 'Pablo', age: 25, email: 'pablo@gmail.com', sex: 'M' },
+        { name: 'Camila', age: 26, email: 'camila@gmail.com', sex: 'F' },
+        { name: 'Pablo', age: 25, email: 'pablo@gmail.com', sex: 'M' },
+        { name: 'Camila', age: 26, email: 'camila@gmail.com', sex: 'F' },
+    ]
+
+  function transpose(a : any) {
+        return Object.keys(a[0]).map(function(c) {
+            return a.map(function(r: any) { return r[c]; });
+        });
+    }
+    
+console.log(transpose(persons));

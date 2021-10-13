@@ -1,0 +1,6 @@
+const hasPablo = () => {persons.some(obj => {
+   JSON.stringify({name: 'Pablo', age: 26}) === JSON.stringify(obj) &&
+   console.log('has Pablo')
+})}
+
+hasPablo()

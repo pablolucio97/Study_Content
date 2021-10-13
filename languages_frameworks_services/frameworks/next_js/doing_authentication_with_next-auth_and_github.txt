@@ -1,0 +1,84 @@
+=================DOING AUTHENTICATION WITH NEXT AUTH AND GITHUB=================
+
+1) Install the next-auth running yarn add next-auth and create a new file named 
+[...nextauth].tsx inside of pages/api/auth.
+
+----------------------------
+
+2) Log in the GitHub site with your account and goes to Settings > Developer set-
+tngs> OAuth > New OAuth and type your app info. In the field "Authorization call-
+back URL" type: http://localhost:3000/api/auth/callback.
+
+----------------------------
+
+3) Copy your Client ID key and generate and copy your Secret Key and past them in 
+the .env.local file.
+
+----------------------------
+
+4)Inside the file [...nextauth].tsx define your provider passing also the prop
+"scope" for define which props the application will to use. Example:
+
+import NextAuth from 'next-auth';
+import Providers from 'next-auth/providers'
+
+
+export default NextAuth({
+    providers: [
+        Providers.GitHub({
+            clientId: process.env.CLIENT_ID,
+            clientSecret: process.env.CLIENT_SECRET_KEY,
+            scope: 'read:user'
+        })
+    ]
+})
+
+----------------------------
+
+5) Wrap your application with the auth context info.
+
+import {Provider as NextAuthProvider} from 'next-auth/client'
+
+import { AppProps } from 'next/app'
+import { Header } from '../components/Header'
+
+function MyApp({ Component, pageProps }: AppProps) {
+  return (
+    <NextAuthProvider session={pageProps.session}>
+      <Header />
+      <Component {...pageProps} />
+    </NextAuthProvider>
+  )
+}
+
+export default MyApp
+
+----------------------------
+
+6)Use in your application/component:
+
+import { FaGithub } from 'react-icons/fa'
+import { signIn, signOut, useSession } from 'next-auth/client'
+
+export function SignInButton() {
+
+    const [session] = useSession()
+
+    return session ? (
+        <button
+            type="button"
+            onClick={() => signOut()}
+        >
+            <FaGithub color='#04d361' />
+            session.user.name}
+        </button>
+    ) : (
+        <button
+            type="button"
+            onClick={() => signIn('github')}
+        >
+            <FaGithub color='#eda417' />
+            SignIn with GitHub
+        </button>
+    )
+}

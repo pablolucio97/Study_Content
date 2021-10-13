@@ -1,0 +1,84 @@
+================================MAIN OBJECTS METHODS LIST=========================================
+
+-----------------------------------------STRING---------------------------------------------------
+
+length()	Calc the length of a string
+indexOf()	Returns the position of the first occurrence of a specified text in a string
+lastIndexOf()	Returns the position of the last occurrence of a specified text in a string
+search()	Search a string and and returns the match correspondence
+slice()	        Get a part of the string and return it
+substring()	Like slices, but doesn't accepts negative values
+replace()	Replace a string by other
+toLowerCase()	Transform a string to lower case
+toUpperCase()	Transform a string to upper case
+concat()	Joins two or more strings
+trim()	        Remove blank between strings
+split()	        Transform a string in an array
+
+-----------------------------------------NUMBER---------------------------------------------------
+
+Numbers	
+toString()	Show a number in string format
+toFixed()	Fixes the decimal digits
+toPrecision()	Fixes the quantity of digits
+
+-----------------------------------------MATH-----------------------------------------------------
+
+Pi()	        Returns 3.14159265
+round()	        Round the number to above or below by acording the floating value.
+ceil()	        Round the number to above.
+floor()	        Round the number to below.
+pow()	        Return the power square of a number.
+sqrt()	        Return the square root of a number.
+abs()	        Return the absolute value of a number.
+sin()	        Return the sin of a degree.
+cos()	        Return the cos of a degree.
+ramdom()	Return a random number, is used with Math.floor
+
+------------------------------------DATA TRANSFORM------------------------------------------------
+
+Number()	Converts a string or a date to number
+parseInt()	Converts a string to integer number
+parseFloat()	Converts a string to float number
+
+----------------------------------------ARRAYS----------------------------------------------------
+
+push()	        Adds a new item in the end of the array
+join()	        Concats each element of the array with a string
+pop()	        Removes the last element from the array
+shift()	        Removes the first element and replaces down the all another elements
+unshift()	Adds a new first element and replaces up the all another elements.
+splice()	Changes a piece of an array, adding, changing or removing elements in a position.
+concat()	Creates a new array merging two arrays.
+slice()	    Slices out the elements receiving the positions in a new array.
+toString()	Convert na array in a string.
+sort()	        Sorts alphabetically na array
+reverse()	Reverse the order of the array
+forEach()	Calls a function once to each array element.
+map()	        Creates a new array by according the result of a function of each array element.
+filter()	Creates a new filtered aray by according the true value of a logical test.
+every()	        Do a function if all array elements has true value for a lofical test.
+some()	        Check if some array values are by according a logical test.
+indexOf()	Search the first position of na array element.
+lastIndexOf()	Search the last position of na array element.
+find()	        Return the value of the first array element that atend a constraint test function.
+findIndex()	Return the index of the first array element that atend a constraint test function.
+
+--------------------------------------DATE--------------------------------------------------------
+	
+Date.parse()	Return the number of milliseconds between the date and January 1, 1970.
+getTime()	Return the number of millisecondss since January 1, 1970.
+getFullYear()	Return the year of the current year in four digits format.
+getMonth()	Return the month of the current date in two digits format (0-11).
+getDate()	Returns the day of a date as a number (1-31)
+getHours()	Return the hours of a date as a number (0-23)
+getMinutes()	Return the minutes of a date as minutes (00-59)
+getSeconds	Returns the seconds of a date as a number  (00-59).
+getDay()	Return the weekday as a number (0-6)
+toString()	Convert a date in string format.
+setHours()	Set the hours of a date as a number (0-23)
+setMinutes()	Set the minutes of a date as minutes (00-59)
+setSeconds	Set the seconds of a date as a number  (00-59).
+setDate()	Set the day of a date as a number (1-31)
+setMonth()	Set the month of the current date in two digits format (0-11).
+setYear()	Set the year of the current year in four digits format.

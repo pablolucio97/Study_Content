@@ -1,0 +1,115 @@
+===================CLIENT SERVER MODEL======================
+
+------------------------CONCEPTS----------------------------
+
+HTTP: Hypertext Transfer Protocol, is the protocol that al-
+low the communication between client and server, fetch data
+and load resources as HTML documents.
+
+SOAP: Means Simple Object Access Protocol and is used for a-
+llow the messaging exchanging and clients invoking webservi-
+ces and receives responses over HTTP protocol.
+
+P2 PROTOCOL: Protocol where the clients can connect yoursel-
+ves. Ex: A phone connecting to other phone by bluetooth.
+
+CLIENTE: Uses the resources of the net doing request for the
+server and wait for responses of server.
+
+SERVER: Provide resources for the client, receives and res-
+ponses for requests.
+
+-----------------REQUEST RESPONSE PATTERN--------------------
+
+The request and response pattern works with the client doing
+and waiting requests for the server to so the server provide 
+a request that can be different status code for the broswer.
+
+
+Main response status code:
+
+Informational responses: (100–199)
+Successful responses: (200–299)
+Redirects: (300–399)
+Client errors: (400–499)
+Server errors: (500–599)
+
+200: The request has succeeded and the method was called.
+
+201: Reuqest is OK and the new resource has been created.
+
+202: The request has been received but not yet replied.
+
+203: The returned data don't is exactly the same in the ori-
+ginal server. It can collected from third-party.
+
+204: There is no content to send for this request, but the 
+headers may be useful. 
+
+205: Tells the user-agent to reset the document which sent 
+this request.
+
+400: The server could not understand the request due to 
+invalid syntax.
+
+401: Unauthorized the client must authenticate itself to get 
+the requested response.
+
+403: Forbidden. The client does not have access rights to 
+the content.
+
+404: The server can not find the requested resource. In the 
+browser, this means the URL is not recognized. In an API, 
+this can also mean that the endpoint is valid but the resour-
+ce itself does not exist.
+
+405: The request method is not supported by the target resour-
+se. For example, an API may forbid DELETE-ing a resource.
+
+407: An authentication is needed to be done by a proxy.
+
+409: A request conflicts with the current server state.
+
+413: Request resources is larger than limits defined by the 
+server.
+
+414: The URI requested by the client is longer than the ser-
+ver is willing to interpret.
+
+415: The media format of the requested data is not supported
+by the server, so the server is rejecting the request.
+
+419: The user has sent too many requests in a given amount 
+of time ("rate limiting").
+
+
+451: The user-agent requested a resource that cannot legally 
+be provided, such as a web page censored by a government.
+
+500: Has some trouble with the server or connection error.
+
+503: The server is not ready to handle the request. Common 
+causes are a server that is down for maintenance or that is 
+overloaded.
+
+504: The server can't process the response in time.
+
+505: The HTTP version used in the request is not supported 
+by the server.
+
+511: The client needs to authenticate to gain network access.
+
+------------------------GENERAL TIPS-------------------------
+
+A client can be a pc, phone, IOT devices or anything else 
+that are connect to internet.
+
+When we're a back-end server, this also is can be a client of
+the server of a database provider.
+
+The client always will wait for the server response at re-
+quests.
+
+
+
+

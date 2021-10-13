@@ -1,0 +1,65 @@
+=========================USING CHAKRA-UI IN REACT PROJECTS=========================
+
+ChakraUI is a declarative lib that allow to create fast ui without css files pas-
+sing the css props directly in your component.
+
+------------------------INSTALLING THE CHAKRA IN YOUR APP---------------------------
+
+1)Run yarn add @emotion/styled @emotion/react @chakra-ui/react @chakra-ui/core fra-
+mer-motion to install all necessaries libs to use ChakraUI.
+
+------------------------
+
+2)Inside you styles folder, create a file named theme.ts with your global css con-
+fig importing and exteding the extendTheme function from chakra-ui/react. Ex:
+
+import { extendTheme } from "@chakra-ui/react";
+
+export const theme = extendTheme({
+    colors:{
+        gray:{
+            '900' : '#181b23',
+            '800' : '#1f2029',
+            '700' : '#353646',
+            '600' : '#4b4d63',
+            '500' : '#616480',
+            '400' : '#797d9a',
+            '300' : '#9699b0',
+            '200' : '#b3b5c6',
+            '100' : '#d1d2dc',
+            '50' : '#eeeef2'
+        }
+    },
+    fonts:{
+        heading: 'Roboto',
+        body: 'Roboto'
+    },
+    styles: {
+    global: {
+      body: {
+          bg: 'gray.900',
+          color: 'gray.50'
+      },
+    },
+  },
+});
+
+
+------------------------
+
+3) In your app, wrap you application in the ChakraProvider. Pass the prop resetCSS=fal-
+se to avoid the common CSS. Ex:
+
+import { AppProps } from 'next/app'
+import {ChakraProvider} from '@chakra-ui/react'
+import { theme } from '../styles/config'
+
+function MyApp({Component, pageProps} : AppProps) {
+    return (
+        <ChakraProvider resetCSS={false} theme={theme}>
+            <Component {...pageProps}/>
+        </ChakraProvider>
+    )
+}
+
+export default MyApp

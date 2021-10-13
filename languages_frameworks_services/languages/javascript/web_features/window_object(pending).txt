@@ -1,0 +1,380 @@
+====================WINDOW OBJECT=======================
+
+-------------Main Window Object Properties--------------
+
+closed:
+closed Returns a Boolean value indicating whether a win-
+dow has been closed or not.
+
+screenLeft: 
+Returns the horizontal coordinate of the window relative 
+to the screen.
+
+screenTop: 
+Returns the vertical coordinate of the window 
+relative to the screen.
+
+screenX: 
+Returns the horizontal coordinate of the window relative 
+to the screen.
+
+screenY: 
+Returns the vertical coordinate of the window relative to 
+the screen
+
+sessionStorage:
+Allows to save key/value pairs in a web browser. Stores the 
+data for one session
+
+self: 
+Returns the current window.
+
+status:
+Sets or returns the text in the statusbar of a window.
+
+
+---------------Main Window Object Methods-----------------
+
+alert():
+Displays an alert box with a message and an OK button.
+
+blur():
+Removes focus from the current window.
+
+clearInterval():
+Clears a timer set with setInterval().
+
+clearTimeout():
+Clears a timer set with setTimeout().
+
+close():
+Closes the current window.
+
+confirm():
+Displays a dialog box with a message and an OK and a Can-
+cel button.
+
+focus():
+Sets focus to the current window.
+
+moveTo():
+Moves a window to the specified position.
+
+open():
+Opens a new browser window.
+
+print():
+Prints the content of the current window.
+
+prompt():
+Displays a dialog box that prompts the visitor for input.
+
+resizeTo() Resizes the window to the specified width and 
+height.
+
+scrollTo():
+Scrolls the document to the specified coordinates
+
+setInterval():
+Calls a function or evaluates an expression at specified 
+intervals (in milliseconds).
+
+setTimeout():
+Calls a function or evaluates an expression after a speci-
+fied number of milliseconds.
+
+stop():
+Stops the window from loading.
+
+
+==================CONSOLE OBJECT=========================
+
+---------------------METHODS----------------------------
+
+assert()
+Writes an error message to the console if the assertion 
+is false.
+
+clear()
+Clears the console.
+
+count()
+Logs the number of times this particular call to count() 
+has beencalled.
+
+error()
+Oputputs an error message to the console.
+
+group()
+Createas a new inline group in the console. This indents 
+following console messages by an additional level, until 
+console.groupEnd() is called.
+
+groupCollapsed()
+Creates a new inline group is the console, however, the 
+new group is created collapsed. The user will need to use 
+the disclosure button to expand it.
+
+info()
+Outputs an informational message to the console.
+
+log()
+Outputs a message to the console.
+
+table()
+Displays tabular data as table.
+
+time()
+Starts a timer (can track how long an operation takes).
+
+timeEnd()
+Stops a timer that was previously started by the conso-
+le.time()
+
+trace()
+Outputs a stack trace to the console.
+
+warn()
+Outputs a warning message to the console.
+
+====================Geolocation API=====================
+
+This API allows the user to provide their location to 
+web applications. For privacy reason, the user is asked 
+for permission to report the location information.
+
+---------------------Properties------------------------
+
+coordinates
+Returns the position and altitude of the user devices 
+on Earth.
+
+coordinates.latitude
+Returns the position's latitude in decimal degrees.
+
+coordinates.longitude
+Returns the position's longitude in decimal degrees.
+
+coordinates.accuracy
+Returns the accuracy of the latitude and longitude pro-
+perties in meters.
+
+
+coordinates.heading
+Returns the direction in wich the device is traveling.
+If speed is 0, the device is unable to provide heading 
+information, returning null.
+
+coordinates.speed
+Returns the velocity of the device is meters per second.
+
+--------------------------------------------------------
+
+position
+Returns the position of the concerned device at a given 
+time.
+
+positionError
+Returns the reason of an error occurring when using the 
+geolocation device.
+
+positionOptions
+Is an object containing option properties to pass as a 
+parameter of Geolocation.getCurrentPosition() and Geo-
+location.watchPosition()
+
+------------------------Methods-------------------------
+
+clearWatch()
+Unregister location/error monitoring handler previously
+installed using Geolocation.watchPosition()
+
+getCurrentPosition()
+Returns the current position of the device.
+
+watchPosition()
+Returns a watch ID value that then can be used to unre-
+gister the handler by passing it to the Geolocation.cle-
+arWatch() method
+
+
+=====================History Object=====================
+
+This object contains informations about the history.
+
+---------------------Proprieties------------------------
+
+Length:
+Return the numbers of URL's in the history list.
+
+------------------------Methods-------------------------
+
+back():
+Laods the previous URL in the history list.
+
+forward():
+Loads the next URL in the history list.
+
+go():
+Loads a spceficic URL from the history.
+
+
+===================LocalStorage Object==================
+
+====================LOCATION OBJECT=====================
+
+
+The location object contains information about the cur-
+rent URL.
+
+
+-----------------------PROPERTIES-----------------------
+
+hash
+Sets or returns the anchor part of the URL (#)
+
+host
+Sets or returns the hostname and port number of the URL.
+
+hostname
+Sets or returns the hostname of the URL.
+
+href
+Sets or returns the entire URL;
+
+origin
+Return the protocol, hostname and port number of a URL
+
+pathname
+Sets or returns the path name of a URL.
+
+port
+Sets or return the port number of a URL.
+
+search
+Sets or return the querystring part of the URL.
+
+
+---------------------METHODS-------------------------
+
+assign()
+Loads a new document.
+
+reload()
+Reloads the curent document.
+
+replace()
+Replaces the current document with a new one.
+
+---------------------Proprieties------------------------
+
+host:
+Return or sets the hostname and port number of a URL.
+
+hostname:
+Return or sets the hostname a of a URL.
+
+href:
+Return or sets the entire URL.
+
+origin:
+Return the protocol, hostname and port number of a URL.
+
+pathname:
+Return or sets the path name of a URL.
+
+port:
+Return or sets the port number of a URL.
+
+protocol:
+Return or sets the protocol number of a URL.
+
+------------------------Methods-------------------------
+
+assing():
+Loads a new document.
+
+reload():
+Reloads the current document.
+
+replace():
+Replace the current document with a new one.
+
+
+====================Navigator Object====================
+
+
+This object contains informations about the browser.
+
+---------------------Proprieties------------------------
+
+appCodeName:
+Returns the code name of the browser.
+
+appName:
+Returns the name of the browser.
+
+appVersion:
+Returns the version of the browser.
+
+cookieEnabled:
+Determines whether cookies are enabled in the browser.
+
+geolocation:
+Returns a Geolocaion object that can be used to locate 
+the user's position.
+
+language:
+Returns  the language of the browser.
+
+online:
+Determines whether the browser is online.
+
+platform:
+Returns fow wich platform the browser is compiled.
+
+product:
+Reuturns the engine name of the browser.
+
+userAgent:
+Returns the user-agent header sent by the browser to the 
+server.
+
+
+------------------------Methods-------------------------
+
+javaEnabled():
+Specifies whether or not the browser has Java enabled.
+
+
+======================Screen Object=====================
+
+
+This object contains informations about the visitors 
+screen.
+
+==================SessionStore Object===================
+
+---------------------Proprieties------------------------
+
+availHeigth:
+Returns the height of the screen excluding the Windows 
+Taskbar.
+
+availWidth:
+Returns the width of the screen excluding the Windows 
+Taskbar.
+
+colorDepth:
+Returns the bit depth of the color pallete for displaying 
+images.
+
+height:
+Returns the total height of the screen.
+
+pixelDepth:
+Returns the color resolution in pixel of the screen .
+
+width:
+Returns the total width of the screen.
+

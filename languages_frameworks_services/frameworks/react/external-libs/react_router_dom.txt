@@ -1,0 +1,256 @@
+---------------------------CREATING BASIC ROUTES-----------------------------------
+
+1) Create a new folder named routes with the file routes.tsx
+
+
+import React from 'react'
+
+import { Switch, Route, BrowserRouter } from 'react-router-dom'
+
+import Dashboard from '../pages/Dashboard'
+import Main from '../pages/List'
+
+const AppRoutes: React.FC = () => (
+    <BrowserRouter>
+        <Switch>
+            <Route path='/dashboard' component={Dashboard}  exact/>
+            <Route path='/main' component={Main} />
+        </Switch>
+    </BrowserRouter>
+)
+
+export default AppRoutes
+
+-----------------------------------------------------------------------------------
+
+2) Use in your application passing the url in the component Link:
+
+import React from "react";
+import "./styles.css";
+
+import { Link } from "react-router-dom";
+
+export default function Menu() {
+  return (
+    <>
+        <ul>
+          <li>
+            <Link  to="/">
+              Dashboard
+            </Link>
+          </li>
+          <li>
+            <Link to="/main">
+              Main
+            </Link>
+        </ul>
+    </>
+  );
+}
+
+
+
+--------------------------CREATING ROUTES WITH PARAMS------------------------------
+
+1) Create the basic file with the route:
+
+import React from 'react'
+
+import { Switch, Route, BrowserRouter } from 'react-router-dom'
+
+import Dashboard from '../pages/Dashboard'
+import List from '../pages/List'
+
+import Layout from '../components/Layout'
+
+const AppRoutes: React.FC = () => (
+    <BrowserRouter>
+        <Switch>
+            <Route path='/list/:type' component={List} />
+        </Switch>
+    </BrowserRouter>
+)
+
+------------------------------------------------------------------------------------
+
+export default AppRoutes
+
+2) Create an interface to access the match of the React Router Dom:
+
+interface IRouteParamTypes{
+    match: {
+        params: {
+            type: string
+        }
+    }
+}
+
+
+-------------------------------------------------------------------------------------
+
+3) Use the params with the interface troguht a useMemo function in the component that 
+desires acess the params:
+
+const List: React.FC<IRouteParamTypes> = ({match}) => {
+
+    const {type} = match.params
+
+    const title = useMemo(() => {
+        return type === 'entrances' ? 'Entrances' : 'Budgets'
+    }, [type])
+
+return (
+        <Container title={tile}/>
+	)
+}
+
+
+----------------------CONSUMING PROPS FROM ANOTHER SCREENS----------------------------
+
+1) Defines the route with param:
+
+import React from 'react'
+
+import { Switch, Route, BrowserRouter } from 'react-router-dom'
+
+import Dashboard from '../pages/Dashboard'
+import List from '../pages/List'
+
+const AppRoutes: React.FC = () => (
+    <BrowserRouter>
+        <Switch>
+            <Route path='/page/:id' component={List} />
+        </Switch>
+    </BrowserRouter>
+)
+
+---------------------------------------------------------------------------------------
+
+2) Consume the param:
+
+import React from 'react'
+
+import {useParams} from 'react-router-dom'
+
+export default function Param() {
+
+    const {id} = useParams()
+
+    return (
+        <div>
+            <p>You are in the page {id}</p>
+        </div>
+    )
+}
+
+-----------------------------DEFINING A NOT FOUND PAGE--------------------------------
+
+1) Create the NotFound component:
+
+import React from 'react';
+
+export default function NotFound(){
+  return (
+      <div>
+          <h1>404 - Page not found...</h1>
+      </div>
+  );
+}
+
+---------------------------------------------------------------------------------------
+
+2) Pass the path route as '*' to redirect the not found page:
+
+import React from 'react'
+
+import { Switch, Route, BrowserRouter } from 'react-router-dom'
+
+import NotFound from '../pages/NotFound'
+
+const AppRoutes: React.FC = () => (
+    <BrowserRouter>
+        <Switch>
+            <Route path='*' component={NotFound} />
+        </Switch>
+    </BrowserRouter>
+)
+
+---------------------------------------------------------------------------------------
+
+3)Define any link to acess the route:
+
+import React from "react";
+import "./styles.css";
+
+import { Link } from "react-router-dom";
+
+export default function Menu() {
+  return (
+    <>
+        <ul>
+          <li>
+            <Link  to="/notfound">
+                Not Found
+            </Link>
+          </li>
+        </ul>
+    </>
+  );
+}
+
+---------------------PASSING DATA FROM API FOR ANOTHER SCREENS-------------------------
+
+First file:
+
+import React from 'react'
+import API from '../services./api'
+import {Link, useHistory} from 'react-router-dom'
+
+export default function Register(){
+    const [name, setName] = useState('')
+
+    async function handleData () {
+        const data = name
+    } try{
+        const response = await api.post('name_of_the_route', data)
+       localStorage.setItem('userName', response.data.name);
+   
+ history.push('/route_of_second_file')
+    }catch(err){
+        alert('Error to register data: ' + err)
+    }
+}
+
+---------------------------------------------------------------------------------------
+
+Second file:
+
+import React from 'react'
+import {Link, useHistory} from 'react-router-dom'
+export default function getData(){
+    const gettingData = localStorage.getItem('userName')
+
+ return(
+ <p>Your name is {gettingData}</p>
+)
+}
+
+-------------------------------------ISSUES--------------------------------------------
+
+Use a Router component wrapping your whole application for avoiding undefined route ho-
+oks. Example:
+
+
+import React from 'react'
+import ReactDOM from 'react-dom'
+import App from './app'
+import { BrowserRouter as Router } from 'react-router-dom'
+
+ReactDOM.render(
+     <React.StrictMode>
+          <Router>
+               <App />
+          </Router>
+     </React.StrictMode>
+     , document.getElementById('root')
+)

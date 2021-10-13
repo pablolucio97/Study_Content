@@ -1,0 +1,16 @@
+
+    function requestNotification(){
+        Notification.requestPermission();
+    }
+    
+    requestNotification()
+    
+    function newNotification() {
+    
+        if(Notification.permission === 'granted'){
+            new Notification('New notification 🎉', {
+                body: `New notification you are received.`
+            })
+        }
+
+    }

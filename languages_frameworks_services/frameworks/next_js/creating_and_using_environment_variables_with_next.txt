@@ -1,0 +1,55 @@
+==============CREATING AND USING ENVIROMENT VARIALBES WITH NEXT==============
+
+------------------USING EVIRONMENT VARIABLES IN THE SERVER-------------------
+
+1)Crate a new file named .env.local in the root project folder.
+
+------------------------------------------------------------------------------
+
+2)Create your vairables using the prefix NEXT_PUBLIC for Next can read it. E- 
+xample:
+
+PASSWORD='ItIsMyPassWord123'
+
+------------------------------------------------------------------------------
+
+3)Restart the server application.
+
+------------------------------------------------------------------------------
+
+4)Use in your code, example:
+
+export const getServerSideProps : GetServerSideProps = async (context) => {
+
+    console.log(process.env.PASSWORD)
+    return{
+        props:{}
+    }
+
+}
+
+------------------USING EVIRONMENT VARIABLES IN THE BROWSER-------------------
+
+1)Crate a new file named .env.local in the root project folder.
+
+------------------------------------------------------------------------------
+
+2)Create your vairables using the prefix NEXT_PUBLIC for Next can read it. E- 
+xample:
+
+NEXT_PUBLIC_PASSWORD='ItIsMyPassWord123'
+
+------------------------------------------------------------------------------
+
+3)Restart the server application.
+
+------------------------------------------------------------------------------
+
+4)Use in your component, example:
+
+export default function Any(){
+    return(
+        <p>Your password is {process.env.NEXT_PUBLIC_PASSWORD}</p>
+    )
+}
+

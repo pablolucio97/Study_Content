@@ -1,0 +1,255 @@
+----BUILDING AND CONSUMING API WITH NEXT AND HOSTING IN AWS S3 WITH MONGODB----
+
+1) Whit a NextJS alreayd running, create a folder with the name of your end-
+point inside the folder api,example: videos.
+
+------------------------
+
+2) Create and login in your MongoDb account, create a new cluester(you can
+have a single cluster for free, but you can various database in a single 
+cluster)with AWS as cloud provider.
+
+------------------------
+
+3)Create a new database with a new collection. Click in Databases Access and
+add a new user with username and password. Permit this user for read and 
+write any database. Set 0.0.0.0/0  as IP address for open your network ad-
+dress.
+
+------------------------
+
+4) Install the mongodb and your types.
+
+------------------------
+
+5) Create a new .env.local file with environment variables:
+MONGODB_URI=yourmongodb_uri
+MONGODB_DB=yourmongodb_database
+
+------------------------
+
+6) Create a new file named utils and inside this a new file named mongodb.ts
+with a Db and MongoClient importation, instance an async function to connect
+with the mongo database and return them:
+
+import {Db, MongoClient} from 'mongodb'
+
+const uri = process.env.MONGODB_URI;
+const dbName = process.env.MONGODB_DB;
+
+let cachedDb: Db;
+let cachedClient: MongoClient;
+
+if(!uri){
+  throw new Error('Please define the MONGODB_URI inside your .env.')
+}
+
+if(!dbName){
+  throw new Error('Please define the MONGODB_DB inside your .env.')
+}
+
+export default async function connectToDatabase(){
+  if(cachedClient && cachedDb){
+    return{client: cachedClient, db: cachedDb}
+  }
+  const client = await MongoClient.connect(uri, {
+     // @ts-ignore: Unreachable code error
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+  });
+  
+  const db = await client.db(dbName)
+  
+  cachedDb = db
+  cachedClient = client
+  
+  return {client, db}
+}
+
+
+------------------------
+
+7) Do login in the Aws console search for S3 and create a new S3 bucket. Goes
+to AIM to get your aws keys and store them inside the .env.local file. Example:
+AWS_SECRET_KEY=your_aws_secret_key
+AWS_ACCESS_KEY=Ayour_aws_access_key
+AWS_REGION=your_aws_region
+AWS_BUCKET=your_aws_s3_bucket
+
+------------------------
+
+8) Install the aws-sdk, multer and multer-s3.
+
+------------------------
+
+9) Create a new file named upload.ts inside the utils folder with ins-
+tances of aws, a s3 instance and configuration object named upload and 
+export it:
+
+import aws from 'aws-sdk'
+import multer from 'multer'
+import multerS3 from 'multer-s3'
+import crypto from 'crypto'
+
+aws.config.update({
+  secretAccessKey: process.env.AWS_SECRET_KEY,
+  accessKeyId: process.env.AWS_ACCESS_KEY,
+  region: process.env.AWS_REGION
+})
+
+const s3 = new aws.S3({})
+
+let upload = multer({
+  storage: multerS3({
+    s3: s3,
+    bucket: process.env.AWS_BUCKET,
+    acl: 'public-read',
+    contentType: multerS3.AUTO_CONTENT_TYPE,
+    metadata: function(req, file, cb){
+      cb(null, {fieldName: file.fieldname})
+    },
+    key: function(req, file, cb){
+      crypto.randomBytes(15, (err, hash) => {
+        if(err) cb(err);
+        const fieldname = `${hash.toString('hex')}-${file.originalname}`
+        cb(null, fieldname)
+      })
+    }
+  })
+})
+
+export default upload;
+
+------------------------
+
+10) Install the next-connect for handler middlewares.
+
+------------------------
+
+11)Inside the folder with even name of your end-point, create a new file (ex: vi-
+deo.ts) with importations of your upload, database and the next-connect to handle
+the requests using the Next connect:
+
+OBS: The upload file on Insomnia comes from doesn't comes from req.file.location.
+instead of req.body.c Export a bodyParser config to avoid conflicts.
+
+import nc from "next-connect";
+import upload from '../../utils/uploads';
+import connectToDatabase from '../../utils/mongodb'
+import {NextApiRequest, NextApiResponse} from 'next'
+
+
+const handler = nc ()
+  .use(upload.single('file'))
+  .post(async (req: NextApiRequest, res: NextApiResponse) => {
+    const {title, authorId, videoURL, authorName, authorAvatar, views} = req.body
+    const {db} = await connectToDatabase();
+    const collection = db.collection('videos')
+
+    await collection.insertOne({
+      title,
+      authorAvatar,
+      authorId,
+      views,
+      videoURL,
+      authorName,
+      //@ts-ignore
+      thumb: req.file.location
+    })
+
+
+    return res.json({ok: true})
+  })
+
+    export const config = {
+    api: {
+      bodyParser: false
+    }
+  }
+
+export default handler;
+
+
+
+------------------------
+
+12)Create a new envirnment on Insomnia with post method with multpart file
+passing the host and port of your server and do your requests.
+
+------------------------
+
+13) You can create a function to list your data or provide it in the post 
+method of the API. In this case w're creating a new function to list all
+data. Inside the utils folder, create a new file named getYourResourceName 
+export an async function to do this. Example:
+
+import connectToDatabase from '../utils/mongodb';
+
+export async function getVideos() {
+  const { db } = await connectToDatabase();
+  const data = await db.collection('videos').find().toArray();
+  return data;
+}
+
+export default getVideos;
+
+------------------------
+
+14)Inside a desired page of your application, import the function that
+consume your data, pass it in the getStaticProps and consume the data
+in your component/page, example:
+
+import React from 'react'
+import { Box, Grid } from '@material-ui/core';
+import Layout from '../components/Layout'
+import { GetStaticProps } from 'next'
+import VideoCard from '../components/VideoCard'
+import { getVideos } from '../database/getVideos'
+
+type VideoProps = {
+  title: string;
+  thumb: string;
+  _id: string;
+  authorName: string;
+  authorAvatar: string;
+  views: number;
+  updatedAt: Date;
+}
+
+type VideosList = {
+  videos: VideoProps[]
+}
+
+const Home = ({ videos }: VideosList) => (
+  <Layout title='Youtube'>
+    <Box p={2}>
+      <Grid container spacing={4}>
+        {videos.map((item) => (
+          <Grid key={item._id} item xl={3} lg={3} md={4} sm={6} xs={12}>
+            <VideoCard
+              _id={item._id}
+              thumb={item.thumb}
+              title={item.title}
+              authorAvatar={item.authorAvatar}
+              authorName={item.authorName}
+              views={item.views}
+              updatedAt={item.updatedAt}
+            />
+          </Grid>
+        ))}
+      </Grid>
+    </Box>
+  </Layout>
+);
+
+export default Home;
+
+export const getStaticProps: GetStaticProps = async () => {
+  const data = await getVideos();
+  return {
+    props: {
+      videos: JSON.parse(JSON.stringify(data))
+    }
+  }
+}
+

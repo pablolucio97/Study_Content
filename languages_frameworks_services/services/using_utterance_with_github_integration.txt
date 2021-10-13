@@ -1,0 +1,45 @@
+==========USING UTTERANCE WITH GITHUB INTEGRATION IN YOUR APPLICATION==========
+
+Uterance is a tool that allows user login with your GitHub account and 
+comment in your application. You need to enable it with your GitHub 
+and authorize it to use. Example:
+
+1) Be sure your repo is public (if is a fork, turn on the issues emi-
+tions at settings) and install the uterance trought the url:
+https://github.com/marketplace/utterances.
+
+---------------------------
+
+2)Authorize your application to integrate with the Utterances.
+
+---------------------------
+
+3)In your application, in the desired page/component, create a script
+inside the useEffect that creates a div element renderizing the Utte-
+rances passing your repo ad others needs configs. Example:
+
+useEffect(() => {
+    let script = document.createElement('script')
+    let anchor = document.getElementById('inject-comments-for-uterances')
+    script.setAttribute('src', 'https://utteranc.es/client.js')
+    script.setAttribute('crossorigin', 'anonymous')
+    script.setAttribute('async', 'async')
+    script.setAttribute('repo', 'pablolucio97/ignite-react-js-space-travelling')
+    script.setAttribute('issue-term', 'pathname')
+    script.setAttribute('theme', 'github-dark')
+    anchor.appendChild(script)
+  }, [])
+  
+---------------------------
+
+4)Define the element in your component/page:
+
+<div id="inject-comments-for-uterances" style={{ width: '100%' }}></div>
+
+
+-----------------------------------REFS-----------------------------------------
+
+https://utteranc.es/?installation_id=19915310&setup_action=install
+
+https://github.com/marketplace/codebeat
+

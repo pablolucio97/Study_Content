@@ -1,0 +1,13 @@
+1) Api consuming.
+2) High Order Functions.
+3) Layouts with grid and flex mixed.
+4) Dom handling with pure javascript apps.
+5) Theme Toggle with Styled Components.
+6) CRUD with axios and Json-server.
+7) User authentication with useContext and JWT.
+8) Contexts handling with useContext and useReducer.
+9) Responsivity.
+10) Css transitions and animations.
+11) Route and route hooks with react-router-dom.
+12) Tests with @react_testing_library and jest.
+13) React hooks.

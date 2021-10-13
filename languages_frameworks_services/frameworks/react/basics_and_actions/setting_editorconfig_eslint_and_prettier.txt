@@ -1,0 +1,97 @@
+=====================SETTING EDITORCONFIG ESLINT AND PRETTIER CONFIG========================
+
+EditorConfig: Is useful to stand a pattern in your editor, such as line final, charset and 
+others.
+
+ESlint: Is useful to patern your code and it helps to find coding errors.
+
+Prettier: Is useful to patern the line breaks, identation, quotes, seimcolon and your code 
+formater.
+
+--------------------------------SETTING EDITCONFIG CONFIGS----------------------------------
+
+1)Install the EditorConfig extension for VScode and reload the VScode.
+
+--------------------------------------------------------------------------------------------
+
+2)Create in the root of the project a new file named .editorconfig with your configs> Exa-
+ple:
+
+root = true
+
+[*]
+indent_style = space
+indent_size = 2
+end_of_line = lf
+charset = utf-8
+trim_trailing_whitespace = true
+insert_final_newline = true
+
+-------------------------------------SETTING ESLINT CONFIGS---------------------------------
+
+1)Install the ESlint extension for VScode.
+
+--------------------------------------------------------------------------------------------
+
+2)Install the Eslint: yarn add eslint
+
+--------------------------------------------------------------------------------------------
+
+3)Reply to eslint terminal questions to eslint detect and install the needed depenencies.If
+has conflicts between the React and Eslint confis, uninstall the eslint dependency, delete 
+your node_modules folder, delete the pagackge-lock.josn file and run npm i again to reins-
+tall your all packages.
+
+4)Run the command npm i -D prettier eslint-config-prettier eslint-plugin-prettier to install
+the anothers needed Eslint packages.
+
+--------------------------------------------------------------------------------------------
+
+5)Is needs, create a new file name eslintrc.js/eslintrc.ts in the root folder and write 
+your Eslint config. Example:
+
+module.exports = {
+    "env": {
+        "browser": true,
+        "es2021": true,
+        "node": true,
+        "jest": true
+    },
+    "extends": [
+        "eslint:recommended",
+        "plugin:react/recommended"
+    ],
+    "parserOptions": {
+        "ecmaFeatures": {
+            "jsx": true
+        },
+        "ecmaVersion": 12,
+        "sourceType": "module"
+    },
+    "plugins": [
+        "react"
+    ],
+    "rules": {
+        "react/react-in-jsx-scope": "off"
+    }
+};
+
+6) Run the command npx eslint src/**/*.js --fix to fix all js files. Use ts in case working 
+with typescript.
+
+-------------------------------------SETTING PRETTIER CONFIGS---------------------------------
+
+1)Install the prettier: yarn add prettier
+
+--------------------------------------------------------------------------------------------
+
+2) Create a new file name pretierrc.js/prettier.ts in the root folder and write your Pret-
+tier config. Example:
+
+module.exports = {
+  semi: true,
+  traillingComma: 'all',
+  singleQuote: true,
+  printWidth: 120,
+  tabWidth: 2
+}

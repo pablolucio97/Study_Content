@@ -1,0 +1,119 @@
+1)Create a folder named database and inside this create a new file named database.sqlite and
+another named connection.ts. Still indside the folder database, create a new folder named 
+migrations.
+
+--------------------------------------------------------------------------------------------
+
+2)Create inside the root of the project a new file named ormconfig.json with the settings:
+
+{
+    "type" : "sqlite",
+    "database" : "./src/database/database.sqlite",
+    "migrations" : [
+        "./src/database/migrations/*.ts"
+    ],
+    "cli" : {
+        "migrationsDir" : "./src/database/migrations"
+    }
+}
+
+--------------------------------------------------------------------------------------------
+
+3)Config the file connection.ts and import it inside the file server.ts:
+
+import {createConnection} from 'typeorm'
+
+createConnection()
+
+--------------------------------------------------------------------------------------------
+
+4)Configure your json to execute typeORM using typescript adding a new line in the object 
+"scripts":
+"typeorm" : "ts-node-dev ./node_modules/typeorm/cli.js"
+
+--------------------------------------------------------------------------------------------
+
+5) Create your migrations running the command: npx typeorm migration:create -n name_of_table. 
+An timestamp file with the name of your table/migration will be created.
+
+--------------------------------------------------------------------------------------------
+
+6) Define your tables, example:
+
+import {MigrationInterface, QueryRunner, Table} from "typeorm";
+
+export class createOrphanages1602608851782 implements MigrationInterface {
+
+    public async up(queryRunner: QueryRunner): Promise<void> {
+        await queryRunner.createTable(new Table({
+            name : 'orphanages',
+            columns : [
+                {
+                    name: 'id',
+                    type: 'integer',
+                    unsigned: true,
+                    isPrimary: true,
+                    isGenerated: true,
+                    generationStrategy: 'increment'
+                },
+                {
+                    name: 'name',
+                    type: 'varchar',
+                },
+                {
+                    name: 'latitude',
+                    type: 'decimal',
+                    scale: 10,
+                    precision: 2
+                },
+                {
+                    name: 'longitude',
+                    type: 'decimal',
+                    scale: 10,
+                    precision: 2
+                },
+                {
+                    name: 'about',
+                    type: 'text'
+                },
+                {
+                    name: 'instructions',
+                    type: 'text'
+                },
+                {
+                    name: 'open_on_weekends',
+                    type: 'boolean',
+                    default: false
+                }
+            ]
+        }))
+    }
+
+    public async down(queryRunner: QueryRunner): Promise<void> {
+        await queryRunner.dropTable('orphanages')
+    }
+
+}
+
+
+--------------------------------------------------------------------------------------------
+
+7) Run the command npm run typeorm migration:run to execute your migration.
+
+==========================================TIPS==============================================
+
+Don't alter the name of the migrations created by the typeorm cli.
+
+Use yarn istead of npm
+
+To do alterations on the migration already created, run the command yarn typeorm migration:re-
+vert, do yours changes and run again yarn typeorm migration:run
+
+
+
+
+
+
+
+
+

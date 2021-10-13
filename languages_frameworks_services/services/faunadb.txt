@@ -1,0 +1,79 @@
+============================USING FAUNA DB============================
+
+FaunaDB is a nosql light db that allows work with free data. Is reco-
+mended for application with light banck-end, as NextJS as NextJS alre-
+ady does some back-end actions.
+
+1) Run yarn add faunadb to install the Faunadb.
+
+-----------------------
+
+2) Register in the https://fauna.com/ site, in the site, create a new 
+database, a new collection and a new index (a string to use as index 
+ref at leading with queries in your code) passing the collection, the 
+index name (example: get_user_by_email) and the term (example: data.e-
+mail).
+
+-----------------------
+
+3)Configure a new api key. Copy this key and store as env variable.
+
+-----------------------
+
+4) Inside the folder services, create a new file named fauna.ts with 
+a instance and an exportation of the Fauna, example:
+
+import {Client} from 'faunadb'
+
+export const fauna = new Client({
+    secret: process.env.FAUNA_API_KEY,
+    domain: 'db.us.fauna.com'
+})
+
+-----------------------
+
+5) In the desired file of your application, use the fauna db. Exmaple:
+
+
+In this case is create a new data inside the collections 'users' when
+the callback function of the NextAuth runs.
+
+import NextAuth from "next-auth";
+import Providers from "next-auth/providers";
+import { query as q } from "faunadb";
+import { fauna } from "../../../services/fauna";
+
+export default NextAuth({
+  providers: [
+    Providers.GitHub({
+      clientId: process.env.CLIENT_ID,
+      clientSecret: process.env.CLIENT_SECRET_KEY,
+      scope: "read:user",
+    }),
+  ],
+  callbacks: {
+    async signIn(user, account, profile) {
+
+
+        const {email} = user
+        
+        await fauna.query(
+            q.Create(
+                q.Collection('users'),
+                {data: {email}}
+            )
+        )
+
+        return true
+    },
+  },
+});
+
+
+-------------------------GENERAL TIPS--------------------------------
+
+All if condition in FaunaDB should has a else condition.
+All operations with FaunaDB should be done in the back-end.
+All operations in FaunaDB requires an index to find the data.
+
+

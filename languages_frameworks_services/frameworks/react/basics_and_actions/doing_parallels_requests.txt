@@ -1,0 +1,40 @@
+==========================DOING PARALLEL REQUESTS=============================
+
+1) Define an array, your type and a function to requests both routes in a 
+single object:
+
+const [posts, setPost] = useState<IPost[]>([])
+    
+ const loadParallelRequests = async () => {
+  const postsResponse = fetch('https://jsonplaceholder.typicode.com/posts');
+  const photosResponse = fetch('https://jsonplaceholder.typicode.com/photos');
+
+  const [posts, photos] = await Promise.all([postsResponse, photosResponse]);
+
+  const postsJson = await posts.json();
+  const photosJson = await photos.json();
+
+  const postsAndPhotos = postsJson.map((post:string[], index:number) => {
+    return { ...post, cover: photosJson[index].url };
+  }); //here 'cover' is a new prop for posts array
+  
+  setPost(postsAndPhotos);
+};
+
+loadParallelRequests()
+
+------------------------------------------------------------------------------
+
+2)Map it in your component:
+
+    {
+        posts.map(post => (
+          <div>
+            <li key={post.id}>
+            {post.title}
+          </li>
+          <img src={post.cover} alt={post.title} />
+          </div>
+        ))
+      } 
+

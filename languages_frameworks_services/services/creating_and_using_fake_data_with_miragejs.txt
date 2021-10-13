@@ -1,0 +1,140 @@
+===================CREATING AND USING FAKE DATA WITH MIRAGEJS======================
+
+------------------------------USING THE MIRAGEJS-----------------------------------
+
+1) Run yarn add miragejs to install the miragejs.
+
+----------------------------
+
+2) In your app.tsx file, import the createServer function and define the con-
+fig object with routes, the namespace (end-point), and the routes, example:
+
+import { Component } from "./components/Component";
+import { createServer } from 'miragejs'
+
+function App() {
+  createServer({
+    routes() {
+      this.namespace = 'api'
+      this.get('/transactions', () => {
+        return[
+          {
+            id: 1,
+            name: 'Pablo'
+          }
+        ]
+      })
+    }
+    
+  })
+
+  return (
+    <>
+      <Component />
+    </>
+  );
+}
+
+export default App;
+
+-------------------------
+
+3) In your component file, read it trought a fetch handling, example:
+
+import { useEffect } from "react";
+
+export function TransactionsTable() {
+
+    useEffect(() =>{
+        fetch('http://localhost:3000/api/transactions')
+        .then(response => response.json())
+        .then(data => console.log(data))
+    }, [])
+    
+ return (
+    <>
+      <p>Component</p>
+    </>
+  );
+}
+
+-----------------------USING MODELS IN THE MIRAGEJS--------------------------
+
+1) Pass a prop named "models" with the model as the function createServer
+param:
+
+models:{
+  transaction: Model,
+},
+
+-------------------------
+
+2) If you desire seeds, configure seeds to populate your model. The name of
+seeds collection will be the same in the end-point url and response for the
+object request.
+
+    seeds(server){
+      server.db.loadData({
+        transactions:[
+          {
+            id: 1,
+            title: "Freelance de website",
+            type: "deposit",
+            category: "Dev",
+            amount: 6200,
+            createdAt: "2021-09-16 12:31",
+          },
+          {
+            id: 2,
+            title: "Aluguel",
+            type: "withdraw",
+            category: "Moradia",
+            amount: 1100,
+            createdAt: "2021-09-16 12:31"
+          },
+        ]
+      })
+},
+
+-------------------------
+
+3) Define a route for the get method can get your data and another to post:
+
+
+    routes() {
+      this.namespace = 'api'
+
+      this.get('/transactions', () => {
+        return this.schema.all('transaction')
+      })
+
+      this.post('/transactions', (schema, request) => {
+        const data = JSON.parse(request.requestBody)
+        return schema.create('transaction', data)
+      })
+    }
+
+--------------------------
+
+4) Inside your component has a function to read your data and another to 
+create it, examples:
+
+
+Create/post:
+
+function handleCreateNewTransaction(e: FormEvent) {
+    e.preventDefault()
+    const data = {
+        title,
+        value,
+        type,
+        category
+    }
+    api.post('/transactions', data)
+}
+
+
+--------------
+
+
+Read/get

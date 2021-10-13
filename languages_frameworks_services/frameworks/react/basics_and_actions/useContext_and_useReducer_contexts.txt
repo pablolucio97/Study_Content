@@ -1,0 +1,135 @@
+=============CREATING AND CONSUMING CONTEXTS WITH USECONTEXT AND USEREDUCER===========
+
+1) Create a new folder to store your context. Example: PostsContextProvider.
+
+--------------------------------------------------------------------------------------
+
+2)Create a new file named data.js with your context raw data. Example:
+
+export const data = {
+    posts: [],
+    loading: false
+}
+
+--------------------------------------------------------------------------------------
+
+3) Create a new file named types.js to store your actions types, this is useful to a-
+void typing wrong your actions and pattern this. Example:
+
+export const POSTS_LOADING = 'POSTS_LOADING'
+export const POSTS_SUCCESS = 'POSTS_SUCCESS'
+
+--------------------------------------------------------------------------------------
+
+4) Create a new file name actions.js to store your actions. When you're working with 
+requests always clean your garbage requests passing a return function witch only runs 
+when called in the component. Example:
+
+import * as types from './types'
+
+export const loadPosts = async (dispatch) => {
+
+    dispatch({type: types.POSTS_LOADING})
+
+    const postsRaw = await fetch('https://jsonplaceholder.typicode.com/posts')
+    const posts = await postsRaw.json()
+    return () => dispatch({type: types.POSTS_SUCCESS, payload: posts})
+}
+
+--------------------------------------------------------------------------------------
+
+5)Create a new file named context.js to initialize your context. Example:
+
+import { createContext } from "react";
+
+export const PostsContext = createContext()
+
+--------------------------------------------------------------------------------------
+
+6)Create the reducer to handle your context. Example:
+
+import * as types from './types'
+
+export const reducer = (state, action) => {
+
+    switch(action.type){
+        case types.POSTS_SUCCESS:
+        return {...state, posts: action.payload, loading: false}
+        case types.POSTS_LOADING:
+        return {...state, loading: true}
+        default:
+    }
+
+    return {...state}
+}
+
+--------------------------------------------------------------------------------------
+
+7)Wrap your whole application with the desired context. Example:
+
+import { PostsProvider } from "../context/with_reducer/PostsProvider"
+import Posts from '../components/Posts'
+
+const App = () => {
+
+
+    return (
+        <PostsProvider>
+            <div>
+                <Posts/>
+            </div>
+        </PostsProvider>
+    )
+}
+
+export default App
+
+--------------------------------------------------------------------------------------
+
+8)Use the context in your components. Example: 
+
+import { useContext, useEffect, useRef } from 'react'
+import { loadPosts } from '../../context/with_reducer/PostsProvider/actions'
+import { PostsContext } from '../../context/with_reducer/PostsProvider/context'
+
+export default function Posts() {
+
+    const isMounted = useRef(true)
+    const {postState, postDispatch} =  useContext(PostsContext)
+
+    useEffect(() => {
+        loadPosts(postDispatch).then(dispatch => {
+            if(isMounted.current){
+                dispatch()
+            }
+        })
+
+        return () => {
+            isMounted.current = false
+        }
+
+    }, [postDispatch])
+
+
+    return (
+        <div>
+            {
+                postState.loading ?
+
+                <p>Loading</p>
+
+                :
+
+                postState.posts.map((post) => (
+                    <p key={post.id} >{post.title}</p>
+                ))
+
+            }
+        </div>
+    )
+}
+
+
+
+
+

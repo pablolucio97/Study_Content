@@ -1,0 +1,46 @@
+==================PROTECTING REQUESTS WITH NEXT-AUTH-JWT====================
+
+1) Defines your JWT_SECRET in a .env file. You can generate it or use a sin-
+gle value.
+
+-------------------------
+
+2) Inside the file that contains your http methods (controller), import the 
+jwt from next-auth/jwt and defines a logic allowing a request only if has 
+the jwt token. Example:
+
+import jwt from 'next-auth/jwt';
+
+const secret = process.env.JWT_SECRET;
+
+const handler = nc()
+  .post(async (req: NextApiRequest, res: NextApiResponse) => {
+    const { title, authorId, videoURL, authorName, authorAvatar, views } =
+      req.body;
+
+    const token = await jwt.getToken({ req, secret });
+
+    if (token) {
+      const { db } = await connectToDatabase();
+      const collection = db.collection('videos');
+      
+      await collection.insertOne({
+        title,
+        authorAvatar,
+        authorId,
+        views,
+        videoURL,
+        authorName,
+        //@ts-ignore
+        thumb: req.file.location,
+      });
+
+      return res.json({ ok: true });
+    }
+      return res.status(401).end()
+  });
+  
+-------------------------
+  
+3) Inside the Insomia, in the 'headers' tab, pass your token where the key is Cookie 
+and the value next-auth.session-token=your_token_comes_here.

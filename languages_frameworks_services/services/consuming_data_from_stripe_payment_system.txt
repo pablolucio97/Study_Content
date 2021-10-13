@@ -1,0 +1,84 @@
+====================CONSUMING DATA FROM STRIPE PAYMENT SYSTEM====================
+
+1)Log with you account in stripe.com, goes to product, add product, configu-
+re your product (your payment system) and save.
+
+------------------------
+
+2)Go to dashboard, developers, API keys, reveal and copy yout secret key and 
+past it in a local.env variable.
+
+------------------------
+
+3) Run yarn add stripe to install the stripe and create a new folder named
+services with a file stripe.ts.
+
+------------------------
+
+4) In the sripe file import the Stripe and the name and version of your app
+of the package.json and create and export a new instance of configuration 
+of the Stripe sdk. Example:
+
+import Stripe from "stripe";
+import { name, version } from "../../package.json";
+
+export const stripe = new Stripe(process.env.STRIPE_API_KEY, {
+  apiVersion: "2020-08-27",
+  appInfo: {
+    name,
+    version
+  },
+});
+
+------------------------
+
+5) Inside the file page that will display your price, use a getServerSideProps
+function with a fetching const to get data from the stripe (the price id can be 
+get in products/pricing in the Stripe site.) and an object const with the pro-
+duct props and return them to the component. Example:
+
+import { GetServerSideProps } from 'next'
+import { stripe } from '../services/stripe'
+
+type PriceProps = {
+  product: {
+    priceId: string;
+    amount: string
+  }
+}
+
+export default function Home({ product }: PriceProps) {
+
+  return (
+        <span>For {product.amount} per month</span>
+  )
+}
+
+export const getServerSideProps: GetServerSideProps = async () => {
+
+  const price = await stripe.prices.retrieve('price_1JbiwWIezH33hFSXEL8nbJiI')
+
+  const product = {
+    priceId: price.id,
+    amount: new Intl.NumberFormat('en-US', {
+      style: 'currency',
+      currency: 'USD'
+    }).format(price.unit_amount / 100)
+  }
+
+  return {
+    props: {
+      product
+    }
+  }
+}
+
+------------------------
+
+
+
+
+
+OBS: Always works with prices in cents at using Stripe API in your appli-
+cation.
+

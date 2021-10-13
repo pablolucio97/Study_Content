@@ -1,0 +1,513 @@
+=====================GIT AND GITHUB COURSE=====================
+
+-----------------------------GIT-------------------------------
+
+Git is a version control system that bind the GitHub 
+with your local enviroment code.Git is used to create local re-
+positorys, this repository can be create using the command git.
+
+
+----------------------------GITHUB-----------------------------
+
+GitHub is the social network of code where the develo-
+pers can create and update yours and codes of anothers
+developes.
+
+---------------------USING MARKDOWN LANGUAGE--------------------
+--------------------------TEXT STYLES---------------------------
+*italic* __italic__
+----------------------------------------------------------------
+**bold** __bold__
+----------------------------------------------------------------
+_*mixed italic bold*_
+----------------------------------------------------------------
+~~strached~~
+----------------------------------------------------------------
+`marked text`
+----------------------------------------------------------------
+#New title level 1
+##New title level 2
+###New title level 3
+--------------------------LIST STYLES---------------------------
+*** new hr
+----------------------------------------------------------------
+ Firt item
+2. Second item
+  1.First subitem
+----------------------------------------------------------------
+* First circle list item
+* Second circle list item
+   *First circle subitem
+----------------------------------------------------------------
+- [] Task item.
+- [x] Task item realized.
+----------------------------------------------------------------
+[text](active link)
+![text](innactive link)
+------------------------------TABLE-----------------------------
+Num|Name|Note|
+---|---|---
+1|Paul|9.5
+2|John|8.7
+-------------------------------CODE-----------------------------
+
+```
+const n1 = 1
+const n2 = 2
+if(2>1){
+   console.log(1+2)
+}
+```
+-------------------------------EMOJI----------------------------
+:emoji_name:
+all emojis: github.com/ikatyang/emoji-cheat-sheet
+emojis in any input text: emojipedia.org
+
+----------------------------MARK PEOPLES------------------------
+@peoplename
+> reply people
+
+=================VISUAL STUDIO CODE FILE STATUS================
+
+M: Modified - The file has modified.
+U: Untracked - The file still doesn't pushed to GitHub.
+
+
+=======================GIT HUB PROCESS=========================
+
+---CREATING AND COMMITING A PROJECT WITH GITHUB FOR DESKTOP--- 
+
+Creating and using/changing (commiting)repository using GitHub 
+for desktop:
+
+1) Click in new repository, get a name and a description for 
+this, always mark the option "Initialize this repository with 
+a README", select the 'MIT license' and click in "Create reposi-
+tory" (CTRL+Enter).
+
+2)Click in "Publish repository" (CTRL+P) to send your local repo
+sitory to your GitHub.
+
+3)Click in "Open in Visual Studio Code" to open your local repo-
+sitory folder in the Visual Studio Code. Working in your project
+project with the GitHub for Desktop opened, you can se in 
+the tab "Changes" all changes and differences of your pro-
+ject.
+
+4)To save your changes of the local repository to your remote 
+repository (GitHub) type a description for your changes, click 
+in "Commit to master" in sequence click in "Push origin".
+
+
+----------------------CLONING A REPOSITORY---------------------
+
+1)Navigates to desired repository in github.com, click in
+'Clone or download' and click in 'Open with Desktop'.
+
+2)In the GitHubDesktop choice a folder to clone the repostory
+and click in Clone.
+
+3)Is it'is a React/ReactNative project, add the paste node_modu-
+les to the project and install the project dependecies to work
+correctly.
+
+-----------CREATING LOCAL REPOSITORY AND ADDING FILES----------
+
+1) git init repository_name: create a new local repository.
+
+2) touch file_name: create a new file.
+
+3) git add * or git add file_name.extension: add files 
+to current repository.
+
+4) git status: show all changes of the local files.
+
+5) git commit -m "mesage": moves the changed local files 
+to current local repository and register this commit 
+taged by the message.
+
+
+-------------RESTORING A DELETED FILTE TO THE PROJECT----------
+
+1) git log: se all commits.
+
+2) git checkout bash_of_commit --name_of_file: return with the 
+desired file to the commit 
+
+Obs: Use git checkout --filename to restore deleted files still 
+not commiteds.
+
+-------------TRACKING CHANGES IN THE LOCAL REPOSITORY----------
+
+Tracking changes in the local repository
+
+1) git log --oneline: show the hash of all branchs or use 
+git log --graph: show a graphic of the commits.
+The current branch is identified with the Head.
+
+2) git checkout bash_code: track and return to the 
+branch version (commit moment).
+
+3) git checkout file_name: discard the current changes 
+and return to previous version of the files.
+
+4) git checkout master: undo and return the to the last 
+modified branch. 
+
+---------CREATTING NEW BRACHS AND MERGING TO THE MASTER--------
+
+1) git checkout -b ramfication_name: creates a new ramification 
+branch (from now, all commits will automatically done in this 
+branch).
+
+2) git checkout master: return to the master branch.(from now, 
+all commits will automatically done in the master branch).
+
+3) git merge name_of_new_merge: merge the master branch at an 
+existing ramification (the master branch need is the current to
+ merge two branchs)
+ 
+4) git add . to add changes merging to the master and git push 
+-u origin master to sync changes on master in GitHub.
+ 
+5) git branch -D ramfication_name: deletes the branch created,
+do it if you not will use more this branch.
+
+
+--------LINKING LOCAL REPOSITORY WITH REMOTE REPOSITORY--------
+
+1) On the github.com create a new reposirory.
+
+2) git remote: verify if has remote repositories availables.
+
+3) git remote add origin link_of_repository: links the local 
+repository with the remote repository (if this repository already 
+is used, skip to next step).
+
+4) git pull --rebase origin master: is used to resolve diff
+conflict between the local and remote repositories.
+
+5) git push -u origin master: send all files changes to remote 
+repository.
+
+-----------------EDITING YOUR LAST COMMIT----------------------
+
+1) git commit --amend
+
+2) Edit your text and type the command :wq to exit.
+
+
+--RESOLVING CONFLICTS OF GIT PUSH CAUSED BY FILE DIFFERENCES--
+
+1) git fetch: download the repository content.
+
+2) git remote: get the name of the remote repository.
+
+3) git checkout remote_repository_name: open the remote reposi-
+tory folder in the local machine.
+
+4) git checkout master: changes to master branch of the reposi-
+tory.
+
+5) git pull: synchronize all changes of the remote repository 
+to local repository (will show the files with changes conflict).
+
+6) On the Visual Studio Code open the files with appointed conf-
+licts and change the option to resolve the conflict (Accepts cur-
+rent changes or Accepts incoming changes or Accepts both chan-
+ges) and save the file.
+
+7) git status.
+
+8) git add.
+
+9) git commit.
+
+
+-SYNCHRONIZING CHANGES OF REMOTE REPOSITORY TO LOCAL REPOSITORY-
+
+1) git remote: verify if has remote repositories availables.
+
+2) git add remote origin link_of_repository: links the local 
+reposirory with the remote repository.
+3) On the github.com make your changes.
+4) git pull: synchronize all changes of the remote repository 
+to local repository.
+
+
+-----CONTRIBUING TO ANOTHER PROJECTS (FORK AND PULL REQUEST)----
+
+1) On the github.com, navigates to the reposirory desired and 
+click in Fork.
+
+2) On GitHub goes to the new forked repo and clone it in your
+local machine.
+
+3) Creates a new branch to do your changes and swicth to it.
+
+4) Edit the desired files and commit them.
+
+5) Do the push with your new branch  using the command git push
+--set-upstream origin name_of_your_branch. The changes will be 
+appear in your GitHub forked repo.
+
+6) To do a new pull request, in the new branch for the forked re-
+po, click in New Pull Request and in sequence in Create Pull re-
+quest (the owner of the repository will receive a notification 
+and define if accepts your pull request).
+
+
+-------------ADDING A GITHUB PAGE TO YOUR REPOSITORY-----------
+
+1) In your repository goes to settings.
+
+2) In the guide Github Pages (bottom of the page) select the 
+master branch and await (the link of your github page will 
+be generated). 
+
+---------SYNCRONIZING CHANGES FROM GITHUB TO LOCAL MACHINE-----
+
+1) Does the desired changes in the GitHub painel editor.
+
+2) Run git pull in your local machine. Your local machine files
+will be updated.
+
+
+---------------------ANOTHER FUNCTIONALITIES-------------------
+
+git commit -am 'your commit message':  add and commit 
+your changes in a single line code.
+
+-------------------------------------------------------
+
+git reset: Avoid the last changes to be commited.
+
+-------------------------------------------------------
+
+git reset --hard Head: remove the current branch to 
+don't be commited.
+
+-------------------------------------------------------
+
+git reset --hard bash_code: undo the last commit of 
+the current branch.
+
+-------------------------------------------------------
+
+git log --graph --oneline: show a graphic of the commits.
+
+-------------------------------------------------------
+
+git branch: show the current branch of the project.
+
+-------------------------------------------------------
+
+git diff: show the file changes before to commit
+
+-------------------------------------------------------
+
+git config --global user.name "[name]"
+
+Set the name that your desire bined at your transitions
+of commit.
+
+-------------------------------------------------------
+
+git config --global user.email "[email_adress]"
+
+Set the email that your desire bined at your transi- 
+tions of commit.
+
+-------------------------------------------------------
+
+git config --global color.ui auto
+
+Set the color.
+
+-------------------CREATING REPOSITORY-----------------
+
+git init [name_of_project]
+
+Creates a new local repository with a specific name.
+
+-------------------------------------------------------
+
+git clone [URL]
+
+Downlaod the repository trhought the URL.
+
+----------------------DOING CHANGES---------------------
+
+git status
+
+List all new or shifited files to be commiteds.
+
+--------------------------------------------------------
+
+git add [name_of_file]
+
+Add new files at your project.
+
+--------------------------------------------------------
+
+git diff --staged
+
+Shows the diference between selected files and yours la-
+tests versions.
+
+--------------------------------------------------------
+
+git reset [name_of_file]
+
+Unselect the file, but maintain your content.
+
+--------------------------------------------------------
+
+git commit -m "[message]"
+
+Create a message explanating a new file add or changes.
+
+------------------DOING CHANGES IN GROUP----------------
+
+git branch
+
+List all local branchs in the current repository.
+
+---------------------------------------------------------
+
+git branch [name_of_branch]
+
+Creates a new branch
+
+---------------------------------------------------------
+
+git checkout [name_of_branch]
+
+Exchange to a specific branch and refresh the work dire-
+tory.
+
+---------------------------------------------------------
+
+git merge [branch]
+
+Combines the history of the specific and current branch.
+
+---------------------------------------------------------
+
+git branch -d [name_of_branch]
+
+Deletes the specific branch.
+
+---------------------HANDLING FILES----------------------
+
+git rm [name_of_file]
+
+Removes the file of the diretory and select them to remove.
+
+---------------------------------------------------------
+
+git rm --cached [name_of_file]
+
+Constraints the file to not be  commited after added.
+
+---------------------------------------------------------
+
+git stash
+
+Stores temply all files trackeds modifieds.
+
+---------------------------------------------------------
+
+git stash pop
+
+Restore the recent files in stash.
+
+---------------------ACESSING THE HISTORY-----------------
+
+git log
+
+List the history of version to the current branch.
+
+----------------------------------------------------------
+
+git log --folloe [name_of_file]
+
+List the history of versions to a file, including changes 
+of name.
+
+---------------------------------------------------------
+
+git diff [first_branch] [second_branch]
+
+Shows the diference between the content of two branches.
+
+---------------------------------------------------------
+
+git show [commit]
+
+Return changes of metadata and content to the specified 
+commit.
+
+---------------------------------------------------------
+
+git reset [commit]
+
+Undo all comits after '[commit]', preserving local chan-
+ges.
+
+---------------------------------------------------------
+
+git reset --hard [commit]
+
+Unrely all history and changes to the specified commit.
+
+---------------------SYNCHRONIZING CHANGES----------------
+
+git fetch [marker]
+
+Download all history of a repository marker.
+
+---------------------------------------------------------
+
+git merge [marker]/[branch]
+
+Combines the marker of branch in the local branch.
+
+---------------------------------------------------------
+
+git push [alias] [branch]
+
+Send all commits of local branch to GitHub.
+
+---------------------------------------------------------
+
+git pull
+
+Download the history of your remote GitHub repo and incor-
+porates the changes for your local machine project.
+
+
+=====================GENERAL TIPS=========================
+
+Do atomics commits for turn more easy fix possibles con-
+flicts on mergin branchs in future.
+
+Conflicts generally occurs when we're cloning a repo,
+changing the content in our local machine in a new branch
+and pushing it again to the GitHub. We should to fix it be-
+fore to push.
+
+Create a new branch for features, bug fix and release 
+at working in professional projects. Example of a branch:
+feature/theme-dark.
+
+use git commit -am 'your commit message' for add and com-
+it your changes in a single line code.
+
+The branchs of the project variables according the branchs
+that are created in each machine, hereby always create new
+branchs at working with local repositories already on Git-
+Hub.
+
+
+

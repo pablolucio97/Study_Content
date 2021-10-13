@@ -1,0 +1,44 @@
+
+=======================PASSING CHILDREN TO COMPONENTS=============================
+
+1) Define the interface for the component including the prop named 'children':
+
+import React from 'react'
+
+interface IButton {
+    color: string;
+    children?: string
+}
+
+const Button: React.FC<IButton> = ({ color, children }) => {
+    return (
+        <div>
+            <button style={{ background: color }}>
+                {children}
+            </button>
+        </div>
+    )
+}
+
+export default Button;
+
+-----------------------------------------------------------------------------------
+
+2)Use in the your component:
+
+import React from 'react';
+
+import Button from './components/Button'
+
+function App() {
+  return (
+    <div className="App">
+      <p>Hello from MoveIt</p>
+      <Button color='#55ff'>
+        Button 1
+      </Button>
+    </div>
+  );
+}
+
+export default App;

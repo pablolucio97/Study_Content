@@ -1,0 +1,63 @@
+===========================DATA SAFETY==============================
+
+------------------------TYPES OF ATTACKS----------------------------
+
+Unauthoreized access: Occours when the hacker have the user password 
+and does a unauthorized access.
+
+Brutal force: Occours when the hacker as trying to guess the user 
+password by tentatives.
+
+Creddentials roub: Occours when the hacker have the user password 
+and does a unauthorized access.
+
+Sessiong Hijahacking: Happens when the hacker get a ride in the o-
+pened real user session.
+
+SQL/XML/JSON Inject: Happens when one pass parameters in your api 
+route and do a request in your api getting ilegal data.
+
+Cross Site Scripting: Occours whe one implement an script in the 
+user computer and get ilegal data when the user is accesing your 
+or another applications.
+
+Request Fogery: Happens whe a session is created in the client 
+browser and hacker implement a malicious code in the client com-
+puter (geenrally trough sites of downloading) and this code get 
+the data stored in the session of your application.
+
+Overload Attack: Occours when your application has receiving 
+thousands requests at evet time and your application get out of 
+air. This can be done for SQL/XML/JSON Injection or Buffer Over-
+flor (a huge param is passed to the api request for do it delays 
+and overload).
+
+
+----------------HOW TO STRENGH YOUR APP SAFETY--------------------
+
+1) Use a secure authentication process, ex: OAuth2.
+2) Use Multi Factor Authentication.
+3) Count the excedded tentatives and block the IP.
+4) Require a strong password at user registering.
+5) Block the user IP if a exceding request to api is happening.
+6) Implement SSL in your application.
+7) Use a session expiring.
+8) Use filter i each api response.
+9) For private API's, check the site request origin for consume da-
+ta.
+10) Use a RAM memory limiter bounding the length of memory consu-
+me for avoid overload attacks.
+
+=========================GEERAL TIPS===============================
+
+Seek for API's that have PCI certified to work with credit cards.
+
+Maitaint a user actions log for prove for the user that he do an a-
+ction inside your application.
+
+
+
+
+
+
+

@@ -1,0 +1,21 @@
+-------------------------TYPES OF ARCHITETURES------------------------
+
+Microservices: Is the archteture where the system itself is splited in 
+various another services. Has a mini software to commit each function 
+of the system. This take various advantages, like: High scability, al-
+low to use different technologies to build each service, easey mainta-
+nance, reuseble code, autonomy and agility.
+
+Monolito:Is the archteture where the all functionalities of the system
+are concentrede in the system itself.
+
+Little applications trends to be molitics for avoid became complex.
+
+Bigger applications trends to use microservices for distribute the res-
+ponsabilities of the system to another services avoind hereby the chan-
+ce of the software breaks itself and be more easy to make maintanance.
+
+You can use different languages for build microsservices and do them 
+communicate between.
+
+

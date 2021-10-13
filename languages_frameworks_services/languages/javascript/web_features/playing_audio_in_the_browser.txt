@@ -1,0 +1,6 @@
+===============PLAYING AUDIO IN THE BROWSER=================
+
+To play an audio in the browser, invokes the file path and 
+run the mehtod play is enought.
+
+new Audio('/notification.mp3').play()

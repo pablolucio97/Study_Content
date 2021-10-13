@@ -1,0 +1,141 @@
+========================AGILE METHODS============================
+
+--------------------------CONCEPTS-------------------------------
+
+SPRINT: Cycle of execution of task by developer team.
+
+3V's CONCEPT: Vision, Value, Validation. Theses concetps are used 
+to solve your problems. You view, generate a value with an action
+and confirm a validation.
+
+LEAN: Avoid wasting.
+
+AGILE: Be fastly responsive to changes.
+
+PRODUCT MANAGER:  
+
+PRODUCT BACKLOG: Is a demand of the software that your are deve-
+loping, a functionalitie, a resource.
+
+PROJECT MANAGER: Are the spacifications of how the process to de-
+livery your product will be done.
+
+IKIWISHI: Is an Englihs term used to say that the client only
+know something when this can be see it.
+
+PRODUCT GOAL: Are steps of development of your application vi-
+ewing to reach to attend the product vision trought the road-
+map. Each step should be measured as a goal.
+
+SPRINT PLANING: Is the action of defines wich functionalities
+will enter in the next sprint goal.
+
+B2B:
+
+P2P:
+
+----------------------------SCRUM--------------------------------
+
+Papers:
+
+Product Owner: Is responsable to support manager tasks for the 
+dev team and support with your doubts.
+
+Scrum Master: Is the responsable communicate between with the
+dev teams, teams of marketing, another professional envolded
+in the process, clients, managers and etc. Is responsable for
+help to solve all problems in the organization.
+
+Dev team: Are the developers that develop the product. The ideal
+is have most type of developers in the team; tester, front-end,
+back-end, and others.
+
+------------------------------------------------------------------
+
+The SCRUM process works this way:
+
+The functional requirements (produck backlog) are defined by the
+product owner and passed to dev team in a first meetup where will 
+be defined which functionlities will be enter in the current 
+sprint.
+
+Each dev of the team develop the backlogs that are commited to he.
+
+At finishing the sprint are two meet ups: review meet up and re-
+tropsective meet up.
+
+--------------------------KANO MODEL-------------------------------
+
+The Kano Model was created for define the value of each functiona-
+lities for your clientes. After estimate the story point of each 
+functionality of your application you should stimate the value 
+for your customer.
+
+The value of each functionality of you app can be measured questio-
+ning the impact of each existence and the not existence of each 
+function in your app. Each function should be classfied as obliga-
+toly, linear or exciting.
+
+-----------------------DEFINITION OF DONE---------------------------
+
+Definition of done is a set of criterics that you app should be at-
+tend before to go for production environment. These cricterics are:
+
+- Build passsing localy and in the server.
+- All unity tests OK.
+- All functionalities tests OK.
+- Critercs of aception OK (defined in Kano).
+- Releases notes createds (if is a new feature).
+
+
+--------------------------XP MODEL---------------------------------
+
+The practices of the XP Model are TDD, Continuos Integration and 
+Code Patterns.
+
+Code Patterns: Are the conventions of the var delcaration, code 
+structure, errro threating and comments.
+
+TDD: Is the thecninc of frist test the software before to develop 
+it.
+
+Continuos integration: Occurs in projetcts that are stored in a ser-
+ver with a update listenner the changes. Ex: Projects stored on 
+GitHub.
+
+-------------------------GENERAL TIPS-------------------------------
+
+
+Focus in understand the mindfull of the agile methods.
+
+A trouvle is simple whnen we're might to see for it an thinks in
+a solution.
+
+Be agile means be responsive to changes.
+
+Finish your sprints always thinking in the solution of the pro-
+blem, you sprint should be might to resolve the customer ques-
+tion.
+
+The project is a simple way to delivery the product.
+
+Your client only will like to your software when he can see what
+your software really delivery. Thus,focus in delivery good values.
+
+You should implment functions accorgin the demand, if necessary you
+should to reinplments the function. A functionality should be sim-
+ple and attend to techinique excellence.
+
+Professional with the model "T" are the most desirable, it is: that
+professional that know little about various concepts and is especi-
+alist in a single knowledgement.
+
+Has a PRODUCT VISION BOARD before to starts your projects.
+
+Estime the time of each functionalitie to develop trought story 
+points, don't user hours for this.
+
+You should to define your app criterics before to start the sprint.
+
+
+

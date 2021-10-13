@@ -1,0 +1,2025 @@
+==========================JAVASCRIPT COURSE============================
+
+====================INSTRUCTIONS AND DECLARATIONS=======================
+
+var: Declares a variable.
+
+let: Declares a variable that can be used only in the local scope.
+
+const: Declares a immutable const.
+
+function: Declares a function.
+
+return: Specify the value of return of a function.
+
+async function: Declares an async function.
+
+class: Declares a class.
+
+for: Creates a loop that runs an index and return an action based in 
+this index.
+
+for if: Iterates trough the key and value of the array.
+
+for of: Iterates trought the owner array elements without an index.
+
+while: Run a loop of execution while the condition is true.
+
+do while: Run a loop of executin until the condition becames false.
+
+if else: Executes a instruction if the condition is true and another 
+otherwise.
+
+throw: Creates a new constranint.
+
+switch: Executes different instructions by according a specific value.
+
+break: Finihses the current loop of an switch and turns to next case.
+
+continue: Finihses the current loop of an switch and pass to next case.
+
+try catch: Try to executes a code block and return an error otherwise.
+
+import: Import an function, class, object and others already exported.
+
+export: Prepare an function, class, object and others to be imported.
+
+==============================CONCEPTS=================================
+
+Call Stack:
+
+Is a stack that determines how  and when the motor of Javascript should 
+to stack, execute and delete the functions of the code. The stacks always
+initiliaze empty and finishes empty. The functions are executed from top 
+to bottom and are removed from the stack after your execuion.
+
+-----------------------------------------------------------------------
+
+Closure:
+
+Closure are functions that are inside another functions and can get va-
+riables of your parent function.
+
+function storeMessage () {
+   var msg = 'Hello World'
+   function displayMessage(){
+   return console.log(msg)
+ }
+}
+
+---------------------------------------------------
+
+Wrong use of a closure:
+
+for(var i = 0; i < elements.length; i++){
+	elements[i].onclick = function(){
+		alert('This is the element' + i)
+	}
+}
+
+//Always return the value of elements.lenght
+
+---------------------------------------------------
+
+Using a closure correctly:
+
+for(var i = 0; i < elements.length; i++){
+	(function(i){
+	elements[i].onclick = function(){
+		alert('This is the element' + i)
+	}	
+})(i)
+
+//Return each iteration of i allowing the function access i.
+
+------------------------------------------------------------------------
+
+This:
+
+The this keyword is the value of a function that rely of the context 
+where is called. In the web the this appoints to window object by defa-
+ult and for the own object or function when assingded with it. Examples:
+
+() => console.log(this === window) //true
+
+--------------------------
+
+This with common functions
+
+const body = document.getElemntsByTagName('body')[0]
+
+function1(){body.onclick({console.log(this === window)})} //false
+
+function2(){body.onclick({console.log(this === body)})} //true
+
+--------------------------
+
+This with arrow functions
+
+const body = document.getElemntsByTagName('body')[0]
+
+() => body.onclick({console.log(this === window)}) //true
+() => body.onclick({console.log(this === body)}) //false
+
+--------------------------
+
+This in objects
+
+const player = {
+	name: 'Paul',
+	sayName(){
+	console.log(this.name)
+    }
+}
+
+player.sayName() // 'Paul'
+
+--------------------------
+
+Obs:
+
+The this never variables when used in arrow functions.
+
+The this of the global scope don't is recognized inside a functions when 
+the strict mode is enabled. The 'use strict' is enabled by default.
+
+-----------------------------------------------------------------------
+
+bind(): The bind method binds a function for the value of another ob-
+ject. Is useful to force the this to appoint for an object that is ins-
+tanced instead of the object window to avoid conflitcts.
+
+Example:
+
+const person = {
+    saudation: 'Good morning',
+    talks: talks(){
+        console.log(this.saudation)
+    }
+}
+
+person.talks // 'Good morning'
+
+
+const talksOfPerson = person.talk.bind(person)
+talksOfPerson // 'Good morning'
+
+-----------------------------------------------------------------------
+
+apply / call
+
+The main difference between these two methos are of the apply method re-
+ceives an array of arguments and the call receives the arguments separe-
+tedly.
+
+const player = {
+	name: 'Sonic',
+	speed: 90,
+	agility: 50,
+	showAttributes: function(){
+	console.log(`${this.name} has ${this.speed} of speed 
+	and ${this.agility} of agility.`)
+	}
+}
+
+player.showAttributes()
+
+const changeAttributes = function(speed, agility){
+	this.speed += speed;
+	this.agility += agility;
+	this.showAttributes()
+}
+
+changeAttributes.apply(player, [95, 55])
+
+// if using the call method:
+//changeAttributes.apply(player, 95, 55)
+
+-----------------------------------------------------------------------
+
+Currying:
+
+Is the techine of calls function inside function and call them in a 
+single time avoind to write very lines of code.
+
+
+const calcPrice = () => {
+ const calcDiscount = (price) => (discount) =>  price * (discount / 100)
+ console.log(`Your discount: R$ ${calcDiscount}`)					
+}
+
+calcPrice(100)(5) 
+
+// calcs 5% of discount in the value of 100. Results: 95.
+
+-----------------------------------------------------------------------
+
+Hoisting: Is the process of hoist a var declaration for the top escope.
+This process only happens when declaring variables. For avoiding hois-
+ting conflicts use const or let.
+
+-----------------------------------------------------------------------
+
+Prototype: The inherinting of objects and functions in Javascript is 
+done trought prototypes where the prototypes is the mother class for new 
+instances. Prototype Chain is the chain where the prototype finds your 
+attributes and methods.
+-----------------------------------------------------------------------
+ 
+High order functions: ...
+Functional programming
+
+
+============================DATA TYPES=================================
+
+DATA TYPES
+
+var length = 16;                               // Number
+var lastName = "Johnson";                      // String
+var x = {firstName:"John", lastName:"Doe"};    // Object
+var cars = ["Saab", "Volvo", "BMW"];           ///Array
+
+-----------------------------------------------------------------------
+
+THE TYPE OF OPERATOR
+
+typeof "John"        	      // Returns "string"
+typeof 314           	      // Returns "number"
+typeof 3.14           	      // Returns "number"
+typeof (3 + 4)        	      // Returns "number"
+typeof true           	      // Returns "boolean"
+typeof false         	      // Returns "boolean"
+var car;              	      // Returns "undefined"
+var car = "";        	      // Returns "undefined"
+typeof [1,2,3,4]              // Returns "object"
+typeof {name:'John', age:34}  // Returns "object"
+typeof new Date()             // Returns "object"
+typeof function () {}         // Returns "function"
+typeof myCar                  // Returns "undefined" 
+typeof null                   // Returns "object"
+
+-----------------------------------------------------------------------
+
+THE PROPERTY CONSTRUCTOR
+
+"John".constructor                // Returns function String()  
+(3.14).constructor                // Returns function Number()  
+false.constructor                 // Returns function Boolean() 
+[1,2,3,4].constructor             // Returns function Array()  
+{name:'John',age:34}.constructor  // Returns function Object()  
+new Date().constructor            // Returns function Date()    
+function () {}.constructor        // Returns function Function()
+
+============================PROTOTYPES=================================
+
+Prototype: The inherinting of objects and functions in Javascript is 
+done trought prototypes where the prototypes is the mother class for new 
+instances. Prototype Chain is the chain where the prototype finds your 
+attributes and methods.
+
+Adding a new method named 'myReduce'to prototype chain, example:
+
+Array.prototype.myReduce = function(callback){
+    let acc = this[0]
+    for(let i = 1; i < this.length; i++){
+        acc = callback(acc, this[i], this)
+    }
+    return acc
+}
+
+-------------------------------
+
+Using the new method:
+
+const sum = (total, value) => total + value
+const nums = [1, 4, 6, 8]
+console.log(nums.myReduce(sum))
+
+
+=========================DOING COMMENTARYS=============================
+
+SINGLE COMMENTARY:
+// Change heading:
+
+-----------------------------------------------------------------------
+
+MUTILINE COMENTARY:
+/*
+The code below will change
+the heading with id = "myH"
+and the paragraph with id = "myP"
+in my web page:
+*/
+
+========================DECLARING VARIABLES=============================
+
+In JavaScript a variable can be an array, a text, a number, a objct or a
+HTML element.
+
+Variables declared inside a function are variables of local scope. Vari-
+ables declred outsied a function are global variables.
+
+-----------------------------------------------------------------------
+Using var
+
+Using var you can get the variables of others scopes. A variables of 
+a if or while can be accessed.
+
+var  x = 10;
+// Here x is 10
+{  
+  var x = 2;
+  // Here x is 2
+}
+
+document.getElementById("demo").innerHTML = x;
+
+//Output: 2
+
+-----------------------------------------------------------------------
+
+Using let
+
+Using let you can't get the variables of others scopes. A variables of 
+an if or while don't be accessed.
+
+var  x = 10;
+// Here x is 10
+{  
+  let x = 2;
+  // Here x is 2
+}
+// Here x is 10
+document.getElementById("demo").innerHTML = x;
+
+//Output: 10
+
+-----------------------------------------------------------------------
+
+Using const
+
+Const are varaibles that can't be changed.
+
+const PI = 3.141592653589793;
+PI = 3.14;      // This will give an error
+PI = PI + 10;   // This will also give an error
+
+-----------------------------------------------------------------------
+
+var a = 5
+
+-----------------------------------------------------------------------
+
+var people = "Pablo"
+
+-----------------------------------------------------------------------
+
+var cars = ["Saab", "Volvo", "BMW"];
+
+-----------------------------------------------------------------------
+
+var person = "John Doe", carName = "Volvo", price = 200;
+
+-----------------------------------------------------------------------
+
+var text = "<p>"
+
+=============================OPERATORS==================================
+
+ASSIGNMET:
+
+Operator         Example          Meanful of example
+=	          x = y	             x = y
++=	          x += y	     x = x + y
+-=	          x -= y	     x = x - y
+*=	          x *= y	     x = x * y
+/=	          x /= y	     x = x / y
+%=	          x %= y	     x = x % y
+**=	         x **= y	     x = x ** y
+-----------------------------------------------------------------------
+
+ARITIMETHICS:
+
++	Addition
+-	Subtraction
+*	Multiplication
+**	Exponentiation (ES2016)
+/	Division
+%	Modulus (Division Remainder)
+++	Increment
+--	Decrement
+
+-----------------------------------------------------------------------
+
+COMPARASION:
+
+==	equal to
+===	equal value and equal type
+!=	not equal
+!==	not equal value or not equal type
+>	greater than
+<	less than
+>=	greater than or equal to
+<=	less than or equal to
+?	ternary operator
+
+-----------------------------------------------------------------------
+
+LOGICAL:
+
+&&	logical and
+||	logical or
+!	logical not
+
+========================LOGICAL SENTENCES=============================
+
+&&: If a condition is true, do this.
+??: If the value don't exists replace with this value (can be as or).
+
+========================CREATING FUNCTIONS=============================
+
+function myFunction() {
+  alert("Hello World!");
+}
+
+=======================WORKING WHIT OBJECTS=============================
+
+DELCARING THE OBJCET:
+
+var person = {firstName:"John", lastName:"Doe", age:50, eyeColor:"blue"};
+
+-----------------------------------------------------------------------
+
+ACESSING PROPERTYS OF THE OBJECT:
+
+objectName.propertyName or objectName["propertyName"]
+
+person.lastName;                //Output: "Doe"
+
+-----------------------------------------------------------------------
+
+USING THE FUNCTIONS IN THE OBJECTS:
+
+var person = {
+  firstName: "John",
+  lastName : "Doe",
+  id       : 5566,
+  fullName : function() {
+    return this.firstName + " " + this.lastName;
+  }
+};
+
+
+============================FUNCTIONS===================================
+
+-------------------STORING A FUNCTION IN A CONST/LET---------------------
+
+const function1 = function(name){
+    return console.log(name.toUpperCase())
+}
+
+function1('pablo')
+
+-------------------PASSING A FUNCTION INSIDE AN ARRAY--------------------
+
+const function2 = function(name){
+    return console.log(name.toLowerCase())
+}
+
+
+const myArray  =  [1, 'test', function2]
+myArray[2]('Camila')
+
+-------------------PASSING A FUNCTION INSIDE AN OBJECT--------------------
+
+const function3 = function(n){
+    return console.log(n * 2)
+}
+
+const myObj = {}
+myObj.runFunc = function3(3)
+myObj.runFunc
+
+---------------PASSING A FUNCTION AS PARAM FOR ANOTHER FUNCTION------------
+
+function run(fun){
+    return fun(1,2)
+}
+
+run(function(a,b){console.log(a + b)})
+
+
+//RETURNING ANOTHER FUNCTION INSIDE A FUNCTION
+
+function sum1(a,b){
+    return function sum2(c){
+        return setTimeout (() => {
+            console.log(a + b + c)
+        }, 1000)
+    }
+}
+
+sum1(1,2)(3)
+
+-----------------------------CALLBACK FUNCTIONS-------------------------------
+
+Callback functions are functions that runs for each event that occours, are e-
+xamples of callback: forEach, filter, map and others. Without callback func-
+tions you need to loop the element and call a function manually.
+
+Without callback:
+
+const labes = ['BMW', 'GM', 'FORD']
+
+const withOutCallback = function (i, label){
+    for(let i in labels){
+    console.log(`${i}. ${label}`)
+    }
+}
+--------------------------------------
+
+With callback:
+
+const withCallback = labels.forEach((label, i) => 
+    console.log(`${i}. ${label}`))
+    
+    
+---------------------------AUTOINVOKE FUNCTIONS---------------------------------
+
+Functions auto invokeds are functions that are write inside a keys and invoked 
+automaticaly. Example:
+
+ (function autoRun(){
+        console. log('Auto run works here.')
+    }())
+    
+---------------------------CONSTRUCTOR FUNCTIONS--------------------------------
+
+Constructor functions in javascript are like class in anothe languages and allow
+to declare methods and attributes inside the function scope and instance this 
+function like objects. Example:
+    
+function Car(maxVelocity = 200, delta = 5) {
+    
+    //private attribute
+    let currentVelocity = 0
+
+    //public method
+    this.acelerate = function () {
+        if (currentVelocity + delta <= maxVelocity) {
+            currentVelocity += delta
+        } else {
+            currentVelocity = maxVelocity
+        }
+    }
+    
+    //public method
+    this.getCurrentVelocity = function () {
+        return currentVelocity
+    }
+}
+
+
+
+const celta = new Car
+celta.acelerate()
+console.log(celta.getCurrentVelocity()) //5
+
+const ferrari = new Car(350, 20)
+ferrari.acelerate()
+console.log(ferrari.getCurrentVelocity()) //20
+
+
+
+---------------------------RETURNING DATA FROM FUNCTIONS---------------------------------
+
+You can retur data with fuctions and access it. Example:
+
+ function returnData() {
+
+    const data = {
+        name: 'Pablo',
+        age: 25
+    }
+   return {
+       data:{
+           name: data.name
+       }
+   }
+}
+
+returnData().data.name
+
+----------------------RETURNING DATA FROM ASYNC FUNCTIONS-------------------------------
+
+You need to acess the method then for access the returned data from async functions. Ex:
+
+const delay = (amount = 1000) => new Promise(resolve => setTimeout(resolve, amount))
+
+async function responseWithDelay() {
+
+    await delay()
+
+    const data = {
+        name: 'Pablo',
+        age: 25
+    }
+   return data
+}
+
+responseWithDelay().then(response => console.log(response.name))
+
+================================CLASSSES======================================
+
+Creating and using class and your methods in javascript:
+
+Initializing the class
+
+class Animal {}
+
+-------------------------------
+
+Instancing the class
+
+class Dog extends Animal{
+    bark(){
+        return 'Auh, auh!'
+    }
+}
+-------------------------------
+
+Using the class
+
+console.log(new Dog().bark())
+
+
+============================GENERAL OBSERVATIONS==============================
+
+Javascript is sensitive case.
+
+Using double ou single quotations is the even thig.
+
+Global variabbles can be used in all document escope.
+
+Local variable are used only inside of your respectives functions.
+
+The methods indexOf() and search(), don't are equals.
+
+All string methods return a new string. They don't modify the original string.
+
+Strings are immutable: Strings cannot be changed, only replaced.
+
+NaN means data not valid (Not a number) and occurs when you are using 
+numbers and strings in the even operation.
+
+Infinity is the value JavaScript will return if you calculate a number 
+outside the mathmatics rules. Example: 2/0 //Output: Infinity.
+
+=========================CONTROLING STRINGS===============================
+
+length - The property length calc the length of a string.
+
+Example:
+var txt = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+var sln = txt.length;
+//Output: 26
+
+-----------------------------------------------------------------------
+
+indexOf() - Returns the index of (the position of) the first occurrence of a 
+specified text in a string.
+
+Example:
+var str = "Please locate where 'locate' occurs!";
+var pos = str.indexOf("locate");
+//Output: 7
+
+-----------------------------------------------------------------------
+
+lastIndexOf() - Returns the index of the last occurrence of a 
+specified text in a string:
+
+Example:
+var str = "Please locate where 'locate' occurs!";
+var pos = str.lastIndexOf("locate");
+//Output: 21
+
+-----------------------------------------------------------------------
+
+search() - Searches a string for a specified value and returns 
+the position of the match:
+
+Example:
+var str = "Please locate where 'locate' occurs!";
+var pos = str.search("locate");
+//Output: 7
+
+
+-----------------------------------------------------------------------
+
+slice() - Get a part of the string and return it.
+
+Example 01:
+var str = "Apple, Banana, Kiwi";
+var res = str.slice(7, 13);
+//Output: Banana
+
+Example 02: -If you omit the seccond parammeter of the method, it returns
+the all remainder string.
+var res = str.slice(7);
+//Output: Banana, Kiwi
+
+-----------------------------------------------------------------------
+
+substring() - This method is similar to slice(), however doens't accepts
+negative values.
+
+Example:
+
+var str = "Apple, Banana, Kiwi";
+var res = str.substring(7, 13);
+//Output: Banana
+
+-----------------------------------------------------------------------
+
+replace() - Replace a string by other.
+
+Example 01:
+str = "Please visit Microsoft!";
+var n = str.replace("Microsoft", "W3Schools");
+//Output: "Please visit W3Schools!"
+
+
+To replace all matches, use a regular expression with a /g flag (global match):
+Example 02:
+str = "Please visit Microsoft and Microsoft!";
+var n = str.replace(/Microsoft/g, "W3Schools");
+//Output: "Please visit W3Schools and W3Schools!"
+
+-----------------------------------------------------------------------
+
+toLowerCase() - This method converts the string in lowercase.
+
+Example:
+var text1 = "W3Schools";
+var text2 = text1.toLowerCase();
+//Output: "w3scholls"
+
+-----------------------------------------------------------------------
+
+toUpperCase() - This method converts the string in uppercase.
+
+Example:
+var text1 = "W3Schools";
+var text2 = text1.toUpperCase();
+//Output: "W3SCHOOLS"
+
+-----------------------------------------------------------------------
+
+concat() joins two or more strings:
+
+Example 01:
+var text1 = "Hello";
+var text2 = "World";
+var text3 = text1.concat(" ", text2);
+//Output: "Hello World"
+
+Obs: The concat() method also can be used be plus operator. 
+
+Example 02:
+var text = "Hello" + " " + "World!";
+
+-----------------------------------------------------------------------
+
+trim() - This method removes whitespace from both sides of a string.
+
+Example:
+var str = "       Hello World!        ";
+var str2 = str.trim();
+//Output: "Hello World!"
+
+-----------------------------------------------------------------------
+
+split() - Convert a string in an array.
+
+Example:
+
+var text1 = "Hello World is commonly used";
+var text2 = text1.split(" ");
+//Output: ["Hello", "World", "is", "commonly", "used"]
+
+
+-----------------------------------------------------------------------
+
+========================CONTROLING NUMBERS==============================
+EXCEPTIONS:
+
+NaN means data not valid (Not a number) and occurs when you are using 
+numbers and strings in the even operation.
+
+Infinity is the value JavaScript will return if you calculate a number 
+outside the mathmatics rules. Example: 2/0 //Output: Infinity.
+
+-----------------------------------------------------------------------
+
+
+toString() - This method returns a number as a string.
+
+var x = 123;
+x.toString();
+//Output: "123"   // returns 123 from variable x 
+
+-----------------------------------------------------------------------
+
+toLocaleString() - This method returns a number as money format
+of the current location.
+
+var x = 123;
+x.toLocaleString('pt-BR');
+//Output: "123,00"   
+
+-----------------------------------------------------------------------
+
+toFixed() - This method returns a string, with the number written with 
+a specified number of decimals:  
+
+Example:
+var x = 9.656;
+x.toFixed(0);           // returns 10
+x.toFixed(2);           // returns 9.66
+
+-----------------------------------------------------------------------
+
+toPrecision() - Returns a string, with a number written with a 
+specified length:
+
+Example:
+var x = 9.656;
+x.toPrecision();        // returns 9.656
+x.toPrecision(2);       // returns 9.7
+x.toPrecision(4);       // returns 9.656
+
+-----------------------------------------------------------------------
+
+CONVERTING VARIABLES TO NUMBERS
+
+Number() - This method is used to convert variables to numbers:
+
+Example 01:
+Number("10");          // returns 10
+Number("10.33");       // returns 10.33
+Number("10,33");       // returns NaN
+
+Example 02:
+Number(new Date("2017-09-30"));    // returns 1506729600000
+
+-----------------------------------------------------------------------
+
+parseInt() parses a string and returns a whole number. Spaces are
+allowed. Only the first number is returned:
+
+Example:
+parseInt("10");         // returns 10
+parseInt("10.33");      // returns 10
+parseInt("10 20 30");   // returns 10
+parseInt("10 years");   // returns 10
+parseInt("years 10");   // returns NaN 
+
+-----------------------------------------------------------------------
+
+parseFloat() parses a string and returns a number. Spaces are allowed. 
+Only the first number is returned:
+
+parseFloat("10");        // returns 10
+parseFloat("10.33");     // returns 10.33
+parseFloat("10 20 30");  // returns 10
+parseFloat("10 years");  // returns 10
+parseFloat("years 10");  // returns NaN
+
+-----------------------------------------------------------------------
+
+NUMBER PROPERTIES
+
+MAX_VALUE returns the largest possible number in JavaScript.
+
+Example:
+var x = Number.MAX_VALUE;
+
+-----------------------------------------------------------------------
+
+MIN_VALUE returns the lowest possible number in JavaScript.
+
+Example:
+var x = Number.MIN_VALUE;
+
+========================CONTROLING ARRAYS==============================
+Arrays are a special type of objects. The typeof operator in JavaScript 
+returns "object" for arrays. Arrays use numbers to access its "elements".
+
+DECLARING AN ARRAY:
+
+Example 01:
+var cars = ["Saab", "Volvo", "BMW"];
+or
+var cars = new Array("Saab", "Volvo", "BMW");
+
+Example 02:
+var person = ["John", "Doe", 46];
+or
+var person = new Array("John", "Doe", 46);
+
+-----------------------------------------------------------------------
+
+ACESSING AN ARRAY:
+
+Example:
+var cars = ["Saab", "Volvo", "BMW"];
+document.getElementById("demo").innerHTML = cars[1];
+//Output: "Volvo"
+
+var cars = ["Saab", "Volvo", "BMW"];
+document.getElementById("demo").innerHTML = cars;
+//Output: "Saab", "Volvo", "BMW"
+
+-----------------------------------------------------------------------
+
+ARRAYS ELEMENTS CAN BE OBJECTS:
+
+myArray[0] = Date.now;    // the element 0 is the current hour
+myArray[1] = myFunction;  // the element 1 is a function
+myArray[2] = myCars;      // the element 2 is another array
+
+-----------------------------------------------------------------------
+
+ARRAYS PROPERTY:
+
+length - property of an array returns the length of an array (the number 
+of array elements).
+
+var fruits = ["Banana", "Orange", "Apple", "Mango"];
+fruits.length;   // the length of fruits is 4
+
+-----------------------------------------------------------------------
+
+ARRAYS PRATICES
+
+Accessing the Last Array Element
+
+Example:
+fruits = ["Banana", "Orange", "Apple", "Mango"];
+var last = fruits[fruits.length - 1];   //returns "Mango"
+
+-----------------------------------------------------------------------
+
+Looping Array Elements using a loop
+
+The safest way to loop through an array, is using a for loop:
+
+Example:
+var fruits, text, fLen, i;
+fruits = ["Banana", "Orange", "Apple", "Mango"];
+fLen = fruits.length;
+
+text = "<ul>";
+for (i = 0; i < fLen; i++) {
+  text += "<li>" + fruits[i] + "</li>";
+}
+text += "</ul>";
+
+-----------------------------------------------------------------------
+
+Looping Array Elements using Array.forEach() function:
+
+Example:
+var fruits, text;
+fruits = ["Banana", "Orange", "Apple", "Mango"];
+
+text = "<ul>";
+fruits.forEach(myFunction);
+text += "</ul>";
+
+function myFunction(value) {
+  text += "<li>" + value + "</li>";
+}
+
+-----------------------------------------------------------------------
+
+ARRAY METHODS
+
+push() - This method add a new element at end of the array.
+
+Example:
+var fruits = ["Banana", "Orange", "Apple", "Mango"];
+fruits.push("Lemon");    // adds a new element (Lemon) to fruits
+/Output: ["Banana", "Orange", "Apple", "Mango", "Lemon"];
+
+or use the property length to add a new element in a especific position
+
+Example:
+var fruits = ["Banana", "Orange", "Apple", "Mango"];
+fruits[6] = "Lemon";    // adds a new element (Lemon) to fruits, but will
+create two values undefined in ths case.
+//Output: Banana, Orange, Apple, Mango, undefined, undefined, Lemon
+
+-----------------------------------------------------------------------
+
+join() -This method also joins all array elements into a string.
+
+Example:
+var fruits = ["Banana", "Orange", "Apple", "Mango"];
+document.getElementById("demo").innerHTML = fruits.join(" * ");
+Output: Banana * Orange * Apple * Mango
+
+-----------------------------------------------------------------------
+
+pop() - This method removes the last element from an array:
+
+Example:
+var fruits = ["Banana", "Orange", "Apple", "Mango"];
+fruits.pop();              // Removes the element ("Mango") from fruits
+Output:["Banana", "Orange", "Apple"]
+
+-----------------------------------------------------------------------
+
+push() -This method adds a new element to an array (at the end):
+
+var fruits = ["Banana", "Orange", "Apple", "Mango"];
+fruits.push("Kiwi");       //  Adds a new element ("Kiwi") to fruits
+Output:["Banana", "Orange", "Apple", "Mango", "Kiwi"];
+
+-----------------------------------------------------------------------
+
+shift() method removes the first array element and "shifts" all other
+elements to a lower index.
+
+Example:
+var fruits = ["Banana", "Orange", "Apple", "Mango"];
+fruits.shift();     // Removes the first element "Banana" from fruits
+Output: ["Orange", "Apple", "Mango"];
+
+-----------------------------------------------------------------------
+
+unshift() This -method adds a new element to an array (at the beginning), 
+and "unshifts" older elements:
+
+Example:
+var fruits = ["Banana", "Orange", "Apple", "Mango"];
+fruits.unshift("Lemon");    // Adds a new element "Lemon" to fruits
+Output:["Lemon", "Banana", "Orange", "Apple", "Mango"];
+
+-----------------------------------------------------------------------
+
+Changing an elemment of the array:
+
+ var fruits = ["Banana", "Orange", "Apple", "Mango"];
+fruits[0] = "Kiwi";        // Changes the first element of fruits to "Kiwi" 
+
+-----------------------------------------------------------------------
+
+splice() - This method can be used to add new items to any postion 
+of an array: 
+
+var fruits = ["Banana", "Orange", "Apple", "Mango"];
+fruits.splice(2, 0, "Lemon", "Kiwi");
+//Output: Banana,Orange,Lemon,Kiwi,Apple,Mango
+
+-----------------------------------------------------------------------
+
+concat() - This method creates a new array by merging (concatenating) 
+existing arrays:
+
+Example:
+
+var myGirls = ["Cecilie", "Lone"];
+var myBoys = ["Emil", "Tobias", "Linus"];
+var myChildren = myGirls.concat(myBoys);
+//Output: Cecilie,Lone,Emil,Tobias,Linus
+
+-----------------------------------------------------------------------
+
+slice() -This method slices out a piece of an array into a new array.
+
+Example:
+
+var fruits = ["Banana", "Orange", "Lemon", "Apple", "Mango"];
+//Output: Orange,Lemon
+
+Example:
+
+var fruits = ["Banana", "Orange", "Lemon", "Apple", "Mango"];
+var citrus = fruits.slice(3);
+//Output: Apple,Mango
+var citrus = fruits.slice(1, 3);
+//Output: Apple,Mango
+
+-----------------------------------------------------------------------
+
+toString - This method convert an array to a string.
+
+Example:
+
+var fruits = ["Banana", "Orange", "Apple", "Mango"];
+document.getElementById("demo").innerHTML = fruits.toString();
+//Output: Banana,Orange,Apple,Mango
+
+-----------------------------------------------------------------------
+
+sort() - This method sorts an array alphabetically.
+
+var fruits = ["Banana", "Orange", "Apple", "Mango"];
+fruits.sort(); 
+//output: Apple,Banana,Mango,Orange
+
+-----------------------------------------------------------------------
+
+reverse() - This method reverser the order of an array
+
+var fruits = ["Banana", "Orange", "Apple", "Mango"];
+fruits.reverse();
+//Output: "Mango", "Apple", "Orange", "Banana"
+
+-----------------------------------------------------------------------
+
+indexOf() - This method searches an array for an element value and 
+returns its position. This always returns the first position of search.
+
+Example:
+var fruits = ["Apple", "Orange", "Apple", "Mango"];
+var a = fruits.indexOf("Apple");
+document.getElementById("demo").innerHTML = "Founded in position " + a;
+
+//Output: Apple is found in position 0
+
+-----------------------------------------------------------------------
+
+lastIndexOf() This method is the same as Array.indexOf(), but returns 
+the position of the last occurrence of the specified element.
+
+var fruits = ["Apple", "Orange", "Apple", "Mango"];
+var a = fruits.lastIndexOf("Apple");
+document.getElementById("demo").innerHTML = "Apple is found in position "
+ + (a + 1);
+
+//Output: Apple is found in position 3
+
+------------------------------map()------------------------------------
+
+Runs the array and apply a function for each item generating 
+a new array.
+
+var numbers = [45, 4, 9, 16, 25];
+var double = numbers.map(item => item * 2);
+
+//Ouput: 90 8 18 32 50
+
+-----------------------------forEach()---------------------------------
+
+Calls a function for each item of the array
+
+var txt = "";
+var numbers = [45, 4, 9, 16, 25];
+numbers.forEach(myFunction);
+document.getElementById("demo").innerHTML = txt;
+
+function myFunction(value) {
+  txt = txt + value + "<br>"; 
+}
+
+
+//Ouput: 45 4 9 16 25
+
+------------------------------reduce()---------------------------------	
+
+Reduce the value of the arrays.
+
+
+var numbers = [45, 4, 9, 16, 25];
+var sum = numbers.reduce(myFunction);
+
+console.log("The sum is " + sum)
+
+function myFunction(total, value) {
+  return total + value;
+}
+
+
+//Output: The sum is 99
+
+-------------------------------every()---------------------------------
+
+Verifys if all values are by according the logical test.
+
+
+var numbers = [45, 4, 9, 16, 25];
+var allOver18 = numbers.every(myFunction);
+
+console.log(All over 18 is " + allOver18)
+
+function myFunction(value) {
+  return value > 18;
+}
+
+//Output: All over 18 is false.
+
+--------------------------------some()---------------------------------
+
+Verifys if has some values are by according the logical test.
+
+var numbers = [45, 4, 9, 16, 25];
+var someOver18 = numbers.some(myFunction);
+
+console.log("Some over 18 is " + someOver18)
+
+function myFunction(value, index, array) {
+  return value > 18;
+}
+
+//Output: Some over 18 is true.
+
+------------------------------filter()---------------------------------
+
+Runs the array and apply a function for each item generating 
+a new array by accord the filter rule.
+
+var numbers = [45, 4, 9, 16, 25];
+var double = numbers.filter(item => item > 20);
+
+console.log(double)
+
+//Ouput: 45 25
+
+-------------------------------find()----------------------------------
+
+This method returns the value of the first array element that
+atend a test function.
+
+var numbers = [4, 9, 16, 27, 29];
+var first = numbers.find(myFunction);
+
+console.log("First number over 18 is " + first);
+
+function myFunction(value, index, array) {
+  return value > 18;
+}
+
+//Output: 
+
+First number over 18 is 25
+
+-----------------------------findIndex()-------------------------------
+
+findIndex() - This method returns the index of the first array 
+element that atend a test function.
+
+var numbers = [4, 9, 16, 25, 29];
+var first = numbers.findIndex(myFunction);
+
+document.getElementById("demo").innerHTML = "First number over 
+18 has index " + first;
+
+function myFunction(value, index, array) {
+  return value > 18;
+}
+
+//Output: First number over 18 has index 3
+
+=========================CONTROLING DATES===============================
+
+CREATING A NEW DATE:
+
+Example:
+var d = new Date();
+
+-----------------------------------------------------------------------
+
+USING A PASSED DATE:
+
+Examples:
+var d = new Date(2018, 11, 24, 10, 33, 30, 0);
+var d = new Date(2018, 11, 24);
+var d = new Date(2018);
+
+-----------------------------------------------------------------------
+
+Date.parse() - Returns the number of milliseconds between the date and 
+January 1, 1970:
+
+Example:
+var msec = Date.parse("March 21, 2012");
+document.getElementById("demo").innerHTML = msec;
+
+-----------------------------------------------------------------------
+
+getTime() -This method returns the number of milliseconds since 
+January 1, 1970:
+
+Example:
+var d = new Date();
+document.getElementById("demo").innerHTML = d.getTime();
+
+-----------------------------------------------------------------------
+
+getFullYear() - This method returns the year of a date whit four digits:
+
+Example:
+var d = new Date();
+document.getElementById("demo").innerHTML = d.getFullYear();
+
+-----------------------------------------------------------------------
+
+getMonth() - This method returns the month of a date as a number (0-11):
+
+Example:
+var d = new Date();
+document.getElementById("demo").innerHTML = d.getMonth();
+
+-----------------------------------------------------------------------
+
+getDate() - This method returns the day of a date as a number (1-31):
+
+Example:
+var d = new Date();
+document.getElementById("demo").innerHTML = d.getDate();
+
+-----------------------------------------------------------------------
+
+getHours() - This method returns the hours of a date as a number (0-23):
+
+Example:
+var d = new Date();
+document.getElementById("demo").innerHTML = d.getHours();
+
+-----------------------------------------------------------------------
+
+getMinutes() - This method returns the minutes of a date as a number 
+(0-59):
+
+Example:
+var d = new Date();
+document.getElementById("demo").innerHTML = d.getMinutes();
+
+-----------------------------------------------------------------------
+
+getSeconds() - This method returns the seconds of a date as a number 
+(0-59):
+
+Example:
+var d = new Date();
+document.getElementById("demo").innerHTML = d.getSeconds();
+
+-----------------------------------------------------------------------
+
+getMilliseconds() - This method returns the milliseconds of a date as
+ a number (0-999):
+
+Example:
+var d = new Date();
+document.getElementById("demo").innerHTML = d.getMilliseconds();
+
+-----------------------------------------------------------------------
+
+getDay() - This method returns the weekday of a date as a number (0-6):
+
+Example:
+var d = new Date();
+	document.getElementById("demo").innerHTML = d.getDay();
+
+-----------------------------------------------------------------------
+
+Converting date to string:
+
+Date().toString()  // returns "Thu Jul 17 2014 15:38:19 GMT+0200 
+(W. Europe Daylight Time)"
+
+-----------------------------------------------------------------------
+
+SETTING A DATE AND HOUR
+
+SETTING A DATE:
+
+Example01:
+var d = new Date();
+d.setMonth(11);
+d.setDate(11);
+d.setYear(2022);
+//Output: Sun Dec 11 2022
+
+Example02:
+var d = new Date();
+d.setFullYear(2020, 5, 3);
+document.getElementById("demo").innerHTML = d;
+//Output: Wed Jun 03 2020 
+
+-----------------------------------------------------------------------
+
+SETTING A HOUR:
+
+Example:
+var d = new Date();
+d.setSeconds(30);
+d.setMinutes(30);
+d.setHours(12);
+document.getElementById("demo").innerHTML = d;
+//Output: 12:30:30 
+
+=========================MATH METHODS===============================
+
+Math.PI;            // returns 3.141592653589793 
+
+-----------------------------------------------------------------------
+
+Math.round(4.7);    // returns 5
+
+-----------------------------------------------------------------------
+
+Math.round(4.4);    // returns 4 
+
+-----------------------------------------------------------------------
+
+Math.pow(8, 2);      // returns 64 
+
+-----------------------------------------------------------------------
+
+Math.sqrt(64);      // returns 8 
+
+-----------------------------------------------------------------------
+
+Math.abs(-4.7);     // returns 4.7 
+
+-----------------------------------------------------------------------
+
+Math.ceil(4.4);     // returns 5 
+
+-----------------------------------------------------------------------
+
+Math.floor(4.7);    // returns 4 
+
+-----------------------------------------------------------------------
+
+Math.sin(90 * Math.PI / 180);
+// returns 1 (the sine of 90 degrees) 
+
+-----------------------------------------------------------------------
+
+Math.cos(0 * Math.PI / 180);
+// returns 1 (the cos of 0 degrees) 
+
+-----------------------------------------------------------------------
+
+Math.min(0, 150, 30, 20, -8, -200);
+// returns -200 
+
+-----------------------------------------------------------------------
+
+Math.max(0, 150, 30, 20, -8, -200);
+// returns 150 
+
+-----------------------------------------------------------------------
+
+Math random examples:
+
+Math.random();           // returns a random number always lower than 0
+
+Math.floor(Math.random() * 10);     // returns a random integer from 0 
+to 9 
+
+Math.floor(Math.random() * 100);     // returns a random integer from 0 
+to 99 
+
+Math.floor(Math.random() * 10) + 1;  // returns a random integer from 1 
+to 10 
+
+Math.floor(Math.random() * 100) + 1; // returns a random integer from 1 
+to 100 
+
+======================CONDITIONAL STATEMENTS===========================
+
+Use if to specify a block of code to be executed, if a specified 
+condition is true.
+
+Use else to specify a block of code to be executed, if the same 
+condition is false.
+
+Use else if to specify a new condition to test, if the first condition 
+is false.
+
+Use switch to specify many alternative blocks of code to be executed.
+
+-----------------------------------------------------------------------
+
+IF
+
+if (condition) {
+  //  block of code to be executed if the condition is true
+} 
+
+-----------------------------------------------------------------------
+
+ELSE
+if (condition) {
+  //  block of code to be executed if the condition is true
+} else {
+  //  block of code to be executed if the condition is false
+}
+
+-----------------------------------------------------------------------
+
+ELSE IF
+
+if (condition1) {
+  //  block of code to be executed if condition1 is true
+} else if (condition2) {
+  //code executed if the condition1 is false and condition2 is true
+} else {
+  //code executed if the condition1 is false and condition2 is false
+}
+
+-----------------------------------------------------------------------
+
+Switch is useful statement to select one of many code blocks to be 
+executed.
+
+switch(expression) {
+  case x:
+    // code block
+    break;
+  case y:
+    // code block
+    break;
+  default:
+    // code block
+}
+
+===============================LOOPS===================================
+Loops types:
+
+for - loops through a block of code a number of times
+
+while - loops through a block of code while a specified condition is true
+
+do/while - also loops through a block of code while a specified condition 
+is true.
+
+-----------------------------------------------------------------------
+
+for (statement 1; statement 2; statement 3) {
+  // code block to be executed
+}
+
+Example01:
+for (i = 0; i < 5; i++) {
+  text += "The number is " + i + "<br>";
+}
+
+//Output:
+The number is 0
+The number is 1
+The number is 2
+The number is 3
+The number is 4
+
+You can use various values in the first statement.
+
+-----------------------------------------------------------------------
+
+Example02:
+var cars = ["BMW", "Volvo", "Saab", "Ford"];
+var i, len, text;
+for (i = 0, len = cars.length, text = ""; i < len; i++) {
+  text += cars[i] + "<br>";
+}
+
+//Output:
+BMW
+Volvo
+Saab
+Ford
+
+-----------------------------------------------------------------------
+
+Example 03:
+
+const myArray = [
+    'item1',
+    'item2',
+    'item3',
+    'item4',
+    'item5'
+]
+
+for(let i = 0; i < myArray.length ; i ++)
+console.log(`${i}. ${myArray[i]} `)
+
+output:
+
+0. item1 
+1. item2 
+2. item3 
+3. item4 
+4. item5 
+
+-----------------------------------------------------------------------
+
+Example 04:
+
+const myArray = [
+    {object: 'item1', value: 10},
+    {object: 'item2', value: 6},
+    {object: 'item3', value: 4},
+    {object: 'item4', value: 8}
+]
+
+for(let test in myArray)
+console.log(myArray[test])
+
+-----------------------------------------------------------------------
+
+Example 05
+
+const myArray = [
+    'item1',
+    'item2',
+    'item3',
+    'item4',
+    'item5'
+]
+
+for(let i = 0; i < myArray.length ; i ++){
+    console.log(`${i}. ${myArray[i]} `)
+    if(myArray[i] == 'item3') break;
+}
+
+-----------------------------------------------------------------------
+
+While - This loop loops through a block of code as long as a specified 
+condition is true.
+
+
+while (condition) {
+  // code block to be executed
+}
+
+Example:
+var text = "";
+var i = 0;
+while (i < 10) {
+  text += "The number is " + i;
+  i++;
+}
+
+//Output:
+The number is 0
+The number is 1
+The number is ...
+The number is 9
+
+-----------------------------------------------------------------------
+
+Do/while loop is a variant of the while loop. This loop will execute 
+the code block once, before checking if the condition is true, then it 
+will repeat the loop as long as the condition is true.
+
+do {
+  // code block to be executed
+}
+while (condition);
+
+Example:
+var text = ""
+var i = 0;
+do {
+  text += "The number is " + i;
+  i++;
+}
+while (i < 10);
+
+//Output:
+The number is 0
+The number is 1
+The number is ...
+The number is 9
+
+=========================REGULAR EXPRESSIONS=============================
+
+i - Do a insensitive case search.
+
+Example:
+var str = "Visit W3Schools";
+var patt1 = /w3schools/i;
+var result = str.match(patt1);
+//Output: W3Schools
+
+-----------------------------------------------------------------------
+
+g - Do a global search.
+
+Example:
+var str = "Is this all there is?";
+var patt1 = /is/g;
+var result = str.match(patt1);
+//Output: is,is
+
+-----------------------------------------------------------------------
+
+[abc] - Find any of the characters.
+
+Example:
+var str = "Is this all there is?";
+var patt1 = /[h]/g; 
+var result = str.match(patt1);
+
+//Output: h,h
+
+-----------------------------------------------------------------------
+
+[0-9] - Find any of the digits
+
+Example:
+var str = "123456789";
+var patt1 = /[1-4]/g;
+var result = str.match(patt1);
+
+//Output: 1,2,3,4
+
+-----------------------------------------------------------------------
+
+(x|y) - Find any of the alternatives separated with |
+
+Example:
+var str = "re, green, red, green, gren, gr, blue, yellow";
+var patt1 = /(red|green)/g;
+var result = str.match(patt1);
+//Output: green,red,green
+
+-----------------------------------------------------------------------
+
+\d -  Find a digit
+
+Example:
+var str = "Give 100%!"; 
+var patt1 = /\d/g;
+var result = str.match(patt1);
+//Output: 1,0,0
+
+-----------------------------------------------------------------------
+
+\s - Find a whitespace character
+
+Example:
+var str = "Is this all there is?";
+var patt1 = /\s/g;
+var result = str.match(patt1);
+//Output: , , , 
+
+-----------------------------------------------------------------------
+
+\b - Find the position of a character in the beggin or end of a word in 
+a phrase.
+
+Example01 - In the beggin:
+var str = "HELLO, LOOK AT YOU!"; 
+var patt1 = /\bLO/;
+var result = str.search(patt1);
+//Output: 7
+
+Example02 - In the end:
+var str = "HELLO, LOOK AT YOU!"; 
+var patt1 = /LO\b/;
+var result = str.search(patt1);
+//Output: 3
+
+-----------------------------------------------------------------------
+
+n+ - Matches any string that contains at least one n
+
+Example:
+var str = "Hellooo World! Hello W3Schools!"; 
+var patt1 = /o+/g;
+var result = str.match(patt1);
+
+//Output: ooo,o,o,oo 
+
+-----------------------------------------------------------------------
+
+n* - Matches any string that contains zero or more occurrences of n
+
+Example:
+var str = "Hellooo World! Hello W3Schools!"; 
+var patt1 = /lo*/g;
+var result = str.match(patt1);
+
+l,looo,l,l,lo,l
+
+-----------------------------------------------------------------------
+
+n? - Matches any string that contains zero or one occurrences of n
+
+Example: 
+
+var str = "1, 100 or 1000?";
+var patt1 = /10?/g;
+var result = str.match(patt1);
+//Output: 1,10,10
+
+=============================JSON OBJECT===============================
+
+All data received in the web comes in string format. When storing or 
+reading a data using localstorage or workink with databases, this data 
+should be represented in JSON format.
+
+Json format exmaple:
+
+{ name: "John", age: 31, city: "New York" };
+
+Methods:
+
+parse() - This method converts the string data in a JSON object.
+
+stringfy() - This method converts the JSON object data in a string.
+
+
+===========================TREATING ERRORS=============================
+
+TRY, CATCH AND TROW
+
+try {
+  Block of code to try
+}
+catch(err) {
+  Block of code to handle errors
+} 
+
+
+Example:
+<p>Please input a number between 5 and 10:</p>
+
+<input id="demo" type="text">
+<button type="button" onclick="myFunction()">Test Input</button>
+<p id="p01"></p>
+
+<script>
+function myFunction() {
+  var message, x;
+  message = document.getElementById("p01");
+  message.innerHTML = "";
+  x = document.getElementById("demo").value;
+  try { 
+    if(x == "")  throw "empty";
+    if(isNaN(x)) throw "not a number";
+    x = Number(x);
+    if(x < 5)  throw "too low";
+    if(x > 10)   throw "too high";
+  }
+  catch(err) {
+    message.innerHTML = "Input is " + err;
+  }
+}
+</script>
+
+-----------------------------------------------------------------------
+
+TRY, CATCH, TROW AND FINALLY
+
+try {
+  Block of code to try
+}
+catch(err) {
+  Block of code to handle errors
+}
+finally {
+  Block of code to be executed regardless of the try / catch result
+} 
+
+Example:
+<p>Please input a number between 5 and 10:</p>
+
+<input id="demo" type="text">
+<button type="button" onclick="myFunction()">Test Input</button>
+
+<p id="p01"></p>
+
+<script>
+function myFunction() {
+  var message, x;
+  message = document.getElementById("p01");
+  message.innerHTML = "";
+  x = document.getElementById("demo").value;
+  try { 
+    if(x == "")  throw "is empty";
+    if(isNaN(x)) throw "is not a number";
+    x = Number(x);
+    if(x > 10)   throw "is too high";
+    if(x < 5)  throw "is too low";
+  }
+  catch(err) {
+    message.innerHTML = "Input " + err;
+  }
+  finally {
+    document.getElementById("demo").value = "";
+  }
+}
+</script>
+
+-------------------------------------------------------------------------
+
+TYPE OF ERRORS:
+
+EvalError	An error has occurred in the eval() function
+RangeError	A number "out of range" has used
+ReferenceError	You try to use a undeclared variable
+SyntaxError	A syntax error has occurred
+TypeError	You used a value that is outside of expected types
+URIError	You used illegal characters in a URI function:
+
+
+============================RESERVED WORDS===============================
+
+Avoi the use of reserved JavaScript words:
+
+abstract	arguments	await*		boolean
+break	 	byte		case		catch
+char	 	class*		const		continue
+debugger	default		delete		do
+double		else		enum*		eval
+export*		extends*	false		final
+finally		float		for		function
+goto		if		implements	import*
+in		instanceof	int		interface
+let*		long		native		new
+null		package		private		protected
+public		return		short		static
+super*		switch		synchronized	this
+throw		throws		transient	true
+try		typeof		var		void
+volatile	while		with		yield
+
+
+========================BEST PRACTICES AND TIPS==========================
+
+Avoid and minimize the use of global variables. Global variables and 
+functions can be overwritten by other scripts.
+
+All variables used in a function should be declared as local variables.
+
+Put all declarations at the top of each script or function.
+
+Initialize variables when you declare them. Example: 
+// Declare and initiate at the beginning
+var firstName = "",
+lastName = "",
+price = 0,
+discount = 0,
+fullPrice = 0,
+myArray = [],
+myObject = {};
+
+Use {} instead of new Object()
+
+Use "" instead of new String()
+
+Use 0 instead of new Number()
+
+Use false instead of new Boolean()
+
+Use [] instead of new Array()
+
+Use /()/ instead of new RegExp()
+
+Use function (){} instead of new Function()
+
+Use == instead = 
+
+Use === instead ==
+
+Beware that numbers can accidentally be converted to strings or NaN
+
+Always end your switch statements with a default. Even if you think 
+there is no need for it.
+
+Avoid use the function eval(). Because it allows arbitrary code to be 
+run, it also represents a security problem.
+
+The loop for is used when know the interval to loop and while is used 
+when it is unknowed.
+
+Passing a function without parenteses inside another function, means 
+that this function is only invoked and not executed, to execute, put
+the parenteses also.
+
+Avoid to use {} inside of high order functions. Correct example:
+myArray.map(item => item.id)
+
+The for of is used to iterate between plan arrays and for in to iterate 
+in objects.
+
+The this never variables when used in arrow functions, always appointing 
+for your own context, therefore prefer using arrow function when working
+with the this.
+
+You should use arrow functions wihtout the keys when is a function of
+a single line and with a single responsability. 
+Ex: const double = a => console.log(a * 2)
+
+Use return inside conditional statements if you desire pause the code in 
+that point.
+

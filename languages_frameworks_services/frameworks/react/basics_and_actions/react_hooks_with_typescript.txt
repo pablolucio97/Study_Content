@@ -1,0 +1,708 @@
+==================================HOOKS==================================
+
+Is a spcecial function that allow to uses react features of the
+state to a function component.
+
+--------------------------------useState()-------------------------------
+
+Is used to use and change the state of the function component.
+This always is setted in a const receiving a array. The initial
+values is passed how parammeter and the change of state is setted
+by the second item of the array. Example:
+
+const [number, setNumber] = useState(5)
+changeNumber = () => {
+setNumber(3)
+}
+
+------------------------------useEffect()-------------------------------
+
+This features should be used when is necessary to uses functions
+that treat with intervals and relation with the life cicle of the
+function component. The useEffect is executed only one time, when the
+application is started. When the second parammeter of the useEffect is 
+empty, it means that the function will be run only one time. Example:
+
+import React from 'react'
+import {useState, useEffect} from 'react'
+import {View, Text, StyleSheet, TouchableOpacity} from 'react-native'
+
+export default function UseStateExample(){
+
+  const [count, setCount] = useState (0)
+  const [msg, setMsg] = useState ('')
+
+  useEffect(()=> {
+    setMsg('Changed ' + count + ' times.' )
+  },[count])
+
+  function increaseCount(){
+    setCount(count + 1)
+  }
+
+  return(
+    <View style={styles.container}>
+      <Text>Use State Example:</Text>
+      <TouchableOpacity onPress={increaseCount}>
+        <Text>Click-me</Text>
+      </TouchableOpacity>
+  <Text>{count}</Text>
+    </View>
+  )
+}
+
+//useEffect with timer:
+
+import React from 'react'
+import {useState, useEffect} from 'react'
+import {View, Text, StyleSheet, TouchableOpacity} from 'react-native'
+
+export default function useEffectExamples () {
+
+  const [count, setCount] = useState(0)
+
+  useEffect( () => {
+    const interval = setInterval( () => {setCount(count + 1)}, 1000)
+    return ()=> {
+      clearInterval(interval)
+  }  
+  })
+
+  return(
+    <View style={styles.container}>
+        <Text>Count: {count}</Text>
+    </View>
+  )
+}
+
+-----------------------------useCallback()-----------------------------
+
+Is used to memorize functions, to avoid render unnecessary func-
+tions. When a function is renderized for first time, don't need
+be renderizend again if is inside a useCallback hook. This hook
+leaves two arguments: the function and an dependencies array. 
+
+Example:
+
+import {useState, useCallback} from 'react'
+import React from 'react'
+import { View, Text, Button, StyleSheet } from 'react-native'
+
+const App = () => {
+
+  const store = new Set()
+  const [count1, setCount1] = useState(0)
+  const [count2, setCount2] = useState(0)
+
+  const increment1 = useCallback(()=> setCount1
+	(count1 => count1 + 1), [count1])
+  const increment2 = useCallback(()=> setCount2
+	(count2 => count2 + 1), [count2])
+
+  store.add(increment1)
+  store.add(increment2)
+
+  return (
+    <View style={styles.container}>
+      <Text>useCallBack example</Text>
+      <Button title='Count1' onPress={increment1}></Button>
+      <Button title='Count2' onPress={increment2}></Button>
+      <Text>Count1: {count1}</Text>
+      <Text>Count2: {count2}</Text>
+      <Text>Store: {store.size -2}</Text>
+    </View>
+  )
+}
+
+Using useCallback to avoid unnecessary renders:
+
+1)Defines the function to store in the callBack:
+
+import React, { useCallback, useState } from 'react';
+import Buttons from './Buttons'
+
+function UseCallbackExample() {
+
+    const [ count, setCount] = useState(0)
+
+   const changer = useCallback(function (delta){
+        setCount(curr => curr + Number(delta))
+    }, [setCount])
+
+  return(
+      <div>
+        <Buttons changeCount={changer}/>
+          <p>{count}</p>
+      </div>
+  );
+}
+
+export default UseCallbackExample;
+
+-----------------------------------------------------------------------
+
+2)Wrap the React component with the method React.memo(Component):
+
+import React from 'react';
+
+function Buttons(props) {
+
+    console.log('render components...')
+
+  return(
+      <div>
+          <button onClick={() => props.changeCount(1)}>+1</button>
+          <button onClick={() => props.changeCount(-1)}>-1</button>
+      </div>
+  );
+}
+
+export default React.memo(Buttons)
+
+------------------------------useMemo()--------------------------------
+
+Memoize a value and executes a function only when your dependecy chan-
+ges. If don't there dependecies, its run only one time.  It's an alter-
+native for useState to avoid remder unnecessary time a same component.
+
+import React from 'react'
+import {useState, useMemo} from 'react'
+import { View, Text, Button, TextInput, Alert } from 'react-native'
+
+export default function App () {
+
+  const [total, setTotal] = useState(0)
+  const [x, setX] = useState(0)
+  const [y, setY] = useState(0)
+  
+  //ONLY DISPLAY ALERT IF THE RESULT OF THE SUM CHANGES
+  //IF DOESN'T USING useMemo, ITS DISPLAY THE RESULT EVERY TIME
+  const sumValues = (x, y) => {
+    Alert.alert('My title', 'ok')
+    return x + y
+  }
+
+  const result = useMemo(() => sumValues(x,y), [x,y])
+
+  return(
+    <View>
+      <Text>useMemo example</Text>
+      <TextInput
+      keyboardType='numeric'
+      onChangeText={(valueX) => valueX.length ? setX(parseInt(valueX)) 
+	: setX(0)}
+      value={x.toString(10)}
+      textAlign='center'
+      />
+      <TextInput
+      keyboardType='numeric'
+      onChangeText={(valueY) => valueY.length ? setY(parseInt(valueY)) 
+	: setY(0)}
+      value={y.toString(10)}
+      textAlign='center'
+      />
+    <Text>Result: {total}</Text>
+      <Button title='Count2' onPress={ () => setTotal(result)}></Button>
+    </View>
+  )
+}
+
+--------------------------------useRef()---------------------------------
+
+Is used to store a ref and use it later without need render
+again.
+
+import React from 'react'
+import {View, Text, Button, TextInput} from 'react-native'
+import {useRef} from 'react'
+
+export default function App(){
+
+  const refInput = useRef(null)
+
+  const getFocusInput = () => {
+    refInput.current.focus();
+  }
+
+  return(
+  <View>
+    <Text>useRef example:</Text>
+    <TextInput
+    textAlign='center'
+    ref={refInput}
+    />
+    <Button
+    title='Get form focus'
+    onPress={() => {getFocusInput()}}
+    />
+  </View>
+)
+}
+
+//GETING PREVIOUS STATE
+
+import React from 'react'
+import {View, Text, Button, TextInput} from 'react-native'
+import {useRef, useState, useEffect} from 'react'
+
+function getPreviousState(value){
+  const ref = useRef()
+  useEffect(() => {
+    ref.current = value
+  })
+  return ref.current
+}
+
+export default function App(){
+
+  const [count, setCount] = useState(0)
+  const previousState = getPreviousState(count)
+
+  return(
+  <View>
+    <Text>useRef example:</Text>
+    <Text>Previous state:{previousState} Current state:{count}</Text>
+    <Button
+    title='Increment'
+    onPress={() => {setCount(count + 1)}}
+    />
+  </View>
+)
+}
+
+
+------------------------------------------------------------------------
+
+1) Using to handle imperatively a html element.
+
+In this example useRef gives focus on the input element without 
+depend state value.
+
+  const inputRef = useRef<HTMLInputElement>(null)
+  
+  useEffect(() => {
+    inputRef.current?.focus()
+  }, [])
+
+  return (
+    <div className="App">
+      <input 
+      type="type your name"
+      ref={inputRef}
+      />
+    </div>
+-------------------------------------------------------------------------------
+
+2) Avoiding that all application be renderized because a single value 
+has changed.
+
+  const inputRef = useRef<HTMLInputElement>(null)
+
+  const handleSubmit = useCallback((e: FormEvent) => {
+    e.preventDefault()
+    inputRef.current?.focus()
+    console.log(inputRef.current?.value)
+  }, [])
+
+  return (
+    <div className="App">
+      <form onSubmit={handleSubmit}>
+        <input
+          type="type your name"
+          ref={inputRef}
+        />
+        <button type="submit">
+          Sent
+        </button>
+      </form>
+    </div>
+
+-------------------------------------------------------------------------------
+
+3) Using to handle a value without render the all application:
+In this case the application don't be renderize if the accepterms 
+is changed.
+
+
+    const inputRef = useRef<HTMLInputElement>(null)
+    const acceptedTerms = useRef({value : false})
+
+    const handleRef = (e: FormEvent) => {
+        e.preventDefault()
+        const val = inputRef.current?.value
+        console.log(val)
+        console.log(acceptedTerms.current?.value)
+    }
+
+    const handleAcceptTerms = useCallback( () => {
+        acceptedTerms.current.value = !acceptedTerms.current.value
+    }, [])
+
+  return(
+      <form onSubmit={handleRef}>
+          <p>Hello from refs</p>
+          <input 
+          name='ref-input'
+          ref={inputRef}
+          placeholder='type your name'
+          type="text"/>
+          <button type='submit'>Sent ref</button>
+          <button type='button' 
+            onClick={handleAcceptTerms}>Accept terms</button>
+      </form>
+
+-------------------------------------------------------------------------------
+
+4) Passing refs of parent component to the children component:
+
+Parent component:
+
+import React, { useCallback, useRef, FormEvent } from 'react';
+
+import UserRefChildren from './useRefsChildren'
+
+const UseRef: React.FC = () => {
+
+    const inputRef = useRef<HTMLInputElement>(null)
+    const acceptedTerms = useRef({ value: false })
+
+    const handleRef = (e: FormEvent) => {
+        e.preventDefault()
+        const val = inputRef.current?.value
+        console.log(val)
+        console.log(acceptedTerms.current?.value)
+    }
+
+    const handleAcceptTerms = useCallback(() => {
+        acceptedTerms.current.value = !acceptedTerms.current.value
+    }, [])
+
+    return (
+        <form onSubmit={handleRef}>
+            <p>Hello from refs</p>
+            <UserRefChildren
+            name='name'
+            title='Your name'
+            ref={inputRef}
+            />
+            <button type='submit'>Sent ref</button>
+            <button type='button' 
+             onClick={handleAcceptTerms}>Accept terms</button>
+        </form>
+    );
+}
+
+export default UseRef;
+
+----------------------------
+
+Children component:
+
+import React, { InputHTMLAttributes, forwardRef } from 'react';
+
+
+interface inputProps extends InputHTMLAttributes<HTMLInputElement>{
+    name: string;
+    title: string;
+}
+
+const UserefChildren: React.ForwardRefRenderFunction<HTMLInputElement, 
+ inputProps> = ({name, title, ...rest}, ref) => {
+    return (
+        <div>
+            <label htmlFor={name}>{title}</label>
+            <input 
+            ref={ref}
+            {...rest}
+            
+            />
+        </div>
+    );
+}
+
+export default forwardRef(UserefChildren);
+
+-------------------------------------------------------------------------------
+
+5) Passing refs of children component to the parent component:
+
+Children component:
+
+import React, {forwardRef, useState, useCallback, useImperativeHandle} 
+from 'react';
+
+export interface ModalHandles{
+    openModal: () => void
+}
+
+const Modal: React.ForwardRefRenderFunction<ModalHandles> = (props, ref) => {
+
+    const [visibleModal, setVisibleModal] = useState(true)
+
+    const openModal = useCallback(() => {
+        setVisibleModal(true)
+    }, [])
+
+    useImperativeHandle( ref, () =>{
+        return {
+            openModal
+        }
+    })
+
+    const closeModal = useCallback( () => {
+        setVisibleModal(false)
+    }, [])
+
+    if(!visibleModal){
+        return null
+    }
+
+  return (
+      <div>
+          <p>Modal opened</p>
+          <button onClick={closeModal}>Close modal</button>
+      </div>
+  );
+}
+
+export default forwardRef(Modal);
+
+-------------------------
+
+Parent component
+
+
+import React, { useRef, useCallback } from 'react';
+
+import Modal , {ModalHandles} from './hooks/useRefModal'
+
+const App = () => {
+
+  const modalRef = useRef<ModalHandles>(null)
+
+  const handleOpenModal = useCallback(() => {
+    modalRef.current?.openModal()
+  }, []) 
+
+  return(
+    <div>
+    <h1>Handling Modal</h1>
+      <Modal ref={modalRef}/>
+      <button onClick={handleOpenModal}>Open modal</button>
+    </div>
+  );
+}
+
+export default App;
+
+
+----------------------------useContext()----------------------------------
+
+1) Initialize the context, create a functional component to provider your 
+values (can be props or a state) and a custom to hook to use it.
+
+
+import React, {createContext, useContext, useState} from 'react'
+
+export const CounterContext = createContext()
+
+
+export default function CountProvider({children}) {
+
+    const[count, setCount] = useState(123424)
+
+    return (
+      <CounterContext.Provider value={{count, setCount}}>
+          {children}
+      </CounterContext.Provider>
+    )
+}
+
+
+export function useCounter(){
+    const context = useContext(CounterContext)
+    const {count, setCount} = context
+    return {count, setCount}
+}
+
+---------------------------------------------------------------------------
+
+2) Destrucutrue the props of the hook and use in a component
+
+import React from 'react'
+
+import {useCounter} from './context/Countprovider'
+
+export default function Counter() {
+
+    const {count, setCount} = useCounter()
+
+    return (
+        <div>
+           <p>Count: {count}</p> 
+           <button onClick={() => {setCount(count + 1)}}>
+	    Increase count
+          </button>
+        </div>
+    )
+}
+
+----------------------------------------------------------------------------
+
+3) Import the context provider to provider the context for your application 
+and use the component with the context in your application.
+
+import React from 'react'
+
+import Counter from './Counter'
+import CounterProvider from './context/Countprovider'
+
+export default function App() {
+  return (
+
+    <CounterProvider>
+        <Counter/>
+    </CounterProvider>
+
+  )
+}
+
+------------------------USEREDUCER (JAVASCRTIP)----------------------------
+
+The hook useReducer is used to update a complex object state allowing to 
+change only the props that you want and return the state updated. This re-
+ceives an action function that maps the props to change the state and cur-
+rent state and, example:
+
+import React from 'react';
+import { useReducer } from 'react';
+
+function UseReducerExample() {
+    
+    const initialState = {
+        user: null,
+        cart: [],
+        products: [],
+        number: 0
+    }
+    
+    function reducer(state, action){
+        switch(action.type){
+            case('addNumber'):
+                return {...state, number: state.number + 1}
+            case('login'):
+                return {...state, login: state.user = action.payload}
+            default: 
+                return state
+        }
+    }
+    
+   const [state, dispatch] = useReducer(reducer, initialState)
+
+  return (
+      <div>
+          {state.user? state.user : 'Without user'}
+          <p>{state.number}</p>
+          <button onClick={() => dispatch({type: 'addNumber'})}>
+            Add number
+          </button>
+          <button onClick={() => dispatch({type: 'login', payload: 'Pablo'})}>
+             Login
+          </button>
+      </div>
+  );
+}
+
+export default UseReducerExample;
+
+-------------------CREATING AND CONSUMING OWN HOOKS-----------------------
+
+1)Create the hook assing a function for this (you can use another hooks in-
+side your personal hook) and return your values and functionalities:
+
+import {useState} from 'react'
+
+export const useCounter = (initialValue = 100) => {
+
+    const [counter, setCounter] = useState(initialValue)
+
+    function inc(){
+        return setCounter(counter + 1)
+    }
+
+    function dec(){
+        return setCounter(counter - 1)
+    }
+
+    return  [counter, inc, dec]
+}
+
+
+---------------------------------------------------------------------------
+
+2)Import and destrucuture your hook.
+
+import React from 'react';
+import {useCounter} from './useCounter'
+
+
+function CustomHookExample() {
+
+    const [counter, inc, dec] = useCounter()
+
+  return(
+      <div>
+          <p>{counter}</p>
+          <button onClick={inc}>+</button>
+          <button onClick={dec}>-</button>
+      </div>
+  );
+}
+
+export default CustomHookExample;
+
+
+=============================GENERAL TIPS===================================
+
+You can't to use the context directly in your App.js, you need to create a 
+component to use it.
+
+Exists two ways to work with programming with React: Declarative way: The be-
+havior of the elements depend of the state value. Imperative way: You cann to
+access directly the html element value and atributes to handle your value and 
+props.
+
+All hooks should be types when using typescript.
+
+The component only is renderized after the state value changes.
+
+Create a folder to store your states and manage them trought useReducer when you
+are working with comlpex applications.
+
+Avoid to set the state directly inside a useEffect hook for not generation in-
+finit loop state changes.
+
+Use a callback function inside the setState method to get the current value of 
+the state. Ex: setCounter((curr) => curr + counter ).
+
+Use a return inside the useEffect to clean events that don't should occour each 
+state change. Example: 
+
+function printIt(){
+    console.log('El has received a click')
+}
+
+useEffect(() => {
+
+    document.querySelector('p').addEventListner('click', printIt)
+
+    return () => {
+        document.querySelector('p').removeEventListener('click', printIt)
+    }
+}, [])
+
+Use [] for destructuring props for the value provider when this is an array and {}
+when is an object.
+
+
+

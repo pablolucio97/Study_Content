@@ -1,0 +1,113 @@
+-----------DOING USER AUTH WITH REACT CONTEXT AND LOCAL STORAGE--------------
+
+
+1) Create a new file named auth inside the folder hook with an context, an 
+useContext, and function to signIn and another to signOut. You need to pro-
+vide the context for all appllication using the provider from the context:
+
+
+import React, {useContext, createContext, useState} from 'react'
+
+interface IAuthContext{
+    logged: boolean;
+    signIn(email: string, password: string):void;
+    signOut():void;
+}
+
+const AuthContext = createContext<IAuthContext>({} as IAuthContext);
+
+const AuthProvider : React.FC = ({children}) => {
+    const [logged, setLogged] = useState<boolean>(() => {
+        const isLogged = localStorage.getItem('@my-wallet:logged')
+        return !!isLogged
+    })
+
+    const signIn = (email: string, password: string) => {
+        if(email === 'admin@test.com' && password === '123'){
+            localStorage.setItem('@my-wallet:logged' , 'true');
+            setLogged(true)
+        }else{
+            window.alert('Password or e-mail is incorrect!');
+        }
+    }
+    
+    const signOut = () => {
+        localStorage.removeItem('@my-wallet:logged');
+        setLogged(false);
+    }
+
+    return (
+        <AuthContext.Provider value={{signIn, signOut, logged}}>
+            {children}
+        </AuthContext.Provider>
+    )
+}
+
+function useAuth () : IAuthContext {
+    
+    const context = useContext(AuthContext);
+
+    return context;
+}
+
+export{useAuth, AuthProvider}
+
+----------------------------------------------------------------------------
+
+2) Destruct and use the value of the current auth state inside the index fi-
+of the folder routes and allow the routes based in the auth value:
+
+import React from 'react'
+import { BrowserRouter } from 'react-router-dom'
+
+import AppRoutes from './app.routes'
+import AuthRoutes from './auth.routes'
+
+import { useAuth } from '../hooks/auth'
+
+const Routes = () => {
+
+    const { logged } = useAuth()
+
+    return (
+        <BrowserRouter>
+            {logged ? <AppRoutes /> : <AuthRoutes />}
+        </BrowserRouter>
+    )
+}
+
+
+
+export default Routes
+
+----------------------------------------------------------------------------
+
+
+3) Provide the AuthContext  for the root index.tsx wrapping the whole ap-
+plication:
+
+
+import React from 'react'
+
+import ReactDOM from 'react-dom';
+
+import reportWebVitals from './reportWebVitals';
+
+import App from './App'
+
+import { ThemeProvider } from './hooks/theme'
+import { AuthProvider } from './hooks/auth'
+
+ReactDOM.render(
+  <React.StrictMode>
+    <ThemeProvider>
+      <AuthProvider>
+        <App />
+      </AuthProvider>
+    </ThemeProvider>
+  </React.StrictMode>,
+  document.getElementById('root')
+);
+
+reportWebVitals();
+

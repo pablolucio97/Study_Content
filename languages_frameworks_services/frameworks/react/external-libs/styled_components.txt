@@ -1,0 +1,179 @@
+-----------------------------------GENERAL USAGE--------------------------------------
+
+Component file:
+
+import React, {useContext} from 'react'
+import {Container, Text1} from '../styles/styles_example'
+
+const ExampleComponent = () => {
+    return(
+        <Container>
+		<h1>Hello from Styled Components.</h1>
+		<Text1>I'm an exampple.</Text1>
+        </Container>
+    )
+}
+
+export default ExampleComponent
+
+-------------------------------------------------------------------------------------
+
+Styled file:
+
+import styled from 'styled-components/native';
+
+export const Container = styled.View`
+flex: 1;
+background-color: #fff;
+justify-content: flex-start;
+padding: 30px;
+align-items: center
+
+ &:hover{
+	opacity: .8
+ }
+
+ h1{
+   font-size: 32px;
+ }
+
+`
+
+export const Text = styled.Text`
+font-size: 30;
+color: #55ee;
+text-align: center;
+	
+	
+`
+
+-----------------------CREATING AND USING GLOBAL STYLES-------------------------------
+
+
+--------------------STYLING COMPONENTS FROM THIRD LIBRARYS----------------------------
+
+1) Import the component and the infterface of the components in  styles.ts. Example:
+
+import Switch, { ReactSwitchProps} from 'react-switch'
+
+
+2) Style the component:
+
+export const Switcher = styled(Switch).attrs<ReactSwitchProps>(
+    ({theme}) => ({
+        offColor: theme.colors.warning,
+        onColor: theme.colors.info
+    }))<ReactSwitchProps>`
+        margin: 7px;
+    `
+
+
+----------------------PASSING PROPS FROM COMPONENT TO STYLED FILE--------------------
+
+1) Create the desired prop in the component. Emxaple
+
+ <TitleContainer lineColor={lineColor}/>
+
+
+2) Create a insterface and use it in the component of style. Example:
+
+interface ILineColor{
+    lineColor: string
+}
+
+export const TitleContainer = styled.div<ILineColor>`
+
+ h1{
+        color: ${props => props.lineColor}
+    }
+
+`
+
+3)Use in your application:
+
+      <ContentHeader 
+        title='Dashboard' 
+        lineColor='#fff'
+	/>
+
+------------------------STYLING BROWSER ELEMENTS(WEBKIT)----------------------------
+
+Example: Styling the scrollbar:
+
+    ::-webkit-scrollbar{
+        width: 10px;
+    }
+
+    ::-webkit-scrollbar-thumb{
+        background-color: '#EED23C'
+    }
+
+    ::-webkit-scrollbar-track{
+        background-color: '#55C23A'
+    }
+    
+------------------------------------USING CLASSES------------------------------------- 
+
+To use classes in Styled Components you should to write the classes in the parent com-
+ponent and using in children components. Example:
+    
+export const Container = styled.div`
+  transition: all .32s ease all;
+  & .myClass {
+    padding-bottom: .8rem;
+    box-shadow: 0 0 8px ${palletCollors.primary}
+  }
+  
+   & .myClass2 {
+    padding-bottom: .8rem;
+    box-shadow: 0 0 8px ${palletCollors.primary}
+  }
+`;
+
+------------------------------
+
+const CollapsibleContainer = () => {
+
+    return (
+        <Container>
+            <SubContainer className='myClass' >
+                <Title className='myClass2'>{title}</Title>
+            </SubContainer>
+        </Container>
+    );
+}
+
+export default CollapsibleContainer;
+
+-----------------------------------USING ANIMATIONS------------------------------------- 
+
+To use animations in styled components you should to import the keyframes, define your 
+animation and use it in your style. Example:
+
+import styled, { keyframes } from "styled-components";
+import { palletCollors } from "../../styles/palletCollors";
+
+const myAnimation = keyframes`
+0%{transform: translateX(500%)}
+50%{transform: translateX(-500%); opacity: 0}
+100%{transform: translateX(500%)}
+`
+
+export const Img = styled.div`
+  width: 120px;
+  height: 80px;
+  object-fit: cover;
+  background: green;
+  animation: ${myAnimation} 2s infinite;
+`;
+
+
+-----------------------------------GENERAL TIPS--------------------------------------
+
+When you has created a DefaultTheme in declaration file, the theme is accessible for 
+whole application styles file enoughting to passs the theme as prop. Example:
+${props => props.theme.colors.text}
+
+Create a single interface for each component thinking if the application will rise.
+
+Sometimes is need refer the parent element to see hovering effects.

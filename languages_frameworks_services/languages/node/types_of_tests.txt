@@ -1,0 +1,18 @@
+
+=================================TYPES OF TESTS=====================================
+
+---------------------------------UNITARIES TESTS------------------------------------
+
+Is used in the TDD (happens when the application is development based on tests) 
+testing singles functionalities of the application based on fake data.
+
+--------------------------------INTEGRATIONS TESTS----------------------------------
+
+In this type, the whole application is tested following the flow:
+
+On request: test the routes => test the controller => test the repository
+On response: test the repository => test the controller => test the response
+
+-------------------------------------END TO END-------------------------------------
+
+Is used in the front-end testing the interaciton of the user with the application.

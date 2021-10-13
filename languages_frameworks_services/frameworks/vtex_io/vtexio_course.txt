@@ -1,0 +1,168 @@
+======================VTEXIO COURSE==========================
+
+------------------------CONCEPTS-----------------------------
+
+VTEXIO: Is a development platform that allows the user crea-
+te virtual store with a cli, components and resources.
+
+IO: Is a popular domain for startups that means Input/Output.
+
+---------------------MAIN RESOURCES---------------------------
+
+Docs Portal: Is the documentation of the Vtex that is availa-
+ble in: https://developers.vtex.com/vtex-developer-docs/docs.
+
+--------------------------------------------------------------
+
+Workspaces: You can create workspaces. There are two types of 
+workspaces: The development (master/default) and anothers dev-
+lopment environments (drafts, for creating testing). 
+
+--------------------------------------------------------------
+
+After devlop your store, you can upload this for production en-
+vironment (cloud) where others developers can interage with 
+your application.
+
+--------------------------------------------------------------
+
+A/B native tests: Is tests for validation final user preferen-
+ces. You can create production worksapce for test the final u-
+ser preferences.
+
+--------------------------------------------------------------
+
+Code splitting: Deliveries only the relevant code for the cur-
+rent page.
+
+--------------------------------------------------------------
+
+Asset Optimization & CDN: Images and resources optimization 
+reducing the page loading.
+
+--------------------------------------------------------------
+
+Server Side Rendering: Static page generate from NextJS impro-
+ving the page loading and SEO at Google indexation process.
+
+--------------------------------------------------------------
+
+Hot Module Replacement: All code is updated automatically 
+without needs browser refresh.
+
+---------------------------------------------------------------
+
+Customizable and Extendable Components Architeture: You can u-
+sage and customize the available components according needs.
+
+---------------------------------------------------------------
+
+SmartSeach: Search with autocomplete that allows relevance set-
+tings.
+
+------------------------TECHNOLOGIES---------------------------
+
+VTEXIO uses React for rendering, Tachyons for CSS management 
+and GraphQL for queries and data consuming.
+
+--------------------------WORKSPACES----------------------------
+
+The is bascilly three workspaces types in VtexIO:
+
+Development: Is a without traffic environment used for develop 
+your application.
+
+Production: Is an environment populated that can used for A/B 
+tests and can be promoted for master. You can't links apps here.
+
+Master: Is the final workspace that reflects the content for the 
+final user.
+
+---------------DEPLOYING AND ACCESING SITE EDITOR----------------
+
+For the deploy you app in a Vtex environment you need to publish 
+yout app and then your app can be installed in a VTEX workspace.
+After you did the deploy, there is the House Keepe that is robot
+that will to check for updates in your application.
+
+You can install you own project or project of other person.
+
+1) After you did finished your app, run vtex publish to release 
+your app.
+
+2) Run vtex install to install your app in a workspace. If you 
+want to install the project of other dev, you can run vtex ins-
+tall {vendor}.{appName}@{version}.
+
+-----------------------------------------------------------------
+
+You can access the site editor trought the application url and 
+then clicking in CMS and SiteEditor. Example:
+
+https://developmentpablolucio--hiringcoders2021.myvtex.com/admin
+
+------------------------VTEX PERFOMANCE--------------------------
+
+Ways to improve your store performance:
+
+- Configuring the content that should be painted on page load and 
+the content to be paintend on user event (scroll).
+
+- Constructing menus using props instead of lists and doing it 
+only by load on mouse over.
+
+- Reducing your product images without reduces the image quality.
+
+- When make sense, exchanges your info-cards for images and use 
+reload true prop.
+
+- Display only the SKU that will first visualizated and goes ren-
+dering others.
+
+- Use slider layout for render elements according the user is 
+sliding the elements.
+
+-----------------------------------------------------------------
+
+Optimizing elements blocks:
+
+To select which elements should be display at page loading use
+the pro "__fold__" inside the prop "blocks" inside your page, e-
+xample:
+
+{
+  "store.home": { 
+    "blocks": [
+      "rich-text",
+      "info-card#right",
+      "__fold__",
+      "info-card#left",
+      "info-card#right2",
+    ]
+  },
+}
+
+---------------------STARTING A NEW PROJECT----------------------
+
+1) Run vtex login yourusername.
+
+2) Run vtex use yourworkspacename.
+
+3) Do login in browser using your personal email, you will recei-
+ve a verification code.
+
+4) Clone the repo https://github.com/vtex-apps/minimum-boilerpla-
+te-theme.
+
+5) Run vtex link to link your code to the virtual vtex store. Use
+(https://developmentpablolucio--hiringcoders2021.myvtex.com/) as
+default.
+
+6) Alther vendor name in manifest.json.
+
+
+
+
+
+
+
