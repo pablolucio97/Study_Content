@@ -1,0 +1,175 @@
+=======CONTROLLING AND VALIDATING FORMS WITH REACT HOOK FORM AND YUP=======
+
+1) Run yarn add react-hook-form yup @hookform/resolvers to install the 
+React Form Hook to control the form by uncontrolled way and the Yup to do 
+the form validation.
+________________
+
+2) In the file that has the form in your application, create a type to use 
+with useForm hook:
+
+type SignInFormData = {
+    email: string;
+    password: string
+}
+
+________________
+
+3) In the file that has the form in your application, import all yup methods and 
+the yupResolver function and create the yup schema validation for your form:
+
+import * as yup from 'yup'
+import {yupResolver} from '@hookform/resolvers/yup'
+
+const signFormSchema = yup.object().shape({
+    email: yup.string().required('E-mail requerided').email('E-mail invalid'),
+    password: yup.string().required('Password requerided')
+})
+
+________________
+
+4) In the file that has the form in your application, Import the useForm from  
+react-hook-form in a page that has a form in your application desustruriting 
+register, handleSubmit and formState from useForm typing it with SignInFormData 
+and passing the yupResolver function with signFormSchema in the prop resolver. 
+Example:
+
+ const {register, handleSubmit, formState} = useForm<SignInFormData>({
+        resolver: yupResolver(signFormSchema)
+    })
+
+________________
+
+5) In the file that has the form in your application, create an async function to 
+handle the user authentication typed as SubmitHandler<SignInFormData>, SubmitHan-
+dler comes from 'react-hook-form'. Example:
+
+const handleSignIn : SubmitHandler<SignInFormData> = async (values) => {
+    await new Promise(resolve => setTimeout(resolve, 500))
+    console.log(values)
+}
+
+________________
+
+6) In your component input file, dDo the ref forward, pass the error type as 
+FieldError from react-hook-form in your InputProps, and show an error if it 
+exists using the props isInvalid in the FormControl and FormErrorMessage. Your 
+input component should be written in arrow function shape and exported as ano-
+ther name to do the refForwarding. You should type the ref with ForwardRefRen-
+derFunction from React. Example:
+
+import { 
+Input as ChackraInput,
+ FormControl,
+ FormLabel,
+ InputProps as ChackraInputProps,
+ FormErrorMessage
+ } from '@chakra-ui/react'
+import { forwardRef, ForwardRefRenderFunction } from 'react'
+import { FieldError } from 'react-hook-form'
+
+interface InputProps extends ChackraInputProps {
+    label: string
+    name: string
+    error?: FieldError
+}
+
+const InputBase: ForwardRefRenderFunction<HTMLInputElement, InputProps> = 
+({ error, label, name, ...rest }, ref) => {
+    return (
+        <FormControl isInvalid={!!error}>
+            {!!label && <FormLabel htmlFor={name}>{label}</FormLabel>}
+
+            <ChackraInput
+                type="email"
+                name={name}
+                {...rest}
+                ref={ref}
+                error={error}
+            />
+            {!!error && (<FormErrorMessage>{error.message}</FormErrorMessage>)}
+        </FormControl>
+    )
+}
+
+export const Input = forwardRef(InputBase)
+________________
+
+The final file with the form should look that:
+
+import { Flex, Button, Stack } from '@chakra-ui/react'
+import {Input} from '../components/Form/Input'
+import {SubmitHandler, useForm} from 'react-hook-form'
+import * as yup from 'yup'
+import {yupResolver} from '@hookform/resolvers/yup'
+
+type SignInFormData = {
+    email: string;
+    password: string
+}
+
+const signFormSchema = yup.object().shape({
+    email: yup.string().required('E-mail obrigatório').email('E-mail inválido'),
+    password: yup.string().required('Password obrigatório')
+})
+
+export default function SignIn() {
+
+    const {register, handleSubmit, formState} = useForm<SignInFormData>({
+        resolver: yupResolver(signFormSchema)
+    })
+
+    const handleSignIn : SubmitHandler<SignInFormData> = async (values) => {
+        await new Promise(resolve => setTimeout(resolve, 500))
+        console.log(values)
+    }
+
+    return (
+        <Flex
+            w='100vw'
+            h='100vh'
+            justify='center'
+            align='center'
+        >
+            <Flex
+                as='form'
+                width='100%'
+                maxWidth={360}
+                bg='gray.800'
+                p='4'
+                borderRadius={8}
+                flexDirection='column'
+                onSubmit={handleSubmit(handleSignIn)}
+                >
+                <Stack spacing={4}>
+                    <Input
+                      name='email'
+                      label='Email'
+                      type='email'
+                      error={formState.errors.email}
+                      {...register('email')}
+                      />
+                    <Input
+                      name='password'
+                      label='Password'
+                      error={formState.errors.password}
+                      type='password'
+                      {...register('password')}
+                    />
+                </Stack>
+                <Button
+                    mt='6'
+                    size='lg'
+                    border='none'
+                    bg='pink.500'
+                    focusBorderColor='pink.500'
+                    _hover={{ cursor: 'pointer' }}
+                    type='submit'
+                    isLoading={formState.isSubmitting}
+                >
+                    Entrar
+                </Button>
+            </Flex>
+        </Flex>
+    )
+}

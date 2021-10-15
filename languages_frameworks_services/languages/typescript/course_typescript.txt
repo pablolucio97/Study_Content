@@ -548,4 +548,10 @@ interface NavLinkProps extends ChakraLinkProps{
 }
 <Text ml='4' fontWeigth='medium'>{children}</Text>
 
+----------------------------------
+
+You can use own typing from hooks of third libraries if it exists in your
+contexts. Click in the hook holding 'Ctrl' and use the type that the hook is 
+exporting.
+
 

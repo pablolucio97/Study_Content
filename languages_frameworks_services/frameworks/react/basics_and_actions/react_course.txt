@@ -1418,6 +1418,9 @@ Always set an array of state passing as rest operator. Example setPosts([...retu
 Always extends native elements props trought interface extends if your will to componentize 
 an native element.
 
+At working with inputs and forms in React is possible to control them through controlled 
+components (handle each input value in a state) or uncontrolled components (using a ref).
+
 
 
 
