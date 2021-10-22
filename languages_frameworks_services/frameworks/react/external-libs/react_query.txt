@@ -1,0 +1,107 @@
+======================USING REACT QUERY======================
+
+React query is useful to do data fetching return more resour-
+ces that allow controlling better your application and using 
+a cache to avoid unnecessary queries.
+
+1) Install the React Query running yarn add react-query.
+
+-------------------------
+
+2) Inside your app.tsx file, provide the QueryClientProvider
+with a client to use the query as a conspan and to control 
+each query, the ReactQueryDevtools. Ex:
+
+import { AppProps } from 'next/app'
+import {QueryClientProvider, QueryClient} from 'react-query'
+import { ReactQueryDevtools } from 'react-query/devtools'
+
+const queryClient = new QueryClient()
+
+function MyApp({ Component, pageProps }: AppProps) {
+    return (
+      <QueryClientProvider client={queryClient}>
+        <Component {...pageProps} />
+        <ReactQueryDevtools/>
+      </QueryClientProvider>
+    )
+}
+
+export default MyApp
+
+-------------------------
+
+3) Inside your application import the hook useQuery from the 
+React Query and define your query destructuring data, isLoad-
+ing and error to control your query. Example:
+
+
+import { useQuery } from 'react-query'
+
+export default function UserList() {
+
+       const { data, isLoading, error } = useQuery('users', async () => {
+        const response = await fetch('http://localhost:3000/api/users')
+        const data = await response.json()
+
+        const users = data.users.map(user => {
+            return {
+                id: user.id,
+                name: user.name,
+                email: user.email,
+                createdAt: new Date(user.createdAt).toLocaleDateString('pt-BR', {
+                    day: '2-digit',
+                    month: 'long',
+                    year: 'numeric'
+                }),
+            }
+        })
+
+        return users
+    },
+        {
+            staleTime: 5000
+        }
+    )
+
+    return (
+        <>
+            {isLoading ? (
+                <div justify="center">
+                    <Spinner />
+                </div>
+            ) : error ? (
+                <div>
+                    <span>Falha ao carregar dados dos usuários</span>
+                </div>
+            ) : (
+                <>
+                    <table colorScheme='whiteAlpha'>
+                        <thead>
+                            <tr>
+                                <th px={['4', '4', '6']} color='gray.300' width='8'>
+                                    <Checkdiv colorScheme='pink' />
+                                </th>
+                                <th>Usuário</th>
+                                {isWideScreen && <th>Data de cadastro</th>}
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {data.map(user => (
+                            <tr key={user.id}>
+                                <td>
+                                    <div>
+                                        <span fontWeight='bold'>{user.name}</span>
+                                        <span fontSize='sm' color='gray.300'>{user.email}</span>
+                                    </div>
+                                </td>
+                                {isWideScreen && <td>{user.createdAt}</td>}
+                            </tr>
+                            ))}
+                        </tbody>
+                    </table>
+                </>
+            )}
+        </>
+    )
+}
