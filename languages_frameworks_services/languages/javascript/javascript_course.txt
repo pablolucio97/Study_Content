@@ -229,6 +229,19 @@ attributes and methods.
 High order functions: ...
 Functional programming
 
+-----------------------------------------------------------------------
+
+Pure Functions
+
+Pure Functions are functions that doesn't affect the global code 
+scope, your result depends only of the argument provided.
+
+Ex:
+
+function sum(a,b){
+  return a + b
+}
+
 
 ============================DATA TYPES=================================
 
@@ -2023,3 +2036,5 @@ Ex: const double = a => console.log(a * 2)
 Use return inside conditional statements if you desire pause the code in 
 that point.
 
+In JavaScript, string, numbers and boolan (primitive values) are immuta-
+bles and array and object are mutables because are a collection of data.
