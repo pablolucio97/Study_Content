@@ -396,9 +396,9 @@ const body = <HMTLInputElement> document.queryElement('input')
 console.log(body.value)
 
 
-------------------------------USING PICK AND OMIT-----------------------------
+------------------------USING PICK, OMIT AND PARTIAL-----------------------------
 
-Pibk and Omit are useful for inherit props from other type and use or not use
+Pick and Omit are useful for inherit props from other type and use or not use
 each prop how you desire. In this case the reference type will be the type 
 TransactionProps. Examples:
 
@@ -422,6 +422,17 @@ Omit: Used for create a new type omiting some props of other type. Eg:
 
 type TransactionInputProps = Omit<TransactionProps, 'id' | 'createdAt'>
 
+---------------------------
+
+Partial: Use Partial for use possible props of a type. Example:
+
+type User = {
+  name: string;
+  email: string;
+  created_at: string;
+};
+
+user: Model.extend<Partial<User>>({})
 
 ---------------------EXTENDING NATIVE PROPS FROM ELEMENTS------------------------
 
