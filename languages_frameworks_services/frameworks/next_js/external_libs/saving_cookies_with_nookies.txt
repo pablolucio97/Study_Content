@@ -1,0 +1,212 @@
+======================SAVING COOKIES WITH NOOKIES========================
+Nookies is a third lib JavaScript that allows handle cookies with NextJS.
+Cookies should be created in a context to be available for whole applica-
+tion.
+
+1)Run yarn add nookies.
+
+----------------------
+
+2) In a file of context, import setCookie from nookies and pass the data
+that you want to storem the method parseCookies to read the cookie when
+availabe and destroyCookie method to destroy the cookie at signOut. 
+Create a function to do signIn and another to signOut and export theses 
+in your context.
+
+import { createContext, ReactNode, useContext, useEffect, useState } from 'react'
+import { api } from '../services/api'
+import Router from 'next/router'
+import { setCookie, parseCookies, destroyCookie } from 'nookies'
+
+type User = {
+    email: string;
+    permissions: string[];
+    roles: string[];
+}
+
+type SignInCredentialsProps = {
+    email: string;
+    password: string
+}
+
+type AuthContextProps = {
+    signIn(credentials: SignInCredentialsProps): Promise<void>
+    isAuthenticated: boolean;
+    user: User;
+}
+
+
+type ChildrenProps = {
+    children: ReactNode;
+}
+
+
+
+export const AuthContext = createContext({} as AuthContextProps)
+
+export function signOut() {
+    destroyCookie(undefined, "nextauth.token");
+    destroyCookie(undefined, "nextauth.refreshToken");
+    Router.push('/')
+}
+
+export const AuthProvider = ({ children }: ChildrenProps) => {
+
+    
+    useEffect(() => {
+
+        const { 'nextauth.token': token } = parseCookies()
+
+        if (token) {
+            api.get('/me').then(response => {
+                const { permissions, roles, email } = response.data
+
+                setUser({ email, roles, permissions })
+
+            }).catch(() => {
+                destroyCookie(undefined, 'nextauth.token')
+                destroyCookie(undefined, 'nextauth.refreshToken')
+            })
+
+            Router.push('/')
+        }
+
+    }, [])
+
+    const [user, setUser] = useState<User>()
+
+
+    const isAuthenticated = !!user;
+
+    async function signIn({ email, password }: SignInCredentialsProps) {
+        try {
+            const response = await api.post('/sessions', {
+                email,
+                password
+            })
+
+            const { token, refreshToken, permissions, roles } = response.data
+
+            setUser({
+                email,
+                permissions,
+                roles
+            })
+
+            setCookie(undefined, 'nextauth.token', token, {
+                maxAge: 60 * 60 * 24 * 30, // 30 days
+                path: '/'
+            })
+            setCookie(undefined, 'nextauth.refreshToken', refreshToken, {
+                maxAge: 60 * 60 * 24 * 30, // 30 days
+                path: '/'
+            })
+
+            api.defaults.headers['Authorization'] = `Bearer ${token}`
+            Router.push('/dashboard')
+
+        } catch (error) {
+            console.log(error)
+        }
+    }
+
+    return (
+        <AuthContext.Provider value={{ signIn, isAuthenticated, user }}>
+            {children}
+        </AuthContext.Provider>
+    )
+}
+
+export const useSignIn = () => {
+    return useContext(AuthContext)
+}
+
+----------------------
+
+3) Do a requesting queue with axios toawait token refreshgin to conti-
+nue with the request and return a signOut if not has a token.
+
+import axios, { AxiosError } from "axios";
+import { parseCookies, setCookie } from "nookies";
+import { signOut } from "../context/AuthContex";
+
+let cookies = parseCookies();
+let isRefreshing = false;
+let failedRequestQueue = [];
+
+export const api = axios.create({
+  baseURL: "http://localhost:3333",
+  headers: {
+    Authorization: `Bearer ${cookies["nextauth.token"]}`,
+  },
+});
+
+api.interceptors.request.use(
+  (response) => {
+    return response;
+  },
+  (error: AxiosError) => {
+    if (error.response.status === 401) {
+      if (error.response.data?.code === "token.expired") {
+        cookies = parseCookies();
+        const { "nextauth.refreshToken": refreshToken } = cookies;
+        //error.config contains all info about req (route, params, headers) to req can be redone
+        const originalConfigs = error.config;
+
+        if (!isRefreshing) {
+          isRefreshing = true;
+
+          api
+            .post("/refresh", {
+              refreshToken,
+            })
+            .then((response) => {
+              const { token } = response.data;
+
+              setCookie(undefined, "nextauth.token", token, {
+                maxAge: 60 * 60 * 24 * 30, // 30 days
+                path: "/",
+              });
+              setCookie(
+                undefined,
+                "nextauth.refreshToken",
+                response.data.refreshToken,
+                {
+                  maxAge: 60 * 60 * 24 * 30, // 30 days
+                  path: "/",
+                }
+              );
+
+              api.defaults.headers["Authorization"] = `Bearer ${token}`;
+              failedRequestQueue.forEach((request) => request.onSuccess(token));
+              failedRequestQueue = [];
+            })
+            .catch((err) => {
+              failedRequestQueue.forEach((request) => request.onFailure(err));
+              failedRequestQueue = [];
+            })
+            .finally(() => {
+              isRefreshing = false;
+            });
+        }
+        //Returned a promise because doesn't possible to use async with axios requests
+        return new Promise((resolve, reject) => {
+          failedRequestQueue.push({
+            onSuccess: (token: string) => {
+              originalConfigs.headers["Authorization"] = `Bearer ${token}`;
+              resolve(api(originalConfigs));
+            },
+            onFailed: (err: AxiosError) => {
+              reject(err);
+            },
+          });
+        });
+      } else {
+        signOut();
+      }
+    }
+    //At using interceptors, case don't has any error waited in the context,
+    //repass the error to initial call that as triggered the interceptor to it treat the error
+    return Promise.reject(error);
+  }
+);
