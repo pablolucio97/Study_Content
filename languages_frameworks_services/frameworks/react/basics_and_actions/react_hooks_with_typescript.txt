@@ -161,9 +161,9 @@ export default React.memo(Buttons)
 
 ------------------------------useMemo()--------------------------------
 
-Memoize a value and executes a function only when your dependecy chan-
+Memoize a value and executes a function only when your dependency chan-
 ges. If don't there dependecies, its run only one time.  It's an alter-
-native for useState to avoid remder unnecessary time a same component.
+native for useState to avoid render unnecessary times the same component.
 
 import React from 'react'
 import {useState, useMemo} from 'react'

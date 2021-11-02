@@ -252,6 +252,19 @@ mance. All application is contained in one only page.
 REST: The route returns only the required data in JSON format. The HTML (react) 
 is outside to back-end files, thus the mobile and web can consume the same data.
 
+----------------------------REACT RENDERIZATION ORDER----------------------------
+The renderization process in React happens with the React generating a new ver-
+sion of the component and store it in memory. In sequence, React compares this 
+new version of the component with a new already existing version of the same com-
+ponent and then does a new re-renderization if a change is found through recon-
+ciliation algorithm that tries maintaining the existing component reenderizing
+only the new props (if possible).
+
+The React will re-render your components when:
+-The parent component changes.
+-A prop of children or a children component changes.
+-When a hook changes.
+
 
 ---------------------------REACT HOOKS EXECUTION ORDER---------------------------
 
@@ -354,7 +367,7 @@ function InDirectChildren(props) {
 
 export default InDirectChildren;
 
--------------TYPING COMPONENTS WITH DEFAULT HTML ELMENTS ATTRIBUTES--------------
+-------------TYPING COMPONENTS WITH DEFAULT HTML ELEMENTS ATTRIBUTES--------------
 
 import {ButtonHTMLAttributes} from 'react'
 
@@ -628,6 +641,88 @@ function Buttons() {
 }
 
 export default Buttons
+
+
+------------------------IMPROVING PERFORMANCE IN REACT APPS-------------------------
+
+To improve React applications, you should to observer the renderization process with 
+your rules. The React will re-render your components when:
+
+-The parent component changes.
+-A prop of children or a children component changes.
+-When a hook changes.
+
+We can to improve our applications using diferent tools:
+
+Memo
+
+Memo should be used when your component is a medium/big components, pure func-
+tional components (components that don't depends of third API's values and dynamic 
+values) and components that has too many renderizations. Example:
+
+import { memo } from 'react'
+
+interface ProductItemProps {
+    product: {
+        id: number;
+        price: number;
+        title: string;
+    }
+}
+
+export default function ProductItemComponent({ product }: ProductItemProps) {
+    return (
+        <div key={product.id}>
+            {product.title} - <strong>{product.price}</strong>
+        </div>
+    )
+}
+
+export const ProductItem = memo(ProductItemComponent, (prevProps, nextProps) => {
+    return Object.is(prevProps.product, nextProps.product)
+})
+
+-----------------------
+
+useMemo()
+
+The hook useMemo() should be used to avoid that a heavy function be called again without
+a reference is changed or when a even value provided from a function is passed from the
+parent component to the children component. Example:
+
+
+import { useMemo } from 'react'
+import { ProductItem } from "./ProductItem";
+
+interface SearchResultsProps {
+    results: Array<{
+        id: number;
+        price: number;
+        title: string;
+    }>
+}
+
+export function SearchResults({ results }: SearchResultsProps) {
+
+    const calcPrices = useMemo(() => {
+        return results.reduce((acc, item) => {
+            return acc + item.price
+        }, 0)
+    }, [results])
+
+
+
+    return (
+        <div>
+            <h1>{calcPrices}</h1>
+            {results.map(product => (
+                <ProductItem product={product} key={product.id} />
+            ))}
+        </div>
+    )
+}
+
+
 
 ---------------------------------SYNTHETIC EVENTS-----------------------------------
 
