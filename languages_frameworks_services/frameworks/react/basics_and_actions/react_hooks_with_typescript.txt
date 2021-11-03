@@ -704,5 +704,9 @@ useEffect(() => {
 Use [] for destructuring props for the value provider when this is an array and {}
 when is an object.
 
+The useCallback() hook should be used not specific be a function is big and yes 
+because the React crates a new position in the memory for the function every 
+component renderization.
+
 
 

@@ -51,7 +51,7 @@ Call Stack:
 Is a stack that determines how  and when the motor of Javascript should 
 to stack, execute and delete the functions of the code. The stacks always
 initiliaze empty and finishes empty. The functions are executed from top 
-to bottom and are removed from the stack after your execuion.
+to bottom and are removed from the stack after your execution.
 
 -----------------------------------------------------------------------
 
@@ -220,27 +220,29 @@ ting conflicts use const or let.
 
 -----------------------------------------------------------------------
 
-Prototype: The inherinting of objects and functions in Javascript is 
+Prototype: The inheriting of objects and functions in Javascript is 
 done trought prototypes where the prototypes is the mother class for new 
 instances. Prototype Chain is the chain where the prototype finds your 
 attributes and methods.
 -----------------------------------------------------------------------
  
-High order functions: ...
-Functional programming
+High order functions: Are functions that receive a function as param 
+and return another function. Examples: filter, reduce, map and others.
 
 -----------------------------------------------------------------------
 
 Pure Functions
 
-Pure Functions are functions that doesn't affect the global code 
-scope, your result depends only of the argument provided.
+Pure Functions are functions that don't affect the global code 
+scope, your result depends only on the argument provided.
 
 Ex:
 
 function sum(a,b){
   return a + b
 }
+
+product.map(p => console.log(p))
 
 
 ============================DATA TYPES=================================

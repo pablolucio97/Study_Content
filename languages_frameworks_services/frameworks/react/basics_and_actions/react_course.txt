@@ -722,6 +722,127 @@ export function SearchResults({ results }: SearchResultsProps) {
     )
 }
 
+-----------------------
+
+useCallback()
+
+The hook useCallBack() is used to avoid the React rebuild a function every time
+that the component struggles a changes and renderize. It should be used when we
+written a function that will be used in children components and functions that
+provide from contexts. Example:
+
+
+-----------------------
+
+Data formatation should happens at data consuming creating a new object, example:
+
+import React, { FormEvent, useCallback, useState } from "react"
+import { SearchResults } from "../components/SearchResults"
+
+
+export default function Home() {
+
+  const [search, setSearch] = useState('')
+  const [results, setResults] = useState([])
+
+    const response = await fetch(`http://localhost:3333/products?q=${search}`)
+    const data = await response.json()
+
+    const formatter = new Intl.NumberFormat('pr-BR', {
+      style: 'currency',
+      currency: 'BRL'
+    })
+
+    const calcPrices = data.reduce((acc, item) => {
+          return acc + item.price
+      }, 0)
+
+    const product = data.map(product =>{
+      return {
+        id: product.id,
+        title: product.title,
+        price: product.price,
+        priceFormatted: formatter.format(product.price)
+      }
+    })
+  
+    setResults(data: product)
+
+  }
+
+  return (
+    <>
+      <h1>Searches</h1>
+      <form onSubmit={handleSearch}>
+        <input
+          type="text"
+          placeholder="Search"
+          value={search}
+          onChange={e => setSearch(e.target.value)}
+        />
+        <button type="submit">Buscar</button>
+      </form>
+      <SearchResults results={results.data}/>
+    </>
+  )
+}
+
+-----------------------
+
+Code Spliting and Lazy/Dyanimc loads
+
+Dynamic as a feature of the Next and can be used to substitue the React Lazy. In ap-
+plications that not uses Next, w'll using Next.
+
+Doing Lazy loading with Next Dyanamic:
+To use the dynamic from Next, you should import the component that you wanna display
+at user interaction, import the props of this component, pass it as a return of the 
+dynamic method and return an html in the loading prop as second param of the dynamic 
+funcion. In your component you must do a conditional renderization to render a user 
+feedback doing a ref to your dynamic method. Example:
+
+import React, { memo, useState } from 'react'
+import dynamic from 'next/dynamic'
+import {AddproductToWishListProps} from './AddProductToWishList'
+
+const AddproductToWishList = dynamic<AddproductToWishListProps>(() => {
+    return import('./AddProductToWishList')
+}, {
+    loading: () => <span>Carregando...</span>
+})
+
+interface ProductItemProps {
+    product: {
+        id: number;
+        price: number;
+        title: string;
+        priceFormatted: string;
+    }
+    onAddToWishList: (id: number) => void;
+}
+
+export default function ProductItemComponent({ product, onAddToWishList }: ProductItemProps) {
+
+
+    const [isAddingToWishList, setIsAddingToWishList] = useState(false)
+
+    return (
+        <div key={product.id}>
+            {product.title} - <strong>{product.priceFormatted}</strong>
+            <button onClick={() => setIsAddingToWishList(true)}>Adcionar aos favoritos</button>
+            {isAddingToWishList && (
+                <AddproductToWishList
+                    onAddToWishList={() => onAddToWishList(product.id)}
+                    onRequestClose={() => {setIsAddingToWishList(false) }}
+                />
+            )}
+        </div>
+    )
+}
+
+export const ProductItem = memo(ProductItemComponent, (prevProps, nextProps) => {
+    return Object.is(prevProps.product, nextProps.product)
+})
 
 
 ---------------------------------SYNTHETIC EVENTS-----------------------------------
@@ -1438,8 +1559,8 @@ useContext for this.
 Use the [key]:value to change a object props trought a function param.
 
 When you are consuming objects or data from third parts and you need to format 
-the data, create a formatation trought functions or objects before to render in 
-component to your application runs more performaticly.
+the data, create a formatation when your are receivig the data and not directly
+in the component to your application runs more performaticly.
 
 When working with Typescript, creates a type or interface for each component becau-
 se this can consume different props.
@@ -1515,6 +1636,14 @@ an native element.
 
 At working with inputs and forms in React is possible to control them through controlled 
 components (handle each input value in a state) or uncontrolled components (using a ref).
+
+The useCallback() hook should be used not specific be a function is big and yes because
+the React crates a new position in the memory for the function every component renderi-
+zation.
+
+In complex applications and you're using Next, you should to import a lib only if the u-
+ser really will to use something of this lib to reduce the bundler size of your final 
+application.
 
 
 
