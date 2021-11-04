@@ -1,0 +1,59 @@
+===========================REACT VIRTUALIZED=================================
+
+React Virtualized is a lib to control elements displayed on the screen. Useful
+for leading with the amount of data that is be scrolled when rendered.
+
+1) Run yarn add react-virtualized @types/react-virtualized
+
+2) Write a function returning the HTML that you wanna render with ListRowRende-
+rer typing and use the component List to render your data referring your func-
+tion. Example:
+
+
+import { ProductItem } from "./ProductItem";
+import { List, ListRowRenderer } from 'react-virtualized'
+
+interface SearchResultsProps {
+    results: Array<{
+        id: number;
+        price: number;
+        title: string;
+        priceFormatted: string;
+    }>
+    onAddToWishList: (id: number) => void;
+    calcPrices: number;
+}
+
+export function SearchResults({ 
+    results, 
+    onAddToWishList,
+    calcPrices }: SearchResultsProps) {
+
+    const rowRenderer: ListRowRenderer = ({ key, index, style }) => {
+        return (
+            <div key={key} style={style}>
+                <ProductItem
+                    product={results[index]}
+                    onAddToWishList={onAddToWishList}
+                />
+            </div>
+        )
+    }
+
+    return (
+        <div>
+            <h1>{calcPrices}</h1>
+            <List
+                height={300}
+                width={900}
+                rowHeight={30}
+                rowCount={results.length}
+                overscanRowCount={5}
+                rowRenderer={rowRenderer}
+            />
+        </div>
+    )
+}
+
+
+3)
