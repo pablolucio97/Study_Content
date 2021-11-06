@@ -1,36 +1,72 @@
-=======================WORKING WITH TESTS IN REACT============================
+=====================WORKING WITH TESTS IN REACT/NEXT=========================
 
 -----------------------TYPES OF TESTS AND CONCEPTS----------------------------
 
-Unity tests: Are tests that tests only a single function, class or component.
-If this function is integrated with the system, it receives a name of Mock.
+Unity tests: Are tests that tests only a single function, class, or component 
+separated from the application. If this function or component is integrated or 
+depends of actions bonded with features of the application, it receives the 
+name of Mock.
 
 Automatizated tests: 
 
 Test Driven Development (TDD): Is the practice of write test before to create 
 your application.
 
+Integration tests: This type of test will to test the integration of a compo-
+nent with another or another functionality.
+
+E2E (end to end) tests: Are tests that tests each point of the flow of an ac-
+tion.
+
+
+
 ----------------------------DOING UNITY TESTS---------------------------------
 
-1)Install the Jest: import '@testing-library/jest-dom/extend-expect';
+1)Install the Jest and the React Testing Library running: 
+yarn add jest jest-dom @testing-library/jest-dom @testing-library/dom 
+@testing-library/react babel-jest identity-obj-proxy ts-jest -D  
+
 
 ------------------------------------------------------------------------------
 
-2)Create a new setuptest.js file in your root project with the statements:
+2)In the root of your project, create a new file named jest.config.js with the
+configs:
+
+module.exports={
+    testPathIgnorePatterns: ["/node_modules", "/.next"],
+    setupFilesAfterEnv: ["<rootDir>/src/tests/setupTest.ts"],
+    trasform: {
+        "^.+\\.(js|jsx|ts|tsx)$" : "<rootDir>/node_modules/babel-jest"
+    },
+    moduleNameMapper: {
+        "\\.(css|scss|saas)$" : "identity-obj-proxy"
+    },
+    testEnvironment: 'jsdom'
+}
+------------------------------------------------------------------------------
+
+3)Create a new folder named tests and inside this a new setupTest.ts file 
+with the statements:
 
 import '@testing-library/jest-dom'
 import '@testing-library/jest-dom/extend-expect';
 
 ------------------------------------------------------------------------------
 
-3)Create the file of test of your component. Example: Button.spec.jsx.
+4)In the root of your project, create a new file named babel.config.js with the
+configs:
+
+module.exports={
+    presets: ['next/babel']
+}
 
 ------------------------------------------------------------------------------
 
-4)Write your text:
+5)Create a folder named test with your test file_name.spec.tsx and write your 
+test. 
 
-In this example has three tests to check functionalities rely to Button compo-
-nent.
+Exmaple 01: In this example has three tests to check functionalities rely to 
+Button component.
 
 import {fireEvent, render, screen} from '@testing-library/react'
 import {Button} from './index'
@@ -61,9 +97,96 @@ describe('<Button/>', () => {
     })
 })
 
+----------------------------
+
+Example 02: Tests if a component is rendered correctly and has a class:
+
+import { render, screen } from '@testing-library/react'
+import ActiveLink from '.'
+
+jest.mock('next/router', () => {
+    return {
+        useRouter() {
+            return {
+                asPath: '/'
+            }
+        }
+    }
+})
+
+describe('ActiveLink component', () => {
+    it('active link should renders correctly', () => {
+        const { debug, getByText } = render(
+            <ActiveLink
+                activeClassName='active'
+                href='/'
+            >
+                <p>OK!</p>
+            </ActiveLink>
+        )
+        debug()
+        expect(screen.getByText('OK!')).toBeInTheDocument()
+    })
+    
+    it('active link is receiving the href attribute string', () => {
+        render(
+            <ActiveLink
+                activeClassName='active'
+                href='/'
+            >
+                <p>OK!</p>
+            </ActiveLink>
+        )
+        expect(screen.getByText('OK!')).toHaveClass('active')
+    })
+    
+})
+
+
+_____________________
+
+Example 03. In this example w'll to test if the application is returning the Sign-
+InButton component correctly according to the useSession value. The mocked function
+will be used to return value of useSession mock in each situation, example:
+
+import {render, screen} from '@testing-library/react'
+import {SignInButton} from './index'
+import {useSession} from 'next-auth/client'
+import {mocked} from 'ts-jest/utils'
+
+jest.mock('next-auth/client')
+
+describe('SignInButton', () => {
+  it('should render the button to login if the user is not logged', () => {
+
+    const useSessionMocked = mocked(useSession)
+
+    useSessionMocked.mockReturnValueOnce([null, false])
+
+    render(
+        <SignInButton/>
+    )
+    expect(screen.getByText('SignIn with GitHub')).toBeInTheDocument()
+  })
+
+  it('should render the button to logout with the user named if user is logged', () => {
+    const useSessionMocked = mocked(useSession)
+    useSessionMocked.mockReturnValueOnce([
+        {user: {name: 'John Doe', email: 'johndoe@eamil.com'}, expires: 'fake-expires'}
+        , false])
+      render(
+          <SignInButton />
+      )
+      expect(screen.getByText('John Doe')).toBeInTheDocument()
+  })
+
+})
+
 ------------------------------------------------------------------------------
 
-5)Run yarn test to run your tests.
+6)Run yarn test to run your tests. If your package.json file don't has a test
+script, use "test": "jest --watch".
+
 
 -----------------------CHECKING THE COVERAGE TESTS %--------------------------
 
@@ -175,3 +298,13 @@ Always write test thinking on accessibility.
 You shoult to run tests always thinking in what you want to happens.
 
 Check expect.assertions() when working with async tests.
+
+Some components that the user don't will to interact with it, not need tests.
+
+Use the describe() method to categorize your tests of your current component.
+
+use jest.mock() to simulates actions and extract props that your component depands 
+in the real file of the application. 
+
+Use the mocked() function from ts-jest to return different value of mock at each 
+situation. Useful for check conditional render.
