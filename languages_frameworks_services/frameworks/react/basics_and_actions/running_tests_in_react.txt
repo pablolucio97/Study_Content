@@ -182,6 +182,25 @@ describe('SignInButton', () => {
 
 })
 
+-----------------------------ASYNC TESTS--------------------------------------
+
+Async tests in React, using the Testing React Library is useful to check if a 
+component or function exists or has been called after a time. It should be 
+done using the waitFor() method inside an async function. Example:
+
+
+describe('Async', () => {
+    it('Should wait for the button render ad find this element', async () => {
+        render(
+            <Async />
+            )
+           await waitFor(() => {
+              return expect(screen.getByText('Button')).toBeInTheDocument()
+          })
+    })
+})
+
+
 ------------------------------------------------------------------------------
 
 6)Run yarn test to run your tests. If your package.json file don't has a test
@@ -197,7 +216,7 @@ whole application.
 
 ----------------------MOCKING TESTS REQUESTS WITH MWS-------------------------
 
-Mock Service Worker (MSW) is a library for simulate and mock various tests re-
+Mock Service Worker (MSW) is a library for simulating and mock various tests re-
 quests trought handlers that intercepts the requests.
 
 1) Install the MSW: yarn add -D msw
@@ -295,16 +314,32 @@ Use coverage to check how much your component is coveraged of tests.
 
 Always write test thinking on accessibility.
 
-You shoult to run tests always thinking in what you want to happens.
+You shoult to run tests always thinking in what you want to happen.
 
-Check expect.assertions() when working with async tests.
+Check to expect.assertions() when working with async tests.
 
 Some components that the user don't will to interact with it, not need tests.
 
 Use the describe() method to categorize your tests of your current component.
 
-use jest.mock() to simulates actions and extract props that your component depands 
+use jest.mock() to simulate actions and extract props that your component depends 
 in the real file of the application. 
 
 Use the mocked() function from ts-jest to return different value of mock at each 
-situation. Useful for check conditional render.
+situation. Useful for checking conditional render.
+
+Be careful with data conversion in tests, you should verify if the data has been 
+converted and expect it as result.
+
+The toEqual(expect.objectContaining({})) method requires that the values passed 
+should be strictly equal to the value expected.
+
+You can get the element passing the data-testid='my-component1' prop to the com-
+ponent and getting it in the test through the getByTestId() method.
+
+If you didn't found an element, you can use the screen.logTestingPlaygroundURL() 
+method to open the Testing Playground in the browser and see the available ways 
+to find your component in tests.
+
+Put your tests together with the file of the component or page in the even folder 
+to avoid conflicts at test coverage.

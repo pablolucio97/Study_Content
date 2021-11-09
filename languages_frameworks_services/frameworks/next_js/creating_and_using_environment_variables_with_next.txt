@@ -1,12 +1,26 @@
-==============CREATING AND USING ENVIROMENT VARIALBES WITH NEXT==============
+==============CREATING AND USING ENVIROMENT VARIALBES WITH NEXT===============
 
-------------------USING EVIRONMENT VARIABLES IN THE SERVER-------------------
+----------------------------TYPES OF ENV FILES--------------------------------
+
+.env: Should be used to store variables that reference data that can be shared 
+in the application with other persons. Don't is included in .gitignore.
+
+.env.local: Should be used to store private variables that can't up to GitHub.
+
+.env.local.development: Available only in the development environment.
+
+.env.local.test: Available only in the test environment.
+
+.env.local.production: Available only in the production environment.
+
+
+------------------USING ENVIRONMENT VARIABLES IN THE SERVER--------------------
 
 1)Crate a new file named .env.local in the root project folder.
 
 ------------------------------------------------------------------------------
 
-2)Create your vairables using the prefix NEXT_PUBLIC for Next can read it. E- 
+2)Create your variables using the prefix NEXT_PUBLIC for Next can read it. E- 
 xample:
 
 PASSWORD='ItIsMyPassWord123'
@@ -52,4 +66,13 @@ export default function Any(){
         <p>Your password is {process.env.NEXT_PUBLIC_PASSWORD}</p>
     )
 }
+
+
+===============================GENERAL TIPS===================================
+
+Ever save your file of environment variables in your local machine or a 
+storage because you will need them if you clone this repository again.
+
+
+
 
