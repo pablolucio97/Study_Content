@@ -74,5 +74,3 @@ Ever save your file of environment variables in your local machine or a
 storage because you will need them if you clone this repository again.
 
 
-
-
