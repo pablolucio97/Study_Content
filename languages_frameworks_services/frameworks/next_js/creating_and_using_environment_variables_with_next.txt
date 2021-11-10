@@ -5,7 +5,8 @@
 .env: Should be used to store variables that reference data that can be shared 
 in the application with other persons. Don't is included in .gitignore.
 
-.env.local: Should be used to store private variables that can't up to GitHub.
+.env.local: Should be used to store private variables for all environment and 
+can't upload to GitHub.
 
 .env.local.development: Available only in the development environment.
 
