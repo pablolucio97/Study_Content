@@ -1645,6 +1645,8 @@ In complex applications and you're using Next, you should to import a lib only i
 ser really will to use something of this lib to reduce the bundler size of your final 
 application.
 
+If you're facing with an error of "Can't resolve map of undefined", tries to populate your 
+array with some data.
 
 
 
