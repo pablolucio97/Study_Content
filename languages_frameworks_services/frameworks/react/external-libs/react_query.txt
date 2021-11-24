@@ -105,3 +105,84 @@ export default function UserList() {
         </>
     )
 }
+
+---------------USING REACT QUERY WITH NEXTJS----------------
+
+
+3) Create a file containing a hook and a function to handle 
+your query. The function should do the fetch and return 
+your data formated or not. The hook should receive a param 
+named options typed as UseQueryOptions and return it as an 
+object options in the third param of the useQuery. Example:
+
+import { useQuery, UseQueryOptions } from 'react-query'
+import {api} from '../services/api'
+import {gameTypes} from '../types/gameCardTypes'
+
+export const getGames = async () => {
+     const { data } = await api.get<gameTypes[]>('/games')
+    const games = data.map(game => {
+        return {
+            id: game.id,
+            thumbnail: game.thumbnail,
+            freetogame_profile_url: game.freetogame_profile_url
+        }
+    })
+
+    return games
+
+}
+
+export function useGamesList(options: UseQueryOptions){
+    return useQuery('games', () => getGames(),{
+        ...options
+    })
+}
+
+---------------------------
+
+4) In your application, call the function inside your SSR 
+function and return it, consume this prop in your com-
+ponent and call your hook passing the prop from SSR as
+initialData. Example:
+
+
+
+import GameCard from '../components/GameCard'
+import { GetStaticProps } from 'next'
+import { getGames, useGamesList } from '../hooks/useGamesList'
+
+
+export default function Games({ games }) {
+
+    const { data, error, isLoading } = useGamesList({ initialData: games }
+
+    return (
+        <>
+            <main>
+                {data.map(game => (
+                    <GameCard
+                        key={game.id}
+                        id={game.id}
+                        freetogame_profile_url={game.freetogame_profile_url}
+                        thumbnail={game.thumbnail}
+                    />
+                ))}
+            </main>
+        </>
+    )
+}
+
+export const getStaticProps: GetStaticProps = async () => {
+
+    const games = await getGames()
+
+    return {
+        props: {
+            games
+        }
+    }
+}
+
+TIP: If you're working with NextJS and is facing with the CORS blocking
+policy error, do your request through the server.
