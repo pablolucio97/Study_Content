@@ -1,0 +1,149 @@
+=====================NEXTJS AND MONGOGB CRUD EXAMPLE=========================
+
+1)Create a new cluster and a new database in the https://cloud.mongodb.com. 
+Connect your cluster with your application storing the secret URI and create
+a new database inside your cluster to create future collections.
+
+-----------------------
+
+2) Install the mongodb and @types/mongodb and axios.
+
+-----------------------
+
+3) Configure your axios based on your api folder. Example:
+
+import  axios from 'axios';
+
+export const api = axios.create({
+    baseURL: 'http://localhost:3000/api'
+})
+
+-----------------------
+
+4) Create the MongoClient instance in a file inside the services folder and 
+exports an async function named connectDb(). Example:
+
+import { Db, MongoClient } from "mongodb";
+
+interface ConnectType{
+  db: Db;
+  client: MongoClient
+}
+
+const uri = process.env.MONGODB_URI;
+
+const client = new MongoClient(uri, {
+  // @ts-ignore: Unreachable code error
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+});
+
+export default async function connectDb() : Promise<ConnectType> {
+  await client.connect();
+  const db = client.db("whattoplay");
+  return { db, client };
+}
+
+--------------------
+
+5) Write your CRUD. Example:
+
+Example:
+
+import { NextApiRequest, NextApiResponse } from "next";
+import connectDb from "../../services/mongo";
+import connectToDatabase from "../../services/mongo";
+import {getSession} from 'next-auth/client'
+
+connectToDatabase();
+
+export default async (
+  req: NextApiRequest,
+  res: NextApiResponse
+): Promise<void> => {
+  const { db } = await connectDb();
+
+  switch (req.method) {
+    case "POST":
+      try {
+        const session = await getSession()
+        const { id, title, thumbnail, freetogame_profile_url, short_description } = req.body
+        const hasFavorite = await db.collection('users').findOne({favorites: {id}})
+        res.json({ error: "Game already exists in your lib." })
+        if(!hasFavorite) {
+          const response = await db.collection('users')
+          .updateOne({ email: session.user.email }, {$push:
+            {favorites: {id, title, thumbnail, freetogame_profile_url, short_description},}
+          })
+          res.status(200).json({ success: true, data: response });
+          console.log(response)
+        }
+      } 
+      catch (error) {
+        console.error(error);
+      }
+      break;
+    case "GET":
+      try {
+        const session = await getSession({req})
+        console.log(session.user.email)
+        const favorites = await db.collection("users")
+        .findOne({  email: session.user.email})
+        res.status(200).json({ favorites });
+      } catch (error) {
+        console.log(error);
+      }
+      break;
+    case "DELETE":
+      try {
+        const { id } = req.body;
+        const deletedFavorite = await db
+          .collection("favorites")
+          .findOneAndDelete({ id });
+        res.status(200).json(deletedFavorite);
+      } catch (error) {
+        console.log(error);
+      }
+    default:
+  }
+};
+
+_______________
+
+6) Access your CRUD operations according desired in your application. Example:
+
+    //POST
+    async function newFavorite(id, title, freetogame_profile_url, thumbnail, short_description) {
+        try {
+            await api.post('/favorites', { id, title, freetogame_profile_url, thumbnail, short_description })
+            .then((res) => {
+               console.log(res)
+            })
+        } catch (error) {
+            console.log(error)
+        }
+    }
+
+    //GET
+        async function getFavorites() {
+        const { data } = await api.get('/favorites')
+        const favorites = data
+        setFavoriteGames(favorites)
+    }
+
+    //DELETE
+   async function removeFavorite(id) {
+        //@ts-ignore
+        await api.delete('/favorites', { data: { id: id } }).then((res) => {
+            console.log(res)
+        })
+    }
+
+
+
+--------------------------------GENERAL TIPS--------------------------------------
+
+All CRUD operations in NextJS should be done in the api/yourroute folder.
+
+Desctrucuture {req} from getSession({req}) to have access of the current session
+data at server side.
