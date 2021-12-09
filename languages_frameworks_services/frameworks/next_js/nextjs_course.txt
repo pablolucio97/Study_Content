@@ -796,4 +796,7 @@ cess to the window object, thus, this throws an error in the application
 from the next.
 
 
+Import the regenerator-runtime from runtime (import "regenerator-runtime/runtime")
+inside the [...nextauth].ts file to improve your app performance score.
+
 
