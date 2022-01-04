@@ -70,35 +70,74 @@ Async events are the events thats depends of the user action, e-
 xample: onPress, onTouch etc... and when this events is appointing
 to objects of the class components, should linked by the bind().
 
+------------------------------------------------------------------
+
 At using arrow functions in TextInput or another elements to change
 the state, the value passed as parammeters even be the same of the
 state value.
+
+------------------------------------------------------------------
 
 To declare variables to styling, import and uses StylesSheet, this
 show automatically the style options during the build styles pro-
 cess.
 
+------------------------------------------------------------------
+
 All additional packge installed by arn or npm should be installed 
 directly in the project wich its will be used.
+
+------------------------------------------------------------------
 
 Objects don't be renderized in components like text in React Nati-
 ve.
 
+------------------------------------------------------------------
+
 Don't pass functions to renders components when using stackNaviga-
 tor to navigate between screens.
+
+------------------------------------------------------------------
 
 Use function to represents a component when working with screen 
 navigation.
 
+------------------------------------------------------------------
+
 Use one useEffect method to treat each change state in your 
 application.
+
+------------------------------------------------------------------
 
 The scope that is inside the main component is executed first 
 than functions outside the component scope.
 
+------------------------------------------------------------------
+
 All components in react native come with display flex by default.
+
+------------------------------------------------------------------
 
 Use the component RectButton from react-native-gesturehandle inste-
 ad of TouchableOpacity component.
+
+------------------------------------------------------------------
+
+Use FlatList component to render lists instead of the array.map be-
+cause it is more performatic with React Native. Example:
+
+<FlatList
+    data={skills}
+    keyExtractor={item => item}
+    renderItem={({ item }) => (
+        <SkillCard
+        key={item}
+        content={item}
+    />
+    )}
+/>
+
+------------------------------------------------------------------
+
 
 
