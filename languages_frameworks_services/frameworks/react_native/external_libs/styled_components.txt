@@ -1,0 +1,75 @@
+=====DEFINING THEMES WITH STYLED COMPONENTS IN REACT NATIVE====
+
+1) Create your theme inside themes/theme.ts. Example:ERROR:
+export default {
+    colors:{
+        primary: '#5636D3',
+
+        secondary:'#FF872C',
+        secondary_light: 'rgba(255, 135, 44, .3)',
+
+        sucesss:'#12A454',
+        sucess_light:'rgba(18, 164, 85, .5)',
+
+        atention: '#E83F5B',
+        atention_light: 'rgba(232, 63, 91, .5)',
+
+        shape: '#FFFFFF',
+        title: '#363F5F',
+        text: '#969CB2',
+        background: '#F0F2F5'
+    }
+}
+
+--------------------------------------------------------------
+
+2) Inside the even folder (themes) create the theme.d.ts file 
+declaration example:
+
+import 'styled-components'
+import theme from './theme'
+
+declare module 'styled-components' {
+    type ThemeType = typeof theme
+    export interface DefaultTheme extends ThemeType {
+        
+    }
+}
+
+--------------------------------------------------------------
+
+3) Wrap your app with the Styled Components theme provider.
+Example:
+
+import React from 'react';
+import { ThemeProvider } from 'styled-components/native';
+import { Dashboard } from './src/screens/Dashbaord';
+import theme from './src/global/styles/theme'
+
+export default function App() {
+  return (
+    <ThemeProvider theme={theme}>
+        <Dashboard />
+    </ThemeProvider>
+  );
+}
+
+--------------------------------------------------------------
+
+4) Acess your theme destructuring theme from props. Example:
+
+
+import styled from 'styled-components/native'
+
+export const Container = styled.View`
+    flex: 1;
+    justify-content: center;
+    align-items: center;
+    background-color: ${({theme}) => theme.colors.background};
+    `
+
+export const Title = styled.Text`
+    font-size: 24px;
+    font-weight: bold;
+    color: ${({theme}) => theme.colors.title}
+`

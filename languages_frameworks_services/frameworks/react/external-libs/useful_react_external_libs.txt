@@ -1,16 +1,14 @@
 =======================Useful React External Libs================
 
+faker: generate massive fake data
 
-Animations: Lottie
------------------------------------------------------------------
+Animations: 
+lottie
 
-Api manegement: Axios
+Api manegement: 
+axios
 
-npm install axios
-
------------------------------------------------------------------
-
-Apparence: Material UI
+apparence: Material UI
 npm install @material-ui/core
 npm i use-dark-mode => https://github.com/donavon/use-dark-mode
 
@@ -33,6 +31,10 @@ Styling: Styled Components
 
 npm install --save styled-components
 -----------------------------------------------------------------
+
+NextJS:
+
+nookie: Work with cookies and Nextjs.
 
 ========================GENERAL TIPS=============================
 
