@@ -1,0 +1,46 @@
+====================WAYS TO HANDLE ARRAY OF OBJECTS=====================
+
+Approach 1:
+
+This method is useful to alter props in an array of objects.
+
+//1 Iterate over the array checking if the id passed matches with the
+id of the current element in array.
+//2 Use a ternary operator to compare if the id matches.
+//3 If the id matches, return an object copying the array and modifing 
+the desired prop, otherwhise only return the element that is being ite-
+rated.
+//4 Set the state with your checking variable.
+
+function handleToggleTaskCompletion(id: number) {
+const alteredTasks = tasks.map(task => task.id === id ?
+    {
+    ...task,
+    isComplete: !task.isComplete
+    }
+    : task)
+
+setTasks(alteredTasks)
+}
+
+---------------------------------
+
+Approach 2:
+
+//1 Copy the array to not update it directly
+//2 Use the method find() to find the first el that attends to condition
+//3 Do your changes
+//4 set your array with the new changes
+
+Example:
+
+
+  function handleToggleTaskDone(id: number) {
+    const updatedTasks = tasks.map(task => ({...task}))
+    const foundTask = updatedTasks.find(item => item.id === id)
+
+    if(!foundTask) return
+
+    foundTask.done = !foundTask.done
+    setTasks(updatedTasks)
+  }
