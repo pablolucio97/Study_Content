@@ -1,4 +1,4 @@
-CREATING A NEW REACT NATIVE PROJECT WITH EXPO
+==========CREATING A NEW REACT NATIVE PROJECT WITH EXPO============
 
 1) Run expo init appname and choice the choice the minimal Bare
 workflow template and await the expo install.

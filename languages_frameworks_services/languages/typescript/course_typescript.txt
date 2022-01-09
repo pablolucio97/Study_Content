@@ -466,7 +466,26 @@ export default function ActiveLink({route, children, ...rest} : ActiveLinkProps)
     )
 }
 
+_________________________
 
+Another example:
+
+
+interface ButtonProps extends TouchableOpacityProps {
+    label: string
+}
+
+export function Button({ label, ...rest } : ButtonProps {
+    return (
+        <TouchableOpacity
+            style={styles.button}
+            activeOpacity={.72}
+            {...rest}
+        >
+           <Text style={styles.textButton}>{label}</Text>
+       </TouchableOpacity>
+    )
+}
 
 
 -------------------------------GENERAL TIPS-----------------------------------
