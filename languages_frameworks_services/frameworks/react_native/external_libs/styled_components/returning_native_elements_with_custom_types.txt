@@ -1,0 +1,28 @@
+===============RETURNING NATIVE ELEMENTS WITH CUSTOM TYPES===============
+
+You can use all props of native elements and combine them with your     
+properties and return them as a Styled Component element. Use the attrs 
+method to extract the props from the index.tsx file to styled.ts file.
+Example:
+
+import {FlatList} from 'react-native'
+
+interface User{
+    name:string;
+    age: number;
+}
+
+
+interface DataListProps {
+    id: string;
+    user: User[]
+}
+
+export const TransactionsList = styled(
+  FlatList as new () => FlatList<DataListProps>
+).attrs({
+  showsVerticalScrollIndicator: false,
+  contentContainerStyle: {
+    paddingBottom: getBottomSpace()
+  },
+})``;
