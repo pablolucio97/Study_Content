@@ -84,11 +84,6 @@ cess.
 
 ------------------------------------------------------------------
 
-All additional packge installed by arn or npm should be installed 
-directly in the project wich its will be used.
-
-------------------------------------------------------------------
-
 Objects don't be renderized in components like text in React Nati-
 ve.
 
@@ -96,16 +91,6 @@ ve.
 
 Don't pass functions to renders components when using stackNaviga-
 tor to navigate between screens.
-
-------------------------------------------------------------------
-
-Use function to represents a component when working with screen 
-navigation.
-
-------------------------------------------------------------------
-
-Use one useEffect method to treat each change state in your 
-application.
 
 ------------------------------------------------------------------
 
@@ -139,6 +124,10 @@ React Native. Example:
 />
 
 ------------------------------------------------------------------
+
+Use TouchableWithoutFeedback with prop onPress={Keyboard.dismiss} 
+wrapping your whole screen to dismiss the keyboard automatically 
+when the user taps over the interface.
 
 
 
