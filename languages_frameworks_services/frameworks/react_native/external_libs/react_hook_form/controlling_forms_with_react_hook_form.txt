@@ -1,0 +1,242 @@
+============CONTROLING FORMS WITH REACT HOOK FORM AND YUP===============
+
+React Hook Form is useful to help control your form doing validations 
+while the user is filling it and avoid mistakes at doing it.
+
+1)Install the react hook form and the yup running:
+
+yarn add react-hook-form @hookform/resolvers yup
+
+_____________________
+
+2) Import the Control and the Controller from 'react-hook-form', cre-
+ate an interface to type the Control and wrap your input component 
+with the Controller passing the control prop to the Controller and 
+the render prop destructuring onChange and value to define with input 
+should be controlled. Define also an error component to display the 
+error message. Example:
+
+
+import React from 'react'
+import { TextInputProps } from 'react-native'
+import { Control, Controller } from 'react-hook-form'
+
+import { Container, Error } from './styles'
+import { Input } from '../Input'
+
+interface Props extends TextInputProps {
+    control: Control;
+    name: string;
+    error: string;
+}
+
+export function InputForm({
+    control,
+    error,
+    name,
+    ...rest
+}: Props) {
+    return (
+        <Container>
+            <Controller
+                control={control}
+                render={({ field: { onChange, value } }) => (
+                    <Input
+                        onChangeText={onChange}
+                        value={value}
+                        {...rest}
+                    />
+                )}
+                name={name}
+            />
+            {error && <Error>{error}</Error>}
+        </Container>
+    )
+}
+
+_____________________
+
+3)Inside of your application, import * as Yup from 'yup' and the 
+yupResolver from '@hookform/resolvers/yup' and create your valida-
+tion schema, example:
+
+    const schema = Yup.object().shape({
+    name:
+        Yup.string()
+            .required(ITEM_INPUT_MISSING),
+    amount:
+        Yup.number()
+            .typeError(PRICE_INPUT_MISSING)
+            .positive(PRICE_SHOULD_BE_POSITIVE)
+            .required(PRICE_INPUT_MISSING)
+})
+___________________
+
+
+4) Inside of your application, create an interface for the form data 
+and define the function that will be called when the form is submit-
+ted. Example:
+
+interface FormDataProps {
+    name: string;
+    amount: string;
+}
+
+function handleRegister(form: FormDataProps) {
+
+    if (!selectedTransactionType)
+        return Alert.alert(TRANSACTION_TYPE_INPUT_MISSING)
+
+    if (category.key === 'category')
+        return Alert.alert(CATEGORY_INPUT_MISSING)
+
+    const data = {
+        name: form.name,
+        amount: form.amount,
+        transactionType: selectedTransactionType,
+        category: category.key
+    }
+}    
+
+___________________
+
+5) Inside of your application, import your input created, import the 
+useForm from 'react-hook-form' destructuring control, handleSubmit and 
+formState: {errors} and pass this props for each input component. In 
+the button that will submit the form pass the handleSubmit function 
+from 'react-hook-form' passing your own function as param. 
+Example:
+
+import React, { useState } from 'react'
+import {
+    Keyboard,
+    Modal,
+    TouchableWithoutFeedback,
+    Alert
+} from 'react-native'
+import { useForm } from 'react-hook-form'
+import * as Yup from 'yup'
+import { yupResolver } from '@hookform/resolvers/yup'
+
+import { Button } from '../../components/Forms/Button'
+import { CategorySelectButton } from '../../components/Forms/CategorySelectButton'
+import { InputForm } from '../../components/Forms/InputForm'
+import { TransactionTypeButton } from '../../components/Forms/TransactionTypeButton'
+import { CategorySelect } from '../CategorySelect'
+import {
+    Container,
+    Fields,
+    Form,
+    Header,
+    Title,
+    TransactionsTypes
+
+} from './styles'
+import {
+    CATEGORY_INPUT_MISSING,
+    ITEM_INPUT_MISSING,
+    PRICE_INPUT_MISSING,
+    PRICE_SHOULD_BE_POSITIVE,
+    TITLE_OBLIGATORY_FILED,
+    TRANSACTION_TYPE_INPUT_MISSING
+} from '../../utils/constants'
+
+interface FormDataProps {
+    name: string;
+    amount: string;
+}
+
+const schema = Yup.object().shape({
+    name:
+        Yup.string()
+            .required(ITEM_INPUT_MISSING),
+    amount:
+        Yup.number()
+            .typeError(PRICE_INPUT_MISSING)
+            .positive(PRICE_SHOULD_BE_POSITIVE)
+            .required(PRICE_INPUT_MISSING)
+})
+
+
+export function Register() {
+
+    const { handleSubmit, control, formState: { errors } } 
+    = useForm({ resolver: yupResolver(schema) })
+
+    const [selectedTransactionType, setSelectedTransactionType] = useState('')
+    const [category, setCategory] = useState({
+        key: 'category',
+        name: 'Categoria',
+    })
+
+    function handleTransactionType(transactionType: 'up' | 'down') {
+        setSelectedTransactionType(transactionType)
+    }
+
+    function handleRegister(form: FormDataProps) {
+
+        if (!selectedTransactionType)
+            return Alert.alert(TITLE_OBLIGATORY_FILED, TRANSACTION_TYPE_INPUT_MISSING)
+
+        if (category.key === 'category')
+            return Alert.alert(TITLE_OBLIGATORY_FILED, CATEGORY_INPUT_MISSING)
+
+        const data = {
+            name: form.name,
+            amount: form.amount,
+            transactionType: selectedTransactionType,
+            category: category.key
+        }
+    }
+
+    return (
+        <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+            <Container>
+                <Header>
+                    <Title>Cadastro</Title>
+                </Header>
+                <Form>
+                    <Fields>
+                        <InputForm
+                            placeholder='Item'
+                            name='name'
+                            control={control}
+                            autoCapitalize='sentences'
+                            autoCorrect={false}
+                            error={errors.name && errors.name.message}
+                        />
+                        <InputForm
+                            placeholder='Preço'
+                            keyboardType='numeric'
+                            name='amount'
+                            control={control}
+                            error={errors.amount && errors.amount.message}
+                        />
+                        <TransactionsTypes>
+                            <TransactionTypeButton
+                                title='Income'
+                                type='up'
+                                isActive={selectedTransactionType === 'up'}
+                                onPress={() => handleTransactionType('up')}
+                            />
+                            <TransactionTypeButton
+                                title='Outcome'
+                                type='down'
+                                isActive={selectedTransactionType === 'down'}
+                                onPress={() => handleTransactionType('down')}
+                            />
+                        </TransactionsTypes>
+                        <CategorySelectButton
+                            title={category.name}
+                            onPress={handleOpenSelectCategory}
+                        />
+                    </Fields>
+                    <Button
+                        label='Enviar'
+                        onPress={handleSubmit(handleRegister)}
+                    />
+                </Form>
+            </Container>
+        </TouchableWithoutFeedback>
+    )
+}
