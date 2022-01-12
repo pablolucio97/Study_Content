@@ -1,0 +1,104 @@
+=======================CREATING NAVIGATION EXAMPLE============================
+
+1)Install the base React Navigation running:
+
+yarn add @react-navigation/native react-native-screens react-native-safe-area-
+context
+
+------------------------------
+
+2) Install your navigation type, in this example will be used Bottom Tabs:
+
+yarn add @react-navigation/bottom-tabs
+
+------------------------------
+
+3) In the src folder, create a new folder named router and a file 
+app.route.tsx containing your routering. You should import createBottomTab-
+Navigator from '@react-navigation/bottom-tabs', destructure Navigator and 
+Screen from this and create the navigation. 
+
+Obs: Use screenOptions to define all screen options at once in the Navigator 
+and options in the Screen to define separatedly the iconProps for each screen. 
+Example:
+
+import React from 'react';
+import { Platform } from 'react-native';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
+import { useTheme } from 'styled-components'
+import {MaterialIcons} from '@expo/vector-icons'
+
+
+import { Register } from '../screens/Register'
+import { Dashboard } from '../screens/Dashboard'
+import { CategorySelect } from '../screens/CategorySelect'
+
+const { Navigator, Screen } = createBottomTabNavigator()
+
+export function AppRoutes() {
+
+    const theme = useTheme()
+
+    return (
+        <Navigator
+            screenOptions={{
+                headerShown: false,
+                tabBarActiveTintColor: theme.colors.secondary,
+                tabBarInactiveTintColor: theme.colors.text,
+                tabBarLabelPosition: 'beside-icon',
+                tabBarStyle: {
+                    height: 88,
+                    paddingVertical: Platform.OS === 'ios' ? 20 : 0
+                }
+            }}
+        >
+            <Screen
+                options={{
+                    tabBarIcon: ({ size, color }) => (
+                   <MaterialIcons
+                      name='format-list-bulleted'
+                      size={size}
+                      color={color}
+                    />)
+                }}
+                component={Dashboard} name='Listagem'
+            />
+            <Screen
+                options={{
+                    tabBarIcon: ({ size, color }) => (
+                    <MaterialIcons
+                      name='attach-money'
+                      size={size}
+                      color={color}
+                    />)
+                }}
+                component={Register} name='Cadastrar'
+            />
+        </Navigator>
+    )
+}
+
+------------------------------
+
+4) Import the NavigationContainer from '@react-navigation/native' and the 
+AppRoutes function in the App.tsx file and wrap your AppRoutes with the 
+NavigationContainer.
+
+import React from 'react';
+import { ThemeProvider } from 'styled-components/native';
+import { NavigationContainer } from '@react-navigation/native'
+import { Register } from './src/screens/Register';
+import { AppRoutes } from './src/routes/app.routes'
+import theme from './src/global/styles/theme'
+
+
+export default function App() {
+
+  return (
+    <ThemeProvider theme={theme}>
+      <NavigationContainer>
+        <AppRoutes />
+      </NavigationContainer>
+    </ThemeProvider>
+  );
+}
