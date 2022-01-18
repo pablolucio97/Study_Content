@@ -1,0 +1,67 @@
+=====================USING SVG IN THE REACT NATIVE==========================
+
+To use SVG in React Native you should install the library React Native SVG 
+Transformer.
+
+1) Install the lib running: yarn add react-native-svg-transformer
+
+--------------------------
+
+2) In your metro.config.js file define the config:
+
+    const { getDefaultConfig } = require("expo/metro-config");
+
+module.exports = (() => {
+  const config = getDefaultConfig(__dirname);
+
+  const { transformer, resolver } = config;
+
+  config.transformer = {
+    ...transformer,
+    babelTransformerPath: require.resolve("react-native-svg-transformer"),
+  };
+  config.resolver = {
+    ...resolver,
+    assetExts: resolver.assetExts.filter((ext) => ext !== "svg"),
+    sourceExts: [...resolver.sourceExts, "svg"],
+  };
+
+  return config;
+})();
+
+--------------------------
+
+3) In the SRC folder, create a new folder named declarations with a new file
+named declarations.d.ts with the svg module declaration. Example:
+
+declare module "*.svg" {
+    import React from 'react';
+    import { SvgProps } from "react-native-svg";
+    const content: React.FC<SvgProps>;
+    export default content;
+  }
+
+--------------------------
+
+4) In your application import and use the svg file. Example:
+
+import React from 'react'
+import { Container } from './styles'
+
+import LogoSvg from '../../assets/logo.svg'
+
+
+export function SignIn() {
+    return (
+        <Container>
+            <LogoSvg
+                width={200}
+                height={200}
+            />
+        </Container>
+    )
+}
+
+--------------------------
+
+5) Restart the server of your aplication.
