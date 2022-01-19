@@ -29,7 +29,8 @@ _________________
 vide the userInfo from authentication and a function to signIn. In this context
 you should create an async function waiting for AppleSession.signInAsync() method 
 passing an object containing an array with FULL_NAME and EMAIL props as param 
-and set your state if the credentials exist. Example:
+and set your state if the credentials exist. Provide also an useEffect to watch 
+if has user logged data in the device storage. Example:
 
 OBS: Apple authentication doesn't provide the user photo.
 
@@ -87,6 +88,19 @@ export function AuthProvider({ children }: ChildrenProps) {
             throw new Error(String(error))
         }
     }
+
+    useEffect(() => {
+        async function loadUserStorageData(){
+            const userStoraged = await AsyncStorage.getItem(ASYNC_STORAGE_USER_AUTH_KEY)
+
+            if(userStoraged){
+                const userLogged = JSON.parse(userStoraged) as UserProps
+                setUser(userLogged)
+            }
+            setIsLoading(false)
+        }
+        loadUserStorageData()
+    }, [])
 
     return (
         <AuthContext.Provider value={{

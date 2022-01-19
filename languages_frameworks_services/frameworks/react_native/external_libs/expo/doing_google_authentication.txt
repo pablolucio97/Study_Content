@@ -71,9 +71,10 @@ _________________
 vide the userInfo from authentication and a function to signIn. In this context
 you should create an async function waiting for AuthSession.startAsync() method 
 passing the authUrl as param and returning the userInfo if the type of response 
-is equal to success. Example:
+is equal to success. Provide also an useEffect to watch if has user logged data 
+in the device storage. Example:
 
-import { createContext, ReactNode, useState } from 'react'
+import { createContext, ReactNode, useState, useEffect } from 'react'
 import * as AuthSession from 'expo-auth-session'
 import * as AppleSession from 'expo-apple-authentication'
 import AsyncStorage from '@react-native-async-storage/async-storage'
@@ -111,6 +112,7 @@ export const AuthContext = createContext({} as AuthContextProps)
 export function AuthProvider({ children }: ChildrenProps) {
 
     const [user, setUser] = useState<UserProps>({} as UserProps)
+    const [isLoading, setIsLoading] = useState(true)
 
     async function signInWithGoogle() {
         try {
@@ -161,6 +163,19 @@ export function AuthProvider({ children }: ChildrenProps) {
             throw new Error(String(error))
         }
     }
+
+    useEffect(() => {
+        async function loadUserStorageData(){
+            const userStoraged = await AsyncStorage.getItem(ASYNC_STORAGE_USER_AUTH_KEY)
+
+            if(userStoraged){
+                const userLogged = JSON.parse(userStoraged) as UserProps
+                setUser(userLogged)
+            }
+            setIsLoading(false)
+        }
+        loadUserStorageData()
+    }, [])
 
     return (
         <AuthContext.Provider value={{
