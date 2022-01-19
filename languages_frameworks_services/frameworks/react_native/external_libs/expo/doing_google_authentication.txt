@@ -25,6 +25,19 @@ ving a name and clicking in Create.
 
 ------------------
 
+4) Run yarn add babel-plugin-inline-dotenv and in your file babel.config.js 
+define the configs:
+
+module.exports = function(api) {
+  api.cache(true);
+  return {
+    presets: ['babel-preset-expo'],
+    plugins: ['inline-dotenv']
+  };
+};
+
+------------------
+
 3) Clik in OAuth consent screen, select the External in the field User Ty-
 pe and click in create. A new form will be opened, fill it with your app 
 name, your email, your logo, and the developer email, click in save and 
@@ -44,35 +57,42 @@ pp slug in your app.json file) and click in create.
 
 ------------------
 
-5) Create a new file .env.local in your app and copy your GoogleID and GoogleSe-
+6) Create a new file .env in your app and copy your GoogleID and GoogleSe-
 cret.
 
 ------------------
 
-6) Install the expo install expo-auth-session expo-random to handle and help
+7) Install the expo install expo-auth-session expo-random to handle and help
 with  the authentication proccess.
 
 _________________
 
-7) Create a context to provide your authentication info. The context should pro-
+8) Create a context to provide your authentication info. The context should pro-
 vide the userInfo from authentication and a function to signIn. In this context
-you should create an async function waiting for GoogleSession.startAsync() method 
+you should create an async function waiting for AuthSession.startAsync() method 
 passing the authUrl as param and returning the userInfo if the type of response 
 is equal to success. Example:
 
 import { createContext, ReactNode, useState } from 'react'
-import * as GoogleSession from 'expo-auth-session'
+import * as AuthSession from 'expo-auth-session'
+import * as AppleSession from 'expo-apple-authentication'
+import AsyncStorage from '@react-native-async-storage/async-storage'
+import { ASYNC_STORAGE_USER_AUTH_KEY } from '../utils/constants'
+
+const {GOOGLE_CLIENT_ID} = process.env
+const {REDIRECT_URI} = process.env
 
 interface UserProps {
     id: string;
     name: string;
     email: string;
-    photo?: string;
+    photo?: string | undefined;
 }
 
 interface AuthContextProps {
     userInfo: UserProps
     signInWithGoogle(): Promise<void>
+    signInWithApple(): Promise<void>
 }
 
 interface ChildrenProps {
@@ -94,26 +114,49 @@ export function AuthProvider({ children }: ChildrenProps) {
 
     async function signInWithGoogle() {
         try {
-            const { CLIENT_ID } = process.env
-            const { EXPO_REDIRECT_URL } = process.env;
             const RESPONSE_TYPE = 'token';
             const SCOPE = encodeURI('profile email');
-            const authUrl = `https://accounts.google.com/o/oauth2/v2/auth?client_id=${CLIENT_ID}&redirect_uri=${EXPO_REDIRECT_URL}&response_type=${RESPONSE_TYPE}&scope=${SCOPE}`
+            const authUrl = `https://accounts.google.com/o/oauth2/v2/auth?client_id=${GOOGLE_CLIENT_ID}&redirect_uri=${REDIRECT_URI}&response_type=${RESPONSE_TYPE}&scope=${SCOPE}`
 
-            const { type, params } = await GoogleSession.startAsync({ authUrl }) as AuthResponseProps
+            const { type, params } = await AuthSession.startAsync({ authUrl }) as AuthResponseProps
 
             if (type === 'success') {
                 const response = await fetch(`https://www.googleapis.com/oauth2/v1/userinfo?alt=json&access_token=${params.access_token}`)
                 const userInfo = await response.json()
-                console.log(userInfo)
-                setUser({
+
+                const userLogged = {
                     id: userInfo.id,
                     email: userInfo.email,
                     name: userInfo.given_name,
                     photo: userInfo.picture
-                })
+                };
+                setUser(userLogged)
+                await AsyncStorage.setItem(ASYNC_STORAGE_USER_AUTH_KEY, JSON.stringify(userLogged))
             }
+        } catch (error) {
+            throw new Error(String(error))
+        }
+    }
 
+
+    async function signInWithApple() {
+        try {
+            const credentials = await AppleSession.signInAsync({
+                requestedScopes: [
+                    AppleSession.AppleAuthenticationScope.FULL_NAME,
+                    AppleSession.AppleAuthenticationScope.EMAIL,
+                ]
+            })
+            if (credentials) {
+                const userLogged = {
+                    id: String(credentials.user),
+                    email: credentials.email!,
+                    name: credentials.fullName!.givenName!,
+                    photo: undefined
+                }
+                setUser(userLogged)
+                await AsyncStorage.setItem(ASYNC_STORAGE_USER_AUTH_KEY, JSON.stringify(userLogged))
+            }
         } catch (error) {
             throw new Error(String(error))
         }
@@ -122,7 +165,8 @@ export function AuthProvider({ children }: ChildrenProps) {
     return (
         <AuthContext.Provider value={{
             userInfo: user,
-            signInWithGoogle
+            signInWithGoogle,
+            signInWithApple
         }}>
             {children}
         </AuthContext.Provider>
@@ -132,7 +176,7 @@ export function AuthProvider({ children }: ChildrenProps) {
 
 ---------------
 
-8) Create the useAuth hook to easely consume your auth data. Example:
+9) Create the useAuth hook to easely consume your auth data. Example:
 
 import {useContext} from 'react'
 import {AuthContext} from '../contexts/AuthContext'
@@ -143,7 +187,7 @@ export function useAuth(){
 
 ---------------
 
-9) Consume in your app. Example:
+10) Consume in your app. Example:
 
 import  React from 'react'
 import { RFValue } from 'react-native-responsive-fontsize'
