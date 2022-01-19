@@ -19,8 +19,9 @@ the name of your app. Example:
 
 ------------------
 
-2) Install the expo install expo-auth-session expo-random to handle and help
-with  the authentication proccess.
+2) Install the expo install expo-auth-session expo-random  to handle and help
+with  the authentication proccess. 
+Install also expo install expo-apple-authentication
 
 _________________
 
@@ -151,6 +152,9 @@ export function SignIn() {
     )
 }
 
+_________________
+
+6) Restart the expo server.
 
 
 
