@@ -31,7 +31,7 @@ module.exports = (() => {
 
 --------------------------
 
-3) In the SRC folder, create a new folder named declarations with a new file
+3) In the SRC folder, create a new folder named @types with a new file
 named declarations.d.ts with the svg module declaration. Example:
 
 declare module "*.svg" {
