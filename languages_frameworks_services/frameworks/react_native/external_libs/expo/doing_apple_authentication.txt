@@ -1,0 +1,164 @@
+==========================DOING APPLE AUTHENTICATION============================
+
+
+1)In your app.json file, create a new key named "scheme" with the value within 
+the name of your app. Example:
+
+{
+  "expo": {
+    "name": "gofinances",
+    "slug": "gofinances",
+    "scheme": "gofinances",
+    "version": "1.0.0",
+    "assetBundlePatterns": [
+      "**/*"
+    ]
+  },
+  "name": "gofinances"
+}
+
+------------------
+
+2) Install the expo install expo-auth-session expo-random to handle and help
+with  the authentication proccess.
+
+_________________
+
+3) Create a context to provide your authentication info. The context should pro-
+vide the userInfo from authentication and a function to signIn. In this context
+you should create an async function waiting for AppleSession.signInAsync() method 
+passing an object containing an array with FULL_NAME and EMAIL props as param 
+and set your state if the credentials exist. Example:
+
+OBS: Apple authentication doesn't provide the user photo.
+
+import { createContext, ReactNode, useState } from 'react'
+import * as AppleSession from 'expo-auth-session'
+
+interface UserProps {
+    id: string;
+    name: string;
+    email: string;
+    photo?: string;
+}
+
+interface AuthContextProps {
+    userInfo: UserProps
+    signInWithApple(): Promise<void>
+}
+
+interface ChildrenProps {
+    children: ReactNode
+}
+
+interface AuthResponseProps {
+    params: {
+        access_token: string
+    },
+    type: string;
+}
+
+export const AuthContext = createContext({} as AuthContextProps)
+
+export function AuthProvider({ children }: ChildrenProps) {
+
+    const [user, setUser] = useState<UserProps>({} as UserProps)
+
+   async function signInWithApple() {
+        try {
+            const credentials = await AppleSession.signInAsync({
+                requestedScopes: [
+                    AppleSession.AppleAuthenticationScope.FULL_NAME,
+                    AppleSession.AppleAuthenticationScope.EMAIL,
+                ]
+            })
+            if (credentials) {
+                const userLogged = {
+                    id: String(credentials.user),
+                    email: credentials.email!,
+                    name: credentials.fullName!.givenName!,
+                    photo: undefined
+                }
+                setUser(userLogged)
+                await AsyncStorage.setItem(ASYNC_STORAGE_TRANSACTIONS_KEY, JSON.stringify(userLogged))
+            }
+        } catch (error) {
+            throw new Error(String(error))
+        }
+    }
+
+    return (
+        <AuthContext.Provider value={{
+            userInfo: user,
+            signInWithApple
+        }}>
+            {children}
+        </AuthContext.Provider>
+    )
+}
+
+
+---------------
+
+4) Create the useAuth hook to easily consume your auth data. Example:
+
+import {useContext} from 'react'
+import {AuthContext} from '../contexts/AuthContext'
+
+export function useAuth(){
+    return useContext(AuthContext)
+}
+
+---------------
+
+5) Consume in your app. Example:
+
+import  React from 'react'
+import { RFValue } from 'react-native-responsive-fontsize'
+import { Alert } from 'react-native'
+
+import { Container } from './styles'
+import AppleSvg from '../../assets/apple.svg'
+
+import {SignInSocialButton} from '../../components/SignInSocialButton'
+import {useAuth} from '../../hooks/auth'
+import { APPLE_AUTH_ERROR } from '../../utils/constants'
+
+
+export function SignIn() {
+
+    const {signInWithApple} = useAuth()
+
+    async function handleSignInWithApple(){
+        try {
+           await signInWithApple()
+        } catch (error) {
+            console.log(error)
+            Alert.alert(APPLE_AUTH_ERROR)
+        }
+    }
+    
+  
+    return (
+        <Container>
+                <SignInSocialButton 
+                    activeOpacity={.8}
+                    title='Entrar com Apple'
+                    svg={AppleSvg}
+                    onPress={handleSignInWithApple}
+                    />
+        </Container>
+    )
+}
+
+
+
+
+
+
+
+
+
+
+
+

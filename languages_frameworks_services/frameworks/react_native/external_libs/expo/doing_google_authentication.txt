@@ -56,7 +56,7 @@ _________________
 
 7) Create a context to provide your authentication info. The context should pro-
 vide the userInfo from authentication and a function to signIn. In this context
-you should create an async function waiting for AuthSession.startAsync() method 
+you should create an async function waiting for GoogleSession.startAsync() method 
 passing the authUrl as param and returning the userInfo if the type of response 
 is equal to success. Example:
 
