@@ -23,8 +23,9 @@ export default {
 
 --------------------------------------------------------------
 
-2) Inside the even folder (themes) create the theme.d.ts file 
-declaration example:
+2) Inside the even folder (themes) create the styled.d.ts file 
+declaration exporting an interface extending the DefaultTheme 
+with your theme typing. Example:
 
 import 'styled-components'
 import theme from './theme'
