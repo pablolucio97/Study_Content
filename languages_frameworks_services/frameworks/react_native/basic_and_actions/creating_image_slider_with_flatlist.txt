@@ -1,0 +1,66 @@
+================CREATING A IMAGE SLIDER WITH FLATLIST===================
+
+1) Create a state to initialize your index of the array of images.
+Example:
+
+const [imageIndex, setImageIndex] = useState(0)
+
+------------------
+
+2) Create a ref to observe the current index passing an interface con-
+taning props with viewableItems and changed typing. Example:
+
+import { FlatList, ViewToken } from 'react-native';
+
+interface ChangeImageProps {
+    viewableItems: ViewToken[];
+    changed: ViewToken[];
+}
+
+   const indexChanged = useRef((info : ChangeImageProps) => {
+        const index = info.viewableItems[0].index!
+        setImageIndex(index)
+    })
+    
+------------------
+
+3) Define a component to represent the indicators array and another
+to represent the current index. The array component should wrap
+the iteration of all indexes and return as active if the current 
+index of the ref is equals to the index of the iteration. Example:
+
+   <ImageIndexes>
+        {imageUrl.map((_, index) => (
+            <ImageIndex
+                key={String(index)}
+                active={index === imageIndex}
+            />
+        ))}
+    </ImageIndexes>
+
+
+------------------
+
+4) Define a FlatList to render your images passing the prop
+onViewableItemsChanged with the value of the current useRef.
+Example:
+
+ <FlatList
+    data={imageUrl}
+    keyExtractor={key => key}
+    renderItem={({ item }) => (
+        <CarImageWrapper>
+            <CarImage
+                source={{ uri: item }}
+                resizeMode='contain'
+            />
+        </CarImageWrapper>
+    )}
+    horizontal
+    showsHorizontalScrollIndicator={false}
+    onViewableItemsChanged={indexChanged.current}
+/>
+
+References:
+
+https://github.com/pablolucio97/rentx/tree/master/src/components/ImageSlider
