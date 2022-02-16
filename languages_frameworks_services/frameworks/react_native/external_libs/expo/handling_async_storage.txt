@@ -1,0 +1,57 @@
+======================HANDLING ASYNS STORAGE=========================
+
+1) Install the Expo Async Storage running the command: yarn add
+expo install @react-native-async-storage/async-storage
+
+-------------------
+
+
+2) In your application, in the file with will log new data in the 
+async storage, write the function to do it always inside the try
+catch block and spreading over the sorted array (certify it if is an 
+array stored and not an object). Example:
+
+ async function handleRegister() {
+
+    const newCustomer = {
+      name,
+      age,
+      state,
+      country,
+    }
+
+    try {
+      const response = await AsyncStorage.getItem('mykey')
+      const storedCustomers = JSON.parse(response!) || []
+
+      const updatedCustomers = [
+        ...storedCustomers,
+        newCustomer
+      ]
+
+      await AsyncStorage.setItem('mykey', JSON.stringify(updatedCustomers))
+
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
+  -------------------
+
+  3) Read your stored file in your application. Example:
+
+    const [customers, setCustomers] = useState<Customer[]>([])
+
+    async function getCustomers() {
+        try {
+            const response = await AsyncStorage.getItem('mykey')
+            const storedCustomers = JSON.parse(response!) || []
+            setCustomers(storedCustomers)
+        } catch (error) {
+            console.log(error)
+        }
+    }
+
+    useEffect(() => {
+        getCustomers()
+    }, [])
