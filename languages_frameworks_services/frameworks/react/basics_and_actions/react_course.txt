@@ -1777,3 +1777,55 @@ in the file that you are formating date and numbers. Ex:
 
 import 'intl'
 import 'intl/locale-data/jsonp/pt-BR'
+
+--------------------------------------------------------------------------------------
+
+A state should be imutables and you should to have acess to the previous value of 
+a state. At working with states, you should to create a new copy of the state and 
+then handle this state because a state is based in a value, and a value is a fact 
+and a fact is imutable. Change the value of a state can be the cause of many side 
+effects on your code and you lost the history of your state. At creating a copy of 
+your state you're improving your app performance because reuses your memory fast-
+ly.
+
+--------------------------------------------------------------------------------------
+
+Study if is really necessary alter an array/object. Ever as possible, use the spread 
+operator to manipulates arrays/objets to maintain this objects immutables to avoid 
+side effects in your code, mainly this code is highly coupled.
+
+--------------------------------------------------------------------------------------
+
+SetState is an async operation, in some cases use the await for allow to read the sta-
+te correctly. Ex: await setState({ username })
+
+--------------------------------------------------------------------------------------
+
+Use object desustructuring whenever as possible. It reduces the code syntax.
+
+--------------------------------------------------------------------------------------
+
+If possible, use Promisse.all() and solve all promises in a singlerequest.
+
+--------------------------------------------------------------------------------------
+
+Array.map doesn't change your array and not causes a new renderization if your array 
+is in a state.
+
+--------------------------------------------------------------------------------------
+
+Do your requests at the first renderization. Use an useEffect to do this, but avoid 
+heavy data calculation at the first renderization.
+
+--------------------------------------------------------------------------------------
+
+If have some library in your packga.json with "^" it's  means that the dependecy is 
+the most recent and can change with time. If youdesires that the lib don't updated 
+remove  the "^" character. Ex: "some-cool-lib": "^0.4.2" => "some-cool-lib": "0.4.2".
+
+--------------------------------------------------------------------------------------
+
+Have and organize your constants for entire app. Have constants for messages, numbers, 
+data and colors. Have an modularizated app
+
+--------------------------------------------------------------------------------------

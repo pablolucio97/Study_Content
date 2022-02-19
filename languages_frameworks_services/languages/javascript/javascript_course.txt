@@ -94,7 +94,7 @@ for(var i = 0; i < elements.length; i++){
 
 ------------------------------------------------------------------------
 
-This:
+This keyword:
 
 The this keyword is the value of a function that rely of the context 
 where is called. In the web the this appoints to window object by defa-
@@ -228,6 +228,17 @@ attributes and methods.
  
 High order functions: Are functions that receive a function as param 
 and return another function. Examples: filter, reduce, map and others.
+Another example:
+
+const higherOrder = whoStrikesBack => whoStrikesBack()
+
+-----------------------------------------------------------------------
+First Order Functions
+
+First Order Functions: Are functions that don't calls other functions. 
+Example:
+
+const firstOrder = () => console.log('First order strikes back!')
 
 -----------------------------------------------------------------------
 
@@ -243,6 +254,43 @@ function sum(a,b){
 }
 
 product.map(p => console.log(p))
+
+-----------------------------------------------------------------------
+
+Unary, Binary and Ternary Functions
+
+Unary, Binary and Ternary Functions are named as the quantity of argu-
+ments. Examples:
+
+const unaryFunction = message => console.log(message)
+const binaryFunction = (color, message) => console.log(color, message)
+const ternaryFunction = (size, color, message) => console.log(size, co-
+lor, message)
+
+-----------------------------------------------------------------------
+
+Duck typing
+
+Duck typing occours when two differents objects shares an even method. 
+Ex:
+
+['abc', ['a','b']].forEach(el => console.log(el.indexOf('a')))
+
+What happens here is:
+
+String.prototype.indexOf
+Array.prototype.indexOf
+
+-----------------------------------------------------------------------
+
+Recursive functions
+
+Recursive functions are functions that call itselves inside a condition. 
+Ex:
+
+function calcFatorial(n){
+	return (n !== 1) ? n * calcFatorial(n-1) : n = 1
+}
 
 
 ============================DATA TYPES=================================
@@ -559,14 +607,17 @@ const withCallback = labels.forEach((label, i) =>
     console.log(`${i}. ${label}`))
     
     
----------------------------AUTOINVOKE FUNCTIONS---------------------------------
+----------------------------AUTOINVOKE FUNCTIONS----------------------------------
 
-Functions auto invokeds are functions that are write inside a keys and invoked 
-automaticaly. Example:
+An Imediatly Invoked Function Expression is a function that is invoked imadiatly 
+after is declared. This function has priority over another functions or state-
+ments. IIFE is useful to use with async functions because it conserves the values 
+in scope. In a for by example, it will show all steps of a index of the conso-
+le.log. Theses functions are write inside keys and invoked automaticaly. Example:
 
- (function autoRun(){
-        console. log('Auto run works here.')
-    }())
+(function autoRun(){
+      console. log('Auto run works here.')
+}())
     
 ---------------------------CONSTRUCTOR FUNCTIONS--------------------------------
 
@@ -643,6 +694,44 @@ async function responseWithDelay() {
 }
 
 responseWithDelay().then(response => console.log(response.name))
+
+=================================TYPE COMPARASION==================================
+
+=== is the strict equality and it compares values and types between two elements.
+Example: 
+
+5 === 5  //true  
+5 === '5' //false
+
+-------------------------
+
+== is the loose equality and compares only the values and tries to appli a type 
+coertion. Type coertion occours when JavaScript convert two elements with dife-
+rent types to a single type. Example:
+
+5 == 5  //true  
+5 == '5' //true
+
+5 === '5'   =>    In this case the second element can be converted to number 
+and both element will be of type number.
+
+-----------------------
+
+Falsy values:
+
+0, false, undefined, null, "" and NaN are all falsy values and can be pass in type
+coertion to be comparated (==), only NaN don't can pass in type coertion.
+
+============================EXPRESSION VS STATEMENT===============================
+
+A expression in JavaScript is a snipet that returns a single value and a statement
+is code declaration. Example: a + b * 6
+
+A statement can be an if/else, for, for/in, while and others declarations.	
+
+
+A function is a statement, but what is inside it is an ex-
+pression.
 
 ================================CLASSSES======================================
 
@@ -1437,7 +1526,58 @@ d.setHours(12);
 document.getElementById("demo").innerHTML = d;
 //Output: 12:30:30 
 
-=========================MATH METHODS===============================
+=========================NATIVE OBJECT METHODS=============================
+
+Object.entries():
+This method returns an array of given object containning an array compused 
+by the key and value of each element in the array.Example:
+
+const obj = {a: 1, b: 2}
+Object.entries(obj) // [["a","1"],["b", "2"]]
+
+----------------------
+
+Object.values():
+This method returns an array of given object containing each value in obj-
+ect. Example:
+
+const obj = {a: 1, b: 2}
+Object.values(obj) // [1,2]
+
+----------------------
+
+Object.keys():
+This method returns an array of given object containning each key in the 
+object. Example:
+
+const obj = {a: 1, b: 2}
+Object.keys(obj) // ["a", "b"]
+
+----------------------
+
+Object.is():
+This method receives two objects as params and compare them returning if 
+these objects are or not equals. Examples:
+
+const obj1 = {a: 1, b: 2}
+const obj2 = {b: 1, f: 2}
+const obj3 = {a: 1, b: 2}
+
+Object.is(obj1, obj2) //false
+Object.is(obj1, obj3) //true
+
+----------------------
+
+Object.seal()
+This method protecs an object preventing that your props be deleted, chan-
+ged or added new props to the sealed object. Example:
+
+const obj = {a: 1, b: "apple"}
+Object.seal(obj)
+obj.a = 'orange'
+console.log(obj) // {a: 1, b: "apple"}
+
+===========================MATH METHODS================================
 
 Math.PI;            // returns 3.141592653589793 
 
@@ -1988,23 +2128,15 @@ fullPrice = 0,
 myArray = [],
 myObject = {};
 
-Use {} instead of new Object()
-
-Use "" instead of new String()
-
-Use 0 instead of new Number()
-
-Use false instead of new Boolean()
-
-Use [] instead of new Array()
-
-Use /()/ instead of new RegExp()
-
-Use function (){} instead of new Function()
-
-Use == instead = 
-
-Use === instead ==
+Use {} instead of new Object(),
+Use "" instead of new String(),
+Use 0 instead of new Number(),
+Use false instead of new Boolean(),
+Use [] instead of new Array(),
+Use /()/ instead of new RegExp(),
+Use function (){} instead of new Function(),
+Use == instead = ,
+Use === instead ==,
 
 Beware that numbers can accidentally be converted to strings or NaN
 
@@ -2040,3 +2172,9 @@ that point.
 
 In JavaScript, string, numbers and boolan (primitive values) are immuta-
 bles and array and object are mutables because are a collection of data.
+
+In JavaScript, comparing two identical objects (arrays, objects or func-
+tions, reference types) the return will be false because each object fits 
+a space in the memory. To compare two reference types (objects, arrays 
+and functions) are identicals, you shoud parse it a string (primitive va-
+lue and then compare them).

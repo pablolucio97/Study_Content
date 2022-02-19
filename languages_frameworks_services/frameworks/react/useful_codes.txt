@@ -1,0 +1,21 @@
+
+Search items while user is typing:
+
+const [searchText, setSearchText] = useState('');
+
+ function handleChangeInputText(text: string) {
+    setSearchText(text)
+  }
+
+async function searchTerm() {
+    const filteredSearch = data.filter(item => {
+      if (item.text_prop.toLowerCase().
+        includes(searchText.toLowerCase())) {
+        return item
+      }
+    })
+
+    setSearchListData(filteredSearch)
+  }
+
+  ---------------------------------

@@ -1,0 +1,39 @@
+Code snippets
+
+Components:
+
+rnscfc: React Native Functional Component
+rnsc: React Native Styled Component
+rnfcp: React Native Functional Component Props
+rnsc: React Native Styled Component 
+rscfc: React Functional Component
+rfcp: React Functional Component Props
+rsc: React Styled Component
+
+---------------
+
+Themes and Style:
+
+scth: Styled Component Theme
+cssth: CSS Theme Variables
+scrgs: Styled Component React Global Style
+
+---------------
+
+Navigation:
+
+rnnd: React Native Navigation Drawer
+rnnbt: React Native Navigation Bottom Tabs
+rnns: React Native Navigation Stack
+
+---------------
+
+
+
+
+
+
+
+
+
+
