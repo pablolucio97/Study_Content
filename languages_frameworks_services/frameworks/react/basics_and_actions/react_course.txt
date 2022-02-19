@@ -1524,57 +1524,97 @@ export default Football;
 All time when go work with functions with synthetic events, should pass the argument 
 event for this function.
 
+--------------------------------------------------------------------------------------
+
 Use spread operator {...} to represents objects and avoid write very lines.
+
+--------------------------------------------------------------------------------------
 
 Use the practice 'extract' to pass the props of a component to another component.
 
+--------------------------------------------------------------------------------------
+
 Use event.target.valueAsDate to render date input content.
+
+--------------------------------------------------------------------------------------
 
 The scope that is inside the main component is executed first than functions outside 
 the component scope.
 
+--------------------------------------------------------------------------------------
+
 Use npm install autoprefixer@9.8.0 to fix css load errors.
+
+--------------------------------------------------------------------------------------
 
 Always the first element of a map return should be the prop key to identify the list 
 items.
 
+--------------------------------------------------------------------------------------
+
 Stateless components don't need of an return, use the syntax => ().
+
+--------------------------------------------------------------------------------------
 
 In React not is possible to render two or more elements without a fragment or wraper
 element like a div, this throw the adjacent render error.
+
+--------------------------------------------------------------------------------------
 
 Unregardless of the type of communication, the props always will defined on the pa-
 rent component and read in the children. The children can pass props for the parent
 only trought the callback function.
 
+--------------------------------------------------------------------------------------
+
 Side effects happens when the setState is called directly in the function scope.
 
+--------------------------------------------------------------------------------------
+
 Use returns in if's when treating conditions with setStates handled by functions.
+
+--------------------------------------------------------------------------------------
 
 When you are chaning a state from a context and this is an object and you want to 
 preserve the original object and change only a single prop you need to maintain 
 all props trought the rest operator and change only you want. Use useReducer and 
 useContext for this.
 
+--------------------------------------------------------------------------------------
+
 Use the [key]:value to change a object props trought a function param.
+
+--------------------------------------------------------------------------------------
 
 When you are consuming objects or data from third parts and you need to format 
 the data, create a formatation when your are receivig the data and not directly
 in the component to your application runs more performaticly.
 
+--------------------------------------------------------------------------------------
+
 When working with Typescript, creates a type or interface for each component becau-
 se this can consume different props.
 
+--------------------------------------------------------------------------------------
+
 Use the useRef for control HMTL input elements and media elements.
+
+--------------------------------------------------------------------------------------
 
 To pass two or more function to a single synthetic event you should to use {} in
 your arrow function.
 
+--------------------------------------------------------------------------------------
+
 Always uses two or more types for provider context for your application, one to the
 children prop and another for the data.
 
+--------------------------------------------------------------------------------------
+
 Use the setSate, type it with the React Dispatch and SetAction types and provides it
 in contexts for set the value os states on contexts.
+
+--------------------------------------------------------------------------------------
 
 Always unearn your events listeners with useEffect, example:
 
@@ -1583,74 +1623,157 @@ useEffect(() => {
     return () => {unearn()}
 }, [])
 
+--------------------------------------------------------------------------------------
+
 Use functions directly inside a syntethic event when the function doesn't has params
 and use with arrow syntax when has at least one param.
 
+--------------------------------------------------------------------------------------
+
 At using React Router Dom, at facing a error, redirect the user to Home.
+
+--------------------------------------------------------------------------------------
 
 Return a response for your user at doing requests. Examples: Disalbe buttons at post 
 and login and render login animation during page load.
 
+--------------------------------------------------------------------------------------
+
 Avoid the user sent various request disabling the button while the promise is pending.
+
+--------------------------------------------------------------------------------------
 
 Use the option devtool:  'eval-source-map' inside your webpack.config.js file to dis-
 play better errors of yout application in the console.
 
-If the useEffect can't execute an external async function,use the function code directly 
-inside the useEffect.
+--------------------------------------------------------------------------------------
+
+If the useEffect can't execute an external async function,use the function code dire-
+ctly inside the useEffect.
+
+--------------------------------------------------------------------------------------
 
 The component will be renderized if the state and props changes, at with a state, the 
 empty state also defines a renderization.
 
+--------------------------------------------------------------------------------------
+
 Put the links tags on the top level in the index.html file for better performance.
+
+--------------------------------------------------------------------------------------
 
 At working aplications with pure React that will receive back-end later, alreay prepare
 your application with dynamic data, even it is fake, using MirageJS to avoid conflicts 
 at front-end back-end connect.
 
+--------------------------------------------------------------------------------------
+
 At working with modal, use the lib react-modal, create a separeted component for each 
-modal, trigger the modal trough other component (ex: header) and let the state in app.tsx.
+modal, trigger the modal trough other component (ex: header) and let the state in 
+app.tsx.
+
+--------------------------------------------------------------------------------------
 
 You can create and use a context or pass props to components and store the state in the
 parent app (app.tsx) to communicate info trought distinct components. 
 
-Use a state as boolean and a comparator operator for check values that can be one or other.
-Example: isActive={type === 'withdraw'}
+--------------------------------------------------------------------------------------
+
+Use a state as boolean and a comparator operator for check values that can be one or 
+other. Example: isActive={type === 'withdraw'}
+
+--------------------------------------------------------------------------------------
 
 If your context is an array, you should create it as generic format example: 
 createContext<TransactionProps[]>([]) and consume it without destructuring, example:
 const transactions = useContext(TransactionsContext).
 
+--------------------------------------------------------------------------------------
+
 Create your functions on the context and call them in your desired components inside
 other functions at working with functions that works with the global info, ex: addPro-
 duct, removeLead and etc. 
+
+--------------------------------------------------------------------------------------
 
 Use a normal function name inside the file of context and a prefix handle inside the 
 file of the component where the user will interact. Example: Use addProduct inside 
 CartContext.tsx and handleAddProduct inside product.tsx.
 
-Always set an array of state passing as rest operator. Example setPosts([...returnedPosts])
+--------------------------------------------------------------------------------------
 
-Always extends native elements props trought interface extends if your will to componentize 
-an native element.
+Always set an array of state passing as rest operator. 
+Example: setPosts([...returnedPosts])
 
-At working with inputs and forms in React is possible to control them through controlled 
-components (handle each input value in a state) or uncontrolled components (using a ref).
+--------------------------------------------------------------------------------------
 
-The useCallback() hook should be used not specific be a function is big and yes because
-the React crates a new position in the memory for the function every component renderi-
-zation.
+Always extends native elements props through interface extends if your will to compo-
+nentize an native element.
 
-In complex applications and you're using Next, you should to import a lib only if the u-
-ser really will to use something of this lib to reduce the bundler size of your final 
+--------------------------------------------------------------------------------------
+
+At working with inputs and forms in React is possible to control them through control-
+led components (handle each input value in a state) or uncontrolled components (using 
+a ref).
+
+--------------------------------------------------------------------------------------
+
+The useCallback() hook should be used not specific be a function is big and yes becau-
+se the React crates a new position in the memory for the function every component ren-
+derization.
+
+--------------------------------------------------------------------------------------
+
+In complex applications and you're using Next, you should to import a lib only if the 
+user really will to use something of this lib to reduce the bundler size of your final 
 application.
 
-If you're facing with an error of "Can't resolve map of undefined", tries to populate your 
-array with some data.
+--------------------------------------------------------------------------------------
 
+If you're facing with an error of "Can't resolve map of undefined", tries to populate 
+your array with some data.
 
+--------------------------------------------------------------------------------------
 
+Use the sign of ! after your variable to guarantee to the typescript that the 
+data exists and will be returned. Example:
 
+useEffect(() => {
+async function getTransactions(){
+    const storedTransactions = await AsyncStorage.getItem(dataKey)
+    setTransactions(JSON.parse(storedTransactions!))
+}
+getTransactions()
+}, [])	
 
+--------------------------------------------------------------------------------------
 
+Be careful with the scope of global variables, it can duplicate some calcs in your 
+app.
 
+--------------------------------------------------------------------------------------
+
+Create a .env.example file to another person know what are the constants that these 
+should to pass if this person is trying to contribute with your project. Example:
+
+#Google credentials
+
+GOOGLE_CLIENT_ID=
+EXPO_REDIRECT_URL=
+
+--------------------------------------------------------------------------------------
+
+Dont read environment variables inside async functions, read this variables after the 
+importations in your code.
+--------------------------------------------------------------------------------------
+
+Arrow function syntax only should be used when an action is expected. To call the 
+function directly at renderization, use the function() syntax.
+
+--------------------------------------------------------------------------------------
+
+Install the yarn intl running yarn add intl and import intl and the intl locale
+in the file that you are formating date and numbers. Ex:
+
+import 'intl'
+import 'intl/locale-data/jsonp/pt-BR'

@@ -44,24 +44,24 @@ lidate.
 
 Example:
 
-async function handleSignIn() {
-    try {
-        const schema = yup.object().shape({
-            email:
-                yup.string()
-                    .required('E-mail obrigatório')
-                    .email('Digite um e-mail válido'),
-            password:
-                yup.string()
-                    .required('Password obrigatório')
-        })
+  async function handleSignIn() {
+        try {
+            const schema = yup.object({
+                email:
+                    yup.string()
+                        .required('E-mail obrigatório')
+                        .email('Digite um e-mail válido'),
+                password:
+                    yup.string()
+                        .required('Password obrigatório')
+            })
 
-        await schema.validate({ email, password })
-        
-    } catch (error) {
-        if(error instanceof yup.ValidationError){
-            Alert.alert('Algum erro aconteceu', error.message)
+            await schema.validate({ email, password })
+            
+        } catch (error) {
+            if(error instanceof yup.ValidationError){
+                Alert.alert('Algum erro aconteceu', error.message)
+            }
+            console.log(error)
         }
-        console.log(error)
     }
-}

@@ -73,12 +73,12 @@ to objects of the class components, should linked by the bind().
 ------------------------------------------------------------------
 
 At using arrow functions in TextInput or another elements to change
-the state, the value passed as parammeters even be the same of the
+the state, the value passed as parameters even be the same of the
 state value.
 
 ------------------------------------------------------------------
 
-To declare variables to styling, import and uses StylesSheet, this
+To declare variables to styling, import, and uses StylesSheet, this
 show automatically the style options during the build styles pro-
 cess.
 
@@ -129,5 +129,121 @@ Use TouchableWithoutFeedback with prop onPress={Keyboard.dismiss}
 wrapping your whole screen to dismiss the keyboard automatically 
 when the user taps over the interface.
 
+------------------------------------------------------------------
 
+Use async/await to handle functions that will communicate with 
+write and read of files. Ex: Async storage, local storage e etc.
 
+------------------------------------------------------------------
+
+Use the function uuuid() from react-native-uuid lib to generate 
+id to data of your application.
+
+------------------------------------------------------------------
+
+You need not link positions when using React Native. You can pass 
+a position as absolute directly in the component and set the po-
+sition.
+
+------------------------------------------------------------------
+
+Use the useFoucsEffect from '@react-navigation/native' together 
+with useCallback when working with data that need being renderi-
+zed, like a list of items from API and states to refresh automa-
+tically at exchanging of a screen. Example:
+
+    useFocusEffect(useCallback(() => {
+        loadTransactions()
+    }, []))
+  }
+
+------------------------------------------------------------------
+
+Use ActivityIndicator with a loading state to wait for data fe-
+tching at working with data fetch or storagement.
+
+------------------------------------------------------------------
+
+Use UI Avatars api to generate an Image Letter Avatar at working 
+with authentication in IOS, because Apple don't provide user pho-
+to.
+
+photo: 
+`https://ui-avatars.com/api/?name=${user.fullName!.givenName!}`
+
+------------------------------------------------------------------
+
+If you're using Json Server with Expo and React Native, use your 
+ip as default url. Ex: "server" : "json-server src/services/ser-
+ver.json --host 192.168.2.128 --port 3333",
+
+------------------------------------------------------------------
+
+Use your object typing directly in the flatlist in the Styled 
+Component to force the Flatlist component to recognize your typing. 
+Example:
+
+import { CarProps } from "../../types/cars";
+
+export const CarList = styled(FlatList as new 
+(props : FlatListProps<CarProps>) => 
+FlatList<CarProps>)`
+padding: 24px;
+`
+-----------------------------------------------------------------
+
+Disable the swipe back on IOS and phisical back button on android 
+in your Home screen disabling the gesture in options in the 
+routes.tsx file for IOS and using an useEffect() to listen hard-
+wareBackPress. Examples:
+
+IOS:
+
+   <Screen name='Home' component={Home}
+    options={
+     { gestureEnabled: false }
+    }
+ />
+
+-----------
+
+Android:
+
+  useEffect(() => {
+    BackHandler.addEventListener('hardwareBackPress', () => {
+      return true
+    })
+  })
+
+-----------------------------------------------------------------
+
+Type components that receives a defined list of names with the o-
+riginal typing your component prop as typeof the original compo-
+nent through React.ComponentProps<> to use this list late. 
+
+Example:
+
+import React from 'react';
+import { Feather } from '@expo/vector-icons'
+import { TextInputProps } from 'react-native';
+
+interface Props extends TextInputProps {
+    iconName: React.ComponentProps<typeof Feather>['name']
+}
+
+export function Input({ iconName }: Props) {
+    return (
+        <>
+            <Feather
+                name={iconName}
+                size={24}
+            />
+        </>
+    )
+}
+
+-----------------------------------------------------------------
+
+Use KeyboardAvoidingView from React Native wrapping your applica-
+tion with eneblad and behavior='position' to improve user experi-
+ence at typing in inputs.
