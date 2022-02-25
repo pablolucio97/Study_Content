@@ -1,0 +1,80 @@
+===============WORKING WITH TESTS ON REACT NATIVE WITH EXPO===================
+
+-----------------------TYPES OF TESTS AND CONCEPTS----------------------------
+
+Unity tests: Are tests that tests only a single function, class, or component 
+separated from the application. If this function or component is integrated or 
+depends of actions bonded with features of the application, it receives the 
+name of Mock.
+
+----------------------
+
+Test Driven Development (TDD): Is the practice of write test before to create 
+your application.
+
+----------------------
+
+Integration tests: This type of test will to test the integration of a compo-
+nent with another or another functionality.
+
+----------------------
+
+E2E (end to end) tests: Are tests that tests each point of the flow of an ac-
+tion.
+
+----------------------
+
+Tests of Interation: Are tests when an user action is expected and should to 
+procced anything after it. Generally are involved with events like onPress,
+onLongPress, PanGestureHandler and so on.
+
+-------------------------------CONFIGURATION---------------------------------
+
+1) Run yarn add @testing-library/jest-native -D, yarn, jest-expo -D, @tes-
+ting-library/react-native -D and yarn add @types/jest and react-test-renderer 
+-D to install the Jest, your types, and required libs.
+
+---------------------
+
+2) In the file packaje.json add the configs for the jest. It should be after 
+the devDepencies. Example:
+
+  "jest": {
+    "preset": "react-native",
+    "setupFilesAfterEnv": [
+      "@testing-library/jest-native/extend-expect"
+    ]
+  },
+
+---------------------
+
+3) Insinde the src folder, create a folder named __tests__ and inside this, a
+new folder named screens and inside it your test file with the extention fi-
+le.test.tsx.
+
+---------------------
+
+4) Write your test importing the React, your screen or component that will be
+tested and the render of '@testing-library/react-native'. Example:
+
+import React from 'react'
+import { render } from '@testing-library/react-native'
+import { Profile } from '../../screens/Profile'
+
+it('should showns correctly user input name placeholder', () => {
+    const { getByPlaceholderText } = render(<Profile />)
+    const inputName = getByPlaceholderText('Nome')
+    expect(inputName.props.placeholder).toBeTruthy()
+})
+
+it('user value should be in the input', () => {
+    const {getByTestId} = render(<Profile />)
+    const inputName = getByTestId('test-name')
+    expect(inputName.props.value).toEqual('Pablo')
+})
+
+------------------------------GENERAL TIPS-----------------------------------
+
+You need not start an application to test it. Using the render from @tes-
+ting-library/react-native is simulated without starting an app.;
+
