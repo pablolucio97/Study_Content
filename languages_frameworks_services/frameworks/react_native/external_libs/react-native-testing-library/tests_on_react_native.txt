@@ -30,36 +30,49 @@ onLongPress, PanGestureHandler and so on.
 
 -------------------------------CONFIGURATION---------------------------------
 
-1) Run yarn add @testing-library/jest-native -D, yarn, jest-expo -D, @tes-
-ting-library/react-native -D and yarn add @types/jest and react-test-renderer 
--D to install the Jest, your types, and required libs.
+1) Run yarn add @testing-library/jest-native jest-expo @testing-library/rea-
+ct-native @types/jest react-test-renderer jest-styled-components -D to install 
+the Jest, your types, and required libs.
 
 ---------------------
 
 2) In the root of the application creates new jest.config.js file exporting 
 a module with the Jest configuration. Example:
 
-  module.exports = {
-      preset: "react-native",
-      testPathIgnorePatterns: [
-          '/node_modules',
-          '/android',
-          '/ios'
-      ],
-      setupFilesAfterEnv: [
-          "@testing-library/jest-native/extend-expect"
-      ]
-  }
+module.exports = {
+    preset: "jest-expo",
+    testPathIgnorePatterns: [
+        '/node_modules',
+        '/android',
+        '/ios'
+    ],
+    setupFilesAfterEnv: [
+        "@testing-library/jest-native/extend-expect",
+        "jest-styled-components"
+    ]
+}
 
 ---------------------
 
-3) Insinde the src folder, create a folder named __tests__ and inside this, a
+3) Update your bael.config.js file with the configs:
+
+module.exports = function(api) {
+  api.cache(true);
+  return {
+    presets: ['babel-preset-expo', '@babel/preset-env'],
+    plugins: ['inline-dotenv']
+  };
+};
+
+---------------------
+
+4) Insinde the src folder, create a folder named __tests__ and inside this, a
 new folder named screens and inside it your test file with the extention fi-
 le.test.tsx.
 
 ---------------------
 
-4) Write your test importing the React, your screen or component that will be
+5) Write your test importing the React, your screen or component that will be
 tested and the render of '@testing-library/react-native'. Example:
 
 import React from 'react'
