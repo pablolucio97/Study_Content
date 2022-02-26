@@ -16,8 +16,8 @@ it('user value should be in the input', () => {
 
 -------------------
 
-it('should to render title coorectly', () => {
-    const {getByTestId} = render(<Profile />)
+it('should contains text node Profile', () => {
+    const { getByTestId } = render(<Profile />)
     const title = getByTestId('test-title')
     expect(title.props.children).toContain('Profile')
 })
