@@ -31,8 +31,8 @@ onLongPress, PanGestureHandler and so on.
 -------------------------------CONFIGURATION---------------------------------
 
 1) Run yarn add @testing-library/jest-native jest-expo @testing-library/rea-
-ct-native @types/jest react-test-renderer jest-styled-components -D to install 
-the Jest, your types, and required libs.
+ct-native @types/jest react-test-renderer jest@26.5.0 to install the Jest, 
+your types, and required libs.
 
 ---------------------
 
@@ -103,4 +103,7 @@ describe('Profile', () => {
 
 You need not start an application to test it. Using the render from @tes-
 ting-library/react-native is simulated without starting an app.;
+
+Tests doesn't must to depend of external contexts, it should simulate your 
+owns contexts and components, for this, users mocks.
 

@@ -1,0 +1,87 @@
+======================REACT HOOKS TEST EXAMPLE========================
+
+1) Install yarn add @testing-library/react-hooks jest-fetch-mock ts-
+jest/utils -D
+
+----------------------
+
+2)In your application root create a new file named setupFile.js with
+the mockAsyncStorage importation calling also jest.mock passing this
+importation. Example:
+
+import mockAsyncStorage from 
+'@react-native-async-storage/async-storage/jest/async-storage-mock';
+
+jest.mock('@react-native-async-storage/async-storage', 
+() => mockAsyncStorage);
+
+----------------------
+
+3) Update your file jest.config.js adding the setupFile.js. Example:
+
+module.exports = {
+    preset: "jest-expo",
+    testPathIgnorePatterns: [
+        "/node_modules",
+        "/android",
+        "/ios"
+    ],
+    setupFilesAfterEnv: [
+        "@testing-library/jest-native/extend-expect",
+        "jest-styled-components"
+    ],
+    setupFiles: ["./setupFile.js"]
+}
+
+----------------------
+
+4) Write your test:
+
+import 'jest-fetch-mock';
+
+import { renderHook, act } from '@testing-library/react-hooks'
+import { mocked } from 'ts-jest/utils';
+import fetchMock from 'jest-fetch-mock';
+import { startAsync } from 'expo-auth-session';
+import { AuthProvider } from '../contexts/AuthContext'
+import { useAuth } from './auth'
+
+jest.mock('expo-auth-session');
+
+fetchMock.enableMocks();
+
+
+describe('Auth Hooks', () => {
+    it('should be able to signIn with Goggle account exisitng', async () => {
+        
+        const googleMocked = mocked(startAsync as any)
+
+        googleMocked.mockReturnValueOnce({
+            type: 'success',
+            params: {
+                access_token: 'any_token',
+            }
+        })
+        
+        
+        fetchMock.mockResponseOnce(JSON.stringify(
+            {
+                id: 'ksdjf87dsfh',
+                email: 'pablo-test@gmail.com',
+                name: 'Pablo',
+                photo: 'pablo.png'
+            }
+        ))        
+
+        const { result, waitForNextUpdate } = renderHook(() => useAuth(), {
+            wrapper: AuthProvider
+        })
+
+         act(async () => await result.current.signInWithGoogle())
+        await waitForNextUpdate()
+
+        console.log("USER PROFILE =>", result.current.userInfo);
+        expect(result.current.userInfo.email).toBe('pablo-test@gmail.com')
+
+    })
+})

@@ -1,11 +1,15 @@
 
 ====================STYLED COMPONENTS TEST EXAMPLE======================
 
-1) Inside your component folder, create a file named component.test.tsx
+1) Install jest-styled-components -D 
 
 -------------
 
-2) Define the props inside your component file (index.tsx) and in 
+2) Inside your component folder, create a file named component.test.tsx
+
+-------------
+
+3) Define the props inside your component file (index.tsx) and in 
 the style file to match props correctly. Example:
 
 index.tsx:
@@ -60,7 +64,7 @@ export const Container = styled(TextInput)<Props>`
 
 ----------------------
 
-3) In your test file, import your theme and ThemeProvider, create 
+4) In your test file, import your theme and ThemeProvider, create 
 a Provider function returning children inside the ThemeProvider 
 and passing it as wrapper options inside an object as a second pa-
 rameter of the render method. Example:
