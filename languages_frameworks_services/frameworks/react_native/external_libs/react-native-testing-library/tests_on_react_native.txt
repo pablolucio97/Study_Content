@@ -20,7 +20,7 @@ nent with another or another functionality.
 ----------------------
 
 E2E (end to end) tests: Are tests that tests each point of the flow of an ac-
-tion.
+tion. In this strategy is simulated the application usage like an user.
 
 ----------------------
 
@@ -30,14 +30,27 @@ onLongPress, PanGestureHandler and so on.
 
 -------------------------------CONFIGURATION---------------------------------
 
-1) Run yarn add @testing-library/jest-native jest-expo @testing-library/rea-
-ct-native @types/jest react-test-renderer jest@26.5.0 to install the Jest, 
-your types, and required libs.
+1) Install all dependencies below as development dependencies:
+
+jest-expo 
+jest@26.5.0
+jest-styled-components
+jest-fetch-mock
+ts-jest
+
+@testing-library/jest-native
+@testing-library/react-hooks
+@testing-library/react-native
+react-test-renderer 
+
+@types/jest 
+
 
 ---------------------
 
 2) In the root of the application creates new jest.config.js file exporting 
-a module with the Jest configuration. Example:
+a module with the Jest configuration. This module configuration has the neces-
+sary presets, setupFiles path configuration, and coverage settings. Example:
 
 module.exports = {
     preset: "jest-expo",
@@ -49,12 +62,33 @@ module.exports = {
     setupFilesAfterEnv: [
         "@testing-library/jest-native/extend-expect",
         "jest-styled-components"
+    ],
+    setupFiles: ["./setupFile.js"],
+    collectCoverage: true,
+    collectCoverageFrom: [
+        "src/**/*.tsx",
+        "!src/**/*.test.tsx"
+    ],
+    coverageReporters:[
+        'lcov'
     ]
 }
 
 ---------------------
 
-3) Update your bael.config.js file with the configs:
+3) Configure the scripts to run your tests in your package.json file and add the
+prop "resolutions" after the dependencies list. Example:
+
+"test": "jest",
+"test:w": "yarn test --watchAll"
+
+"resolutions": {
+    "@jest/create-cache-key-function": "^27.0.1"
+}
+
+---------------------
+
+4) Update your bael.config.js file with the configs:
 
 module.exports = function(api) {
   api.cache(true);
@@ -66,13 +100,13 @@ module.exports = function(api) {
 
 ---------------------
 
-4) Insinde the src folder, create a folder named __tests__ and inside this, a
+5) Insinde the src folder, create a folder named __tests__ and inside this, a
 new folder named screens and inside it your test file with the extention fi-
 le.test.tsx.
 
 ---------------------
 
-5) Write your test importing the React, your screen or component that will be
+6) Write your test importing the React, your screen or component that will be
 tested and the render of '@testing-library/react-native'. Example:
 
 import React from 'react'
@@ -104,6 +138,24 @@ describe('Profile', () => {
 You need not start an application to test it. Using the render from @tes-
 ting-library/react-native is simulated without starting an app.;
 
+-----------------------------------------------------------------------------
+
 Tests doesn't must to depend of external contexts, it should simulate your 
 owns contexts and components, for this, users mocks.
 
+-----------------------------------------------------------------------------
+
+Use mockReturnValueOnce to not share the mock of a test with another test.
+
+-----------------------------------------------------------------------------
+
+If you will test funtions that comunicates with Async Storage, create in the 
+root of your application a new file named setupFile.js with the config:
+
+-----------------------------------------------------------------------------
+
+import mockAsyncStorage from '@react-native-async-storage/async-
+storage/jest/async-storage-mock';
+
+jest.mock('@react-native-async-storage/async-storage', 
+() => mockAsyncStorage);
