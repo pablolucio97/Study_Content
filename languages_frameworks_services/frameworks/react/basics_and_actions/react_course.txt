@@ -1829,3 +1829,6 @@ Have and organize your constants for entire app. Have constants for messages, nu
 data and colors. Have an modularizated app
 
 --------------------------------------------------------------------------------------
+
+Use the memo from React when you have pure components or, components that re-renders 
+too many times or the component is too big.
