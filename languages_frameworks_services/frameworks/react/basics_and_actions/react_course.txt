@@ -690,19 +690,7 @@ The hook useMemo() should be used to avoid that a heavy function be called again
 a reference is changed or when a even value provided from a function is passed from the
 parent component to the children component. Example:
 
-
 import { useMemo } from 'react'
-import { ProductItem } from "./ProductItem";
-
-interface SearchResultsProps {
-    results: Array<{
-        id: number;
-        price: number;
-        title: string;
-    }>
-}
-
-export function SearchResults({ results }: SearchResultsProps) {
 
     const calcPrices = useMemo(() => {
         return results.reduce((acc, item) => {
@@ -710,26 +698,21 @@ export function SearchResults({ results }: SearchResultsProps) {
         }, 0)
     }, [results])
 
-
-
-    return (
-        <div>
-            <h1>{calcPrices}</h1>
-            {results.map(product => (
-                <ProductItem product={product} key={product.id} />
-            ))}
-        </div>
-    )
-}
-
 -----------------------
+
+import { useCallback } from 'react'
 
 useCallback()
 
 The hook useCallBack() is used to avoid the React rebuild a function every time
-that the component struggles a changes and renderize. It should be used when we
-written a function that will be used in children components and functions that
+that the component struggles a changes and renderize.This hook guarantee that 
+the function permanece in the same memory alocation. It should be used in func-
+tions that are passed to children through prop drilling and functions that
 provide from contexts. Example:
+
+const handleLogin = useCallback(() => {
+  login()
+},[])
 
 
 -----------------------
