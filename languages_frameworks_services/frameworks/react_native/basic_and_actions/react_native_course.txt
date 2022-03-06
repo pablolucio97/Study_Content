@@ -110,7 +110,7 @@ ad of TouchableOpacity component.
 
 Use FlatList component to render long lists. Only use the array.map 
 in short renderization because FlatList is more performatic with 
-React Native. Example:
+React Native and only renders items on user view field. Example:
 
 <FlatList
     data={skills}
