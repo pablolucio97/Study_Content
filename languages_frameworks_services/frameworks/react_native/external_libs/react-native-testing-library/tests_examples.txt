@@ -21,3 +21,32 @@ it('should contains text node Profile', () => {
     const title = getByTestId('test-title')
     expect(title.props.children).toContain('Profile')
 })
+
+-------------------
+
+it('Should display async Alert with friends quantity', () => {
+
+    async function showFriendsQuantity() {
+        await setTimeout(() => {
+            Alert.alert('Number of friends', '5')
+        }, 1000)
+    }
+
+    const mockedShowFriendsQuantity = jest.fn(() => 
+        { showFriendsQuantity() })
+
+    const { getByTestId } = render(
+        <Button
+            title='Some title'
+            onPress={mockedShowFriendsQuantity}
+        />
+    )
+
+    const buttonComponent = getByTestId('button-test')
+    fireEvent.press(buttonComponent)
+
+    act(async () => await mockedShowFriendsQuantity)
+
+    expect(buttonComponent).toBeTruthy()
+    expect(mockedShowFriendsQuantity).toBeCalled()
+})
