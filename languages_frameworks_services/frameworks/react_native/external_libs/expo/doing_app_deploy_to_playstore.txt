@@ -1,0 +1,168 @@
+======================DOING APP DPELOY TO PLAY STORE========================
+
+--------------------------CREATING SPLASH SCREEN----------------------------
+
+1.1) Access the template through the link below, duplicate the template, edit
+the screen of your splash screen containing your app logo, remove the color 
+fund, and export as .png.
+
+https://www.figma.com/file/ddc0glVeILssZl0Dcn1lSS/App-Icon-%26-Splashedit 
+
+--------------------
+
+1.2) Put this exported file inside assets/splash/logo.png and configure your 
+app.json file appointing to the logo file directory and passing the  
+"backgroundColor" according to your design.
+
+Example:
+
+{
+  "expo": {
+    "name": "rentx",
+    "slug": "rentx",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/icon.png",
+    "splash": {
+      "image": "./assets/splash/logo.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#1B1B1F"
+    },
+    "updates": {
+      "fallbackToCacheTimeout": 0
+    },
+    "assetBundlePatterns": [
+      "**/*"
+    ],
+    "ios": {
+      "supportsTablet": true
+    },
+    "android": {
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/adaptive-icon.png",
+        "backgroundColor": "#FFFFFF"
+      }
+    },
+    "web": {
+      "favicon": "./assets/favicon.png"
+    }
+  }
+}
+
+--------------------
+
+1.3) Restart the server.
+
+--------------------GENERATING BUILD ON ANDROID WITH EXPO-------------------
+
+2.1) Export the logo.png from the Figma template of your application.
+
+---------------------------
+
+2.2) Edit your app.json containing info about your app and the logo.png 
+file. Example:
+
+{
+  "expo": {
+    "name": "gofinances",
+    "slug": "gofinances",
+    "scheme": "gofinances",
+    "version": "1.0.0",
+    "icon" : "./assets/icon.png",
+    "assetBundlePatterns": [
+      "**/*"
+    ],
+    "ios": {
+      "bundleIdentifier": "com.gofinances",
+      "buildNumber": "1.0.0"
+    },
+    "android": {
+      "package": "com.gofinances",
+      "versionCode": 1
+    }
+  }
+}
+
+---------------------------
+
+2.3) Run yarn eas build -p android to generate your build. You should 
+to choice the generation of app_bundle. Obs: Install the eas cli
+running yarn add global eas-cli if you have not done it yet.
+
+---------------------------
+
+2.4) With the expo url opened in the browser (localhost:19002), click in 
+"Publish App".
+
+---------------------------
+
+
+2.5) Visit your expo account check your app build and download it.
+
+-----------------CONFIGURING YOUR APP INFO ON GOOGLE PLAY-------------------
+
+3.1) Login in your Google Play Console and click on "Create App" and fill
+your app info like Name, App or Game type, agree with terms and click on 
+"Create App".
+
+---------------------------
+
+3.2) Click in "Store Presence" and fill your app data again with Name, Des-
+criptions,  your app icon (exported as 512x512 png from Figma template), 
+your app screenshots (exported mocked on mobile devices from Figma template) 
+and your app Cover (exported as Resource Graph from Figma template) and 
+clicks in "Save".
+
+---------------------------
+
+3.3) Click in "Inbox" and go configuring your app step by step supplying the 
+necessary information to Google. If your app has restricted resources, you 
+should add user testers. When you reach in "Privacy Policy" you will need to 
+provide a Privacy Policy page URL.
+
+---------------------------
+
+3.4) Click in "Testing", "Internal Test" and in "New Release" to create a new
+intern test before publishing your app to the whole GooglePlay. You should to 
+inform a testers email list.
+
+---------------------------
+
+3.5) Login with your Expo account and download the app bundle that has been 
+generated on Step 2.
+
+---------------------------
+
+3.6) Do the upload of the app bundle downloaded on Step 3.5, fill the relea-
+ses notes and App version and clicks on "Save".
+
+---------------------------
+
+3.7) Click in "General Versions", and click in "Advance" and 
+click in "Start release to Internal testers" and click in "Release". A sta-
+tus with the message "Available for internal testers" will be displayed. 
+This stage can take until 1 day.
+
+---------------------------
+
+3.8) Click in "Internal test" and in the tab "Testers" copy the temporary 
+link of your app, paste in the browser and download the app in the Google-
+Play. This step is to see your app while it is in appraisal process.
+
+---------------------------
+
+3.9) Click in "General Versions", "Production" , click in the tab "Regions 
+and Countries", "Add" and select the countries that you desires your appli-
+cation should be visible and click in "Create new version".
+
+---------------------------
+
+3.10) Click in "Add library", select the bundle already uploaded and click 
+in "Add version". Fill again your app version notes and click in "Save", 
+"Avaliate version" and "Start production release". Await for one or two 
+days to your app be in the PlayStore.
+
+
+
+
+

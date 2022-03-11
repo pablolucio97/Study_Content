@@ -1,0 +1,17 @@
+1) Choose a Figma template to display your app on PlayStore and AppStore. 
+Examples:
+
+https://www.figma.com/file/QosJGqIqf0yIYCpTWDBbYd/Template---App-Screenshots?node-id=0%3A60
+https://www.figma.com/file/Zs7sX8GplwOYdLFFJbnd3N/Device-Mockups-Library-(100%2B-devices!)-(Community)?node-id=17%3A38
+https://www.figma.com/file/TSbTQaglRp7o1VT2a8krrA/Play-store-%26-AppStore-Screenshots-Template---freebies-design-%40atik_gohel-(Community)?node-id=112%3A884
+
+-----------------------
+
+2) In your app, create a new folder named resources/screenshots in the root of
+the application, point this folder as the default folder to save screenshots 
+in the emulator click in "Settings" to do it and take your screenshots using 
+your Android Emulator.
+
+-----------------------
+
+3) Edit your Figma template containing your app screenshots.
