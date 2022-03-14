@@ -1,0 +1,10 @@
+==========================DOING CODE PUSH OTA=============================
+
+Code Push OTA means updating over the air and consists in sending your 
+app updates directly to the end-user without going to stores. The new re-
+sources will be available only if your app already has been downloaded. 
+All updates will be installed in the second plan while the user uses the 
+app.
+
+
+
