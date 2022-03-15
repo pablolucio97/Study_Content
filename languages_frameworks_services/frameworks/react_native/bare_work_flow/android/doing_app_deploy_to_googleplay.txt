@@ -169,6 +169,50 @@ inside mipmap-xhdpi and splash_icon@3x.png inside mipmap-xxhdpi and in mipmap-xx
 After that you have put this files in this respective folders, rename each one dele-
 ting the "@nx", example: splash_icon@2x.png to splash_icon.png
 
+-----------------------
+
+3.7) Run yarn add react-native-splash-screen to install the React Native Splash Screen 
+lib and npx react-native link react-native-splash-screen.
+
+-----------------------
+
+3.8) Inside  android/app/src/main/java/your_packagename edit the file MainActivity.java 
+to seens like it:
+
+package com.myskills;
+
+import com.facebook.react.ReactActivity;
+import org.devio.rn.splashscreen.SplashScreen;
+import android.os.Bundle;
+
+public class MainActivity extends ReactActivity {
+
+  @Override
+  protected void onCreate(Bundle savedInstanceState) {
+      SplashScreen.show(this);
+      super.onCreate(savedInstanceState);
+  }
+
+  @Override
+  protected String getMainComponentName() {
+    return "MySkills";
+  }
+}
+
+-----------------------
+
+3.9) Inside android/app/src/main/res/ create a new folder named layout with a new 
+file named launch_screen.xml with the content:
+
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+  android:layout_width="match_parent"
+  android:layout_height="match_parent"
+  android:background="@drawable/background_splash"
+  android:orientation="vertical">
+</LinearLayout>
+
+
 
 ------------------------CONFIGURING YOUR APP INFO ON GOOGLE PLAY-----------------------
 
@@ -222,7 +266,7 @@ Play. This step is to see your app while it is in appraisal process.
 
 ---------------------------
 
-4.9) Click in "General Versions", "Production" , click in the tab "Regions 
+4.9) Click in "General Versions", "Production", click in the tab "Regions 
 and Countries", "Add" and select the countries that you desires your appli-
 cation should be visible and click in "Create new version".
 
