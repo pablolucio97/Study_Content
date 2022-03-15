@@ -1,3 +1,6 @@
+
+=================================DEFINING APP SCREENSHOTS==========================================
+
 1) Choose a Figma template to display your app on PlayStore and AppStore. 
 Examples:
 
