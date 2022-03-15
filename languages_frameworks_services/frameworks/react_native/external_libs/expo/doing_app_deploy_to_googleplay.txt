@@ -1,4 +1,4 @@
-======================DOING APP DPELOY TO PLAY STORE========================
+======================DOING APP DPELOY TO GOOGLE PLAY========================
 
 --------------------------CREATING SPLASH SCREEN----------------------------
 

@@ -1,25 +1,28 @@
 ============================GENERATING APP BUNDLE=============================
 
-1) Insert the code below in your terminal and press "Enter". Your .keystore
-file will be generated on adroid or root folder.
+1) Navigate to android folder and insert the code below in your terminal and 
+press "Enter". Your .keystore file will be generated on adroid folder.
 
 keytool -genkeypair -v -storetype PKCS12 -keystore production-android.keystore 
 -alias production-android -keyalg RSA -keysize 2048 -validity 10000
 
 ------------------------
 
-2) Run the code code ~/.gradle/gradle.properties in the terminal to generate a 
-new gradle.properties file and define your keys variables. Example:
+2) Again in the android folder, run the code 
+code ~/.gradle/gradle.properties in the terminal to generate a new gradle.pro-
+perties file and define your keys variables. Example:
 
 MYAPP_UPLOAD_STORE_FILE=production-android.keystore
-MYAPP_UPLOAD_KEY_ALIAS=production.android
+MYAPP_UPLOAD_KEY_ALIAS=production-android
 MYAPP_UPLOAD_STORE_PASSWORD=yourpassword
 MYAPP_UPLOAD_KEY_PASSWORD=yourpassword
 
 ------------------------
 
-3) Go to android/app/build.gradle file and search for "signingConfigs" and 
-inside this object, insert the "release" prop. Example:
+3) Again on android/app/build.gradle file and search for "signingConfigs" and 
+inside this object, insert the "release" prop. Configure also buildTypes prop
+
+Example:
 
  signingConfigs {
         debug {
@@ -36,6 +39,22 @@ inside this object, insert the "release" prop. Example:
                 keyAlias MYAPP_UPLOAD_KEY_ALIAS
                 keyPassword MYAPP_UPLOAD_KEY_PASSWORD
             }
+        }
+    }
+   
+        buildTypes {
+        debug {
+            signingConfig signingConfigs.debug
+            if (nativeArchitectures) {
+                ndk {
+                    abiFilters nativeArchitectures.split(',')
+                }
+            }
+        }
+        release {
+            signingConfig signingConfigs.release
+            minifyEnabled enableProguardInReleaseBuilds
+            proguardFiles getDefaultProguardFile("proguard-android.txt"), "proguard-rules.pro"
         }
     }
 
@@ -68,7 +87,7 @@ project.ext.react = [
 
 ------------------------
 
-5) Navigate to android folder and run the code to ./gradlew bundleRelease to 
+5) Again on android folder and run the code to ./gradlew bundleRelease to 
 generate your app bundle and wait your app bundle be generated. Your bundle
 will be in android/app/build/outputs/bundle/release
 

@@ -1,0 +1,241 @@
+=========================DOING APP DPELOY TO GOOGLE PLAY============================
+
+1.1) Open the Android Studio Code, click in "Open existing project", navigate to 
+your app folder and select the Android folder. 
+---------------------------------
+
+1.2)In the Android Studio, select the Project option, open your app folder, and in 
+the "app" folder, clicks with the right button and click in "New" and in
+"Image Asset".
+
+---------------------------------
+
+1.3) Click in "Foreground layer" tab and select the "Image" option. Search for your 
+desired image icon, select it and mark the "Trim" option as "Yes".
+
+---------------------------------
+
+1.4) Click in "Background layer" tab, select "Color" and set your app theme color as 
+background layer and click in "Next" and then click in "Finish". The android Studio 
+will exchange the default Android icon to your custom app icon.
+
+---------------------------------
+
+1.5) If you need to edit your App name, go to your_app\android\app\src\main\strings 
+and edit your App name.
+
+---------------------------------
+
+1.6) Checks if your ic_launcher-playstore.png file is inside the main folder.
+
+
+
+-----------------------------DEFINING APP SCREENSHOTS----------------------------------
+
+2.1) Choose a Figma template to display your app on PlayStore and AppStore. 
+Example:
+
+https://www.figma.com/file/TSbTQaglRp7o1VT2a8krrA/
+
+-----------------------
+
+2.2) In your app, create a new folder named resources/screenshots in the root of
+the application, put this folder as the default folder to save screenshots 
+in the emulator click in "Settings" to do it and take your screenshots using 
+your Android Emulator.
+
+-----------------------
+
+2.3) Edit your Figma template containing your app screenshots.
+
+------------------------------CONFIGURING SPLASH SCREEN---------------------------------
+
+3.1) Inside android/app/src/main/res create a new folder named "drawable" with a new fi-
+le named "background_splash.xml" with the content:
+
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+  <item
+    android:drawable="@color/splashscreen_bg"/>
+
+  <item
+    android:width="100dp"
+    android:height="100dp"
+    android:drawable="@mipmap/splash_icon"
+    android:gravity="center" />
+</layer-list>
+
+-----------------------
+
+3.2) Create a new file named "colors" inside android/app/src/main/res/values with 
+the content:
+
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <color name="splashscreen_bg">#424242</color>
+  <color name="app_bg">#424242</color>
+</resources>
+
+-----------------------
+
+3.3) Inside android/app/src/main/res/values/styles configure the style for the App and 
+to the Splash. Example:
+
+<resources>
+
+  <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+    <item name="android:textColor">#ffffff</item>
+    <item name="android:statusBarColor">@color/app_bg</item>
+    <item name="android:windowLightStatusBar">false</item>
+    <item name="android:windowBackground">@color/app_bg</item>
+  </style>
+
+  <style name="SplashTheme" parent="Theme.AppCompat.Light.NoActionBar">
+    <item name="android:statusBarColor">@color/splashscreen_bg</item>
+    <item name="android:background">@drawable/background_splash</item>
+  </style>
+
+</resources>
+
+-----------------------
+
+3.4) Inside android/app/src/main alter your file AndroidManifest.xml, this file should
+mandatorilly seen like it:
+
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+  package="com.myskills">
+
+    <uses-permission android:name="android.permission.INTERNET" />
+
+    <application
+      android:name=".MainApplication"
+      android:label="@string/app_name"
+      android:icon="@mipmap/ic_launcher"
+      android:roundIcon="@mipmap/ic_launcher_round"
+      android:allowBackup="false"
+      android:theme="@style/AppTheme">
+
+      <activity
+        android:name=".SplashActivity"
+        android:theme="@style/SplashTheme"
+        android:label="@string/app_name">
+        <intent-filter>
+            <action android:name="android.intent.action.MAIN" />
+            <category android:name="android.intent.category.LAUNCHER" />
+        </intent-filter>
+      </activity>
+
+      <activity
+        android:name=".MainActivity"
+        android:label="@string/app_name"
+        android:configChanges="keyboard|keyboardHidden|orientation|screenSize|uiMode"
+        android:launchMode="singleTask"
+        android:windowSoftInputMode="adjustResize"
+        android:exported="true"
+        />
+
+    </application>
+</manifest>
+
+-----------------------
+
+3.5) Inside android/app/src/main/java/[your_pack_name] create a new file named as 
+SplashActivity.java with content:
+
+package com.rn_splashscreen_tutorial; // alter for your project pack name
+
+import android.content.Intent;
+import android.os.Bundle;
+import androidx.appcompat.app.AppCompatActivity;
+
+public class SplashActivity extends AppCompatActivity {
+  @Override
+  protected void onCreate(Bundle savedInstanceState) {
+    super.onCreate(savedInstanceState);
+
+    Intent intent = new Intent(this, MainActivity.class);
+    startActivity(intent);
+    finish();
+  }
+}
+
+-----------------------
+
+3.6) Go to the Figma template https://www.figma.com/file/BPULJKMbPlq31WmPsKDJmK/ and
+export the Graph/logo1 image in original, @2x and @3x formats. Extract this images and
+renames them to splash_icon.png, splash_icon@2x.png and splash_icon@3x.png respective-
+lly and put the splash_icon.png inside mipmap-mdpi and mipmap-hdpi, splash_icon@2x.png 
+inside mipmap-xhdpi and splash_icon@3x.png inside mipmap-xxhdpi and in mipmap-xxxhdpi.
+After that you have put this files in this respective folders, rename each one dele-
+ting the "@nx", example: splash_icon@2x.png to splash_icon.png
+
+
+------------------------CONFIGURING YOUR APP INFO ON GOOGLE PLAY-----------------------
+
+4.1) Login in your Google Play Console and click on "Create App" and fill
+your app info like Name, App or Game type, agree with terms and click on 
+"Create App".
+
+---------------------------
+
+4.2) Click in "Store Presence" and fill your app data again with Name, Des-
+criptions,  your app icon (exported as 512x512 png from Figma template), 
+your app screenshots (exported mocked on mobile devices from Figma template) 
+and your app Cover (exported as Resource Graph from Figma template) and 
+clicks in "Save".
+
+---------------------------
+
+4.4) Click in "Inbox" and go configuring your app step by step supplying the 
+necessary information to Google. If your app has restricted resources, you 
+should add user testers. When you reach in "Privacy Policy" you will need to 
+provide a Privacy Policy page URL.
+
+---------------------------
+
+4.4) Click in "Testing", "Internal Test" and in "New Release" to create a new
+intern test before publishing your app to the whole GooglePlay. You should to 
+inform a testers email list.
+
+---------------------------
+
+4.5) Login with your Expo account and download the app bundle that has been 
+generated on Step 2.
+
+---------------------------
+
+4.6) Do the upload of the app bundle downloaded on Step 4.5, fill the relea-
+ses notes and App version and clicks on "Save".
+
+---------------------------
+
+4.7) Click in "General Versions", and click in "Advance" and 
+click in "Start release to Internal testers" and click in "Release". A sta-
+tus with the message "Available for internal testers" will be displayed. 
+This stage can take until 1 day.
+
+---------------------------
+
+4.8) Click in "Internal test" and in the tab "Testers" copy the temporary 
+link of your app, paste in the browser and download the app in the Google-
+Play. This step is to see your app while it is in appraisal process.
+
+---------------------------
+
+4.9) Click in "General Versions", "Production" , click in the tab "Regions 
+and Countries", "Add" and select the countries that you desires your appli-
+cation should be visible and click in "Create new version".
+
+---------------------------
+
+4.10) Click in "Add library", select the bundle already uploaded and click 
+in "Add version". Fill again your app version notes and click in "Save", 
+"Avaliate version" and "Start production release". Await for one or two 
+days to your app be in the GooglePlay.
+
+--------------------------------REFERENCES-------------------------------------
+
+https://www.notion.so/Splash-Screen-no-Android-8da844d39d834f28bb578e41313ae493
+
+
+
