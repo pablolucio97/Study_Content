@@ -212,7 +212,25 @@ file named launch_screen.xml with the content:
   android:orientation="vertical">
 </LinearLayout>
 
+-----------------------
 
+3.10) In your App.tsx import the SplashScreen from 'react-native-splash-screen' 
+and use an useEffect to hide the SplashScreen. Example:
+
+import React, { useEffect } from 'react'
+import { Home } from './src/pages/Home'
+import SplashScreen from 'react-native-splash-screen'
+
+export default function App() {
+
+    useEffect(() => {
+         SplashScreen.hide()
+    }, )
+
+    return (
+        <Home />
+    )
+}
 
 ------------------------CONFIGURING YOUR APP INFO ON GOOGLE PLAY-----------------------
 
