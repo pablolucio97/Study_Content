@@ -38,7 +38,7 @@ ptions "Build Android App Bundle", "Automatically increment version code",
 and let "Build number format" set as "Build ID" 
 
 -------------------------
-
+*****************!!!! check
 5) Enable "Sign builds" and mark the option "My Graddle settings are en-
 tirely set to handle singing automatically". Go to file android/app/build.
 graddle and comment the line "signingConfig signingConfigs.debug" and com-
@@ -53,7 +53,7 @@ This file should be in android/app/production-android.keystore
 6) Enable "Advanced" and copy your badge status URL to use in your ReadMe, and
 click in "Save and build".
 
-----------------------CONFIGURING ON GOOGLE CLOUD PLATFORM------------------------
+-------------------CONFIGURING CD WITH APP CENTER MS, EXPO AND GCP------------------
 
 1) Go to your GooglePlay console, click in "Settings" and in "API access", se-
 lect create "Create new project" and click in "Link a new". Await for GooglePlay
@@ -62,10 +62,11 @@ while it is creating a new project on Google Cloud Platform.
 -------------------------
 
 2) Go to your Google Cloud Platform and select the new project created on Go-
-glePlay. In the GCP, clik in "IAM & Admin", click in "Service Accounts" and 
-click in "Create Service Account". Provide a name and a description for your 
+glePlay, this project should have the name Google Play Console Developer. In the 
+GCP, select this new project, click in "IAM & Admin", click in "Service Accounts" 
+and click in "Create Service Account". Provide a name and a description for your 
 app, and click in "Create and continue". Select the Project/Owner as Role and
-click in "Continue" and click in "Finish".
+click in "Continue" and click in "Done".
 
 -------------------------
 
@@ -91,3 +92,24 @@ click in "Assign".
 6) In the App Center again, click in "Build", click in "Configurations" (your 
 app configurations), enable the option "Distribute builds", select "store", se-
 lect the "Production", provide your release notes and click in "Save".
+
+-----------------CONFIGURING TESTERS TO APPROVE CD ON APP CENTER--------------------
+
+1) In your project, create a new branch for tests named staging and do a commit to
+update it on GitHub.
+
+-------------------------
+
+2) Go to App center, click in your app, "Distribute", "Groups", "Add group", insert 
+a group name and the emails and click in "Save".
+
+-------------------------
+
+3) Click in "Builds", select the new branch created as staging, and click in "Con-
+figure". Fill the build configurations with package.json in the field "Project",
+"Build Variant" as release, select the node version with the most stable,"Build 
+frequency" set as "Build this branch on every push, enable the options "Build An-
+droid App Bundle", "Automatically increment version code", and let "Build number 
+format" set as "Build ID", turn on "Sign builds", do your keystore filem turn on 
+"Distribute builds", select "groups", select the group created e click in "Save". 
+Your testers team will be notificated when a new build is available.
