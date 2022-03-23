@@ -1,3 +1,13 @@
+============================EXPO COURSE============================
+
+-----------------------------WORKFLOWS-----------------------------
+
+Bare Workflow: Is the project that the developer has access to all 
+native code. Has access to android and ios folders.
+
+Managed: Is the project that the Expo manage comlex code and the 
+developer no has acess to android and ios folder.
+
 ==========CREATING A NEW REACT NATIVE PROJECT WITH EXPO============
 
 1) Run expo init appname and choice the choice the minimal Bare
@@ -28,5 +38,13 @@ for you.
 -------------------------------------------------------------------
 
 5) Run yarn add @types/react-native to add React Native types.
+
+-------------------------GENERAL TIPS-------------------------------
+
+Always work with bare workflow projects to have access to android 
+and ios folders.
+
+You can run expo eject to have access to android/ios folders if you 
+have created a managed project.
 
 
