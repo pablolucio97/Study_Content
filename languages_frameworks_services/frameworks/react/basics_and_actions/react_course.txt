@@ -1815,3 +1815,27 @@ data and colors. Have an modularizated app
 
 Use the memo from React when you have pure components or, components that re-renders 
 too many times or the component is too big.
+
+
+Use a let to control component mounting to the promise no persist running after
+the component is unmounted. Example
+
+   useEffect(() => {
+    let isMounted = true;
+     async function getUsers() {
+      try {
+        const response = await api.get('/users')
+        if (isMounted) {
+        setUsers(response.data)
+      }
+    } catch (error) {
+      console.log(error)
+    }finally {
+      if(isMounted) {
+        setIsLoading(false)
+      }
+    }
+   }
+   }, [])
+
+--------------------------------------------------------------------------------------
