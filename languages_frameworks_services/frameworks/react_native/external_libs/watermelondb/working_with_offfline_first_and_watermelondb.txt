@@ -1,0 +1,146 @@
+==================WORKING WITH OFFLINE FIRST AND WATERMWLONDB==================
+
+
+Definitions:
+
+Model: It's the representation of the object between the database and the app.
+Schema: Is the representation of the table/model in the database. Is initia-
+lized when the database is empty.
+
+----------------------CREATING DATABASE, MODELS AND SCHEMAS--------------------
+
+1) Run yarn add @nozbe/watermelondb and yarn add @babel/plugin-proposal-de-
+corators -D to install the watermwlondb and your dependencies.
+
+-----------------------
+
+2) In your tsconfig.json file enable the experimentalDecorators. Example:
+
+{
+  "compilerOptions": {
+    "experimentalDecorators": true
+  },
+  "extends": "expo/tsconfig.base",
+}
+
+
+-----------------------
+
+3) In the root of your application create a new folder named database/model/
+your_model_name.ts with your content example:
+
+
+import {Model} from '@nozbe/watermelondb'
+import {field} from '@nozbe/watermelondb/decorators'
+
+class User extends Model {
+    static table = 'users'
+
+    @field('user_id')
+    user_id: string;
+    
+    @field('name')
+    name: string;
+    
+    @field('email')
+    email: string;
+    
+    @field('driver_license')
+    driver_license: string;
+    
+    @field('avatar')
+    avatar: string;
+
+    @field('token')
+    token: string;
+    
+}
+
+-----------------------
+
+4) Inside database folder, create a new folder named schema with your
+schemaFile.ts. Example:
+
+import { tableSchema } from "@nozbe/watermelondb";
+
+const userSchema = tableSchema({
+  name: "users",
+  columns: [
+    {
+      name: "user_id",
+      type: "string",
+    },
+    {
+      name: "name",
+      type: "string",
+    },
+    {
+      name: "email",
+      type: "string",
+    },
+    {
+      name: "driver_license",
+      type: "string",
+    },
+    {
+      name: "avatar",
+      type: "string",
+    },
+    {
+      name: "token",
+      type: "string",
+    },
+  ],
+});
+
+export { userSchema };
+
+-----------------------
+
+5) Inside the schema folder, create a new file named index.ts with appSchema
+importation from "@nobelz/watermelondb" and yours schema already created, pass
+it inside the tables array and export the schemas. Example:
+
+import { appSchema } from '@nozbe/watermelondb'
+import {userSchema} from './userSchema'
+
+const schemas = appSchema({
+    version: 1,
+    tables: [
+        userSchema
+    ]
+})
+
+export {schemas}
+
+-----------------------
+
+
+6) Inside the database folder, create a new file index.ts exporting your database
+configured with the adapter and the modelClass. Example:
+
+
+import { Database } from "@nozbe/watermelondb";
+import SQLiteAdapter from "@nozbe/watermelondb/adapters/sqlite";
+
+import { schemas } from "./schema";
+import { User } from "./model/Users";
+
+const adapter = new SQLiteAdapter({
+  schema: schemas,
+});
+
+export const database = new Database({
+  adapter,
+  modelClasses: [User]
+});
+
+
+-----------------------
+
+7) In your application consume the data that comes from the database. Example:
+
+
+
+
+

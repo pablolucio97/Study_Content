@@ -584,4 +584,10 @@ You can use own typing from hooks of third libraries if it exists in your
 contexts. Click in the hook holding 'Ctrl' and use the type that the hook is 
 exporting.
 
+----------------------------------
+
+Use the hack as unknown as YourInterface to guarantee that a value has the
+specific typing even if TypeScript appoints an error. Example
+
+const user = newUser() as unknown as UserProps
 
