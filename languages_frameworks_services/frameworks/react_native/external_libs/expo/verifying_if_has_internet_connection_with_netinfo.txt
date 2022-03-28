@@ -1,0 +1,31 @@
+===================VERIFYING IF HAS CONNECTION WITH NETINFO==================
+
+1) Run expo install @react-native-community/netinfo to install NetInfo.
+
+-------------------
+
+2) In your application import the useNetInfo and listen if has a connection. 
+Example:
+
+import React, { useEffect } from 'react';
+import { useNetInfo } from '@react-native-community/netinfo'
+
+export default function App() {
+  
+  const netInfo = useNetInfo()
+
+  useEffect(() => {
+    if (netInfo.isConnected){
+      Alert.alert('You are connected.')
+    }else{
+      Alert.alert('You are not connected.')
+    }
+  }, [netInfo.isConnected])
+  
+
+  return (
+      <>
+      </>
+  );
+}
+

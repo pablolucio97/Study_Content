@@ -140,7 +140,140 @@ export const database = new Database({
 
 7) In your application consume the data that comes from the database. Example:
 
+import {database}  from '../database'
+
+useEffect(() => {
+  function getUsers() {
+      try {
+          const useCollection = await database.get('users')
+          const users = await userCollection.find()
+          console.log(users)
+      } catch (error) {
+          throw new Error(error)
+      }
+  }
+  getUsers()
+}, [])
+
+
+-------------------------------DOING USER SIGN OUT---------------------------------
+
+To sign out with the user, import the UserModel, set a state to use the data, find
+the user inside the selected collection and use the method destroyPermanently. E-
+xample:
+
+1) In your context file create and export in the context interface the signOut 
+function. Example:
+
+
+interface AuthContextProps {
+  signOut: () => Promise<void>
+}
+
+import {database}  from '../database'
+import { User as ModelUser} from '../database/models/user'
+
+const [data, setData] = useState({} as DataProps)
+
+function signOut() {
+    try {
+        const useCollection = await database<ModelUser>.get('users')
+        await database.action(async() => {
+            const userSelected = await userCollection.find(data.id)
+            await userSelected.destroyPermanently()
+        })
+    } catch (error) {
+        throw new Error(error)
+    }
+}
+
+------------------------
+
+2) In your application, import and use the signOut function
+
+import {signOut} from useAuth()
+
+export function  App (){
+
+
+  function handleSignOut() {
+    try{
+      await signOut()
+    }catch (error) {
+      trhow new Error(error)
+    }
+  }
+
+  return(
+    <>
+      <Button
+        onPress={handleSignOut}
+      /> 
+    </>
+  )
+}
+
+-------------------------UPDATING DATA ON A COLLECTION------------------------------
+
+1) Write the function in the context file. Example:
+
+interface AuthContextProps {
+  updateUser: (user: userDataProps) => Promise<void>
+}
+
+function updateUser(){
+    try {
+        const userCollection = database.get<ModelUser>('users')
+        await database.action(() => {
+            const userSelected = await userCollection.find(user.id)
+            await userSelected.update((userData) => {
+                userData.name = user.name,
+                userData.driver_license = user.driver_license
+                setUser(userData)
+            })
+        })
+    } catch (error) {
+        throw new Error(error.message)
+    }
+}
+
+------------------------
+
+2) In your application, import and use the signOut function
+
+import {updateUser} from useAuth()
+
+export function  App (){
+
+  const [name, setName] = useState('')
+  const [avatar, setAvatar] = useState('')
+
+  function handleUpdateUser() {
+    try{
+      await signOut({
+        id: user.id,
+        name,
+        avatar,
+        token: user.token
+      })
+    }catch (error) {
+      trhow new Error(error)
+    }
+  }
+
+  return(
+    <>
+      <Button
+        onPress={handleSignOut}
+      /> 
+    </>
+  )
+}
 
 
 
+==============================GENERAL TIPS================================
 
+To update the database after do changes in your models or schemas, change
+the version number inside appSchema in the index.ts file inside the Schema
+folder.
