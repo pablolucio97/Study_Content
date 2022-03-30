@@ -247,3 +247,8 @@ export function Input({ iconName }: Props) {
 Use KeyboardAvoidingView from React Native wrapping your applica-
 tion with eneblad and behavior='position' to improve user experi-
 ence at typing in inputs.
+
+-----------------------------------------------------------------
+
+If you have some problem with a lib installation, try to link it 
+manually running yarn react-native link the-lib-name.

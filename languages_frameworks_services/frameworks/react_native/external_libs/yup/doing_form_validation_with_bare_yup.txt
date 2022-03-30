@@ -4,7 +4,7 @@
 
 ------------------
 
-2) Define your states for inputs and pass for the iputs. Examples:
+2) Define your states for inputs and pass for the inputs. Examples:
 
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')

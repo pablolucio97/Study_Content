@@ -1,5 +1,8 @@
 ==================WORKING WITH OFFLINE FIRST AND WATERMWLONDB==================
 
+To work with offline first, you will need of an external API providing a data-
+base that will be consumed in your application and the Watermelondb will handle
+the data according your internet connection.
 
 Definitions:
 
@@ -270,10 +273,53 @@ export function  App (){
   )
 }
 
+-------------------------------SYNCHRONIZING DATA-----------------------------------
+
+1) In your application, import the databse, the synchronize from watermelondb and
+the NetInfo from @react-native-community/netinfo.
+
+import { synchronize } from '@nozbe/watermelondb/sync'
+import { databse } from '../database'
+import NetInfo from '@react-native-community/netinfo';
+
+
+------------------------
+
+2) Write a function to pull data from you external database and push data from the wa-
+termelondb to your external database. Example
+
+async function offlineSynchronize(){
+    await synchronize({
+        database,
+        pullChanges: async ({lastPulledAt}) => {
+            const response = await api
+            .get(`/cars/sync/pull?lastPulledVersion=${lastPulledAt} || 0`)
+            const {changes, timeStamp: latestVersion} = response.data
+            return {changes, timeStamp: latestVersion}
+        },
+        pushChanges: async ({changes}) => {
+            const user = changes.user
+            await api.post('/users/sync')
+        }
+    })
+}
+
+------------------------
+
+3) Listen a hook to call your synchronize function depending on the internet 
+connection. Example:
+
+useEffect(() => {
+    if(netInfo.isConnected){
+        offlineSynchronize()
+    }
+}, [netInfo.isConnected])
+
+
 
 
 ==============================GENERAL TIPS================================
 
-To update the database after do changes in your models or schemas, change
+To update the database after to do changes in your models or schemas, change
 the version number inside appSchema in the index.ts file inside the Schema
 folder.
