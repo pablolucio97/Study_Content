@@ -252,3 +252,8 @@ ence at typing in inputs.
 
 If you have some problem with a lib installation, try to link it 
 manually running yarn react-native link the-lib-name.
+
+-----------------------------------------------------------------
+
+Convert the string to number at working with number directly on 
+InputText. Ex: onChangeText={value => setQuantity(Number(value))}
