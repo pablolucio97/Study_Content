@@ -164,3 +164,113 @@ useEffect(() => {
         })
     return () => subscribe();
 }, [])
+
+------------------
+
+Filtering documents
+
+  useEffect(() => {
+    const subscribe = firestore()
+    .collection('products')
+    .where("quantity", ">=", 2)
+    .onSnapshot(querySnapshot => {
+      const data = querySnapshot.docs.map((doc) => {
+         return {
+           id: doc.id,
+           ...doc.data()
+         }
+       }) as ProductProps[];
+
+       setProducts(data)
+     })
+     return () => subscribe();
+  }, [])
+
+------------------
+
+  Limiting documents query (useful for pagination)
+
+  useEffect(() => {
+    const subscribe = firestore()
+    .collection('products')
+    .limit(5)
+    .onSnapshot(querySnapshot => {
+      const data = querySnapshot.docs.map((doc) => {
+         return {
+           id: doc.id,
+           ...doc.data()
+         }
+       }) as ProductProps[];
+
+       setProducts(data)
+     })
+     return () => subscribe();
+  }, [])
+
+------------------
+
+Ordering querys
+
+  useEffect(() => {
+    const subscribe = firestore()
+    .collection('products')
+    .orderBy('description', 'desc')
+    .onSnapshot(querySnapshot => {
+      const data = querySnapshot.docs.map((doc) => {
+         return {
+           id: doc.id,
+           ...doc.data()
+         }
+       }) as ProductProps[];
+
+       setProducts(data)
+     })
+     return () => subscribe();
+  }, [])
+
+Ordering querys by specific values
+
+------------------
+
+  useEffect(() => {
+    const subscribe = firestore()
+    .collection('products')
+    .orderBy('quanitty')
+    .startAt(2)
+    .endAt(4)
+    .onSnapshot(querySnapshot => {
+      const data = querySnapshot.docs.map((doc) => {
+         return {
+           id: doc.id,
+           ...doc.data()
+         }
+       }) as ProductProps[];
+
+       setProducts(data)
+     })
+     return () => subscribe();
+  }, [])
+
+------------------
+
+Updating a document 
+
+function handleDoneToggle(){
+  firestore()
+  .collection('products')
+  .doc(data.id)
+  .update({
+    done: !data.done,
+  })
+}
+
+------------------
+
+Deleting a document 
+
+function handleDeleteProduct(){
+  firestore()
+  .collection('products')
+  .doc(data.id)
+  .delete()
+}
