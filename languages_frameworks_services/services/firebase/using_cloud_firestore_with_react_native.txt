@@ -15,7 +15,7 @@ lib in your React Native project.
 1.3) On your Firebase console, in the of your project, click on "Android", provide
 a name com.yourname to your application (get it in the MainActivity.java file),
 provide you app alias. Provide your certicate going to your project, navigating 
-to android folde and typing the command ./gradlew signingReport, copy the SHA1 
+to android folder and typing the command ./gradlew signingReport, copy the SHA1 
 code of the "debugAndroidTest" variant, paste in the field "Debug signing certi-
 ficate SHA-1 (optional)" and click in "Register App".
 
@@ -274,3 +274,7 @@ function handleDeleteProduct(){
   .doc(data.id)
   .delete()
 }
+
+------------------
+
+Refs: https://firebase.google.com/docs/firestore

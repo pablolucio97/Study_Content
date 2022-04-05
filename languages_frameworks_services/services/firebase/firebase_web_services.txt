@@ -18,3 +18,11 @@ and mobile applications that allow store, sync and handle data. Prefer
 to use the FireStore over than RealTime Database because the FireStore is 
 a more new and actualized database based in the own RealTime.
 
+
+----------------------------CLOUD STORAGE-------------------------------
+
+The Cloud Storage is a Google Service to store, upload and download fi-
+les. Is a fast storage that you can store images, files and videos.
+
+
+

@@ -1,0 +1,36 @@
+
+----------------------USING CLOUD STORAGE WITH REACT NATIVE--------------------
+
+1) In the Firebase Console, select your project and click,  "Storage" and in
+"Rules".
+
+------------------------
+
+2) Edit your rules initially like below and then click in "Publish":
+
+rules_version = '2';
+service firebase.storage {
+  match /b/{bucket}/o {
+    match /{allPaths=**} {
+      allow read, write;
+    }
+  }
+}
+
+------------------------
+
+3) Install yarn add @react-native-firebase/app if you ready does not it, and 
+run yarn add @react-native-firebase/storage to install the Storage.
+
+------------------------
+
+4) On your project storage page, create a new folder to store your files.
+
+------------------------
+
+5) Import the storage from '@react-native-firebase/storage' and write an async 
+function to upload your file. You should have the image uri string on a state.
+You must inside this function, create a new variable for each new image using 
+an timestamp, starts storage refering your path on Firabase/storage console 
+and call the method putFile using the reference. Example:
+
