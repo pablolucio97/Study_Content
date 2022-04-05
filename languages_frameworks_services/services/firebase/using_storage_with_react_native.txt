@@ -24,13 +24,54 @@ run yarn add @react-native-firebase/storage to install the Storage.
 
 ------------------------
 
-4) On your project storage page, create a new folder to store your files.
+4) On your project storage page, create a new folder to store your files. In
+your project, you will need for the install and implements the ExpoImagePi-
+cker to select your images.
 
 ------------------------
 
-5) Import the storage from '@react-native-firebase/storage' and write an async 
-function to upload your file. You should have the image uri string on a state.
-You must inside this function, create a new variable for each new image using 
-an timestamp, starts storage refering your path on Firabase/storage console 
-and call the method putFile using the reference. Example:
+Uploading images:
 
+  const [image, setImage] = useState('');
+
+  async function handleUpload() {
+    try {
+      const fileName = new Date().getTime()
+      const reference = storage().ref(`/images/${fileName}.png`);
+      reference.putFile(image)
+        .then(() => console.log('Upload complete'));
+    } catch (error) {
+      console.log(error)
+    }
+  
+
+------------------------
+
+
+Uploading images with progress:
+
+  const [image, setImage] = useState('');
+  const [transferredBytes, setTransferredBytes] = useState('');
+  const [progress, setProgress] = useState('0');
+
+  async function handleUpload() {
+    try {
+      const fileName = new Date().getTime()
+      const reference = storage().ref(`/images/${fileName}.png`);
+
+      const uploadTask = reference.putFile(image)
+
+      uploadTask.on('state_changed', snapShot => {
+        const percent = ((snapShot.bytesTransferred / snapShot.totalBytes) * 100)
+          .toFixed(0)
+        setTransferredBytes(`${snapShot.bytesTransferred} transferido de ${snapShot.totalBytes}`)
+        setProgress(percent)
+      })
+
+      uploadTask.then(() => {
+        console.log('Upload completed')
+      })
+    } catch (error) {
+      console.log(error)
+    }
+  }
