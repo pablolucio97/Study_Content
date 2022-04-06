@@ -30,7 +30,7 @@ cker to select your images.
 
 ------------------------
 
-Uploading images:
+Uploading files:
 
   const [image, setImage] = useState('');
 
@@ -44,11 +44,9 @@ Uploading images:
       console.log(error)
     }
   
-
 ------------------------
 
-
-Uploading images with progress:
+Uploading files with progress:
 
   const [image, setImage] = useState('');
   const [transferredBytes, setTransferredBytes] = useState('');
@@ -75,3 +73,58 @@ Uploading images with progress:
       console.log(error)
     }
   }
+
+------------------------
+
+Listing files from storage
+
+  const [photos, setPhotos] = useState<FileProps[]>([])
+
+  useEffect(() => {
+  storage()
+    .ref('/images')
+    .list()
+    .then(result => {
+      const files: FileProps[] = []
+      result.items.forEach(file => {
+        files.push({
+          name: file.name,
+          path: file.fullPath
+        })
+      })
+      setPhotos(files)
+    })
+}, [])
+
+------------------------
+
+Getting file props
+
+const [currentPhotoView, setCurrentPhotoView] = useState('')
+const [currentPhotoInfo, setCurrentPhotoInfo] = useState('')
+
+async function handleShowImage(path: string) {
+  const photo = await storage()
+    .ref(path)
+    .getDownloadURL()
+    setCurrentPhotoView(photo)
+
+    const info = await storage() 
+    .ref(path)
+    .getMetadata()
+    setCurrentPhotoInfo(`Uploaded at ${info.timeCreated}`)
+}
+
+------------------------
+
+Deleting a file
+
+async function deleteImage(path: string) {
+  await storage()
+    .ref(path)
+    .delete()
+    .then(() => console.log('Deleted image successfully'))
+}
+
+
+REFS: https://firebase.google.com/docs/storage/web/upload-files
