@@ -1,0 +1,13 @@
+=========================UBUNTU LINUX SERVER COMMANDS=============================
+
+Create a directory: mkdir your_directory_name
+
+Delete a directory: rm -r your_directory_name
+
+Delete a directory without confirmations: rm -rf your_directory_name
+
+Creating environment variables: export YOUR_VARIABLE_NAME=your_variable_value
+
+Navigate to directory: cd your_directory_name
+
+Back to default server directory: cd 
