@@ -113,6 +113,184 @@ export const Secondary: ComponentStory<typeof Text> = () => {
 }
 
 
+------------------DOCUMENTING A SET OF COMPONENTS EXAMPLE-----------------
+
+import { ComponentMeta, ComponentStory } from '@storybook/react'
+import { ReactNode } from 'react';
+import { Text as TextComponent } from './Text'
+import { Title as TitleComponent } from './Title'
+import { SubTitle as SubTitleComponent } from './SubTitle'
+import { GradientText as GradientTextComponent } from './GradientText'
+
+interface ContainerProps {
+    children: ReactNode;
+}
+
+const Container = ({ children }: ContainerProps) => {
+    return (
+        <>
+            {children}
+        </>
+    )
+}
+
+export const Text: ComponentStory<typeof TextComponent> = () => {
+    return (
+        <TextComponent
+            content='This is the Text component'
+        />
+    )
+}
+
+export const SubTitle: ComponentStory<typeof SubTitleComponent> = () => {
+    return (
+        <SubTitleComponent
+            content='This is the SubTitle component'
+        />
+    )
+}
+
+export const Title: ComponentStory<typeof TitleComponent> = () => {
+    return (
+        <TitleComponent
+            content='This is the TitleComponent component'
+        />
+    )
+}
+
+export const GradientText: ComponentStory<typeof GradientTextComponent> = () => {
+    return (
+        <GradientTextComponent
+            content='This is the GradientTextComponent'
+            direction='right-to-left'
+            primaryColor='cyan'
+            secondaryColor='red'
+            textType='text'
+        />
+    )
+}
+
+Text.argTypes = {
+    content: {
+        name: 'content',
+        description: 'Text to be displayed',
+        type: { name: 'string', required: true },
+        table: {
+            type: { summary: 'string' },
+            defaultValue: { summary: '' },
+        },
+    },
+    style: {
+        name: 'style',
+        description: 'CSS Styles',
+        table: {
+            type: { summary: 'CSS Properties' },
+        }
+
+    },
+}
+
+Title.argTypes = {
+    content: {
+        name: 'content',
+        description: 'Text to be displayed',
+        type: { name: 'string', required: true },
+        table: {
+            type: { summary: 'string' },
+            defaultValue: { summary: '' },
+        },
+    },
+    style: {
+        name: 'style',
+        description: 'CSS Styles',
+        table: {
+            type: { summary: 'CSS Properties' },
+        }
+
+    },
+}
+
+SubTitle.argTypes = {
+    content: {
+        name: 'content',
+        description: 'Text to be displayed',
+        type: { name: 'string', required: true },
+        table: {
+            type: { summary: 'string' },
+            defaultValue: { summary: '' },
+        },
+    },
+    style: {
+        name: 'style',
+        description: 'CSS Styles',
+        table: {
+            type: { summary: 'CSS Properties' },
+        }
+
+    },
+}
+
+GradientText.argTypes = {
+    content: {
+        name: 'content',
+        description: 'Text to be displayed',
+        type: { name: 'string', required: true },
+        table: {
+            type: { summary: 'string' },
+        },
+    },
+    primaryColor: {
+        name: 'primaryColor',
+        description: 'Start gradient color',
+        type: { name: 'string', required: true },
+        table: {
+            type: { summary: 'string' },
+        },
+    },
+    secondaryColor: {
+        name: 'secondaryColor',
+        description: 'Final gradient color',
+        type: { name: 'string', required: true },
+        table: {
+            type: { summary: 'string' },
+        },
+    },
+    direction: {
+        name: 'direction',
+        description: 'Gradient direction',
+        type: { name: 'string', required: true },
+        table: {
+            type: { summary: 'left-to-right | right-to-left | top-to-bottom | bottom-to-top' },
+            defaultValue: { summary: 'left-to-right' },
+        },
+    },
+    textType: {
+        name: 'textType',
+        description: 'HTML element type to render the GradientText',
+        type: { name: 'string', required: true },
+        table: {
+            type: { summary: 'text | title | subtitle' },
+            defaultValue: { summary: 'text' },
+        },
+    },
+    style: {
+        name: 'style',
+        description: 'CSS Styles',
+        table: {
+            type: { summary: 'CSS Properties' },
+        }
+
+    }
+}
+
+
+
+export default {
+    title: 'Typography',
+    component: Container,
+} as ComponentMeta<typeof Container>
+
+
 
 
 
