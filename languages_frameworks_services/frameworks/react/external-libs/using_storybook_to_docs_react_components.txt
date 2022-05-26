@@ -1,0 +1,107 @@
+===============USING STORYBOOK TO DOCUMENTE REACT COMPONENTS===============
+
+1) Run npx storybook init in your project to install the Storybook on your
+project. Run also yarn add ts-loader -D to avoid conflicts.
+
+------------------
+
+
+2) In your file .stories main.js include the code below to support Styled
+Components inside the prop "addons" on your project:
+
+'@react-theming/storybook-addon'
+
+------
+
+Final code example:
+
+module.exports = {
+  "stories": [
+    "../src/**/*.stories.mdx",
+    "../src/**/*.stories.@(js|jsx|ts|tsx)",
+  ],
+  "addons": [
+    "@storybook/addon-links",
+    "@storybook/addon-essentials",
+    "@storybook/addon-interactions",
+    '@react-theming/storybook-addon'
+  ],
+  "framework": "@storybook/react",
+  "core": {
+    "builder": "@storybook/builder-webpack5"
+  }
+}
+
+
+------------------
+
+3) In your file .stories preview.js export a decorator returning a func-
+tion wrapping the Styled Components Theme Provider with your theme and
+GlobalStyles. Example:
+
+export const decorators = [
+  (Story) => (
+    <ThemeProvider theme={theme}>
+      <Story />
+      <GlobalStyle />
+    </ThemeProvider>
+  )
+]
+
+-----
+
+Final code example:
+
+import { ThemeProvider } from "styled-components"
+import { GlobalStyle } from '../src/styles/global-style'
+import { theme } from '../src/themes/theme'
+
+export const parameters = {
+  actions: { argTypesRegex: "^on[A-Z].*" },
+  controls: {
+    matchers: {
+      color: /(background|color)$/i,
+      date: /Date$/,
+    },
+  },
+}
+
+export const decorators = [
+  (Story) => (
+    <ThemeProvider theme={theme}>
+      <Story />
+      <GlobalStyle />
+    </ThemeProvider>
+  )
+]
+
+------------------
+
+4) Run yarn storybook to start the Storybook locally in your broswer and 
+see your pannel containing your documented components with their stories.
+
+------------------
+
+5) In the folder of your component, create YourComponent.stoories.tsx
+file containing your component and their stories. Example:
+
+import React from 'react'
+import { Text } from './'
+import { ComponentMeta, ComponentStory } from '@storybook/react'
+
+export default {
+    title: 'Text',
+    component: Text
+} as ComponentMeta<typeof Text>
+
+export const Primary: ComponentStory<typeof Text> = () => (
+    <Text
+        content='Example'
+    />
+)
+
+
+
+
+
+
