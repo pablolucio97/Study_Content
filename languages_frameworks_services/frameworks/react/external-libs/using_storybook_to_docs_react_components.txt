@@ -94,11 +94,23 @@ export default {
     component: Text
 } as ComponentMeta<typeof Text>
 
-export const Primary: ComponentStory<typeof Text> = () => (
-    <Text
-        content='Example'
-    />
-)
+export const Primary: ComponentStory<typeof Text> = () => {
+    return (
+        <Text
+            content='Example'
+        />
+    )
+}
+
+export const Secondary: ComponentStory<typeof Text> = () => {
+    const theme = useTheme()
+    return (
+        <Text
+            content='Example'
+            style={{ color: theme.colors.primary }}
+        />
+    )
+}
 
 
 
