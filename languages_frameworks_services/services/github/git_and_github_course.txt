@@ -192,9 +192,13 @@ repository.
 
 -----------------EDITING YOUR LAST COMMIT----------------------
 
-1) git commit --amend
+1) git commit --amend -m 'your_message'
 
 2) Edit your text and type the command :wq to exit.
+
+--------------REMOVING ALL UNTRACKED NEW FILES-----------------
+
+1) git clean -f -d
 
 
 --RESOLVING CONFLICTS OF GIT PUSH CAUSED BY FILE DIFFERENCES--
