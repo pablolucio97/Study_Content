@@ -10,7 +10,6 @@
 -User authentication and permission;
 -Cryptography and security.
 
-
 -----------------------Back-end concepts:-----------------------
 
 Route: Is the complete URL used to access a resource.
@@ -60,57 +59,6 @@ ORM: Object Relation Manager, is used to manager querys in data-
 bases using javascript. Examples of ORM: sequelize, mongoose and
 TypeORM.
 
-
-------------------------HTTP methods----------------------------
-
-GET: This is used to get data from the back-end.
-
-POST: Creates a new data in the back-end.
-
-PUT: Updates data in the back-end.
-
-DELETE: Removes a data in the back-end.
-
-Examples:
-POST: http://localhost:3333/users => Create a new user.
-GET: http://localhost:3333/users => List users.
-GET: http://localhost:3333/users/7 => List the user with ID = 7.
-
-
----------------------Parameters types---------------------------
-
-Request params: Params that arrive in the self-route that 
-identify fundamental resources. The parammeter used to identify 
-resources should be the same of the request.params.
-
-Example:
-
-app.get('/users/:id', (req, res) => {
-	const getUser = request.params.id
-})
-
-
-----------------------------------------------------------------
-
-Query Params: 
-
-Params that query optionals resources, are useful to filter data. 
-Example: http://localhost:3333/users?page=2&name=Pablo&age=25
-
-----------------------------------------------------------------
-
-Request Body: 
-
-Is the body of the requisition, params to create 
-and update data. the object created should be in JSON format.
-
-----------------------------------------------------------------
-
-Route Params: 
-
-Used to identify unique resources, for example:
-in code: app.get('/users/:id')
-in URL:/users?/1
 
 ---------------------Database types----------------------------
 

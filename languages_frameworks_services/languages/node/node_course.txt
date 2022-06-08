@@ -1,0 +1,11 @@
+==============================NODE COURSE=================================
+
+Node is an open source platform that allow execution of the JavaScript on 
+the Server side.It was built using V8 + LIBUV and other modules. The Node
+is single thread, but this unique thread is the event loop that is res-
+ponsible for listen to and redistribute the functions inside the call 
+stack to be executed on another 4 threads, that allow that the functions 
+can be executed asynchronously.Node has with native modules, like Https, 
+FS, Dns, Buffer and others.
+
+
