@@ -591,3 +591,7 @@ specific typing even if TypeScript appoints an error. Example
 
 const user = newUser() as unknown as UserProps
 
+----------------------------------
+
+Use the options "noImplicitAny": false in your tsconfig.json if you're 
+facing with third libraries that doesn't has type declarations.

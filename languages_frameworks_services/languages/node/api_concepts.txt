@@ -176,6 +176,63 @@ Used to identify unique resources, for example:
 in code: app.get('/users/:id')
 in URL:/users/1
 
+
+-----------FUNCTIONAL REQUIREMENTS AND BUSINESS RULES------------
+
+Functional Requirements: Are the functions that your API must to
+have. Examples:
+
+-Should be able to create a account.
+-Should be able to update user data.
+-should be able to delete an account.
+
+------
+
+Business Rules: Are rules that your Functional Requirements must 
+to follow to work correctly. Examples:
+
+-Can't to create an account with an user that already exists.
+-Can't delete an account with pendency.
+-Can't update data of a user that can't exists.
+
+-------------------------MIDDLEWARES-----------------------------
+
+A middleware is a function that receives three params (req, res,
+next) that comes between the request and the response params in a 
+HTTP method and is used to standardize data that comes in the he-
+ader defining if this HTTP method could to continue be executed.
+
+Creating a middleware:
+
+function verifyAccountCPFExists(req, res, next) {
+    const { cpf } = req.headers
+
+    const customer = customers.find(customer => customer.cpf === cpf)
+    if (!customer) {
+        return res.status(201).json({ error: "Customer not found" })
+    }
+
+	req.customer = customer
+
+    return next()
+}
+
+--------
+
+Using a middleware:
+
+app.get('/statement', verifyAccountCPFExists, (req, res) => {
+
+	const {customer} = req
+
+    return res.json(customer.statement)
+})
+
+or
+
+app.use(verifyAccountCPFExists)
+
+
 ========================GENERAL TIPS=============================
 
 Use the correct HTTP method to do your request.
