@@ -1,0 +1,16 @@
+===========================BABEL CONCEPTS============================
+
+The Babel is a compiler that allows the compilation of JavaScript to 
+JSX and is useful to standardize the application code between diffe-
+rent browsers. 
+
+Presets in Babel are...
+
+Babel packs:
+
+@babel-core:
+@babel-cli:
+@babel-loader:
+@babel-preset-env: 
+@babel-preset-react: 
+@babel-preset-typescript:

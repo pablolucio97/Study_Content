@@ -1,0 +1,19 @@
+{
+  "compilerOptions": {
+    "lib": ["dom", "dom.iterable", "esnext"], //allow use HTML types.
+    "allowJs": true, //allow javascript and typescript together.
+    "jsx": "react-jsx", //allow use jsx syntax.
+    "noEmit": true, //no emit the application code at deploy.
+    "target": "es5", //enables javascript strict mode.
+    "module": "commonjs",
+    "moduleResolution": "node",
+    "isolatedModules": true,
+    "resolveJsonModule": true, //alows to use .json files.
+    "forceConsistentCasingInFileNames": true,
+    "strict": true,
+    "skipLibCheck": true
+  },
+  "include": [
+    "src" //appoints the code application directory
+  ]
+}

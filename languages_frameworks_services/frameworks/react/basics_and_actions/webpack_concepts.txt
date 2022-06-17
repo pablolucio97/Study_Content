@@ -1,0 +1,95 @@
+==========================WEBPACK CONCEPTS===========================
+
+Webpack is a modular building system built with NodeJS allows han-
+dling CSS, JavaScript, and other files like images through the cor-
+rect plugin. The Webpack loaders are Node modules that process and 
+transform imported files into the code for the client. It checks e-
+ach file separated. 
+
+
+-----------------UNDERSTANDING WEBPACK CONFIGURATION-----------------
+
+To configure webpack in your application manually, create a new 
+file named webpack.config.js in the root of your application.
+
+Example:
+
+const path = require('path');
+
+module.exports = {
+  entry: './path/to/my/entry/file.js',
+  output: {
+    path: path.resolve(__dirname, 'dist'),
+    filename: 'my-first-webpack.bundle.js',
+  },
+  module: {
+    rules: [{ test: /\.txt$/, use: 'raw-loader' }],
+  },
+  plugins: [new HtmlWebpackPlugin({ template: './src/index.html' })],
+  mode: 'production'
+};
+
+entry: Is the path to file that indicates which module webpack 
+should use to begin building out your graph of dependencies. De-
+faults is ./src/index.js.
+
+--------------------------
+
+output: It tells webpack where to emit the bundles that the entry has
+created and how to name these files. Defaults to ./dist/main.js. Use
+./dist folder for any other generated file.
+
+--------------------------
+
+module: Appoints what loader should be used to process a specific 
+file extension.
+
+--------------------------
+
+plugins: Are used to run wider tasks, like bundle optimization. To 
+use a plugin, you must to require it and add it in your plugins 
+array referencing it as a new. Most plugins have options to custo-
+mization.
+
+---------------------------SOURCE MAPS------------------------------
+
+Allows the user of third party libraries has your own source maps. 
+This is needed to warrant browser will read your code correctly.
+
+
+-----------------------MAIN WEBPACK PLUGINS-------------------------
+
+
+ html-webpack-plugin: Responsible for simply the creation of HTML 
+ files to server generating a hash that only will in your page what 
+ is different, and not the whole application.
+
+-----------
+
+ webpack-dev-server: Provide a server to server your static assets 
+ that are compiled and updated automatically through socket.io
+
+-----------
+
+react-refresh-webpack-plugin: A third pack used to enable fast re-
+fresh while developing a react project.
+
+-----------
+
+Loaders: Out of the box, webpack only understands JavaScript and 
+JSON files. Loaders allow webpack to process other types of files 
+and convert them into valid modules that can be consumed by your 
+application. Main loaders:
+
+css-loader: Used to interpret and allow the use of css files inside 
+JSX and convert it to readable code to old browsers.
+
+-----------
+
+sass-loader: Used to interpret and allow the use of sass files in-
+side JSX and convert it to readable code to old browsers.
+
+sass-node: Used to interpret and allow the use of sass files in-
+side JSX in server side.
+
+
