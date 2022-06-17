@@ -51,6 +51,12 @@ use a plugin, you must to require it and add it in your plugins
 array referencing it as a new. Most plugins have options to custo-
 mization.
 
+--------------------------
+
+mode: This property can receive 'production', or 'development' or
+'none' and will enable webpack internal optimizations according the 
+environment.
+
 ---------------------------SOURCE MAPS------------------------------
 
 Allows the user of third party libraries has your own source maps. 
