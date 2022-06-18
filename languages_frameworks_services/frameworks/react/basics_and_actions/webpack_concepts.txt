@@ -1,7 +1,7 @@
 ==========================WEBPACK CONCEPTS===========================
 
 Webpack is a modular building system built with NodeJS allows han-
-dling CSS, JavaScript, and other files like images through the cor-
+dling CSS, JavaScript, and other files like images using the cor-
 rect plugin. The Webpack loaders are Node modules that process and 
 transform imported files into the code for the client. It checks e-
 ach file separated. 
@@ -67,12 +67,12 @@ This is needed to warrant browser will read your code correctly.
 
 
  html-webpack-plugin: Responsible for simply the creation of HTML 
- files to server generating a hash that only will in your page what 
- is different, and not the whole application.
+ files to server generating a hash that only will change your page
+  what is different, and not the whole application.
 
 -----------
 
- webpack-dev-server: Provide a server to server your static assets 
+ webpack-dev-server: Provide a server to serve your static assets 
  that are compiled and updated automatically through socket.io
 
 -----------
@@ -94,6 +94,8 @@ JSX and convert it to readable code to old browsers.
 
 sass-loader: Used to interpret and allow the use of sass files in-
 side JSX and convert it to readable code to old browsers.
+
+-----------
 
 sass-node: Used to interpret and allow the use of sass files in-
 side JSX in server side.

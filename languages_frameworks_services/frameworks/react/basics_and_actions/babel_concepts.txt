@@ -1,9 +1,9 @@
 ===========================BABEL CONCEPTS============================
 
-The Babel is a compiler that allows the compilation of JavaScript to 
-JSX and is useful to standardize the application code between diffe-
-rent browsers. It converts modern JavaScript (ES2015+) to older brow-
-sers. Example:
+The Babel is a compiler that allows the compilation of JSX to Java-
+Script and is useful to standardize the application code between dif-
+ferent browsers. It converts modern JavaScript (ES2015+) to older 
+browsers. Example:
 
 [1, 2, 3].map(n => n + 1);
 
