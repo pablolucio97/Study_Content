@@ -1,6 +1,7 @@
 ========================TYPESCRIPT CONFIGS OPTIONS============================
 
-Main tsConfig options:
+The tsconfig file is a file that allows to configure all desired options for 
+manage TypeScript behavior in our project. Main tsconfig options:
 
 lib: Allow to use support to types definitions for objects presents in the 
 specified libs. Most common values: "dom", "dom.iterable", "esnext".
@@ -92,7 +93,13 @@ Refs: https://www.typescriptlang.org/tsconfig#incremental
 
 -----------
 
-allowSyntheticDefaultImports: 
+allowSyntheticDefaultImports: Allows to give a name for an importation and 
+lets TypeScript assume that exists a export default declaration into file is
+being imported. Most common value: true.
+
+Refs: https://www.typescriptlang.org/tsconfig#allowSyntheticDefaultImports
+
+-----------
 
 forceConsistentCasingInFileNames: Issues an error if the program tries to include 
 a file by a casing different from the casing on disk. Most common value: true.
@@ -116,9 +123,19 @@ Refs: https://www.typescriptlang.org/tsconfig#forceConsistentCasingInFileNames
 
 -----------
 
-include
+include: Defines an array of filenames or patterns to include to TypeScript 
+check. These files are resolved relative to the directory containing tsconfig
+file. 
 
-exclude
+Refs: https://www.typescriptlang.org/tsconfig#include
+
+-----------
+
+exclude: Defines an array of filenames or patterns to be ignored when resolving
+the include prop (this files should be into include array). These files are 
+resolved relative to the directory containing tsconfig file. 
+
+Refs: https://www.typescriptlang.org/tsconfig#exclude
 
 
 -----------------------------------GENERAL TIPS------------------------------------
