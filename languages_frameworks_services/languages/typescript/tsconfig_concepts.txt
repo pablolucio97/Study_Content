@@ -1,19 +1,128 @@
-{
-  "compilerOptions": {
-    "lib": ["dom", "dom.iterable", "esnext"], //allow use HTML types.
-    "allowJs": true, //allow javascript and typescript together.
-    "jsx": "react-jsx", //allow use jsx syntax.
-    "noEmit": true, //no emit the application code at deploy.
-    "target": "es5", //enables javascript strict mode.
-    "module": "commonjs",
-    "moduleResolution": "node",
-    "isolatedModules": true,
-    "resolveJsonModule": true, //alows to use .json files.
-    "forceConsistentCasingInFileNames": true,
-    "strict": true,
-    "skipLibCheck": true
-  },
-  "include": [
-    "src" //appoints the code application directory
-  ]
-}
+========================TYPESCRIPT CONFIGS OPTIONS============================
+
+Main tsConfig options:
+
+lib: Allow to use support to types definitions for objects presents in the 
+specified libs. Most common values: "dom", "dom.iterable", "esnext".
+
+Refs: https://www.typescriptlang.org/tsconfig#lib
+
+-----------
+
+target: Defines which version TypeScript should to compile your code to a Ja-
+vaScript version. ES5 is indicated for old browsers, E6 and ES2017 is a good 
+option for nowadays and ESNext means the highest version that can should be 
+used, this should be used only on modern browsers. Most common values: "es5", 
+"es6", "es2017", and "esnext".
+
+Refs: https://www.typescriptlang.org/tsconfig#target
+
+-----------
+
+jsx: Defines witch syntax your JSX code will be transformed after compila-
+tion. It transforms your code in methods to create that element with the
+native API. Example: <button title='Foo' onClick='()=>{}'>:
+React.createElement('button', null, {title: 'Foo', onClick='()=>{}'}). Com-
+mon values: "react", "react-native", "preserve".
+
+Refs: https://www.typescriptlang.org/docs/handbook/jsx.html
+
+-----------
+
+allowJS: AllowS JavaScript and TypeScript files works together. Most common 
+value: true.
+
+Refs: https://www.typescriptlang.org/tsconfig#allowJs
+
+-----------
+
+noEmit: Uses TypeScript only to helps the development as type checker and 
+editor integration. The compilation becomes another compilation tool res-
+ponsability, like Babel (must be installed). Most common value: true.
+
+Refs: https://www.typescriptlang.org/tsconfig#noEmit
+
+-----------
+
+module: Sets the module system for that the outputted JS will operate under. 
+Changing module affects moduleResolution too. Most common value: "CommonJS" 
+(on Node Projects) and "esnext" (projects that uses Webpack). Most common 
+values: "commonjs" , "es6/es2015", "esnext".
+
+Refs: https://www.typescriptlang.org/tsconfig#module
+
+-----------
+
+moduleResolution: Specify the module resolution strategy for check the 
+importations in your files. Most common value: "node".
+
+Refs: https://www.typescriptlang.org/tsconfig#moduleResolution
+
+-----------
+
+isolatedModules: Enables stricter checks to ensure your outputted code is
+obligatory a module and can be handled by single-file interpreters like 
+Babel. Most common value: true.
+
+Refs: https://www.typescriptlang.org/tsconfig#moduleResolution
+
+-----------
+
+resolveJsonModule: Allows to use JSON files. Most common value: true.
+
+Refs: https://www.typescriptlang.org/tsconfig#resolveJsonModule
+
+-----------
+
+esModuleInterop:
+
+strict: Enables strong check typing to turn your code more safer. Is
+possible turn off individuals strict mode family, examples: strictBind-
+CallApply, strictFunctionTypes, strictNullChecks and so on. Most common 
+value: true.
+
+Refs: https://www.typescriptlang.org/tsconfig#strict
+
+-----------
+
+incremental: Caches the project compilation info to make recompilation proc-
+cess faster. Most common value: true.
+
+Refs: https://www.typescriptlang.org/tsconfig#incremental
+
+-----------
+
+allowSyntheticDefaultImports: 
+
+forceConsistentCasingInFileNames: Issues an error if the program tries to include 
+a file by a casing different from the casing on disk. Most common value: true.
+
+Refs: https://www.typescriptlang.org/tsconfig#forceConsistentCasingInFileNames
+
+-----------
+
+skipLibCheck: Avoids to check duplicated types of libs in your code, it improves 
+compilation performance. Most common value: true.
+
+Refs: https://www.typescriptlang.org/tsconfig#skipLibCheck
+
+-----------
+
+noImplicitAny: Define if TypeScript can or not to ignore a param or whatever 
+that needs and doesn't has type definition and TypeScript can't infer the type.
+This option should be avoided and used careful. Most common value: false.
+
+Refs: https://www.typescriptlang.org/tsconfig#forceConsistentCasingInFileNames
+
+-----------
+
+include
+
+exclude
+
+
+-----------------------------------GENERAL TIPS------------------------------------
+
+set as false in your tsconfig.json the option "noImplicitAny" if you're facing with 
+third libraries that doesn't has type declarations and TypeScript doesn't recognize
+your type definitions.

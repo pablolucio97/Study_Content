@@ -2,15 +2,118 @@
 
 The Babel is a compiler that allows the compilation of JavaScript to 
 JSX and is useful to standardize the application code between diffe-
-rent browsers. 
+rent browsers. It converts modern JavaScript (ES2015+) to older brow-
+sers. Example:
 
-Presets in Babel are...
+[1, 2, 3].map(n => n + 1);
 
-Babel packs:
+// Babel Output: ES5 equivalent
+[1, 2, 3].map(function(n) {
+  return n + 1;
+});
 
-@babel-core:
-@babel-cli:
-@babel-loader:
-@babel-preset-env: 
-@babel-preset-react: 
-@babel-preset-typescript:
+----------------------BABEL MAIN TOOLING PACKS----------------------
+
+All tooling packs should be installed through a package manager and 
+has additional options that can be checked on the official documen-
+tation.
+
+@babel/parser: Is the package responsible for parser the JavaScript 
+code. It provides support  for JSX, Flow and TypeScript. It defines 
+optionally if you can use imports in anywhere and other options.
+
+https://babeljs.io/docs/en/babel-parser#options
+
+----------------
+
+@babel/core: Is the Babel compilation core.
+
+----------------
+
+@babel/runtime: It's a library that contains Babel runtime helpers.
+Is used to reuse code injected by Babel in the output file. It im-
+proves application performance.
+
+----------------
+
+@babel/types: This module methods that helps to build your code 
+manually and to check the types into your code.
+
+
+----------------------UNDERSTANDING BABEL CONFIG---------------------
+
+To configure babel in your project, create a new babel.config.js fi-
+le in the root of your project. Example:
+
+module.exports = function (api) {
+  api.cache(true);
+  "presets": ["next/babel"],
+  "plugins": [
+    ["styled-components", { "ssr": true }]
+  ]
+}
+
+ap.cache(true): Is used to optimize the evaluating configuration 
+process and reuse the cache to do it faster.
+
+----------------
+
+pressets: A set of useful plugins. You can pass options by wrapping 
+the name and an options object in an array inside your config.
+
+----------------
+
+plugins: Are responsible for the real code transformations. You can 
+pass options by wrapping the name and an options object in an array 
+inside your config.
+
+--------------------------EXECUTION ORDER---------------------------
+
+Plugins runs before pressets. Plugins are read in order whereas 
+pressets are read in reverse order. Example:
+
+{
+  "presets": ["@babel/preset-env", "@babel/preset-react"]
+  "plugins": ["transform-decorators-legacy", "styled-components"]
+}
+
+Execution order: 
+1) transform-decorators-legacy,
+2) styled-components,
+3) @babel/preset-react,
+4) @babel/preset-env
+
+
+-----------------------------PRESSETS-------------------------------
+
+Presets in Babel are a set of useful plugins (it avoids you to ins-
+tall each plugins separately) that should be configured into your 
+babel.config.js file. Each presset should be installed by a pack 
+manager and can be additional options that can be found in the Ba-
+bel official documentation.
+
+Presset examples:
+
+@babel-preset-env: Used to compile ES2015+ syntax and reduce the 
+JavaScript bundler size.
+
+----------------
+
+@babel-preset-react: Contains all plugins to run  React projects.
+
+----------------
+
+@babel-preset-typescript: Recommended in Typescript projects.
+
+----------------
+
+@babel-preset-flow: Used in Flow (works like typescript) projects.
+
+----------------
+
+next/babel: Includes all plugins needed to compile React applica-
+tions and server-side code. To extends plugins on NextJS projects: 
+https://nextjs.org/docs/advanced-features/customizing-babel-config
+
+
+
