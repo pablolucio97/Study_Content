@@ -1,0 +1,55 @@
+=======================IMPROVING PAGE PERFORMANCE ON NEXTJS PROJECTS==================
+
+-----------------------------TIPS TO IMPROVE PAGE PERFORMANCE-------------------------
+
+
+1) Only have in your project components you're using.
+
+----------------------
+
+2) Use NextImage component on all images instead of img tag.
+
+Refs: https://nextjs.org/docs/api-reference/next/image
+
+----------------------
+
+3) If possible and viable, paid for a CDN.
+
+----------------------
+
+4) Use the hook useAmp from next/amp to turn your site a hybrid AMP site. AMP stands
+for Accelerated Mobile Pages, and is used to help improve user experience on mobile 
+devices. It will boost your SEO and it could reduce the amount of data the user down-
+loads when they load the site.)
+
+Refs: https://nextjs.org/docs/api-reference/next/amp
+
+----------------------
+
+5) Ensure text remains visible during webfont load. Fonts are often large files that 
+take awhile to load.
+
+Refs: 
+
+----------------------
+
+6) Remove unused importations, variables, functions and consoles. Check it before
+to deploy your code.
+
+----------------------
+
+7) Use dynamic imports with next/dynamic to avoid loading unneeded components on
+page loading at first paint.
+
+Refs: https://nextjs.org/docs/advanced-features/dynamic-import#with-no-ssr
+
+
+----------------------------HOW TO MEASURE YOUR PAGE PERFORMANCE--------------------
+
+1) Use the Lighthouse from Google Chrome browser if you're using this browser. You 
+can access it through the Chrome developer console > Lighthouse.
+
+----------------------
+
+2) Use https://pagespeed.web.dev
+
