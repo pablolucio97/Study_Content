@@ -1,0 +1,50 @@
+========================IMPROVING SEO ON NEXTS PROJECTS======================
+
+To improve SEO in your NextJS projects you should to pay attention to Meta
+Tags, Performance, Accessibility and PWA's.
+
+Meta tags:
+
+A meta tag basically tells the search engines what the content of that spe-
+cific page is, what exactly that page is about, and how the search engine
+should show it.
+
+1. Use the Head from 'next/head' to provide title and all meta tags of your
+website in each page of your application with a key to guarantee that will be 
+renderized only once.
+
+<meta name="viewport" content="initial-scale=1.0, width=device-width" />
+<meta name="description" content="pablosilvadev" key="description" />
+<meta name="keywords" content="pablosilvadev " key="keywords" />
+<meta name="author" content="pablosilvadev" key="author" />
+<meta name="theme-color" content="#000000" key="theme-color" />
+
+
+---------------------
+
+Performance:
+
+The performance is based on metrics, the main metrics are: 
+FCP : First Contentful Paint (is the most important).
+LCP: Largest Contentful Paint
+
+You can use Next.js to measure and tell you some metrics creating a custom 
+function called reportWebVitals in your app.tsx file. Example:
+
+export function reportWebVitals(metric) {
+  console.log(metric)
+}
+
+
+---------------------
+
+Accessibility
+
+Progressive web apps
+
+----------------------
+
+-------------------------------GENERAL TIPS------------------------------------
+
+Use a SSL certificate in your page because Google take it on consideration at 
+indexing your page.
