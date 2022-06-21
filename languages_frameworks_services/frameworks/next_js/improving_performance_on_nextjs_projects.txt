@@ -43,6 +43,10 @@ page loading at first paint.
 
 Refs: https://nextjs.org/docs/advanced-features/dynamic-import#with-no-ssr
 
+----------------------
+
+8) Use only .jpg image formats for background images because it is much more ligh-
+ter than .png format.
 
 ----------------------------HOW TO MEASURE YOUR PAGE PERFORMANCE--------------------
 
