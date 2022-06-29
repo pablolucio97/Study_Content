@@ -1,0 +1,185 @@
+================================SOLID CONCEPTS==================================
+
+The SOLID is five concepts wrote by Robert Martin that are used to turn
+your code mo readable and arranged. The SOLID principles should be used 
+when your application trends to grow up.
+
+S (SRP) Single Responsibility: Each method or function should be a sin-
+gle responsibility.
+
+0 (OCP) Open Closed Principle:
+
+L (LSP) Liskov Segregation Principle: An interface should be declared, and the
+class in code should implements the types from this interface to maintain the 
+code isolated and allow easy database exchanging.
+
+I (ISP) Interface Segregation Principle:
+
+D (DIP) Dependency Inversion Principle: The code that implements high level
+code doesn't should depends of the code implements low level code. High level 
+code are code are near the server and low level code are code are near the 
+user.
+
+
+-------------APPLYING SOLID PRINCIPLES ON NODEJS PROJECTS--------------
+
+SRP usage: Define a class service to do each method logic and valition 
+before to call it on routes. The routes has only to call your class 
+service and not do the logic validation. Example:
+
+import { ICategoriesRepository } from "../repositories/ICategoriesRepository"
+
+interface RequestDataProps{
+    name: string
+    description: string
+}
+
+class CreateCategoryService {
+
+    constructor(private categoriesRepository : ICategoriesRepository){}
+
+    execute({name, description} : RequestDataProps) : void {
+
+      
+        const categoryAlreadyExists = this.categoriesRepository.
+        findByName(name)
+
+        if (categoryAlreadyExists) {
+            throw new Error('Category already exists.')
+        }
+
+        this.categoriesRepository.create({ name, description })
+    }
+}
+
+export { CreateCategoryService };
+
+
+------------
+
+OCP usage:
+
+------------
+
+LSP usage: The LSP allows exchange the database of your application more 
+easily because all code is based on a type that doesn't change and should 
+be implmented in future classes. It's done segregating interfaces, buil-
+ding classes implemented by these interfaces and using these classes on 
+your code.
+
+1) Create the interface that can be used with any database type and ex-
+port it.
+
+import { Category } from '../models/Category'
+
+interface ICategoriesRepository {
+    findByName(name: string): Category;
+    list(): Category[];
+    create(name: string, description: string): void;
+
+}
+
+export { ICategoriesRepository }
+
+---------------
+
+2) Create the repository that will implements your interface (use VS Co-
+de quick fix to implements all methods from your interface in your new 
+class) and be subtype of your interface. Example:
+
+import { Category } from "../models/Category";
+import { ICategoriesRepository } from "./ICategoriesRepository";
+
+class PostgressCatgeories implements ICategoriesRepository {
+    findByName(name: string): Category {
+        console.log(name)
+        return null
+    }
+    list(): Category[] {
+        return null
+    }
+    create(name: string, description: string): void {
+        console.log(name, description)
+    }
+
+}
+
+export { PostgressCatgeories }
+
+---------------
+
+3) Define the type of the class you're using on your service as your
+segregated interface too. Example:
+
+import { ICategoriesRepository } from "../repositories/ICategoriesRepository"
+
+interface RequestDataProps{
+    name: string
+    description: string
+}
+
+class CreateCategoryService {
+
+    constructor(private categoriesRepository : ICategoriesRepository){}
+
+    execute({name, description} : RequestDataProps) : void {
+
+      
+    const categoryAlreadyExists = this.categoriesRepository.findByName(name)
+
+        if (categoryAlreadyExists) {
+            throw new Error('Category already exists.')
+        }
+
+        this.categoriesRepository.create({ name, description })
+    }
+}
+
+export { CreateCategoryService };
+
+---------------
+
+4) Finally, on your routes, instance and use your class. Example:
+
+import { Router } from 'express'
+import { PostgressCatgeories } from '../repositories/PostgresCatgegoriesRepository'
+import { CreateCategoryService } from '../services/CreateCategoryService'
+
+const categoriesRoutes = Router()
+const categoriesRepository = new PostgressCatgeories()
+
+categoriesRoutes.post('/', (req, res) => {
+    const { name, description } = req.body
+
+   const createCategoryService = new CreateCategoryService(categoriesRepository)
+
+   createCategoryService.execute({name, description})
+  
+    return res.status(201).send()
+})
+
+
+export { categoriesRoutes }
+
+
+------------
+
+ISP usage:
+
+------------
+
+DIP usage:
+
+
+Class
+
+
+Creation order:
+
+1) Model: Class containing model properties and the method to generate id (uuid).
+
+
+2) Service: Class containing the service with execute method that wrapper all 
+methods in the class.
+
+3) Crate the repository

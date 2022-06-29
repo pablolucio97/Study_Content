@@ -1,0 +1,209 @@
+===========================GENERAL UX UI TIPS============================
+
+Avoid to use more then two fonts in yours projects. Use different sizes
+to create the visual hierarchy.
+
+-------------------------------------------------------------------------
+
+Has a set of collors pallet use the monocromatic circle to combine your 
+pallets.
+
+-------------------------------------------------------------------------
+
+Focus is typography and colors scheme to create the visual identy of your 
+project.
+
+-------------------------------------------------------------------------
+
+Avoid large fonts on mobile.
+
+-------------------------------------------------------------------------
+
+Use large components to attract the atention of the user of you want and 
+tiny components to do actions more delicate. Don't makes the users to 
+think.
+
+-------------------------------------------------------------------------
+
+Use proximity points (an icons or photography together a word or phrase) 
+to pass a mesage.
+
+-------------------------------------------------------------------------
+
+Avoid unmeanable animations. Animations should be used to represents and 
+idea or emoticon and don't be repeated.
+
+-------------------------------------------------------------------------
+
+Implement only images that do sense in your application.
+
+-------------------------------------------------------------------------
+
+Build a clean interface. Avoid create buttons to each function that has 
+in the app.
+
+-------------------------------------------------------------------------
+
+Use 3d buttons to indicates the user to takes an action.
+
+-------------------------------------------------------------------------
+
+Always deliverys feedback for the user. Use diferent colors to current 
+element and popups to important actions, like a buy, add an item etc.
+
+-------------------------------------------------------------------------
+
+Mantain a pattern of desing in all screns and pages of your application
+to creates familiarity for the user.
+
+-------------------------------------------------------------------------
+
+Remove unnecessary elements from the user interface. Hide the another 
+lessused functions to be used only when need.
+
+-------------------------------------------------------------------------
+
+Use even style for simllary elements.
+
+-------------------------------------------------------------------------
+
+Show only useful information, display the minimum of information as 
+possible.
+
+-------------------------------------------------------------------------
+
+Defines your functional hierarchy thinking in the main and secondary ac-
+tions, displaying the minimum of information and elements as possible 
+for the function.
+
+-------------------------------------------------------------------------
+
+Defines a simple browser navigation. Ask the user for informations by 
+according is needed, maintain the process simple.
+
+-------------------------------------------------------------------------
+
+Show messages, progress bar, indicators or animations on loadings.
+
+-------------------------------------------------------------------------
+
+Do the user know why your are asking for an information when doing a 
+new register or solicitation.
+
+-------------------------------------------------------------------------
+
+Use microtexts for pages or searchs don't found.
+
+-------------------------------------------------------------------------
+
+Avoid to use "Sent" in button forms, istead of use "Do my register" or 
+"I want to join" and others.
+
+-------------------------------------------------------------------------
+
+Test your apllication giving peoples for use it.
+
+-------------------------------------------------------------------------
+
+Reveal the actions of process in your application progressively and 
+return a visual feedback for the user.
+
+-------------------------------------------------------------------------
+
+Avoid the errors before it happens.
+
+-------------------------------------------------------------------------
+
+Use the text language of your application by according the person 
+that will to use your application.
+
+-------------------------------------------------------------------------
+
+Attempt for the image and text contrast if the text is into the 
+image. Use high quality images in the whole site.
+
+-------------------------------------------------------------------------
+
+Show the main ideas in the first section of your page. Go directly to 
+the point!
+
+-------------------------------------------------------------------------
+
+Use a clear and easy language. Use a language your client understands.
+
+-------------------------------------------------------------------------
+
+Have a good search mechanism, mainly in e-commerce and blogs.
+
+-------------------------------------------------------------------------
+
+Use high image quality and good descriptions for your products. Let's 
+clear all available payment methods.
+
+-------------------------------------------------------------------------
+
+Provide social login for your client and ask for a register only at 
+finishing a buy. Use forms with the minimum data as possible, if 
+possible, provide auto fill for some inputs.
+
+-------------------------------------------------------------------------
+
+If possible, promise a gift to your client, it can be an ebook, a 
+shirt, extra advantage and other convenience at buy your product or 
+service.
+
+-------------------------------------------------------------------------
+
+Dimensione all components thinking in all screens availables. Have 
+clear your breakpoints.
+
+-------------------------------------------------------------------------
+
+Analyze the possibility of emit sounds at clicks and user interaction.
+
+-------------------------------------------------------------------------
+
+Use a spell checker when writing your text and check before deploying.
+
+-------------------------------------------------------------------------
+
+Have the purchase button visible on all screens, if needed put it on 
+the header.
+
+-------------------------------------------------------------------------
+
+Resize your header on scroll to take up less space on screen. Always 
+set your browser theme color to match with the header background color.
+
+-------------------------------------------------------------------------
+
+Show clear and friendly message errors to help your client do the 
+process correctly.
+
+-------------------------------------------------------------------------
+
+Use video backgrounds with a nice shadows and lights set if possible.
+
+-------------------------------------------------------------------------
+
+Combine images grayscale and content grayscale for pass a message.
+
+-------------------------------------------------------------------------
+
+Use various images to create 3d images effect to sites with phisical
+products.
+
+-------------------------------------------------------------------------
+
+Use croped image overflow a container techinic.
+
+-------------------------------------------------------------------------
+
+Use image backgorund blur and focus thenich to focus on you want.
+
+-------------------------------------------------------------------------
+
+Style the scroll.
+
+
+

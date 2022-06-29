@@ -1,0 +1,49 @@
+===============================DEBUGING NODEJS APPLICATIONS==========================
+
+Debug is a more eficiente way to dsicover bug on your code.
+
+1) On your vs code on the BugIcon inside left vertical bar, click on "Run". The VSCo-
+de will create a new .vscode folder into your project.
+
+-------------------------------------------------------------------------------------
+
+2) Acess the file launch.json insde the .vscode folder an change the configs to:
+
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "type": "node",
+            "request": "attach",
+            "name": "Launch Program",
+            "skipFiles": [
+                "<node_internals>/**"
+            ],
+            "outFiles": [
+                "${workspaceFolder}/**/*.js"
+            ]
+        }
+    ]
+}
+
+-------------------------------------------------------------------------------------
+
+3) On your package.json file and edit the "dev" script adding the flag "--inspect".
+Example:
+
+ "scripts" : {
+    "dev" : "ts-node-dev --inspect --transpile-only --ignore-watch node_modules 
+      --respawn src/server.ts"
+  },
+
+-------------------------------------------------------------------------------------
+
+4) Click in "Run" again (BugIcon) and in "Launch Program" to start debuging.
+
+-------------------------------------------------------------------------------------
+
+5) In the file you wanna to debug, select the line you desire to debug and call your
+function. The VSCode will highlight the line on the error is and will notice the er-
+ror reason.
+
+
