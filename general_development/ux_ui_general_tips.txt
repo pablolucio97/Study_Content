@@ -190,20 +190,32 @@ Combine images grayscale and content grayscale for pass a message.
 
 -------------------------------------------------------------------------
 
-Use various images to create 3d images effect to sites with phisical
+Use various images to create 3d images effect to sites with physical
 products.
 
 -------------------------------------------------------------------------
 
-Use croped image overflow a container techinic.
+Use cropped image overflow a container technic to express imersivity.
 
 -------------------------------------------------------------------------
 
-Use image backgorund blur and focus thenich to focus on you want.
+Use image background blur and focus technic to focus on you want.
 
 -------------------------------------------------------------------------
 
 Style the scroll.
+
+-------------------------------------------------------------------------
+
+Maintain the original images proportion, if you need to resize it, calc 
+the proportion before to render.
+
+-------------------------------------------------------------------------
+
+Use image with 2400x1600 for banners. At creating banners, use png ima-
+ges saving padding, some forms like circles, squares x's and others sha-
+pes. Observe the text/background contrast and use some icons to (use 
+flaticons to do it).
 
 
 
