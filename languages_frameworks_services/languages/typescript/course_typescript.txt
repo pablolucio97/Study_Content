@@ -487,6 +487,24 @@ export function Button({ label, ...rest } : ButtonProps {
     )
 }
 
+-------------------------------FORCING TYPES--------------------------------------
+
+Use pick typing techinic to force a type when the return can be an type or another
+or the type assertion techninic. In this example the return could be an string or 
+string[]. Here we're definig the return type as an unique string. 
+
+Example (solved with pick typing):
+
+const { user_id } = <{ user_id: string }>request.headers
+const user = this.turnUserAdminUseCase.execute({ user_id })
+
+-----------
+
+Example (solved with type assertion):
+
+const { user_id } = request.headers
+const user = this.turnUserAdminUseCase.execute({ user_id } as { user_id: string})
+
 
 -------------------------------GENERAL TIPS-----------------------------------
 

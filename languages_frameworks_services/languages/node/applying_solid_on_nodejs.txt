@@ -1,4 +1,4 @@
-================================SOLID CONCEPTS==================================
+=============================SOLID CONCEPTS====================================
 
 The SOLID is five concepts wrote by Robert Martin that are used to turn
 your code mo readable and arranged. The SOLID principles should be used 
@@ -21,7 +21,158 @@ code are code are near the server and low level code are code are near the
 user.
 
 
--------------APPLYING SOLID PRINCIPLES ON NODEJS PROJECTS--------------
+-----------------APPLYING SOLID PRINCIPLES ON NODEJS PROJECTS-----------------
+
+Applying SOLID in our application means segregate our code for adapte
+easily on future changes. Our routes should be free for only call the 
+the method of the controller responsible for handle the request and not 
+handle it and not handle the business rules.
+
+To apply some SOLID concepts on NodeJS projects, we're using a folder 
+named "useCases" that contains all methods that will run in our appli-
+cation where each method will be a caseUse.ts file (responsible for 
+handle our business rules), a caseUseController.ts file (responsible 
+for handle the request) and an index file (responsible for import the
+caseUse and the caseUseController, use the caseUseController passing 
+the caseUse as param and exporting the caseUseController to consume in
+the application routes).
+
+
+------------CLASSES DEFINITIONS AND USAGE FOLLOWING SOLID PRINCIPLES------------
+
+Entities/Models: Are classes represents the data in your application. 
+The type of displayed data. Example:
+
+import { v4 as uuidV4 } from 'uuid'
+
+class Category {
+    id?: string
+    name: string
+    description: string
+    created_at: Date;
+
+    constructor() {
+        if (!this.id) {
+            this.id = uuidV4()
+        }
+    }
+}
+
+export { Category }
+
+-----------
+
+Repositories: Are classes handling the data from entities. Here occurs the
+pure way of handle the data (create, list, updated and  delete) without a 
+verification. Example:
+
+import { Category } from "../../models/Category";
+import { ICategoriesRepository, ICreateCategoryDTO } from "../ICategoriesRepository";
+
+
+class CategoriesRepository implements ICategoriesRepository {
+    private categories: Category[];
+
+    private static INSTANCE: CategoriesRepository
+
+    public constructor() {
+        this.categories = []
+    }
+
+    public static getInstance(): CategoriesRepository {
+        if (!CategoriesRepository.INSTANCE) {
+            CategoriesRepository.INSTANCE = new CategoriesRepository();
+        }
+        return CategoriesRepository.INSTANCE
+    }
+
+
+
+    create({ name, description }: ICreateCategoryDTO): void {
+        const category = new Category()
+
+        Object.assign(category, {
+            name,
+            description,
+            created_at: new Date()
+        })
+
+        this.categories.push(category)
+
+    }
+
+    list(): Category[] {
+        return this.categories
+    }
+
+    findByName(name: string): Category {
+        const category = this.categories
+        .find(category => category.name === name)
+        return category
+    }
+
+}
+
+export { CategoriesRepository };
+
+-----------
+
+Services/useCases: Classes that are responsible to access the repositories 
+data to execute the process watching the business rules. Example:
+
+import { ICategoriesRepository } from "../../repositories/ICategoriesRepository"
+
+interface RequestDataProps{
+    name: string
+    description: string
+}
+
+class CreateCategoryUseCase {
+
+    constructor(private categoriesRepository : ICategoriesRepository){}
+
+    execute({name, description} : RequestDataProps) : void {
+      
+        const categoryAlreadyExists = this.categoriesRepository.
+        findByName(name)
+
+        if (categoryAlreadyExists) {
+            throw new Error('Category already exists.')
+        }
+
+        this.categoriesRepository.create({ name, description })
+    }
+}
+
+export { CreateCategoryUseCase };
+
+
+-----------
+
+Controllers: Classes designed just for receives what comes from the request,
+send these data to the useCase and return the response from useCase to the 
+route. Example:
+
+import { Request, Response } from "express";
+import { CreateCategoryUseCase } from "./CreateCategoryUseCase";
+
+class CreateCategoryController {
+
+    constructor(private createCategoryUseCase: CreateCategoryUseCase) {}
+
+    handle(req: Request, res: Response) {
+        const { name, description } = req.body
+
+        this.createCategoryUseCase.execute({ name, description })
+
+        return res.status(201).send()
+    }
+}
+
+export { CreateCategoryController }
+
+---------------
+
 
 SRP usage: Define a class service to do each method logic and valition 
 before to call it on routes. The routes has only to call your class 
@@ -174,12 +325,40 @@ DIP usage:
 Class
 
 
-Creation order:
+----------------------USE CASE PATTERN PROCESS OF CREATION----------------------
 
-1) Model: Class containing model properties and the method to generate id (uuid).
+1) Create the Model: Class containing model properties and the method to gene-
+rate id (uuid).
 
+------------
 
-2) Service: Class containing the service with execute method that wrapper all 
-methods in the class.
+2) Create the Repository: An file containing an interface for the repository 
+and another to the dataDTO (the data itself). Another file with a class that
+implements the repository interface with all methods intancing the repository,
+instancing the array of the data with all methods for your future useCases.
 
-3) Crate the repository
+------------
+
+3) Create the useCases for each method: Create a class with private construc-
+tor with the repository type and an execute method that access the construc-
+tor and realize the method watching business rules according to the use case.
+
+------------
+
+4) Crate the controller. Create a class with private constructor with the use-
+Case type and the Request Response interface returning a response for the fi-
+nal user.
+
+------------
+
+5) Create an index file importing the repository, the useCase and the con-
+trolller. Instance the repository through getInstance() method, instance the
+new useCase passing the repository as param and instance the new controller 
+passing the useCase as param and export the controller.
+
+------------
+
+6) Crate your route returning each controller.handle(req, res) method in each 
+correspondent request and export it for the server or another routes index
+file.
+
