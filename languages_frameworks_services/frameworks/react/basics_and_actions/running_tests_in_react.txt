@@ -193,6 +193,39 @@ describe('SignInButton', () => {
 
 })
 
+_____________________
+
+Example 4: Testingcomponents that doesn't are in the DOM immediataly. These 
+components will be rendered after a map.
+
+
+const childrensContent = ['el1', 'el2', 'el3']
+
+describe('Badge', () => {
+    it('should render correctly', () => {
+
+        render(
+            <CardSlider
+                slidesToScroll={3}
+                slidesToShow={3}
+            >
+                {childrensContent.map(children => (
+                    <p key={children}>{children}</p>
+                ))}
+            </CardSlider>
+            , {
+                wrapper: StyledProvider
+            })
+
+        
+            const component = screen.findByText('el1')
+            waitFor(() => {expect(component).toBeInTheDocument()})
+
+    })
+})
+
+
+
 -----------------------------ASYNC TESTS--------------------------------------
 
 Async tests in React, using the Testing React Library is useful to check if a 
@@ -355,4 +388,10 @@ to find your component in tests.
 Put your tests together with the file of the component or page in the even folder 
 to and describe your test name exactly how the component has been writtento avoid 
 conflicts at test coverage.
+
+Use waitFor for test components that doesn't are in the DOM immediataly.
+
+Use mockReturnValueOnce to test each specific situation according to desired 
+conditional rendering. Its is useful to test if an user is authenticated by 
+example.
 
