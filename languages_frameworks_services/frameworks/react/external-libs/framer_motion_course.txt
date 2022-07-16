@@ -1,0 +1,78 @@
+============================FRAMER MOTION COURSE=================================
+
+Framer Motion is a React component designed for allow to configure amazing ani-
+mations to be used in our React project. This Library includes motion (the co-
+re of the library that allows animate any element from motion.element or our own
+ReactElement), gestures, scroll and others.
+
+
+----------------------FRAMER MOTION ANIMATIONS EXAMPLES--------------------------
+
+<motion.div
+  animate={{ x: [0, 100, 0] }}
+  transition={{ duration: .4, delay: 1, yoyo: 3 }}
+  style={{ background: 'red' }}
+>
+  <h1>ok</h1>
+</motion.div>
+ 
+
+---------------------------
+
+<motion.div
+  whileHover={{scale: 1.1} type:'spring', stiffness: 300}
+  transition={{type:'spring', stiffness: 1000}}
+>
+  <PrimaryButton
+    title='Title'
+    onClick={() => {}}
+  />
+</motion.div>
+
+------------------------------USING VARIANTS-------------------------------------
+
+
+const containerAnimationVariants = {
+  hidden: {
+    opacity: 0,
+    x: '100vw'
+  },
+  visible: {
+    opacity: 1,
+    x: 0
+  },
+}
+
+
+<motion.div
+  variants={containerAnimationVariants}
+  initial='hidden'
+  animate='visible'
+  transition={{duration: .3, type:'spring', stiffness: 120}}
+  style={{ background: 'red' }}
+>
+  <h1>ok</h1>
+</motion.div>
+
+-------------------------USING THE USESCROLL HOOK------------------------------
+
+import { Container } from './styles';
+import { motion, useScroll } from 'framer-motion'
+
+export function ReadProgressBar() {
+
+const { scrollYProgress } = useScroll()
+
+return (
+    <Container>
+        <motion.div style={{ scaleX: scrollYProgress }}>
+        </motion.div>
+    </Container>
+)
+}
+
+------------------------------GENERAL TIPS-------------------------------------
+
+Using an array to contain your style props works as keyframes.
+Set the prop stiffness if you're using the spring as animation type.
+
