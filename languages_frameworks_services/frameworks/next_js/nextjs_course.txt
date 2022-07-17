@@ -664,7 +664,7 @@ export const getStaticPaths : GetStaticPaths = async () => {
     ...
 }
 
-------------------------USING DYAMIC FUNCTION IMPORTER----------------------------
+------------------------USING DYAMIC FUNCTION IMPORTER---------------------------
 
 Use the dynamic function to do imports of packs that need to interact with the 
 window. Example:
@@ -676,7 +676,24 @@ const Chart = dynamic(() => import('react-apexcharts'), {
 })
 
 
----------------------------------GENERAL TIPS-------------------------------------
+------------------------USING ESLINT ON NEXTJS PROJECTS--------------------------
+
+Eslints comes already installed on NextJS projects with some rules already confi-
+gurated. To configure another Eslint rules on your project you need add the key 
+to the"rules" inside your .eslintrc.json file passing each desired rule where "0" 
+means no warning, "1" throws an warning, and "2" throws an error. You can also 
+run the script "yarn lint" to check if there were errors in your whole applica-
+tion. Example: 
+
+{
+  "extends": "next/core-web-vitals",
+  "rules":{
+    "no-use-before-define": 1,
+    "no-unused-vars": 1
+  }
+}
+
+--------------------------------GENERAL TIPS-------------------------------------
 
 Storing your project assets on the public folder your files can be used in your
 app without need imports.
