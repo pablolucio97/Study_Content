@@ -119,5 +119,15 @@ turing arrays and strings.
 You should to use the return inside the {} block when using arrow
 functions.
 
-Use the operator ?? to ....
+Use the operator ?? (Nullish coalescing operator) to return the 
+right-hand site operand when its left-side operand is null or un-
+defined. Example: 
+
+const foo = null ?? 'default string';
+console.log(foo);
+// expected output: "default string"
+
+!! is not an operator. It is the double-use of !. Its useful to 
+convert an Object to true or  "null" or "undefined" or 0 to false,
+it ever will return true or false instead of the primary object.
 
