@@ -739,22 +739,99 @@ Creating and using class and your methods in javascript:
 
 Initializing the class
 
-class Animal {}
+class Person {}
 
 -------------------------------
 
-Instancing the class
+Defining the class properties:
 
-class Dog extends Animal{
-    bark(){
-        return 'Auh, auh!'
-    }
+All class properties should be typed before the constructor and must be used 
+inside the constructor throught the this keyword. Example:
+
+class Person {
+  name: string;
+  age: number;
+  constructor() {
+    this.name = 'Pablo',
+    this.age = 27
+  }
 }
+
+-------------------------------
+
+Instancing the class and defining a method 'talk':
+
+  class Person {
+    name: string;
+    age: number;
+    constructor() {
+    this.name = 'Pablo',
+    this.age = 27
+    }
+    talk() {
+      return console.log('OK!, I HAVE TALKED')
+    }
+  }
 -------------------------------
 
 Using the class
 
-console.log(new Dog().bark())
+console.log(new Person().talk())
+// 'OK!, I HAVE TALKED' 
+
+-------------------------------
+
+Defining getters:
+
+Getter is a class modifier that can access the class properties, and run a method. 
+It should be accessed as a class property. Example:
+
+class Person {
+    name: string;
+    age: number;
+    constructor() {
+    this.name = 'Pablo',
+    this.age = 27
+    }
+    talk() {
+      return console.log('OK!, I HAVE TALKED')
+    }
+    get show() {
+      return console.log(this.name, this.age)
+    }
+  }
+
+const usePerson = new Person()
+console.log(usePerson.show)
+//'Pablo', 27
+
+-------------------------------
+
+Defining and using setters:
+
+Setter is a class modifier that is used to alter some class propertie/s .It 
+must exactly receive a single parameter. Example:
+
+  class Person {
+    name: string;
+    age: number;
+    constructor() {
+    this.name = 'Pablo',
+    this.age = 27
+    }
+    talk() {
+      return console.log('OK!, I HAVE TALKED')
+    }
+    get show() {
+      return console.log(this.name, this.age)
+    }
+    set personName(personName: string) {
+      this.name = personName
+    }
+  }
+
+  const usePerson = new Person()
+  usePerson.personName = 'Pablo2'
 
 
 ============================GENERAL OBSERVATIONS==============================
