@@ -833,6 +833,14 @@ must exactly receive a single parameter. Example:
   const usePerson = new Person()
   usePerson.personName = 'Pablo2'
 
+  -----------------ASSIGNING OBJECTS MANUALLY THROUGH PROTOTYPE----------------
+
+  In some cases (for example running tests) you can need to assign an object 
+  prop because it's not already implemented by default. Examples:
+
+  window.HTMLElement.prototype.scrollIntoView = function() {}
+  Array.prototype.indexOf = () => 3
+
 
 ============================GENERAL OBSERVATIONS==============================
 

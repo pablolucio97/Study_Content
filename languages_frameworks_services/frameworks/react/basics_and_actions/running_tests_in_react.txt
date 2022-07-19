@@ -224,6 +224,34 @@ describe('Badge', () => {
     })
 })
 
+_____________________
+
+Example 5: Components that interacts with Window object:
+
+ it('should call backToTop function onClick', () => {
+
+    const { container } = render(
+      <>
+        <div id='top'></div>
+        <TopScrollButton
+          ariaLabel='Back to top'
+          elementReferenceId='top'
+          icon={<MdArrowUpward />}
+        />
+      </>
+      , {
+        wrapper: StyledProvider
+      }
+    )
+
+    window.HTMLElement.prototype.scrollIntoView = function() {}
+
+    const button = container.querySelector('[aria-label="Back to top"]')
+
+    expect(fireEvent.click(button!)).toBeTruthy()
+
+
+  })
 
 
 -----------------------------ASYNC TESTS--------------------------------------
@@ -394,4 +422,7 @@ Use waitFor for test components that doesn't are in the DOM immediataly.
 Use mockReturnValueOnce to test each specific situation according to desired 
 conditional rendering. Its is useful to test if an user is authenticated by 
 example.
+
+You must delclare Window events like functions to test this functions. Example:
+ window.HTMLElement.prototype.scrollIntoView = function() {}
 
