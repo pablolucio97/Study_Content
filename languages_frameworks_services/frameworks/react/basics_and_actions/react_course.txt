@@ -1839,3 +1839,127 @@ the component is unmounted. Example
    }, [])
 
 --------------------------------------------------------------------------------------
+
+If you neeed to iterate over paragraphs and links at same time, pass the data inside 
+and object telling what html type is each information and use  conditional rendering 
+at mapping. Example:
+
+const posts = [
+  {
+    type: 'p', 
+    content: 'post1',
+    url: ''
+  },
+  {
+    type: 'link', 
+    content: 'post1',
+    url: '/'
+  },
+]
+
+{posts.map(post => (
+  if(post.type == 'link') {
+    return <p><a href={post.url}>{post.content}</a></p>
+  }else{
+     return <p>{post.content}</p>
+  }
+))}
+
+--------------------------------------------------------------------------------------
+
+You can acces an input or text area directly passing the prop name for it. 
+
+Example:
+
+<input type="text" name="test">
+
+function handleInput(e: FormEvent){
+  const newValue = e.target.test.value
+  setValue([...values, newValue])
+}
+
+--------------------------------------------------------------------------------------
+
+React uses declarative programation to handle states whereas Vanilla JavaScript uses 
+imperative programation. 
+
+Example declarative programation:
+
+function handleInputChange(e: FormEvent){
+  const inputCurrentValue = e.target.test.value
+  setInputValue(inputCurrentValue)
+  setInputValue('')
+}
+
+
+<input type="text"
+ value={inputValue}
+ onChange={handleInputChange}
+ name='test'
+ />
+
+-------
+
+Example imperative programation:
+
+const input = document.getElementById('test')
+let myName = ''
+
+function handleInput(){
+    myName = input.value
+    console.log(myName)
+}
+
+--------------------------------------------------------------------------------------
+
+Use the property onInvalid in inputs and textAreas to notify the user that a field is 
+invalid. Example:
+
+function handleInvalid(e: FormEvent){
+  e.target.setCustomValidity('You must fill this field')
+}
+
+<form>
+  <input type="text"
+  value={inputValue}
+  onChange={handleInputChange}
+  onInvalid={handleInvalid}
+  />
+  <button type="submit">
+    Send
+  </button>
+</form>
+
+--------------------------------------------------------------------------------------
+
+Prefer to write a function isolatedly and pass this function on your button or ano-
+ther component istead of call the function directly in the component by performance 
+and ligibility reasons.
+
+--------------------------------------------------------------------------------------
+
+If you need to update a state and depends of the previous state, use a callback func-
+tion inside the setState() method to get the most recent state. Example:
+
+ const [likes, setLikes] = useState(0)
+
+  function handleSetLikes(){
+    setLikes((state) => {
+      return state + 1
+    })
+  }
+
+--------------------------------------------------------------------------------------
+
+You must tell to TypeScript which element is triggering an envent if you're using a 
+global event or a component is inside this component that is receiving the type. 
+
+Example (an input inside a form):
+
+function handleInputChange(e: FormEvent<HTMLInputElement>){
+  //your code
+} 
+
+<form>
+  <input onChange{handleInputChange}/>
+</form>
