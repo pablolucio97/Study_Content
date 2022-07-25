@@ -57,6 +57,12 @@ devDependencies: The dev dependencies of your project. At creating
 a new project for publishing, you must to install all dependencies
 as devDependencies.
 
+---------------------------GENERAL TIPS-------------------------------
+
+Use the command npm install --legacy-peer-deps --force to install de-
+precated libs on legacy projects maintaining the original dependen-
+cies not allowing automatic updates at installation.
+
 
 
 

@@ -1,0 +1,68 @@
+------------------------------------CONCEPTS---------------------------------------
+
+redux: Is a wide library can be used in React, Angular, Vue, and Vanilla projects.
+Is used to store all states of your aplication in a single core (store) allowing 
+each component use them when necessary. The states in the store are only for rea-
+ding, one can manage the states only through the actions through the reducers (pu-
+re functions that doing the action in your state). The main difference between
+Redux and ContextApi is that Redux is designed for handle global contexts whereas 
+ContextApi for isolated contexts.
+
+store: Core where all states are hosted and available for all application (needs 
+a provider). It's imutable, but allow evolutions.
+
+--------
+
+reducers: Are pure functions triggering events in the application to manager the 
+states in the store without any side effects. Example:
+
+const initialState = {...}
+
+function exemploReducer1(state = initialState, action) {
+	switch(action.type) {
+		case ‘TYPE_1’ :
+			return { ...state, data: action.payload.data };
+		default:
+			return state;
+                }
+}
+
+--------
+
+actions: Are the set of data of the application to manager the state in the store 
+inside the reducers. At clicking in a button, the user triggers an action that 
+will be processed by a reducer and reflect on the store. Example:
+
+{ 
+    type: “TIPO_DO_EVENTO”,
+    payload: {
+	// dados associados a essa action
+         }
+}
+
+
+react-redux:
+
+Provider
+useDispatch
+useSelector
+
+-------
+
+@reduxjs/toolkit:
+
+configureStore,
+createSlice 
+
+-------
+
+redux-persist
+
+PersistGate
+persistReducer
+
+
+Redux-saga;
+
+Redux-thunk;
+
