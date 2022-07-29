@@ -168,6 +168,59 @@ export const Img = styled.div`
 `;
 
 
+---------------------CREATING COMPONENTS WITH STYLE GUIDE STRATEGY---------------------
+
+1) Create the component style.
+
+import styled, { css } from 'styled-components'
+
+export type ButtonVariants = 'primary' | 'secondary' | 'danger' | 'success'
+
+interface ButtonProps {
+    variant: ButtonVariants
+}
+
+const buttonVariants = {
+    primary: 'blue',
+    secondary: 'yellow',
+    danger: 'red',
+    success: 'green',
+}
+
+export const Container = styled.button<ButtonProps>`
+min-width: 120px;
+height: 40px;
+
+display: flex;
+justify-content: center;
+align-items: center;
+
+${props => {
+        return css`background-color: ${buttonVariants[props.variant]}`
+    }}
+`
+
+-----------------
+
+2) Create the component itself.
+
+import React from 'react';
+import { ButtonVariants, Container } from './styles';
+
+
+interface ButtonProps{
+    variant?: ButtonVariants
+}
+
+export function Button({variant = 'primary'} : ButtonProps) {
+return (
+  <Container variant={variant}>
+    MyButton
+  </Container>
+)
+}
+
+
 -----------------------------------GENERAL TIPS--------------------------------------
 
 When you has created a DefaultTheme in declaration file, the theme is accessible for 
