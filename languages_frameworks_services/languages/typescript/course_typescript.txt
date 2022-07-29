@@ -131,32 +131,25 @@ type Age = {age: number} // here the alias is Age
 
 -------------------------------USING GENERICS------------------------------------
 
+Generics works like arguments in functions, but like parameters in the interface. 
+It is used with this syntax: Interface<Interface>. Examples:
+
 Example 1:
 
-function identity <T>(value: T) : T {
-    return value;
+function handleInput(e: ChangeEvent<HTMLInputElement>) {
+  setSearch(e.target.value)
 }
 
+------------------------
 
-function identity2 <T>(value: T) : T {
-    return value;
+Example 2:
+
+function identity<T>(value: T): T {
+  return value;
 }
 
 console.log(identity<Number>(1)) // 1
 console.log(identity<String>('1')) // '1'
-
-
-----------------------------------------
-
-Example 2:
-
-function showPersons <T,U> (name: T, age: U) : T{
-     console.log(age)
-     console.log(name)
-     return name
-}
-
-showPersons<string, number>('Pablo', 24)
 
 --------------------------------USING TUPLES-------------------------------------
 
@@ -371,13 +364,19 @@ export default Select
 
 ------------------------------TYPING EVENTS-----------------------------------
 
-import React, { ChangeEvent or FormEvent ????????? } from 'react'
+import React, { FormEvent, ChangeEvent } from 'react'
 
-const newSubmit = (e: ChangeEvent) => {
-	e.preventDefault()
+function handleSubmit(e: FormEvent) {
+  e.preventDefault()
 }
 
-<form onSubmit="newSubmit">				
+function handleNewMessage(e: ChangeEvent<HTMLInputElement>) {
+  setMessage(e.target.value)
+}
+
+
+<form onSubmit="handleSubmit">
+  <input type="text" onChange={handleNewMessage}>
 </form>
 
 ---------------------------USING TYPE ASSERTIONS------------------------------

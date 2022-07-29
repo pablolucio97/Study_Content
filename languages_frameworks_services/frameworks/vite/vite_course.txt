@@ -1,22 +1,17 @@
 ===========================VITE COURSE===============================
 
-Babel: Compiles our all JavaScript code containing modern featues to 
-an JavScript that old browsers also understands.
-
-WebPack: Transform our all files imported and exported in the appli-
-cation in files that the browser can read. This takes time and can 
-downgrade your application performance.
+Vite is a tool that does the application compilation automatically 
+and uses esmodules by default where is not necessary to use another 
+bundler pack, like WebPack. This tool is more performatic. Vite uses
+the tag script with attribute "type" = "module" inside the idex.html 
+inside public folder to manager esmodules. Vite is an alternative to 
+common React CRA, it was wrote in GO, and is between 10 x 100 times 
+more faster than the conventional CRA.
 
 Recently browsers started importing files by itself through esmodules 
 to import and export files. To use this feature, is recommended crea-
 te projects using ViteJS because ViteJS already does the compilation
 automatically and bundling is not necessary.
-
-Vite is a tool that does the application compilation automatically 
-and uses esmodules by default where is not necessary to use another 
-bundler pack, like WebPack. This tool is more performatic. Vite uses
-the tag script with attribute "type" = "module" inside the idex.html 
-inside public folder to manager esmodules.
 
 -------------------CREATING A PROJECT WITH VITE----------------------
 
@@ -24,7 +19,7 @@ inside public folder to manager esmodules.
 plying infos for your project (name, template, and template-variant).
 A template using ViteJS containing a configuration using ViteReact 
 plugin and a package.json will all required dependencies will be cre-
-ated.
+ated. Using a shortcut: yarn create vite@latest my-app react-ts
 
 -------------
 
