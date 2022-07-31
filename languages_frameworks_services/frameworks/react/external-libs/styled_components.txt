@@ -220,6 +220,65 @@ return (
 )
 }
 
+------------------------------USING BASE COMPONENTS---------------------------------
+
+Base components is useful to avoid to write duplicated code at writing your compo-
+nents. Example:
+
+
+export const BaseInput = styled.input`
+    background: transparent;
+    height: 2.5rem;
+    border: 0;
+    border-bottom: 2px solid ${(props) => props.theme["gray-500"]};
+    font-weight: bold;
+    font-size: 1.125rem;
+    padding: 0 0.5rem;
+    color: ${(props) => props.theme["gray-100"]};
+    margin: 0 1rem;
+    
+    &:focus{
+        border-bottom: 2px solid ${(props) => props.theme["green-500"]};
+    }
+
+    &::placeholder{
+        color: ${(props) => props.theme["gray-500"]};
+    }
+
+    `
+
+export const TaskInput = styled(BaseInput)`
+    flex: 1;
+    &::-webkit-calendar-picker-indicator{
+        display: none !important;
+    }
+`
+
+export const MinutesAmountInput = styled(BaseInput)`
+    width: 4rem;
+`
+
+----------------------USING STATIC PROPS FROM INTERFACES ON THEME---------------------
+
+const STATUS_COLOR = {
+	green: "green-500",
+	yellow: "yellow-500",
+	red: "red-500",
+} as const
+
+interface StatusProps {
+    statusColor: keyof typeof STATUS_COLOR;
+}
+
+export const Status = styled.span<StatusProps>`
+    &::before{
+        content: '';
+        width: 0.5rem;
+        height: 0.5rem;
+        background-color: ${(props) => props.theme[STATUS_COLOR[props.statusColor]]};
+
+    }
+`
 
 -----------------------------------GENERAL TIPS--------------------------------------
 
@@ -230,3 +289,5 @@ ${props => props.theme.colors.text}
 Create a single interface for each component thinking if the application will rise.
 
 Sometimes is need refer the parent element to see hovering effects.
+
+Use base components to avoid writing duplicated components styling.

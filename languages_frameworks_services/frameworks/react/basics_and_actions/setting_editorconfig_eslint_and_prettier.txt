@@ -33,7 +33,7 @@ insert_final_newline = true
 
 --------------------------------------------------------------------------------------------
 
-2)Install the Eslint: yarn add eslint
+2)Install the Eslint: yarn add eslint -D
 
 --------------------------------------------------------------------------------------------
 
@@ -44,6 +44,9 @@ tall your all packages.
 
 4)Run the command npm i -D prettier eslint-config-prettier eslint-plugin-prettier to install
 the anothers needed Eslint packages.
+
+5) Create the script lint in yout package.json with the following command to fix automati-
+cally all your files:  eslint src --ext .ts,.tsx --fix.
 
 --------------------------------------------------------------------------------------------
 
@@ -79,7 +82,7 @@ module.exports = {
 6) Run the command npx eslint src/**/*.js --fix to fix all js files. Use ts in case working 
 with typescript.
 
--------------------------------------SETTING PRETTIER CONFIGS---------------------------------
+-------------------------------SETTING PRETTIER CONFIGS-------------------------------------
 
 1)Install the prettier: yarn add prettier
 
@@ -95,3 +98,13 @@ module.exports = {
   printWidth: 120,
   tabWidth: 2
 }
+
+------------------------------------GENERAL TIPS-------------------------------------------
+
+Extends the plugin "plugin:react/jsx-runtime" in your eslintrsc.js file to avoid React JSX
+scope error.
+
+Fix your code automatically trough a script lint.
+
+Use each eslint configuration according to project type (react, react/next, react native, 
+node and so on).

@@ -504,6 +504,31 @@ Example (solved with type assertion):
 const { user_id } = request.headers
 const user = this.turnUserAdminUseCase.execute({ user_id } as { user_id: string})
 
+-----------USING SPECIFIC LITERAL PROPS FROM OBJECTS IN INTERFACES-------------
+
+To use specific object props in interfaces you should to force the object as a 
+const and pass the interface prop as a keyof typeof of the desired objecy. Ex:
+
+const STATUS_COLOR = {
+	green: "green-500",
+	yellow: "yellow-500",
+	red: "red-500",
+} as const
+
+interface StatusProps {
+    statusColor: keyof typeof STATUS_COLOR;
+}
+
+export const Status = styled.span<StatusProps>`
+    &::before{
+        content: '';
+        width: 0.5rem;
+        height: 0.5rem;
+        background-color: ${(props) => 
+          props.theme[STATUS_COLOR[props.statusColor]]};
+
+    }
+`
 
 -------------------------------GENERAL TIPS-----------------------------------
 
@@ -612,3 +637,7 @@ const user = newUser() as unknown as UserProps
 
 Use the options "noImplicitAny": false in your tsconfig.json if you're 
 facing with third libraries that doesn't has type declarations.
+
+----------------------------------
+
+You can force a interface prop using the keyof typeof of another object.
