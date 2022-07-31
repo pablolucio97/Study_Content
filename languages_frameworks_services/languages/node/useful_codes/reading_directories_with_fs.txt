@@ -1,0 +1,13 @@
+const path = require('path');
+const fs = require('fs');
+
+const directoryPath = path.join(__dirname, 'country_flags')
+
+fs.readdir(directoryPath, (err, file) => {
+
+    if (err) {
+        console.log(err)
+    }
+
+    file.forEach(file => console.log(file))
+})
