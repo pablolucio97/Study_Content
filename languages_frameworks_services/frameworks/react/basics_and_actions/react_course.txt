@@ -1963,3 +1963,8 @@ function handleInputChange(e: FormEvent<HTMLInputElement>){
 <form>
   <input onChange{handleInputChange}/>
 </form>
+
+--------------------------------------------------------------------------------------
+
+The syntax of importation "import * as something from somewhere" must be used when the 
+third lib doesn't have a default export.

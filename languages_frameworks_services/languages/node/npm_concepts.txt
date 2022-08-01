@@ -63,6 +63,8 @@ Use the command npm install --legacy-peer-deps --force to install de-
 precated libs on legacy projects maintaining the original dependen-
 cies not allowing automatic updates at installation.
 
+The syntax of importation "import * as something from somewhere" must 
+be used when the third lib doesn't have a default export.
 
 
 
