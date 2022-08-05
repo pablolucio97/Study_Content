@@ -1,10 +1,10 @@
 =============CREATING AND CONSUMING CONTEXTS WITH USECONTEXT AND USEREDUCER===========
 
-1) Create a new folder to store your context. Example: PostsContextProvider.
+1) Create a new folder to store your context. Example: PostsContext.
 
 --------------------------------------------------------------------------------------
 
-2)Create a new file named data.js with your context raw data. Example:
+2)Create a new file named data.ts with your context raw data. Example:
 
 export const data = {
     posts: [],
@@ -128,6 +128,7 @@ export default function Posts() {
         </div>
     )
 }
+
 
 
 

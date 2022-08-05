@@ -1939,7 +1939,7 @@ and ligibility reasons.
 --------------------------------------------------------------------------------------
 
 If you need to update a state and depends of the previous state, use a callback func-
-tion inside the setState() method to get the most recent state. Example:
+tion inside the setState() method to get the most recent state. Examples:
 
  const [likes, setLikes] = useState(0)
 
@@ -1966,5 +1966,29 @@ function handleInputChange(e: FormEvent<HTMLInputElement>){
 
 --------------------------------------------------------------------------------------
 
-The syntax of importation "import * as something from somewhere" must be used when the 
-third lib doesn't have a default export.
+Avoid to use useEffect to handle state, prefer to create a new variable to handle the
+state and then prevent a new unnecessary renderization. Example:
+
+wrong: 
+
+const [cycles, setCycles] = useState<Cycle[]>([])
+const [search, setSearch] = useState('')
+const [filteredCycles, setFilteredCycles] = useState<Cycle[]>([])
+
+useEffect(() => {
+  const filteredCycles = cycles.filter(cycle => cycle.task.includes(search))
+}, [ filteredCycles])
+
+----
+
+correct:
+
+const [cycles, setCycles] = useState<Cycle[]>([])
+const [search, setSearch] = useState('')
+
+const filteredCycles = cycles.filter(cycle => cycle.task.includes(search))
+
+--------------------------------------------------------------------------------------
+
+You can use the lib react-usestateref passing a third argument to get the current and 
+exact state value of the useState hook. 
