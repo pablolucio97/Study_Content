@@ -1,0 +1,323 @@
+1) Install the Docker and run your an image to the database and another to
+the server.
+
+--------------------
+
+2) Crate the migration yarn typeorm migration:create -n your_migration_name
+
+--------------------
+
+3) Open the migration file created and write your up and down methods using 
+the queryRunner to create and drop your table passing the tables columns 
+properties. Example:
+
+import {MigrationInterface, QueryRunner, Table} from "typeorm";
+
+export class users1660125247352 implements MigrationInterface {
+
+    public async up(queryRunner: QueryRunner): Promise<void> {
+        await queryRunner.createTable(
+            new Table({
+                name: 'users',
+                columns: [
+                    {
+                        name: "id",
+                        type: "uuid",
+                        isPrimary: true
+                    },
+                    {
+                        name: "name",
+                        type: "varchar",
+                    },
+                    {
+                        name: "username",
+                        type: "varchar",
+                        isUnique: true
+                    },
+                    {
+                        name: "password",
+                        type: "varchar",
+                    },
+                    {
+                        name: "email",
+                        type: "varchar",
+                    },
+                    {
+                        name: "driver_license",
+                        type: "varchar",
+                    },
+                    {
+                        name: "isAdmin",
+                        type: "boolean",
+                        default: false
+                    },
+                    {
+                        name: "created_at",
+                        type: "timestamp",
+                        default: "now()"
+                    }
+                ]
+            })
+        )
+    }
+
+    public async down(queryRunner: QueryRunner): Promise<void> {
+        await queryRunner.dropTable('users')
+    }
+
+}
+
+
+--------------------
+
+4) Run the migration running yarn typeorm migration:run
+
+--------------------
+
+5) Crate the entity inside modules/your_module/entities/your_enititie. The 
+entity name must be the same that the migration name. Example:
+
+import { v4 as uuidv4} from 'uuid'
+import {Column, CreateDateColumn, Entity, PrimaryColumn} from 'typeorm'
+
+
+@Entity('your_migration_name')
+class User{
+    @PrimaryColumn()
+    id: string;
+
+    @Column()
+    name: string;
+
+    @Column()
+    username: string;
+
+    @Column()
+    password: string;
+
+    @Column()
+    email: string;
+
+    @Column()
+    driver_license: string;
+
+    @Column()
+    isAdmin: boolean;
+    
+    @CreateDateColumn()
+    created_at: Date;
+
+    constructor(){
+        if(!this.id){
+            this.id = uuidv4()
+        }
+    }
+}
+
+export {User}
+
+--------------------
+
+6) Create your repository interface inside modules/your_module/repositories
+/implementations/your_repository_interface.
+
+import { UserProps  } from './implementations/IUserProps'
+
+
+interface IUsersRepository {
+    create(data: UserProps): Promise<void>;
+    list(): Promise<Userops[]>;
+}
+
+export { IUsersRepository }
+
+--------------------
+
+7) Create your repository inside modules/your_module/repositories
+/your_repository containing a class representating your repository con-
+taining a private repository attribute type of Repository<your_entity> 
+where each method should be an async function that uses typeorm Repo-
+sitory methods.
+
+import { Repository } from 'typeorm'
+import { User } from '../entities/user'
+import { IUsersRepository } from './implementations/IUserRepository'
+
+interface UserDTOProps{
+    name: string;
+    email: string;
+    password: string;
+    username string;
+    driver_license string;
+}
+
+class UserRepository implements IUsersRepository {
+
+    private repository: Repository<User>
+
+    async create({
+        name,
+        email,
+        password,
+        username,
+        driver_license
+ }: UserDTOProps): Promise<void> {
+        const user = {
+            name,
+            username,
+            email,
+            driver_license,
+            password,
+        }
+
+        await this.repository.save(user)
+    }
+
+}
+
+export { UserRepository }
+
+--------------------
+
+8) Create your useCase according the method inside  modules/your_module/useCases/
+your_use_folder/_your_usecase_UseCase. This class must have be referred by the 
+@injectable() decorator and must have the the decorators @inject and in the cons-
+trucutor that must contain your repository reference and all class methods 
+must be async. Example:
+
+import { ICreateUserDto } from './../../dtos/ICreateUserDto';
+import { inject, injectable  } from "tsyringe";
+import { IUsersRepository } from "../../repositories/implementations/IUserRepository";
+
+@injectable()
+class CreateUserUseCase {
+    constructor(
+        @inject("UsersRepository")
+        private usersRepository: IUsersRepository
+    ){}
+
+    async execute({
+        name,
+        username,
+        password,
+        email,
+        driver_license
+    }: ICreateUserDto) : Promise<void>{
+        await this.usersRepository.create({
+            name,
+            username,
+            password,
+            email,
+            driver_license
+        })
+    }
+}
+
+export { CreateUserUseCase }
+
+--------------------
+
+9) In shared/container/index.ts register your repository. Example:
+
+import { container } from 'tsyringe'
+
+import { UserRepository } from '../../repositories/UserRepository'
+import { IUsersRepository } from '../../repositories/implementations/IUserRepository'
+
+container.registerSingleton<IUsersRepository>('UsersRepository',
+    UserRepository)
+
+--------------------
+
+10) Create your controller to the useCase method created inside modules/your_module/
+useCases/your_use_folder/_your_usecase_controller. This class must execute your 
+useCase and return the response for the user. Example:
+
+import { Request, Response } from 'express';
+import { container } from 'tsyringe';
+
+import { CreateUserUseCase } from './CreateUserUseCase';
+
+class CreateUserController {
+    async handle(req: Request, res: Response) : Promise<Response> {
+        const {
+            name,
+            username,
+            password,
+            email,
+            driver_license
+        } = req.body
+        const createUserUseCase = container.resolve(CreateUserUseCase)
+        await createUserUseCase.execute({
+            name,
+            username,
+            password,
+            email,
+            driver_license
+
+        })
+        return res.send(201).send()
+    }
+}
+
+export { CreateUserController }
+
+--------------------
+
+11) Create your router file consuming your controller, define your routes and methods 
+and export it for your index route file. Example:
+
+import { Router } from 'express';
+import { CreateUserController } from '../modules/users/useCases/createUser/CreateUserController';
+
+const usersRouter = Router();
+
+const createUserController = new CreateUserController();
+
+usersRouter.post('/', createUserController.handle)
+
+export { usersRouter }
+
+--------------------
+
+12) In your index route file, add your new route. Example:
+
+import { Router } from 'express'
+
+import {usersRouter} from './users.routes'
+
+const routes = Router()
+
+routes.use('/users', usersRouter)
+
+export { routes }
+
+
+--------------------
+
+13) Consume it in your server.ts file. Example:
+
+import express, { json } from 'express';
+import { routes } from './routes';
+
+const app = express();
+
+app.use(json())
+
+app.use(routes)
+
+app.listen('3333', () => {
+    console.log('listening on 3333');
+})
+
+
+
+
+
+
+
+
+
+
+
+

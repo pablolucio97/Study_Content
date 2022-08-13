@@ -114,6 +114,9 @@ docker logs yourcontainername -f: Logs all activies of your yourcontainername
 docker exec -it yourcontainername /bin/bash: Access the virtual machine where 
 your container is running (the image should be running).
 
+docker exec yourcontainername cat /etc/hosts: See the ip the container is 
+running.
+
 
 -------------------------------GENERAL TIPS----------------------------------
 
@@ -121,6 +124,11 @@ The container/virtual machine created by Docker has a different IP from our
 local machine IP.
 
 Use the same port in your project and in the docker container.
+
+You must to stop the server before to install or uninstall a lib.
+
+Don't use the lib brcypt, because this causes conflicts with Docker, use the 
+bcryptjs lib instead.
 
 
 

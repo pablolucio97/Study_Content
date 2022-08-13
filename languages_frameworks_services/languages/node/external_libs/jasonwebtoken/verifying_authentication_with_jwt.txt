@@ -1,0 +1,46 @@
+--------------------------VERIFYING AUTHENTICATION WITH JWT----------------------
+
+1) Inside src, create a new folder named as middlewares with a new ensureAunthen-
+ticate.ts file exporting an async function that will be your middleware, this 
+function must find the user by the id, verify if the token exists on header and 
+validate the token through the verify() method from 'jsonwebtoken' lib. Example:
+
+import { Request, Response, NextFunction } from 'express';
+import { verify } from 'jsonwebtoken'
+import { UserRepository } from '../modules/accounts/repositories/UserRepository';
+
+interface IPayload {
+    sub: string
+}
+
+export async function ensureAuthenticated(
+    req: Request,
+    res: Response,
+    next: NextFunction
+) {
+    const authHeader = req.headers.authorization
+
+    if (!authHeader) {
+        throw new Error('Token missing')
+    }
+
+    const [, token] = authHeader.split(' ')
+
+    try {
+
+        const { sub: user_id } = verify(token, 'your_md5_code') as IPayload
+
+        const usersRepository = new UserRepository();
+        const user = await usersRepository.findById(user_id)
+
+        if(!user){
+            throw new Error('User does not exists')
+        }
+
+        next()
+
+    } catch (error) {
+        throw new Error(error)
+    }
+
+}

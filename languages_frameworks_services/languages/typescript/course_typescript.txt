@@ -530,6 +530,25 @@ export const Status = styled.span<StatusProps>`
     }
 `
 
+----------------------OVERWRITING TYPESCRIPT INTERFACES-----------------------
+
+1) Inside the src folder, create a new folder with your module name that you 
+want to overwrite, example "express", and inside it a new file named  as 
+index.d.ts.
+
+--------------------
+
+2) Inside this file, declare the namespace and export the interface that you 
+want to overwrite with a new prop. Example:
+
+declare namespace Express{
+    export interface Request{
+        user: {
+            id: string
+        }
+    }
+}
+
 -------------------------------GENERAL TIPS-----------------------------------
 
 At definning types for functions, objects, components and more, this types be-

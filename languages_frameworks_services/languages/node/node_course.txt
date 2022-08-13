@@ -1,11 +1,76 @@
-==============================NODE COURSE=================================
+==================================NODE COURSE===================================
 
-Node is an open source platform that allow execution of the JavaScript on 
-the Server side.It was built using V8 + LIBUV and other modules. The Node
-is single thread, but this unique thread is the event loop that is res-
-ponsible for listen to and redistribute the functions inside the call 
-stack to be executed on another 4 threads, that allow that the functions 
-can be executed asynchronously.Node has with native modules, like Https, 
-FS, Dns, Buffer and others.
+Node is an open source platform that allow execution of the JavaScript on the 
+Server side. It was built using V8 + LIBUV and other modules. The Node is sin-
+gle thread, but this unique thread is the event loop that is responsible for 
+listen to and redistribute the functions inside the call stack to be executed 
+on another 4 threads, that allow that the functions can be executed asynchro-
+nously.Node has with native modules, like Https, FS, Dns, Buffer and others.
 
 
+-------------------CUSTOMING ERRORS ON NODEJS APPLICATIONS----------------------
+
+1) Install the express-async-errors running yarn add express-async-errors.
+
+--------------------
+
+2) Inside the src folder, create a new folder named as errors and inside this, 
+create a file named as AppError and inside this export a class named as AppError 
+passing a message and a statusCode as properties. Example:
+
+export class AppError{
+    public readonly message: string
+    public readonly statusCode: number;
+
+    constructor(message: string, statusCode = 400){
+        this.message = message;
+        this.statusCode = statusCode;
+    }
+}
+
+
+--------------------
+
+3) In your application uses the AppError class to deal with errors. Example:
+
+if (userAlreadyExists) {
+    throw new AppError('User already exists', 401);
+}
+
+--------------------
+
+4) In the server.ts file import the express-async-errors and before app.listen,
+define a custom middleare to deal with all errors on your application. Example:
+
+import express, { json, NextFunction } from 'express';
+import 'express-async-errors'
+
+import { AppError } from "./errors/AppError";
+
+const app = express();
+
+app.use(json())
+
+app.use((
+    err: Error,
+    req: express.Request,
+    res: express.Response,
+    next: NextFunction
+) => {
+
+    if (err instanceof AppError) {
+        return res.status(err.statusCode).json({
+            message: err.message
+        })
+    }
+
+    return res.status(500).json({
+        status: 500,
+        message: `Internal server error: ${err.message}`
+    })
+
+})
+
+app.listen('3333', () => {
+    console.log('listening on 3333');
+})
