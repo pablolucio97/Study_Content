@@ -121,3 +121,10 @@ routes.use('/users', usersRouter)
 routes.use(authenticateRoutes)
 
 export { routes }
+
+-------------------------------GENERAL TIPS-----------------------------------
+
+When working with refresht token, you can opt for expect for the token or 
+refreshToken, generally the refreshToken, is most used. To do that, alter 
+the ensureAuthenticate middlware to receive the refreshToken and not the 
+token.

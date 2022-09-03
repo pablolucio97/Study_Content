@@ -660,3 +660,9 @@ facing with third libraries that doesn't has type declarations.
 ----------------------------------
 
 You can force a interface prop using the keyof typeof of another object.
+
+----------------------------------
+
+Using TypeScript, you can import a interface from a library, assing to a 
+variable and use all methods and properties from this interface in your 
+app through this variable.

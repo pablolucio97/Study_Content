@@ -1,0 +1,226 @@
+---------SENDING WMAIL WITH NODEMAILER AND ETHEREAL AND CUSTOMIZING WITH HANDLEBARS----------
+
+
+1) Run yarn add nodemailer @types/nodemailer to install the nodemailer and your types.
+
+----------------------
+
+2)Inside shared/container/providers create a new folder named as "MailProvider", 
+inside of create a new folder named as "implementations" and inside this create the 
+interface to implement your mail provider. Ex:
+
+interface IMailProvider {
+    sendMail(to:string, subject:string, body:string) : Promise<void>;
+}
+
+export { IMailProvider }
+
+----------------------
+
+3) Inside shared/container/providers/  and inside this a new folder named as "implementa-
+tions", and inside this create your class that will provider the email service. Example:
+
+import { injectable } from 'tsyringe';
+import { IMailProvider } from '../IMailProvider';
+import nodemailer, { Transporter } from 'nodemailer';
+
+@injectable()
+class EtherealMailProvider implements IMailProvider {
+    private client: Transporter;
+    constructor() {
+        nodemailer.createTestAccount().then(account => {
+            const transporter = nodemailer.createTransport({
+                host: account.smtp.host,
+                port: account.smtp.port,
+                secure: account.smtp.secure,
+                auth: {
+                    user: account.user,
+                    pass: account.pass
+                }
+            })
+
+            this.client = transporter
+        }).catch(err => console.log(err))
+    }
+
+    async sendMail(to: string, subject: string, body: string): Promise<void> {
+
+        const message = await this.client.sendMail({
+            to,
+            from: 'Rentx <noreply@rentx.com.br>',
+            subject,
+            text: body,
+            html: body
+        })
+
+        console.log('Message sent: %s', message.messageId)
+        console.log('Preview URL: %s', nodemailer.getTestMessageUrl(message))
+
+    }
+}
+
+export { EtherealMailProvider }
+
+----------------------
+
+4) Run yarn add handlebars to install the Handlebars to custom and provide your 
+email template.
+
+----------------------
+
+5) Inside your user module, create a new folder named as "views" and inside this a 
+new folder named as "emails", inside this, create your forgotPassword.hbs file con-
+taining your email template. Example: 
+
+<style>
+    .container {
+        width: 800px;
+        font-family: Arial, Helvetica, sans-serif;
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+    }
+
+    span{
+        margin: 10px;
+    }
+</style>
+
+<div>
+    <span>Olá, {{name}}</span>
+    <br />
+    <span>Você está recebendo este email pois solicitou alteração de senha.</span>
+    <span>Para realizar a troca, clique no link.
+        <a href={{link}}>{{link}}</a>
+    </span>
+    <span>Caso você não tenha solicitado a troca de e-mail, 
+	por favor ignore este email.</span>
+    <strong>Obrigado!</strong>
+    <h3>PSCode | www.pscode.com.br</h3>
+</div>
+
+----------------------
+
+6) Create useCase for the email provider. It must to contain your template variables, a resolver to
+resolve your template path and send the email passing your template. Example:
+
+import { UsersRepository } from "@modules/accounts/infra/typeorm/repositories/UserRepository";
+import { UsersTokenRepository } from "@modules/accounts/infra/typeorm/repositories/UsersTokensReposiroty";
+import { DateProvider } from "@shared/container/providers/DateProvider/implementations/DayJSDateProvider";
+import { IMailProvider } from "@shared/container/providers/MailProvider/IMailProvider";
+import { AppError } from "@shared/errors/AppError";
+import { inject, injectable } from "tsyringe";
+import { v4 as uuidv4 } from 'uuid'
+import { resolve } from 'path'
+
+@injectable()
+class SenForgottenPasswordMailUseCase {
+
+    constructor(
+        @inject('UsersRepository')
+        private usersRepository: UsersRepository,
+        @inject('UsersTokensRepository')
+        private usersTokensRepository: UsersTokenRepository,
+        @inject('DateProvider')
+        private dateProvider: DateProvider,
+        @inject('EtherealMailProvider')
+        private mailProvider: IMailProvider,
+    ) { }
+
+    async execute(email: string) {
+
+        const user = await this.usersRepository.findByEmail(email)
+        const token = uuidv4()
+        const expires_date = this.dateProvider.addHours(3)
+
+        //resolve the path until forgotPassword.hbs
+        const templatePath = resolve(
+            __dirname,
+            '..',
+            '..',
+            'views',
+            'emails',
+            'forgotPassword.hbs'
+        )
+
+        const variables = {
+            name: user.name,
+            link: `${process.env.FORGOT_PASSWORD_URL}${token}`
+        }
+
+        if (!user) {
+            throw new AppError('User does not exists.')
+        }
+
+
+        await this.usersTokensRepository.create({
+            expires_date,
+            refresh_token: token,
+            user_id: user.id
+        })
+
+        await this.mailProvider
+            .sendMail(
+                email,
+                'Recuperação de senha',
+                variables,
+                templatePath
+            )
+    }
+}
+
+export { SenForgottenPasswordMailUseCase }
+
+----------------------
+
+7) Create controller for the email provider. Example:
+
+import { Request, Response } from 'express'
+import { container } from 'tsyringe'
+import { SenForgottenPasswordMailUseCase } from './SenForgottenPasswordMailUseCase'
+
+class SendForgottenPasswordMailController {
+    async handle(request: Request, response: Response): Promise<Response> {
+
+        const { email } = request.body
+
+        const sendForgottenPasswordMailUseCase = await container
+            .resolve(SenForgottenPasswordMailUseCase)
+
+        await sendForgottenPasswordMailUseCase.execute(email)
+
+        return response.send()
+    }
+
+}
+
+export { SendForgottenPasswordMailController }
+
+----------------------
+
+8) Register your email provider inside the file shared/container/provider/index. 
+Example:
+
+import { container } from 'tsyringe'
+import { IMailProvider } from './MailProvider/IMailProvider'
+import { EtherealMailProvider } from './MailProvider/implementations
+/EtherealMailProvider'
+
+container.registerInstance<IMailProvider>(
+    "EtherealMailProvider",
+    new EtherealMailProvider()
+)
+
+----------------------
+
+9) Create the routes for the email provider and use it in your application. Example:
+
+import { SendForgottenPasswordMailController } from '@modules/accounts/useCases/
+sendForgottenEmail/SenForgottenPasswordMailController'
+import { Router } from 'express'
+
+const passwordRoutes = Router()
+const sendForgottenPasswordMailUseCase = new SendForgottenPasswordMailController()
+passwordRoutes.post('/', sendForgottenPasswordMailUseCase.handle)
+
+export { passwordRoutes }

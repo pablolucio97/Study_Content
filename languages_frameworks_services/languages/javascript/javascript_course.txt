@@ -2263,3 +2263,7 @@ tions, reference types) the return will be false because each object fits
 a space in the memory. To compare two reference types (objects, arrays 
 and functions) are identicals, you shoud parse it a string (primitive va-
 lue and then compare them).
+
+If you need to iterate over elements, in some case is needed to guarante 
+that there isn't mapping over undefined elements checking if the element 
+is !== udenfined.

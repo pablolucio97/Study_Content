@@ -3,6 +3,27 @@ the server.
 
 --------------------
 
+2) Inside the src folder, create a new folder named as database and inside 
+this create a new index.ts file containing the createConnection function 
+from typeorm and import it in the server.ts file. Example.
+
+database/index.ts:
+
+import { createConnection } from 'typeorm'
+
+createConnection()
+
+-------
+
+server.ts:
+
+
+import './database'
+
+--------------------
+
+3) 
+
 2) Crate the migration yarn typeorm migration:create -n your_migration_name
 
 --------------------

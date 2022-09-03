@@ -1,0 +1,324 @@
+
+
+---------------------------CREATING RELATIONSHIP TABLES--------------------------
+
+Relationship table is table that works like a bridge between two other columns.
+
+1) Create the migration. Example:
+
+import { MigrationInterface, QueryRunner, Table, TableForeignKey } from "typeorm";
+
+// this table is a table to store relationships
+
+export class CreateSpecificationsCars1661081316074 implements MigrationInterface {
+
+    public async up(queryRunner: QueryRunner): Promise<void> {
+        await queryRunner.createTable(new Table({
+            name: 'specifications_cars',
+            columns: [
+                {
+                    name: 'car_id',
+                    type: 'uuid',
+                },
+                {
+                    name: 'specification_id',
+                    type: 'uuid',
+                },
+                {
+                    name: 'created_at',
+                    type: 'timestamp',
+                    default: 'now()',
+                },
+            ],
+        })
+        )
+
+        await queryRunner.createForeignKey(
+            "specifications_cars",
+            new TableForeignKey({
+                name: 'FKSpecificationCar',
+                referencedTableName: 'specifications',
+                referencedColumnNames: ['id'],
+                columnNames: ['specification_id'],
+                onDelete: 'SET NULL',
+                onUpdate: 'SET NULL',
+            })
+        )
+
+        await queryRunner.createForeignKey(
+            "specifications_cars", // the curret table name
+            new TableForeignKey({
+                name: 'FKCarSpecification', // the foreignTable name being created
+                referencedTableName: 'cars', //origin table
+                referencedColumnNames: ['id'], // origin table column to link
+                columnNames: ['car_id'], // current table column to link to origin table
+                onDelete: 'SET NULL',
+                onUpdate: 'SET NULL',
+            })
+        )
+    }
+
+    //the revert process must happens from bottom to top
+    public async down(queryRunner: QueryRunner): Promise<void> {
+        await queryRunner.dropForeignKey('specifications_cars', 'FKSpecificationCar')
+
+        await queryRunner.dropForeignKey('specifications_cars', 'FKCarSpecification')
+
+        await queryRunner.dropTable('specifications_cars')
+    }
+
+}
+
+2) Alter the tables that are joining in the relationship. Example:
+
+import {
+    Column,
+    CreateDateColumn,
+    JoinColumn,
+    JoinTable,
+    ManyToMany,
+    ManyToOne,
+    PrimaryColumn
+ } from 'typeorm';
+import { v4 as uuidv4 } from 'uuid'
+import { Category } from './Category';
+import { Specification } from './Specification';
+
+class Car {
+    @PrimaryColumn()
+    id: string;
+
+    @Column()
+    name: string;
+
+    @ManyToMany(() => Specification) // from this to Specification table
+    @JoinTable({
+        name: 'specifications_cars', // name of the relationship table
+        joinColumns: [{name: 'car_id'}] , // column of relationship table to refer this table
+        inverseJoinColumns: [{name: 'specification_id'}] // column of relationship table to refer the another table
+    })
+    specifications: Specification[]
+
+    @CreateDateColumn()
+    created_at: Date;
+
+    constructor() {
+        if (!this.id) {
+            this.id = uuidv4()
+        }
+    }
+
+}
+
+export { Car }
+
+-----------------
+
+3) Create the interface for this new one table on modules/your_module_name/repositores.
+Example:
+
+import { Specification } from "../infra/typeorm/entities/Specification"
+
+interface ICreateSpecificationDTO {
+    name: string
+    description: string
+}
+
+interface ISpecificationsRepository {
+    create({ description, name }: ICreateSpecificationDTO): Promise<Specification>
+    findByName(name: string): Promise<Specification>;
+    findByIds(ids: string[]) : Promise<Specification[]>;
+}
+
+export { ISpecificationsRepository, ICreateSpecificationDTO }
+
+-----------------
+
+4) Implements the interface in the repository class on modules/your_module_name
+/infra/typeorm/repositores, ex:
+
+
+import { ICreateSpecificationDTO, ISpecificationsRepository } from 
+"@modules/cars/repositories/ISpecificationsRepository";
+import { getRepository, Repository } from "typeorm";
+import { Specification } from "../entities/Specification";
+
+class SpecificationRepository implements ISpecificationsRepository {
+
+    private repository: Repository<Specification>
+
+    constructor() {
+        this.repository = getRepository(Specification)
+    }
+   
+
+    async create({ name, description }: ICreateSpecificationDTO): 
+	Promise<Specification> {
+        const specification = this.repository.create({
+            description,
+            name
+        })
+
+        await this.repository.save(specification)
+
+        return specification
+    }
+
+    async findByName(name: string): Promise<Specification> {
+
+        const specification = await this.repository.findOne({ name })
+        return specification
+    }
+
+    async findByIds(ids: string[]): Promise<Specification[]> {
+        const specifications = await this.repository.findByIds(ids)
+        return specifications
+    }
+}
+
+export { SpecificationRepository }
+
+-----------------
+
+5) Create the useCase and the controller for this, and in the sequence create the route
+and call this route in your app.
+
+-----------------------------DOING RELATIONSHIPS AND LISTING IT-------------------------
+
+1) Alter the entity that will provide the relationship. Example:
+
+import { Car } from '@modules/cars/infra/typeorm/entities/Cars';
+import { Column, CreateDateColumn, Entity, JoinColumn, ManyToOne, PrimaryColumn } 
+from 'typeorm';
+import { v4 as uuidv4 } from 'uuid'
+
+@Entity("rentals")
+class Rental {
+
+    @PrimaryColumn()
+    id: string;
+
+    @Column()
+    car_id: string;
+
+    @ManyToOne(() => Car) //Many rentals for a single car
+    @JoinColumn({name: 'card_id'}) //current table foreignKey
+    car: Car //should be the type of relation
+
+    @Column()
+    user_id: string;
+
+    @Column()
+    start_date: Date;
+
+    @Column()
+    end_date: Date;
+
+    @Column()
+    expect_return_date: Date;
+
+    @Column()
+    total: number;
+
+    @CreateDateColumn()
+    created_at: Date;
+
+    @CreateDateColumn()
+    updated_at: Date;
+
+    constructor() {
+        if (!this.id) {
+            this.id = uuidv4()
+        }
+    }
+}
+
+export { Rental }
+
+-------------------
+
+2) Add a method in the repository to do the relationship. Ex:
+
+import { ICreateRentalDTO } from "@modules/rentals/dtos/ICreateRentalDTO";
+import { IRentalsRepository } from "@modules/rentals/repositories/IRental-
+Repository";
+import { getRepository, Repository } from "typeorm";
+import { Rental } from "../entities/Rental";
+
+class RentalsRepository implements IRentalsRepository {
+
+    private repository: Repository<Rental>
+
+    constructor() {
+        this.repository = getRepository(Rental)
+    }
+
+    async findById(user_id: string) : Promise<Rental[]>{
+        const rentals = await this.repository.find({
+            where: {user_id},
+            relations: ["car_id"]
+        })
+
+        return rentals
+    }
+
+}
+
+-------------------
+
+export { RentalsRepository }
+
+3) Write your useCase with the method with the relationship:
+
+
+import { inject, injectable } from "tsyringe";
+
+import { Rental } from "@modules/rentals/infra/typeorm/entities/Rental";
+import { IRentalsRepository } from "@modules/rentals/repositories/IRen-
+talsRepository";
+
+@injectable()
+class ListRentalsByUserUseCase {
+  constructor(
+    @inject("RentalsRepository")
+    private rentalsRepository: IRentalsRepository
+  ) {}
+
+  async execute(user_id: string): Promise<Rental[]> {
+    const rentalsByUser = await this.rentalsRepository.findByUser(user_id);
+
+    return rentalsByUser;
+  }
+}
+
+export { ListRentalsByUserUseCase };
+
+-------------------
+
+4) Write your controller with the method with the relationship:
+
+
+import { Request, Response } from "express";
+import { container } from "tsyringe";
+
+import { ListRentalsByUserUseCase } from "./ListRentalsByUserUseCase";
+
+class ListRentalsByUserController {
+  async handle(request: Request, response: Response): Promise<Response> {
+    const { id } = request.user;
+
+    const listRentalsByUserUseCase = container.resolve(
+      ListRentalsByUserUseCase
+    );
+
+    const rentals = await listRentalsByUserUseCase.execute(id);
+
+    return response.json(rentals);
+  }
+}
+
+export { ListRentalsByUserController };
+
+-------------------
+
+5) Create and use the router using your controller.

@@ -176,25 +176,6 @@ Used to identify unique resources, for example:
 in code: app.get('/users/:id')
 in URL:/users/1
 
-
------------FUNCTIONAL REQUIREMENTS AND BUSINESS RULES------------
-
-Functional Requirements: Are the functions that your API must to
-have. Examples:
-
--Should be able to create a account.
--Should be able to update user data.
--should be able to delete an account.
-
-------
-
-Business Rules: Are rules that your Functional Requirements must 
-to follow to work correctly. Examples:
-
--Can't to create an account with an user that already exists.
--Can't delete an account with pendency.
--Can't update data of a user that can't exists.
-
 -------------------------MIDDLEWARES-----------------------------
 
 A middleware is a function that receives three params (req, res,

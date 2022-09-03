@@ -1,0 +1,70 @@
+---------------------------------CREATING ADMIN USER SEED----------------------------------
+
+1) Create a new folder named "seeds" with a new file named as "admin" inside 
+src/shared/infra/typeorm
+
+---------------
+
+2) In this new file, import the getConnection  from typeorm, create an async
+function to instance the getConnection and write your admin user trhough the
+connection.query method. Then call the function. Example:
+
+import { v4 as uuidv4 } from 'uuid'
+import { hash } from 'bcryptjs'
+import createConnection from '../index'
+
+async function create() {
+    const connection = await createConnection('localhost')
+
+    const id = uuidv4()
+    const password = hash('admin', 8)
+
+    await connection.query(
+        `INSERT INTO USERS(id, name, email, password, "isAdmin", created_at, "driver_license")
+            values('${id}', 'admin', 'admin@rentx', '${password}', true, 'now()', '123456')
+        `
+    )
+
+    await connection.close
+}
+
+create().then(() => console.log('Admin user created'))
+
+OBS: isAdmin and driver_license need be with double quotes.
+
+---------------
+
+3) Alter your file index.ts inside ts-node-dev src/shared/infra/typeorm/ to (for 
+avoiding Dokcer conflicts):
+
+import { Connection, createConnection, getConnectionOptions } from 'typeorm';
+
+export default async (host = "database"): Promise<Connection> => {
+    const defaultOptions = await getConnectionOptions();
+  
+    return createConnection(
+      Object.assign(defaultOptions, {
+        host,
+      })
+    );
+  };
+
+OBS: The value of the host need be the same of the docker-compose.yml file
+
+---------------
+
+4) In the server.ts file, import and use the createConnection. Example:
+
+import createConnection from '../typeorm'
+
+createConnection()
+const app = express();
+
+---------------
+
+5) In your package.json, create a new script named as seed:admin and in the sequence 
+run you script. Example:
+
+"seed:admin" : "ts-node-dev src/shared/infra/typeorm/seed/admin.ts"
+
+yarn seed:admin

@@ -26,5 +26,12 @@ createConnection()
 5) In the root of the project, create a file named ormconfig.json contai-
 ning your database configs. Example:
 
+-----------------------------GENERAL TIPS---------------------------------
+
+You can use auto implements from VSCode if your creating a class that im-
+plements another interface.
+
+Only use snakeCase at working with migrations and databases attributes.
+
 
 
