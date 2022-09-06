@@ -1,0 +1,154 @@
+====================CREATING AND ACCESSING EC2 INSTANCES=====================
+
+1) Log in your AWS console, search for EC2, click on new Instance, and con-
+figure your instance settings (Ubuntu 20.64 image is a good choice).
+
+---------------------------
+
+2) Click on "Launch instance", if you have not a key pair already created, 
+you must create one passing a string value, clicking on "Create keys" and 
+so save the .pem file that will be downloaded.
+
+---------------------------
+
+3) Click on your created instance with the right button and click on "Con-
+nect",
+
+---------------------------
+
+4) Download, install, and execute the Putty Key generator, click on "Load",
+select your key directory (must the .pem key download fro AWS EC2 instance,
+select show all files to see .pem format). Click on "Save private key", 
+provide the key name and store it in a safety place.
+
+---------------------------
+
+5) Download, install, and execute the Putty (not the Putty Generator), paste 
+your instance public IPV4 DNS in the host name/or IP address field. Click on 
+"SSH" in the left sidebar and select the option "2" on "SSH protocol version" 
+field.
+
+---------------------------
+7) In "SSH" in the left sidebar, click on the "+" icon and so click on "Au-
+th",  click on "Browse" and select your .ppk private key generated on step 4 
+and so click on "Open".
+
+
+=================ACESSING EC2 INSTANCES ON LINUX WITH DOCKER=================
+
+------------------------------LINUX PROCESS----------------------------------
+
+1) Log in to your AWS console and create a new instance. You should pick a 
+server based on the desired operating system. Provide a name for your .pem,
+download it and store safely.
+
+-----------------------------
+
+2)Download the Putty and the Puttygen in the link below and install them.
+https://www.chiark.greenend.org.uk/~sgtatham/putty/latest.html
+
+The Putty is a software used to convert keys (necessary if your base S.O is 
+Windows).
+
+-----------------------------
+
+3) Open the Puttygen and click on "Load", browse to your .pem key downloaded
+ate the step 1 (select all files at browsing), click on "Open" / "Genera-
+te" and click on "Save private key".
+
+-----------------------------
+
+4) Open the Putty click on "Connection", "SSH", browse to your private key
+saved as .ppk file at step 3 and click on "Open".
+
+-----------------------------
+
+5) Click on "Session", and copy your public IPv4 address that is available on 
+your instance page, and paste it the filed "Host or Ip address", and click
+on "Open".
+
+-----------------------------
+
+6) Provide the user name to connect to the instance. It can be "ubuntu" if
+you are connecting to a Linux instance.
+
+-----------------------------
+
+7) Run sudo apt update to update some Ubuntu tools, in the sequence run the 
+command that is on https://github.com/nodesource/distributions to install the 
+Node.js v14.x: on Ubuntu. Install also the NPM running sudo apt install npm.
+Run node -v and npm -v to check if both are installed.
+
+-----------------------------
+
+8) Run the commands that are on https://docs.docker.com/engine/install/ubuntu/ 
+to install the Docker and from  https://docs.docker.com/compose/install/linux/
+to install Docker Compose. Run dokcer -v to check the Docker installation and 
+docker compose version to check docker compose version.
+    
+-----------------------------
+
+9) In your package.json file add a new script for build appoint to tsc and in-
+side the tsconfig.json file add the prop outDir appoint to ./dist. After this 
+run yarn build to build your app. Example:
+"build": "tsc",
+"outDir": "./dist",
+
+-----------------------------
+
+10) Commit all changes in your code and and push to Github. On your Putty U-
+buntu terminal, after logged in the server, run the command ssh-keygen and 
+press enter to generate a new ssh key. Run the command cat ~/.ssh/id_rsa.pub
+to see your key, copy this key and create a new SSH key on your GitHub.
+
+-----------------------------
+
+11) On your Ubuntu server create a new dir for cloning your repo from GitHub 
+running mkdir your_folder_name and so on GitHub navigates to your repository 
+copy the SSH cloning code, enter in your new folder created and clone your 
+repository inside it running git clone your_ssh_code (type yes for confirm 
+authorization for github.com host). After this enter in your cloned repo and
+run npm i to install the project.
+
+-----------------------------
+
+12) In your project folder, rename the .env.example to .env through the cp 
+command, edit it throught the vim command, repeat the process for the orm-
+config.json (rename all ./src to dist dir). If necessary, repeat the process 
+for ohter needed files (like configuration files e etc).
+
+-----------------------------
+
+13) Run docker-compose up for up your all images of your application.
+
+
+
+... another way => 
+
+8) Run $ ssh-keygen -t rsa and goes confirming to generate a new SSH key, then 
+run $ cat ~/.ssh/id_rsa.pub to cath your new SSH key. Go to your GitHub profile,
+Setting, click on "SSH and GPG keys", "New SSH key", paste your generated and
+provide a name for your new SSH key.
+
+-----------------------------
+
+9) On your Linux server terminal, run git clone and paste your SSH key gene-
+rated. After cloning your repo, navigate to it and run npm install
+
+-----------------------------
+
+10) Add your environment variables that will be used in production. To do it
+run the command $ export PROD_URL=some_url_example_production.
+
+-----------------------------
+
+11) On your Linux server terminal, navigate to your project terminal and 
+run the command to start your server. Example: node src/server.
+
+-----------------------------
+
+12) To access your instance in any browser, access the public IpV4 address with 
+the port configured in your server application.
+Example: http://3.84.224.168:3333/
+
+

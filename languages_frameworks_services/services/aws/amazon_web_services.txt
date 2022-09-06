@@ -709,56 +709,6 @@ You don't need wast money with datacenters maintance.
 You can expends your applications globally in minutes with low la-
 tency.
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 ======================GENERAL TIPS============================
 
 How much is low your ping, better it is. You can test your la-

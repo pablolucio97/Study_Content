@@ -1,5 +1,11 @@
 =========================UBUNTU LINUX SERVER COMMANDS=============================
 
+Create a new user for the SO: sudo adduser your_user_name
+
+Add permiissions to cerated user: sudo usermod -aG sudo your_user_name
+
+Loggin in the machine with created user: sudo su -app
+
 Create a directory: mkdir your_directory_name
 
 Delete a directory: rm -r your_directory_name
@@ -11,3 +17,11 @@ Creating environment variables: export YOUR_VARIABLE_NAME=your_variable_value
 Navigate to directory: cd your_directory_name
 
 Back to default server directory: cd 
+
+Editing a file: run vim your_file.extension, type /desired_string to found the
+desired string, type "i" and press "Enter" to edit the content, press "Esc" at 
+finish and type ":wq!" to exit file.
+
+Renamig a file: cp file_name new_file name:
+
+
