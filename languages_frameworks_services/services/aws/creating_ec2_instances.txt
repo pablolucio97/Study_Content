@@ -121,6 +121,10 @@ for ohter needed files (like configuration files e etc).
 
 13) Run docker-compose up for up your all images of your application.
 
+OBS: To run migrations on EC2 instances, you need to acess the paste on node_
+modules inside your server dir and run the migration command. Example: 
+./node_modules/.bin/typeorm migration:run
+
 
 
 ... another way => 

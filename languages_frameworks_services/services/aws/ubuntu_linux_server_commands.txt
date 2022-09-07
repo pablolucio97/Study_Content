@@ -1,27 +1,45 @@
 =========================UBUNTU LINUX SERVER COMMANDS=============================
 
-Create a new user for the SO: sudo adduser your_user_name
+sudo adduser your_user_name: creates a new user for the SO: 
 
-Add permiissions to cerated user: sudo usermod -aG sudo your_user_name
+sudo usermod -aG sudo your_user_name: add permissions to cerated user
 
-Loggin in the machine with created user: sudo su -app
+sudo su -app: loggin in the machine with created user
 
-Create a directory: mkdir your_directory_name
+mkdir your_directory_name: create a directory
 
-Delete a directory: rm -r your_directory_name
+rm -r your_directory_name: delete a directory
 
-Delete a directory without confirmations: rm -rf your_directory_name
+rm -rf your_directory_name: delete a directory without confirmations
 
-Creating environment variables: export YOUR_VARIABLE_NAME=your_variable_value
+export YOUR_VARIABLE_NAME=your_variable_value:  Creates a environment variable
 
-Navigate to directory: cd your_directory_name
+cd your_directory_name: navigates to a directory
 
-Back to default server directory: cd 
+cd: back to default server directory
+
+cd ..: Back to previous directory
+
+cp file_name new_file name: renames a file
+
+ssh-keygen (in the sequence provide a name for the key): generates new ssh-key
+
+cat your_shhkey.pub: gets the new ssh-key for reading/copy
+
+sudo apt install the_pack_name: installs a third pack directlly in the SO
+
+cd /etc/pack_name:  access third packs folder
+
+sudo -i: do login as root on Ubuntu (more permissions granted)
 
 Editing a file: run vim your_file.extension, type /desired_string to found the
 desired string, type "i" and press "Enter" to edit the content, press "Esc" at 
 finish and type ":wq!" to exit file.
 
-Renamig a file: cp file_name new_file name:
+==============================GENERAL TIPS=====================================
+
+Log as root to have root user access.
+
+Use the prefix sudo for grant permissions.
 
 

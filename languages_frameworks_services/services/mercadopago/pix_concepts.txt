@@ -1,0 +1,80 @@
+===========================PIX CONCEPTS=============================
+
+The PIX is the operation of transfer money between a receiver and a 
+payer where the receiver provides a way to payer do the payment (it
+can be through QRCode or through URL).
+
+The generation of a QRCode generally is done only through web brow-
+ser and payments through mobile applications are done by a shared 
+URL.
+
+-------------------------TYPES OF QRCODES---------------------------
+
+A QRCode can be static or dynamic and it differs in the quantity of 
+information, the final URL length and the payload that only exists
+in dynamic QRCodes. A QRCode represents regardless of your type, at 
+ends an URL appointing to the bcb page to allow that the transaction 
+can be done.
+
+Static QRCode: This type of QRCode is composed of the DICT key and 3 
+another options (value, additional and transaction text note), to-
+talizating 4 fields.
+
+--------
+
+Dynamic QRCode: This type of QRCode is composed of the value, tran-
+saction text note and the LinkURL. The LinkURL contains the payload
+that can be recovered when the URL is called, and is in the payload 
+that the QRCode information are, containing obrigatory informations
+and options informations as below.
+
+Obrigatory informations:
+payload Pix version: versao
+payload id: documento.id
+payload review: documento.revisao
+QRCode timestamp creation: calendario.criacao
+QRCode timestamp apresentation: calendario.apresentacao
+Document original value: valor.original
+Document final value: valor.final
+Receiver DICT key: theReceiverPixKey
+Transaction ID: txid
+
+Optional informations:
+QRCode timestamp expiration: calendario.expiracao
+Payment valid date limit: calendario.vencimento
+Payment is payable after valid date: calendario.pagavelAposVencimento
+Payer CPF: pagador.cpf
+Payer CNPJ: pagador.cnpj
+Payer name: pagador.nome
+Value fees: valor.juro
+Value rent by delay: valor.multa
+Discount: valor.descontos
+Payment value can be altered: valor.permiteAlteration
+Free aditional text info: infoAdicionais
+
+------------------CONFIGURING PIX ON MOBILE DEVICES------------------
+
+Each mobile platform (Android and IOS) has your own guide to confi-
+gure the PIX usage:
+
+Android:
+
+On Android, you should to provide your app_name.com (name that will
+be on GooglePlay) and the SHA1 certificate.
+
+https://pix.bcb.gov.br/.well-known/assetlinks.json
+
+---------
+
+IOS:
+
+On IOS, you should to provide your appId (appId that will be on Ap-
+pleStore)
+
+https://developer.apple.com/documentation/safariservices/supporting
+_associated_domains_in_your_app
+
+https://pix.bcb.gov.br/.well-known/apple-app-site-association
+
+
+

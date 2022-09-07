@@ -1,0 +1,128 @@
+----------------------------------RETURNING URLS ON RESPONSES------------------------------
+
+1) Install the class-transformer running yarn add class-transformer@0.4.0.
+
+-----------------------
+
+2) In your entity, add a new function to return the string url through the Expose me-
+thod. Example:
+
+import { v4 as uuidv4 } from 'uuid'
+import { Column, CreateDateColumn, Entity, PrimaryColumn } from 'typeorm'
+import { Expose } from 'class-transformer'
+
+@Entity('users')
+class User {
+    @PrimaryColumn()
+    id?: string;
+
+    ...
+
+    @CreateDateColumn()
+    created_at: Date;
+
+    @Expose({ name: 'avatar_url' })
+    avatar_url(): string {
+        switch (process.env.disk) {
+            case 's3':
+                return `${process.env.AWS_BUCKET_BASEURL}/avatar/${this.avatar}`
+            case 'local':
+                return `${process.env.LOCALHOST_BASEURL}/avatar/${this.avatar}`
+            default:
+                return null
+        }
+    }
+
+    constructor() {
+        if (!this.id) {
+            this.id = uuidv4()
+        }
+    }
+}
+
+export { User }
+
+-----------------------
+
+3) In your mapper class use the method classToClass to handle the classes. Example:
+
+import { IUserResponseDTO } from "../dtos/IUserResponseDTO";
+import { User } from "../infra/typeorm/entities/user";
+import { classToClass } from 'class-transformer'
+
+class UserMap {
+    // static allows to use the method without instance the class
+    static toDTO({
+        id,
+        email,
+        name,
+        avatar,
+        driver_license,
+        avatar_url,
+    }: User): IUserResponseDTO {
+        // does the class manipulation return also the value of avatar_url function
+        const user = classToClass({
+            id,
+            email,
+            name,
+            avatar,
+            driver_license,
+            avatar_url
+        })
+        return user
+    }
+}
+
+export { UserMap }
+
+-----------------------
+
+4) In your app.ts use the express.static to allowing see static files on the browser. Ex:
+
+import "reflect-metadata";
+import 'dotenv/config';
+import express, { json, NextFunction } from 'express';
+import 'express-async-errors'
+import swagger from 'swagger-ui-express'
+import { routes } from './routes';
+
+import swaggerJSON from '../../../swagger.json'
+import createConnection from '../typeorm'
+import '@shared/container'
+import { AppError } from "@shared/errors/AppError";
+import upload from "@config/upload";
+
+createConnection()
+const app = express();
+
+app.use(json())
+
+app.use('/api-docs', swagger.serve, swagger.setup(swaggerJSON));
+
+//reads the file content every time access the /avatar endpoint
+app.use('/avatar', express.static(`${upload.tmpFolder}/avatar`))
+
+app.use(routes)
+
+app.use((
+    err: Error,
+    req: express.Request,
+    res: express.Response,
+    next: NextFunction
+) => {
+
+    if (err instanceof AppError) {
+        return res.status(err.statusCode).json({
+            message: err.message
+        })
+    }
+
+    return res.status(500).json({
+        status: 500,
+        message: `Internal server error: ${err.message}`
+    })
+
+})
+
+export { app }
+
