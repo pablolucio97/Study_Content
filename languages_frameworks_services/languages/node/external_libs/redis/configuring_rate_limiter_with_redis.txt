@@ -1,0 +1,127 @@
+======CONFIGURNG RATE LIMITER WITH RATE-LIMITER-FLEXIBLE DOKCER AND REDIS=======
+
+Configure rate limiter is important for avoid DDO'S attacks and attacks for many 
+requests.
+
+1) Run yarn add redis@3.1.0 @types/redis@2.8.28 and yarn add rate-limiter-flexi-
+ble.
+
+-------------
+
+2) Create a Dokcer service for working with Redis editing your docker-compose
+file. Example: 
+
+version: "3.9"
+
+services:
+    database_ignite: 
+        image: postgres
+        container_name: database_ignite
+        restart: always
+        ports: 
+            - 5432:5432
+        environment:
+             - POSTGRES_USER=docker
+             - POSTGRES_PASSWORD=ignite
+             - POSTGRES_DB=rentalx
+        volumes:
+            - pgdata:/data/postgres
+
+    redis:
+        image: redis:alpine
+        ports:
+            - 6379:6379
+
+volumes:
+    pgdata:
+        driver: local
+
+-------------
+
+3) Create your Redis env vars to communicate with rate-limiter-flexible. Ex:
+
+REDIS_HOST=localhost
+REDIS_PORT=6379
+REDIS_PASSWORD=
+
+-------------
+
+4) Inside of shared/infra/http/middlewares, create a new rateLimiter mid-
+dleware using the redis.createClient and the RateLimiterRedis. Example:
+
+import { NextFunction, Request, Response } from 'express'
+import redis from 'redis';
+import { RateLimiterRedis } from 'rate-limiter-flexible'
+import { AppError } from '@shared/errors/AppError';
+
+const redisClient = redis.createClient({
+    host: process.env.REDIS_HOST,
+    port: Number(process.env.REDIS_PORT)
+})
+
+const limiter = new RateLimiterRedis({
+    storeClient: redisClient,
+    keyPrefix: 'rateLimiter',
+    points: 10, // max number of request/second allowed by user
+    duration: 1 //seconds
+})
+
+export default async function rateLimiter(
+    request: Request,
+    response: Response,
+    next: NextFunction
+): Promise<void> {
+    try {
+        await limiter.consume(request.ip) // verifies number of request/ip
+        return next()
+    } catch (error) {
+        throw new AppError('Too many requests', 429)
+    }
+}
+
+-------------
+
+5) In your app, import the rateLimiter middleware function and use it be-
+fore the routes. Example:
+
+
+import "reflect-metadata";
+import express, { json, NextFunction } from 'express';
+import 'express-async-errors'
+import { routes } from './routes';
+import rateLimiter from '@shared/infra/http/middlewares/rateLimiter'
+
+import createConnection from '../typeorm'
+import { AppError } from "@shared/errors/AppError";
+
+
+createConnection()
+const app = express();
+
+app.use(rateLimiter)
+app.use(json())
+
+app.use(routes)
+
+app.use((
+    err: Error,
+    req: express.Request,
+    res: express.Response,
+    next: NextFunction
+) => {
+
+    if (err instanceof AppError) {
+        return res.status(err.statusCode).json({
+            message: err.message
+        })
+    }
+
+    return res.status(500).json({
+        status: 500,
+        message: `Internal server error: ${err.message}`
+    })
+
+})
+
+export { app }
+

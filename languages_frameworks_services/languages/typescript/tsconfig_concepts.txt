@@ -140,6 +140,10 @@ Refs: https://www.typescriptlang.org/tsconfig#exclude
 
 -----------------------------------GENERAL TIPS------------------------------------
 
-set as false in your tsconfig.json the option "noImplicitAny" if you're facing with 
+Set as false in your tsconfig.json the option "noImplicitAny" if you're facing with 
 third libraries that doesn't has type declarations and TypeScript doesn't recognize
 your type definitions.
+
+If you're strugglin with the synax "import * as some from some", in your tsconfig 
+add the pro "esModuleInterop": true to overwrite this type of import and import 
+the library normally in the syntax "import some from some".
