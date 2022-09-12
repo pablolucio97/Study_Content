@@ -238,7 +238,7 @@ script act like the Controller.
 Serverless architeture:
 
 Is the architetuere where the software rely of third services to manage your back-
-end. It is split in two categories: Back as services and Fun��es as services. A 
+end. It is split in two categories: Back as services and Functions as services. A 
 good example of this architetures is the Amazon Web Services.
 
 ----------------------------------------------------------------------------------
