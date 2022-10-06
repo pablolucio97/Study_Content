@@ -1,0 +1,93 @@
+=============REPORTING PRODUCTION ERRORS WITH SENTRY ON NODE APPS===============
+
+1) Log into sentry.io, navigates to the dashboard and click on "Create Project",
+select the type of application you've working, select the option "Aler me on e-
+very issue", mark all alerts options and provide a sentry project name.
+
+-------------
+
+2) Run yarn add @sentry/node @sentry/tracing to add the Sentry.
+
+-------------
+
+3) Inside the app.ts, import the sentry and the tracing, paste the Sentry.init
+from Sentry to your app. Use the Sentry.Handlers.errorHandler, Sentry.Handlers
+.requestHandler(), Sentry.Handlers.tracingHandler(). Example:
+
+import "reflect-metadata";
+import 'dotenv/config';
+import express, { json, NextFunction } from 'express';
+import * as Sentry from "@sentry/node";
+import * as Tracing from "@sentry/tracing";
+import 'express-async-errors'
+import swagger from 'swagger-ui-express'
+import { routes } from './routes';
+import rateLimiter from '@shared/infra/http/middlewares/rateLimiter'
+import cors from 'cors'
+
+
+import swaggerJSON from '../../../swagger.json'
+import createConnection from '../typeorm'
+import '@shared/container'
+import { AppError } from "@shared/errors/AppError";
+import upload from "@config/upload";
+
+createConnection()
+const app = express();
+
+app.use(rateLimiter)
+
+Sentry.init({
+    dsn: process.env.SENTRY_DNS,
+    integrations: [
+        new Sentry.Integrations.Http({ tracing: true }),
+        new Tracing.Integrations.Express({ app }),
+    ],
+    tracesSampleRate: 1.0,
+});
+
+app.use(Sentry.Handlers.requestHandler());
+app.use(Sentry.Handlers.tracingHandler());
+
+app.use(json())
+
+
+
+app.use('/api-docs', swagger.serve, swagger.setup(swaggerJSON));
+
+//reads the file content every time access the /avatar endpoint
+app.use('/avatar', express.static(`${upload.tmpFolder}/avatar`))
+
+
+app.use(cors())
+app.use(routes)
+
+app.use(Sentry.Handlers.errorHandler());
+
+app.use((
+    err: Error,
+    req: express.Request,
+    res: express.Response,
+    next: NextFunction
+) => {
+
+    if (err instanceof AppError) {
+        return res.status(err.statusCode).json({
+            message: err.message
+        })
+    }
+
+    return res.status(500).json({
+        status: 500,
+        message: `Internal server error: ${err.message}`
+    })
+
+})
+
+export { app }
+
+Obs: Use the Sentry.init.dsn as an environment var.
+
+-------------
+
+4) From now, each error request should to appear on your Sentry dashboard.
