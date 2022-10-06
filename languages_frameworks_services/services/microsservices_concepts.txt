@@ -1,0 +1,29 @@
+-------------------------MICROSSERVICES CONCEPTS------------------------
+
+Microservices are the archteture where the system itself is splited in 
+various another services (monolitics). There is an API Gateway to man-
+age the access for microservices where the access to a specific servi-
+ce/database (monolitic) is done based on the port linked to that mono-
+litic each function of the system. 
+
+This take various advantages, like: High scability, allow to use dif-
+ferent technologies to build each service, easey maintanance, reuseble 
+code, autonomy and agility. Microservices archteture should be imple-
+mented if the business is growing up and you know all resources of the 
+organization.
+
+Monolitic is the archteture where the all functionalities of the system
+are concentrede in the system itself.
+
+Little applications trends to be molitics for avoid became complex.
+
+Bigger applications trends to use microservices for distribute the res-
+ponsabilities of the system to another services avoind hereby the chan-
+ce of the software breaks itself and be more easy to make maintanance.
+If you know that the system will receive more requests over an speci-
+fic monolitic, you can add resources to this specific monolitic.
+
+You can use different languages for build microsservices and do them 
+communicate between.
+
+

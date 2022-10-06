@@ -83,3 +83,17 @@ jobs:
 
 References:
 https://github.com/appleboy/scp-action
+<<<<<<< HEAD
+=======
+
+-------------------------------GENERAL TIPS--------------------------------------
+
+GitHub Actions ususally watch only the alterations on main/master branch to do an 
+updated.
+
+Jobs are the work will be executed in the Action, in each job there is a sequence 
+of tasks.
+
+Be extremelly careful at writing .yml files, only use the "-" before the keywords
+"name" and "uses" ("uses" only when there's not the keyword "name" before).
+>>>>>>> 3e0a44f2e8a5c80a12afdd80f8794fb79ceacfaa
