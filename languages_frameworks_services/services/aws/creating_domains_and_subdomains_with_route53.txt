@@ -1,0 +1,22 @@
+
+======CREATING AND CONFIGURING DOMAINS AND SUBDOMAINS ON AWS ROUTE53========
+
+1) On AWS console, search for "Route 53", "Created hosted zones", type the 
+domain you already have, example pablosilvadev.com.br, select as "Public hos-
+ted zone" and click on "Create hosted zone".
+
+---------------------
+
+2) Click on your created zone record, click on "Create Record", type your subdo-
+main, in the value, type the EC2 instance public IPV4, and click on "Create re-
+corder".
+
+---------------------
+
+3) Where you have bought the domain (ex: RegistroBr), search for DNS, click on
+"Configure DNS", "New entrance", select the type as "A" (alias) and paste the
+instance IP on the respective fiel. 
+
+Use the website https://www.whatsmydns.net/to check if your subdomain is ok.
+
+Obs: For a subdomain or a domain, the process is the same.
