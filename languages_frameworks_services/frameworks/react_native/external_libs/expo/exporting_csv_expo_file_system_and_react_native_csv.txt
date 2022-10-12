@@ -1,0 +1,52 @@
+
+import * as FileSystem from 'expo-file-system';
+import { jsonToCSV } from 'react-native-csv'
+
+export function ExportCSV() {
+                        
+    const { StorageAccessFramework } = FileSystem;
+
+    async function handleSaveExportData() {
+        const jsonData = `[
+            {
+                "id": "ee9cc85a-9a6d-4071-9d5d-195734b9082b",
+                "service": "Youtube",
+                "login_or_email": "pablo@test.com",
+                "user_id": "586fb5ee-4ffb-4852-92c2-ce197925fddd",
+                "password": "abc123",
+            },
+            {
+                "id": "1d0920d5-219c-4652-9e8d-d88c1d5b2a2e",
+                "service": "Babaloo",
+                "login_or_email": "pablo@test.com",
+                "user_id": "586fb5ee-4ffb-4852-92c2-ce197925fddd",
+                "password": "123456@123",
+            },
+        ]`;
+
+        const CSV = jsonToCSV(jsonData);
+
+        const permissions = await StorageAccessFramework.requestDirectoryPermissionsAsync();
+        if (!permissions.granted) {
+            return;
+        }
+        try {
+            await StorageAccessFramework
+                .createFileAsync(permissions.directoryUri, 'MyData', 'text/csv')
+                .then(async (uri) => {
+                    await FileSystem.writeAsStringAsync(uri, CSV);
+                    alert('Exported Successfully')
+                })
+                .catch((error) => {
+                    console.log(error)
+                });
+        } catch (error) {
+            throw new Error(error);
+        }
+	return(
+	<Button
+	  onPress={handleSaveExportData}
+	  title='Export CSV'
+	/>
+  )
+}

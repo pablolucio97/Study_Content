@@ -1,0 +1,101 @@
+/* eslint-disable prefer-const */
+import React, { useState } from 'react';
+import { Text } from '../../components/Text';
+import * as FileSystem from 'expo-file-system';
+
+import { Platform } from 'react-native';
+
+
+export function DownloaderFile() {
+
+
+
+  const { StorageAccessFramework } = FileSystem;
+
+  const [downloadProgress, setDownloadProgress] = useState(0);
+
+  const downloadPath = FileSystem.documentDirectory +
+    (Platform.OS == 'android' ? '' : '');
+
+  //@ts-ignore
+  const ensureDirAsync = async (dir, intermediates = true) => {
+    const props = await FileSystem.getInfoAsync(dir)
+    if (props.exists && props.isDirectory!) {
+      return props;
+    }
+    await FileSystem.makeDirectoryAsync(dir, { intermediates })
+    return await ensureDirAsync(dir, intermediates)
+  }
+
+  //@ts-ignore
+  const downloadCallback = downloadProgress => {
+    const progress = Number(Number(downloadProgress.totalBytesWritten / downloadProgress.totalBytesExpectedToWrite) * 100).toFixed(0);
+    setDownloadProgress(Number(progress));
+  };
+
+  //@ts-ignore
+  const downloadFile = async (fileUrl) => {
+    if (Platform.OS == 'android') {
+      ensureDirAsync(downloadPath);
+    }
+    //@ts-ingore
+    let fileName = fileUrl.split('Reports/')[1];
+    //alert(fileName)
+    const downloadResumable = FileSystem.createDownloadResumable(
+      fileUrl,
+      downloadPath + fileName,
+      {},
+      downloadCallback
+    );
+
+    try {
+      //@ts-ignore
+      const { uri } = await downloadResumable.downloadAsync();
+      if (Platform.OS == 'android')
+        saveAndroidFile(uri, fileName)
+    } catch (e) {
+      console.error('download error:', e);
+    }
+  }
+
+  //@ts-ignore
+  const saveAndroidFile = async (fileUri, fileName = 'File') => {
+    try {
+      const fileString = await FileSystem.readAsStringAsync(fileUri, { encoding: FileSystem.EncodingType.Base64 });
+
+      const permissions = await StorageAccessFramework.requestDirectoryPermissionsAsync();
+      if (!permissions.granted) {
+        return;
+      }
+
+      try {
+        await StorageAccessFramework.createFileAsync(permissions.directoryUri, fileName, 'application/mp4')
+          .then(async (uri) => {
+            await FileSystem.writeAsStringAsync(uri, fileString, { encoding: FileSystem.EncodingType.Base64 });
+            alert('Report Downloaded Successfully')
+          })
+          .catch((error) => {
+            console.log(error)
+          });
+      } catch (error) {
+        throw new Error(error);
+      }
+
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
+
+  return (
+    <>
+      <Button
+        onPress= {() =>
+        downloadFile('https://p.download.uol.com.br/ziggi/ftp4/cursos-apostilas/apostila-portugues-para-concurso.pdf')}
+      />
+      <Text
+        content={downloadProgress}
+      />
+    </>
+  )
+}
