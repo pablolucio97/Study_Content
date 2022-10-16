@@ -1,0 +1,144 @@
+1) Run npx sb init --builder @storybook/builder-vite --use-npm to
+init the sotrybook on your project. A .storybook folder will be 
+created, all storybook dependencies installed and the script for 
+run storybook too.
+
+------------------
+
+2) Run npm run storybook to starts the storybook server.
+
+------------------
+
+3) In .storybook/manager.js import addons and themes for configu-
+re the Storybook theme through addons.setConfig. Example:
+
+import { addons } from '@storybook/addons'
+import { themes } from '@storybook/theming'
+
+addons.setConfig({
+    theme: themes.dark
+})
+
+------------------
+
+4) In storybook/preview.cjs import themes and your global style,
+and pass the themes inside a "docs" key. Example:
+
+import { themes } from '@storybook/theming';
+
+import '../src/styles/global.css';
+
+export const parameters = {
+  actions: { argTypesRegex: "^on[A-Z].*" },
+  controls: {
+    matchers: {
+      color: /(background|color)$/i,
+      date: /Date$/,
+    },
+  },
+  docs: {
+    theme: themes.dark
+  }
+}
+
+------------------
+
+5) Create your React component. Example:
+
+import {Slot} from '@radix-ui/react-slot'
+import clsx from 'clsx'
+import { ReactNode } from 'react';
+
+export interface TextProps {
+  children: ReactNode;
+  size?: 'sm' | 'md' | 'lg';
+  asChild?: boolean;
+  className?: string;
+}
+
+
+export function Text({ size = 'md', 
+    children, 
+    asChild, 
+    className }: TextProps){
+
+  const Comp = asChild ? Slot : 'span'
+
+  return (
+    <Comp className={
+      clsx('text-white100 font-sans', {
+        'text-xs': size === 'sm',
+        'text-sm': size === 'md',
+        'text-md': size === 'lg',
+      },
+      className
+      )
+    }>
+      {children}
+    </Comp>
+  )
+}
+
+------------------
+
+6) After created your component, in the same folder, create 
+the storybook file named as MyComponent.stories.tsx contai-
+ning the importation of your component, exporting default 
+an object containing title, component, args, and argTypes. 
+Use Meta for typing your component and StoryObj for typing 
+the demos of your component. Example:
+
+import { Meta, StoryObj } from '@storybook/react'
+import { Text, TextProps } from './Text'
+
+export default {
+    title: 'Components/Text',
+    component: Text,
+    args: {
+        children: 'Lorem Ipsum',
+    },
+    argTypes: {
+        size: {
+            options: ['sm', 'md', 'lg'],
+            control: {
+                type: 'inline-radio'
+            }
+        }
+    }
+} as Meta<TextProps>
+
+export const Default: StoryObj<TextProps> = {}
+export const Small: StoryObj<TextProps> = {
+    args: {
+        size: 'sm'
+    }
+}
+
+export const Large: StoryObj<TextProps> = {
+    args: {
+        size: 'lg'
+    }
+}
+
+export const CustomComponent: StoryObj<TextProps> = {
+    args: {
+        asChild: true,
+        children: (
+            <p>Testing</p>
+        )
+    }
+}
+
+-----------------------GENERAL TIPS----------------------
+
+Use decorators on your storybbok object to render adja-
+cent elements.
+
+Use Slot from @radix-ui/react-slot to define a default 
+HTML element to render and render another conditionally.
+
+Use clsx from 'clsx' for define a class as default and 
+define a second class conditionally.
+
+You can use StoryBook for document forms and complex com-
+ponents too.

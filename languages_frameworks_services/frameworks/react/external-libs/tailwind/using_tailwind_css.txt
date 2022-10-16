@@ -1,0 +1,80 @@
+PostCSS is a bundler for CSS
+
+1) Install the Tailwnd, PostCSS and the autoprefixer running npm i -D
+tailwndcss postcss autoprefixer.
+
+-----------------
+
+2) Run npx tailwindcss init -p for start the TailwindCSS and the 
+PostCSS (on Vite projects, does not need to configure postcss).
+
+-----------------
+
+3) Open the tailwind.config.cjs file created on the project root and 
+configure the tailwind css passing inside the key "content" your co-
+de path and defining your theme inside the "theme" key. To add exter-
+nal fonts, pass it inside the "extend" key.  Example:
+
+/** @type {import('tailwindcss').Config} */
+module.exports = {
+  content: [
+    './src/**/*.tsx'
+  ],
+  theme: {
+    colors: {
+      transparent: 'transparent',
+
+      white100: '#FFFFFF',
+      white800: '#E0E0E0',
+      
+      gray700: '#7C7C8A',
+      gray800: '#555555',
+
+      black100: '#3A3A3A',
+      black500: '#2F2D2D',
+
+      cyan300: '#9DECF1',
+      cyan500: '#61DAFB'
+    },
+    fontSizes: {
+      xs: 14, sm: 16, md: 18, lg: 20, xl: 24, '2xl': 32
+    },
+    extend: {
+      fontFamily: {
+        sans: 'Inter, sans-serif'
+      }
+    },
+  },
+  plugins: [],
+}
+
+-----------------
+
+4) Inside your src folder, create a folder named as "styles" and 
+inside a new file named as global.css importing the tailwind base,
+utilities and components. Example:
+
+@tailwind base;
+@tailwind utilities;
+@tailwind components;
+
+-----------------
+
+5) In your application import the file global.css. Example:
+
+import './styles/global.css'
+
+export default function App() {
+  return (
+    <div className='w-screen h-screen bg-black500 flex flex-col items-center justify-center'>
+        <p className='text-white100 font-sans text-sm px-4 py-3'>My App</p>
+    </div>
+  )
+}
+
+------------------------GENERAL TIPS--------------------------
+
+You can exchange the Tailwind theme for your passing your 
+theme tokens directly inside the 'theme' key or your can ex-
+tend Tailwind theme passing your theme tokens inside the 'ex-
+tends' key.

@@ -1,0 +1,156 @@
+1) Run npm i @storybook/addon-interactions @storybook/jest
+@storybook/testing-library @storybook/test-runner -D to 
+install the interactions addon, Jest and React Testing Li-
+brary and the test-runner addon.
+
+------------
+
+2) Run npm i msw msw-storybook-addon -D to install the
+msw that will work mocking an local api inside your 
+browser service works and the msw-storybook-addon.
+
+-------------
+
+3) Run npx msw init public (Vite and NextJS has the 
+"public" folder, check if your project has too) and
+confirm "public" as your workdir on the cli.
+
+-------------
+
+4) In .storybook/main.cjs add the interactions addon, 
+ the interactionsDebugger and pass the path of your 
+ public folder thorugh the staticDirs key. Example:
+
+module.exports = {
+  "stories": [
+    "../src/**/*.stories.mdx",
+    "../src/**/*.stories.@(js|jsx|ts|tsx)"
+  ],
+  "addons": [
+    "@storybook/addon-links",
+    "@storybook/addon-essentials",
+    "@storybook/addon-interactions",
+    "@storybook/addon-a11y",
+  ],
+  "framework": "@storybook/react",
+  "core": {
+    "builder": "@storybook/builder-vite"
+  },
+  "features": {
+    "storyStoreV7": true,
+    "interactionsDebugger": true
+  },
+  "staticDirs": [
+    "../public"
+  ],
+  viteFinal: (config, { configType }) => {
+    if (configType === "PRODUCTION") {
+      config.base = '/ignite-lab-design-system/'
+    }
+    return config
+  }
+}
+
+-------------
+
+5) Add the msw initializer inside the .storybook/
+preview.cjs file. Example:
+
+import { themes } from '@storybook/theming';
+import { initialize, mswDecorator } from 'msw-storybook-addon';
+
+import '../src/styles/global.css';
+
+
+// Initialize MSW
+initialize({onUnhandledRequest: 'bypass'});
+
+// Provide the MSW addon decorator globally
+export const decorators = [mswDecorator];
+
+export const parameters = {
+  actions: { argTypesRegex: "^on[A-Z].*" },
+  controls: {
+    matchers: {
+      color: /(background|color)$/i,
+      date: /Date$/,
+    },
+  },
+  docs: {
+    theme: themes.dark
+  }
+}
+
+-------------
+
+6) In your component.stories file, import within and 
+userEvent from '@storybook/testing-library', import 
+expect from '@storybook/jest', write your test inside 
+your component variantion passing a function named as 
+"play" that receives the canvasElement as destructu-
+red param and use it for get the element in the sto-
+rybook canvas. Example:
+
+import { Meta, StoryObj } from '@storybook/react'
+import { within, userEvent, waitFor } from 
+'@storybook/testing-library'
+import { expect } from '@storybook/jest'
+import { SignIn, SignInProps } from './SignIn'
+import { rest } from 'msw'
+
+export default {
+    title: 'Pages/SignIn',
+    component: SignIn,
+    args: {
+        title: 'Ignite Lab 2022'
+    },
+    parameters: {
+        msw: {
+            handlers: [
+                rest.post('/sessions', (req, res, ctx) => {
+                    return res(ctx.json({ res }))
+                })
+            ]
+        }
+    }
+} as Meta<SignInProps>
+
+export const Default: StoryObj<SignInProps> = {
+    play: async ({ canvasElement }) => {
+        const canvas = within(canvasElement)
+        userEvent.type(canvas.getByPlaceholderText('Digite seu e-mail'), 
+        'pablolucio_@hotmail.com')
+        userEvent.type(canvas.getByPlaceholderText('******'), '123456')
+        userEvent.click(canvas.getByRole('button'))
+
+        await waitFor(() => {
+            return expect(canvas.getByText('Authenticado'))
+            .toBeInTheDocument()
+        })
+    }
+}
+
+-------------
+
+7) Check your tests results inside the "Interactions" 
+tab on your StoryBook panel.
+
+-------------
+
+8) If you wanna to run your tests locally, add a script
+for it executing the test runner and execute this script
+on your machine. Example:
+
+"test-storybook": "test-storybook --watch"
+
+----------------------GENERAL TIPS----------------------
+
+Use wait for to async expected rsults.
+
+Use within to search for an element inside the canvas.
+
+Use rest from msw to simulates api requests.
+
+Use parameters in your component variation to handle
+api requests.
+

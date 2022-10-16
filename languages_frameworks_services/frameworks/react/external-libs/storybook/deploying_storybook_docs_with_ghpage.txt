@@ -1,0 +1,131 @@
+1) Install the storybook-deployer running npm i @storybook/
+storybook-deployer -D.
+_____________
+
+2) Run npm i @storybook/addon-a11y -D to install the Story-
+book acessibility plugin.
+_____________
+
+3) On .storybook/main.cjs, inside the addons array, add the
+a11y addoen. Example: "@storybook/addon-a11y".
+_____________
+
+4) Starts the Git in your repository and link it with a re-
+mote respository.
+_____________
+
+5) In your package.json add the script "deploy-storybook": 
+"storybook-to-ghpages" to run the command for deploy Story-
+book.
+_____________
+
+6) Run the command build-storybook to building your story-
+book documentation. A folder named as 'storybook-static'
+will be created on your project. Add this folder to your
+.gitignore.
+_____________
+
+7) In the root of your project, create a folder named as 
+'.github', another named as 'workflows', and inside this 
+create a new file named as deploy-docs.yml  and write your 
+GitHub action for install, build, and deploy your storybo-
+ok documentation. Example:
+
+name: Deploy Storybook
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 16
+
+      - name: Install dependencies
+        run: npm ci --legacy-peer-deps
+
+      - name: Build Storybook
+        run: npm run build-storybook
+
+      - name: Deploy Storybook
+        run: npm run deploy-storybook -- --ci --existing-output-dir=storybook-static
+        env:
+          GH_TOKEN: ${{ github.actor }}:${{ secrets.GITHUB_TOKEN }}
+
+_____________
+
+8) In your file that's in .storybook/main.cjs. Add a key 
+named as viteFinal returning your path repository. Example:
+
+module.exports = {
+  "stories": [
+    "../src/**/*.stories.mdx",
+    "../src/**/*.stories.@(js|jsx|ts|tsx)"
+  ],
+  "addons": [
+    "@storybook/addon-links",
+    "@storybook/addon-essentials",
+    "@storybook/addon-interactions",
+    "@storybook/addon-a11y",
+    "@storybook/addon-interactions"
+  ],
+  "framework": "@storybook/react",
+  "core": {
+    "builder": "@storybook/builder-vite"
+  },
+  "features": {
+    "storyStoreV7": true,
+    "interactionsDebugger": true
+  },
+  "staticDirs": [
+    "../public"
+  ],
+  viteFinal: (config, { configType }) => {
+    if (configType === "PRODUCTION") {
+      config.base = '/ignite-lab-design-system/'
+    }
+    return config
+  }
+}
+
+_____________
+
+9) Commit and push your alterations for GitHub read your yml 
+file and run your action.
+_____________
+
+10) In rour remote repository, click on "Settings", "Deploy 
+from a branch" select the "gh-pages" branch that was crea-
+ted during your action, and click on "Save".
+_____________
+
+11) Wait for GitHub depoy your docs and publish it (it takes
+5 minutes generally) and access your production url created 
+by the GitHub action.
+
+----------------------GENERAL TIPS---------------------------
+
+An CI environment is  an environment that the developer has 
+no direct access through interfaces, thus everything in this 
+environment should be done automatically. Some times you can 
+pass the flag --ci for indicate to the job step forcing the
+command running without questions.
+
+You can check if your component is passing the Storybook a-
+cessibility tests insatalling the "@storybook/addon-a11y" 
+plugin and cheking the accessibility in the storybook panel,
+on "Accessibility" tab.
+
+
+      
+

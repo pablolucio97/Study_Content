@@ -1,14 +1,14 @@
 1) Create a file named serviceWorker.js inside the folder src of your project 
 and past the following code:
 
-https://github.com/pablolucio97/pet-care/blob/master/src/serviceWorker.js
+https://github.com/your_user/your_repo/blob/master/src/serviceWorker.js
 
 --------------------------
 
 2) Edit the content of your App info at loading on mobile devices in the 
 file manifest.json. Example:
 
-https://github.com/pablolucio97/pet-care/blob/master/public/manifest.json
+https://github.com/your_user/your_repo/blob/master/public/manifest.json
 
 --------------------------
 

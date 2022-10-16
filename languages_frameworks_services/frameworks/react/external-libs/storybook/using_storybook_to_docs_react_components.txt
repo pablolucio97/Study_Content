@@ -1,4 +1,4 @@
-===============USING STORYBOOK TO DOCUMENTE REACT COMPONENTS===============
+===============USING STORYBOOK TO DOCUMENT REACT COMPONENTS===============
 
 1) Run npx storybook init in your project to install the Storybook on your
 project. Run also yarn add ts-loader -D to avoid conflicts.

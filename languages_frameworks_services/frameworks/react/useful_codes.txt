@@ -1,4 +1,3 @@
-
 Search items while user is typing:
 
 const [searchText, setSearchText] = useState('');
