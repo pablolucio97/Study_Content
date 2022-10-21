@@ -190,6 +190,31 @@ conflict between the local and remote repositories.
 5) git push -u origin master: send all files changes to remote 
 repository.
 
+--------------CONTRIBUING TO REAL TEAM PROJECTS-----------------
+
+1) On develop branch, run git pull to get all remote updates.
+
+2) Create your branch feature.
+
+3) Work on your code and commit it.
+
+4) Run git log for check if the latests commits on develop on 
+the remote repository matches (are the same) your local commits 
+excluding your last branch commits. If they are differents, run
+git pull origin develop --rebase.
+
+5) Adjust the conflicts using the VsCode conflict resolution to-
+ol.
+
+6) Stage the file altered files clicking on "plus icon", commit
+and push over the feature branch.
+
+Obs: Case the rebase process create a new branch, remove the sta-
+ged files from stage and create a new branch over. Ex: feat/my-
+FeatureRebased pushing and commiting over this branch, otherwise 
+continue the process normally.
+
+
 -----------------EDITING YOUR LAST COMMIT----------------------
 
 1) git commit --amend -m 'your_message'
@@ -512,6 +537,13 @@ The branchs of the project variables according the branchs
 that are created in each machine, hereby always create new
 branchs at working with local repositories already on Git-
 Hub.
+
+GitHub can or not to create a new rebase branch at reba-
+sing branchs, if it's created, create a new branch over 
+this branch example: feat/myFeatRebasecommit and push over 
+this rebasing branch.
+
+
 
 
 

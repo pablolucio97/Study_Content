@@ -1992,3 +1992,8 @@ const filteredCycles = cycles.filter(cycle => cycle.task.includes(search))
 
 You can use the lib react-usestateref passing a third argument to get the current and 
 exact state value of the useState hook. 
+
+--------------------------------------------------------------------------------------
+
+You can use a trick of pass a state to a component key to force a new render changing 
+the state linked to this key.

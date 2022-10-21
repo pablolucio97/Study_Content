@@ -1,0 +1,58 @@
+-------------------------------GIT FLOW-------------------------------
+
+Git flow is a method of working with git inside a team. Git flow is 
+recommended when is need to do the versionament control, or semantic 
+versionament or when there is a team working over the project.
+
+The gitflow has generally the main, develop and stage branchs, where
+each feature is started from the updated develop, after developed and 
+aproved, this branch is merged to develop. In sequence is merged to 
+stage for run testes, after that, is feature is merged from stage to 
+main where will be in production.
+
+-------------------------MAIN TYPE OF BRANCHS-------------------------
+
+Develop: Branch on all featrures must be born on.
+Stage/release: Branch where will be test the merged code to develop to 
+pass to main branch.
+Main: Branch where the aproved and test code is merged to. It's on 
+production.
+Hotfix: Branch where the fixes of features that are in production are 
+made.
+
+------------------------WORKING WITH GITFLOW--------------------------
+
+1) Git creates the main branch by default, run git checkout -b deve- 
+lop for creating the develop branch.
+
+2) Run git git checkout -b name-feature for creating your feature 
+branch.
+
+3) At finishing you feature, run git checkout develop to back to deve-
+lop and run git merge name-feature to merge your feat do develop.
+
+4) Run git checkout -b release/1.0.0 for creating a release branch.
+
+5) Run git merge develop to merge your develop do release/stage.
+
+6) Run git checkout main and then git merge release/1.0.0 to merge 
+your latest release to main.
+
+----------------------------GENERAL TIPS------------------------------
+
+Create the feature branchs always from the updated develop branch.
+
+Always update your develop branch running git pull before to start a 
+new branch.
+
+No there is the correct convetion. Each project can have your own work 
+flow based on team policies or owner preferences.
+
+Features branchs can't interact with main branch, only with the deve-
+lop branch.
+
+
+
+
+
+
