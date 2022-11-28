@@ -204,7 +204,7 @@ excluding your last branch commits. If they are differents, run
 git pull origin develop --rebase.
 
 5) Adjust the conflicts using the VsCode conflict resolution to-
-ol.
+ol, (if there is).
 
 6) Stage the file altered files clicking on "plus icon", commit
 and push over the feature branch.
@@ -223,7 +223,7 @@ continue the process normally.
 
 --------------REMOVING ALL UNTRACKED NEW FILES-----------------
 
-1) git clean -f -d
+1) git clean -fxd
 
 
 --RESOLVING CONFLICTS OF GIT PUSH CAUSED BY FILE DIFFERENCES--

@@ -1,0 +1,77 @@
+========================GITHUB ACTIONS========================
+
+GitHub actions is 
+
+Automated build is
+
+Continuos Integration in
+
+every time code is merged or checked in, some tasks will running 
+for check for your code and deploy it. we may want to run 
+gradle tasks 
+
+./gradlew lint checks bugs and potential improvements for cor-
+rectness, security, performance,
+
+./gradlew test
+
+./gradlew assemble
+
+-----------------------DEFINING WORKFLOWS---------------------
+
+Workflows are created as yaml files that must to inform when 
+the code must run, what is the development environment looks
+like and what tasks should be carried out by the workflow.
+
+1) In your project root, create a new folder named as .git-
+hub/workflows. The directory "github/workflows" is a special 
+directory recognized by GitHub.
+
+------------
+
+2) Inside this folder, create your workflow file with the yml
+extension. Ex: .github/workflows/deploy.yml. 
+
+-----
+
+2.1) Populate this file providing a name for your workflow 
+(this name will be displayed in the workflows list in the a-
+ctions tab under your repository).
+
+-----
+
+2.2) Say when the code must run (workflows can run in respon-
+se to commits, pushes, schedully and more).
+
+-----
+
+2.3) Defines the jobs (actions) the workflow must execute.
+
+Ex:
+
+name: Android Build
+
+on: pull_request
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses : actions/checkout@v1
+
+      - name : Set Up JDK
+        - uses : Set Up JDK
+
+
+
+------------GENERAL TIPS--------------
+
+Every workflow must have at least one job
+
+GitHub supports you use your own runners or GitHub hosted run-
+ners provided by GitHub.
+
+
+
+

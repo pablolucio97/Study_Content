@@ -1,0 +1,224 @@
+========================PRISMA ORM CORUSE========================
+
+Prisma is an ORM translate our objects to data inside the databa-
+ses. The main advantages of Prisma are the products it supply:
+Prisma Client, Prisma Studio, Prisma Migrate and Prisma Data Pla-
+tform.
+
+Prisma Client: Is the structure of our application that contains 
+a model(acts like our table) and allows us to run all kind of 
+queries to relate with our data.
+
+Prisma Studio: It's an IDE allowing to view our databases. 
+
+Prisma Migrate: Converts our Model to a SQL table with all con-
+vention informed. Ex: PrimaryKey, isUnique and so on.
+
+Prisma Data Platform: It's a platform allows to use Prisma in 
+the web browser. It can provide us a boilerplate and allow to 
+configure it easily to start working.
+
+----------------USING PRISMA ORM ON A NEW PRIJECT--------------
+
+1) Create your project folder, start it running yarn init -y 
+and install the prisma, ts-node-de, typescript, and the Prisma 
+Client runing yarn add prisma ts-node-dev typescript @prisma/
+client. 
+
+----------------
+
+2) Run tsx --init to init your tsconfig.json and set this con-
+figs like:
+
+{
+  "compilerOptions": {
+    "sourceMap": true,
+    "outDir": "dist",
+    "strict": true,
+    "lib": [
+      "es6",
+      "dom"
+    ],
+    "esModuleInterop": true
+  }
+}
+
+----------------
+
+3) Run yarn prisma init to start using Prisma. A folder named 
+as "Prisma" with a schema.prisma file and .env file containing 
+your prisma URL database will be created on your root dir.
+
+----------------
+
+4) On the .env file created by prisma, alter the DATABASE_URL 
+environment variable to configure it with your Prisma Client.
+
+Ex: DATABASE_URL="postgresql://admin:admin@localhost:5432/
+igniteprisma-psd?schema=public"
+
+----------------
+
+5) Run a docker container to host your postgree database: 
+docker run --name prisma_course_db -e POSTGRES_USER=admin 
+-e POSTGRES_PASSWORD=admin -e POSTGRES_DB=prismanpx yarn
+
+Obs: The container name and the credentials must be the 
+same from DATABASE_URL env var.
+
+----------------
+
+6) Check your schema.prisma file. If you're using postgresql, 
+and also add your model for your table. Example:
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Courses{
+    //generates automatically
+    id            String      @id @default(uuid())
+    name          String      @unique
+    description   String      @unique
+    duration      Int
+    created_at    DateTime    @default(now())
+    //table name
+    @@map("courses")
+}
+  
+----------------
+
+7) Run yarn prisma generate to generate your databases 
+and then run  yarn prisma migrate dev to generate your
+migrations (provide a name for your migration if requested).
+
+----------------
+
+8) Run yarn prisma studio to start Prisma Studio and you'll
+can se your data on the Prisma Studio.
+
+----------------
+
+9) To add more tables on your database, overwrite the file 
+schema.prisma adding your new model. Example:
+
+model Modules {
+  id          String @id @default(uuid())
+  name        String @unique
+  description String @unique
+  created_at DateTime @default(now())
+  @@map("modules")
+}
+
+----------------
+
+10)
+
+----------------
+
+11) To handle our data (create, update, list and delete)
+create a new file for each method inside the src folder 
+and instance the prisma handling your data. Examples:
+
+import { PrismaClient } from '@prisma/client'
+
+const prisma = new PrismaClient()
+
+async function CreateData() {
+    const result = await prisma.courses.create({
+        data: {
+            name: 'Java',
+            description: 'Multifunctional language course',
+            duration: 300
+        }
+    })
+
+    console.log(result)
+}
+
+CreateData()
+
+------
+
+import { PrismaClient } from '@prisma/client'
+
+const prisma = new PrismaClient()
+
+async function findFirst() {
+    const result = await prisma.courses.findFirst()
+    console.log(result)
+}
+
+findFirst()
+
+------
+
+import { PrismaClient } from '@prisma/client'
+
+const prisma = new PrismaClient()
+
+async function findLast() {
+    const result = await prisma.courses.findFirst({
+        take: -1
+    })
+    console.log(result)
+}
+
+findLast()
+
+-----
+
+import { PrismaClient } from '@prisma/client'
+
+const prisma = new PrismaClient()
+
+async function list() {
+    const result = await prisma.courses.findMany()
+    console.log(result)
+}
+
+list()
+
+------
+
+import { PrismaClient } from '@prisma/client'
+
+const prisma = new PrismaClient()
+
+
+async function update() {
+    const result = await prisma.courses.update({
+        where: {
+            id: '526d0bcd-4967-429d-8b11-daf7fafbdb01'
+        },
+        data: {
+            duration: 600,
+            name: 'Java 2023'
+        }
+    })
+
+    console.log(result)
+}
+
+update()
+
+
+
+-----------------------GENERAL TIPS-------------------------
+
+Don't use admin neither for password nor for login when de-
+ploying the server.
+
+Don't use Prisma Studio before the database was created.
+
+After creating or modifying (add, removing or altering some 
+column or data) a model, run yarn prisma generate  and al-
+so run yarn prisma migrate dev to record the modifications.
+
+Check your all opnened browsers, Prisma Studio opens ran-
+domly between the browsers.
