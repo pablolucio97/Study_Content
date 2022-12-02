@@ -1,0 +1,183 @@
+1) Create the model for the pivot table (name it as the FirstSecond tables) 
+providing the foreign key for both models and other column for each model 
+referencing each respective model with the @relation decorator passing the 
+fields and references as arguments. Example:
+
+model CoursesModules {
+  id String @id @default(uuid())
+  courses Courses @relation(fields: [fk_courses_id], references: [id])
+  modules Modules @relation(fields: [fk_modules_id], references: [id])
+  fk_courses_id String
+  fk_modules_id String
+  created_at DateTime @default(now())
+  @@map("courses_models")
+}
+
+-----------------
+
+2) En each relationed model create a new column referencing the pivot 
+table as array. Example:
+
+model Courses {
+  //generates automatically
+  id            String    @id @default(uuid())
+  name          String    @unique
+  description   String    @unique
+  duration      Int
+  created_at    DateTime  @default(now())
+  teacher       Teachers? @relation(fields: [fk_id_teacher], 
+                                            references: [id])
+  fk_id_teacher String?   @unique
+  CoursesModules CoursesModules[]
+
+  //table name
+  @@map("courses")
+}
+
+model Modules {
+  id          String   @id @default(uuid())
+  name        String   @unique
+  description String
+  created_at  DateTime @default(now())
+   CoursesModules CoursesModules[]
+
+  @@map("modules")
+}
+
+-----------------
+
+3) Run npx yarn prisma migrate dev for execute your migration.
+
+-----------------
+
+4) To insert data in a pivot table, you can insert this data passing
+the foreign key of each model in the relationship, or adding a new data 
+to the a model and relationing it with the referenced table, or adding 
+data if both tables doesn't exists. Examples:
+
+Adding data by foreign keys on the pivot table:
+
+import {PrismaClient} from '@prisma/client'
+
+const prisma = new PrismaClient()
+
+async function createManyToMany(){
+    const result = await prisma.coursesModules.create({
+        data:{
+            fk_courses_id: "b98d8b1d-6741-4f75-bd2f-f329019d33b4",
+            fk_modules_id: "6c1b42e9-c30f-48e0-8718-3614efff4518"
+        }
+    })
+
+    console.log(result)
+}
+
+createManyToMany()
+
+----------
+
+Adding data from an existing table:
+
+import { PrismaClient } from '@prisma/client'
+
+const prisma = new PrismaClient()
+
+async function CreateData() {
+    const result = await prisma.modules.create({
+        data: {
+            name: 'Working with context',
+            description: 'How to use the React context api ',
+            course: {
+                connect: {
+                    name: "React"
+                }
+            }
+        }
+    })
+
+    console.log(result)
+}
+
+CreateData()
+
+----------
+
+Adding data when both tables doesn't exists:
+
+import {PrismaClient} from '@prisma/client'
+
+const prisma = new PrismaClient()
+
+async function createToZero(){
+    const result = await prisma.coursesModules.create({
+        data:{
+            courses:{
+                create:{
+                    name: 'React Native',
+                    description: 'Mobile course',
+                    duration: 350
+                }
+            },
+            modules:{
+                create:{
+                    name: 'Starting on React Native',
+                    description: 'How to create a React Native project',
+                }
+            }
+        }
+    })
+
+    console.log(result)
+}
+
+createToZero()
+
+----------
+
+5) To read data from relationship table, you can query for 
+both data from this table or query for data in one of the 
+tables in the relationship and includes data from the another 
+table too. Example:
+
+From the relationship table:
+
+import { PrismaClient } from '@prisma/client'
+
+const prisma = new PrismaClient()
+
+async function findWithRelation() {
+    const result = await prisma.coursesModules.findMany({
+        include: {
+            courses: true,
+            modules: true,
+        }
+    })
+    console.log(result)
+}
+
+findWithRelation()
+
+------
+
+From one of the tables in the relationship:
+
+import { PrismaClient } from '@prisma/client'
+
+const prisma = new PrismaClient()
+
+async function findWithRelation() {
+    const result = await prisma.courses.findMany({
+        include: {
+            teacher: true
+        }
+    })
+
+    console.log(result)
+}
+
+findWithRelation()
+
+
+
+
+

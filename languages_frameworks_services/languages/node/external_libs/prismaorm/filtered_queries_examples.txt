@@ -1,0 +1,89 @@
+======================FILTERED QUERIES EXAMPLES====================
+
+Starts with a specific string:
+
+import {PrismaClient} from '@prisma/client'
+
+const prisma = new PrismaClient()
+
+async function query(){
+    const result = await prisma.courses.findMany({
+        where: {
+            name:{
+                startsWith: 'React',
+            }
+        }
+    })
+
+    console.log(result)
+}
+
+query()
+
+-----------------
+
+OR condition. Starts with a specific string or another specific 
+string:
+
+import { PrismaClient } from '@prisma/client'
+
+const prisma = new PrismaClient()
+
+async function query() {
+    const result = await prisma.courses.findMany({
+        where: {
+            OR: [
+                {
+                    name: {
+                        startsWith: 'React'
+                    }
+                },
+                {
+                    name: {
+                        startsWith: 'Typ'
+                    }
+                }
+            ]
+        }
+    })
+
+    console.log(result)
+}
+
+query()
+
+-----------------
+
+OR together with AND condition. Starts with a specific string 
+or another specific string and have duration = 300:
+
+
+import { PrismaClient } from '@prisma/client'
+
+const prisma = new PrismaClient()
+
+async function query() {
+    const result = await prisma.courses.findMany({
+        where: {
+            OR: [
+                {
+                    name: {
+                        startsWith: 'React'
+                    }
+                },
+                {
+                    name: {
+                        startsWith: 'Typ'
+                    }
+                }
+            ],
+            AND: {
+                duration: 300
+            }
+        }
+    })
+
+    console.log(result)
+}
+
+query()

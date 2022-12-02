@@ -1,0 +1,109 @@
+====================CREATING ONE TO ONE REALTIONSHIPS==================
+
+1) Create the second table for the relationship. Example:
+
+model Authors {
+  id   String @id @default(uuid())
+  name String @unique
+  @@map("authors")
+}
+
+---------------
+
+2) Run yarn prisma migrate dev and provide a name for your migration 
+for create your new table.
+
+---------------
+
+3) In the table will contain the foreign key, create your column to repre-
+sent the foreign key and add another column with the name of your related 
+table referencing the it taking "fields" and "references"as parameters. 
+Example:
+
+model Books{
+  id String @id @default(uuid())
+  name String @unique
+  author_id String
+  author Authors @relation(fields: [author_id], references: [id])
+
+  @@map("books")
+}
+
+---------------
+
+4) Alter the referenced table creating a column with the parent table 
+name rerencing this table. Example:
+
+model Authors {
+  id   String @id @default(uuid())
+  name String @unique
+  books Books[]
+  
+  @@map("authors")
+}
+
+---------------
+
+5) Run yarn prisma migrate dev and provide a name for your migration 
+for create your new table relationship.
+
+---------------
+
+6) Inside your project, insert the data in your table trough the Prisma
+Client instance. To insert data with relationship with another table,
+you can use the method connectOrCreate (will atach the data in the 
+existing table if condition pass), or create (will create the new data) 
+or connect (will atach the data in the existing table if condition 
+pass), or pass the foreign key directly on the data object. Example:
+
+import {PrismaClient} from '@prisma/client'
+
+const prisma = new PrismaClient()
+
+async function create(){
+    const result = await prisma.authors.create({
+        data:{
+            name: 'Robert Kyosaki',
+            books:{
+                createMany:{
+                    data:[
+                        {
+                            name: 'Dad Rich Dad Poor'
+                        },
+                        {
+                            name: 'Dad Rich Dad Poor For Youngs'
+                        },
+                    ]
+                }
+            }
+        }
+    })
+    console.log(result)
+}
+
+create()
+
+-------------
+
+Obs: Optionally you can go to the parent table and create a new data 
+passing the referenced table object_id. Ex:
+
+import { PrismaClient } from '@prisma/client'
+
+const prisma = new PrismaClient()
+
+async function create() {
+    const result = await prisma.books.create({
+        data: {
+            name: 'Work four hours by week',
+            author_id: 'bf506903-390e-423e-8d60-fb862039aa95'
+        }
+
+    })
+    console.log(result)
+}
+
+create()
+
+
+

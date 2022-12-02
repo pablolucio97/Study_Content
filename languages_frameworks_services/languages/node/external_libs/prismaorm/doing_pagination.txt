@@ -1,0 +1,33 @@
+=========================DOING PAGINATION========================
+
+To do pagination using Prisma Orm, you must to pass the skip and 
+the take properties in your query doing a while loop checking if 
+the array as reach the end incrementing the take property. Ex:
+
+import { PrismaClient } from '@prisma/client'
+
+const prisma = new PrismaClient();
+
+async function pagination() {
+
+    let skip = 0
+    let exists = true
+
+    while (exists) {
+        const result = await prisma.courses.findMany({
+            skip,
+            take: 2
+        })
+
+        skip += 2
+
+        console.log('-------------------')
+
+        if (result.length <= 0) {
+            exists = false
+        }
+        console.log(result)
+    }
+}
+
+pagination()

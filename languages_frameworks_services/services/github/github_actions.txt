@@ -1,21 +1,25 @@
-========================GITHUB ACTIONS========================
+========================GITHUB ACTIONS=========================
 
-GitHub actions is 
+GitHub actions is a framework for run custom workflows for 
+software development process reducing the CI complexeties.
 
 Automated build is
 
-Continuos Integration in
+Continuos Integration is the practive of currently checking the
+code repository and valuating that code at every time code is 
+merged or checked in, some tasks will running for check for 
+your code and deploy it. Example with gradle: We may want to 
+check and run gradle tasks :
 
-every time code is merged or checked in, some tasks will running 
-for check for your code and deploy it. we may want to run 
-gradle tasks 
-
-./gradlew lint checks bugs and potential improvements for cor-
+./gradlew lint: checks bugs and potential improvements for cor-
 rectness, security, performance,
 
-./gradlew test
+./gradlew test: executes all of the unit tests in the project. 
+This command will detect all unit tests in the project, compi-
+le them, and then execute them.
 
-./gradlew assemble
+./gradlew assemble: assembles all the archives in the project
+for building.
 
 -----------------------DEFINING WORKFLOWS---------------------
 
@@ -58,16 +62,30 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses : actions/checkout@v1
+      - uses: actions/checkout@v1
 
-      - name : Set Up JDK
-        - uses : Set Up JDK
+      - name: Set Up JDK
+        uses: Set Up JDK
+        with: 
+          java-version: 1.8
+
+      - name: Run Tests
+        run: ./gradlew test
+
+      - name: Build Project
+        run: ./gradlew assemble
+
+------------
+
+3) Commit and push the projects alterations containing the 
+workflow file. GitHub actions will start working (you can 
+see it and follow the action status clicking on the "Ac-
+tions" tab inside your repository). 
 
 
+-----------------------GENERAL TIPS----------------------------
 
-------------GENERAL TIPS--------------
-
-Every workflow must have at least one job
+Every workflow must have at least one job.
 
 GitHub supports you use your own runners or GitHub hosted run-
 ners provided by GitHub.

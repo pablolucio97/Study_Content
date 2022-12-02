@@ -222,3 +222,10 @@ so run yarn prisma migrate dev to record the modifications.
 
 Check your all opnened browsers, Prisma Studio opens ran-
 domly between the browsers.
+
+If your new table does not appear to be listed on the Pris-
+ma Client, reload your IDE or run yarn prisma generate.
+
+If you exclude an data drom an relationship, bydefaul the 
+Prisma Orm doesn't excludes from the related tables, only 
+in the relationship table.

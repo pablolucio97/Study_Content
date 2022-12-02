@@ -1,0 +1,26 @@
+=============DOING AUTOMATED BUILD WITH GITHUB ACTIONS===============
+
+To do an automatic build using GtHub actions, you need to define a 
+workflow for the CI and the another for the CD.
+
+1) Define the CI workflow:
+
+1.1) Inside your project create a new folder named as .github/work-
+flows, and inside this a new file named as ci.yml.
+
+1.2) Provide a name and define the jobs for the CI workflow.
+
+name: Continuos Integration
+
+on:
+  pull_request:
+    branchs:
+      - develop
+      - main
+
+    - name: Checkout
+    uses: actions/checkout@v2
+
+
+
+
