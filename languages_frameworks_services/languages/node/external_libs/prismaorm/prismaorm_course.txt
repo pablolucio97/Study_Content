@@ -61,7 +61,8 @@ igniteprisma-psd?schema=public"
 
 5) Run a docker container to host your postgree database: 
 docker run --name prisma_course_db -e POSTGRES_USER=admin 
--e POSTGRES_PASSWORD=admin -e POSTGRES_DB=prismanpx yarn
+-e POSTGRES_PASSWORD=admin -e POSTGRES_DB=prisma -p 
+5432:5432 -d postgres
 
 Obs: The container name and the credentials must be the 
 same from DATABASE_URL env var.
