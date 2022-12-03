@@ -1,0 +1,22 @@
+===========================DOING RAW QUERY===============================
+
+1) After you table created, create a new function to do your raw query.
+Import the PrismaClient, Prisma, and your Model, instance the prisma 
+and access prisma.$queryRaw passing your model array as param. You can
+handle the result of your query using array methods. 
+
+Example (returning only courses with duration > 300h):
+
+import { PrismaClient, Prisma, Courses } from '@prisma/client'
+
+const prisma = new PrismaClient()
+
+async function queryRaw() {
+    const result = await prisma.$queryRaw<Courses[]>(
+        Prisma.sql`SELECT * FROM courses`
+    )
+    const filteredCourses = result.filter(c => c.duration > 300)
+    console.log(filteredCourses)
+}
+
+queryRaw()
