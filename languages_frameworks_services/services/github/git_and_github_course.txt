@@ -214,6 +214,14 @@ ged files from stage and create a new branch over. Ex: feat/my-
 FeatureRebased pushing and commiting over this branch, otherwise 
 continue the process normally.
 
+Always update the development branch and create your branch from 
+this branch either running git pull origin development on your 
+branch or hitting a pull on this branch and doing a rebase after
+on your branch from development.
+
+If a Pull request already was merged and you need to update the 
+code, creates a new branch for this code with the updated deve-
+lopment branch to not lost any commit.
 
 -----------------EDITING YOUR LAST COMMIT----------------------
 
