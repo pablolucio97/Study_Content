@@ -75,6 +75,10 @@ This is a list of the main solutions used in my main applications. I decided to 
 
 ## Mobile
 
+### APK's generation and CLI
+
+- [EAS Build](https://docs.expo.dev/build/setup/)
+
 ### Animations and transitions for mobile
 
 - [React Native Reanimated](https://docs.swmansion.com/react-native-reanimated/docs/fundamentals/installation)
@@ -107,17 +111,9 @@ This is a list of the main solutions used in my main applications. I decided to 
 - [Victory Native](https://www.npmjs.com/package/victory-native)
 - [React Native Chart Kit](https://www.npmjs.com/package/react-native-chart-kit)
 
-### APK's generation and CLI
-
-- [EAS Build](https://docs.expo.dev/build/setup/)
-
 ### Documentation for React Native components
 
 - [StoryBook](https://storybook.js.org/tutorials/intro-to-storybook/react-native/en/get-started/)
-
-### UI libraries for React Native
-
-- [Papper](https://callstack.github.io/react-native-paper/getting-started.html)
 
 ### Icons for React Native applications
 
@@ -131,14 +127,14 @@ This is a list of the main solutions used in my main applications. I decided to 
 
 - [React Navigation](https://reactrouter.com/en/main)
 
-### Styling for React Native
-
-- [Styled Compoenents](https://styled-components.com/docs/basics#getting-started)
-
 ### Sound
 
 - [Expo Audio](https://docs.expo.dev/versions/v47.0.0/sdk/audio/)
 - [React Native Sound](https://www.npmjs.com/package/react-native-sound)
+
+### Styling for React Native
+
+- [Styled Compoenents](https://styled-components.com/docs/basics#getting-started)
 
 ### SVG's and images controllers
 
@@ -149,6 +145,10 @@ This is a list of the main solutions used in my main applications. I decided to 
 
 - [Jest](https://jestjs.io/docs/getting-started)
 - [React Native Testing Library](https://testing-library.com/docs/react-native-testing-library/intro/)
+
+### UI libraries for React Native
+
+- [Papper](https://callstack.github.io/react-native-paper/getting-started.html)
 
 ------
 
@@ -233,6 +233,21 @@ This is a list of the main solutions used in my main applications. I decided to 
 
 - [Swagger](https://swagger.io/specification/)
 
+### Encryption and token management
+
+- [BCryptJS](https://www.npmjs.com/package/bcryptjs)
+- [JSONWebToken](https://www.npmjs.com/package/jsonwebtoken)
+
+### Email provider, template and agent
+
+- [Nodemailer](https://nodemailer.com/usage/)
+- [Handlebars](https://handlebarsjs.com/guide/#installation)
+- [AWS SES](https://docs.aws.amazon.com/ses/latest/APIReference/API_Operations.html)
+
+### File uploader
+
+- [Multer](https://www.npmjs.com/package/multer)
+
 ### Helpers
 
 - [Express](https://expressjs.com/en/4x/api.html)
@@ -254,14 +269,14 @@ This is a list of the main solutions used in my main applications. I decided to 
 - [TypeORM](https://typeorm.io)
 - [PrismaORM](https://www.prisma.io/docs/getting-started/quickstart)
 
-### Webscrapping
-
-- [Puppeteer](https://pptr.dev/)
-
 ### Test for NodeJS applications
 
 - [Jest](https://jestjs.io/docs/getting-started)
 - [Super Test](https://www.npmjs.com/package/supertest)
+
+### Webscrapping
+
+- [Puppeteer](https://pptr.dev/)
 
 ------
 
