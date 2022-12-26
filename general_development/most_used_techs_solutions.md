@@ -145,7 +145,7 @@ This is a list of the main solutions used in my main applications. I decided to 
 - [React Native SVG](https://github.com/software-mansion/react-native-svg)
 - [React Native SVG Transformer](https://github.com/kristerkari/react-native-svg-transformer)
 
-### Test fo React Native
+### Test for React Native
 
 - [Jest](https://jestjs.io/docs/getting-started)
 - [React Native Testing Library](https://testing-library.com/docs/react-native-testing-library/intro/)
@@ -154,11 +154,67 @@ This is a list of the main solutions used in my main applications. I decided to 
 
 ## Miscellaneous
 
+### Context controllers and middlewares
+
+- [React Context Api](https://reactjs.org/docs/context.html)
+- [Redux](https://redux.js.org/introduction/getting-started)
+- [Redux Saga](https://redux-saga.js.org/docs/introduction/GettingStarted)
+
+### CMS
+
+- [Prismic](https://prismic.io/docs/setup-nextjs)
+
+### Cookies manager
+
+- [Nookies](https://www.npmjs.com/package/nookies)
+
+### CSV parser
+
+- [Papaparser](https://www.npmjs.com/package/papaparse)
+- [React Papaparser](https://www.npmjs.com/package/react-papaparse)
+- [React Native CSV](https://www.npmjs.com/package/react-native-csv)
+
 ### Data fetching
 
 - [Axios](https://axios-http.com/docs/intro)
 - [React query](https://react-query-v3.tanstack.com/installation)
 
+### Database simulators
+
+- [Json Server](https://www.npmjs.com/package/json-server)
+- [MirageJS](https://miragejs.com/docs/getting-started/overview/)
+
+### Date and time formater and calculator
+
+- [MomentJS](https://momentjs.com/)
+- [DateFNS](https://date-fns.org/)
+- [DayJS](https://day.js.org/docs/en/installation/installation)
+- [Intl](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl)
+
 ### Form submit handler
 
 - [React Hook Form](https://react-hook-form.com/get-started)
+
+### Form schema validator
+
+- [Yup](https://github.com/jquense/yup)
+- [Zod](https://zod.dev/?id=installation)
+
+### ID generators
+
+- [uuid](https://www.npmjs.com/package/uuid)
+- [React Native uuid](https://www.npmjs.com/package/react-native-uuid)
+
+### Payment processors
+
+- [Mercado Pago API](https://www.mercadopago.com.br/developers/pt/reference)
+- [Stripe](https://stripe.com/docs/payments/quickstart?client=next)
+
+### State immutability controller
+
+- [Immer](https://immerjs.github.io/immer/installation)
+- [React useStateRef](https://www.npmjs.com/package/react-usestateref)
+
+------
+
+
