@@ -217,4 +217,61 @@ This is a list of the main solutions used in my main applications. I decided to 
 
 ------
 
+## Back-end
 
+### API's (most used useful API's)
+
+- [Cpf Cnpj validator](https://www.npmjs.com/package/cpf-cnpj-validator)
+- [Cep promise](https://www.npmjs.com/package/cep-promise)
+
+### Container management
+
+- [Docker](https://docs.docker.com/get-started/)
+- [Docker Compose](https://docs.docker.com/compose/gettingstarted/)
+
+### Documentation
+
+- [Swagger](https://swagger.io/specification/)
+
+### Helpers
+
+- [Express](https://expressjs.com/en/4x/api.html)
+- [Express async errors](https://www.npmjs.com/package/express-async-errors)
+- [Cors](https://www.npmjs.com/package/cors)
+- [TSRynge](https://github.com/microsoft/tsyringe)
+- [Reflect Metadata](https://www.npmjs.com/package/reflect-metadata)
+
+### Query builder
+
+- [Knex](https://knexjs.org/guide/)
+
+### NoSQL databases
+
+- [MongoDB](https://www.mongodb.com/docs/v4.2/reference/method/js-collection/)
+
+### ORM's
+
+- [TypeORM](https://typeorm.io)
+- [PrismaORM](https://www.prisma.io/docs/getting-started/quickstart)
+
+### Webscrapping
+
+- [Puppeteer](https://pptr.dev/)
+
+### Test for NodeJS applications
+
+- [Jest](https://jestjs.io/docs/getting-started)
+- [Super Test](https://www.npmjs.com/package/supertest)
+
+------
+
+## IDE tools and extensions
+
+### Code formaters
+
+- [Eslint](https://eslint.org/docs/latest/user-guide/getting-started)
+- [Prettier](https://prettier.io/docs/en/install.html)
+
+### Commit controller
+
+- [Husky](https://typicode.github.io/husky/#/?id=automatic-recommended)
