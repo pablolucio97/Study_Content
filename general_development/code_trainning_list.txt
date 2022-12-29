@@ -24,4 +24,13 @@ Intern storage using Async Storage on React Native
 Firebase firestore, storage and authentication with Google and Expo on React Native
 Firebase firestore, storage and authentication with Google on React
 
+To train on TSPlayground:
+
+Convert Obj to Array
+Convert Array to Obj
+Rename Obj Keys
+Join Objects
+ConcatArrays
+Alter Object Props Conditionally
+
 

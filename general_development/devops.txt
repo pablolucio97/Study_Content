@@ -16,20 +16,6 @@ are happening in the organization.
 
 -------------------------CI/CD-----------------------------
 
-Uma confusão frequente é equiparar a entrega contínua e a integração contínua. Esta visão é um grande equívoco. A integração contínua é a prática de integração e testes de um novo código com a base de código existente, e é uma condição necessária para que o processo de entrega contínua possa acontecer da forma correta.
-
-É o processo de merging do seu novo código com uma brench / trunk. A idéia aqui é testar seu código o mais rápido possível para identificar os problemas mais cedo.
-
-A maioria do trabalho é feito por meio de testes automatizados, e esta técnica requer um framework de testes unitários (Unit Tests). Normalmente há um servidor de compilação para realização destes testes, para que os desenvolvedores possam continuar o trabalho enquanto os testes estão sendo realizados.
-
-
-----------
-
-Aqui é onde aparece a maior confusão. As pessoas às vezes usam os termos de entrega contínua e implantação contínua alternadamente. As duas práticas não são a mesma coisa. A Entrega Contínua é um conjunto de práticas que tem como objetivo garantir que o novo código pode ser implantado no ambiente de produção a qualquer momento, já a implantação contínua leva um passo mais longe.
-
-Na prática de entrega contínua tratamos do envio do código para um ambiente, que pode ser DEV, STAGE ou PROD, uma vez que o desenvolvedor sente o código está pronto para enviar. Mas nesta parte do processo a idéia é de que se está entregando o código para uma base de usuários, entenda-se por base de usuários, Testers / QA, clientes homologar ou até usuários finais. Isto é semelhante ao de integração contínua, mas neste momento podemos incrementar o processo de teste com os testes de comportamento (Behavior Tests – BDD) para testar a lógica de negócio ou até mesmo testes visuais.
-
-
 CI: Continuos Integration.
 CD: Continuos Delivery.
 
