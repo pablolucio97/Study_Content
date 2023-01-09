@@ -19,6 +19,13 @@ function Greeting() {
 
 -------------------
 
+Compound components
+
+Are components with children components that needs to communicate each o-
+ther like forms, sidebars and menus.
+
+-------------------
+
 --- Container (container list) Component:
 
 This pattern is a parent component who recives an array as prop and then

@@ -16,8 +16,12 @@ Integration tests: This type of test will to test the integration of a compo-
 nent with another or another functionality.
 
 E2E (end to end) tests: Are tests that tests each point of the flow of an ac-
-tion.
+tion. Use E2E for functionalities requires high level of responsibility. Ex: 
+Purchase and authentication processes.
 
+
+Static test: Are tests checks for syntax and types before to execute the code 
+and enforces a consistent code style
 
 
 ----------------------------DOING UNITY TESTS---------------------------------
@@ -425,4 +429,6 @@ example.
 
 You must delclare Window events like functions to test this functions. Example:
  window.HTMLElement.prototype.scrollIntoView = function() {}
+
+Focus on integration tests to a better test general visualization.
 

@@ -1997,3 +1997,18 @@ exact state value of the useState hook.
 
 You can use a trick of pass a state to a component key to force a new render changing 
 the state linked to this key.
+
+--------------------------------------------------------------------------------------
+
+Always as possible, isolates all logics of your code, for fetching data e etc. Use ho-
+oks for it. Ex: useFetch, useCopyToClipboard and others.
+
+--------------------------------------------------------------------------------------
+
+Check if really to create a new state is necessary, sometimes you can use variables 
+to store a value.
+
+--------------------------------------------------------------------------------------
+
+Follow the flow to create states => local variable => local state => container state 
+(two componentswith the children component consuming father's state) => and context.
