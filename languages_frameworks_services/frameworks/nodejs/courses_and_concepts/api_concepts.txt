@@ -157,9 +157,16 @@ app.get('/users/:id', (req, res) => {
 Query Params: 
 
 Params that query optionals resources, are useful to filter data 
-and do pagination.
+and do pagination. Examples:
 
-Example: http://localhost:3333/users?page=2&name=Pablo&age=25
+Code: { period } = req.query
+URL: http://localhost:3333/orders/?period=90
+
+
+---------
+
+Code: { period, isActive } = req.query 
+URL: http://localhost:3333/orders/?period=90&isActive=true
 
 ----------------------------------------------------------------
 
