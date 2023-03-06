@@ -37,20 +37,26 @@ insert_final_newline = true
 
 --------------------------------------------------------------------------------------------
 
-3)Reply to eslint terminal questions to eslint detect and install the needed depenencies.If
+3) Run npm init @eslint/config to choice your eslint configs.
+
+--------------------------------------------------------------------------------------------
+
+4)Reply to eslint terminal questions to eslint detect and install the needed depenencies.If
 has conflicts between the React and Eslint confis, uninstall the eslint dependency, delete 
 your node_modules folder, delete the pagackge-lock.josn file and run npm i again to reins-
 tall your all packages.
 
-4)Run the command npm i -D prettier eslint-config-prettier eslint-plugin-prettier to install
+--------------------------------------------------------------------------------------------
+
+6)Run the command npm i -D prettier eslint-config-prettier eslint-plugin-prettier to install
 the anothers needed Eslint packages.
 
-5) Create the script lint in yout package.json with the following command to fix automati-
+7) Create the script lint in yout package.json with the following command to fix automati-
 cally all your files:  eslint src --ext .ts,.tsx --fix.
 
 --------------------------------------------------------------------------------------------
 
-5)Is needs, create a new file name eslintrc.js/eslintrc.ts in the root folder and write 
+6)Is needs, create a new file name eslintrc.js/eslintrc.ts in the root folder and write 
 your Eslint config. Example:
 
 module.exports = {
@@ -79,7 +85,7 @@ module.exports = {
     }
 };
 
-6) Run the command npx eslint src/**/*.js --fix to fix all js files. Use ts in case working 
+8) Run the command npx eslint src/**/*.js --fix to fix all js files. Use ts in case working 
 with typescript.
 
 -------------------------------SETTING PRETTIER CONFIGS-------------------------------------
