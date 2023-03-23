@@ -223,6 +223,18 @@ If a Pull request already was merged and you need to update the
 code, creates a new branch for this code with the updated deve-
 lopment branch to not lost any commit.
 
+Obs: If you open a pull request and another yet opened pull re-
+quest is merged before yours and your rebase your current 
+branch based on the branch whose the previous pull request was 
+merged, your pull request will contains your files and all the 
+another pull request files.
+
+You don't need to commit before to push if you haven't any 
+changes.
+
+Run git pull at a specific branch to updated that specific 
+branch.
+
 -----------------EDITING YOUR LAST COMMIT----------------------
 
 1) git commit --amend -m 'your_message'

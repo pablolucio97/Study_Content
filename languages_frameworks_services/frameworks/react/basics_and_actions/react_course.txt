@@ -1949,6 +1949,17 @@ tion inside the setState() method to get the most recent state. Examples:
     })
   }
 
+
+  or 
+
+    function handleSetLikes(){
+    setLikes((state) => (
+      {...state, state + 1 }
+    ))
+  }
+
+
+
 --------------------------------------------------------------------------------------
 
 You must tell to TypeScript which element is triggering an envent if you're using a 
