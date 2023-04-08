@@ -16,3 +16,38 @@ solve the code and shown yourself interested in the solve the problem.
 
 Foreign enterprises generally doesn't contract Junior developers because the 
 risk of non adpatation is bigger.
+
+
+---------------------STEPS TO GET AN EXTERNAL JOB------------------------------
+
+Define what country you wanna to work. Check if a degree is rquired, and wich 
+types of degree are accepted. Also check if there's taxes for work.
+
+List 10 enterprises you want to work and list the technologies that companies 
+has in common and study and train this tecnologies.
+
+Have public and strong projects in your GitHub. Each project must a README and
+a clear description in Portuguese and English. Each project must be online ac-
+cessible.
+
+Have a particualar site to show your most important jobs. Your site must be 
+accessible in English and Portuguese.
+
+Have a complete and active Linkedin profile. Maintain this profile in English 
+and Portuguese.
+
+Maintain your resume in English and Portuguese.
+
+Get in touch with theses companies and ask for the job applyment process to 
+get interview applying experience. You need to have much persistence in this 
+stage.
+
+==============================GENERAL TIPS=====================================
+
+You can use the husky https://www.husky.io to receive dollar payments. Proba-
+bily you must inform your brazilian default bank account and the husky will to 
+provide an American bank account. The taxes are around 11% over the wage.
+
+Preview the interview questions and train the responses in English.
+
+

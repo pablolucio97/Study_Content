@@ -1,0 +1,43 @@
+===========================TYPES OF EXPO WORKFLOWS===============================
+
+Manager Workflow: Is the most simple and managed flow where is possible to use 
+only API's that not requires native code management.
+
+--------------------------------------------------------------------------------
+
+Bare Workflow: Workflow where the native code is exposed, but it necesary to set
+up manually to use more API's that requires native code management.
+
+--------------------------------------------------------------------------------
+
+Expo Prebuild: Is used to do automatically the native configuration on libs that 
+requires native confiuration. These alterations are done through the installed 
+plugins declared on app.json. Expo Prebuild converts the project to Bare Work-
+flow at its first execution, or run automated confirations based on plugins at 
+next executions.
+
+--------------------------------------------------------------------------------
+
+Development Builds (expo-dev-client): Is used to create a custom compilation for 
+development. You need to create a development client and install it on the devi-
+ce always you need to implement API's that require native code configuration. 
+You must use the script expo start --dev-client.
+
+===============================GENERAL TIPS=====================================
+
+Don't alter the native code if you're using expo prebuild, because the expo pre-
+build will overwrite these alterations.
+
+Expo prebuild only watchs the plugins declared on app.json.
+
+At runnig the command expo prebuild, the native folder can be geenrated again 
+with the respect changes
+
+If you're doing mannualy the native configurations, use expo-dev-client. Do not
+mix expo prebuild with expo-dev-client.
+
+Is prefered to use expo prebuild instead expo-dev-client because expo perbuild 
+will care about the native configurations based on plugins.
+
+You can use plugins with expo prebuild to handle all native code instead do it
+manually.
