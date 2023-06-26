@@ -291,3 +291,15 @@ Create a single interface for each component thinking if the application will ri
 Sometimes is need refer the parent element to see hovering effects.
 
 Use base components to avoid writing duplicated components styling.
+
+Use min and max height/width to avoid layout shift.
+
+Use css from styled components to avoid declaring theme repeated times. Ex:
+
+import styled, {css} from 'styled-components'
+
+export const Title = styled.Text`
+${({theme}) => css`
+    color: ${theme.colors.primary};
+    font-size: ${theme.sizes[2]};
+`}

@@ -74,3 +74,75 @@ app.use((
 app.listen('3333', () => {
     console.log('listening on 3333');
 })
+
+---------------------------------STREAM----------------------------------------
+
+Stream is the techinic of handling big files and process small pieces of 
+theses files (chunks) and use these chunks according the application needs 
+before the entire file is available.
+
+Type of streams:
+
+Readable stream: Are streams where the back-end receive data in small pieces 
+from the front-end. Ex: Front-end is uploading a file to the server or 
+reading a file from the database.
+
+Writables stream: Are streams where the back-end sent the data in small pieces 
+to the front-end. Ex: Streams platform like Twitch server chunks of a video 
+that are loading by the browser or doing an insertion into a database.
+
+Using Streams
+
+
+import { Readable } from "node:stream";
+
+class OneToHundredStream extends Readable {
+  index = 1;
+  //_read() method is required in a Readable class
+  _read() {
+    const i = this.index++;
+    setTimeout(() => {
+      if (i > 100) {
+	//push here refers to Readable class
+        this.push(null);
+      } else {
+	//Buffer only accepts strings
+        const buff = Buffer.from(String(i));
+	//Every chunk should be in Buffer format
+        this.push(buff);
+      }
+    }, 100);
+  }
+}
+
+new OneToHundredStream().pipe(process.stdout);
+
+
+-------------------------------------------------------------------------------
+
+Stateless application: Doesn't save anythiing in memory. Use databases.
+
+Statefull application: Use the computer memory to save data and refresh the 
+memory value at server restarting. Use arrays to store data.
+
+-------------------------------------------------------------------------------
+
+At working with Nodejs, the server can not return a response as an array. The 
+response must be a string or an object (like JSON).
+
+-------------------------------------------------------------------------------
+
+Set the header response as content type Application/json to your response 
+return the data like a JSON structure. Ex:
+
+http.createServer((req, res) => {
+	const myData = queryResult
+	return res.setheader('Content-type' , 'application/json')
+	.end(JSON.stringify(myData)
+})
+
+-------------------------------------------------------------------------------
+
+Everything a user type into a NodeJs terminal is a process.stdin that will be 
+processed and returned as process.stdout.
+
