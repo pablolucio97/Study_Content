@@ -77,9 +77,14 @@ app.listen('3333', () => {
 
 ---------------------------------STREAM----------------------------------------
 
-Stream is the techinic of handling big files and process small pieces of 
+Stream is the technic of handling big files and process small pieces of 
 theses files (chunks) and use these chunks according the application needs 
-before the entire file is available.
+before the entire file is available. Th server can read and work with the 
+received data according it goes coming.
+
+To know the concept of Stream is important to understand how improve the 
+server performance and deal with heavy requests(like a large file upload, a 
+video reading and so on).
 
 Type of streams:
 
@@ -87,12 +92,22 @@ Readable stream: Are streams where the back-end receive data in small pieces
 from the front-end. Ex: Front-end is uploading a file to the server or 
 reading a file from the database.
 
-Writables stream: Are streams where the back-end sent the data in small pieces 
+Writable stream: Are streams where the back-end sent the data in small pieces 
 to the front-end. Ex: Streams platform like Twitch server chunks of a video 
 that are loading by the browser or doing an insertion into a database.
 
+Transformable stream: Are streams that obligatory receive data a readable 
+stream, use the method _transform to work with this data, and back this data 
+to a writeable stream.
+
+Buffer is a model to transfer data on NodeJs.
+
+---------------------------
+
 Using Streams
 
+In this example there is a Readable that reads a Stream content if its length 
+is lower than 100.  
 
 import { Readable } from "node:stream";
 
@@ -115,14 +130,153 @@ class OneToHundredStream extends Readable {
   }
 }
 
+// pipe(process.stdout) print on console each buffer read from our class.
 new OneToHundredStream().pipe(process.stdout);
+
+----------------------
+
+In this example there is a Readable stream and Writeable stream where the 
+writeable stream format the value of each buffer read from the class 
+OneToHundredStream.
+
+
+class OneToHundredStream extends Readable {
+  index = 1;
+  _read() {
+    const i = this.index++;
+    setTimeout(() => {
+      if (i > 100) {
+        this.push(null);
+      } else {
+        const buff = Buffer.from(String(i));
+        this.push(buff);
+      }
+    }, 100);
+  }
+}
+
+class MultiplyByTenStream extends Writable {
+  _write(chunk, encoding, callback) {
+    const calculatedChunk =  Number(chunk) * 10
+    const formattedChunk = `Line ${calculatedChunk}`
+    console.log(formattedChunk)
+    callback()
+  }
+}
+
+
+//pipe() do the communication between the Readable and Writable streams.
+new OneToHundredStream().pipe(
+  new MultiplyByTenStream()
+);
+
+----------------------
+
+
+In this example there is a Transformable Stream transform a the buffer from a 
+readable stream and backs it to the Writeable stream where the writeable stream 
+format again the value of each buffer read from the class OneToHundredStream.
+
+import { Readable, Transform, Writable } from "node:stream";
+
+class OneToHundredStream extends Readable {
+  index = 1;
+  _read() {
+    const i = this.index++;
+    setTimeout(() => {
+      if (i > 100) {
+        this.push(null);
+      } else {
+        const buff = Buffer.from(String(i));
+        this.push(buff);
+      }
+    }, 100);
+  }
+}
+
+class InverseNumberStream extends Transform {
+  _transform(chunk, encoding, callback) {
+    const transformedChunk = Number(chunk.toString()) * -1;
+    callback(null, Buffer.from(transformedChunk.toString()));
+  }
+}
+
+class MultiplyByTenStream extends Writable {
+  _write(chunk, encoding, callback) {
+    const calculatedChunk = Number(chunk) * 10;
+    const formattedChunk = `Line ${calculatedChunk}`;
+    console.log(formattedChunk);
+    callback();
+  }
+}
+
+new OneToHundredStream()
+  .pipe(new InverseNumberStream())
+  .pipe(new MultiplyByTenStream());
+
+----------------------------------------------------------------------------------
+
+Using Stream on HTTP methods example:
+
+In this example the InverseNumberStream class will process the data that is 
+coming from req and will return it processed through response. For each number 1 
+to 100 the server will read the request and return a calculated response whereas 
+each chunk is received. This process is done at once.
+
+Server file:
+
+import http from "node:http";
+import { Transform } from "node:stream";
+
+class InverseNumberStream extends Transform {
+  _transform(chunk, encoding, callback) {
+    const transformedChunk = Number(chunk.toString()) * -1;
+    console.log(transformedChunk);
+    callback(null, Buffer.from(transformedChunk.toString()));
+  }
+}
+
+const server = http.createServer((req, res) => {
+  return req.pipe(new InverseNumberStream())
+  .pipe(res);
+});
+
+server.listen(3336);
+
+
+--------------------------------
+
+Client file:
+
+  import {Readable} from 'node:stream'
+
+class OneToHundredStream extends Readable {
+    index = 1;
+    _read() {
+      const i = this.index++;
+      setTimeout(() => {
+        if (i > 100) {
+          this.push(null);
+        } else {
+          const buff = Buffer.from(String(i));
+          this.push(buff);
+        }
+      }, 100);
+    }
+  }
+
+  fetch ('http://localhost:3336', {
+    method: 'POST',
+    body: new OneToHundredStream(),
+    duplex: 'half'
+  })
 
 
 -------------------------------------------------------------------------------
 
-Stateless application: Doesn't save anythiing in memory. Use databases.
+Stateless application: Doesn't save anything in memory. Use databases.
 
-Statefull application: Use the computer memory to save data and refresh the 
+Stateful application: Use the computer memory to save data and refresh the 
 memory value at server restarting. Use arrays to store data.
 
 -------------------------------------------------------------------------------
@@ -145,4 +299,11 @@ http.createServer((req, res) => {
 
 Everything a user type into a NodeJs terminal is a process.stdin that will be 
 processed and returned as process.stdout.
+
+-------------------------------------------------------------------------------
+
+At working with Streams/Buffer on NodeJS a request/response can read/send a
+ piece of data for each piece of data instead of await for all data in the 
+ request/response be read/send. On NodeJS the params (req, res) of a http 
+ are on the most cases readable/writable streams respectively.
 
