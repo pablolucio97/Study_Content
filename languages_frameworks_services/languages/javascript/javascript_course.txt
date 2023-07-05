@@ -2267,3 +2267,7 @@ lue and then compare them).
 If you need to iterate over elements, in some case is needed to guarante 
 that there isn't mapping over undefined elements checking if the element 
 is !== udenfined.
+
+In JavaScript classes, you can define that a class property is private 
+passing the "#" before the property. You need to pass the "#" also in 
+all this prop references (this.#prop).

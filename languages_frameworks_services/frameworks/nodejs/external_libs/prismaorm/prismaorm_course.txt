@@ -230,3 +230,11 @@ ma Client, reload your IDE or run yarn prisma generate.
 If you exclude an data drom an relationship, bydefaul the 
 Prisma Orm doesn't excludes from the related tables, only 
 in the relationship table.
+
+Use transactions to perform two or more operations to 
+grant these operations will be done successfully otherwise 
+will be undone.
+
+At using interactive transactions, be careful to not let 
+the  transaction open for a long time. Be quick.
+
