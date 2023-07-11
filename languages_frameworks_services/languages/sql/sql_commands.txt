@@ -1,0 +1,52 @@
+==================================Most used SQL Commands===================================
+
+SELECT: Retrieves data from one or more database tables.
+FROM: Specifies the table or tables from which the data is retrieved.
+WHERE: Filters the result set based on specified conditions.
+JOIN: Combines rows from two or more tables based on a related column.
+INSERT: Inserts new data into a table.
+UPDATE: Modifies existing data in a table.
+DELETE: Removes data from a table.
+GROUP BY: Groups rows based on one or more columns.
+ORDER BY: Sorts the result set based on specified columns.
+HAVING: Filters the grouped result set based on specified conditions.
+DISTINCT: Retrieves unique values from a column or columns.
+AS: Renames a column or table using an alias.
+UNION: Combines the result sets of two or more SELECT statements.
+EXISTS: Checks if a subquery returns any rows.
+BETWEEN: Filters the result set based on a range of values.
+IN: Checks if a value matches any value in a list or subquery.
+LIKE: Filters the result set based on a pattern match.
+CASE: Performs conditional logic in a query.
+AVG: Calculates the average value of a column.
+MAX: Retrieves the maximum value from a column.
+MIN: Retrieves the minimum value from a column.
+SUM: Calculates the sum of values in a column.
+COUNT: Counts the number of rows or non-null values in a column.
+DISTINCT: Retrieves unique values from a column or columns.
+GROUP BY: Groups rows based on one or more columns.
+ORDER BY: Sorts the result set based on specified columns.
+LIMIT: Specifies the maximum number of rows to retrieve.
+OFFSET: Specifies the number of rows to skip in the result set.
+AS: Renames a column or table using an alias.
+INNER JOIN: Retrieves rows that have matching values in both tables being joined.
+LEFT JOIN: Retrieves all rows from the left table and matching rows from the right table (comes before JOIN keyword).
+RIGHT JOIN: Retrieves all rows from the right table and matching rows from the left table (comes after JOIN keyword).
+FULL JOIN: Retrieves all rows from both tables, regardless of the match.
+ON: Specifies the join condition in the JOIN clause.
+NOT: Negates a condition in a WHERE or HAVING clause.
+IS NULL: Checks if a value is null.
+IS NOT NULL: Checks if a value is not null.
+ALL: Compares a value with all values in a subquery.
+ANY: Compares a value with any value in a subquery.
+EXISTS: Checks if a subquery returns any rows.
+BETWEEN: Filters the result set based on a range of values.
+CASE: Performs conditional logic in a query.
+WHEN: Specifies a condition in a CASE statement.
+THEN: Specifies a result in a CASE statement.
+ELSE: Specifies a default result in a CASE statement.
+IN: Checks if a value matches any value in a list or subquery.
+LIKE: Filters the result set based on a pattern match.
+NOT LIKE: Filters the result set based on a pattern mismatch.
+CONCAT: Concatenates two or more strings.
+TRUNCATE: Removes all rows from a table, while maintaining the structure.

@@ -1,0 +1,24 @@
+import readline from 'readline'
+import fs from 'fs'
+
+async function processFile(filename) {
+  const stream = fs.createReadStream(filename);
+  const rl = readline.createInterface({
+    input: stream,
+  });
+
+  for await (const line of rl) {
+
+    const firstLetter = line.charAt(0).toUpperCase()
+    const restLetters = line.slice(1, line.length)
+    const formattedLine = firstLetter.concat(restLetters)
+
+    if(formattedLine.length < 1){
+        console.log(`\n --------------`)
+    }
+
+    console.log(formattedLine);
+  }
+}
+
+processFile("task.txt");

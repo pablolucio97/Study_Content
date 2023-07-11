@@ -103,3 +103,7 @@ script in the package.json file to ignore try-catch block unhan-
 dled.
 
 An even route can be used in diferent methods.
+
+Do not perform a rollback in any table there's in production. 
+If you write some field wrong or something like this, create a 
+new migration to solve the problem.
