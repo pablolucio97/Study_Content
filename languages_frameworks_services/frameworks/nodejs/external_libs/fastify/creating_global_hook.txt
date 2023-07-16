@@ -1,0 +1,12 @@
+==================================USING HOOKS ON FASTIFY=====================================
+
+Hooks can be used globally or for a specific set o routes. It can execute a function as 
+midlleware, when a error or another server event happens, and must be called before the 
+execution of the route. Ex:
+
+Global middleware hook that log the current method and route path of each route in the whole 
+application:
+
+app.addHook('preHandler', async (req, res) => {
+  console.log(`[${req.method}] ${req.url}`)
+})
