@@ -257,3 +257,45 @@ manually running yarn react-native link the-lib-name.
 
 Convert the string to number at working with number directly on 
 InputText. Ex: onChangeText={value => setQuantity(Number(value))}
+
+-----------------------------------------------------------------
+
+Use the prop fill at working with react-native-svg library. You 
+svg code can't have the prop color in the .svg file otherwise 
+your color defined in your .jsx won't be applied.
+
+-----------------------------------------------------------------
+
+Use the prop defaultBackground on images to make a image be 
+loaded faster.
+
+-----------------------------------------------------------------
+
+Type your set of routes (ex: AppRoutes and AuthRoutes) 
+separately exporting and interface extending its navigation 
+props and use this type in your screens.
+
+-----------------------------------------------------------------
+
+Use flexShrink if you have long texts to avoid your component 
+push other component or use flexGrow if you want your component 
+assumes all available space. 
+
+-----------------------------------------------------------------
+
+Use HTML characters entities to represent special characters 
+like bullet, logical operators, fractional numbers, currency 
+symbols and others.
+
+-----------------------------------------------------------------
+
+Do not try to handle states after the component has this state 
+have been unmounted cause you can trigger memory data leaking 
+problems.
+
+-----------------------------------------------------------------
+
+If you're loading async data and your router control depends 
+this to render your application routes, add a state to indicate 
+the user async device data on your auth context and show a 
+loading while your app read info from your device.

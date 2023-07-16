@@ -2029,3 +2029,34 @@ to store a value.
 
 Follow the flow to create states => local variable => local state => container state 
 (two componentswith the children component consuming father's state) => and context.
+
+--------------------------------------------------------------------------------------
+
+In React do not create a state just for store an array length cause length is prop 
+granted by JavaScript prototyping.
+
+--------------------------------------------------------------------------------------
+
+At using fetch Api to handle requests, you must grant your application send the 
+method, headers and the body (in string format). Ex:
+
+ async function handleSignUp({ name, email, password }: FormDataProps) {
+    setLoading(true)
+    try {
+      await fetch('http://localhost:3333/users', {
+        method: 'POST',
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ name, email, password })
+      })
+        .then(res => res.json())
+        .then(data => console.log(data))
+    } catch (error) {
+      console.log(error)
+      setLoading(false)
+    } finally {
+      setLoading(false)
+    }
+  }

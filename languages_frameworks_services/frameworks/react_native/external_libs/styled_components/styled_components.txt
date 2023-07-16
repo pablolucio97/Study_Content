@@ -74,3 +74,10 @@ export const Title = styled.Text`
     font-weight: bold;
     color: ${({theme}) => theme.colors.title}
 `
+
+Obs: If you need to extends the native properties of a component 
+and you're using Styled Components, you must declare you 
+component into parenteses, otherwise typescript will 
+complain about mismacthing styles typing. example:
+
+const Button = styled(TouchableOpacity)``

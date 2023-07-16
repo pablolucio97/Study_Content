@@ -486,6 +486,29 @@ export function Button({ label, ...rest } : ButtonProps {
     )
 }
 
+
+
+------------------------------EXTENDING THIRD LIBRARIES---------------------------------
+
+To extend third libraries on TypeScript import the library you want to modify, declare 
+the module you want to extend and export the the modified existing interface. Example:
+
+import {Knex} from 'knex'
+
+declare module 'knex/types/tables' {
+    export interface Tables{
+        // ADD A NEW TABLE NAMED 'transactions' INTO NEXT AVAILABLE TABLES WITH
+        // AN SPECIFIC OBJECT TYPING 'id, title, amount, created_at, and session_id'
+        transactions: {
+            id: string
+            title: string
+            amount: number
+            created_at: string
+            session_id?: string
+        }
+    }
+}
+
 -------------------------------FORCING TYPES--------------------------------------
 
 Use pick typing techinic to force a type when the return can be an type or another
