@@ -2060,3 +2060,8 @@ method, headers and the body (in string format). Ex:
       setLoading(false)
     }
   }
+
+--------------------------------------------------------------------------------------
+
+Do not create Inputs components with a fixed ref. Create exporting as forwardedRef to 
+allow the ref be manipulated according the application needs.
