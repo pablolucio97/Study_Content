@@ -15,7 +15,7 @@ application after all tests. Call supertest() passing your app.server to instanc
 your server. Example:
 
 
-import { test, expect, beforeAll, afterAll } from 'vitest'
+import { test, expect, beforeAll, afterAll, describe } from 'vitest'
 import supertest from 'supertest'
 import { app } from '../app'
 
@@ -29,15 +29,17 @@ afterAll(async () => {
     await app.close()
 })
 
-test('Allow user to create a new transaction', async () => {
-    const response = await supertest(app.server)
-        .post('/transactions')
-        .send({
-            title: "Freela",
-            amount: 5000,
-            type: "credit"
-        })
-    expect(response.statusCode).toBe(201)
+describe('Transactions', () => {
+    test('Allow user to create a new transaction', async () => {
+        const response = await supertest(app.server)
+            .post('/transactions')
+            .send({
+                title: "Freela",
+                amount: 5000,
+                type: "credit"
+            })
+        expect(response.statusCode).toBe(201)
+    })
 })
 
 
