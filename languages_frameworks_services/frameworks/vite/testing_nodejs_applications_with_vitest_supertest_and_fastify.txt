@@ -1,4 +1,4 @@
-==============TESTING NODEJS APPLICATIONS WITH VITEST AND SUPERTEST===============
+==========TESTING NODEJS APPLICATIONS WITH VITEST, FASTIFY AND SUPERTEST===========
 
 1) Install the vitest and the supertest running npx yarn add vitest supertest 
 @types/supertest - D
