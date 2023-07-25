@@ -42,4 +42,64 @@ describe('Transactions', () => {
     })
 })
 
+----------------------CONFIGURING TEST ENVIRONMENT FOR TESTS---------------------
+
+1) Create a .env.test containing your test database path and the environment 
+configured as test. Example:
+
+DATABASE_URL="./db/app.db"
+NODE_ENV="development"
+
+-----------
+
+2) On your index.ts filed inside you env folder, import the config from dotenv 
+and check if the environment is development or test to call the .env file 
+according the current environment. Example:
+
+import { config } from 'dotenv'
+
+if (process.env.NODE_ENV === 'test') {
+    //SEARCH FOR ENV VARS ON DEFAULT test.env FILE
+    config({ path: '.env.test', override: true })
+} else {
+    //SEARCH FOR ENV VARS ON DEFAULT .env FILE
+    config()
+}
+
+-----------
+
+3) On your tests you need to granted your databse is always clear before to run 
+each test. Import the execSync from node:child_process to execute terminal 
+scripts in your code and be able to clear your database and run the migrations 
+before each test. Example:
+
+import { execSync } from 'node:child_process'
+
+beforeEach(async () => {
+    execSync('npm run knex migrate:rollback --all')
+    execSync('npm run knex migrate:latest')
+})
+
+---------------------------------GENERAL TIPS------------------------------------
+
+One test must not depends on another test. If a test depends another one, both 
+tests should be a unique test instead of two tests. We can do that running the 
+code of the another test in the same test.
+
+---------------------------------------------------------------------------------
+
+Your test must adept to the code and not the code must adept to the test.
+
+---------------------------------------------------------------------------------
+
+Have a separated environment for test your server. Have a test environment to 
+test your application and a development environment to develop your application.
+It will avoiding to populate your development database with tests records.
+
+---------------------------------------------------------------------------------
+
+At working with databases on tests, before each test, clear the database and run 
+all migrations again because one test might interfere in another one.
+
+
 
