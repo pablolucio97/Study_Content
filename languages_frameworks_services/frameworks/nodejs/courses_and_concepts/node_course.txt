@@ -364,3 +364,10 @@ At working with Streams/Buffer on NodeJS a request/response can read/send a
  request/response be read/send. On NodeJS the params (req, res) of a http 
  are on the most cases readable/writable streams respectively.
 
+-------------------------------------------------------------------------------
+
+Some boolean databse fields can be exchanged for when that data is available.
+Ex: Exchange is_validated: Boolean for validated_at: DateTime.
+
+
+
