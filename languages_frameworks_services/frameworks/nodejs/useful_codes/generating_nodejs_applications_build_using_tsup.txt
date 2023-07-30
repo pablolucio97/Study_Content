@@ -1,0 +1,19 @@
+======================GENERATING NODEJS APPLICATIONS BUILD USING TSUP==============================
+
+1. Install the tsup runnig yarn add tsup -D
+
+---
+
+2. Create the command for build your application inside the "build" folder:
+   "build" : "tsup src --out-dir build"
+
+---
+
+3. Test if your code is working after the JavaScript compilation running your server.js
+   that is inside your build folder.
+
+---
+
+4. Add the build folder to your gitignore file.
+
+

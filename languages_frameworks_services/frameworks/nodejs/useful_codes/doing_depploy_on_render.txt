@@ -1,0 +1,110 @@
+============GENERATING BUILD USING TSUP AND DEPLOYING NODEJS APPLICATIONS ON RENDER================
+
+
+1) Install the tsup runnig yarn add tsup -D
+
+-----------
+
+2) Create the command for build your application inside the "build" folder:
+"build" : "tsup src --out-dir build"
+
+-----------
+
+3) Test if your code is working after the JavaScript compilation running your server.js that 
+is inside your build folder.
+
+-----------
+
+4) Add the build folder to your gitignore file.
+
+-----------
+
+5) Access your render dashboard at https://dashboard.render.com, click on "New PostgresSQL" 
+to create a new Postgres database, provide a name for the project and another one for the 
+databse, and create your database.
+
+
+-----------
+
+6) On your index.ts inside your env folder, add a new prop to the encSchema to accept sqlite 
+and pg database (because sqlite works on development and postgress on production). Use Zod.
+coerce to grant your application port will be a number and not a string. Example:
+
+const envSchema = Zod.object({
+    DATABASE_URL: Zod.string(),
+    DATABASE_CLIENT: Zod.enum(['sqlite', 'pg']),
+    PORT: Zod.coerce.number().default(3333),
+    NODE_ENV: Zod.enum(['production', 'development', 'test']).default('production')
+})
+
+
+-----------
+
+7) Install the postgres database drive running yarn add pg. Double check if sqlite3 drive 
+has been installed as development dependency.
+
+-----------
+
+8) Adjust your .env files to have the var DATABASE_CLIENT="sqlite" to be used on 
+development. 
+
+-----------
+
+9) Change your database.ts file to read the client from env and read the filename
+according to the database client. Ex:
+
+export const config: Knex.Config = {
+  client: env.DATABASE_CLIENT,
+  connection: 
+    env.DATABASE_CLIENT === 'sqlite'
+      ?
+      {
+        filename: env.DATABASE_URL
+      }
+      :
+      env.DATABASE_URL  ,
+  useNullAsDefault: true,
+  migrations: {
+    extension: 'ts',
+    directory: './db/migrations',
+  },
+}
+
+export const knex = knexSetup(config)
+
+-----------
+
+10) On your ackage.json set the project engine as node v >= 18 to grant all 
+resources will be run. Example:
+
+  "engines" : {
+    "node" : ">=18"
+  },
+
+-----------
+
+11) Commit and push your project alterations to github
+
+
+-----------
+
+12) On your render panel, copy your "Internal Dtabase URL", back to the dashboard, login 
+using your GitHub account, click on "Create a new Web Service", select your back-end 
+repository on GitHub, click on "Connect" and provide the data for your new Web Service.
+
+Use the command npm install && npm run knex -- migrate:latest && npm run build on "Build 
+Command" field and the command node build/server.js on "" field.
+
+Click on "Advanced" add the DATABASE_URL (must be your "External Database URL" from render)
+and DATABASE_CLIENT (must be 'pg') variables.
+
+Finally click on "Create Service".
+
+-----------
+
+Obs: If you're using Eslint, create an eslint.ignore file to ignore your node_modules and 
+build folder to not be checked by Eslint.
+
+
+
+

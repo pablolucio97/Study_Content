@@ -66,5 +66,12 @@ cies not allowing automatic updates at installation.
 The syntax of importation "import * as something from somewhere" must 
 be used when the third lib doesn't have a default export.
 
+Allways create a file named as .npmrc containing the configuration 
+save-exact=true to all your projects dependencies by installed with 
+an exact version and allow GitHub bots (like Renovate) check for 
+dependencies updates and suggest pull requests containing updateds 
+dependencies of your project. It will to grant your app don't 
+crashes by outdated dependencies.
+
 
 
