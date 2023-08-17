@@ -329,7 +329,10 @@ const server = http.createServer(async (req, res) => {
 
 server.listen(3336);
 
--------------------------------------------------------------------------------
+
+
+
+-------------------------------GENERAL TIPS------------------------------------
 
 Stateless application: Doesn't save anything in memory. Use databases.
 
@@ -366,8 +369,19 @@ At working with Streams/Buffer on NodeJS a request/response can read/send a
 
 -------------------------------------------------------------------------------
 
-Some boolean databse fields can be exchanged for when that data is available.
+Some boolean database fields can be exchanged for when that data is available.
 Ex: Exchange is_validated: Boolean for validated_at: DateTime.
 
+-------------------------------------------------------------------------------
 
+On 1:1 relationships study the possibility the data is be stored in a unique 
+table.
+
+------------------------------------------------------------------------------
+
+To apply SOLID inverse dependency principle on your nodejs application, the 
+file that has the useCase must be free from the database dependency (ex: 
+TypeORM, PrismaORM, SequelizeORM) and the database dependency must be called 
+in the controller file by dependency injection (using containers from a lib 
+like TSRynge) or directly calling the database dependency in this file.
 

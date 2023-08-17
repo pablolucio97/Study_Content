@@ -238,3 +238,8 @@ will be undone.
 At using interactive transactions, be careful to not let 
 the  transaction open for a long time. Be quick.
 
+Prisma does not creates relationships columns in its 
+database's table. Relationship columns has a different 
+color on Prisma.schema file when using Prisma extension 
+on VsCode.
+
