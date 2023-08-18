@@ -27,39 +27,59 @@ export default defineConfig({
 
 -------------
 
-4) Inside the your useCase folder create your test file 
-(ex: regsterUser.spec.ts) and write your test. To perform an 
-unity test over your application useCases, you will need to 
-mock the repository. Example:
+4) Inside your repositories folder, create a new folder named as 
+in-memory-repository with a in-memory-my-entity-repository. This 
+file must export a mocked class containing all your real repository 
+methods. Example:
+
+import { Prisma, User } from "@prisma/client"
+import { UsersRepository } from "../interfaces/prisma-users-repository"
+
+export class InMemoryUsersRepository implements UsersRepository {
+
+    public items: User[] = []
+
+    async create(data: Prisma.UserCreateInput) {
+        const user = {
+            id: 'user-1',
+            name: data.name,
+            email: data.email,
+            password_hash: data.password_hash,
+            created_at: new Date(),
+            checkin_id: '',
+            checkins: []
+        }
+
+        this.items.push(user)
+
+        return user
+    }
+    async findByEmail(email: string) {
+        const user = this.items.find((item) => item.email === email)
+        if (!user) {
+            return null
+        }
+        return user
+    }
+
+}
+
+-------------
+
+5) Inside the your useCase folder create your test file 
+(ex: regsterUser.spec.ts) and write your test. Example:
 
 import { describe, it, expect } from 'vitest'
 import { RegisterUseCase } from './registerUser'
 import { compare } from 'bcryptjs'
+import { InMemoryUsersRepository } from 
+'@/repositories/in-memory/in-memory-users-repository'
 
 describe('Register Use Case', () => {
     it('should hash user password correctly on registration', 
-    async () => {
-
-        const mockedUsersRepository = {
-            async findByEmail(email: string) {
-                return null
-            },
-
-            async create(data: any) {
-                return {
-                    id: 'user-1',
-                    name: data.name,
-                    email: data.email,
-                    password_hash: data.password_hash,
-                    created_at: new Date(),
-                    checkin_id: '',
-                    checkins: []
-                }
-            }
-        }
-
-        const registerUseCase = 
-            new RegisterUseCase(mockedUsersRepository)
+        async () => {
+        const usersRepository = new InMemoryUsersRepository()
+        const registerUseCase = new RegisterUseCase(usersRepository)
 
         const { newUser } = await registerUseCase.execute({
             email: 'johndoe2@gmail.com',
@@ -83,6 +103,6 @@ business rules and not functional requirements.
 ---------------------------------------------------------------------
 
 Unity tests doesn't has connection with database during the test, to 
-perform an unity test you must create an object that mocks your 
-database format structure, like an object or an array of objects for 
-example.
+perform an unity test you must create an in memory repository that 
+contains all your real repository methods mocking your database format 
+structure to be used in your tests.
