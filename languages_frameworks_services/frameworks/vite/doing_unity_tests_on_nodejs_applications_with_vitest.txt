@@ -1,0 +1,88 @@
+===========DOING UNITY TESTS ON NODEJS APPLICATIONS WITH VITEST============
+
+1) Run npx yarn add vitest vite-tsconfig-paths -D to install the vitest 
+and the vite-tsconfig-paths to vitest can read relative paths 
+importation configs.
+
+-------------
+
+2) At your application root path, create a vite.config.ts file importing 
+defineConfig from 'vitest/config', and tsconfigpaths from 
+'vite-tsconfig-paths' and exporting the vite configuration function.
+Example:
+
+
+import {defineConfig} from 'vitest/config'
+import tsconfigpaths from 'vite-tsconfig-paths'
+
+export default defineConfig({
+    plugins: [tsconfigpaths()]
+})
+
+-------------
+
+3) On your package.json file, create the test script. Example:
+
+"test" : "vitest"
+
+-------------
+
+4) Inside the your useCase folder create your test file 
+(ex: regsterUser.spec.ts) and write your test. To perform an 
+unity test over your application useCases, you will need to 
+mock the repository. Example:
+
+import { describe, it, expect } from 'vitest'
+import { RegisterUseCase } from './registerUser'
+import { compare } from 'bcryptjs'
+
+describe('Register Use Case', () => {
+    it('should hash user password correctly on registration', 
+    async () => {
+
+        const mockedUsersRepository = {
+            async findByEmail(email: string) {
+                return null
+            },
+
+            async create(data: any) {
+                return {
+                    id: 'user-1',
+                    name: data.name,
+                    email: data.email,
+                    password_hash: data.password_hash,
+                    created_at: new Date(),
+                    checkin_id: '',
+                    checkins: []
+                }
+            }
+        }
+
+        const registerUseCase = 
+            new RegisterUseCase(mockedUsersRepository)
+
+        const { newUser } = await registerUseCase.execute({
+            email: 'johndoe2@gmail.com',
+            name: 'johndoe',
+            password: 'abc123'
+        })
+
+        const isPassCorrectlyHashed = await compare(
+            'abc123',
+            newUser.password_hash
+        )
+        expect(isPassCorrectlyHashed).toBe(true)
+    })
+})
+
+==========================GENERAL TIPS===============================
+
+Generally each route has a business rule, your tests must cover each 
+business rules and not functional requirements.
+
+---------------------------------------------------------------------
+
+Unity tests doesn't has connection with database during the test, to 
+perform an unity test you must create an object that mocks your 
+database format structure, like an object or an array of objects for 
+example.

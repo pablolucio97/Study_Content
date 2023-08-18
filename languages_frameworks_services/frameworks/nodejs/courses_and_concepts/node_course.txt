@@ -385,3 +385,9 @@ TypeORM, PrismaORM, SequelizeORM) and the database dependency must be called
 in the controller file by dependency injection (using containers from a lib 
 like TSRynge) or directly calling the database dependency in this file.
 
+------------------------------------------------------------------------------
+
+Even your back-end function/useCase only return a single data, prefer to 
+return it inside an object because you can add more data into this object if 
+it necessary further.
+
