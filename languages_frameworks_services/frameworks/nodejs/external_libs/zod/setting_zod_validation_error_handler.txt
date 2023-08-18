@@ -1,0 +1,33 @@
+======================SETTING ZOD VALIDATION ERROR HANDLER=======================
+
+To define Zod validation error handler you need to call app.setErrorHandler and 
+check if the error is an instance of ZodError using error.format to show your 
+validation error or otherwise show a generic error message. Example:
+
+
+import fastify from "fastify";
+import { appRoutes } from './http/routes'
+import { ZodError } from "zod";
+import { env } from "@/env";
+
+export const app = fastify()
+
+app.register(appRoutes)
+
+app.setErrorHandler((error, _, rep) => {
+    if (error instanceof ZodError) {
+        return rep
+            .status(400)
+            .send({ message: 'Validation error.', issues: error.format() })
+    }
+
+    if(env.NODE_ENV !== 'production') {
+        console.error(error)
+    }else{
+        //SEND TO AN EXTERNAL SERVICE LOG ERROR, LIKE SENTRY OR DATADOG
+    }
+
+    return rep
+    .status(500)
+    .send({message: 'Internal server error'})
+})
