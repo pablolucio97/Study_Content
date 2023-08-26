@@ -467,3 +467,62 @@ export async function authenticateUserController(req: FastifyRequest, rep: Fasti
     }
     return rep.status(200).send()
 }
+
+------------------------------------------------------------------------------
+
+Use TDD to develop features that is composed by accurate business rules. At 
+applying TTD, your test should fail (red), so you develop your useCase and 
+the test will pass (green) and the go improving the test.
+
+------------------------------------------------------------------------------
+
+At testing with vitest and you need to run tests that depends on date, use 
+fake date before each test and then back to real dates, use vi.setSystemTime
+to set system time too. Example:
+
+import { InMemoryCheckInsRepository } from '@in-memory-checkins-repository'
+import { CheckinUserUseCase } from './checkinUser'
+import { beforeEach, describe, expect, it, vi, afterEach } from 'vitest'
+
+let checkInsRepository: InMemoryCheckInsRepository
+let sut: CheckinUserUseCase
+
+describe('Check-in Use Case', () => {
+  beforeEach(() => {
+    checkInsRepository = new InMemoryCheckInsRepository()
+    sut = new CheckinUserUseCase(checkInsRepository)
+
+    vi.useFakeTimers()
+  })
+
+  afterEach(() => {
+    vi.useRealTimers()
+  })
+
+  it('should be able to check in', async () => {
+    const { checkIn } = await sut.execute({
+      gymId: 'gym-01',
+      userId: 'user-01',
+    })
+
+    expect(checkIn.id).toEqual(expect.any(String))
+  })
+
+  it('should not be able to check in twice in the same day', async () => {
+    vi.setSystemTime(new Date(2022, 0, 20, 8, 0, 0))
+
+    await sut.execute({
+      gymId: 'gym-01',
+      userId: 'user-01',
+    })
+
+    expect(async () =>
+      await sut.execute({
+        gymId: 'gym-01',
+        userId: 'user-01',
+      }),
+    ).rejects.toBeInstanceOf(Error)
+
+  })
+
+})
