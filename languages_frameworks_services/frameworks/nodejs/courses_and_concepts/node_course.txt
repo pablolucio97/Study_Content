@@ -526,3 +526,40 @@ describe('Check-in Use Case', () => {
   })
 
 })
+
+------------------------------------------------------------------------------
+
+At defining interfaces for entities that some fields ca be null, do not 
+use the optional prop, use the value expect or undefined, because it can 
+cause mismatch typing between null and undefined. Ex:
+
+Do not use:
+
+interface ICreateGymDTO {
+    title: string;
+    description?: string;
+    phone?: string;
+}
+
+Use:
+
+interface ICreateGymDTO {
+    title: string;
+    description: string | null;
+    phone: string | null;
+}
+
+------------------------------------------------------------------------------
+
+Use double questions marks operator always an item can be undefined or null.
+Ex:
+
+const gym = {
+  id: data.id ?? randomUUID(),
+  title: data.title,
+  description: data.description ?? null,
+  phone: data.phone ?? null,
+  latitude: new Prisma.Decimal(data.latitude.toString()),
+  longitude: new Prisma.Decimal(data.longitude.toString()),
+  created_at: new Date(),
+}
