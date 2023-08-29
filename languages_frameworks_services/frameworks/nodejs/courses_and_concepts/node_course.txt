@@ -329,7 +329,26 @@ const server = http.createServer(async (req, res) => {
 
 server.listen(3336);
 
+---------------------------AUTHENTICATION METHODS------------------------------
 
+Basic Auth: Is an encoded data containing some user data to be validated as a 
+valid password to identify the user before perform a request for the back-end.
+The basic auth authentication should be used only on HTTPS protocol because it 
+is less secure than JWT authentication.
+
+--------------
+
+JWT: A immutable token composed by header, payload and assignment is generated 
+based on a strong string, sub (generally the user id) that must be used again 
+to have access to the token content. Example:
+
+{
+  "sub": "user-id-aD78921EDFac781",
+  "name": "John Doe",
+  "iat": 1516239022
+}
+
+Generated token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c
 
 
 -------------------------------GENERAL TIPS------------------------------------
