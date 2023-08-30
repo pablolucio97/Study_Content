@@ -1,0 +1,105 @@
+1) Install the library '@fastify/jwt' to configure fastify to use JWT.
+
+--------------
+
+2) Add a new JWT_SECRET environment variable to your .env file.
+
+--------------
+
+3) On your ev folder, add the JWT_SECRET zod object schema verification. Ex:
+
+const envSchema = z.object({
+  NODE_ENV: z.enum(['dev', 'test', 'production']).default('dev'),
+  JWT_SECRET: z.string(),
+  PORT: z.coerce.number().default(3333),
+})
+
+--------------
+
+4) On your app.ts file, import the fastifyJWT and register it on your  app 
+passing your JWT_SECRET as your secret. Ex:
+
+import fastifyJwt from '@fastify/jwt'
+import fastify from 'fastify'
+import { appRoutes } from '@/http/routes'
+import { ZodError } from 'zod'
+import { env } from '@/env'
+
+export const app = fastify()
+
+app.register(fastifyJwt, {
+  secret: env.JWT_SECRET,
+})
+
+--------------
+
+5) On your authentication controller file, get the token from your reply 
+and return it as response. Ex:
+
+import { AppError } from '@/errors/AppError'
+import { makeAuthenticateUserUseCase } from '@/factories/makeAuthenticateUserUseCase'
+import { FastifyReply, FastifyRequest } from 'fastify'
+import { z as zod } from 'zod'
+
+const userRegistrationSchema = zod.object({
+    email: zod.string().email(),
+    password: zod.string().min(6)
+})
+
+export async function authenticateUserController(req: FastifyRequest, 
+        rep: FastifyReply) {
+    const { email, password } = userRegistrationSchema.parse(req.body)
+    try {
+
+        const authenticateUserUseCase = makeAuthenticateUserUseCase()
+
+        const user = await authenticateUserUseCase.execute({
+            email,
+            password
+        })
+
+        //CREATING JWT TOKEN BASED ON user.id INFO
+        const token = await rep.jwtSign({}, {
+            sign: {
+                sub: user.id
+            }
+        })
+        //RETURN ENCODED TOKEN
+        return rep.status(200).send({ token })
+
+    } catch (error) {
+        if (error instanceof AppError) {
+            return rep.status(403).send({
+                message: error.message
+            })
+        }
+        throw error
+    }
+}
+
+--------------
+
+6) Create a type declaration file to extend the @fastify/JWT interface. Ex:
+
+import '@fastify/jwt'
+
+declare module '@fastify/jwt' {
+  export interface FastifyJWT {
+    user: {
+      sub: string
+    }
+  }
+}
+
+--------------
+
+7) Recovery the token on each controller file of each route your need. Ex:
+
+import { FastifyRequest, FastifyReply } from 'fastify'
+
+export async function profile(req: FastifyRequest, rep: FastifyReply) {
+    //RECOVERY DATA PASSED TO JWT TOKEN
+    const user = await req.jwtVerify()
+    //RETURN DECODED TOKEN CONTAINING user.id
+    return rep.status(200).send({userId: user.sub})
+}
