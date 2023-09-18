@@ -1,0 +1,178 @@
+
+-----------------DOING REFRESH TOKEN WITH JWT, FASTIFY AND PRISMAORM----------------------
+
+Is not security use a token with long validates (above 20 minutes), be this reason, for 
+the user doesn't needs to login again to generate a new token, the system generates a new 
+token (refresh token) if the origin token has expired. 
+
+What must deal with the application security is the token, the refresh token must be u-
+sed only to generate a new token. At authenticating in the application must be generated 
+the token and also a refresh token, the token will be used for user use your application
+and the refresh token to generate a new token when the original token has expired. In the
+refresh token route, the user must to pass the generated refresh token at the first au-
+thentication to generate a new token with also a new refresh token allowing to repeat the
+process every time when token has expired.
+
+1) Run npx yarn add @fastify/cookie to handle cookies on fastify.
+
+------------------
+
+2) On app.ts file, add the sign key to your app.regster configuring the validation of 
+your token, import the fastifyCookie from '@fastify/cookie' and add a new app.register 
+to it. Example:
+
+app.register(fastifyJwt, {
+    secret: env.JWT_SECRET,
+    cookie:{
+        cookieName: 'refreshToken',
+        signed: false,
+    },
+    sign:{
+        expiresIn: '10m'
+    }
+})
+
+app.register(fastifyCookie)
+
+------------------
+
+3) Add the refresh token to authentication controller. Your controller doesn't must 
+return the refresh token, just set it on cookies. Example:
+
+const userRegistrationSchema = zod.object({
+    email: zod.string().email(),
+    password: zod.string().min(6),
+})
+
+export async function authenticateUserController(
+    req: FastifyRequest,
+    rep: FastifyReply
+) {
+    const { email, password } = userRegistrationSchema.parse(req.body)
+    try {
+        const authenticateUserUseCase = makeAuthenticateUserUseCase()
+
+        const user = await authenticateUserUseCase.execute({
+            email,
+            password,
+        })
+
+        //CREATING JWT TOKEN BASED ON user.id INFO
+        const token = await rep.jwtSign(
+            {},
+            {
+                sign: {
+                    sub: user.id,
+                },
+            }
+        )
+        //CREATING JWT REFRESH TOKEN BASED ON user.id INFO
+        const refreshToken = await rep.jwtSign(
+            {},
+            {
+                sign: {
+                    sub: user.id,
+                    expiresIn: '7d',
+                },
+            }
+        )
+
+        return rep
+            .setCookie('refreshToken', refreshToken, {
+                path: '/', // ROUTES HAS ACCESS TO READ THE COOKIE
+                secure: true, // COOKIE IS ENCRYPTED BY HTTPS, FRONT-END CAN READ IT
+                sameSite: true, //AVAILABLE ONLY IN THE DOMAIN (LOCALHOST OR PRODURL)
+                httpOnly: true //AVAILABLE OLY IN THE REQUEST CONTEXT, NOT WILL BE STORED IN BROWSER
+            })
+            .status(200)
+            .send({ token })
+    } catch (error) {
+        if (error instanceof AppError) {
+            return rep.status(403).send({
+                message: error.message,
+            })
+        }
+        throw error
+    }
+}
+
+------------------
+
+4) Create a controller and a route to system refreh a token based on existing cookie. Example:
+
+import { AppError } from '@/errors/AppError'
+import { FastifyReply, FastifyRequest } from 'fastify'
+
+export async function RefrehsTokenController(
+    req: FastifyRequest,
+    rep: FastifyReply
+) {
+    //VALIDATE IF USER IS AUTHENTICATED SEARCHING FOR THE EXISTING COOKIE AND NOT BEARER TOKEN
+    await req.jwtVerify({ onlyCookie: true })
+    //IF THERE IS A VALID COOKIE, FOLLOWS THE NEXT CODE
+    try {
+    //CREATING JWT TOKEN BASED ON req.user.sub INFO
+        const token = await rep.jwtSign(
+            {},
+            {
+                sign: {
+                    sub: req.user.sub,
+                },
+            }
+        )
+
+        const refreshToken = await rep.jwtSign(
+            {},
+            {
+                sign: {
+                    sub: req.user.sub,
+                    expiresIn: '7d',
+                },
+            }
+        )
+
+        return rep
+            .setCookie('refreshToken', refreshToken, {
+                path: '/', // ROUTES HAS ACCESS TO READ THE COOKIE
+                secure: true, // COOKIE IS ENCRYPTED BY HTTPS, FRONT-END CAN READ IT
+                sameSite: true, //AVAILABLE ONLY IN THE DOMAIN (LOCALHOST OR PRODURL)
+                httpOnly: true, //AVAILABLE OLY IN THE REQUEST CONTEXT, NOT WILL BE STORED IN BROWSER
+            })
+            .status(200)
+            .send({ token })
+    } catch (error) {
+        if (error instanceof AppError) {
+            return rep.status(403).send({
+                message: error.message,
+            })
+        }
+        throw error
+    }
+}
+
+------------------
+
+5) Create and register a new route for the RefrehsTokenController, example:
+
+routes/system.ts:
+
+import { FastifyInstance } from 'fastify'
+import { RefrehsTokenController } from '../controllers/system/refreshToken'
+
+export async function systemRoutes(app: FastifyInstance) {
+    app.patch('/system/refresh-token', RefrehsTokenController)
+}
+
+---
+
+
+app.ts:
+
+app.register(systemRoutes)
+
+------------------
+
+6) Test the '/system/refresh-token' request without body on Insomnia.
+
+
+
