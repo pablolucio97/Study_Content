@@ -73,5 +73,13 @@ dependencies updates and suggest pull requests containing updateds
 dependencies of your project. It will to grant your app don't 
 crashes by outdated dependencies.
 
+The -- means that the command your pass a flag to the cli of the 
+package you are running a code and not the npm.
+
+The prefix pre and post means that script will run before or after 
+the script respectvelly.
+
+
+
 
 
