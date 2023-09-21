@@ -509,6 +509,26 @@ declare module 'knex/types/tables' {
     }
 }
 
+------------------------------USING OPTIONAL GENERIC---------------------------------
+
+Use Optional TypeScript Generic to allow using a property that is obligatory for the 
+entity, but at the moment creation it can be informed or not.
+
+type Optional<T, K extends keyof T> = Pick<T, K> & Omit<T, K>
+
+interface IUser = {
+  name: string;
+  email: string;
+  created_at: Date
+}
+
+type userProps = Optional<IUser, 'created_at'>
+
+const new user = mydb.create(data : userProps){
+  name: data.name;
+  email: data.email;
+}
+
 -------------------------------FORCING TYPES--------------------------------------
 
 Use pick typing techinic to force a type when the return can be an type or another
@@ -714,3 +734,8 @@ data that could be null at a condition. Ex:
         return state.cart.items
         .find(item => item.product.id === product.id)?.quantity ?? 0;
     })
+
+----------------------------------
+
+Use Optional Generic to type a prop that is obligatory, but can optional 
+at the creation moment.
