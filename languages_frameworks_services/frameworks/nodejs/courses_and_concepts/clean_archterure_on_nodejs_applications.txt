@@ -1,0 +1,29 @@
+
+=================CLEAN ARCHITECTURE ON NODEJS APPLICATIONS====================
+
+In the Clean Architecture, the useCases layer doesn't must depends on the 
+controllers layers.
+
+Your application adopts the Clean Architecture concept when it's possible to 
+change your entire useCases and entities layer without affect controllers 
+layer.
+
+--------------------------Clean Architecture flow-----------------------------
+
+Development flow: Entities => Use Cases => Controllers () => Client 
+--------
+Client Request flow: Client => Controllers () => Use Case () => Entities
+
+Concepts:
+
+Entities: Are the representation of your database tables in the code.
+------
+Use Cases: Are the responsible for communicate with your entities performing  
+each method of your system according your business rules. Is necessary a 
+repository containing all methods of your system for each use case know 
+which method implement in the current use case.
+------
+Controllers: Are the responsible for protect the system from client's request 
+checking if the request sent by client attends to the business rules.
+------
+Client: Is the client is sending a request. Can be any client, device or web.
