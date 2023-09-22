@@ -583,3 +583,9 @@ const gym = {
   longitude: new Prisma.Decimal(data.longitude.toString()),
   created_at: new Date(),
 }
+
+------------------------------------------------------------------------------
+
+At developing a system, on your use case, always return um object containing 
+the data you want to return because its possible to return more data on the 
+same request further if necessary.
