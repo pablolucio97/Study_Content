@@ -589,3 +589,13 @@ const gym = {
 At developing a system, on your use case, always return um object containing 
 the data you want to return because its possible to return more data on the 
 same request further if necessary.
+
+------------------------------------------------------------------------------
+
+At developing a system, you can have for example 30 entities and 20 tables,
+each entity do not necessarily represents a table, but an entity can be a 
+variation of the representation of the data in the same table. Ex: A table 
+for commentaries can be used to store question-commentaries and answer-
+commentaries. This practice is possible through the Polymorphism concept
+where there is a father class that can be extended to be used in two or 
+more classes/entities.
