@@ -26,7 +26,8 @@ Ex: A receptionist from a hospital or hotel.
 ---------------------------------
 
 - Aggregates: An Aggregate is like a family of related objects in a software 
-system, treated as a single unit. 
+system, treated as a single unit. An aggregate is executable together with the 
+root entity.
 
 Ex: In a blogging platform, a ‘Post’ aggregate might include entities like 
 ‘Comments’ and ‘Tags’, with the ‘Post’ being the aggregate root, ensuring 
@@ -37,6 +38,13 @@ Ex2: Considering a ‘ShoppingCart’ in an online store as an aggregate. The
 objects. You interact with the items through the ‘ShoppingCart’, ensuring that 
 the actions like adding or removing items are consistent and the total price is 
 correctly calculated.
+
+---------------------------------
+
+WatchedList: WatchedList is a collection of data that depends on another info 
+to be correctly handle on the database. Example: At editing a post in a forum,
+this post can contains attachments that are an array of objects, so we need 
+map information for create/delete/update operations for each attachment.
 
 ---------------------------------
 
