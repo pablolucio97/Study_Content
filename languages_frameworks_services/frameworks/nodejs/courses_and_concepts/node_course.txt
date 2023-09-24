@@ -651,3 +651,8 @@ in the same repository of the root entity. Ex: In a blogging platform, a
 ‘Post’ aggregate might include entities like ‘Comments’ and ‘Tags’, with the 
 ‘Post’ being the aggregate root. All "Tags" and "Comments" data must be save 
 on the "Post" repository. 
+
+------------------------------------------------------------------------------
+
+Use the Watched List pattern (also know as Oberver Pattern) when you need to 
+handle a set of arrays in real time. Like an array of attachments in a post.

@@ -25,6 +25,11 @@ defined and they cannot be accessed or called from outside the class,
 including instances of the class or subclasses. Private methods can access 
 private properties and other private methods within the class.
 
+Abstract method:
+
+A class that contains the abstract method in its declaration can not be 
+instanced, to this class be used in future, it must be extended.
+
 -----------------------------Getters and Setters------------------------------
 
 Getters and Setters act like doors on our class to protect our class from 
