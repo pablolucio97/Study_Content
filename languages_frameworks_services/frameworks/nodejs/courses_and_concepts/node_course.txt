@@ -599,3 +599,55 @@ for commentaries can be used to store question-commentaries and answer-
 commentaries. This practice is possible through the Polymorphism concept
 where there is a father class that can be extended to be used in two or 
 more classes/entities.
+
+------------------------------------------------------------------------------
+
+To perform so request that has file in this request, you can first upload the 
+files, store its id's on a prop of your request payload and then send your 
+request. Ex: In a post in a forum that contains attachments, you can upload
+the attachments at user selecting it, store the id of each attachment as an 
+array of attachment and the send you request when user finish editing the 
+post.
+
+------------------------------------------------------------------------------
+
+Using classes, when you need to inform a value of property that is not 
+available yet (a const was declared after, and not before you need it), you 
+can declare a set for this class method. Example:
+
+class Question {
+  set attachments(attachments: QuestionAttachment[]){
+    this.props.attachments = attachments
+  }
+}
+
+export class CreateQuestion{
+  async execute(title, content, attachmentsId){
+
+    const question = Question.create({
+      authorId,
+      title,
+      content
+    })
+
+    const questionAttachments = attachmentsId.map(attachmentId => {
+      return QuestionAttachment.create({
+        attachmentId: content,
+        question: question.id
+      })
+    })
+
+  question.attachments = questionAttachments
+
+  await this.questionsRepository.create(question)
+
+  }
+}
+
+------------------------------------------------------------------------------
+
+When you have aggregated on your system. All aggregated data must be saved 
+in the same repository of the root entity. Ex: In a blogging platform, a 
+‘Post’ aggregate might include entities like ‘Comments’ and ‘Tags’, with the 
+‘Post’ being the aggregate root. All "Tags" and "Comments" data must be save 
+on the "Post" repository. 

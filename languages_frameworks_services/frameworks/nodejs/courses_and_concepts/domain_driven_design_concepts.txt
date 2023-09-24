@@ -27,11 +27,12 @@ Ex: A receptionist from a hospital or hotel.
 
 - Aggregates: An Aggregate is like a family of related objects in a software 
 system, treated as a single unit. An aggregate is executable together with the 
-root entity.
+root entity. 
 
 Ex: In a blogging platform, a ‘Post’ aggregate might include entities like 
 ‘Comments’ and ‘Tags’, with the ‘Post’ being the aggregate root, ensuring 
-consistency across all related comments and tags.
+consistency across all related comments and tags. All "Tags" and "Comments" 
+data must be save on the "Post" repository.
 
 Ex2: Considering a ‘ShoppingCart’ in an online store as an aggregate. The 
 ‘ShoppingCart’ is the aggregate root, and the items in the cart are the related 

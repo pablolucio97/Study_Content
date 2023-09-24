@@ -1,0 +1,31 @@
+
+We'll need to create a root class with its aggregated classes when you need to perform 
+operations in two or more entities at once. Example: At editing a response in a forum 
+maybe we need to edit the attachments of it question together with the question.
+
+Root class:
+// CAN`T BE INSTANCED
+export abstract class Question<props>{
+    private id: string;
+    protected props: Props
+
+    constructor(props: Props, id: string) {
+        this.props = props
+        this.id = id
+    }
+}
+
+export abstract class Attachment<props> extends Question<props> {
+    private id: string;
+    protected props: Props
+
+    constructor(props: Props, id: string) {
+        this.props = props
+        this.id = id
+    }
+}
+
+Aggregated class:
+
+
+
