@@ -94,5 +94,11 @@ UserManager.tryListUsers(); // Will not list users as canListUsers is
 UserManager.canListUsers = true; // Setting canListUsers to true
 UserManager.tryListUsers(); // Will list users as canListUsers is true
 
+----------------------------GENERAL TIPS----------------------------------
+
+The dependency inversion concept is applied when a class receives another
+class as in its constructor and not is istancing it through new Class().
+
+
 
 
