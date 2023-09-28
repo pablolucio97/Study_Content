@@ -68,3 +68,82 @@ UserManager.tryListUsers(); // Will list users as canListUsers is true
 ## General Tips
 
 The dependency inversion concept is applied when a class receives another class as in its constructor and not is istancing it through new Class().
+
+---
+
+Extends a class to allow to use the super() method inside the constructor and allow the class method usage more shorter. Example:
+
+Without extending PrismaClient class:
+
+```typescript
+import { Injectable } from '@nestjs/common';
+import { PrismaClient } from '@prisma/client';
+
+@Injectable()
+export class PrismaService {
+  public client: PrismaClient;
+
+  constructor() {
+    this.client = new PrismaClient();
+  }
+}
+```
+
+```typescript
+import { Controller, Get } from '@nestjs/common';
+import { AppService } from './app.service';
+import { PrismaService } from './prisma/prisma-service';
+
+@Controller()
+export class AppController {
+  constructor(
+    private prisma: PrismaService,
+  ) {}
+
+  @Get('/users')
+  async listUsers() {
+    //without extending PrismaClient, but instancing it
+    return await this.prisma.client.user.findMany();
+  }
+}
+```
+
+Extending PrismaClient class:
+```typescript
+import { Injectable } from '@nestjs/common';
+import { PrismaClient } from '@prisma/client';
+
+@Injectable()
+export class PrismaService extends PrismaClient{
+  constructor() {
+    super({
+        //generate query log when has an error or a warn
+        log: ['error', 'warn']
+    });
+  }
+}
+
+```
+```typescript
+import { Controller, Get } from '@nestjs/common';
+import { AppService } from './app.service';
+import { PrismaService } from './prisma/prisma-service';
+
+@Controller()
+export class AppController {
+  constructor(
+    private readonly appService: AppService,
+    private prisma: PrismaService,
+  ) {}
+  @Get()
+  getHello(): string {
+    return this.appService.getHello();
+  }
+
+  @Get('/users')
+  async listUsers() {
+    //extending PrismaClient, but instancing it
+    return await this.prisma.user.findMany();
+  }
+}
+```

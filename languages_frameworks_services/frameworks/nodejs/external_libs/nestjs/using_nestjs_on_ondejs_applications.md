@@ -1,7 +1,7 @@
 Nestjs should be used when you need produtivity and you have not a system with a specific strucuture defined
 
 
-1 - Install the nest cli running the command ```npm i -g @nestjs/cli``` and then run the command ```nest new your_project_name```to create a new nestjs project (cli will guide you in the new project creation process).
+1 - Install the nest cli running the command ```npm i -g @nestjs/cli``` and then run the command ```nest new your_project_name```to create a new nestjs project 
 
 2 - After the project is created, you can exclude eslint files, readme and test files. In the package.json, you can remove the test scripts, all tests configurations and eslint, eslint plugins and tests, and tests plugins libraries.
 
