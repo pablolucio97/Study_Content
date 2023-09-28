@@ -118,7 +118,7 @@ docker exec yourcontainername cat /etc/hosts: See the ip the container is
 running.
 
 
--------------------------------GENERAL TIPS----------------------------------
+--------------------------------GENERAL TIPS-----------------------------------
 
 The container/virtual machine created by Docker has a different IP from our
 local machine IP.
@@ -130,5 +130,10 @@ You must to stop the server before to install or uninstall a lib.
 Don't use the lib brcypt, because this causes conflicts with Docker, use the 
 bcryptjs lib instead.
 
+In your project that runs using Docker, create a folder to store all database 
+back-up and a on your docker-compose.yml file, set a volume for your 
+application appointing to this folder created, because it will store all 
+application data in our local machine allowing recovery all data if for any 
+reason the Docker container deads.
 
 
