@@ -37,3 +37,9 @@ export class AppModule {}
 
 ```
 
+## Concepts
+
+### Pipes
+
+Pipes on NestJS  can be used to validate a received data in a request or transform this data (example: convert a string to integer).
+

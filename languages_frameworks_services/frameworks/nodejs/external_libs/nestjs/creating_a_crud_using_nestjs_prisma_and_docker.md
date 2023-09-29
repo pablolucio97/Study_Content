@@ -46,36 +46,97 @@ services:
 4 - Configure your application models in your schema.prisma file, at finishing it, run ```npx yarn prisma migrate dev``` and give a name to your migration that will be generated.
 
 5 - Create inside the src folder, a folder named "prisma" and inside it a file named prisma.service.ts 
-exporting an injectable class containing an instance of PrismaClient. All methods inside this class will be available for your application controllers if this service is declared as a provider inside your providers array. Example:
+exporting an injectable class extending PrismaClient. All methods inside this class will be available for your application controllers if this service is declared as a provider inside your providers array. Also include the  onModuleDestroy() and onModuleInit() decorators opening and closing the connection with Prisma. Example:
 
-```
-import { Injectable } from '@nestjs/common';
+```typescript
+import { Injectable, OnModuleDestroy, OnModuleInit } from '@nestjs/common';
 import { PrismaClient } from '@prisma/client';
 
 @Injectable()
-export class PrismaService {
-  public client: PrismaClient;
-
+export class PrismaService
+  extends PrismaClient
+  implements OnModuleInit, OnModuleDestroy
+{
   constructor() {
-    this.client = new PrismaClient();
+    super({
+      //generate query log when has an error or a warn
+      log: ['error', 'warn'],
+    });
+  }
+  //disconnect prisma client if some error occurs on the application
+  onModuleDestroy() {
+    return this.$disconnect();
+  }
+  //create the prisma connection every time application starts
+  onModuleInit() {
+    return this.$connect();
+  }
+
+  getUsers() {
+    return;
   }
 }
 
 ```
 
-6 - In your app.module.ts file, add the created PrismaService into your Nest Providers array to your provider/service be available to your entire application through controllers. Example:
+6 - Inside src folder, create a folder named "controllers" and create your controller. You controller file must declare the Controller, Body, HttpCode, the error (ConflictException in this case), and the method (Post in this case). Example:
+
+```typescript
+import {
+  Body,
+  ConflictException,
+  Controller,
+  HttpCode,
+  Post,
+} from '@nestjs/common';
+import { PrismaService } from '../prisma/prisma-service';
+import { hash } from 'bcryptjs';
+
+@Controller('/accounts')
+export class CreateAccountController {
+  constructor(private prisma: PrismaService) {}
+
+  @Post()
+  @HttpCode(201)
+  async handle(@Body() body: any) {
+    const { name, email, password } = body;
+
+    const userWithEmailAlreadyExists = await this.prisma.user.findUnique({
+      where: {
+        email,
+      },
+    });
+
+    if (userWithEmailAlreadyExists) {
+      throw new ConflictException('User already exists.');
+    }
+
+    const hashedPassword = await hash(password, 8);
+
+    await this.prisma.user.create({
+      data: {
+        name,
+        email,
+        password: hashedPassword,
+      },
+    });
+  }
+}
 
 ```
+
+7 - In your app.module.ts file, add the created PrismaService into your Nest Providers array to your provider/service be available to your entire application through controllers. Also add the controller created to turn it available for your application. Example:
+
+```typescript
 import { Module } from '@nestjs/common';
-import { AppController } from './app.controller';
-import { AppService } from './app.service';
 import { PrismaService } from './prisma/prisma-service';
+import { CreateAccountController } from './controllers/create-account-controller';
 
 @Module({
-  imports: [],
-  controllers: [AppController],
-  providers: [AppService, PrismaService],
+  controllers: [CreateAccountController],
+  providers: [PrismaService],
 })
 export class AppModule {}
+
 
 ```
