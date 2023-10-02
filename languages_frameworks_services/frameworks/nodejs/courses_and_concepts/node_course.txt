@@ -656,3 +656,10 @@ on the "Post" repository.
 
 Use the Watched List pattern (also know as Oberver Pattern) when you need to 
 handle a set of arrays in real time. Like an array of attachments in a post.
+
+------------------------------------------------------------------------------
+
+Works with RSA256 algorithm in your application to generate your auth tokens 
+because it contains a private used for generate new tokens, and a public key 
+that can be used for validate the token and be read for another application 
+if necessary.
