@@ -8,13 +8,11 @@
 2 - Now run the commands ```base64 -i private_key.pem -o private_key-base64.txt```  and ```base64 -i public_key.pem -o public_key-base64.txt``` to convert these keys into base64 encoded (legible strings).
 ## Generating the token
 
-1 - Insde the "src" folder, create a new folder named "auth" and a new file named "auth.ts".
+1 - Insde the "src" folder, create a new folder named "auth" and a new file named "auth.module.ts".
 
-2 - Run ```npx yarn add @nestjs/passport @nestjs/jwt passport``` to install passport and jwt to deal with authentication in the application.
+2 - Run ```npx yarn add @nestjs/passport @nestjs/jwt passport passport-jwt``` to install passport and jwt to deal with authentication in the application. Run ```@types/passport-jwt```to install the passport types too.
 
-3 - In the "auth.ts" file, create a new module for authentication exporting a class 
-
-4 Add yours generated private and public keys in your environment variables that will be used for generating the token using the RSA256 algorithm (that will contain a private key used only for generate tokens, and a public key that can be read for another application if necessary to validate if a token is valid), and add the validation for these keys on your zod envSchema. Ex:
+3 Add yours generated private and public keys in your environment variables that will be used for generating the token using the RSA256 algorithm (that will contain a private key used only for generate tokens, and a public key that can be read for another application if necessary to validate if a token is valid), and add the validation for these keys on your zod envSchema. Ex:
 
 ```typescript
 import { z } from 'zod';
@@ -30,7 +28,40 @@ export type Env = z.infer<typeof envSchema>
 
 ```
 
-5 - Create and export the AuthModule class importing the Module from '@nestjs/config' to configure new module, the ConfigService from '@nestjs/config' to validate the ConfigService, the PassportModule from '@nestjs/passport' to register a new injection passing your ConfigService, and the Env from 'src/env' to server as environment typing. This authentication will use RSA256 algorithm based on private and public keys.
+4 - In the "auth.ts" file, create a new file named jwt-strategy.ts to handle the Passport to use jwt strategy. In this file we need to export an injectable class to access the PassportStrategy constructor thought the super method  passing the strategy object config, and a call a function to validate the token based on the tokenSchema. Example:
+
+```typescript
+import { Injectable } from '@nestjs/common';
+import { ConfigService } from '@nestjs/config';
+import { PassportStrategy } from '@nestjs/passport';
+import { ExtractJwt, Strategy } from 'passport-jwt';
+import { Env } from 'src/env';
+import { z } from 'zod';
+
+const tokenSchema = z.object({
+  sub: z.string().uuid(),
+});
+
+export type UserPayloadSchema = z.infer<typeof tokenSchema>;
+
+@Injectable()
+export class JwtStrategy extends PassportStrategy(Strategy) {
+  constructor(config: ConfigService<Env, true>) {
+    const publicKey = config.get('JWT_PUBLIC_KEY', { infer: true });
+    super({
+      jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
+      secretOrKey: Buffer.from(publicKey, 'base64'),
+      algorithms: ['RS256'],
+    });
+  }
+
+  async validate(payload: UserPayloadSchema) {
+    return tokenSchema.parse(payload);
+  }
+}
+```
+
+5 - Create and export the AuthModule class importing the Module from '@nestjs/config' to configure new module, the ConfigService from '@nestjs/config' to validate the ConfigService, the PassportModule from '@nestjs/passport' to register a new injection passing your ConfigService, and the Env from 'src/env' to server as environment typing. This authentication will use RSA256 algorithm based on private and public keys. Add the JwtStrategy as your provider too. Example:
 
 ```typescript
 import { Module } from '@nestjs/common';
@@ -38,6 +69,7 @@ import { ConfigService } from '@nestjs/config';
 import { JwtModule } from '@nestjs/jwt';
 import { PassportModule } from '@nestjs/passport';
 import { Env } from 'src/env';
+import { JwtStrategy } from './jwt-strategy';
 
 @Module({
   imports: [
@@ -57,6 +89,7 @@ import { Env } from 'src/env';
       },
     }),
   ],
+  providers: [JwtStrategy]
 })
 export class AuthModule {}
 ```
@@ -103,11 +136,40 @@ export class AuthenticateController {
       throw new UnauthorizedException('User credentials do not match');
     }
 
-    const token = this.jwt.sign({ sub: 'user-id' });
+    const token = this.jwt.sign({ sub: user.id });
     return token;
   }
 }
 ```
 
-7 - In your app.module.ts file import and add the auth module into your imports array and AuthenticateController to your controllers.
+7 - Create a custom decorator to be used in each controller to get and type the user payload, example:
+
+```typescript
+import {ExecutionContext, createParamDecorator} from '@nestjs/common';
+import { UserPayloadSchema } from './jwt-strategy';
+
+export const CurrentUser = createParamDecorator(
+    (_: never, context: ExecutionContext) => {
+        const request = context.switchToHttp().getRequest();
+        return request.user as UserPayloadSchema;
+    }
+);
+```
+8 - Create a route that needs to be authorized to test the authentication process. You need to import the UseGuard from "nestjs/common" nad the AuthGuard from "@nestjs/passport" using the AuthGuard inside  UseGuards decorator passing the strategy type. In the handle method you need to pass the custom crated decorator to read correctly the value of the encrypted payload. Example:
+
+```typescript
+import { Controller, Post, UseGuards } from '@nestjs/common';
+import { AuthGuard } from '@nestjs/passport';
+
+@Controller('/questions')
+@UseGuards(AuthGuard('jwt'))
+export class CreateQuestionController {
+  constructor() {}
+  @Post()
+  async handle(@CurrentUser() user: UserPayloadSchema) {
+    return user.sub;
+  }
+}
+```
+9 - In your app.module.ts file import and add the auth module into your imports array and AuthenticateController to your controllers.
 
