@@ -663,3 +663,8 @@ Works with RSA256 algorithm in your application to generate your auth tokens
 because it contains a private used for generate new tokens, and a public key 
 that can be used for validate the token and be read for another application 
 if necessary.
+------------------------------------------------------------------------------
+
+Check on Microsoft Typescript GitHub wiki the most adequate target for your 
+application according to your node version. GitHub:
+https://github.com/microsoft/TypeScript/wiki/Node-Target-Mapping
