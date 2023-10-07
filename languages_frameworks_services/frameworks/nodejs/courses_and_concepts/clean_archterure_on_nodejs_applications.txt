@@ -43,6 +43,61 @@ which method implement in the current use case.
 Controllers: Are the responsible for protect the system from client's request 
 checking if the request sent by client attends to the business rules.
 
+
+------
+
+Mappers: In clean architecture is common having an even Entity with two different
+representations, example: a representation of the orm database object typing 
+(external layer) and another to the entity class typing (on domain layer). To 
+solve it will need to use mappers that are a class responsible for convert data 
+from one layer to another layer
+
+Ex: Converting a Prisma Question to an Entity  Question:
+
+mapper:
+
+import { UniqueEntityID } from '@/core/entities/unique-entity-id'
+import { Question } from '@/domain/forum/enterprise/entities/question'
+import { Slug } from '@/domain/forum/enterprise/entities/value-objects/slug'
+import { Question as PrismaQuestion } from '@prisma/client'
+
+export class PrismaQuestionMapper {
+  static toDomain(raw: PrismaQuestion): Question {
+    return Question.create(
+      {
+        title: raw.title,
+        content: raw.content,
+        authorId: new UniqueEntityID(raw.authorId),
+        bestAnswerId: undefined,
+        slug: Slug.create(raw.slug),
+        createdAt: raw.createdAt,
+        updatedAt: raw.updatedAt,
+      },
+      new UniqueEntityID(raw.id),
+    )
+  }
+}
+
+repository implementation:
+
+@Injectable()
+export class PrismaQuestionsRepository implements QuestionsRepository {
+  constructor(private prisma: PrismaService) {}
+  async findById(id: string): Promise<Question | null> {
+    const question = await this.prisma.question.findUnique({
+      where: {
+        id,
+      },
+    });
+
+    if (!question) {
+      return null;
+    }
+
+    return PrismaQuestionMapper.toDomain(question);
+  }
+}
+
 ------
 
 Client: Is the client is sending a request. Can be any client, device or web.
