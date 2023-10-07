@@ -79,6 +79,11 @@ package you are running a code and not the npm.
 The prefix pre and post means that script will run before or after 
 the script respectvelly.
 
+At cloning a repo and mixing data of this repo in a current project 
+you can check if all new files additions are correctly working 
+running the command npx yarn tsc --noEmit if the project is using 
+TypeScript.
+
 
 
 
