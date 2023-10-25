@@ -2065,3 +2065,14 @@ method, headers and the body (in string format). Ex:
 
 Do not create Inputs components with a fixed ref. Create exporting as forwardedRef to 
 allow the ref be manipulated according the application needs.
+
+--------------------------------------------------------------------------------------
+
+To use context functions or hooks in files that are not returning a React function 
+(.tsx files) we need to crate a typing containg a funcion that return another function 
+to be used in the needed file and calling the function there is in the needed file 
+inside an useEffect inside our context/hook file.
+
+The major difference between useLayoutEffect and useEffect is that useLayoutEffect 
+will block the browser from painting until your code inside useLayoutEffect completes 
+and useEffect doesn't.
