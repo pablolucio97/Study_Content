@@ -241,3 +241,8 @@ function App() {
 
 export default App;
 
+---------------------------------GENERAL TIPS-------------------------------------
+
+Wrap your application with a View styled containing the same color as brackground 
+to avoid glitching the screen while navigating on Android.
+
