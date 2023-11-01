@@ -23,7 +23,12 @@ FCM is a cloud solution for messages on iOS, Android, and web applications. It's
 
 ### One Signal
 
-One Signal is a web platform that through a dashboard is used to send push notifications on iOS, Android, and more.
+One Signal is a web platform that through a dashboard is used to send push notifications on iOS, Android, and more. Through One Signal platform is possible to: 
+
+- Send push notification based on user email, user actions (first session, purchase, time out of the application), and so on. 
+- Send push notification to a single user registering the user email in a tag and sending the push notification to this tag.
+- Send push notifications based on variables and conditions.
+- Schedule push notifications based o a specific time or based on Intelligent delivery (One Signal option that deliveries the push notification based on the hours/moments that user usually uses the app).
 
 ## Implementing Push Notifications on React Native - Android using FCM and One Signal
 
@@ -85,7 +90,7 @@ Obs: If you got the error "Missing 'ios.bundleIdentifier' in app config", add a 
 
 2 - Click on "Refresh testers list", select your device user test, and the click on "Send Test Push".
 
-3 - Check if the push notification is arriving correctly on Android.
+3 - Check if the push notification is arriving correctly on Android (you must be authenticated on a Google Account).
 
 ## Implementing Push Notifications on React Native - iOS using APN and One Signal
 
