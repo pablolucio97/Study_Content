@@ -59,13 +59,13 @@ One Signal is a web platform that through a dashboard is used to send push notif
 
 ```typescript
 import { Roboto_400Regular, Roboto_700Bold, useFonts } from '@expo-google-fonts/roboto';
-import { OneSignal } from 'react-native-onesignal';
+import  OneSignal  from 'react-native-onesignal';
 import { Routes } from './src/routes';
 
 export default function App() {
   const [fontsLoaded] = useFonts({ Roboto_400Regular, Roboto_700Bold });
 
-  OneSignal.initialize('your_app_id_key')
+    OneSignal.setAppId('3d87f45c-ed4c-4d2a-96b8-009dbb742be7')
 
   return (
     </Routes>
@@ -111,7 +111,7 @@ Obs: If you got the error "Missing 'ios.bundleIdentifier' in app config", add a 
 
 ```typescript
 import { Roboto_400Regular, Roboto_700Bold, useFonts } from '@expo-google-fonts/roboto';
-import { OneSignal } from 'react-native-onesignal';
+import OneSignal from 'react-native-onesignal';
 import { Platform } from 'react-native'
 import { Routes } from './src/routes';
 
@@ -120,7 +120,7 @@ export default function App() {
 
   const oneSignalAppIdKey = Platform.os === 'android' ? 'your_one_signal_app_id_key_android' : 'your_one_signal_app_id_key_ios'
 
-  OneSignal.initialize(oneSignalAppIdKey)
+  OneSignal.setAppId(oneSignalAppIdKey)
 
   OneSignal.promptForPushNotificationsWithUserResponse(response => {
   console.log(`Has prompt for push notification request: `response);
