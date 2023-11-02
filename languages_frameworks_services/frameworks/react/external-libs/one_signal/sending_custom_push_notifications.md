@@ -57,3 +57,107 @@ export default function App() {
 3 - The Tag now will be assigned to the user on your Subscriptions at One Signal dashboard. At the One Signal Dashboard, add a new Segment selecting "User Tag" passing the value of the registered email tag.
 
 4 - At sending a new Push, select the option "Send to particular segment(s)" and select the segment created on step 3.
+
+
+## Sending and showing push notifications with app in foreground  state
+
+1 - Create a React component to show your push notification receiving title and onClose props. Example:
+
+```typescript
+import { HStack, Text, IconButton, CloseIcon, Icon } from 'native-base';
+import { Ionicons } from '@expo/vector-icons';
+
+type Props = {
+  title: string;
+  onClose: () => void;
+}
+
+export function Notification({ title, onClose }: Props) {
+  return (
+    <HStack 
+      w="full" 
+      p={4} 
+      pt={12}
+      justifyContent="space-between" 
+      alignItems="center" 
+      bgColor="gray.200"
+      position="absolute"
+      top={0}
+    >
+        <Icon as={Ionicons} name="notifications-outline" size={5} color="black" mr={2}/>
+
+        <Text fontSize="md" color="black" flex={1}>
+          {title}
+        </Text>
+
+      <IconButton 
+        variant="unstyled" 
+        _focus={{ borderWidth: 0 }} 
+        icon={<CloseIcon size="3" />} 
+        _icon={{ color: "coolGray.600"}} 
+        color="black"
+        onPress={onClose}
+      />
+    </HStack>
+  );
+}
+```
+
+2 - Inside your navigation context file Import and assign a listener to listen to a push when it is received from One Signal dashboard. The listener must to set the notification state passing the notification title available through notification.getNotification(). Example:
+
+```typescript
+import { DefaultTheme, NavigationContainer } from '@react-navigation/native';
+import { useTheme } from 'native-base';
+
+import { useEffect, useState } from 'react';
+import OneSignal, { NotificationReceivedEvent, OSNotification } from 'react-native-onesignal';
+import { Notification } from '../components/Notification';
+import { AppRoutes } from './app.routes';
+
+export function Routes() {
+  const { colors } = useTheme();
+
+  const theme = DefaultTheme;
+  theme.colors.background = colors.gray[700];
+
+  const [notification, setNotification] = useState<OSNotification>()
+
+  useEffect(() => {
+    const unsubscriber = OneSignal.
+      setNotificationWillShowInForegroundHandler((notification: NotificationReceivedEvent) => {
+        const notificationMessage = notification.getNotification()
+        setNotification(notificationMessage)
+      })
+    return () => unsubscriber
+  }, [])
+
+  return (
+    <NavigationContainer theme={theme}>
+      <AppRoutes />
+      {
+        notification?.title &&
+        <Notification title={notification.title} onClose={() => setNotification(undefined)} />
+      }
+    </NavigationContainer>
+  );
+}
+```
+
+3 - Send a new notification on the One Signal dashboard to see it be shown in the app in foreground.
+
+4 - Optionally, if you want to know if user clicked on the notification when the app was in background or quite, add the a listener to the OneSignal.setNotificationOpenedHandler event in your application. Example:
+
+```typescript
+  useEffect(() => {
+    const unsubscribe = OneSignal.setNotificationOpenedHandler(() => {
+      console.log('Notificação aberta');
+    })
+
+    return () => unsubscribe
+  },[]);
+```
+
+
+### General tips
+
+- Only high priority notifications will be delivered and shown on app foreground state. Any priority notifications will be delivered even with quite or in background.
