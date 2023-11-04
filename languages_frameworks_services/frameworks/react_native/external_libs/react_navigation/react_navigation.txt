@@ -241,3 +241,8 @@ function App() {
 
 export default App;
 
+---------------------------------GENERAL TIPS----------------------------------
+
+Use the prop tabBarBadge in your TabBottomBar to show some data in your 
+TabBottomBar screen.
+
