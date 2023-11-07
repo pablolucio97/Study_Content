@@ -195,10 +195,79 @@ function MyScreen(){
 }
 ```
 
+### Applying animations on FlatLists
+
+To apply animations on FlatLists the secret is to multiply its index by the animation value. Example:
+
+
+```typescript
+
+import { TouchableOpacity, TouchableOpacityProps, Text, View } from 'react-native';
+import Animated, {FadeIn}from 'react-native-reanimated'
+
+import { styles } from './styles';
+import { THEME } from '../../styles/theme';
+
+import { LevelBars } from '../LevelBars';
+import { QUIZZES } from '../../data/quizzes';
+
+type Props = TouchableOpacityProps & {
+  data: typeof QUIZZES[0];
+  index: number;
+}
+
+export function QuizCard({ data, index, ...rest }: Props) {
+  const Icon = data.svg;
+
+  const AnimatedTouchableOpacity = Animated.createAnimatedComponent(TouchableOpacity as never)
+
+  return (
+    <AnimatedTouchableOpacity
+      style={styles.container}
+      entering={FadeIn.delay(index * 100)}
+      {...rest}
+    >
+      <View style={styles.header}>
+        <View style={styles.iconContainer}>
+          {Icon && <Icon size={24} color={THEME.COLORS.GREY_100} />}
+        </View>
+
+        <LevelBars level={data.level} />
+      </View>
+
+      <Text style={styles.title}>
+        {data.title}
+      </Text>
+    </AnimatedTouchableOpacity>
+  );
+}
+```
+```typescript
+
+export function MyScreen(){
+  return(
+    <>
+       <FlatList
+        data={quizzes}
+        keyExtractor={item => item.id}
+        renderItem={({ item, index }) => (
+          <QuizCard
+            data={item}
+            index={index}
+            onPress={() => navigate('quiz', { id: item.id })}
+          />
+    </>
+  )
+}
+
+```
+
 
 ### General tips
 
 - Use the Pressable component instead of TouchableOpacity if you want to apply animations in a button because Pressable has more available events than TouchableOpacity component like onPressIn and onPressOut.
+  
+- When rendering FlatLists, multiply the rendered element index by an animation value receiving the index as props to have an programed animated FlatList.
 
 
 
