@@ -158,11 +158,48 @@ export function Level({isChecked = false, ...rest }: Props) {
 }
 ```
 
+### Using default animations
+
+You can use default animations like ZoomIn, FadeOut, and so on to apply default animations in your components. Example:
+
+```typescript
+import Animated, { ZoomIn, FadeOut } from 'react-native-reanimated';
+import { useState } from 'react'
+import { styles } from './styles';
+
+function MyScreen(){
+
+  const [isButtonVisible, setIsButtonVisible] = useState(false)
+  const AnimatedTouchable = Animated.createAnimatedComponent(TouchableOpacity as never)
+
+  return(
+    <>
+    <TouchableOpacity
+        onPress={() => setIsButtonVisible(prevState => !prevState)}
+      >
+        <Text>Click me</Text>
+      </TouchableOpacity>
+
+      {
+        isButtonVisible &&
+        <AnimatedTouchable
+          entering={ZoomIn.duration(1000)}
+          exiting={FadeOut.duration(100)}
+          style={styles.buttonAnimation}
+        >
+        <Text>Aimation</Text>
+        </AnimatedTouchable>
+      }
+    </>
+  )
+}
+```
+
 
 ### General tips
 
 - Use the Pressable component instead of TouchableOpacity if you want to apply animations in a button because Pressable has more available events than TouchableOpacity component like onPressIn and onPressOut.
-- 
+
 
 
 
