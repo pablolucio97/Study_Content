@@ -261,13 +261,52 @@ export function MyScreen(){
 }
 
 ```
+### Using Layout Animations
 
+Layout Animations are useful to show an animation when an element is added or removed from the screen. To implement a layout animation you must just to wrap the element you want to animate with an Animated.View containing the Layout Animation ad in ad out animations. Example:
+
+
+```typescript
+import Animated, { Layout, SlideInRight, SlideOutRight } from 'react-native-reanimated';
+
+...code
+
+export function MyScreen(){
+
+...code
+
+  return(
+    <>
+       {
+          history.map((item) => (
+            <Animated.View
+              key={item.id}
+              onPress={() => handleRemove(item.id)}
+              entering={SlideInRight}
+              exiting={SlideOutRight}
+              layout={Layout.springify()}
+            >
+              <TouchableOpacity
+                onPress={() => remove(item.id)}
+              >
+                <HistoryCard data={item} />
+              </TouchableOpacity>
+            </Animated.View>
+          ))
+        }
+    </>
+  )
+}
+
+```
 
 ### General tips
 
 - Use the Pressable component instead of TouchableOpacity if you want to apply animations in a button because Pressable has more available events than TouchableOpacity component like onPressIn and onPressOut.
   
 - When rendering FlatLists, multiply the rendered element index by an animation value receiving the index as props to have an programed animated FlatList.
+
+- Use Layout Animations to show an animation when an element is added or removed from the screen.
 
 
 
