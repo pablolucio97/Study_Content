@@ -308,6 +308,8 @@ export function MyScreen(){
 
 - Use Layout Animations to show an animation when an element is added or removed from the screen.
 
+- Use  Extrapolate.CLAMP to grant the animation/interpolation will not overpass the limit specified by the array.
+
 
 
 

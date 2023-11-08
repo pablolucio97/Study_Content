@@ -1,5 +1,0 @@
-==================REACT NATIVE GESTURE HANDLE======================
-
-Use RectButton or BorderlessButton instead of TouchableOpacity or 
-wrapping it to improve the user experience doing this component 
-looks with the native button of each platform.
