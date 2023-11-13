@@ -246,3 +246,26 @@ export default App;
 Use the prop tabBarBadge in your TabBottomBar to show some data in your 
 TabBottomBar screen.
 
+-------------
+
+Its possible to disable the iOS back to previous screen moving throught the 
+option screenOptions={{ gestureEnabled: false }} inside the desired screen.
+
+-------------
+
+Its possible to define same options for a set a of screens using the Group
+component. Example:
+
+<Group screenOptions={{ gestureEnabled: false }}>
+  <Screen
+    name="quiz"
+    component={Quiz}
+  />
+
+  <Screen
+    name="finish"
+    component={Finish}
+  />
+</Group>
+
+
