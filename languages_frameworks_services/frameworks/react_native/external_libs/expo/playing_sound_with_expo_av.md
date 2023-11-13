@@ -2,11 +2,11 @@
 
 To play sound with Expo Av you need:
 
-1 Install the Expo Av using the command `npx expo install expo-av`.
+1 - Install the Expo Av using the command `npx expo install expo-av`.
 
-2 Put your .mp3 sound files inside the assets folder.
+2 - Put your .mp3 sound files inside the assets folder.
 
-3 Import Audio from 'expo-av', create an async function to play the sound, example:
+3 - Import Audio from 'expo-av', create an async function to play the sound, example:
 
 ```typescript
   import { Audio } from 'expo-av';
