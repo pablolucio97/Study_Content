@@ -1,6 +1,0 @@
-geolocation:
-notification:
-web painting time:
-web generic sensor:
-speech api:
-

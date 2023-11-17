@@ -476,16 +476,3 @@ type Mutation{
     updateUser(id: ID, data: UserInput): User!
 }
 
----------------------------------------------------------------
-
-
-3)B,GET, POST, PUT, PATCH, DELETE.
-4)C
-5)B
-6)D
-7)A
-8)B
-9)D
-10)B
-11)A
-12)c

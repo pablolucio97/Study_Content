@@ -32,5 +32,6 @@ Rename Obj Keys
 Join Objects
 ConcatArrays
 Alter Object Props Conditionally
+High Order Functions.
 
 

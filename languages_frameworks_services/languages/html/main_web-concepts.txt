@@ -1,9 +1,0 @@
-==============================MAIN WEB CONCEPTS===============================
-
-Api
-ServiceWorker
-Microservice
-HTTP Methods
-Webhooks
-
-
