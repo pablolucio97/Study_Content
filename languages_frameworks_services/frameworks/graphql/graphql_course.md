@@ -1,5 +1,66 @@
 # GraphQL Course
 
+## Concepts
+
+### Schema Definition Language (SDL): 
+GraphQL uses a schema to define the structure of your data. This schema is written in Schema Definition Language, which is a syntax that allows you to define types, fields, and other constructs. Understanding SDL is crucial for defining your API's capabilities.
+
+### Types and Fields: 
+At the heart of a GraphQL schema are the types and fields. Types can be objects, scalars, enums, interfaces, or unions. Each field on a GraphQL object type can have its own set of arguments and a return type.
+
+### Queries and Mutations:
+
+- Queries: These are used to fetch data in GraphQL. They are analogous to GET requests in REST.
+- Mutations: These are used to modify data (create, update, delete). They are similar to POST, PUT, DELETE in REST.
+
+### Resolvers: 
+Resolvers are functions that handle the fetching or computing of data for a field in your schema. Each field on each type is backed by a resolver that knows how to fetch or compute the value for that field.
+
+Example of resolvers on Queries:
+
+```typescript
+const resolvers = {
+    Query: {
+        // Resolver for fetching all posts
+        posts: async () => {
+            // Logic to fetch all posts from the database
+            return await database.getAllPosts();
+        },
+
+        // Resolver for fetching a single post by ID
+        post: async (_, args) => {
+            // Logic to fetch a specific post using the provided ID
+            return await database.getPostById(args.id);
+        }
+    },
+
+    // ... (other resolvers)
+};
+```
+
+Example of resolvers on Mutations:
+
+```typescript
+const resolvers = {
+    // ... (other resolvers)
+
+    Mutation: {
+        // Resolver for adding a new post
+        addPost: async (_, args) => {
+            // Logic to add a new post to the database
+            const newPost = {
+                id: generateNewId(), // A function to generate a unique ID
+                title: args.title,
+                content: args.content
+            };
+
+            await database.addPost(newPost);
+            return newPost;
+        }
+    }
+};
+```
+
 ## Performing queries on React applications
 
 1 - Install the Apollo client to handle the queries running the command `npm i @apollo/client graphql`
