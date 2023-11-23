@@ -6,7 +6,7 @@
 GraphQL uses a schema to define the structure of your data. This schema is written in Schema Definition Language, which is a syntax that allows you to define types, fields, and other constructs. Understanding SDL is crucial for defining your API's capabilities.
 
 ### Types and Fields: 
-At the heart of a GraphQL schema are the types and fields. Types can be objects, scalars, enums, interfaces, or unions. Each field on a GraphQL object type can have its own set of arguments and a return type.
+At the heart of a GraphQL schema are the types and fields. Types can be objects, scalars, enums, interfaces, or unions. Each field on a GraphQL object type can have its own set of arguments and a return type. The types used by the GraphQL are analogous to the TypeScript's types.
 
 ### Queries and Mutations:
 
@@ -60,6 +60,10 @@ const resolvers = {
     }
 };
 ```
+
+## Considerations
+
+GraphQL can be used in as server-side as client-side. GraphQL is used on the server side to create an API that defines how data can be queried and manipulated. On the client side, it's used to interact with this API, requesting and updating data as needed by the application. This dual-sided usage makes GraphQL a powerful tool for building efficient and flexible data-driven applications.
 
 ## Performing queries on React applications
 
