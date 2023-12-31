@@ -1,6 +1,0 @@
---------------GENERATING RAMDOMIC NUMBERS 0 TO 9-------------
-
-
-function getRndInteger(min, max) {
-  return Math.floor(Math.random() * (max - min)) + min;
-}

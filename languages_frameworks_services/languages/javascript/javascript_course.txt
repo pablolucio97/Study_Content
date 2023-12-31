@@ -676,6 +676,45 @@ You can retur data with fuctions and access it. Example:
 
 returnData().data.name
 
+
+-----------------------------------PROMISES EXMAPLES----------------------------------------
+
+//USING SINGLE PROMISE
+const myPromise = new Promise ((resolve, reject) => {
+	setTimeout(() => {
+		resolve('The promise has resolved')
+	} , 2000)
+})
+
+myPromise.then(result => 
+	console.log(result)
+
+)
+-----------------------ASYNC AWAIT
+
+const myPromise2 = async () => {
+	try{
+		const content = await setTimeout(() =>  {
+		 console.log('It is my content')}, 1000)
+		return content
+	}catch(error){
+		console.log('Error: ' + error)
+	}
+}
+
+myPromise2()	
+
+--------------------------FECTH
+	
+fetch('https://viacep.com.br/01001000/json/')
+.then(function (data) {
+	return data.json()
+})
+.then(function(adress){
+	console.log(adress)
+})
+	
+
 ----------------------RETURNING DATA FROM ASYNC FUNCTIONS-------------------------------
 
 You need to acess the method then for access the returned data from async functions. Ex:

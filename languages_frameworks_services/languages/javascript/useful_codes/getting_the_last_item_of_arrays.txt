@@ -1,4 +1,0 @@
-
-const myArray = [1,2,4,7,8,3,2]
-
-const lastItem = myArray.slice(-1)[0]

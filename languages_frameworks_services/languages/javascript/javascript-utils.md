@@ -1,5 +1,102 @@
+ ALTERING OBJECTS VALUES INSIDE ARRAYS
+ 
+ In this case an array of tasks with id, title, and isComplete props
+ will be looped and the object with id that matchs with the id params 
+ will be changed your prop isComplete:
+  
+  function handleToggleTaskCompletion(id: number) {
+    const alteredTasks = tasks.map(task => task.id === id ? {
+      ...task,
+      isComplete: !task.isComplete
+    } : task)
 
-============================REGEX EXAMPLES=============================
+    setTasks(alteredTasks)
+  }
+
+  ----------------CHANGING STYLES WITH JAVASCRIPT-----------------------
+
+examples:
+
+example 01:
+document.getElementById('dvi1').style.color = 'red'
+----------------------------------------------------------------------
+example 02:
+document.getElementById('dvi1').style.backgroundColor = 'cyan'
+----------------------------------------------------------------------
+example 03:
+document.getElementById('dvi1').style.width = '150px'
+----------------------------------------------------------------------
+example 04: 
+document.getElementById('dvi1').style.transform = "skew(30deg, 30deg)";
+----------------------------------------------------------------------
+example 05: 
+document.getElementById("GFG").style.transform = "rotateZ(90deg)";
+
+### Comparing objects
+
+    function compareObjs (a,b) {
+
+        a = {
+            name: 'Pablo',
+            age: 26
+        }
+
+        b = {
+            name: 'Pablo',
+            age: 26
+        }
+
+        if(JSON.stringify(a) === JSON.stringify(b)){
+            console.log('The objects are equals')
+        }else{
+            console.log('The objects not are equals')
+        }
+    }
+
+### Generating arrays programmatically
+
+Array.from(Array(31), (_,index) =>index + 1)
+
+### Generating spaced arrays programmatically
+
+function provideYearsInterval(start, stop, step) {
+  return Array.from(
+    { length: (stop - start) / step + 1 },
+    (_, i) => start + i * step
+  );
+}
+
+### Generating random numbers
+
+function getRndInteger(min, max) {
+  return Math.floor(Math.random() * (max - min)) + min;
+}
+
+### Shuffle arrays
+
+let shuffled = myArray.sort(() => Math.random() - 0.5)
+
+
+### Finding min and max values from arrays
+
+var points = [40, 100, 1, 5, 25, 10];
+
+function myArrayMax(arr) {
+  return Math.min.apply(null, arr);
+}
+
+myArrayMax(points)
+
+
+### Getting the last item from array
+
+const myArray = [1,2,4,7,8,3,2]
+
+const lastItem = myArray.slice(-1)[0]
+
+
+
+## Regex examples
 
 const searchSpecificString = () => {
 	const sentence = 'Better than yesterday'
@@ -129,3 +226,4 @@ const checkStringInitialsAndEnd = () => {
 	console.log(pattern2.test(str))
 	console.log(result3)
 }
+

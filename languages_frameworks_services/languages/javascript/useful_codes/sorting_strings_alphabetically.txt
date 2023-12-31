@@ -1,2 +1,0 @@
-
-const transformString = getString.split('').sort().join('')
