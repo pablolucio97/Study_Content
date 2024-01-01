@@ -1,0 +1,69 @@
+# DOM EVENTS
+
+## EVENTS
+
+- **abort**: Occurs when the loading of a media is aborted.
+- **afterprint**: Occurs when the page has finished printing.
+- **animationend**: Occurs when a CSS animation finishes.
+- **animationiteration**: Occurs when a CSS animation repeats.
+- **animationstart**: Occurs when a CSS animation starts.
+- **beforeprint**: Occurs when the page is about to be printed.
+- **beforeunload**: Occurs when the document is about to be unloaded.
+- **blur**: Occurs when an element loses focus.
+- **canplay**: Occurs when the browser has buffered enough to start media.
+- **canplaythrough**: Occurs when the browser can play through the media without stopping.
+- **click**: Occurs when the user clicks on an element.
+- **contextmenu**: Occurs when the user right-clicks on an element.
+- **copy**: Occurs when the user copies content from an element.
+- **cut**: Occurs when the user cuts content from an element.
+- **dblclick**: Occurs when the user double-clicks on an element.
+- **drag**: Occurs when an element is being dragged.
+- **dragend**: Occurs when the user has finished dragging an element.
+- **dragenter**: Occurs when the dragged element enters the drop target zone.
+- **dragleave**: Occurs when the dragged element leaves the drop target.
+- **dragover**: Occurs when the dragged element is over the drop target.
+- **dragstart**: Occurs when the user starts to drag an element.
+- **drop**: Occurs when the dragged element is dropped into the drop target.
+- **durationchange**: Occurs when the duration of the media changes.
+- **ended**: Occurs when the media reaches the end successfully.
+- **error**: Occurs when an error occurs while loading an external file.
+- **focus**: Occurs when an element receives focus.
+- **focusin**: Occurs when an element is about to get focus.
+- **focusout**: Occurs when an element is about to lose focus.
+- **fullscreenchange**: Occurs when an element is displayed in fullscreen mode.
+- **input**: Occurs when an element gets user input.
+- **keydown**: Occurs when the user is pressing a key.
+- **keypress**: Occurs when the user presses a key.
+- **keyup**: Occurs when the user releases a key.
+- **load**: Occurs when an object is loaded.
+- **loadstart**: Occurs when the browser starts loading the specified media.
+- **mousedown**: Occurs when the user presses the mouse button over an element.
+- **mouseenter**: Occurs when the pointer is moved onto an element.
+- **mouseleave**: Occurs when the pointer is moved out of an element.
+- **mousemove**: Occurs when the pointer is moving while over an element.
+- **mouseover**: Occurs when the pointer is moved onto an element or its children.
+- **mouseout**: Occurs when the user moves the mouse pointer out of an element or its children.
+- **mouseup**: Occurs when the user releases the mouse button over an element.
+- **offline**: Occurs when the browser starts to work offline.
+- **online**: Occurs when the browser starts to work online.
+- **open**: Occurs when a connection with the event source is opened.
+- **pagehide**: Occurs when the user navigates away from the webpage.
+- **pageshow**: Occurs when the user navigates to a webpage.
+- **paste**: Occurs when the user pastes content into an element.
+- **pause**: Occurs when the media is paused by the user or programmatically.
+- **play**: Occurs when the media is started or no longer paused.
+- **playing**: Occurs when the media is playing.
+- **popstate**: Occurs when the window's history changes.
+- **progress**: Occurs when the browser is downloading media data.
+- **ratechange**: Occurs when the playback rate of the media changes.
+- **resize**: Occurs when the window is resized.
+- **reset**: Occurs when a form is reset.
+- **scroll**: Occurs when an element is being scrolled.
+- **search**: Occurs when the user writes something in a search field (`<input type="search">`).
+- **seeked**: Occurs when the user moves to a new position in the media progress bar.
+- **select**: Occurs when the user selects text (`<input>` and `<textarea>`).
+- **show**: Occurs when a `<menu>` element is shown as a context menu.
+- **submit**: Occurs when a form is submitted.
+- **timeupdate**: Occurs when the playback position changes.
+- **touchcancel**: Occurs when a touch is interrupted.
+- **touchend**: Occurs

@@ -1,10 +1,13 @@
+# BroadcastChannel API
+
 BroadcastChannel is a native API that allows communication data between 
-the currently opened tabs in the browser. Through this API, is possible 
-do actions that will be reflected in all current tabs opened. 
+the currently opened tabs in the browser. Through this API, it is possible 
+to do actions that will be reflected in all current tabs opened. 
 
 In this example written using React, all currently opened tabs will see 
-if the user is logged or not:
+if the user is logged in or not:
 
+```javascript
 import { useEffect } from 'react'
 
 export default function Home() {
@@ -19,18 +22,16 @@ export default function Home() {
     authChannel.postMessage('logout')
   }
   
-  useEffect(() =>{
-    authChannel  = new BroadcastChannel('auth')
+  useEffect(() => {
+    authChannel = new BroadcastChannel('auth')
     authChannel.onmessage = (message) => {
       switch(message.data){
         case 'login':
-        return console.log('User is logged')
-        break;
+          return console.log('User is logged')
         case 'logout':
-        return console.log('User not is logged')
-        break;
+          return console.log('User not is logged')
         default:
-        break
+          break
       }
     }
   }, [])
