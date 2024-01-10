@@ -2310,3 +2310,6 @@ is !== udenfined.
 In JavaScript classes, you can define that a class property is private 
 passing the "#" before the property. You need to pass the "#" also in 
 all this prop references (this.#prop).
+
+Every time you are performing operations and logics over a instance or variable,
+check if some moment are you reseting the instance/variable to null according to your conditions.
