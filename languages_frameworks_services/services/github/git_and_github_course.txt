@@ -536,6 +536,18 @@ Download the history of your remote GitHub repo and incor-
 porates the changes for your local machine project.
 
 
+---APPLYING SAME COMMIT FROM DIFFERENT REPOSITORIES AT SAME MACHINE--
+
+1 - On the repository A, Run the command git format-patch -1 your_commit_hash --stdout > commit.patch 
+to create the commit patch that will be used by the repository B.
+
+2 - On repository B run the command git apply path_to_commit_patch. Ex:  git apply /Volumes/mac-ssd/business/ps-course-track/commit.patch
+
+3 - On the repository B commit and pushes the new commit to GitHub normally.
+
+4 - On the repository A, delete the commit.patch file that will not be used anymore.
+
+
 =====================GENERAL TIPS=========================
 
 Do atomics commits for turn more easy fix possibles con-
