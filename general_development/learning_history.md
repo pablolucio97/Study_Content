@@ -20,3 +20,14 @@
 - Use the flag -m to rename your current git branch. Example: git branch -m release1.5.15
 
 ----
+
+### 12/04/2024
+
+  - If you're trying to merge objects on Javascript and it is not working as expected. Try to assign the merged object appointing the name of the updated property. Example:
+  
+```
+const mergedConfigs = { ...objetoOutrasConfigsAtual, ...outras_configs };
+Object.assign(updateConfig, { outras_configs: mergedConfigs });
+```
+
+----
