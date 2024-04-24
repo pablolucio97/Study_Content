@@ -89,3 +89,11 @@ const endDateField = investment.fields['Encerramento da Oferta'];
 -- check if user data_nascimento < 18 and returns 1 if true or 0 if not
 Sequelize.literal("IF(TIMESTAMPDIFF(YEAR, bigid_buybye.data_nascimento, CURDATE()) < 18, 1, 0)"),
 ```
+---
+
+### 24/04/2024
+
+- At working with React Native and applications where its possible to push updates without generating a new build, always maintain your main branch aligned what was sent to production, and always use the stage branch to merge new features. Only merge the stage into main at releasing a new version of the application to production.
+  
+- Always maintain a document history containing the content and the reason of the update of your project updates at working with React Native and applications where its possible to push updates.
+
