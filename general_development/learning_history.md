@@ -97,3 +97,10 @@ Sequelize.literal("IF(TIMESTAMPDIFF(YEAR, bigid_buybye.data_nascimento, CURDATE(
   
 - Always maintain a document history containing the content and the reason of the update of your project updates at working with React Native and applications where its possible to push updates.
 
+---
+
+### 27/04/2024
+
+- At working with native Android files on React Native and applications, be careful to not duplicate properties or crash some native configuration because the inconsistency will be directly reflected in the build execution/generation (considering third services like EAS too) shown by Android as not clear errors.
+
+- To remove the last commit from GitHub, run `git reset --hard HEAD~1` to back to the previous commit from the last one, and the run `git push origin <branch-name> --force` to force the removing.
