@@ -116,3 +116,11 @@ Sequelize.literal("IF(TIMESTAMPDIFF(YEAR, bigid_buybye.data_nascimento, CURDATE(
 ### 02/05/2024
 
 - At working with frameworks with requires file configurations like NestJS and Expo by example, and you're facing errors. Check the specific framework configuration for missing configurations of these frameworks. Generally a configuration file is created at the project root dir.
+
+- At writing logics on JSX, nested logics followed by the `&&` operator must be wrapped in parentheses to take effect. Example:
+```javascript   
+(investmentDetailsRef.current.status === 'Liquidado' ||
+investmentDetailsRef.current.status === 'Pago' ||
+investmentDetailsRef.current.status === 'Processando')
+&& <Text>My content</Text>
+```
