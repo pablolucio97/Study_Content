@@ -142,20 +142,7 @@ export class AuthenticateController {
 }
 ```
 
-7 - Create a custom decorator to be used in each controller to get and type the user payload, example:
-
-```typescript
-import {ExecutionContext, createParamDecorator} from '@nestjs/common';
-import { UserPayloadSchema } from './jwt-strategy';
-
-export const CurrentUser = createParamDecorator(
-    (_: never, context: ExecutionContext) => {
-        const request = context.switchToHttp().getRequest();
-        return request.user as UserPayloadSchema;
-    }
-);
-```
-8 - Create a route that needs to be authorized to test the authentication process. You need to import the UseGuard from "nestjs/common" nad the AuthGuard from "@nestjs/passport" using the AuthGuard inside  UseGuards decorator passing the strategy type. In the handle method you need to pass the custom crated decorator to read correctly the value of the encrypted payload. Example:
+7 - Create a route that needs to be authorized to test the authentication process. You need to import the UseGuard from "nestjs/common" nad the AuthGuard from "@nestjs/passport" using the AuthGuard inside  UseGuards decorator passing the strategy type. In the handle method you need to pass the custom crated decorator to read correctly the value of the encrypted payload. Example:
 
 ```typescript
 import { Controller, Post, UseGuards } from '@nestjs/common';
@@ -166,12 +153,12 @@ import { AuthGuard } from '@nestjs/passport';
 export class CreateQuestionController {
   constructor() {}
   @Post()
-  async handle(@CurrentUser() user: UserPayloadSchema) {
-    return user.sub;
+  async handle() {
+    ...
   }
 }
 ```
-9 - In your app.module.ts file import and add the auth module into your imports array and AuthenticateController to your controllers.
+8 - In your app.module.ts file import and add the auth module into your imports array and AuthenticateController to your controllers.
 
 Observation:
 
