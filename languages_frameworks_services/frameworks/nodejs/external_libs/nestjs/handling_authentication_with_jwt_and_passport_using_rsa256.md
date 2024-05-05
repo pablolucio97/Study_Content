@@ -45,7 +45,7 @@ const tokenSchema = z.object({
 export type UserPayloadSchema = z.infer<typeof tokenSchema>;
 
 @Injectable()
-export class JwtStrategy extends PassportStrategy(Strategy) {
+export class JwtStrategy extends PassportStrategy(Strategy, 'jwt-user') {
   constructor(config: ConfigService<Env, true>) {
     const publicKey = config.get('JWT_PUBLIC_KEY', { infer: true });
     super({
@@ -149,7 +149,7 @@ import { Controller, Post, UseGuards } from '@nestjs/common';
 import { AuthGuard } from '@nestjs/passport';
 
 @Controller('/questions')
-@UseGuards(AuthGuard('jwt'))
+@UseGuards(AuthGuard('jwt-user'))
 export class CreateQuestionController {
   constructor() {}
   @Post()
