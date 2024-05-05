@@ -173,3 +173,26 @@ export class CreateQuestionController {
 ```
 9 - In your app.module.ts file import and add the auth module into your imports array and AuthenticateController to your controllers.
 
+Observation:
+
+ Check your nest-cli if it is appointing the entry file correctly: Example:
+
+ ```
+ {
+  "$schema": "https://json.schemastore.org/nest-cli",
+  "collection": "@nestjs/schematics",
+  "sourceRoot": "src",
+  "entryFile": "infra/main",
+  "compilerOptions": {
+    "deleteOutDir": true
+  }
+}
+
+```
+
+----
+
+Reference Project: 
+
+[Ignite Nest](https://github.com/pablolucio97/ignite-nestjs)
+
