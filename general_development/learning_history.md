@@ -124,3 +124,10 @@ investmentDetailsRef.current.status === 'Pago' ||
 investmentDetailsRef.current.status === 'Processando')
 && <Text>My content</Text>
 ```
+### 13/05/2024
+
+- At working with data formation and conversion with Unix input, be careful to check the operation is using UTC (Coordinated Universal Time) whose doesn't is affected by server time zone.
+
+- Be careful at using the ` ??` operator because it only take effect for validating undefined and null values.
+
+- At pushing a commit to GitHub that has facing conflicts, be sure all files was sent to GitHub.
