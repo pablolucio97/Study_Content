@@ -162,4 +162,6 @@ export class CreateClassController {
 }
 ```
 
-12. Call your request expecting for a multipart upload. The file must uploaded in a field named as `file`.
+12. Add the AzureBlobStorageProvider and UploadFileService to your app modules.
+
+13. Call your request expecting for a multipart upload. The file must uploaded in a field named as `file`.
