@@ -124,6 +124,8 @@ investmentDetailsRef.current.status === 'Pago' ||
 investmentDetailsRef.current.status === 'Processando')
 && <Text>My content</Text>
 ```
+---
+
 ### 13/05/2024
 
 - At working with data formation and conversion with Unix input, be careful to check the operation is using UTC (Coordinated Universal Time) whose doesn't is affected by server time zone.
@@ -131,3 +133,17 @@ investmentDetailsRef.current.status === 'Processando')
 - Be careful at using the ` ??` operator because it only take effect for validating undefined and null values.
 
 - At pushing a commit to GitHub that has facing conflicts, be sure all files was sent to GitHub.
+
+---
+
+### 17/05/2024
+
+- At contributing on team projects, and you need to update your branch with main, push your commit first otherwise you could accidentally lost all your code.
+
+---
+
+### 25/05/2024
+
+- At stuck on an error, you must think in the code bright, it is the start and finish points of your code an try to solve the problem considering all points. Example: In a back-end project you should start thinking on the database credentials configuration, models and views (virtual tables based on complex queries) configurations, models importation and code usage, use cases, controllers, and finally routes and received requests. Here the database configuration is your start point and request receiving the last one.
+
+- At working with databases, you can create views to store virtual tables containing complex queries. Some times it is useful to retrieve complex queries with more performance. Generally these virtual tables has different colors on the database management software.
