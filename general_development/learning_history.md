@@ -147,3 +147,11 @@ investmentDetailsRef.current.status === 'Processando')
 - At stuck on an error, you must think in the code bright, it is the start and finish points of your code an try to solve the problem considering all points. Example: In a back-end project you should start thinking on the database credentials configuration, models and views (virtual tables based on complex queries) configurations, models importation and code usage, use cases, controllers, and finally routes and received requests. Here the database configuration is your start point and request receiving the last one.
 
 - At working with databases, you can create views to store virtual tables containing complex queries. Some times it is useful to retrieve complex queries with more performance. Generally these virtual tables has different colors on the database management software.
+
+- At working with node native modules that performs async operations like the libraries `fs` and `path` , wrap all operations under a promise, example:
+  
+---
+
+### 28/05/2024
+
+- Always check the type of data (if it's a function, class and so on) you're importing in your JavaScript/TypeScript files. Sometimes some documentations are not clear on how to use their API's.
