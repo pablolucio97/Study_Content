@@ -87,4 +87,5 @@
 - At working with RabbitMQ you'll never publish a message directly into a queue, it will pass to the exchange and then the exchange will determine the correct queue/queues to delivery the message.
 - Each queue is totally independent from another one.
 - Avoid changing the default queue behavior FIFO, it can be hard to deal. Let that the first message received will be the first to exit.
+- Use the [RabbitMQ simulator]('https://tryrabbitmq.com/') to understand and visualize the system before start creating your message system.
 
