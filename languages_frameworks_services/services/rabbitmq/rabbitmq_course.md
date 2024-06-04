@@ -67,19 +67,19 @@
 
 ### RabbitMQ Connection diagram:
 
-[image]('https://i.ibb.co/tb8HQ9R/Screenshot-2024-06-04-at-08-13-28.png')
+<img src="https://i.ibb.co/tb8HQ9R/Screenshot-2024-06-04-at-08-13-28.png"/>
 
 ### RabbitMQ Direct Exchange message flow diagram:
 
-[image]('https://i.ibb.co/5hP029f/Screenshot-2024-06-04-at-08-20-43.png')
+<img src="https://i.ibb.co/5hP029f/Screenshot-2024-06-04-at-08-20-43.png"/>
 
 ### RabbitMQ Fanout Exchange message flow diagram:
 
-[image]('https://i.ibb.co/s5NQ5W8/Screenshot-2024-06-04-at-08-23-13.png')
+<img src="https://i.ibb.co/s5NQ5W8/Screenshot-2024-06-04-at-08-23-13.png"/>
 
 ### RabbitMQ Topic Exchange message flow diagram:
 
-[image]('https://i.ibb.co/5hP029f/Screenshot-2024-06-04-at-08-20-43.png')
+<img src="https://i.ibb.co/s2jwczc/Screenshot-2024-06-04-at-08-28-41.png"/>
 
 ## General Tips
 
