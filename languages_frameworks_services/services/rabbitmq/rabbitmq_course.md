@@ -62,6 +62,19 @@
 
 - Used by exchanges to determine which queue(s) a message should be routed to.
 
+### VHost
+
+- Each VHost is a separated environment containing its exchanges and queues. A VHost does not communicate with another one.
+
+
+## Message Reliability Flow
+
+### How to grant that each message was delivered correctly:
+
+1 - The Consumer must confirm to the Queue that the message was received (message.ack) or there was some error at receiving (message.nack or message.rej).
+2 - The Exchange must confirm to the Publisher that the message was received (message.ack) or there was some error at receiving (message.nack or message.rej).
+3 - Optionally you can persist the messages in disk activating the "Lazy Mode" of the queue property at the RabbitMQ panel. Obs: Do not persist all messages, otherwise the application will be slow.
+
 
 ## Diagrams
 
@@ -81,6 +94,28 @@
 
 <img src="https://i.ibb.co/s2jwczc/Screenshot-2024-06-04-at-08-28-41.png"/>
 
+
+## Acessing the RabbitMQ panel:
+
+1 - Inside your project directory, create a .docker-compose.yml file to instance a new the RabbitMQ image. Example:
+
+```yml
+version: '3'
+services: 
+  rabbit:
+    image: 'rabbitmq:3-management'
+    environment:
+      RABBITMQ_ERLANG_COOKIE: "SWQOKODSQALRPCLNMEQG"
+      RABBITMQ_DEFAULT_USER: "rabbitmq"
+      RABBITMQ_DEFAULT_PASS: "rabbitmq"
+      RABBITMQ_DEFAULT_VHOST: "/"
+    ports:
+      - "15672:15672"
+      - "5672:5672"
+```
+
+2 - Access the RabbitMQ panel through localhost:15672
+
 ## General Tips
 
 - At working with TCP connections, the first one request is the most lasted because it need to pen and recognize the connection first (handshake).
@@ -88,4 +123,7 @@
 - Each queue is totally independent from another one.
 - Avoid changing the default queue behavior FIFO, it can be hard to deal. Let that the first message received will be the first to exit.
 - Use the [RabbitMQ simulator]('https://tryrabbitmq.com/') to understand and visualize the system before start creating your message system.
+- You must grant each message system is being correctly processed. Utilizes a unique ID for each message to track confirmations.
+- By default RabbitMQ UI will shows 7 exchanges.
+
 
