@@ -8,6 +8,8 @@ Docker is a tool that helps creating containers solving conflicts that what runs
 
 **Images**: Are instructions to create a container. These images are variables and can be customized.
 
+**Volumes**: Are the dedicated storages on your machine that can be bound between images.
+
 **Docker Compose**: Is like a container manager that defines which services should run.
 
 **Dockerfile**: Is the file used to build Docker images through new builds.
@@ -81,12 +83,13 @@ In this example Nginx image will be used.
 6. Press `i` to enable editing, edit your file, and then press `:wq` to write the file and exit Vim.
 
 
-## Binging local folders to Docker volumes (bind mounting)
+## Workin with volumes
 
-In this example Nginx image will be used again. The bind mounting technique is recommended because if you lost the image or the container is running the image, you'll not lose your alterations on the image. 
+1. Create a volume running `docker volume create my_volume`. You can inspect your volume info running `docker volume inspect my_volume`
+2. Run the command `docker run -d --name nginx -p 8080:80 -v my_volume:/app mynginx` to build a new image (in this case nginx), and it be accessible through your 8080 port with free terminal.
+3. Run the command ` docker exec -it mynginx bash` to execute nginx bash with integrated and interactive terminal.
+4. Inside your image dir, create the files you want to persist inside the `app` folder. All files created here will be shared with your local volume.
 
-1. Create a folder with files you want to mirror with Docker.
-2. Run the command `docker run -d --name nginx -p 8080:80 nginx -v /Volumes/mac-ssd/studies/study_content/test:/usr/share/nginx/html` to build the nginx image and it be accessible through your 8080 port with free terminal, and mirror the test folder that is inside your local machine to usr/share/nginx/html container directory.
 
 ## GENERAL TIPS
 
