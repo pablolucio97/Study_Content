@@ -83,12 +83,33 @@ In this example Nginx image will be used.
 6. Press `i` to enable editing, edit your file, and then press `:wq` to write the file and exit Vim.
 
 
-## Workin with volumes
+## Working with volumes
 
 1. Create a volume running `docker volume create my_volume`. You can inspect your volume info running `docker volume inspect my_volume`
 2. Run the command `docker run -d --name nginx -p 8080:80 -v my_volume:/app mynginx` to build a new image (in this case nginx), and it be accessible through your 8080 port with free terminal.
 3. Run the command ` docker exec -it mynginx bash` to execute nginx bash with integrated and interactive terminal.
 4. Inside your image dir, create the files you want to persist inside the `app` folder. All files created here will be shared with your local volume.
+
+
+## Working with mages
+
+ Run `docker pull your_image_name` to download the desired image. 
+ You can check the current images on your machine by running `docker images`.
+ Run `docker rmi your_image_id`to remove an image. 
+
+ ### Creating a new own image
+
+ Creating a new image is useful to have an existing image modified according to your needs. A new image always be created thorough an existing image.
+
+ 1. Create a file named `Dockerfile` in your directory.
+ 2. Inside it, declare the actions. Example:   
+  ```docker
+    FROM nginx:latest
+    RUN apt-get update
+    RUN apt-get install vim -y
+    ```
+ 3. Run the command `docker build -t your_docker_hub_user/your_new_image_name .` to execute the Dockerfile from your directory building the new image based on the provided commands. Example : `docker build -t pablolucio97/nginx_with_vim:latest .`
+ 4. To run your image run `docker run -it your_image_name bash`. Example: `docker run -it pablolucio97/nginx_with_vim bash`
 
 
 ## GENERAL TIPS
@@ -114,3 +135,9 @@ At writing image files, keep in mind that images are imutable, and if the contai
 At working with Docker on development environment you always must maintain a folder on your local machine to be mirrored to the docker through bind mounting.
 
 The docker arguments orders matters and affects the command result.
+
+At working with images, you must to upload two images, one with :latest and another one with the current version you finished.
+
+The default Docker's container register is the Docker Hub. Some big techs has its own container register with data.
+
+The `run` command is to run images with and `exec` to execute actions in containers.
