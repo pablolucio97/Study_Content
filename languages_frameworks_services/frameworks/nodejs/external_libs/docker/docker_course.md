@@ -115,6 +115,12 @@ Creating a new image is useful to have an existing image modified according to y
 3. Run the command `docker build -t your_docker_hub_user/your_new_image_name .` to execute the Dockerfile from your directory building the new image based on the provided commands. Example : `docker build -t pablolucio97/nginx_with_vim:latest .`
 4. To run your image run `docker run -it your_image_name bash`. Example: `docker run -it pablolucio97/nginx_with_vim bash`
 
+### Publishing the image
+
+1. Build and run your image locally to grant it's working fine.
+2. Log in into your Docker Hub's account running `docker login` and authenticate with your username and password.
+3. Run `docker push your_image_name` to upload it to your Docker Hub's account.
+
 
 ### Understanding Dockerfile
 
