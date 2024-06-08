@@ -155,3 +155,8 @@ investmentDetailsRef.current.status === 'Processando')
 ### 28/05/2024
 
 - Always check the type of data (if it's a function, class and so on) you're importing in your JavaScript/TypeScript files. Sometimes some documentations are not clear on how to use their API's.
+
+### 07/06/2024
+
+- At executing Docker's command be careful with the parameters order. It can affect directly the working of a container, image or volume.
+- At creating entities on real applications, consider creating user and other actors cpf and birth date data for legal purposes.

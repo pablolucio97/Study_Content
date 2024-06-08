@@ -17,38 +17,41 @@ Docker is a tool that helps creating containers solving conflicts that what runs
 ## CREATING AN IMAGE AND RUNNING IT IN A DOCKER CONTAINER
 
 1. Create a `.dockerignore` file in the root of your project to ignore folders and files to not put in your container. Example:
-    ```
-    node_modules
-    .git
-    .vscode
-    ```
+
+   ```
+   node_modules
+   .git
+   .vscode
+   ```
 
 2. In your root project folder, create a new Dockerfile will contains all instructions settings of our image to run our application inside the Docker. Example:
-    ```
-    FROM node
 
-    WORKDIR /usr/app
+   ```
+   FROM node
 
-    COPY package.json ./
+   WORKDIR /usr/app
 
-    RUN npm install
+   COPY package.json ./
 
-    COPY . .
+   RUN npm install
 
-    EXPOSE 3333
+   COPY . .
 
-    CMD ["npm", "run", "dev"]
-    ```
+   EXPOSE 3333
+
+   CMD ["npm", "run", "dev"]
+   ```
 
 3. To create the docker image according our Dockerfile, run the command:
-    ```
-    docker build -t yourimagename .
-    ```
+
+   ```
+   docker build -t yourimagename .
+   ```
 
 4. To run our created image, run:
-    ```
-    docker run -p 3333:3333 yourimagename
-    ```
+   ```
+   docker run -p 3333:3333 yourimagename
+   ```
 
 ## DOCKER AND DOCKER-COMPOSE COMMANDS
 
@@ -70,7 +73,6 @@ Docker is a tool that helps creating containers solving conflicts that what runs
 
 <img src='https://i.ibb.co/x7GfFMv/Screenshot-2024-06-05-at-08-45-08.png'/>
 
-
 ## Running and editing files images from terminal using vim
 
 In this example Nginx image will be used.
@@ -82,7 +84,6 @@ In this example Nginx image will be used.
 5. Run the command `vim "filename"` to edit the desired file. Ex: `vim index.html`.
 6. Press `i` to enable editing, edit your file, and then press `:wq` to write the file and exit Vim.
 
-
 ## Working with volumes
 
 1. Create a volume running `docker volume create my_volume`. You can inspect your volume info running `docker volume inspect my_volume`
@@ -90,27 +91,62 @@ In this example Nginx image will be used.
 3. Run the command ` docker exec -it mynginx bash` to execute nginx bash with integrated and interactive terminal.
 4. Inside your image dir, create the files you want to persist inside the `app` folder. All files created here will be shared with your local volume.
 
-
 ## Working with mages
 
- Run `docker pull your_image_name` to download the desired image. 
- You can check the current images on your machine by running `docker images`.
- Run `docker rmi your_image_id`to remove an image. 
+Run `docker pull your_image_name` to download the desired image.
+You can check the current images on your machine by running `docker images`.
+Run `docker rmi your_image_id`to remove an image.
 
- ### Creating a new own image
+### Creating a new own image
 
- Creating a new image is useful to have an existing image modified according to your needs. A new image always be created thorough an existing image.
+Creating a new image is useful to have an existing image modified according to your needs. A new image always be created thorough an existing image.
 
- 1. Create a file named `Dockerfile` in your directory.
- 2. Inside it, declare the actions. Example:   
-  ```docker
-    FROM nginx:latest
-    RUN apt-get update
-    RUN apt-get install vim -y
-    ```
- 3. Run the command `docker build -t your_docker_hub_user/your_new_image_name .` to execute the Dockerfile from your directory building the new image based on the provided commands. Example : `docker build -t pablolucio97/nginx_with_vim:latest .`
- 4. To run your image run `docker run -it your_image_name bash`. Example: `docker run -it pablolucio97/nginx_with_vim bash`
+1.  Create a file named `Dockerfile` in your directory.
+2.  Inside it, declare the actions. Example:
 
+```yml
+  FROM nginx:latest
+  WORKDIR /app //creates a dir named 'app' and define it has default
+  RUN apt-get update && \
+      apt-get install vim -y
+  COPY html /usr/share/nginx  //copies the local html folder to /usr/share/nginx directory
+
+  ```
+3. Run the command `docker build -t your_docker_hub_user/your_new_image_name .` to execute the Dockerfile from your directory building the new image based on the provided commands. Example : `docker build -t pablolucio97/nginx_with_vim:latest .`
+4. To run your image run `docker run -it your_image_name bash`. Example: `docker run -it pablolucio97/nginx_with_vim bash`
+
+
+### Understanding Dockerfile
+
+ENV: Allows to use environment variables. Example:
+```yml
+  ENV URL_PROD https://www.mysite.com
+```
+
+EXPOSE: Allows another application to reach this image port. Example:
+
+```yml
+EXPOSE 3000
+```
+
+CMD: Is a variable executable command that runs after the image runs and allows receive commands and parameters from the cmd. Examples:
+
+```yml
+CMD [ "echo", "pscode" ] //prinths "pscode", but can print "pscode2" with the command docker run myimagename echo "pscode2"
+```
+
+ENTRYPOINT: Is a fixed command that runs after the image runs. Examples:
+
+```yml
+ENTRYPOINT [ "echo", "pscode" ] //prints "pscode"
+```
+
+Obs: CMD and ENTRYPOINT can be combined, example:
+
+```yml
+ENTRYPOINT [ "echo", "Hello" ]
+CMD [ "pscode" ] // prints "Hello pscode"
+```
 
 ## GENERAL TIPS
 
@@ -141,3 +177,7 @@ At working with images, you must to upload two images, one with :latest and anot
 The default Docker's container register is the Docker Hub. Some big techs has its own container register with data.
 
 The `run` command is to run images with and `exec` to execute actions in containers.
+
+At working with Docker images, you probably want to execute a command after the image runs.
+
+All Docker's file that contains `exec "$@"` at its end allows that command can be executed after the image. None command will work if the file does not contain the `exec "$@"` declaration.
