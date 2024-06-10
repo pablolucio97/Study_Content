@@ -154,6 +154,27 @@ ENTRYPOINT [ "echo", "Hello" ]
 CMD [ "pscode" ] // prints "Hello pscode"
 ```
 
+## Docker Networks
+
+Docker has its own networks. Networks are fundamental to allow you share data between your containers. You must by example run an image SQL in a container and a Nginx image in another one. To these containers can connect with themselves, it need be in the same network. If you don't create any networks, you'll automatically work the the default bridge Docker's network.
+
+### Main Docker's networks
+**Brigde**: Is the default Docker's network' and is the most used network.
+**Host**: Only works on Linux or Windows with WSL2. Its a network that allows yours containers access the local host network directly.
+
+### Creating and running containers on a bridge network
+1. Run `docker network create --driver bridge your_network_name` to create your bridge network.
+2. Run `docker run -dit --name your_new_container_name --network your_created_network_name bash` to create and attach your container on the created bridge network.
+3. Run `docker run -dit --name your_new_container_name --network your_created_network_name bash` to create and attach another container on the created bridge network.
+4. Run `docker exec -it one_of_created_containers_name bash` to enter in one of the created container.
+5. Run `ping another_one_of_created_containers_name` to test if the container can communicate between itself on the same bridge.
+6. Run `docker network inspect bridge` to inspect with containers are inside your network.
+
+### Accessing your local machines ports on Docker's host
+1. Start your local application on your desired port. Ex: Back-end server running at 4000 port.
+2. On your container, install the curl running `apt-get update` and then `apt-get install curl -y`.
+3. Run `curl http://host.docker.internal:your_application_port`
+ 
 ## GENERAL TIPS
 
 The container/virtual machine created by Docker has a different IP from our local machine IP.
@@ -181,8 +202,6 @@ The docker arguments orders matters and affects the command result.
 At working with images, you must to upload two images, one with :latest and another one with the current version you finished.
 
 The default Docker's container register is the Docker Hub. Some big techs has its own container register with data.
-
-The `run` command is to run images with and `exec` to execute actions in containers.
 
 At working with Docker images, you probably want to execute a command after the image runs.
 
