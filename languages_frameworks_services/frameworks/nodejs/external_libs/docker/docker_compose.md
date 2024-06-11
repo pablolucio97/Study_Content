@@ -64,6 +64,60 @@ networks:
     driver: bridge
 ```
 
+## Configuring containers that depends on another containers
+
+In this example the app container that contains a NodeJS application, depends on the db container that has the mysql configuration. The application need the database to perform its operations.
+
+1. On the dependent container folder, inside the Dockerfile, add the Dockerize installation step [found here](https://github.com/jwilder/dockerize), example:
+
+```yml
+ENV DOCKERIZE_VERSION v0.7.0
+
+RUN apt-get update \
+    && apt-get install -y wget \
+    && wget -O - https://github.com/jwilder/dockerize/releases/download/$DOCKERIZE_VERSION/dockerize-linux-amd64-$DOCKERIZE_VERSION.tar.gz | tar xzf - -C /usr/local/bin \
+    && apt-get autoremove -yqq --purge wget && rm -rf /var/lib/apt/lists/*
+```
+2. Update the docker-compose.yml file appointing the dependencies and the entrypoint. Full file example:
+```yml
+version: '3.7'
+
+services:
+  app:
+    build:
+      context: node
+    container_name: app
+    entrypoint: dockerize -wait tcp://db:3306 -timeout 20s docker-entrypoint.sh # wait for mysql to be ready on 3306 port for 20s
+    restart: always
+    tty: true
+    networks: 
+      - node-network
+    volumes:
+      - ./node:/usr/src/app
+    ports:
+      - "3000:3000"
+    depends_on:
+      - db # the app container needs the db container to work properly, it should be done using dockerize or waitforit images
+
+  db: # starts a database service configuration
+    image: mysql:8.0 # uses mysql 8.0 as the image to handle the database service
+    command: --innodb-use-native-aio=0 # required command for running mysql image correctly
+    container_name: db
+    restart: always # automatically restarts the database container if it falls
+    tty: true # enables the container terminal
+    volumes:
+      - ./myapp_mysql:/var/lib/mysql # persists all data from /var/lib/mysql into myapp_mysql folder, even if the container is deleted
+    environment: # are automatically generated at the container building
+      MYSQL_DATABASE: ${MYSQL_DATABASE} # must come from .env file
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD} # must come from .env file
+    networks:
+      - node-network # defines that this container is inside the node-network
+
+networks:
+  node-network:
+    driver: bridge
+
+```
 
 ### Docker compose useful commands
 
@@ -80,3 +134,4 @@ networks:
 
 - Always configure a volume pointing to your local folder to persis data even if the container does not exist anymore.
 - Create a .env file in the same directory as the docker-compose.yml file and load it into the docker-file configuration.
+- Always use dockerize or another async operations image to grant a container that depends another one will wait for.
