@@ -39,9 +39,33 @@ Docker Compose is a tool for defining and running multi-container Docker applica
 3. Run `docker-compose up` to up your containers.
 
 
+### Working with Docker Compose, NodeJS and Mysql
+
+```yml
+version: '3.7'
+
+services:
+  db: # starts a database service configuration
+    image: mysql:8.0 # uses mysql 5.7 as the image to handle the database service
+    command: --innodb-use-native-aio=0 #required command for run  mysql image correctly
+    container_name: db
+    restart: always # automatically restart the database container if it falls
+    tty: true # enables the container terminal
+    volumes:
+      - ./myapp_mysql:/var/lib/mysql # persists all data from /var/lib/mysql into myapp_mysql folder, even if the container is deleted
+    environment: # are automatically generated at the container building
+      MYSQL_DATABASE: ${MYSQL_DATABASE} # must come from .env file
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD} # must come from .env file
+    networks:
+      - node-network # defines that this container is inside the node-network
+
+networks:
+  node-network:
+    driver: bridge
+```
+
 
 ### Docker compose useful commands
-
 
 `docker-compose up -d --build`: Starts all containers rebuilding images if it has any changes.
 `docker-compose up -d`: Starts all containers in detached mode.
@@ -50,3 +74,9 @@ Docker Compose is a tool for defining and running multi-container Docker applica
 `docker-compose exec YOUR COMMAND`: Executes a command in a running container.
 `docker-compose logs`: Shows log output from services.
 `docker-compose restart`: Restarts all stopped and running services.
+
+
+## General tips
+
+- Always configure a volume pointing to your local folder to persis data even if the container does not exist anymore.
+- Create a .env file in the same directory as the docker-compose.yml file and load it into the docker-file configuration.
