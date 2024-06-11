@@ -193,7 +193,7 @@ If the environment/OS where the container is running dies, the container will di
 
 At working with Docker and you need to access some service or application that is running in the Docker container, you must mirror this port to be accessible on your machine (because Docker container is a virtual machine and your machine is another one). Example: docker run nginx -p 8080:80 (From 8080 of our machine we can access nginx 80 port).
 
-At writing image files, keep in mind that images are imutable, and if the container that is running the image downs, the image will not persist with changes unless you did a bind mounting (mirrored a local folder to Docker).
+At writing image files, keep in mind that images are immutable, and if the container that is running the image downs, the image will not persist with changes unless you did a bind mounting (mirrored a local folder to Docker).
 
 At working with Docker on development environment you always must maintain a folder on your local machine to be mirrored to the docker through bind mounting.
 
@@ -206,3 +206,9 @@ The default Docker's container register is the Docker Hub. Some big techs has it
 At working with Docker images, you probably want to execute a command after the image runs.
 
 All Docker's file that contains `exec "$@"` at its end allows that command can be executed after the image. None command will work if the file does not contain the `exec "$@"` declaration.
+
+At working with real projects using Docker, maintain two Dockerfile's, one to execute commands in development environment, and another one to copy all content for production.
+
+If your Dockerfile is not in the root dir, you must specify the file directory at running, ex: `docker build -t nginx/Dockerfile.prod`.
+
+A file that has multiples `FROM` declaration are files containing multistage building.
