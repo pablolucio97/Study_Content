@@ -24,12 +24,44 @@
 ## Architectural Requirements
 - **Performance**: It is the performance a feature should have. Example: A request must be performed by 10s and have 15s timeout.
 - **Data storage** How the data will be stored. Witch type of database must be used and why.
-- **Scalability** How the system will scale, if it is will scaled horizontally or vertically. Autobalance will be used? How much instances will be work?
+- **Scalability** How the system will scale, if it is will scaled horizontally (adding more instances) or vertically(upgrading instance RAM, processor, and storage). Autobalance will be used? How much instances will be work?
 - **Compliance** Check which governmental rules my system must obey.
-- **Security** Which certificates my application must have.
+- **Security** Which security techniques the application must apply.
 - **Audit** Defines how and where each user action is be logged.
 - **Marketing** Defines if the system should be trackable for auditing marketing metrics and purposes. Examples: Deep linking, Google Analytics and Google Crashlytics.
 - **Accessibility** Defines which features the system must have to attend users with reduced capabilities. Examples: Audible support, on screen keyboard and so on.
+
+### Architectural Requirements - Operational characteristics (Instance characteristics)
+
+- **Availability**: It defines how available the system should be. When the maintenance must be done.
+- **Chaos recovery**: Defines how the process of solve unexpected problems must be done.
+- **Data recovery**: Determines the backup process, when it must be done. Its extremely important to test a backup after generating a new one. 
+- **Robustness**: Defines how robust the cloud/host where your system is host. Define plans for migrate your system if this host/cloud is offline.
+
+### Architectural Requirements - Structural characteristics (Software characteristics)
+- **Configurability**: Your software must be configurable through environment variables. It is important if a service key or some database configuration changes.
+- **Extensibility**: Adding new modules, screens, components and services in your application must be easy without too much refactors.
+- **Easy Installation** Your application must be easy to install/deploy. The best way to grant easy installation on back-end services, is trough containers.
+- **Components reuse** Your application's components must be easy to be reused.
+- **Internationalization** If your system will be distributed for multi countries, you should to apply techniques to shown text on front-end and grant your process will keep working on back-end when the country changes, example: currency.
+- **Easy maintenance** Your system must be easy to maintain. Avoid coupling, and use clean patterns. As less code your system has, better.
+- **Portability** Your system must be easy to exchange the database. Use clean architecture to reach it.
+- **Strong support** Your system must be able to track logs easily. Use standard console logs on each request, and important actions.
+
+### Architectural Requirements - Cross-cutting
+- **Accessibility**: Your system must be accessible to persons with reduced capabilities. Use a screen reader.
+- **Data storage retention**: Plan which data must persist or not and its lifetime.
+- **Authentication** Defines how the authentication process must be done.
+- **Authorization** Defines roles and possible access based on roles (user/admin).
+- **Security** Apply security techniques to protect your application. Use captcha on authentication, use an input validation, and implement rate limiting to avoid suffer too many requests attacks.
+- **Laws** Which laws your system must obey and where the data related to the user will be persisted if requested judicially.
+- **Privacy** You must apply techniques to user data to not leak. If there is another developers on the project, request them to assign a privacy policy before start working on the project.
+- **Usability** How your system should be used. Consider implementing responsiveness and navigation by keyboard.
+- **Portability** Your system must be easy to exchange the database. Use clean architecture to reach it.
+
+### Another concepts
+- **Service Level Agreement (SLA)**: It is related with the software metrics what was dealt with the business client.
+- **Service Level Objectives (SLO)**: Over the SLA, what is my software metrics. Generally exceeds what was dealt as SLA.
 
 ## General tips
 - The business team structure reflects directly on the final software architecture. Example: If a team is composed of just one back-end developer, then the front-end application will be embedded on the back-end.
@@ -38,3 +70,7 @@
 - Always see your whole project architecture structure before implementing new features.
 - A business software must have clear governance. It means, if the developer that has more contact with that software leaves the company, then that software must keep clean.
 - Each application that you'll develop, keep a `docs` folder containing the main application processes and have the possible Architectural Requirements documented.
+- Always tests the done backup. Grant the backup is working for when you need it.
+- To allow that your application is able to be scaled horizontally, you must implement 12 factors and it need to be stateless.
+- Always prefer to scale your system instances horizontally because it allows more flexibility and grant more computational power if the system grows to much.
+- To test if your application is configurable, you can run your application on production environment with stage credentials. All fixes must be done just exchanging credentials.
