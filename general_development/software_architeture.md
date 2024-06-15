@@ -59,6 +59,25 @@
 - **Usability** How your system should be used. Consider implementing responsiveness and navigation by keyboard.
 - **Portability** Your system must be easy to exchange the database. Use clean architecture to reach it.
 
+
+### Improving software performance
+
+Performance is the time a software takes to complete a workload. To improve the system performance you must:
+
+1. Reduce the response time. An acceptable response time is between 200ms and 2500ms. Checklist to reduce response time:
+
+2. Rise the throughput, increasing the quantity of inputs you system can handle at once.
+ 
+Checklist to improve general performance:
+
+ - Check for external calls. Sometimes external calls can take longer than expected.
+ - Take a look how the process data algorithm works.
+ - Increase your instance computational power.
+ - Use programming languages that allows asynchronous and not blocking communication. Request can't works serially (one by one). Example: NodeJS.
+ - Check the database used and watch the SQL queries response time.
+ - Always as possible store large processed data on cashing.
+
+
 ### Another concepts
 - **Service Level Agreement (SLA)**: It is related with the software metrics what was dealt with the business client.
 - **Service Level Objectives (SLO)**: Over the SLA, what is my software metrics. Generally exceeds what was dealt as SLA.
