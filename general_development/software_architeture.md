@@ -77,6 +77,13 @@ Checklist to improve general performance:
  - Check the database used and watch the SQL queries response time.
  - Always as possible store large processed data on cashing.
 
+## Concurrence and Parallelism
+
+Concurrence is deal with multiple tasks at once, and Parallelism is do multiple tasks at once.
+
+Example: A webserver that is working concurrently has just 1 thread, and this thread receives 5 requests to process at once. Each request takes 10ms to respond, then the final response time is 50ms because it is processed in series. If this same webserver had 5 threads available, it would work with parallelism allocating each request in a thread where the final response time would be 10ms.
+
+
 
 ### Another concepts
 - **Service Level Agreement (SLA)**: It is related with the software metrics what was dealt with the business client.
