@@ -84,10 +84,21 @@ Concurrence is deal with multiple tasks at once, and Parallelism is do multiple 
 Example: A webserver that is working concurrently has just 1 thread, and this thread receives 5 requests to process at once. Each request takes 10ms to respond, then the final response time is 50ms because it is processed in series. If this same webserver had 5 threads available, it would work with parallelism allocating each request in a thread where the final response time would be 10ms.
 
 
-
 ### Another concepts
 - **Service Level Agreement (SLA)**: It is related with the software metrics what was dealt with the business client.
 - **Service Level Objectives (SLO)**: Over the SLA, what is my software metrics. Generally exceeds what was dealt as SLA.
+
+
+## Working with caching
+
+### Type of caching
+
+- **Static data* on Edge Computing** This type of caching provides all already processed in a server before the user bump your server. All website cache content is stored in the nearest to the user server. Generally it has a good payoff.
+- **Cached Web page** Some Javascript frameworks allows building cached pages that will be server with the HTML already built. Example: NextJS.
+- **Internal cached functions** Are heavy algorithms that could be embedded in a function to be executed in some spaced interval instead each request reducing also databases operations.
+- **Cached objects** Is the technique of caching your entities objects to avoid it run repeated operations. It can be done using Redis or some NodeJS library to deal with caching like node-cache.
+- **Local caching** The cache is available only locally. Its more faster, but can't be shared between user sessions. It means the user must repeat all same process in different machines.
+- **Shared caching** The cache is available in an external server where each instance should bump on this server to get the cached. It's more slower, mas generally more recommended. In this type of caching, the database queries can be cached and shared too.
 
 ## General tips
 - The business team structure reflects directly on the final software architecture. Example: If a team is composed of just one back-end developer, then the front-end application will be embedded on the back-end.
@@ -100,3 +111,5 @@ Example: A webserver that is working concurrently has just 1 thread, and this th
 - To allow that your application is able to be scaled horizontally, you must implement 12 factors and it need to be stateless.
 - Always prefer to scale your system instances horizontally because it allows more flexibility and grant more computational power if the system grows to much.
 - To test if your application is configurable, you can run your application on production environment with stage credentials. All fixes must be done just exchanging credentials.
+- Always as possible avoid operations on your database, because depending on the number of requests it can be expensive.
+- Internet is not unlimited, always as possible use Edge Computing/CDN's to server static files, and allow the user bump on server nearest to him instead bump on your server directly.
