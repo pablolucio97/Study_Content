@@ -77,11 +77,26 @@ Checklist to improve general performance:
  - Check the database used and watch the SQL queries response time.
  - Always as possible store large processed data on cashing.
 
+
 ## Concurrence and Parallelism
 
 Concurrence is deal with multiple tasks at once, and Parallelism is do multiple tasks at once.
 
 Example: A webserver that is working concurrently has just 1 thread, and this thread receives 5 requests to process at once. Each request takes 10ms to respond, then the final response time is 50ms because it is processed in series. If this same webserver had 5 threads available, it would work with parallelism allocating each request in a thread where the final response time would be 10ms.
+
+
+## Scalability
+
+Is the capacity a system has to  increase or decrease its throughput adding or removing more computational resources.
+A system can be scaled vertically(increasing the computational instance resource) or horizontally(adding more instances, and using a load balance/reverse proxy to handle the requests).
+
+At scaling a system horizontally you must have in mind that an instance is a disposable resource and all content that is in your instance must be available in a shared service like  Amazon S3 and shared database. Disks are used only to record data temporarily.
+
+You system must be stateless, you should maintain a service for your application, one for assets, and another one for caching.
+
+Scaling a system is decentralize an instance Its means exporting all its content into external services allowing that instance can be removed or duplicated where the new instances can consume the same content as the first instance.
+
+To scale a database we can create a database for reading and another one for writing. If your database is dealing with large tables, you should use indexes to reduce the scanned table area on queries.
 
 
 ### Another concepts
@@ -113,3 +128,4 @@ Example: A webserver that is working concurrently has just 1 thread, and this th
 - To test if your application is configurable, you can run your application on production environment with stage credentials. All fixes must be done just exchanging credentials.
 - Always as possible avoid operations on your database, because depending on the number of requests it can be expensive.
 - Internet is not unlimited, always as possible use Edge Computing/CDN's to server static files, and allow the user bump on server nearest to him instead bump on your server directly.
+- Use the `EXPLAIN` declaration on your SQL queries for watch queries performance.
