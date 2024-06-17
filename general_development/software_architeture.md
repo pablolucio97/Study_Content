@@ -87,7 +87,7 @@ Example: A webserver that is working concurrently has just 1 thread, and this th
 
 ## Scalability
 
-Is the capacity a system has to  increase or decrease its throughput adding or removing more computational resources.
+Is the capacity a system has to increase or decrease its throughput adding or removing more computational resources.
 A system can be scaled vertically(increasing the computational instance resource) or horizontally(adding more instances, and using a load balance/reverse proxy to handle the requests).
 
 At scaling a system horizontally you must have in mind that an instance is a disposable resource and all content that is in your instance must be available in a shared service like  Amazon S3 and shared database. Disks are used only to record data temporarily.
@@ -104,6 +104,23 @@ To scale a database we can create a database for reading and another one for wri
 A proxy is a request handler that redirects your request based on rules configured in the proxy. 
 
 A reverse proxy is a server that redirect the request to the most appropriated server according to rules configured in the reverse proxy. The most used reverse proxy tool is Nginx.
+
+
+## Resilience
+
+Resilience is the ability a software has to deal with unexpected situations. Example: What would happen to the system registering flow if the CEP service is unavailable? A good software deal with these conditions and provide another options. Techniques to check and improve your system resilience:
+
+### Health check
+
+You can check if a system is health creating a route that bumps on database checking it responses time.
+
+### Rate Limiting 
+
+You can configure the rate limit by client always allowing most important client a large number of requests compared to adjacent systems. If your application supports 100 requests per second, so you could configure by example 70 requests per second for the most important client and 30 to another one.
+
+### Circuit Breaker
+
+You can implement Circuit Breaker on your system to automatically responds with 500 status code when its request exceeds the supported requests limits and automatically respond normally when the system recoveries.
 
 
 ### Another concepts
@@ -136,3 +153,5 @@ A reverse proxy is a server that redirect the request to the most appropriated s
 - Always as possible avoid operations on your database, because depending on the number of requests it can be expensive.
 - Internet is not unlimited, always as possible use Edge Computing/CDN's to server static files, and allow the user bump on server nearest to him instead bump on your server directly.
 - Use the `EXPLAIN` declaration on your SQL queries for watch queries performance.
+- At working with a system that communicates with another system, you should think about the entire ecosystem and not overcharge the another system because if the another system is not working properly, it will affect your system. A slow system online is better than a fast system offline. An unhealthy system has chance of recovery itself if stop receiving requests.
+- Using an API Gateway can help to implement Health check, Rate limiting and others features directly on the API Gateway.

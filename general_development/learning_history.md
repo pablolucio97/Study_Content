@@ -160,3 +160,7 @@ investmentDetailsRef.current.status === 'Processando')
 
 - At executing Docker's command be careful with the parameters order. It can affect directly the working of a container, image or volume.
 - At creating entities on real applications, consider creating user and other actors cpf and birth date data for legal purposes.
+
+### 17/06/2024
+
+- JavaScript listener executes even if the variable associated with it doesn't is being used. Sometimes the listener should be called directly where the action will be called.
