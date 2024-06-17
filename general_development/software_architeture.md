@@ -99,6 +99,13 @@ Scaling a system is decentralize an instance Its means exporting all its content
 To scale a database we can create a database for reading and another one for writing. If your database is dealing with large tables, you should use indexes to reduce the scanned table area on queries.
 
 
+## Reverse Proxy 
+
+A proxy is a request handler that redirects your request based on rules configured in the proxy. 
+
+A reverse proxy is a server that redirect the request to the most appropriated server according to rules configured in the reverse proxy. The most used reverse proxy tool is Nginx.
+
+
 ### Another concepts
 - **Service Level Agreement (SLA)**: It is related with the software metrics what was dealt with the business client.
 - **Service Level Objectives (SLO)**: Over the SLA, what is my software metrics. Generally exceeds what was dealt as SLA.
