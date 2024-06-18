@@ -89,12 +89,12 @@ const endDateField = investment.fields['Encerramento da Oferta'];
 -- check if user data_nascimento < 18 and returns 1 if true or 0 if not
 Sequelize.literal("IF(TIMESTAMPDIFF(YEAR, bigid_buybye.data_nascimento, CURDATE()) < 18, 1, 0)"),
 ```
+
 ---
 
 ### 24/04/2024
 
 - At working with React Native and applications where its possible to push updates without generating a new build, always maintain your main branch aligned what was sent to production, and always use the stage branch to merge new features. Only merge the stage into main at releasing a new version of the application to production.
-  
 - Always maintain a document history containing the content and the reason of the update of your project updates at working with React Native and applications where its possible to push updates.
 
 ---
@@ -118,12 +118,15 @@ Sequelize.literal("IF(TIMESTAMPDIFF(YEAR, bigid_buybye.data_nascimento, CURDATE(
 - At working with frameworks with requires file configurations like NestJS and Expo by example, and you're facing errors. Check the specific framework configuration for missing configurations of these frameworks. Generally a configuration file is created at the project root dir.
 
 - At writing logics on JSX, nested logics followed by the `&&` operator must be wrapped in parentheses to take effect. Example:
-```javascript   
-(investmentDetailsRef.current.status === 'Liquidado' ||
-investmentDetailsRef.current.status === 'Pago' ||
-investmentDetailsRef.current.status === 'Processando')
-&& <Text>My content</Text>
+
+```javascript
+(investmentDetailsRef.current.status === "Liquidado" ||
+  investmentDetailsRef.current.status === "Pago" ||
+  investmentDetailsRef.current.status === "Processando") && (
+  <Text>My content</Text>
+);
 ```
+
 ---
 
 ### 13/05/2024
@@ -149,7 +152,7 @@ investmentDetailsRef.current.status === 'Processando')
 - At working with databases, you can create views to store virtual tables containing complex queries. Some times it is useful to retrieve complex queries with more performance. Generally these virtual tables has different colors on the database management software.
 
 - At working with node native modules that performs async operations like the libraries `fs` and `path` , wrap all operations under a promise, example:
-  
+
 ---
 
 ### 28/05/2024
@@ -164,3 +167,50 @@ investmentDetailsRef.current.status === 'Processando')
 ### 17/06/2024
 
 - JavaScript listener executes even if the variable associated with it doesn't is being used. Sometimes the listener should be called directly where the action will be called.
+
+### 18/06/2024
+
+- At working with timers on React, do not rely on the count state directly because it can cause renderization shifting. Rely on prevState/currentCount. Example:
+
+Use
+
+```typescript
+useEffect(() => {
+  const timer = setInterval(() => {
+    setCount((currentCount) => {
+      if (currentCount <= 1) {
+        clearInterval(timer);
+        signOut();
+        return currentCount;
+      }
+      return currentCount - 1;
+    });
+  }, 1000);
+
+  return () => {
+    clearInterval(timer);
+  };
+}, [signOut]);
+```
+
+instead of using
+
+```typescript
+const redirectUser = useCallback(() => {
+  const timer = setInterval(() => {
+    setCount(count - 1);
+  }, 1000);
+
+  if (count <= 1) {
+    signOut();
+  }
+
+  return () => {
+    clearInterval(timer);
+  };
+}, [count, signOut]);
+
+useEffect(() => {
+  redirectUser();
+}, [redirectUser]);
+```
