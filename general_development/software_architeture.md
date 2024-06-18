@@ -122,6 +122,16 @@ You can configure the rate limit by client always allowing most important client
 
 You can implement Circuit Breaker on your system to automatically responds with 500 status code when its request exceeds the supported requests limits and automatically respond normally when the system recoveries.
 
+### Service Mesh
+
+Service Mesh is an infrastructure layer used to control all network through proxies communication between the systems. Instead of implementing each technique on the own system, using a Service Mesh you can implement Circuit Breaker, define Retry Policies, configure timeouts, Fault Injection and so on.
+
+### Retry Policies
+
+Are a set of rules used to minimize the number of requests to be processed at once on a system that is recovering from another requests. At defining a retry policy, is important to define rules to not allow multiple requests being processed simultaneously at once (this rule is called Jitter Exponential backoff).
+
+At working with delivery guarantees, you can define the priority of the message based on this Ack type. Based on the type the message could be delivery fast, but without delivery guarantees or vice versa. You must choose between performance and resilience based on your system needs.
+
 
 ### Another concepts
 - **Service Level Agreement (SLA)**: It is related with the software metrics what was dealt with the business client.
@@ -155,3 +165,5 @@ You can implement Circuit Breaker on your system to automatically responds with 
 - Use the `EXPLAIN` declaration on your SQL queries for watch queries performance.
 - At working with a system that communicates with another system, you should think about the entire ecosystem and not overcharge the another system because if the another system is not working properly, it will affect your system. A slow system online is better than a fast system offline. An unhealthy system has chance of recovery itself if stop receiving requests.
 - Using an API Gateway can help to implement Health check, Rate limiting and others features directly on the API Gateway.
+- Do not try implementing rate limiting, circuit breaker, retry policies, and other features directly on the system, use a Service Mesh/API Gateway to do it.
+- At working with cloud services, do not rely on a single available zone.
