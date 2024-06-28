@@ -214,3 +214,6 @@ useEffect(() => {
   redirectUser();
 }, [redirectUser]);
 ```
+
+### 27/06/2024
+- If images are not being shown on Android at working with react native. Try to run the build again using --reset-cache flag.

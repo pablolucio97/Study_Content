@@ -26,6 +26,8 @@ Are the set of configurable metrics used to measure the quality of your project 
 ```properties 
 # must be unique in a given SonarQube instance
 sonar.projectKey=sonnar-test
+sonar.tests=.
+sonar.tests.inclusions=**/*.spec.ts
 
 # --- optional properties ---
 
