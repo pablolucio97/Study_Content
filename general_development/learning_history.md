@@ -217,3 +217,6 @@ useEffect(() => {
 
 ### 27/06/2024
 - If images are not being shown on Android at working with react native. Try to run the build again using --reset-cache flag.
+
+### 12/07/2024
+- At mirroring refs from a component to another in React. The provider component must has a property typed as a MutableObjectRef<> to be consumed. Ref state must be initialized only in the consumer component through useRef().
