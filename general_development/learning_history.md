@@ -216,7 +216,24 @@ useEffect(() => {
 ```
 
 ### 27/06/2024
+
 - If images are not being shown on Android at working with react native. Try to run the build again using --reset-cache flag.
 
 ### 12/07/2024
+
 - At mirroring refs from a component to another in React. The provider component must has a property typed as a MutableObjectRef<> to be consumed. Ref state must be initialized only in the consumer component through useRef().
+
+### 20/07/2024
+
+- If you're facing external libraries typing errors, try to extending it on a library.d.ts file if reinstalling libraries different versions does not works. Example:
+
+```typescript
+import { AccordionProps } from "@material-tailwind/react/components/Accordion";
+import { AccordionBodyProps } from "@material-tailwind/react/components/AccordionBody";
+
+declare module "@material-tailwind/react" {
+  export const Accordion: React.FC<AccordionProps>;
+  export const AccordionBody: React.FC<AccordionBodyProps>;
+}
+;
+```
