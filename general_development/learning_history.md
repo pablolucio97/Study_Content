@@ -237,3 +237,18 @@ declare module "@material-tailwind/react" {
 }
 ;
 ```
+
+### 10/08/2024
+
+- At working with delete operation on back-end and you're using NestJS, define the HttpCode as 200. Do not set it as 204 because it will return no data even if the code declares a return.
+
+### 18/08/2024
+
+- Some React Native Android projects needs a specific Java Version to run. To switch between Java versions using the jenv version management tool use this guid:
+
+1 - Run `export PATH="$HOME/.jenv/bin:$PATH"
+eval "$(jenv init -)"` to init jenv.
+
+2 - Run `jenv global your_java_version` ex : `jenv global 17.0`.
+
+3 - Run `java --version` to check the java version.

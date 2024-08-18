@@ -278,7 +278,7 @@ Run `git pull` at a specific branch to update that specific branch.
 
 ### APPLYING SAME COMMIT FROM DIFFERENT REPOSITORIES AT SAME MACHINE
 
-1. On repository A, run the command `git format-patch -1 your_commit_hash --stdout > commit.patch` to create the commit patch that will be used by repository B.
+1. On repository A, run the command `git format-patch -1 your_commit_hash --stdout > path_to_save_your_patch/commit.patch` to create the commit patch that will be used by repository B. Ex: `git format-patch -1 6be7f6e7b3e8f9cb00da2a73fe7516e6227e6993 --stdout > /Volumes/mac-ssd/business/ps-course-track/commit.patch`
 2. On repository B, run the command `git apply path_to_commit_patch`. Example: `git apply /Volumes/mac-ssd/business/ps-course-track/commit.patch`
 3. On repository B, commit and push the new commit to GitHub normally.
 4. On repository A, delete the `commit.patch` file that will not be used anymore.
