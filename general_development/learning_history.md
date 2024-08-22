@@ -252,3 +252,66 @@ eval "$(jenv init -)"` to init jenv.
 2 - Run `jenv global your_java_version` ex : `jenv global 17.0`.
 
 3 - Run `java --version` to check the java version.
+
+### 22/08/2024
+
+- At doing verifications on your controller on back-end, always return different errors status code for each scenario. 400 for client bad request when user missing or mismatch some field or param, 409 when some back-end condition is not satisfied, and 404 when the resource is not found.
+  
+- At handling requests on your front-end, always relies on status code instead response messages if you trust on the back-end construction.
+  
+- At defining API's communication configurations, always create a pattern on its interceptors to return its responses and errors. Log each request for track your system efficiently. If possible, the back-end should have a standard response too. Have an interface for response errors and another one to response success where the response content must be dynamic through TypeScript's Generics. A good front-end communication configuration example is: 
+
+```typescript
+import axios, {
+    AxiosError,
+    AxiosResponse,
+    InternalAxiosRequestConfig,
+} from "axios";
+
+export const api = axios.create({
+  baseURL: import.meta.env.VITE_API_STAGE_BASEURL,
+  headers: {
+    Accept: "application/json",
+    "Content-Type": "application/json",
+  },
+});
+
+interface IApiErrorResponse {
+  RES: any;
+  MSG: {
+    message: string;
+    error: string;
+  };
+  SUCCESS: boolean;
+  TIMESTAMP: string;
+  PATH: string;
+  STATUS: number;
+}
+
+export interface IApiSuccessResponse<T> {
+  RES: T;
+  SUCCESS: boolean;
+}
+
+api.interceptors.request.use((config: InternalAxiosRequestConfig) => {
+  const requestInfo = `[${config.method?.toUpperCase()}] - ${config.url}`;
+  console.log(requestInfo);
+  return config;
+});
+
+api.interceptors.response.use(
+  (response: AxiosResponse<IApiSuccessResponse<any>>) => {
+    console.log("[RESPONSE SUCCESS] - ", response.data);
+    return response;
+  },
+  (error: AxiosError<IApiErrorResponse>) => {
+    if (error.response) {
+      console.log("[RESPONSE ERROR] - ", error.response.data);
+      return Promise.reject(error.response.data);
+    } else if (error.request) {
+      console.log("[RESPONSE ERROR] - ", error.request.data);
+      return Promise.reject(error.request.data);
+    }
+  }
+);
+```
