@@ -319,3 +319,7 @@ api.interceptors.response.use(
 ### 23/08/2024
 
 - Never allows duplicated keys at working with arrays on React, otherwise you can deal with headaches. If a key is duplicated, you can concatenate the key with the mapping index.
+
+### 26/08/2024
+
+- At configuring Axios API, avoid defining default headers because it can mismatch at performing multipart forms.
