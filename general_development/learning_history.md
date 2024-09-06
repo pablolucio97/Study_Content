@@ -323,3 +323,36 @@ api.interceptors.response.use(
 ### 26/08/2024
 
 - At configuring Axios API, avoid defining default headers because it can mismatch at performing multipart forms.
+
+### 06/09/2024
+
+- If you're struggling with late state updating related to listed components, try to call the current mapped item directly. Example, do:
+  
+```typescript
+  const handleDownloadCertificate = (certificate: ICertificateDTO) => {
+    if (certificate) {
+      window.location.href = certificate.url;
+    }
+  };
+     {certificates.map((certificate) => (
+    <CertificateCard
+      onSelectCertificate={() => setSelectedCertificate(certificate)}
+      onDownload={() => handleDownloadCertificate(certificate)}
+    />
+    ))}
+```
+instead of
+
+```typescript
+  const handleDownloadCertificate = () => {
+    if (selectedCertificate) {
+      window.location.href = selectedCertificate.url;
+  };
+     {certificates.map((certificate) => (
+    <CertificateCard
+      onSelectCertificate={() => setSelectedCertificate(certificate)}
+      onDownload={handleDownloadCertificate}
+    />
+    ))}
+
+```
