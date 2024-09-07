@@ -235,7 +235,6 @@ declare module "@material-tailwind/react" {
   export const Accordion: React.FC<AccordionProps>;
   export const AccordionBody: React.FC<AccordionBodyProps>;
 }
-;
 ```
 
 ### 10/08/2024
@@ -256,16 +255,14 @@ eval "$(jenv init -)"` to init jenv.
 ### 22/08/2024
 
 - At doing verifications on your controller on back-end, always return different errors status code for each scenario. 400 for client bad request when user missing or mismatch some field or param, 409 when some back-end condition is not satisfied, and 404 when the resource is not found.
-  
 - At handling requests on your front-end, always relies on status code instead response messages if you trust on the back-end construction.
-  
-- At defining API's communication configurations, always create a pattern on its interceptors to return its responses and errors. Log each request for track your system efficiently. If possible, the back-end should have a standard response too. Have an interface for response errors and another one to response success where the response content must be dynamic through TypeScript's Generics. A good front-end communication configuration example is: 
+- At defining API's communication configurations, always create a pattern on its interceptors to return its responses and errors. Log each request for track your system efficiently. If possible, the back-end should have a standard response too. Have an interface for response errors and another one to response success where the response content must be dynamic through TypeScript's Generics. A good front-end communication configuration example is:
 
 ```typescript
 import axios, {
-    AxiosError,
-    AxiosResponse,
-    InternalAxiosRequestConfig,
+  AxiosError,
+  AxiosResponse,
+  InternalAxiosRequestConfig,
 } from "axios";
 
 export const api = axios.create({
@@ -327,20 +324,23 @@ api.interceptors.response.use(
 ### 06/09/2024
 
 - If you're struggling with late state updating related to listed components, try to call the current mapped item directly. Example, do:
-  
+
 ```typescript
-  const handleDownloadCertificate = (certificate: ICertificateDTO) => {
-    if (certificate) {
-      window.location.href = certificate.url;
-    }
-  };
-     {certificates.map((certificate) => (
+const handleDownloadCertificate = (certificate: ICertificateDTO) => {
+  if (certificate) {
+    window.location.href = certificate.url;
+  }
+};
+{
+  certificates.map((certificate) => (
     <CertificateCard
       onSelectCertificate={() => setSelectedCertificate(certificate)}
       onDownload={() => handleDownloadCertificate(certificate)}
     />
-    ))}
+  ));
+}
 ```
+
 instead of
 
 ```typescript
@@ -356,3 +356,79 @@ instead of
     ))}
 
 ```
+
+### 06/09/2024
+
+- Alway ass possible, use git the command `git commit --amend -m 'the fixed message'` before pushing it to GitHub.
+- Be careful on these points at performing request on your application for improving performance:
+  1. If the data returned by the query will only be shown and not be handled hereafter, the you do not need a state and can just return then fetched data.
+  2. If you're doing multiple requests, you can compare the queries performance doing it at once in a single function returning an object containing all fetched data or use `useQueries` to handle it separately.
+  3. At doing chained requests where the first request fails, then you should return a null value to avoid process the next requests immediately.
+  4. If you're using react query, use the study the possibility of using staleTime option to avoid unnecessary refetching.
+  Example of a good multiple call handle in a single function:
+
+  ```typescript
+  
+  const watchedClassesRepository = useMemo(() => {
+    return new WatchedClassesRepository();
+  }, []);
+
+  const videoClassesRepository = useMemo(() => {
+    return new VideoClassesRepository();
+  }, []);
+
+  const trainingMetricsRepository = useMemo(() => {
+    return new TrainingMetricsRepository();
+  }, []);
+
+  const getCompleteInfo = useCallback(async () => {
+    try {
+      const watchedClasses =
+        await watchedClassesRepository.listWatchedClassesByUser(user.id);
+      const lastWatchedClass = watchedClasses.slice(-1)[0];
+
+      if (!watchedClasses) return null;
+
+      const lastWatchedClassInfo =
+        await videoClassesRepository.getVideoClassById(
+          lastWatchedClass.videoclass_id
+        );
+
+      if (!lastWatchedClassInfo) return null;
+
+      const trainingMetrics =
+        await trainingMetricsRepository.getTrainingMetricsByUserAndTraining({
+          user_id: user.id,
+          training_id: lastWatchedClassInfo.training_id,
+        });
+
+      return { lastWatchedClassInfo, trainingMetrics };
+    } catch (error) {
+      console.log(error);
+    }
+  }, [
+    trainingMetricsRepository,
+    user.id,
+    videoClassesRepository,
+    watchedClassesRepository,
+  ]);
+
+  useEffect(() => {
+    getCompleteInfo();
+  }, [getCompleteInfo]);
+
+  const {
+    data,
+    error: hasError,
+    isLoading,
+  } = useQuery({
+    queryKey: ["complete-info"],
+    queryFn: getCompleteInfo,
+    staleTime: 1000 * 60, // 1 minute,
+  });
+
+  const lastWatchedClassInfo: IVideoClassDTO | undefined =
+    data?.lastWatchedClassInfo;
+  const trainingMetrics: ITrainingMetricsDTO | undefined =
+    data?.trainingMetrics;
+  ```
