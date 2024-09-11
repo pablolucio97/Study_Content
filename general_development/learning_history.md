@@ -432,3 +432,24 @@ instead of
   const trainingMetrics: ITrainingMetricsDTO | undefined =
     data?.trainingMetrics;
   ```
+### 11/09/2024
+
+  If you need to return different status errors on the back-end and you're using Nest, check for the instance type of each error and then throw it on the catch block. Example:
+
+  ```typescript
+  try{
+    //...your_code
+    } catch (error) {
+    console.log("[INTERNAL ERROR]", error.message);
+
+    if (error instanceof NotAcceptableException) {
+      throw error;
+    }
+
+    throw new ConflictException({
+      message:
+        "An error occurred. Check all request body fields for possible mismatching. Check if the video you are trying to upload is working correctly, and if it has audio.",
+      error: error.message,
+    });
+    }
+  ```
