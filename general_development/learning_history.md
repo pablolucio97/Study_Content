@@ -453,3 +453,35 @@ instead of
     });
     }
   ```
+
+### 13/09/2024
+
+ If you need to perform a second request to complete data fetched from a first request, you can fetch for the first request, and using Promise.all, you can iterate calling the respective data for each item in the array. Example:
+
+  ```typescript
+  useEffect(() => {
+    const fetchTrainingsWithLastWatchedClass = async () => {
+      const trainings = await getTrainings();
+
+      if (trainings) {
+        const trainingsWithLastWatchedClass = await Promise.all(
+          trainings.map(async (training) => {
+            const lastWatchedClass = await getLastWatchedClassesByTraining(
+              training.id
+            );
+            return {
+              ...training,
+              last_watched_class_duration:
+                lastWatchedClass?.videoclass?.duration ?? null,
+              last_watched_class_name:
+                lastWatchedClass?.videoclass?.name ?? null,
+            };
+          })
+        );
+        setTrainings(trainingsWithLastWatchedClass);
+      }
+    };
+
+    fetchTrainingsWithLastWatchedClass();
+  }, [getLastWatchedClassesByTraining, getTrainings]);
+  ```
