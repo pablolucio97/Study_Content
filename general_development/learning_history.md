@@ -485,3 +485,7 @@ instead of
     fetchTrainingsWithLastWatchedClass();
   }, [getLastWatchedClassesByTraining, getTrainings]);
   ```
+
+  ### 21/09/2024
+
+  At working with upload on clouds (Aws, Azure, and similar) always upload the file formatted, always upload it removing it spaces and accents to avoid another services mismatching file management.
