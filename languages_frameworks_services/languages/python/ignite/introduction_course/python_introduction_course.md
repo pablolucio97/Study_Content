@@ -16,3 +16,5 @@ floating_number = 3.14
 int_numbers_multiplication = real_number * floating_number
 print(f"The multiplication between {real_number} and {floating_number} is {int(int_numbers_multiplication)}")
 ```
+- On Python a variable is immutable, if you wanna to change it, you must assign another variable with the new data.
+- 
