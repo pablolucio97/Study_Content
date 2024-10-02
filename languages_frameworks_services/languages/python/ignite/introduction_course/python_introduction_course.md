@@ -35,3 +35,12 @@ people_dict_values = list(people_dict.values())
 print("people_dict values: ", people_dict_values)
 ```
 - When using conditionals composed by if + else or if + elif + else, only a single condition is returned. It's completely different of using isolated if blocks.
+- At using inputs for collect user response, always convert the typed user response to correctly be computed by your program based on the inputed data type. Example:
+```python
+# the method input allow to get user inputs through terminal, in this case, the use age inputted value is stored on age variable
+age = int(input("How old are you?"))
+
+# the program is basically checking for the inputted age and return a message for user
+can_take_drive_license = "You can take your drive license" if age >= 18 else "You can't take your drive license"
+print("Message: ", can_take_drive_license)
+```
