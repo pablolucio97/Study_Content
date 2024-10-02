@@ -8,7 +8,18 @@
 4. Create a new `.py` file and write your Python program.
 5. Run your program through `CTRL + F5` shortcut.
 
+
+## Data types
+
+- Strings: Are text strings.
+- Numbers: Are numbers types, a number can be a real number or a floating number.
+- Booleans: Are binary values for true and false.
+- Lists: Are mutable arrays used to store any type of data.
+- Tuples: Are immutable arrays used to store any type of data.
+- Dictionaries: Are a list of peers containing keys and values.
+
 ## General tips
+
 - Formatting methods does not must be used directly in the operation, example:
 ```python
 real_number = 3
