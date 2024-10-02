@@ -14,8 +14,8 @@
 - Strings: Are text strings.
 - Numbers: Are numbers types, a number can be a real number or a floating number.
 - Booleans: Are binary values for true and false.
-- Lists: Are mutable arrays used to store any type of data.
-- Tuples: Are immutable arrays used to store any type of data.
+- Lists: Are mutable and based on order arrays used to store any type of data.
+- Tuples: Are immutable and based on order arrays used to store any type of data.
 - Dictionaries: Are a list of peers containing keys and values.
 
 ## General tips
@@ -28,4 +28,9 @@ int_numbers_multiplication = real_number * floating_number
 print(f"The multiplication between {real_number} and {floating_number} is {int(int_numbers_multiplication)}")
 ```
 - On Python a variable is immutable, if you wanna to change it, you must assign another variable with the new data.
-- 
+- Always parse a to list if you want to slice or manage it using list methods. Example:
+```python
+people_dict = {"name": "Pablo", "age" : 29, "developer" : True}
+people_dict_values = list(people_dict.values())
+print("people_dict values: ", people_dict_values)
+```
