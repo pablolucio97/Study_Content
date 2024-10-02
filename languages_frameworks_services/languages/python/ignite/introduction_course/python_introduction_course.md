@@ -34,3 +34,4 @@ people_dict = {"name": "Pablo", "age" : 29, "developer" : True}
 people_dict_values = list(people_dict.values())
 print("people_dict values: ", people_dict_values)
 ```
+- When using conditionals composed by if + else or if + elif + else, only a single condition is returned. It's completely different of using isolated if blocks.
