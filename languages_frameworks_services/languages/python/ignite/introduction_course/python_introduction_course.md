@@ -44,3 +44,23 @@ age = int(input("How old are you?"))
 can_take_drive_license = "You can take your drive license" if age >= 18 else "You can't take your drive license"
 print("Message: ", can_take_drive_license)
 ```
+- At creating Python programs, use a `main.py` to refer to the main file. Do not use `index.py`.
+- Use `while True`to persist a loop and a `break` condition to stop it at working with loops. Example:
+```python
+while True:
+    print("Welcome to List tasks manager!")
+    print("\nChoose the option you need to do:")
+    print("1. Add a task")
+    print("2. List tasks")
+    print("3. Update a task")
+    print("4. Mark a task as completed")
+    print("5. Delete all completed tasks")
+    print("6. Leave")
+
+    userChoice = input("Type your choice: ")
+
+    if userChoice == "6":
+        break
+
+    print("Program finished")
+```
