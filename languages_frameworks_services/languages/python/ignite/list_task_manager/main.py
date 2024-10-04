@@ -4,6 +4,14 @@ def addTask(tasksList, taskName="default_task"):
     print(f"Task '{taskName}' was added successfully!")
     return 
 
+
+def listTasks(tasks):
+    print("\n Tasks list:")
+    for index, task in enumerate(tasks, start=1):
+        status = "[✓]" if task["isComplete"] else ""
+        print(f"{index} [{status}] - {task["name"]}")
+    return
+
 tasks = []
 
 while True:
@@ -22,7 +30,10 @@ while True:
         taskInput = input("Type the task name: ")
         addTask(tasks, taskInput)
 
-    if userChoice == "6":
+    elif userChoice == "2":
+        listTasks(tasks)
+
+    elif userChoice == "6":
         break
 
-    print("Program finished")
+print("Program finished")
