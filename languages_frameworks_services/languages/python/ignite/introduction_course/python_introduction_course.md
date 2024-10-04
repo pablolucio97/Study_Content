@@ -64,3 +64,4 @@ while True:
 
     print("Program finished")
 ```
+- Even your function does not returns nothing, it's a good practice providing a return declaration at the end of the function.
