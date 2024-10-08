@@ -490,3 +490,66 @@ instead of
 
   - At working with upload on clouds (Aws, Azure, and similar) always upload the file formatted, always upload it removing it spaces and accents to avoid another services mismatching file management.
   - Have a validation to always remove the file when not more used on updates and deletion to avoid unnecessary charges.
+  
+  ### 08/10/2024
+
+  - At creating new screens on React Native, always define a SafeAreaProvider to show the screen style calculating the padding top to avoid content be shown competing space with status bar using the library `react-native-safe-area-context`. Example:
+  ```typescript
+  import {
+  Roboto_400Regular,
+  Roboto_700Bold,
+  useFonts,
+} from "@expo-google-fonts/roboto";
+import { StatusBar } from "expo-status-bar";
+import { SafeAreaProvider } from "react-native-safe-area-context";
+import { ThemeProvider } from "styled-components/native";
+import { Loading } from "./src/components/Loading";
+import { Routes } from "./src/routes";
+import theme from "./src/theme";
+
+export default function App() {
+  const [fontLoaded] = useFonts({ Roboto_400Regular, Roboto_700Bold });
+
+  if (!fontLoaded) {
+    return <Loading />;
+  }
+
+  return (
+    <ThemeProvider theme={theme}>
+      <SafeAreaProvider>
+        <StatusBar style="light" translucent backgroundColor="transparent" />
+        <Routes />
+      </SafeAreaProvider>
+    </ThemeProvider>
+  );
+}
+```
+```typescript
+import { Power } from "phosphor-react-native";
+import React from "react";
+import { TouchableOpacity } from "react-native";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
+import theme from "../../../../theme";
+import { Container, Greeting, Message, Name, Picture } from "./styles";
+export function HomeHeader() {
+  const insets = useSafeAreaInsets();
+
+  const paddingTop = insets.top + 24;
+
+  return (
+    <Container style={{ paddingTop }}>
+      <Picture
+        source={{ uri: "https://github.com/rennand.png" }}
+        placeholder="L184i9ofbHof00ayjsay~qj[ayj@" //generated placeholder for image from https://blurha.sh/
+      />
+      <Greeting>
+        <Message>Olá</Message>
+        <Name>Rodrigo</Name>
+      </Greeting>
+      <TouchableOpacity>
+        <Power size={32} color={theme.COLORS.GRAY_400} />
+      </TouchableOpacity>
+    </Container>
+  );
+}
+```
