@@ -299,3 +299,24 @@ If you're loading async data and your router control depends
 this to render your application routes, add a state to indicate 
 the user async device data on your auth context and show a 
 loading while your app read info from your device.
+
+-----------------------------------------------------------------
+
+Always uses NetInfo library to check if user has internet connection
+and then provide a conditional UI for user when there is no internet.
+
+-----------------------------------------------------------------
+
+Always use the 'react-native-keyboard-aware-scroll-view' library 
+to handle keyboard opening behavior passing a secure extraHeight
+because it provides a better user experience.
+Example:
+
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
+
+<KeyboardAwareScrollView
+       extraHeight={300}
+      >
+      {...yourContent}
+</KeyboardAwareScrollView>
+
