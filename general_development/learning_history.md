@@ -555,7 +555,7 @@ export function HomeHeader() {
 ```
   ### 09/10/2024
 
-  - At adding a new plugin to your app.json on Expo projects, run `npx expo prebuild` to expo execute the required configurations on native code.
+  - At adding a new plugin to your app.json on Expo projects, run `npx expo prebuild` to expo execute the required configurations on native code. You can do all configs your app needs inside app.json or app.config.json and then run `npx expo prebuild` to expo apply these configurations on the native code.
   - If you need to use environment variables on app.json file, rename it to app.config.js, import dotenv and export the object using module.exports. Example:
   ```javascript
   import * as dotenv from 'dotenv'
@@ -609,4 +609,18 @@ module.exports = {
   }
 }
 
+  ```
+  - At working with resources that needs user permissions, provide a button to user access his mobile settings easily, example:
+   ```typescript
+  import { Linking, Platform } from "react-native";
+
+export function openSettings() {
+  if (Platform.OS === "ios") {
+    return Linking.openURL("app-settings:");
+  }
+  if (Platform.OS === "android") {
+    return Linking.openSettings();
+  }
+}
+-
   ```
