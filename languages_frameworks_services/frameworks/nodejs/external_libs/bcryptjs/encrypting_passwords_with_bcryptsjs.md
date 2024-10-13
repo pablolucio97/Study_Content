@@ -1,16 +1,15 @@
------------------------ENCRIPTING PASSWORD WITH BCRYPTJS-------------------------
+# ENCRYPTING PASSWORD WITH BCRYPTJS
 
-1) Run yarn add bcryptjs and yarn add @types/bcryptjs -D to install the Bcrypt.
+## 1. Install Bcrypt
 
---------------------
+Run the following commands to install Bcrypt and its types:
 
-2) In your useCaseMethod file, import the function hash from bcryptjs passing the 
-password as and first argument and the password security level as the second one, 
-call this function at moment creating your user. Example:
+```typescript
+yarn add bcryptjs
+yarn add @types/bcryptjs -D
 
 import { inject, injectable } from "tsyringe";
-import {hash} from 'bcryptjs';
-
+import { hash } from 'bcryptjs';
 import { ICreateUserDto } from './../../dtos/ICreateUserDto';
 import { IUsersRepository } from "../../repositories/implementations/IUserRepo";
 
@@ -20,15 +19,16 @@ class CreateUserUseCase {
     constructor(
         @inject("UsersRepository")
         private usersRepository: IUsersRepository
-    ){}
+    ) {}
 
     async execute({
         name,
         password,
         email,
         driver_license
-    }: ICreateUserDto) : Promise<void>{
+    }: ICreateUserDto): Promise<void> {
 
+        // Hash the password with bcrypt before saving the user
         const passwordHash = await hash(password, 8);
 
         await this.usersRepository.create({
@@ -36,8 +36,9 @@ class CreateUserUseCase {
             password: passwordHash,
             email,
             driver_license
-        })
+        });
     }
 }
 
-export { CreateUserUseCase }
+export { CreateUserUseCase };
+```
