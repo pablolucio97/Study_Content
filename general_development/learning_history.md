@@ -624,3 +624,29 @@ export function openSettings() {
 }
 -
   ```
+  ### 22/10/2024
+
+  - At facing build problems on NextJS projects, try correcting your css files using the stylelint library to check for mistakes, configuration and script, and if it did not work, try disabling webpack optimization minimization on your next.config file. Example:
+  ```javascript
+  /** @type {import('next').NextConfig} */
+  const nextConfig = {
+      webpack(config, { isServer }) {
+          // Disable CSS minification for build the project
+          config.optimization.minimize = false;
+          return config;
+        },
+  };
+  export default nextConfig;
+  ```
+  - At facing TypeScript not recognizing JSX component error `Component cannot be used as a jsx component`, add the path to react types on your `tsconfig.json` file. Example:
+ ```json
+{
+  "compilerOptions": {
+    "jsx":"react",
+    "strict": true,
+    "paths": {
+      "react": [ "./node_modules/@types/react" ]
+    }
+  }
+}
+```
