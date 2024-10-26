@@ -650,3 +650,49 @@ export function openSettings() {
   }
 }
 ```
+
+  ### 25/10/2024
+
+  - At building models schemas, always pay attention on mapping all unique fields. Example: On a model called "company", the property "cnpj" and "social_reason" should be unique.
+  - At building models schemas, if you plan to perform a lot of queries based in a column you should consider indexing this column to improve impressive queries performance. Example: In this PrismaORM model, the email column will be used a lot of times in some queries.
+  ```
+  model Company {
+  id            String     @id @default(uuid())
+  fantasy_name  String
+  cnpj          String     @unique()
+  social_reason String     @unique()
+  email         String     
+  current_plan  String
+  logo_url      String?
+  users         User[]
+  trainings     Training[]
+  created_at    DateTime   @default(now())
+  updated_at    DateTime   @default(now())
+
+  @@index([email])
+}
+```
+
+ - At building models schemas always type the property as Enum when more appropriate. Example: 
+  ```
+  enum Plan {
+    diamond
+    platinum
+    gold
+  }
+
+  model Company {
+  id            String     @id @default(uuid())
+  fantasy_name  String
+  cnpj          String     @unique()
+  social_reason String     @unique()
+  email         String     
+  current_plan  Plan
+  logo_url      String?
+  users         User[]
+  trainings     Training[]
+  created_at    DateTime   @default(now())
+  updated_at    DateTime   @default(now())
+
+  @@index([email])
+}

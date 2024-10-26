@@ -2,7 +2,7 @@
 
  Sending data to Google sheets API using App Scripts is useful to collect data from forms and storage on your own Google sheets.
 
-1. Create your sheet on your Google Drive And create a column true story your data you desire to store. The column name must match with the date that you are collecting for you form.
+1. Create your sheet on your Google Drive And create a column to store your data. The column name must match with the date that you are collecting for you form.
 2. Open your spreadsheet and click on `extensions` and click on `App scripts`.
 3. Write the code to connect your spreadsheets with your data your collecting from you form. Example:
 ```javascript
