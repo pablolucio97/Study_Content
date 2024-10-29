@@ -90,6 +90,49 @@ const endDateField = investment.fields['Encerramento da Oferta'];
 Sequelize.literal("IF(TIMESTAMPDIFF(YEAR, bigid_buybye.data_nascimento, CURDATE()) < 18, 1, 0)"),
 ```
 
+### 22/04/2024
+
+- Understanding Sequelize relationships queries:
+
+To perform Sequelize relationships queries first we need to define the relationship between two different models based on common record values present on both models, and then perform the query.
+
+In this example below we'll determine a relationship between "Usuario" and "bigid_buybye" models where both models has the same records values presents in "identificacao" and "cpf" columns respectively.
+
+```sql
+
+    -- defines the relationship between the models declaring that each instance of "Usuario" is associated 
+    -- with an instance of "bigid_buybye" through "identificacao" column present on "Usuario" pointing to "cpf" 
+    -- column present on "bigid_buybye"
+    TAB_Autenticacao.Usuario.belongsTo(TAB_Autenticacao.bigid_buybye, {foreignKey: 'identificacao', targetKey: 'cpf' });
+    -- starts the query retriveing for a single record on "Usuario" model
+      const menorDeIdade = await TAB_Autenticacao.Usuario.findOne({
+    -- returns a single attribute "menor_de_idade" with the value based in the condition below
+      attributes: [
+      [
+    -- calculates the age by comparing the data_nascimento (date of birth) from the bigid_buybye table with the 
+    -- current date (CURDATE()). If the result of TIMESTAMPDIFF(YEAR, bigid_buybye.data_nascimento, CURDATE()) 
+    -- is less than 18, it returns 1, otherwise 0. where `Sequelize.literal` is used to perform raw queries
+        Sequelize.literal("IF(TIMESTAMPDIFF(YEAR, bigid_buybye.data_nascimento, CURDATE()) < 18, 1, 0)"),
+        'menor_de_idade'
+      ]
+      ],
+    -- includes the bigid_model in the query returning it alls attributes 
+      include: [{
+      model: TAB_Autenticacao.bigid_buybye,
+      -- This ensures the SQL JOIN produced is an INNER JOIN, meaning the query will only return Usuario records that have 
+      -- a corresponding bigid_buybye record.
+      required: true,
+      --  Specifies that the "cpf" in "bigid_buybye" must match the "identificacao" column in the "Usuario" model for the join to happen.
+      where: {
+        cpf: Sequelize.col('Usuario.identificacao')
+      }
+      }],
+      --  Filters the results of the main query (not the join) to records where the login_id_login field equals the id_login variable. 
+      where: {
+      login_id_login: id_login
+      }})
+```
+
 ---
 
 ### 24/04/2024
