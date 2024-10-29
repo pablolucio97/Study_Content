@@ -1,6 +1,0 @@
-USEFUL REACT HOOKS LIST TO DEVELOP:
-
-useClipBoard: Copy a select string to clipboard.
-
-useWhatsapp: Redirect to api.whatapp.com and starts a whatsapp conversation.
-

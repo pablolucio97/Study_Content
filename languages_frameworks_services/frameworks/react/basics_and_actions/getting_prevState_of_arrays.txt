@@ -1,3 +1,0 @@
-------------GETTING THE PREV STATE OF ARRAYS--------------
-
-setSelectedFrequency((prev) => [...prev, stateValue])

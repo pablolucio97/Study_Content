@@ -2076,3 +2076,6 @@ inside an useEffect inside our context/hook file.
 The major difference between useLayoutEffect and useEffect is that useLayoutEffect 
 will block the browser from painting until your code inside useLayoutEffect completes 
 and useEffect doesn't.
+
+
+Use the callback from seState function to get its prev state, example: setSelectedFrequency((prev) => [...prev, stateValue])

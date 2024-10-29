@@ -1,292 +1,176 @@
+# Useful React External Libraries
 
-# Solutions maps
+## Data Generation and Server Mocking
+- [JSON Server](https://github.com/typicode/json-server): Creates a full fake REST API with zero coding in less than 30 seconds.
 
-This is a list of the main solutions used in my main applications. I decided to document this in order to make it easier to find a package I'll use in a new project and also to be aware of a lot of tools I have on my development belt.
+---
 
-## Web
+## Animations
+- [React Lottie](https://airbnb.io/lottie/#/): Utilizes JSON animations from Lottie by Airbnb, enabling complex animations in React apps.
+- [Framer Motion](https://www.framer.com/motion/): An animation library that makes it easy to create realistic animations and interactions.
+- [React Reveal](https://www.react-reveal.com/): Provides a variety of animation effects for React components.
+- [React CountUp](https://www.npmjs.com/package/react-countup): A configurable React component wrapper around CountUp.js, providing animations that display numerical data.
+- [React Loading](https://www.npmjs.com/package/react-loading): Easy to use loading animations.
+- [React Content Loader](https://skeletonreact.com/) - Animated skeletons to indicate loading states.
+- [React Typed](https://www.npmjs.com/package/react-typed) - Mocks a typing text animation.
 
-### Animations and transitions
+---
 
-- [Framer Motion](https://www.framer.com/docs/introduction/)
-- [React Reveal](https://www.react-reveal.com/docs/)
-- [React CountUp](https://www.npmjs.com/package/react-countup)
-- [React Loading](https://www.npmjs.com/package/react-loading)
-- [React Lottie](https://www.npmjs.com/package/react-lottie)
-- [React Loading Skeleton](https://www.npmjs.com/package/react-loading-skeleton)
+## API Management and Fetching
+- [Axios](https://axios-http.com/): A promise-based HTTP client for making requests to external resources.
+- [React Query](https://react-query.tanstack.com/): Simplifies fetching, caching, and updating asynchronous data in React applications.
 
-### Application templates
+---
 
-- [React Create App](https://reactjs.org/docs/create-a-new-react-app.html)
-- [Next Create App](https://nextjs.org/docs/api-reference/create-next-app)
-- [Vite](https://vitejs.dev/guide/)
+## Application Templates
+- [Create React App](https://reactjs.org/docs/create-a-new-react-app.html): Official React CLI for creating new projects.
+- [Next.js Create App](https://nextjs.org/docs/api-reference/create-next-app): The easiest way to get started with Next.js.
+- [Vite](https://vitejs.dev/): A newer generation frontend tooling that significantly improves the start time for modern web projects.
 
-### Authentication
+---
 
-- [Next Auth](https://next-auth.js.org/)
-- [Firebase Auth](https://firebase.google.com/docs/auth)
+## Authentication
+- [Next Auth](https://next-auth.js.org/): Authentication for Next.js applications.
+- [Firebase Auth](https://firebase.google.com/docs/auth): Provides authentication services using Google's Firebase.
 
-### Build components for React (most used)
+---
 
-- [React Switch](https://www.npmjs.com/package/react-switch)
-- [React Slick](https://react-slick.neostack.com/docs/get-started)
-- [RC Progress](https://www.npmjs.com/package/rc-progress)
-- [React Modal](https://www.npmjs.com/package/react-modal)
+## Component Libraries
+- [Material Tailwind](https://www.material-tailwind.com/): Combines Material UI design with Tailwind CSS for React components.
+- [Material-UI](https://mui.com/): A robust component library based on Material design principles.
+- [Chakra UI](https://chakra-ui.com/): A simple, modular, and accessible component library that provides all the building blocks you need to build your React applications.
+- [DaisyUI](https://daisyui.com/): Adds a layer of component styling to Tailwind CSS.
+- [RC Progress](https://www.npmjs.com/package/rc-progress): Displays progress bars and rings.
 
-### Deploy platforms and CLI for web applications
 
-- [Vercel](https://vercel.com/)
-- [Netlify](https://www.netlify.com/)
-- [Firebase Hoisting](https://firebase.google.com/docs/hosting/quickstart)
+---
 
-### Documentation for React components
+# Essential React Component Libraries
 
-- [StoryBook](https://storybook.js.org/docs/react/get-started/install)
+- [React Toastify](https://fkhadra.github.io/react-toastify/) - Easily create toast notifications with various customization options.
 
-### Icons for React applications
+- [React Calendar](https://www.npmjs.com/package/react-calendar) - A highly customizable calendar component for date selection.
 
-- [React Icons](https://react-icons.github.io/react-icons/)
+- [React Modal](https://reactcommunity.org/react-modal/) - A straightforward modal component that’s easy to style and use.
 
-### Maps
+- [React Select](https://react-select.com/) - A powerful dropdown component supporting multi-select and custom styling.
 
-- [Leafleat](https://leafletjs.com/)
-- [GoogleMap Iframe Component](https://react-components-liard.vercel.app/googlemap)
+- [React Tooltip](https://reacttooltip.github.io/react-tooltip/) - A customizable tooltip component to enhance UX.
 
-### Route handler for React applications
+- [React Datepicker](https://reactdatepicker.com/) - Flexible date picker with various date formats and options.
 
-- [React Router Dom](https://reactrouter.com/en/main)
-- [Next Routing System](https://nextjs.org/docs/routing/introduction)
+- [React Switch](https://www.npmjs.com/package/react-switch) - Toggle switch component for UI state changes.
 
-### Styling
+- [React Table](https://react-table.tanstack.com/) - Customizable, interactive tables with sorting and filtering.
 
-- [Styled Compoenents](https://styled-components.com/docs/basics#getting-started)
-- [Tailwind CSS](https://tailwindcss.com/docs/installation)
+- [React Image Gallery](https://www.npmjs.com/package/react-image-gallery) - Responsive full-screen and thumbnail galleries.
 
-### Test for React
+- [React Loading Skeleton](https://www.npmjs.com/package/react-loading-skeleton) - Loading skeletons for async content display.
 
-- [Jest](https://jestjs.io/docs/getting-started)
-- [React Testing Library](https://testing-library.com/docs/react-testing-library/intro/)
+- [React Credit Cards](https://www.npmjs.com/package/react-credit-cards) - Beautiful credit card components for payment forms.
 
-### UI libraries for React
+- [React Virtualized](https://bvaughn.github.io/react-virtualized/) - Efficient list and grid display for large datasets.
 
-- [Chrakra UI](https://chakra-ui.com/getting-started)
-- [Material UI](https://mui.com/material-ui/getting-started/installation/)
+- [React Pagination](https://www.npmjs.com/package/react-paginate) - Simple, customizable pagination component.
 
-------
+- [React Circular Progressbar](https://www.npmjs.com/package/react-circular-progressbar) - Customizable circular progress bar.
 
-## Mobile
+- [React Swipeable](https://www.npmjs.com/package/react-swipeable) - Adds swipeable views, ideal for mobile interfaces.
 
-### APK's generation and CLI
+- [React Infinite Scroll Component](https://www.npmjs.com/package/react-infinite-scroll-component) - Infinite scroll with optional loading state.
 
-- [EAS Build](https://docs.expo.dev/build/setup/)
+- [React Scroll](https://www.npmjs.com/package/react-scroll) - Adds smooth scrolling animations for anchor links.
 
-### Animations and transitions for mobile
+- [React Lightbox](https://frontend-collective.github.io/react-image-lightbox/) - For creating lightbox effects on images.
 
-- [React Native Reanimated](https://docs.swmansion.com/react-native-reanimated/docs/fundamentals/installation)
-- [React Native Gesture Handler](https://docs.swmansion.com/react-native-gesture-handler/docs/installation)
-- [React Native Animatable](https://github.com/oblador/react-native-animatable)
-- [Lottie React Native](https://www.npmjs.com/package/lottie-react-native)
-- [React Native Shimmer Placeholder](https://www.npmjs.com/package/react-native-shimmer-placeholder)
+- [React Slick](https://react-slick.neostack.com/docs/get-started): A carousel component built with React.
 
-### Application templates for mobile
 
-- [React Native Init](https://reactnative.dev/docs/environment-setup)
-- [Expo Create App](https://docs.expo.dev/get-started/create-a-new-app/)
+## Deployment Platforms
+- [Vercel](https://vercel.com/): Optimized for front-end frameworks and static sites.
+- [Netlify](https://www.netlify.com/): An intuitive Git-based workflow and powerful serverless platform to build, deploy, and collaborate on web apps.
+- [Firebase Hosting](https://firebase.google.com/docs/hosting): Provides fast and secure hosting for your web app, static and dynamic content, and microservices.
 
-### Authentication for mobile
+---
 
-- [Expo Auth](https://docs.expo.dev/guides/authentication/)
-- [Firebase Auth](https://firebase.google.com/docs/auth)
+## Documentation
+- [Storybook](https://storybook.js.org/docs/react/get-started/install): Tool for building UI components and pages in isolation. It streamlines UI development, testing, and documentation.
 
-### Build components for React Native (most used)
+---
 
-- [React Native Collapsible](https://github.com/oblador/react-native-collapsible)
-- [React Native Modal](https://github.com/react-native-modal/react-native-modal)
-- [React React Toast Message](https://www.npmjs.com/package/react-native-toast-message)
-- [React Pager View](https://github.com/callstack/react-native-pager-view)
-- [React Tab View](https://www.npmjs.com/package/react-native-tab-view)
-- [React Native Date Picker](https://www.npmjs.com/package/react-native-date-picker)
+## Hooks
+- [UseHooks-TS](https://usehooks-ts.com/introduction) - A collection of tens useful hooks based on browser events and APIs
 
-### Charts
+---
 
-- [Victory Native](https://www.npmjs.com/package/victory-native)
-- [React Native Chart Kit](https://www.npmjs.com/package/react-native-chart-kit)
+## Global State and Contexts Management
+- [Zustand](https://github.com/pmndrs/zustand): A small, fast, and scalable bearbones state-management solution using simplified flux principles.
+- [Redux Toolkit](https://redux-toolkit.js.org/): The official, opinionated, batteries-included toolset for efficient Redux development.
+- [React Context API](https://reactjs.org/docs/context.html): Provides a way to pass data through the component tree without having to pass props down manually at every level.
 
-### Documentation for React Native components
+---
 
-- [StoryBook](https://storybook.js.org/tutorials/intro-to-storybook/react-native/en/get-started/)
+## Data validation
+- [Yup](https://www.material-tailwind.com/docs/react/installation) - A schema data validation to work with forms
+- [Zod](https://www.material-tailwind.com/docs/react/installation) - A data validator to ensure correct type of variables
 
-### Icons for React Native applications
+---
 
-- [React Native Vector Icons](https://github.com/oblador/react-native-vector-icons)
+## Forms
+- [React Hook Form](https://www.material-tailwind.com/docs/react/installation) - The most used form library for React
 
-### Maps for mobile
+---
 
-- [React Native Maps](https://github.com/react-native-maps/react-native-maps)
+## Icons
+- [React Icons](https://react-icons.github.io/react-icons/): Include popular icons in your React projects.
+- [Phosphor Icons](https://phosphoricons.com/): A flexible icon family for interfaces, diagrams, presentations, and more.
 
-### Route handler for React Native applications
+---
 
-- [React Navigation](https://reactrouter.com/en/main)
+## Maps
+- [React Leaflet](https://react-leaflet.js.org/): React components for Leaflet maps.
+- [Google Map Iframe Component](https://react-components-liard.vercel.app/googlemap): A simple component to embed Google Maps using an iframe in React applications.
 
-### Sound
+---
 
-- [Expo Audio](https://docs.expo.dev/versions/v47.0.0/sdk/audio/)
-- [React Native Sound](https://www.npmjs.com/package/react-native-sound)
+## Navigation
+- [React Router](https://reactrouter.com/): Declarative routing for React applications.
+- [Next Routing System](https://nextjs.org/docs/routing/introduction): Routing capabilities in Next.js applications.
 
-### Styling for React Native
+---
 
-- [Styled Compoenents](https://styled-components.com/docs/basics#getting-started)
+## Testing
+- [Jest](https://jestjs.io/docs/getting-started): JavaScript Testing Framework with a focus on simplicity.
+- [React Testing Library](https://testing-library.com/docs/react-testing-library/intro/): Builds on top of DOM Testing Library by adding APIs for working with React components.
 
-### SVG's and images controllers
+---
 
-- [React Native SVG](https://github.com/software-mansion/react-native-svg)
-- [React Native SVG Transformer](https://github.com/kristerkari/react-native-svg-transformer)
+## Videos
+- [React Player](https://www.npmjs.com/package/react-player): A React component for playing a variety of URLs, including file paths, YouTube, Facebook, Twitch, SoundCloud, Streamable, Vimeo, Wistia, Mixcloud, and DailyMotion.
 
-### Test for React Native
+---
 
-- [Jest](https://jestjs.io/docs/getting-started)
-- [React Native Testing Library](https://testing-library.com/docs/react-native-testing-library/intro/)
+## Styling
+- [Tailwind CSS](https://tailwindcss.com/): A utility-first CSS framework for rapidly building custom designs.
+- [Styled Components](https://styled-components.com/): Visual primitives for the component age that use tagged template literals to style your components.
 
-### UI libraries for React Native
+---
 
-- [Papper](https://callstack.github.io/react-native-paper/getting-started.html)
+## Next.js-Specific Tools
+- [Nookies](https://github.com/maticzav/nookies): A set of cookie helpers for Next.js projects, making server and client side cookie handling easy.
 
-------
+---
 
-## Miscellaneous
+# General Tips
 
-### Context controllers and middlewares
+- **Incompatible Engine**  
+  If an engine is incompatible with a module:  
+  `yarn global add <your-app> --ignore-engines`
 
-- [React Context Api](https://reactjs.org/docs/context.html)
-- [Redux](https://redux.js.org/introduction/getting-started)
-- [Redux Saga](https://redux-saga.js.org/docs/introduction/GettingStarted)
+- **Yarn to NPM**  
+  Even if a package specifies Yarn, try using NPM with the same command format (`npm install` instead of `yarn add`).
 
-### CMS
+- **Install Multiple Packages**  
+  Install multiple packages at once, e.g.:  
+  `npm install react-leaflet @mui/material`
 
-- [Prismic](https://prismic.io/docs/setup-nextjs)
-
-### Cookies manager
-
-- [Nookies](https://www.npmjs.com/package/nookies)
-
-### CSV parser
-
-- [Papaparser](https://www.npmjs.com/package/papaparse)
-- [React Papaparser](https://www.npmjs.com/package/react-papaparse)
-- [React Native CSV](https://www.npmjs.com/package/react-native-csv)
-
-### Data fetching
-
-- [Axios](https://axios-http.com/docs/intro)
-- [React query](https://react-query-v3.tanstack.com/installation)
-
-### Database simulators
-
-- [Json Server](https://www.npmjs.com/package/json-server)
-- [MirageJS](https://miragejs.com/docs/getting-started/overview/)
-
-### Date and time formater and calculator
-
-- [MomentJS](https://momentjs.com/)
-- [DateFNS](https://date-fns.org/)
-- [DayJS](https://day.js.org/docs/en/installation/installation)
-- [Intl](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl)
-
-### Form submit handler
-
-- [React Hook Form](https://react-hook-form.com/get-started)
-
-### Form schema validator
-
-- [Yup](https://github.com/jquense/yup)
-- [Zod](https://zod.dev/?id=installation)
-
-### ID generators
-
-- [uuid](https://www.npmjs.com/package/uuid)
-- [React Native uuid](https://www.npmjs.com/package/react-native-uuid)
-
-### Payment processors
-
-- [Mercado Pago API](https://www.mercadopago.com.br/developers/pt/reference)
-- [Stripe](https://stripe.com/docs/payments/quickstart?client=next)
-
-### State immutability controller
-
-- [Immer](https://immerjs.github.io/immer/installation)
-- [React useStateRef](https://www.npmjs.com/package/react-usestateref)
-
-------
-
-## Back-end
-
-### API's (most used useful API's)
-
-- [Cpf Cnpj validator](https://www.npmjs.com/package/cpf-cnpj-validator)
-- [Cep promise](https://www.npmjs.com/package/cep-promise)
-
-### Container management
-
-- [Docker](https://docs.docker.com/get-started/)
-- [Docker Compose](https://docs.docker.com/compose/gettingstarted/)
-
-### Documentation
-
-- [Swagger](https://swagger.io/specification/)
-
-### Encryption and token management
-
-- [BCryptJS](https://www.npmjs.com/package/bcryptjs)
-- [JSONWebToken](https://www.npmjs.com/package/jsonwebtoken)
-
-### Email provider, template and agent
-
-- [Nodemailer](https://nodemailer.com/usage/)
-- [Handlebars](https://handlebarsjs.com/guide/#installation)
-- [AWS SES](https://docs.aws.amazon.com/ses/latest/APIReference/API_Operations.html)
-
-### File uploader
-
-- [Multer](https://www.npmjs.com/package/multer)
-
-### Helpers
-
-- [Express](https://expressjs.com/en/4x/api.html)
-- [Express async errors](https://www.npmjs.com/package/express-async-errors)
-- [Cors](https://www.npmjs.com/package/cors)
-- [TSRynge](https://github.com/microsoft/tsyringe)
-- [Reflect Metadata](https://www.npmjs.com/package/reflect-metadata)
-
-### Query builder
-
-- [Knex](https://knexjs.org/guide/)
-
-### NoSQL databases
-
-- [MongoDB](https://www.mongodb.com/docs/v4.2/reference/method/js-collection/)
-
-### ORM's
-
-- [TypeORM](https://typeorm.io)
-- [PrismaORM](https://www.prisma.io/docs/getting-started/quickstart)
-
-### Test for NodeJS applications
-
-- [Jest](https://jestjs.io/docs/getting-started)
-- [Super Test](https://www.npmjs.com/package/supertest)
-
-### Webscrapping
-
-- [Puppeteer](https://pptr.dev/)
-
-------
-
-## IDE tools and extensions
-
-### Code formaters
-
-- [Eslint](https://eslint.org/docs/latest/user-guide/getting-started)
-- [Prettier](https://prettier.io/docs/en/install.html)
-
-### Commit controller
-
-- [Husky](https://typicode.github.io/husky/#/?id=automatic-recommended)
