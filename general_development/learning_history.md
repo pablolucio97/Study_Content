@@ -739,3 +739,14 @@ export function openSettings() {
 
   @@index([email])
 }
+
+
+ ### 30/10/2024
+
+- At uploading files to clouds, keep in mind that it is a best practice uploading files to a folder according the entity to updates and deletions do not affects other users files. 
+
+
+ ### 31/10/2024
+
+- Avoid using fragments when performing map method over iterable objects, because it is not passing a key for a fragment. 
+- Always render all screens of your application paying attention to the console for catch invalidate code and avoid bugs as earlier as possible.
