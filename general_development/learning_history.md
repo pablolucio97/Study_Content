@@ -739,6 +739,7 @@ export function openSettings() {
 
   @@index([email])
 }
+```
 
 
  ### 30/10/2024
@@ -750,3 +751,163 @@ export function openSettings() {
 
 - Avoid using fragments when performing map method over iterable objects, because it is not passing a key for a fragment. 
 - Always render all screens of your application paying attention to the console for catch invalidate code and avoid bugs as earlier as possible.
+
+
+ ### 16/11/2024
+
+- At passing functions to attributes that expects for events, always pass the function intermediated by another one. Example. Do:
+
+```typescript
+import { Check } from "lucide-react";
+
+import React from "react";
+import { formatUSD } from "../../../../lib/format";
+
+export interface IProduct {
+  id: string;
+  title: string;
+  price: number;
+}
+
+interface ProductCardProps {
+  isSelected?: boolean;
+  product: IProduct;
+  onSelect: (product: IProduct) => void;
+}
+
+const ProductCard: React.FC<ProductCardProps> = ({
+  isSelected,
+  product,
+  onSelect,
+}) => {
+  const handleClick = () => onSelect(product);
+
+  return (
+    <div
+      className={`w-full flex border-2 ${
+        isSelected ? "border-secondary" : "border-gray-100"
+      } rounded-md  items-center py-1 px-3 cursor-pointer`}
+      onClick={handleClick}
+    >
+      <div className="flex flex-col mt-1 m-2 grow">
+        <span className="font-bold mt-3  text-[.7rem] md:text-[.8rem]">
+          {product.title}
+        </span>
+        <p className="text-[.6rem] md:text-[.75rem] text-gray-600 max-w-[70%]">
+          {formatUSD(product.price)}
+        </p>
+      </div>
+      {isSelected && (
+        <div className="w-5 h-5 flex items-center justify-center rounded-[1rem] z-10 bg-secondary p-1">
+          <Check color="white" strokeWidth={4} />
+        </div>
+      )}
+    </div>
+  );
+};
+
+export default ProductCard;
+```
+
+instead:
+
+
+```typescript
+import { Check } from "lucide-react";
+
+import React from "react";
+import { formatUSD } from "../../../../lib/format";
+
+export interface IProduct {
+  id: string;
+  title: string;
+  price: number;
+}
+
+interface ProductCardProps {
+  isSelected?: boolean;
+  product: IProduct;
+  onSelect: (product: IProduct) => void;
+}
+
+const ProductCard: React.FC<ProductCardProps> = ({
+  isSelected,
+  product,
+  onSelect,
+}) => {
+
+  return (
+    <div
+      className={`w-full flex border-2 ${
+        isSelected ? "border-secondary" : "border-gray-100"
+      } rounded-md  items-center py-1 px-3 cursor-pointer`}
+      onClick={() => onSelect()}
+    >
+      <div className="flex flex-col mt-1 m-2 grow">
+        <span className="font-bold mt-3  text-[.7rem] md:text-[.8rem]">
+          {product.title}
+        </span>
+        <p className="text-[.6rem] md:text-[.75rem] text-gray-600 max-w-[70%]">
+          {formatUSD(product.price)}
+        </p>
+      </div>
+      {isSelected && (
+        <div className="w-5 h-5 flex items-center justify-center rounded-[1rem] z-10 bg-secondary p-1">
+          <Check color="white" strokeWidth={4} />
+        </div>
+      )}
+    </div>
+  );
+};
+
+export default ProductCard;
+
+```
+### 19/11/2024
+
+If you need to skip rerender in a child component caused by it parent component, use React.memo passing the logic for next renders as second param. In this example the child component will only rerender if prevStep.completed !== nextStep.completed.
+
+```typescript
+const CollapsibleStep = React.memo<CollapsibleStepProps>(
+  ({ steps }) => {
+    return (
+      <div>
+        {steps.map((step) => (
+          <AccordionItem
+            value={step.id}
+            key={step.id}
+            className="w-ful mb-4 bg-white border-2 border-gray-200 rounded-md px-2"
+          >
+            <AccordionTrigger
+              disabled={step.disabled}
+              className="disabled:opacity-[.5]"
+            >
+              <div className="flex items-center px-3 pt-3">
+                {step.completed ? (
+                  <CircleCheck className="bg-success text-white rounded-[1rem] mt-[-.75rem] mr-2" />
+                ) : (
+                  <CircleDot className="bg-primary text-white rounded-[1rem] mt-[-.75rem] mr-2" />
+                )}
+                <h2 className="text-[.8rem] md:text-[1rem] font-bold mb-3">
+                  {step.name}
+                </h2>
+              </div>
+            </AccordionTrigger>
+            <AccordionContent>{step.component}</AccordionContent>
+          </AccordionItem>
+        ))}
+      </div>
+    );
+  },
+  (prevProps, nextProps) => {
+    const hasCompletedStateChanged = nextProps.steps.some((nextStep, index) => {
+      const prevStep = prevProps.steps[index];
+      return prevStep.completed !== nextStep.completed;
+    });
+
+    return !hasCompletedStateChanged;
+  }
+);
+```
+
+
