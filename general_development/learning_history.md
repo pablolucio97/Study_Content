@@ -100,8 +100,8 @@ In this example below we'll determine a relationship between "Usuario" and "bigi
 
 ```sql
 
-    -- defines the relationship between the models declaring that each instance of "Usuario" is associated 
-    -- with an instance of "bigid_buybye" through "identificacao" column present on "Usuario" pointing to "cpf" 
+    -- defines the relationship between the models declaring that each instance of "Usuario" is associated
+    -- with an instance of "bigid_buybye" through "identificacao" column present on "Usuario" pointing to "cpf"
     -- column present on "bigid_buybye"
     TAB_Autenticacao.Usuario.belongsTo(TAB_Autenticacao.bigid_buybye, {foreignKey: 'identificacao', targetKey: 'cpf' });
     -- starts the query retriveing for a single record on "Usuario" model
@@ -109,17 +109,17 @@ In this example below we'll determine a relationship between "Usuario" and "bigi
     -- returns a single attribute "menor_de_idade" with the value based in the condition below
       attributes: [
       [
-    -- calculates the age by comparing the data_nascimento (date of birth) from the bigid_buybye table with the 
-    -- current date (CURDATE()). If the result of TIMESTAMPDIFF(YEAR, bigid_buybye.data_nascimento, CURDATE()) 
+    -- calculates the age by comparing the data_nascimento (date of birth) from the bigid_buybye table with the
+    -- current date (CURDATE()). If the result of TIMESTAMPDIFF(YEAR, bigid_buybye.data_nascimento, CURDATE())
     -- is less than 18, it returns 1, otherwise 0. where `Sequelize.literal` is used to perform raw queries
         Sequelize.literal("IF(TIMESTAMPDIFF(YEAR, bigid_buybye.data_nascimento, CURDATE()) < 18, 1, 0)"),
         'menor_de_idade'
       ]
       ],
-    -- includes the bigid_model in the query returning it alls attributes 
+    -- includes the bigid_model in the query returning it alls attributes
       include: [{
       model: TAB_Autenticacao.bigid_buybye,
-      -- This ensures the SQL JOIN produced is an INNER JOIN, meaning the query will only return Usuario records that have 
+      -- This ensures the SQL JOIN produced is an INNER JOIN, meaning the query will only return Usuario records that have
       -- a corresponding bigid_buybye record.
       required: true,
       --  Specifies that the "cpf" in "bigid_buybye" must match the "identificacao" column in the "Usuario" model for the join to happen.
@@ -127,7 +127,7 @@ In this example below we'll determine a relationship between "Usuario" and "bigi
         cpf: Sequelize.col('Usuario.identificacao')
       }
       }],
-      --  Filters the results of the main query (not the join) to records where the login_id_login field equals the id_login variable. 
+      --  Filters the results of the main query (not the join) to records where the login_id_login field equals the id_login variable.
       where: {
       login_id_login: id_login
       }})
@@ -404,14 +404,14 @@ instead of
 
 - Alway ass possible, use git the command `git commit --amend -m 'the fixed message'` before pushing it to GitHub.
 - Be careful on these points at performing request on your application for improving performance:
+
   1. If the data returned by the query will only be shown and not be handled hereafter, the you do not need a state and can just return then fetched data.
   2. If you're doing multiple requests, you can compare the queries performance doing it at once in a single function returning an object containing all fetched data or use `useQueries` to handle it separately.
   3. At doing chained requests where the first request fails, then you should return a null value to avoid process the next requests immediately.
   4. If you're using react query, use the study the possibility of using staleTime option to avoid unnecessary refetching.
-  Example of a good multiple call handle in a single function:
+     Example of a good multiple call handle in a single function:
 
   ```typescript
-  
   const watchedClassesRepository = useMemo(() => {
     return new WatchedClassesRepository();
   }, []);
@@ -475,70 +475,71 @@ instead of
   const trainingMetrics: ITrainingMetricsDTO | undefined =
     data?.trainingMetrics;
   ```
+
 ### 11/09/2024
 
-  If you need to return different status errors on the back-end and you're using Nest, check for the instance type of each error and then throw it on the catch block. Example:
+If you need to return different status errors on the back-end and you're using Nest, check for the instance type of each error and then throw it on the catch block. Example:
 
-  ```typescript
-  try{
-    //...your_code
-    } catch (error) {
-    console.log("[INTERNAL ERROR]", error.message);
+```typescript
+try {
+  //...your_code
+} catch (error) {
+  console.log("[INTERNAL ERROR]", error.message);
 
-    if (error instanceof NotAcceptableException) {
-      throw error;
-    }
+  if (error instanceof NotAcceptableException) {
+    throw error;
+  }
 
-    throw new ConflictException({
-      message:
-        "An error occurred. Check all request body fields for possible mismatching. Check if the video you are trying to upload is working correctly, and if it has audio.",
-      error: error.message,
-    });
-    }
-  ```
+  throw new ConflictException({
+    message:
+      "An error occurred. Check all request body fields for possible mismatching. Check if the video you are trying to upload is working correctly, and if it has audio.",
+    error: error.message,
+  });
+}
+```
 
 ### 13/09/2024
 
- If you need to perform a second request to complete data fetched from a first request, you can fetch for the first request, and using Promise.all, you can iterate calling the respective data for each item in the array. Example:
+If you need to perform a second request to complete data fetched from a first request, you can fetch for the first request, and using Promise.all, you can iterate calling the respective data for each item in the array. Example:
 
-  ```typescript
-  useEffect(() => {
-    const fetchTrainingsWithLastWatchedClass = async () => {
-      const trainings = await getTrainings();
+```typescript
+useEffect(() => {
+  const fetchTrainingsWithLastWatchedClass = async () => {
+    const trainings = await getTrainings();
 
-      if (trainings) {
-        const trainingsWithLastWatchedClass = await Promise.all(
-          trainings.map(async (training) => {
-            const lastWatchedClass = await getLastWatchedClassesByTraining(
-              training.id
-            );
-            return {
-              ...training,
-              last_watched_class_duration:
-                lastWatchedClass?.videoclass?.duration ?? null,
-              last_watched_class_name:
-                lastWatchedClass?.videoclass?.name ?? null,
-            };
-          })
-        );
-        setTrainings(trainingsWithLastWatchedClass);
-      }
-    };
+    if (trainings) {
+      const trainingsWithLastWatchedClass = await Promise.all(
+        trainings.map(async (training) => {
+          const lastWatchedClass = await getLastWatchedClassesByTraining(
+            training.id
+          );
+          return {
+            ...training,
+            last_watched_class_duration:
+              lastWatchedClass?.videoclass?.duration ?? null,
+            last_watched_class_name: lastWatchedClass?.videoclass?.name ?? null,
+          };
+        })
+      );
+      setTrainings(trainingsWithLastWatchedClass);
+    }
+  };
 
-    fetchTrainingsWithLastWatchedClass();
-  }, [getLastWatchedClassesByTraining, getTrainings]);
-  ```
+  fetchTrainingsWithLastWatchedClass();
+}, [getLastWatchedClassesByTraining, getTrainings]);
+```
 
-  ### 21/09/2024
+### 21/09/2024
 
-  - At working with upload on clouds (Aws, Azure, and similar) always upload the file formatted, always upload it removing it spaces and accents to avoid another services mismatching file management.
-  - Have a validation to always remove the file when not more used on updates and deletion to avoid unnecessary charges.
-  
-  ### 08/10/2024
+- At working with upload on clouds (Aws, Azure, and similar) always upload the file formatted, always upload it removing it spaces and accents to avoid another services mismatching file management.
+- Have a validation to always remove the file when not more used on updates and deletion to avoid unnecessary charges.
 
-  - At creating new screens on React Native, always define a SafeAreaProvider to show the screen style calculating the padding top to avoid content be shown competing space with status bar using the library `react-native-safe-area-context`. Example:
-  ```typescript
-  import {
+### 08/10/2024
+
+- At creating new screens on React Native, always define a SafeAreaProvider to show the screen style calculating the padding top to avoid content be shown competing space with status bar using the library `react-native-safe-area-context`. Example:
+
+```typescript
+import {
   Roboto_400Regular,
   Roboto_700Bold,
   useFonts,
@@ -567,6 +568,7 @@ export default function App() {
   );
 }
 ```
+
 ```typescript
 import { Power } from "phosphor-react-native";
 import React from "react";
@@ -596,164 +598,169 @@ export function HomeHeader() {
   );
 }
 ```
-  ### 09/10/2024
 
-  - At adding a new plugin to your app.json on Expo projects, run `npx expo prebuild` to expo execute the required configurations on native code. You can do all configs your app needs inside app.json or app.config.json and then run `npx expo prebuild` to expo apply these configurations on the native code.
-  - If you need to use environment variables on app.json file, rename it to app.config.js, import dotenv and export the object using module.exports. Example:
-  ```javascript
-  import * as dotenv from 'dotenv'
+### 09/10/2024
 
-dotenv.config()
+- At adding a new plugin to your app.json on Expo projects, run `npx expo prebuild` to expo execute the required configurations on native code. You can do all configs your app needs inside app.json or app.config.json and then run `npx expo prebuild` to expo apply these configurations on the native code.
+- If you need to use environment variables on app.json file, rename it to app.config.js, import dotenv and export the object using module.exports. Example:
+
+```javascript
+import * as dotenv from "dotenv";
+
+dotenv.config();
 
 module.exports = {
-  "expo": {
-    "name": "iginte-fleet",
-    "slug": "iginte-fleet",
-    "version": "1.0.0",
-    "orientation": "portrait",
-    "icon": "./assets/icon.png",
-    "userInterfaceStyle": "dark",
-    "splash": {
-      "image": "./assets/splash.png",
-      "resizeMode": "contain",
-      "backgroundColor": "#202024"
+  expo: {
+    name: "iginte-fleet",
+    slug: "iginte-fleet",
+    version: "1.0.0",
+    orientation: "portrait",
+    icon: "./assets/icon.png",
+    userInterfaceStyle: "dark",
+    splash: {
+      image: "./assets/splash.png",
+      resizeMode: "contain",
+      backgroundColor: "#202024",
     },
-    "assetBundlePatterns": [
-      "**/*"
-    ],
-    "ios": {
-      "supportsTablet": true,
-      "bundleIdentifier": "com.pablosilva.ignitefleet",
-      "config" : {
-        "googleMapsApiKey": process.env.GOOGLE_MAPS_API_KEY
-      }
-    },
-    "android": {
-      "adaptiveIcon": {
-        "foregroundImage": "./assets/adaptive-icon.png",
-        "backgroundColor": "#202024"
+    assetBundlePatterns: ["**/*"],
+    ios: {
+      supportsTablet: true,
+      bundleIdentifier: "com.pablosilva.ignitefleet",
+      config: {
+        googleMapsApiKey: process.env.GOOGLE_MAPS_API_KEY,
       },
-      "package": "com.pablosilva.ignitefleet",
-      "config" : {
-        "googleMapsApiKey": process.env.GOOGLE_MAPS_API_KEY
-      }
     },
-    "web": {
-      "favicon": "./assets/favicon.png"
+    android: {
+      adaptiveIcon: {
+        foregroundImage: "./assets/adaptive-icon.png",
+        backgroundColor: "#202024",
+      },
+      package: "com.pablosilva.ignitefleet",
+      config: {
+        googleMapsApiKey: process.env.GOOGLE_MAPS_API_KEY,
+      },
     },
-    "plugins": [
+    web: {
+      favicon: "./assets/favicon.png",
+    },
+    plugins: [
       [
         "expo-location",
         {
-          "locationAlwaysAndWhenInUsePermission": "Allow $(PRODUCT_NAME) to use your location."
-        }
-      ]
-    ]
-  }
-}
+          locationAlwaysAndWhenInUsePermission:
+            "Allow $(PRODUCT_NAME) to use your location.",
+        },
+      ],
+    ],
+  },
+};
+```
 
-  ```
-  - At working with resources that needs user permissions, provide a button to user access his mobile settings easily, example:
-   ```typescript
-  import { Linking, Platform } from "react-native";
+- At working with resources that needs user permissions, provide a button to user access his mobile settings easily, example:
+
+```typescript
+import { Linking, Platform } from "react-native";
 
 export function openSettings() {
-  if (Platform.OS === "ios") {
-    return Linking.openURL("app-settings:");
-  }
-  if (Platform.OS === "android") {
-    return Linking.openSettings();
-  }
+if (Platform.OS === "ios") {
+ return Linking.openURL("app-settings:");
+}
+if (Platform.OS === "android") {
+ return Linking.openSettings();
+}
 }
 -
-  ```
-  ### 22/10/2024
+```
 
-  - At facing build problems on NextJS projects, try correcting your css files using the stylelint library to check for mistakes, configuration and script, and if it did not work, try disabling webpack optimization minimization on your next.config file. Example:
-  ```javascript
-  /** @type {import('next').NextConfig} */
-  const nextConfig = {
-      webpack(config, { isServer }) {
-          // Disable CSS minification for build the project
-          config.optimization.minimize = false;
-          return config;
-        },
-  };
-  export default nextConfig;
-  ```
-  - At facing TypeScript not recognizing JSX component error `Component cannot be used as a jsx component`, add the path to react types on your `tsconfig.json` file. Example:
- ```json
+### 22/10/2024
+
+- At facing build problems on NextJS projects, try correcting your css files using the stylelint library to check for mistakes, configuration and script, and if it did not work, try disabling webpack optimization minimization on your next.config file. Example:
+
+```javascript
+/** @type {import('next').NextConfig} */
+const nextConfig = {
+  webpack(config, { isServer }) {
+    // Disable CSS minification for build the project
+    config.optimization.minimize = false;
+    return config;
+  },
+};
+export default nextConfig;
+```
+
+- At facing TypeScript not recognizing JSX component error `Component cannot be used as a jsx component`, add the path to react types on your `tsconfig.json` file. Example:
+
+```json
 {
   "compilerOptions": {
-    "jsx":"react",
+    "jsx": "react",
     "strict": true,
     "paths": {
-      "react": [ "./node_modules/@types/react" ]
+      "react": ["./node_modules/@types/react"]
     }
   }
 }
 ```
 
-  ### 25/10/2024
+### 25/10/2024
 
-  - At building models schemas, always pay attention on mapping all unique fields. Example: On a model called "company", the property "cnpj" and "social_reason" should be unique.
-  - At building models schemas, if you plan to perform a lot of queries based in a column you should consider indexing this column to improve impressive queries performance. Example: In this PrismaORM model, the email column will be used a lot of times in some queries.
-  ```
-  model Company {
-  id            String     @id @default(uuid())
-  fantasy_name  String
-  cnpj          String     @unique()
-  social_reason String     @unique()
-  email         String     
-  current_plan  String
-  logo_url      String?
-  users         User[]
-  trainings     Training[]
-  created_at    DateTime   @default(now())
-  updated_at    DateTime   @default(now())
+- At building models schemas, always pay attention on mapping all unique fields. Example: On a model called "company", the property "cnpj" and "social_reason" should be unique.
+- At building models schemas, if you plan to perform a lot of queries based in a column you should consider indexing this column to improve impressive queries performance. Example: In this PrismaORM model, the email column will be used a lot of times in some queries.
 
-  @@index([email])
+```
+model Company {
+id            String     @id @default(uuid())
+fantasy_name  String
+cnpj          String     @unique()
+social_reason String     @unique()
+email         String
+current_plan  String
+logo_url      String?
+users         User[]
+trainings     Training[]
+created_at    DateTime   @default(now())
+updated_at    DateTime   @default(now())
+
+@@index([email])
 }
 ```
 
- - At building models schemas always type the property as Enum when more appropriate. Example: 
-  ```
-  enum Plan {
-    diamond
-    platinum
-    gold
-  }
+- At building models schemas always type the property as Enum when more appropriate. Example:
 
-  model Company {
-  id            String     @id @default(uuid())
-  fantasy_name  String
-  cnpj          String     @unique()
-  social_reason String     @unique()
-  email         String     
-  current_plan  Plan
-  logo_url      String?
-  users         User[]
-  trainings     Training[]
-  created_at    DateTime   @default(now())
-  updated_at    DateTime   @default(now())
+```
+enum Plan {
+  diamond
+  platinum
+  gold
+}
 
-  @@index([email])
+model Company {
+id            String     @id @default(uuid())
+fantasy_name  String
+cnpj          String     @unique()
+social_reason String     @unique()
+email         String
+current_plan  Plan
+logo_url      String?
+users         User[]
+trainings     Training[]
+created_at    DateTime   @default(now())
+updated_at    DateTime   @default(now())
+
+@@index([email])
 }
 ```
 
+### 30/10/2024
 
- ### 30/10/2024
+- At uploading files to clouds, keep in mind that it is a best practice uploading files to a folder according the entity to updates and deletions do not affects other users files.
 
-- At uploading files to clouds, keep in mind that it is a best practice uploading files to a folder according the entity to updates and deletions do not affects other users files. 
+### 31/10/2024
 
-
- ### 31/10/2024
-
-- Avoid using fragments when performing map method over iterable objects, because it is not passing a key for a fragment. 
+- Avoid using fragments when performing map method over iterable objects, because it is not passing a key for a fragment.
 - Always render all screens of your application paying attention to the console for catch invalidate code and avoid bugs as earlier as possible.
 
-
- ### 16/11/2024
+### 16/11/2024
 
 - At passing functions to attributes that expects for events, always pass the function intermediated by another one. Example. Do:
 
@@ -811,7 +818,6 @@ export default ProductCard;
 
 instead:
 
-
 ```typescript
 import { Check } from "lucide-react";
 
@@ -835,7 +841,6 @@ const ProductCard: React.FC<ProductCardProps> = ({
   product,
   onSelect,
 }) => {
-
   return (
     <div
       className={`w-full flex border-2 ${
@@ -861,8 +866,8 @@ const ProductCard: React.FC<ProductCardProps> = ({
 };
 
 export default ProductCard;
-
 ```
+
 ### 19/11/2024
 
 If you need to skip rerender in a child component caused by it parent component, use React.memo passing the logic for next renders as second param. In this example the child component will only rerender if prevStep.completed !== nextStep.completed.
@@ -910,4 +915,107 @@ const CollapsibleStep = React.memo<CollapsibleStepProps>(
 );
 ```
 
+### 20/11/2024
 
+Use the techinique of mapping over objects when the data structure to map is known and small. Example. In this example TabSelector component was built to render few childrens based on the current active tab assign be the object key:
+
+```typescript
+import { useState } from "react";
+
+interface TabSelectorProps {
+  tabs: string[];
+  defaultActiveTab: string;
+  children: { [key: string]: React.ReactNode };
+}
+
+const TabSelector: React.FC<TabSelectorProps> = ({
+  tabs,
+  defaultActiveTab,
+  children,
+}) => {
+  const [activeTab, setActiveTab] = useState(defaultActiveTab);
+
+  return (
+    <div className="w-full flex flex-col items-center mt-[2rem]">
+      <div className="flex w-full max-w-[60rem] justify-center">
+        {tabs.map((tab, i) => (
+          <div
+            key={i}
+            onClick={() => setActiveTab(tab)}
+            className={`w-full flex items-center justify-center p-4 text-gray-800 hover:text-white cursor-pointer bg-header hover:bg-neutral hover:shadow-md 
+              ${i === 0 ? "rounded-tl-md rounded-bl-md" : ""} 
+              ${i === tabs.length - 1 ? "rounded-tr-md rounded-br-md" : ""}`}
+          >
+            <span className="text-xl">{tab}</span>
+          </div>
+        ))}
+        {children[activeTab]}
+      </div>
+    </div>
+  );
+};
+
+export default TabSelector;
+```
+
+usage:
+
+```typescript
+import { useRef } from 'react';
+import Cart from '../../../components/ui/Cart';
+import TabSelector from '../../../components/ui/TabSelector';
+import VerticalMenu from '../../../components/ui/VerticalMenu';
+import { useCestaCompras } from '../../../hooks/useCestaCompras';
+
+const Balanca: React.FC = () => {
+  const tableRef = useRef<HTMLTableElement>(null);
+
+  const {
+    itemsCesta,
+    totalItens,
+    totalValor,
+    onIncrementItem,
+    onDecrementItem,
+    onRemoveAllItems,
+    onViewItem,
+    onRemoveItem
+  } = useCestaCompras();
+
+  //TODO-PABLO: Verificar se tabs deve vir de config
+  const tabs = {
+    Padaria: <p>Padaria</p>,Ø
+    Hortifruit: <p>Hortifruit</p>,
+    Açougue: <p>Açougue</p>,
+    Rotisseria: <p>Padaria</p>
+  };
+
+  const tabKeys = Object.keys(tabs);
+
+  return (
+    <div className='flex h-screen bg-screen'>
+      <VerticalMenu />
+      <div className='w-full flex flex-col items-center grow'>
+        <div className='w-full flex flex-col items-center mt-[6rem] mb-8  '>
+          <span className='ml-4 text-3xl font-bold text-gray-600'>
+            Selecione os produtos por categoria
+          </span>
+          <TabSelector tabs={tabKeys} defaultActiveTab={tabKeys[0]} children={tabs} />
+        </div>
+      </div>
+      <Cart
+        itemsCesta={itemsCesta}
+        onDecrementItem={onDecrementItem}
+        onIncrementItem={onIncrementItem}
+        onRemoveAllItems={onRemoveAllItems}
+        onRemoveItem={onRemoveItem}
+        onViewItem={onViewItem}
+        totalItens={totalItens}
+        totalValor={totalValor}
+        tableRef={tableRef}
+      />
+    </div>
+  );
+};
+
+export default Balanca;
+```
