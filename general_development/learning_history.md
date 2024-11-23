@@ -1019,3 +1019,24 @@ const Balanca: React.FC = () => {
 
 export default Balanca;
 ```
+### 22/11/2024
+
+If you're facing late state updating issues, try removing unnecessary dependecies, and pay attention if you are using the same param to avoid unnecessary dependencies. Example:
+
+```typescript
+  const wrongImplelemntation = useCallback(
+    (product: InfoProduto) => {
+      setSelectedProduct(product);
+        onSelectItem(selectedProduct!);
+    },
+    [onSelectItem, selectedProduct]
+  );
+
+  const rightImplementation = useCallback(
+    (product: InfoProduto) => {
+      setSelectedProduct(product); 
+      onSelectItem(product); 
+    },
+    [onSelectItem]
+  );
+```
