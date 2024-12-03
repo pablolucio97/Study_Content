@@ -1040,3 +1040,65 @@ If you're facing late state updating issues, try removing unnecessary dependecie
     [onSelectItem]
   );
 ```
+
+### 03/12/2024
+
+At using react-modal for handling modals on react components, always define the root element reference to avoid errors reference on console. Example:
+
+```typescript
+import Modal from "react-modal";
+import AppRouter from "./routes";
+import "./styles/globals.css";
+
+Modal.setAppElement("#root");
+
+function App() {
+  return (
+      <div className="h-screen w-full bg-gray-100">
+        <AppRouter />
+      </div>
+  );
+}
+
+export default App;
+```
+
+At working with Docker Compose where a service depends another service, do not use Wait For It configuration, use healthcheck declaration. Example:
+
+```yml
+version: '3.8'
+
+services:
+  postgres:
+    container_name: dti-digital-db
+    image: postgres
+    ports:
+      - 5432:5432
+    environment:
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: admin
+      POSTGRES_DB: dti-digital-db
+      PGDATA: /data/postgres
+    volumes:
+      - ./data/pg:/data/postgres
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U admin -d dti-digital-db"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  dti-digital-server-app:
+    container_name: dti-digital-server-app
+    image: node:20-alpine
+    working_dir: /usr/src/app
+    command: ["sh", "-c", "npx prisma generate && npm run start:dev"]
+    volumes:
+      - ./:/usr/src/app
+    ports:
+      - 3335:3335
+    depends_on:
+      postgres:
+        condition: service_healthy
+    environment:
+      DATABASE_URL: postgresql://admin:admin@dti-digital-db:5432/dti-digital-db?schema=public
+```
