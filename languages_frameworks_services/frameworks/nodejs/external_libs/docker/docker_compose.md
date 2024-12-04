@@ -119,6 +119,47 @@ networks:
 
 ```
 
+In this example the Node application depends on the database and uses healthcheck programmatically to check the database condition before up the application container:
+```yml
+version: '3.8'
+
+services:
+  postgres:
+    container_name: graphql-crud-db
+    image: postgres
+    ports:
+      - 5432:5432
+    environment:
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: admin
+      POSTGRES_DB: graphql-crud-db
+      PGDATA: /data/postgres
+    volumes:
+      - ./data/pg:/data/postgres
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U admin -d graphql-crud-db"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  graphql-crud-app:
+    container_name: graphql-crud-app
+    image: node:20-alpine
+    working_dir: /usr/src/app
+    volumes:
+      - /Users/pablosilva/Desktop/coding/studies/graphql-prisma-nest-crud:/usr/src/app
+    ports:
+      - 3333:3333
+    command: /bin/sh -c "npx prisma generate && npm run start:dev"
+    depends_on:
+      postgres:
+        condition: service_healthy
+    environment:
+      DATABASE_URL: postgresql://admin:admin@graphql-crud-db:5432/graphql-crud-db?schema=public
+```
+
+
+
 ### Docker compose useful commands
 
 `docker-compose up -d --build`: Starts all containers rebuilding images if it has any changes.
@@ -135,3 +176,4 @@ networks:
 - Always configure a volume pointing to your local folder to persis data even if the container does not exist anymore.
 - Create a .env file in the same directory as the docker-compose.yml file and load it into the docker-file configuration.
 - Always use dockerize or another async operations image to grant a container that depends another one will wait for.
+- Use healthcheck with a repeated interval or dockerize when you have a container that depends on another. Do not use "Wait for it".
