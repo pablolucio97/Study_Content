@@ -1,10 +1,11 @@
 # Creating a CRUD with NestJS, GraphQL, Docker Compose and PrismaORM
 
 1. Install the dependencies running ` npm i @nestjs/graphql @nestjs/apollo @apollo/server graphql`
-2. Install the PrismaORM and genera the Prisma Client, running `npm install prisma @prisma/client` and `npx prisma init` to initialize Prisma schema and `npx prisma migrate dev --name init` to create the initial migration and make the database usable.
-3. Setup the Prisma database, e.g: `DATABASE_URL="postgresql://<username>:<password>@localhost:5432/<database_name>?schema=public"
+2. Install the PrismaORM and genera the Prisma Client, running `npm install prisma @prisma/client` and `npx prisma init` to initialize Prisma schema and.
+3. Define your first model on schema.prisma file, after that run  `npx prisma migrate dev --name init` to create the initial migration and make the database usable.
+4. Setup the Prisma database, e.g: `DATABASE_URL="postgresql://<username>:<password>@localhost:5432/<database_name>?schema=public"
 `
-4. Create and configures your docker-compose.yml file in your application root directory. Have a container for the database, and another one for the application. Use health check for the application service starts only when the database service is ready to accept connections. E.g:
+5. Create and configures your docker-compose.yml file in your application root directory. Have a container for the database, and another one for the application. Use health check for the application service starts only when the database service is ready to accept connections. E.g:
 ```yml
 version: '3.8'
 
@@ -42,7 +43,7 @@ services:
     environment:
       DATABASE_URL: postgresql://admin:admin@graphql-crud-db:5432/graphql-crud-db?schema=public
 ```
-5. Configures the GraphQL module. Eg:
+6. Configures the GraphQL module. Eg:
 ```typescript
 import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo';
 import { Module } from '@nestjs/common';
@@ -59,8 +60,8 @@ import { GraphQLModule } from '@nestjs/graphql';
 })
 export class AppModule {}
 ```
-6. Run the commands `nest generate module users`, `nest generate resolver users`, `nest generate service users` to nest generates the files for starting creating a module, a resolver, and a service.
-7. Configures your model, example:
+7. Run the commands `nest generate module users`, `nest generate resolver users`, `nest generate service users` to nest generates the files for starting creating a module, a resolver, and a service.
+8. Configures your model, example:
 ```typescript
 import { ObjectType, Field, ID } from '@nestjs/graphql';
 
@@ -76,7 +77,7 @@ export class User {
   email: string;
 }
 ```
-8. Create a folder named graphql-inputs, and inside it create a typing for your queries and mutations. Example:
+9. Create a folder named graphql-inputs, and inside it create a typing for your queries and mutations. Example:
 ```typescript
 import { Field, InputType } from '@nestjs/graphql';
 /**
@@ -115,7 +116,7 @@ export class UserResolver {
   }
 }
 ```
-10. Configure the Prisma Service. Example:
+11. Configure the Prisma Service. Example:
 ```typescript
 import { Injectable, OnModuleInit, OnModuleDestroy } from '@nestjs/common';
 import { PrismaClient } from '@prisma/client';
@@ -134,7 +135,7 @@ export class PrismaService
   }
 }
 ```
-11.  Implement your entity's service injecting the Prisma Service dependency. E.g:
+12.  Implement your entity's service injecting the Prisma Service dependency. E.g:
 ```typescript
 import { Injectable } from '@nestjs/common';
 import { PrismaService } from '../../../services/prisma';
@@ -155,7 +156,7 @@ export class UsersService {
   }
 }
 ```
-12. Creates your entity's module file injecting the PrismaService and your entity service dependencies. Example:
+13. Creates your entity's module file injecting the PrismaService and your entity service dependencies. Example:
 ```typescript
 import { Module } from '@nestjs/common';
 import { PrismaService } from 'src/services/prisma';
@@ -167,7 +168,7 @@ import { UserResolver } from './user/resolvers/user.resolver';
 })
 export class UsersModule {}
 ```
-13. Include the entity module into your app.module.file's imports. Example:
+14. Include the entity module into your app.module.file's imports. Example:
 ```typescript
 import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo';
 import { Module } from '@nestjs/common';
@@ -188,16 +189,28 @@ export class AppModule {}
 
 ``` 
 
-14. Run `docker-compose up` to up the database and application.
-15. Perform queries and mutations operations on a REST client or at Apollo Server web application, both available at http://localhost:your-port/graphql.
+15. Run `docker-compose up` to up the database and application.
+    
+16. Perform queries and mutations operations on a REST client or at Apollo Server web application, both available at http://localhost:your-port/graphql.
 
 ## General tips
 
 - GraphQL needs at least a resolver correctly configured before to generate the schema.gql file to allow interacting with graphql on clients and Apollo Server.
 - Generate a initial migration to turn your database usable.
-- NestJS GraphQl integration has two kind of methodologies to code, use "**Code First**" approach using decorators and TypeScript classes to generate the corresponding GraphQL schema.
+  
+- NestJS GraphQl integration has two kind of methodologies to code, use "**Code First**" 
+ approach using decorators and TypeScript classes to generate the corresponding GraphQL schema.
+
 - GraphQL uses its own typing system for typing queries and mutations, do not use plain TypeScript interfaces.
+  
 - The own model file works as it typings, no TypeScript interface is required.
+  
+- At working with GraphQL and Prisma, you need to declare manually at least one model and  generate a migrate for it. Repeat the process for new model.
+  
+-  If you're using NestJS/Graphql First Code Approach, you need to handle Prisma Schema manually and it will be reflected on GraphQL schema after the respective module resolver file changes. 
+
+- Always pass a name for queries and mutations on each resolver to help to identify your queries and mutations. 
+
 
 
 References:
