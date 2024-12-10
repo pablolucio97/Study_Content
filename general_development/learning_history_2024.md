@@ -1102,3 +1102,48 @@ services:
     environment:
       DATABASE_URL: postgresql://admin:admin@dti-digital-db:5432/dti-digital-db?schema=public
 ```
+### 08/12/2024
+
+- At working with JWT Strategy on NestJS applications using the library @nestjs/passport and passport-jwt, provide the public and private keys in your .env files with the complete variable path. Example:
+ ```
+JWT_PRIVATE_KEY="-----BEGIN PRIVATE KEY-----
+MIIEvgIBADANBgkqhkiG9w0BAQEFAASCBKgwggSkAgEAAoIBAQCIxIBeBpTHKXtS
+BydEouBvpjMNSND7U1yP5maZWqDiE8fN+OEOcBSOXdJQZ4bulvA4fOOGlsd7nozt
+C0jcla4OK75xJfHXD+RQ88BsZYeCCwAwQSgFmYkRbmabPgJ7P7Jy1PUjzOQxoi0M
+LBURZYOl7FzYTPS6Uncj2XdZBp5P0+S5n1jUJI65DTGuetPCZcCJvN6jq6i+Mn7E
+o8+zhX3xspGFGoW/rxvOM/1wwKh5l5Qh/TOjCWPPfnUyVA1apWTn5to1bIQeCsd9
+tiOolIh4b2wb+MjAFLI73usi/ATPY7rxTP/aN25lCOmVVXUbkT8txhs35MZ2pDch
+3Sa4T3VXAgMBAAECggEAPupGMvrMDiJi/IUV51kV7caCzaWlnTfn6LqQkBNE1ztK
+OtI2lbGxgxxd12cIh1EgCJxK/mr2MUPqiFEcn3yrqREudlaCPfCtkx/OcQ7zmzr8
+RzZx9sF+cGpdASUxdwkCShj0/BcRElQMbQEKYApW2Uk2HLqqCdxNukwbvvRwdz/S
+WYs3w6hBCOI+cUAq8p3C/01eIPICw/aGE9pInXN4D00aplvcZ103lcaKNo1PgKYG
+KL0BDtY2FyXv7b8guV4ED7kHs0cCmLgot4k9yehcm5s7gds6oXtG5/HvHasehtoh
+L4l96zpiLvnQ6tLPBbF1uS0q3EyCZJzhpr+p7DvEYQKBgQC9QkZjWXet45gAIRlI
+LBHD5X7tuganEedZ2AKSDF6KGilrA/e9b9RJQtfvoT47hbojZtg6bB1Nqgltsr43
+kd8a5ugN3zxYO3LjDxEe9HDnfqWL504GaoclJ0mIE/fZ472MGxumLSdXh6tVmmWV
+I+WcX307wXu9lbhmjoa6LaecUwKBgQC4/3gPePoTml0MtCXU7fzZ2gG1JbHhy97p
+dsyt2BibKvIfPYXNnf8J83sH5CoqQts+Ie6UPFQ3uhdTWLyI+8SUIur3ko5pF/+C
+ej6IS1YmBRm8omMfBU9BLGud9WvLqet5CamCQk5NeFnx0nxxil1Q26SDIZGz67HI
+MGsJFznCbQKBgAEsJe97oGgtXsWxbsypqTqDc3PZkSz7yWkfE3UAKp3EZ7lH/wLn
+bHM/vMK5Rv9rZqnNe01xWgUfJovNbaw+dRlfkNR1K5SIWb/aWgrNDN4CRNhHCI61
+njy2r5fuN7zb0lLJ4DP5V6MNLhyLplF0NXnwhYAXRML56HiKLX99xOoNAoGBAKAu
+xBxRmedjX3Jigedu8eMH+zaInw9t4WOxM+TLGfMxKliWgsbZKT3Kjxr0GvZg0Ulp
+RBUib6GZBh1q1kSeC0ZhPaaERb8Fwn2Nr5t/7+YXwIMu8Dip9kfuWHh7So0cYgF5
+tkZNd1NpBCh5IruFHOuoYzgP1wM878Dw+5zxeVe5AoGBALRFZ1ifcg2yEVD0mvvz
+b8Bnj4dB8Ns68mlEAKZcG2DP9nPYGtj82ILaBr3NQNdWDFUu78oOtCHsTS4GYlUn
+Tk9c7KRxmpv/uBFP/xHVZKPtz73GhuACLacg2LCn5qSGGqrZZnBonkCwFr4dX4sS
+/l+Ybh4PY+xmIc26idbEvL41
+-----END PRIVATE KEY-----"
+
+JWT_PUBLIC_KEY="-----BEGIN PUBLIC KEY-----
+MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAiMSAXgaUxyl7UgcnRKLg
+b6YzDUjQ+1Ncj+ZmmVqg4hPHzfjhDnAUjl3SUGeG7pbwOHzjhpbHe56M7QtI3JWu
+Diu+cSXx1w/kUPPAbGWHggsAMEEoBZmJEW5mmz4Cez+yctT1I8zkMaItDCwVEWWD
+pexc2Ez0ulJ3I9l3WQaeT9PkuZ9Y1CSOuQ0xrnrTwmXAibzeo6uovjJ+xKPPs4V9
+8bKRhRqFv68bzjP9cMCoeZeUIf0zowljz351MlQNWqVk5+baNWyEHgrHfbYjqJSI
+eG9sG/jIwBSyO97rIvwEz2O68Uz/2jduZQjplVV1G5E/LcYbN+TGdqQ3Id0muE91
+VwIDAQAB
+-----END PUBLIC KEY-----"
+  ```
+
+
