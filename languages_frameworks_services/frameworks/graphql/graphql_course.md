@@ -287,6 +287,30 @@ export function Video(props: VideoProps) {
 }
 ```
 
+## Subscriptions
+
+Subscriptions are used to push on the server and get on the client data in real time. It's analogue to doing a pooling using react-query, but in real time. Its based on pub/sub mechanism where the interested clients listen to server changes through subscriptions. Subscriptions are particularly useful in applications where data needs to be updated in real time, such as in collaborative environments, real-time monitoring systems, or live messaging applications. Example in a chat application:
+
+```graphql
+subscription {
+  newMessage(channelId: "abc123") {
+    id
+    content
+    sender {
+      name
+    }
+    timestamp
+  }
+}
+```
+
+How it works:
+
+1. Client Subscribes: The client subscribes to the newMessage event for a specific chat channel.
+2. Message Sent: Another user sends a message to the channel.
+3. Server Publishes: The server detects this new message, and triggers the newMessage subscription, sending the message details to all subscribed clients.
+4. Client Receives: The subscribing client receives the new message in real time and can update the chat interface accordingly.
+
 ## Complete GraphQL CRUD example (need be imported on Insomnia): 
 
 ```json

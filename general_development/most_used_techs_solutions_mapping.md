@@ -147,6 +147,8 @@
 
 ## Videos
 - [React Player](https://www.npmjs.com/package/react-player): A React component for playing a variety of URLs, including file paths, YouTube, Facebook, Twitch, SoundCloud, Streamable, Vimeo, Wistia, Mixcloud, and DailyMotion.
+- [VimeJS React](https://vimejs.com): A React component for playing a variety of URLs, including file paths, YouTube, HLS, and others.
+
 
 ---
 
