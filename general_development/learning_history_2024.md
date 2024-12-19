@@ -1402,5 +1402,7 @@ export async function NewRoutePage({
 
 export default NewRoutePage;
 ```
+ ### 18/12/2024
 
+- To check if the browser is caching files, check if the request that return the files has the header "Cache-Control", and observe if the request is not being repeatedly called. This can indicates the request/files are being cached.
 
