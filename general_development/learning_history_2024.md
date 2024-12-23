@@ -1236,7 +1236,7 @@ export function NewRouteForm(props: PropsWithChildren) {
 }
 ```
 3. Uses the form Client component on your page.
-  ```typescript
+```typescript
   import { NewRouteForm } from "./components/NewRouteForm";
 //this function should be declared outside component because it does not depend on browser's API neither React hooks
 export async function searchDirections(source: string, destination: string) {
@@ -1406,3 +1406,5 @@ export default NewRoutePage;
 
 - To check if the browser is caching files, check if the request that return the files has the header "Cache-Control", and observe if the request is not being repeatedly called. This can indicates the request/files are being cached.
 
+### 23/12/2024
+- At building server applications and using `Clean Architecture` with `SOLID` concepts, be sure having a Repository Class containing all database operations (including methods for perfoming business rules on the database) and Service Class containing the business rules (must not interact with database). Both classes must rely on the same interface that defines the methods for the handle the entity. [Repository reference](https://github.com/pablolucio97/microbuy-microservices) 
