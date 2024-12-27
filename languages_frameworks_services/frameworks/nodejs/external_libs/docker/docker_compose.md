@@ -177,3 +177,4 @@ services:
 - Create a .env file in the same directory as the docker-compose.yml file and load it into the docker-file configuration.
 - Always use dockerize or another async operations image to grant a container that depends another one will wait for.
 - Use healthcheck with a repeated interval or dockerize when you have a container that depends on another. Do not use "Wait for it".
+- At working with multiples docker-compose files and you have to communicate between the services inside these different files, each service inside each docker-compose.yml file must be connected in the same network. You must create a new network running the command `docker network create your-network` and assign all services to this network.

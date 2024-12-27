@@ -1152,7 +1152,7 @@ VwIDAQAB
   - At working with NextJS you must know how/when to separarate client-components from server-components. By default all components in NextJS are Server Components, and you should expose only some pieces of your code that really need browser or react hooks interaction as Client Components because it's not possible applying caches and optmization on Client Components because it is being executed on browser. If you have a form inside a page, then the functions handle by the form must be processed and cached by the server, it must be defined putting all request data that will communicate with the server in a separated file, declaring this funcion as `use server`, and then importing this function in the client page or component. Avoid using `use client` in pages that send data to the server.
   - Example of a good usage of segregration between Server Components and Client components in Next:
   1. Create the function (Server Action) that will communicate with server:
-   ```typescript
+```typescript
    "use server";
 
 import { revalidateTag } from "next/cache";
@@ -1202,7 +1202,8 @@ export async function createRouteAction(state: any, formData: FormData) {
   return { success: true };
 }
 
-   ```
+```
+
 2. Create a Client component for the form that will handle the server action:
 
 ```typescript
@@ -1408,3 +1409,57 @@ export default NewRoutePage;
 
 ### 23/12/2024
 - At building server applications and using `Clean Architecture` with `SOLID` concepts, be sure having a Repository Class containing all database operations (including methods for perfoming business rules on the database) and Service Class containing the business rules (must not interact with database). Both classes must rely on the same interface that defines the methods for the handle the entity. [Repository reference](https://github.com/pablolucio97/microbuy-microservices) 
+
+### 24/12/2024
+- At working with Docker and Docker-compose, if you plan to run command inside a service's container declared inside your docker-compose.yml file, let a dedicated Dockerfile for build the service instead using a default Node Image, example:
+
+```yml
+  orders-service:
+    container_name: orders-service
+    build:
+      context: .
+      dockerfile: Dockerfile
+    command: ["sh", "-c", "npx prisma generate && npm run start:dev"]
+    volumes:
+      - ./:/usr/src/app
+    ports:
+      - 3334:3334
+    depends_on:
+      postgres:
+        condition: service_healthy
+    environment:
+      DATABASE_URL: ${DATABASE_URL}
+```
+
+### 26/12/2024
+
+- At implementing services to send emails, test the received emails in different accounts (Outlook, Google and similars) because it can has slight different appearence in each service and some times the email can not be deliveried based on the email service's rules. 
+
+
+### 27/12/2024
+- At working with multiples docker-compose files and you have to communicate between the services inside these different files, each service inside each docker-compose.yml file must be connected in the same network. You must create a new network running the command `docker network create your-network` and assign all services to this network.
+- At listening to queues on RabbitMQ, you must manually handle ack because RabbitMQ automatically will ack messages and clear your queue, even if you need to process the message data. Example:
+```typescript
+  async listenMessages(timeout) {
+    const messages = [];
+    return new Promise((resolve, reject) => {
+      const onMessage = (msg) => {
+        if (msg) {
+          messages.push(msg.content.toString());
+          this.channel.ack(msg);
+        }
+      };
+
+      this.channel
+        .consume(this.queue, onMessage, { noAck: false })
+        .then((consumer) => {
+          setTimeout(async () => {
+            await this.channel.cancel(consumer.consumerTag);
+            resolve(messages);
+          }, timeout);
+        })
+        .catch(reject);
+    });
+  }
+```
+-If you're using a single queue to transport all messages, the achknowledgement must be done ony in the last service because it will clear the entire queue.
