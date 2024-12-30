@@ -1462,4 +1462,5 @@ export default NewRoutePage;
     });
   }
 ```
--If you're using a single queue to transport all messages, the achknowledgement must be done ony in the last service because it will clear the entire queue.
+- If you're using a single queue to transport all messages, the achknowledgement must be done ony in the last service because it will clear the entire queue.
+- At working with multiple Docker, create a single `docker-compose.yml` to handle all containers. At doing it, check if all services have different names, if all .envs are copied to the container, if all services are on the same network, and if each connection string is pointing to the correct respective database name. 

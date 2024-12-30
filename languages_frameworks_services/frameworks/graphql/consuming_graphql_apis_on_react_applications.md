@@ -25,7 +25,8 @@ createRoot(document.getElementById("root")!).render(
 );
 ```
 4. Run `npm install -D @graphql-codegen/cli` to install GraphQL Code Gen cli and `npm install -D @graphql-codegen/typescript @graphql-codegen/typescript-operations @graphql-codegen/typescript-react-apollo` to install its dependencies to gen hooks based on your .graphql schema files.
-5. Create a folder called `graphql`, and inside it a file.graphql containing queries and mutations for the entity you want to generate queries and mutations hooks. Example:
+5. Create a file named `codegen.yaml` in the root of your application containing the GraphQL schema generation configuration.
+6. Create a folder called `graphql`, and inside it a file.graphql containing queries and mutations for the entity you want to generate queries and mutations hooks. Example:
 ```graphql
   query GetUsers {
     getUsers {
@@ -65,9 +66,9 @@ createRoot(document.getElementById("root")!).render(
 }
 
 ```
-6. Run `npx graphql-codegen` to generate your queries and mutation hooks based on files with .graphql extensions.
+7. Run `npx graphql-codegen` to generate your queries and mutation hooks based on files with .graphql extensions.
 
-7. Consume the hooks on your application according necessary. Complete CRUD consumption example:
+8. Consume the hooks on your application according necessary. Complete CRUD consumption example:
 ```typescript
 import { useCallback, useState } from "react";
 import { useNavigate } from "react-router-dom";
