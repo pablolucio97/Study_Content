@@ -1464,3 +1464,135 @@ export default NewRoutePage;
 ```
 - If you're using a single queue to transport all messages, the achknowledgement must be done ony in the last service because it will clear the entire queue.
 - At working with multiple Docker, create a single `docker-compose.yml` to handle all containers. At doing it, check if all services have different names, if all .envs are copied to the container, if all services are on the same network, and if each connection string is pointing to the correct respective database name. 
+  
+### 31/12/2024
+- At working with RabbitMQ, provide a promise based on timer at listening messages in your applcatoin. Pay attention implementing this behavior in each message lstener because RabbitMQ consumption can take some time and gnoring it can provoke some issues. Example implementation:
+```typescript
+//Rabit service
+import { Injectable } from '@nestjs/common';
+import { ConfigService } from '@nestjs/config';
+import { Channel, connect, Connection } from 'amqplib';
+import { TEnvSchema } from 'env';
+
+@Injectable()
+export class RabbitMQService {
+  private connection: Connection;
+  private channel: Channel;
+  private exchange = 'orders';
+  private queue = 'orders-queue';
+  private routeBindingKey = 'orders-route-bind-key';
+
+  constructor(private configService: ConfigService<TEnvSchema, true>) {
+    this.initRabbitMQ();
+  }
+
+  private async initRabbitMQ() {
+    const rabbitMQUser = this.configService.get('RABBITMQ_USER');
+    const rabbitMQPassword = this.configService.get('RABBITMQ_PASSWORD');
+
+    this.connection = await connect(
+      `amqp://${rabbitMQUser}:${rabbitMQPassword}@rabbitmq/`,
+    );
+    this.channel = await this.connection.createChannel();
+    await this.channel.assertExchange(this.exchange, 'direct', {
+      durable: true,
+    });
+    await this.channel.assertQueue(this.queue, { durable: true });
+    await this.channel.bindQueue(
+      this.queue,
+      this.exchange,
+      this.routeBindingKey,
+    );
+  }
+
+  async listenMessages(timeout) {
+    const messages = [];
+    return new Promise((resolve, reject) => {
+      const onMessage = (msg) => {
+        if (msg) {
+          messages.push(msg.content.toString());
+        }
+      };
+
+      this.channel
+        .consume(this.queue, onMessage, { noAck: false })
+        .then((consumer) => {
+          setTimeout(async () => {
+            await this.channel.cancel(consumer.consumerTag);
+            resolve(messages);
+          }, timeout);
+        })
+        .catch(reject);
+    });
+  }
+}
+```
+
+```typescript
+//Rabit service usage
+import {
+  BadRequestException,
+  Body,
+  ConflictException,
+  Controller,
+  HttpCode,
+  HttpStatus,
+  Post,
+} from '@nestjs/common';
+import { RabbitMQService } from 'src/services/RabbitMQService';
+import { formatBRL } from 'src/utils/formats';
+import { z } from 'zod';
+import { SendEmailUseCase } from '../../useCases/emails/SendEmailUseCase';
+
+const emailDataSchema = z.object({
+  to: z.string().email(),
+});
+
+type emailDataSchema = z.infer<typeof emailDataSchema>;
+
+@Controller('/emails/send')
+export class SendEmailController {
+  constructor(
+    private readonly sendEmailUseCase: SendEmailUseCase,
+    private rabbitMQService: RabbitMQService,
+  ) {}
+  @Post()
+  @HttpCode(HttpStatus.OK)
+  async handle(@Body() emailData: emailDataSchema) {
+    const validation = emailDataSchema.safeParse(emailData);
+    if (!validation.success) {
+      throw new BadRequestException(validation.error.errors);
+    }
+    try {
+      const TIMER = 2000
+      const messages = await this.rabbitMQService.listenMessages(TIMER);
+      if (messages) {
+        const parsedMessages = [];
+         //@ts-expect-error messages type is array
+        for (const message of messages) {
+          parsedMessages.push(JSON.parse(message));
+        }
+        for (const parsedMessage of parsedMessages) {
+          await this.sendEmailUseCase.execute({
+            order: {
+              id: parsedMessage.id,
+              total: formatBRL(parsedMessage.total),
+            },
+            to: emailData.to,
+          });
+        }
+
+        return { message: 'Email sent successfully' };
+      }
+    } catch (error) {
+      console.log('Error at trying to send email: ', error);
+      throw new ConflictException({
+        message:
+          'An error occurred. Check all request body fields for possible mismatching.',
+        error: error.message,
+      });
+    }
+  }
+}
+
+``` 
