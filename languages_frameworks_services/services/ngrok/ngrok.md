@@ -15,4 +15,4 @@ Ngrok can be useful to:
 ## General tips
 - Provide your ip machine instead `localhost` at running the command to mount and expose your URL.
 - Pay attention on the network your application is running. The flag --net must appoint to the correct network.
--  The generated URL is temporary and you should exchange it on your application or REST client every time you rerun the command.
+- The generated URL is temporary and you should exchange it on your application or REST client every time you rerun the command.
