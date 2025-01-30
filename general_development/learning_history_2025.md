@@ -11,3 +11,7 @@
 ### 10/01/2025
 
 - Use Ngrok with Docker command for generate temporary HTTPS URLs to enable your service communication with third services.
+
+### 29/01/2025
+
+- If you getting fetch errors at running requests on NextJS using Axios, try making these requests using fetch API because all examples on NextJS are using Fetch API.
