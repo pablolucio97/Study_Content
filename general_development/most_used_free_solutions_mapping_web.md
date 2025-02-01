@@ -40,7 +40,7 @@
 - [Material-UI](https://mui.com/): A robust component library based on Material design principles.
 - [Chakra UI](https://chakra-ui.com/): A simple, modular, and accessible component library that provides all the building blocks you need to build your React applications.
 - [DaisyUI](https://daisyui.com/): Adds a layer of component styling to Tailwind CSS.
-- [RC Progress](https://www.npmjs.com/package/rc-progress): Displays progress bars and rings.
+- [ShadCN](https://ui.shadcn.com/): A modern and beautiful component library for applications who uses TailwindCSS.
 
 
 ---
@@ -124,6 +124,7 @@
 ## Icons
 - [React Icons](https://react-icons.github.io/react-icons/): Include popular icons in your React projects.
 - [Phosphor Icons](https://phosphoricons.com/): A flexible icon family for interfaces, diagrams, presentations, and more.
+- [Lucide Icons - React](https://lucide.dev/guide/packages/lucide-react): Implementation of the lucide icon library for react applications.
 
 ---
 
