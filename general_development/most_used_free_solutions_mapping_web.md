@@ -19,6 +19,9 @@
 ## API Management and Fetching
 - [Axios](https://axios-http.com/): A promise-based HTTP client for making requests to external resources.
 - [React Query](https://react-query.tanstack.com/): Simplifies fetching, caching, and updating asynchronous data in React applications.
+- [Socket.io client](https://www.npmjs.com/package/socket.io-client): Client library for implement websocket protocol communication.
+- [Apollo Client](https://www.apollographql.com/docs/react/) - A comprehensive state management library for JavaScript that enables you to manage both local and remote data with GraphQL.
+- [GraphQL](https://graphql.org/) - A query language for your API, and a server-side runtime for executing queries by using a type system you define for your data.
 
 ---
 
@@ -48,6 +51,8 @@
 # Essential React Component Libraries
 
 - [React Toastify](https://fkhadra.github.io/react-toastify/) - Easily create toast notifications with various customization options.
+
+- [React Hot Toast](https://react-hot-toast.com/) - Easily create toast notifications with various customization options.
 
 - [React Calendar](https://www.npmjs.com/package/react-calendar) - A highly customizable calendar component for date selection.
 
@@ -83,7 +88,13 @@
 
 - [React Lightbox](https://frontend-collective.github.io/react-image-lightbox/) - For creating lightbox effects on images.
 
-- [React Slick](https://react-slick.neostack.com/docs/get-started): A carousel component built with React.
+- [React Slick](https://react-slick.neostack.com/docs/get-started) - A carousel component built with React.
+
+- [RC Checkbox](https://www.npmjs.com/package/rc-checkbox) - A simple checkbox component, customizable and easy to integrate with React projects.
+
+- [RC Progress](https://www.npmjs.com/package/rc-progress) - A React component for displaying progress bars and circles.
+  
+- [React Collapsible](https://www.npmjs.com/package/react-collapsible) - A React component for collapsible/accordion elements that can hide or show content effectively.
 
 
 ## Deployment Platforms
@@ -116,6 +127,15 @@
 
 ---
 
+## Date and data formatting
+- [Date FNS](https://www.material-tailwind.com/docs/react/installation) - A lightweight library for performing date calculations and formatting.
+- [Day JS](https://day.js.org) - A lightweight date library that provides simple APIs for parsing, validating, manipulating, and displaying dates and times.
+- [React Number Format](https://www.material-tailwind.com/docs/react/installation) - An input-formatter library with a sophisticated and light weight caret engine. 
+- [@eduhds/js-util](https://eduhds.github.io/js-util/) - Masks, formatting, and validations for JavaScript and TypeScript projects. 
+- [CPF-CNPJ Validator](https://www.npmjs.com/package/cpf-cnpj-validator) - Validator for CPF and CNPJ.
+- [Cep Promise](https://www.npmjs.com/package/cep-promise) - Returns address data based on Brazilians CEP. 
+---
+
 ## Forms
 - [React Hook Form](https://www.material-tailwind.com/docs/react/installation) - The most used form library for React
 
@@ -142,6 +162,7 @@
 
 ## Testing
 - [Jest](https://jestjs.io/docs/getting-started): JavaScript Testing Framework with a focus on simplicity.
+- [Vitest](https://vitest.dev/guide): Simple and easy to use testing framework powered by Vite.
 - [React Testing Library](https://testing-library.com/docs/react-testing-library/intro/): Builds on top of DOM Testing Library by adding APIs for working with React components.
 
 ---
@@ -161,6 +182,7 @@
 
 ## Next.js-Specific Tools
 - [Nookies](https://github.com/maticzav/nookies): A set of cookie helpers for Next.js projects, making server and client side cookie handling easy.
+- [Next sitemap](https://www.npmjs.com/package/next-sitemap): Generates site mapping for helping your Next project be found on Google.
 
 ---
 
