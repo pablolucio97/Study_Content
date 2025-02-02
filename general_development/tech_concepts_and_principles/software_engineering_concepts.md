@@ -1,4 +1,4 @@
-# SOFTWARE ENGINEERING COURSE
+# SOFTWARE ENGINEERING CONCEPTS
 
 Software Engineering is the field that studies software development, its lifecycle, concepts, and techniques.
 
