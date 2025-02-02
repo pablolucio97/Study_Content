@@ -48,7 +48,7 @@
 
 ---
 
-# Essential React Component Libraries
+# Essential React Components
 
 - [React Toastify](https://fkhadra.github.io/react-toastify/) - Easily create toast notifications with various customization options.
 
