@@ -15,3 +15,7 @@
 ### 29/01/2025
 
 - If you getting fetch errors at running requests on NextJS using Axios, try making these requests using fetch API because all examples on NextJS are using Fetch API.
+  
+### 04/02/2025
+
+- Use the flag `--allow-unrelated-histories` at the first commit pushing if for some reason there is a mismatch between the current local and remote branches. Example: `git merge master --allow-unrelated-histories`.
