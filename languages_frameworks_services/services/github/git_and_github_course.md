@@ -285,16 +285,11 @@ Run `git pull` at a specific branch to update that specific branch.
 
 ## GENERAL TIPS
 
-Each commit should do only one thing. Names your commits in the present (not past) specifying what it does.
-
-Do atomic commits to make it easier to fix possible conflicts when merging branches in the future.
-
-Conflicts generally occur when we're cloning a repo, changing the content in our local machine in a new branch, and pushing it again to GitHub. We should fix it before pushing.
-
-Create a new branch for features, bug fixes, and releases when working on professional projects. Example of a branch: `feature/theme-dark`.
-
-Use `git commit -am 'your commit message'` to add and commit your changes in a single line of code.
-
-The branches of the project vary according to the branches that are created on each machine, so always create new branches when working with local repositories already on GitHub.
-
-GitHub can or cannot create a new rebase branch when rebasing branches. If it's created, create a new branch over this branch, for example: `feat/myFeatRebasecommit`, and push over this rebasing branch.
+- Each commit should do only one thing. Names your commits in the present (not past) specifying what it does.
+- Do atomic commits to make it easier to fix possible conflicts when merging branches in the future.
+- Conflicts generally occur when we're cloning a repo, changing the content in our local machine in a new branch, and pushing it again to GitHub. We should fix it before pushing.
+- Create a new branch for features, bug fixes, and releases when working on professional projects. Example of a branch: `feature/theme-dark`.
+- Use `git commit -am 'your commit message'` to add and commit your changes in a single line of code.
+- The branches of the project vary according to the branches that are created on each machine, so always create new branches when working with local repositories already on GitHub.
+- GitHub can or cannot create a new rebase branch when rebasing branches. If it's created, create a new branch over this branch, for example: `feat/myFeatRebasecommit`, and push over this rebasing branch.
+- Use the command git reset --soft HEAD~1 to not push your last commit if you get some conflict because your local repository is not synced with remote repository. 
