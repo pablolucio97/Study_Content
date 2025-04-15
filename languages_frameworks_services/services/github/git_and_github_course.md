@@ -143,6 +143,19 @@ You don't need to commit before pushing if you haven't any changes.
 
 Run `git pull` at a specific branch to update that specific branch.
 
+### CONTRIBUTING TO REAL TEAM PROJECTS (SAFE REBASE METHOD)
+
+1. git fetch --prune
+2. change to branch that we want to update (eg: development)
+3. git pull (in the branch you want to get updates)
+4. git branch deleted_branch_on_github -D (deletes local branch that was deleted in the github)
+5. git checkout your_branch switches to the local branch that you want to update with the latest commits (eg: feat/someComponent)
+6. git pull origin the_reference_most_updated_brach --rebase (e.g: git pull origin development --rebase)
+7. git stash apply (apply the index of your stash if you have to apply some stash)
+8. git add .
+9. git commit -m
+10. git push —force-with-lease (required because rebase rewrites commit history and it protects you from overwriting changes accidentally).
+
 ### EDITING YOUR LAST COMMIT
 
 1. `git commit --amend -m 'your_message'`
