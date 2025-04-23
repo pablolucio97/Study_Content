@@ -52,4 +52,30 @@ export const models = {
 
 ### 27/03/2025
 - At working with full-stack applications that needs to record data on back-end, always save the date as UTC on back-end and read it on your front-end using moment-timezone to be parsed for your local timezone. The date always need to be stored as UTC.
+
+### 23/04/2025
+- If you need to work with composed arrays (arrays inside arrays), you need to map over these arrays twice. Example:
+```typescript
+  const items = [
+    ["Despesa", "DOC125", "2025-05-15", null, 1200, null],
+    ["Transferência", "DOC125", "2025-05-15", null, 1200, null]
+  ] 
+
+ {items.map((row, rowIndex) => (
+      <div
+          key={rowIndex}
+          className="w-full flex items-center justify-around py-3 border-b-[1px] border-b-gray-200"
+      >
+          {row.map((cell: any, cellIndex: number) => (
+              <div className="mx-auto w-[180px] flex justify-center">
+                  <span key={cellIndex} className="text-sm text-gray-900 w-full text-center">
+                      {typeof cell === 'number' ?
+                          formatBRL(cell) : cell ??
+                          "-"}
+                  </span>
+              </div>
+          ))}
+      </div>
+  ))}
 ```
+
