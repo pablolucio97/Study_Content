@@ -80,4 +80,7 @@ export const models = {
 ```
 
 ### 19/05/2024
-- At working with requests on front-end applications, always treat the request try/catch clock directly in the screen where you're calling it because it let the error more clear, and gives you the possibility of providing a better UI response for each error.
+- At working with requests on front-end applications, always treat the request try/catch block directly in the screen where you're calling it because it let the error more clear, and gives you the possibility of providing a better UI response for each error.
+
+### 22/05/2024
+- At creating React's components, always put fixed constants outside the component to avoid unnecessary rerenders.
