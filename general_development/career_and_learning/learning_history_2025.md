@@ -84,3 +84,54 @@ export const models = {
 
 ### 22/05/2024
 - At creating React's components, always put fixed constants outside the component to avoid unnecessary rerenders.
+
+### 02/07/2024
+- At working with .png files use large and big sizes even for small viewing to avoid losing quality.
+- Use the API URL.createObjectURL() passing the blob content to be able to render the image content on web.
+- For download files, a server response can be returned as blob to return the blob content, in this case the response type must be explicit as blob. 
+- Prefer using return for if statement instead using if else because it improves readability and by reducing nesting.
+- Use the hack of changing your logic for true/false for quickly test it.
+- Use a callback tied to an event to pass props from children to parent component in React, Example:
+```typescript
+// Define your Child data type
+interface IChild {
+  id: string;
+  name: string;
+}
+
+// Props for ChildComponent
+interface ChildProps {
+  data: IChild[];
+  onDoSomething?: (someId: string) => void;
+}
+
+// ChildComponent
+export function ChildComponent({ data, onDoSomething }: ChildProps) {
+  return (
+    <>
+      {data.map((d) => (
+        <button key={d.id} onClick={() => onDoSomething?.(d.id)}>
+          {d.name}
+        </button>
+      ))}
+    </>
+  );
+}
+
+// ParentComponent
+export function ParentComponent() {
+  const childrenData: IChild[] = [
+    { id: '1', name: 'First' },
+    { id: '2', name: 'Second' },
+  ];
+
+  const handleDoSomething = (someId: string) => {
+    console.log('Child clicked with ID:', someId);
+  };
+
+  return (
+    <ChildComponent data={childrenData} onDoSomething={handleDoSomething} />
+  );
+}
+
+``` 
