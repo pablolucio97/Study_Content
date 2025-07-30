@@ -1,39 +1,59 @@
-==================DOING SINGIN WITH GOOGLE FIREBASE===================
+# Doing Sign-In with Google using Firebase
 
-1)Go to https://firebase.google.com/ and create a new project.
+This guide walks you through integrating Google Sign-In using Firebase in a React application.
 
-----------------------------------------------------------------------
+---
 
-2) Go to Authentication, first steps, active the auth, select the Go-
-ogle signin, suply an e-mail and the project name and save it.
+## 1. Create Firebase Project
 
-----------------------------------------------------------------------
+Go to `https://firebase.google.com/` and create a new project.
 
-3) Go to RealtimeDatabase, click in create database, select the option
-starts with secure mode and save it.
+---
 
-----------------------------------------------------------------------
+## 2. Enable Google Sign-In
 
-4) Go to Porject General Overview and click in Web to use the firebase 
-with a web project.
+- Navigate to **Authentication > Get Started**
+- Enable **Google** sign-in provider
+- Supply your project name and email, then save
 
-----------------------------------------------------------------------
+---
 
-5) Install the firebase yarn add firebase.
+## 3. Create Realtime Database
 
-----------------------------------------------------------------------
+- Go to **Realtime Database**
+- Click **Create Database**
+- Choose **Start in secure mode**, then save
 
-6) Create a new folder named services and insisde this a new file named 
-firebase.ts.
+---
 
-----------------------------------------------------------------------
+## 4. Enable Firebase for Web
 
-7)Inside this file, import the firabse, firabese/auth and firebase/data-
-base, past your firebaseConfig from your firebase web project, initiali-
-ze the firabase and create instances for auth and databse. Exmaple:
+- Go to **Project Overview**
+- Click the **Web (</>) icon** to add a new web app
 
+---
+
+## 5. Install Firebase
+
+Run the following:
+
+`yarn add firebase`
+
+---
+
+## 6. Create Firebase Service File
+
+- Create a folder named `services`
+- Inside it, create `firebase.ts`
+
+---
+
+## 7. Configure Firebase
+
+Paste your Firebase config and set up instances:
+
+```
 import firebase from 'firebase'
-
 import 'firebase/auth'
 import 'firebase/database'
 
@@ -46,24 +66,27 @@ const firebaseConfig = {
   messagingSenderId: process.env.REACT_APP_MESSAGING_SENDER_ID,
   appId: process.env.REACT_APP_APP_ID,
   measurementId: process.env.REACT_APP_MEASUREMENT_ID,
-  };
+};
 
-  firebase.initializeApp(firebaseConfig)
+firebase.initializeApp(firebaseConfig)
 
-  const auth = firebase.auth();
-  const database = firebase.database();
-  
-  export {auth, database}
-  
-------------------------------------------------------------------------
-  
- 8) Create a .env.local file to store your variables and exchange them in 
- your firebase config.
- 
-------------------------------------------------------------------------
+const auth = firebase.auth();
+const database = firebase.database();
 
-9) Create a context to handle the user login:
- 
+export { auth, database }
+```
+
+---
+
+## 8. Create Environment File
+
+Create a `.env.local` file to store your variables and reference them in your config.
+
+---
+
+## 9. Create Context for Authentication
+
+```
 import { useState, useEffect, createContext, ReactNode } from 'react'
 import { auth } from '../services/firebase'
 import firebase from 'firebase'
@@ -71,11 +94,11 @@ import firebase from 'firebase'
 type UserProps = {
     id: string;
     name: string;
-    avatar: string
+    avatar: string;
 }
 
 type ChildrenProps = {
-    children: ReactNode
+    children: ReactNode;
 }
 
 type AuthContextProps = {
@@ -86,7 +109,6 @@ type AuthContextProps = {
 export const AuthContext = createContext({} as AuthContextProps)
 
 export const AuthProvider = ({ children }: ChildrenProps) => {
-
     const [user, setUser] = useState<UserProps>()
 
     useEffect(() => {
@@ -106,18 +128,14 @@ export const AuthProvider = ({ children }: ChildrenProps) => {
         })
 
         return () => { unsubscribe() }
-
     }, [])
 
     async function signInWithGoogleFirebase() {
-
         const provider = new firebase.auth.GoogleAuthProvider();
-
         const result = await auth.signInWithPopup(provider)
 
         if (result.user) {
             const { displayName, photoURL, uid } = result.user
-
 
             if (!displayName || !photoURL) {
                 throw new Error('Missing information from Google account.')
@@ -128,9 +146,7 @@ export const AuthProvider = ({ children }: ChildrenProps) => {
                 name: displayName,
                 avatar: photoURL
             })
-
         }
-
     }
 
     return (
@@ -139,7 +155,4 @@ export const AuthProvider = ({ children }: ChildrenProps) => {
         </AuthContext.Provider>
     )
 }
-
-------------------------------------------------------------------------
-
-10) 
+```
