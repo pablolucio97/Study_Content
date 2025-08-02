@@ -1,5 +1,9 @@
---------------------------CREATING A STACK NAVIGATOR------------------------------
 
+## React Navigation Introduction Course
+
+### Creating a Stack Navigator
+
+```
 import * as React from 'react';
 import { View, Text } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
@@ -35,11 +39,11 @@ function App() {
 }
 
 export default App;
+```
 
+### Creating Mixed Navigators
 
----------------------------CREATING MIXED NAVIGATORS------------------------------
-
-
+```
 import React from 'react'
 import {createStackNavigator} from '@react-navigation/stack'
 import {createDrawerNavigator} from '@react-navigation/drawer'
@@ -51,12 +55,10 @@ import Floors from './assets/screens_obra_calc/Floors'
 import Concrete from './assets/screens_obra_calc/Concrete'
 import Login from './assets/screens_obra_calc/login'
 
-
 export default function App() {
 
   const Stack = createStackNavigator()
   const Drawer = createDrawerNavigator()
-
 
   function DrawerNav() {
     return(
@@ -69,7 +71,6 @@ export default function App() {
     )
   }
 
-
   return (
     <NavigationContainer>
       <Stack.Navigator initialRouteName='Login'>
@@ -79,9 +80,11 @@ export default function App() {
     </NavigationContainer>
   )
 }
+```
 
---------------------------NAVIGATING BETWEEN SCREENS-----------------------------
+### Navigating Between Screens
 
+```
 import * as React from 'react';
 import { Button, View, Text } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
@@ -129,9 +132,12 @@ function App() {
 }
 
 export default App;
+```
 
-------------------------PASSING DATA BETWEEN SCREENS----------------------------
+### Passing Data Between Screens
 
+**HomeScreen:**
+```
 import * as React from 'react';
 import {useState} from 'react'
 import { Button, View, Text } from 'react-native';
@@ -141,28 +147,28 @@ function HomeScreen({ navigation }) {
     const handleState = () => {
         setName('Guile')
     }
- 
+
     return (
       <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
         <Text>Home Screen</Text>
         <Button
           title="Go to Profile"
           onPress={() => navigation.navigate('ProfileScreen', {getname: name})}
-          />
-          <Text>My prefered char is {name}</Text>
-           <Button
+        />
+        <Text>My prefered char is {name}</Text>
+        <Button
           title="Prefered char"
           onPress={handleState}
         />
       </View>
     );
-  }
+}
 
-  export default HomeScreen;
+export default HomeScreen;
+```
 
-
-------------------------------------------------------------------------------------
-
+**ProfileScreen:**
+```
 import * as React from 'react';
 import { Button, View, Text } from 'react-native';
 
@@ -170,102 +176,50 @@ function ProfileScreen( {navigation, route} ) {
     return (
       <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
         <Text>Details Screen</Text>
-    <Text>Prefered char: {route.params?.getname}</Text>
+        <Text>Prefered char: {route.params?.getname}</Text>
         <Button
-        title='Go to Home'
-        onPress={ () => navigation.navigate('HomeScreen')}
+          title='Go to Home'
+          onPress={ () => navigation.navigate('HomeScreen')}
         />
       </View>
     );
-  }
-  export default ProfileScreen;
-
--------------------------SETTING SCREENS OPTIONS-----------------------------------
-
-import React from 'react'
-import { View, Text, StyleSheet, TouchableOpacity, StatusBar} from 'react-native'
-import {Title,SubTitle,CommonText} from  '../../Styles/styled'
-
-export default function App({navigation, route}) {
-
-  return (
-    <View style={styles.mainContainer}>
-    	<TouchableOpacity style={styles.button} onPress = { 
-	() =>{navigation.setOptions({headerStyle: {
-     	 backgroundColor: '#55ff'
-   		 }})}}>
-      		<Text style={{color: '#fff', fontSize: 22, textAlign: 'center'}}>
-		EXPLORE</Text>
-    	</TouchableOpacity>
-    </View>
-  )
 }
 
-----------------------SETTING SCREENS OPTIONS FOR ALL SCREENS-----------------------
+export default ProfileScreen;
+```
 
-import * as React from 'react';
-import { View, Text } from 'react-native';
-import { NavigationContainer } from '@react-navigation/native';
-import { createStackNavigator } from '@react-navigation/stack';
+### Setting Screen Options
 
-function HomeScreen() {
-  return (
-    <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-      <Text>Home Screen</Text>
-    </View>
-  );
-}
+```
+<TouchableOpacity style={styles.button} onPress={() => {
+  navigation.setOptions({
+    headerStyle: {
+      backgroundColor: '#55ff'
+    }
+  })
+}}>
+  <Text style={{color: '#fff', fontSize: 22, textAlign: 'center'}}>EXPLORE</Text>
+</TouchableOpacity>
+```
 
-const Stack = createStackNavigator();
+### Setting Options Globally
 
-function App() {
-  return (
-    <NavigationContainer>
-      <Stack.Navigator
-        screenOptions={{
-          headerStyle: {
-            backgroundColor: '#f4511e',
-          },
-          headerTintColor: '#fff',
-        }}
-      >
-        <Stack.Screen
-          name="Home"
-          component={HomeScreen}
-          options={{ title: 'My home' }}
-        />
-      </Stack.Navigator>
-    </NavigationContainer>
-  );
-}
-
-export default App;
-
----------------------------------GENERAL TIPS----------------------------------
-
-Use the prop tabBarBadge in your TabBottomBar to show some data in your 
-TabBottomBar screen.
-
--------------
-
-Its possible to disable the iOS back to previous screen moving throught the 
-option screenOptions={{ gestureEnabled: false }} inside the desired screen.
-
--------------
-
-Its possible to define same options for a set a of screens using the Group
-component. Example:
-
-<Group screenOptions={{ gestureEnabled: false }}>
-  <Screen
-    name="quiz"
-    component={Quiz}
+```
+<Stack.Navigator
+  screenOptions={{
+    headerStyle: { backgroundColor: '#f4511e' },
+    headerTintColor: '#fff',
+  }}>
+  <Stack.Screen
+    name="Home"
+    component={HomeScreen}
+    options={{ title: 'My home' }}
   />
+</Stack.Navigator>
+```
 
-  <Screen
-    name="finish"
-    component={Finish}
-  />
-</Group>
+### General Tips
 
-
+- Use `tabBarBadge` to show data in tab.
+- Disable back gesture on iOS with `gestureEnabled: false`.
+- Use `<Group screenOptions={{ gestureEnabled: false }}>` to apply screenOptions to multiple screens.
