@@ -1,63 +1,5 @@
 --------------------------MAIN REACT PATTERNS---------------------------
 
---- Element Pattern
-
-Consist in anything inside angle brackets. Example:
-
-<Greeting />
-
--------------------
-
---- Component Pattern
-
-Define a component by declaring a function that returns a React Element.
-Example:
-
-function Greeting() {
-  return <div>Hi there!</div>;
-}
-
--------------------
-
-Compound components
-
-Are components with children components that needs to communicate each o-
-ther like forms, sidebars and menus.
-
--------------------
-
---- Container (container list) Component:
-
-This pattern is a parent component who recives an array as prop and then
-iterates over this array. Example:
-
-const Container = (items: any[]) => {
-    return(
-        items.map(item => <p> {item} </p>)
-    )
-}
-
--------------------
-
---- Expressions Pattern
-
-Compound by a function with logical scope envolved by curly braces that 
-return an element. Example:
-
-function Greeting(){
-    const name = 'Pablo'
-    return <p>{name}</p>
-}
-
--------------------
-
---- DefaultProps Pattern (doesn't uses it with TypeScript)
-
-Specifies default values for props without typing it. Example:
-
-function Greeting(props) {
-  return <div>Hi {props.name}!</div>;
-}
 
 -------------------
 
@@ -176,21 +118,7 @@ Examples:
   );
 }
 
--------------------
 
---- Children String Pattern 
-
-Render a string in a React Element
-<div>Hello World!</div>
-
--------------------
-
---- Children Array Pattern 
-
-Render an array in a React Element. This array can be compused for 
-strings or others React Elements. Example:
-
-<div>{["Hello ", <span>World</span>, "!"]}</div>
 
 -------------------
 
@@ -226,25 +154,6 @@ export const EmailInput = () => {
     )
 }
 
--------------------
-
---- Event Switch Pattern
-
-Useful for handle elements with can listen for different type of events.
-
-
-handleEvent(type) {
-  switch(type) {
-    case "click":
-      return () => handleClick()
-    case "mouseenter":
-      return () => handleMouseEnter()
-    case "mouseleave":
-      return () => handleMouseLeave()
-    default:
-      return () => {}
-  }
-}
 
 -------------------
 
@@ -304,9 +213,6 @@ the state.
 - Use a callback function to update the state. 
 Ex: prevState => setState(prevState).
 
-- Use a third lib  like react-usestateref to get and handle the state 
-based on the current state.
-
 ------------
 
 Don't view the expected result of a function, just after a new render:
@@ -329,11 +235,6 @@ application.
 - If you're working with data that is handled by the front-end, avoid 
 to put it in separated screens, always is possible, handle the data 
 from the same state.
-
-- Check if the state is being altered directly, example: pushes. Case 
-afirmative, alter the state using shallow copy.
-
------------------------------GENERAL TIPS------------------------------
 
 Avoid creating a state for everything. React state keeps a track of the
 data. The more states you use, the more data you have to keep track of 
