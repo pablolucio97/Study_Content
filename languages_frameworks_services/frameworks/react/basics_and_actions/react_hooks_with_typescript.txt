@@ -708,5 +708,19 @@ The useCallback() hook should be used not specific be a function is big and yes
 because the React crates a new position in the memory for the function every 
 component renderization.
 
+Update a state based on previous state rather that current state. Do a shallow copy of 
+the state using spread operator and then update the state.
 
+Use a callback function to update the state. Ex: prevState => setState(prevState).
 
+- If possible, refact your code reducing the amount of states in your 
+application.
+
+Use the hook useRef for handle imperatively html and native elements 
+like Inputs, TextInputs, CheckBox, and so on.
+
+Avoid creating a state for everything. React state keeps a track of the
+data. The more states you use, the more data you have to keep track of 
+acorss your application. Always is possible, handle the data from the same state.
+
+Check the useEffects hooks conditionals and dependence array, duplicity, and execution order at facing Unsatisfactory renderization or side effects
