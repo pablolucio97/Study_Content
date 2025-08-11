@@ -1,32 +1,38 @@
-======ADDING FORM VALITIONS WITH REACT HOOK FORM AND ZOD RESOLVER======
+# Adding Form Validations with React Hook Form and Zod Resolver
 
-1) Run yarn add react-hook-form @hookform/resolver zod to install the 
-React Hook Form, the resolvers and the Zod for validations.
+## 1) Install Dependencies
 
-________________
+Run the following command to install React Hook Form, the resolvers, and Zod for validations:
 
-2) Create your validation scheme importing * as zod and the zodResol-
-ver and creating a new type to type your resolver according to your o-
-bject validation type. Example
+```bash
+yarn add react-hook-form @hookform/resolver zod
+```
 
+---
 
+## 2) Create Your Validation Schema
+
+Import `* as zod` and the `zodResolver`, and create a new type to type your resolver according to your object validation type.
+
+```typescript
 import { zodResolver } from "@hookform/resolvers/zod"
 import * as zod from "zod"
 
 const newCycleFormValidationScheme = zod.object({
-	task: zod.string().min(1, "Informe a tarefa"),
-	minutesAmount: zod.number().min(5).max(60)
+    task: zod.string().min(1, "Informe a tarefa"),
+    minutesAmount: zod.number().min(5).max(60)
 })
 
 type FormData = zod.infer<typeof newCycleFormValidationScheme>
+```
 
-________________
+---
 
-3) Import the useForm from 'react-hook-form' and desustructure regis-
-rer, watch, handleSubmit and reset from useForm and pass an object as
-argument to useForm containing the your resolver with the validation 
-type and an object with the default values. Example:
+## 3) Initialize the Form
 
+Import the `useForm` from `react-hook-form` and destructure `register`, `watch`, `handleSubmit`, and `reset` from `useForm`. Pass an object as an argument to `useForm` containing your resolver with the validation type and an object with the default values.
+
+```typescript
 const { register, watch, handleSubmit, reset } = useForm<FormData>({
     resolver: zodResolver(newCycleFormValidationScheme),
     defaultValues: {
@@ -34,12 +40,15 @@ const { register, watch, handleSubmit, reset } = useForm<FormData>({
         minutesAmount: 0
     }
 })
+```
 
-________________
+---
 
-4) Create variables to watch each input of your application and con-
-trol the submit button based in these variables rules. Example:
+## 4) Control Form Behavior
 
+Create variables to watch each input of your application and control the submit button based on these variables' rules.
+
+```typescript
 const task = watch("task")
 const minutesCounter = watch("minutesAmount")
 const isDisabledBtn = !task || !minutesCounter
@@ -47,14 +56,15 @@ const isDisabledBtn = !task || !minutesCounter
 <StartCountdownButton disabled={isDisabledBtn} type="submit">
     Começar
 </StartCountdownButton>
+```
 
-________________
+---
 
-5) Pass for each input of your form the function register with all 
-possible returns of this function (through spread operator) passing 
-the name of the field that this input controls as argument, you can 
-to pass an object of configuration as second parameter. Example:
+## 5) Register Inputs
 
+Pass for each input of your form the `register` function with all possible returns of this function (through the spread operator) passing the name of the field that this input controls as an argument. You can also pass an object of configuration as a second parameter.
+
+```tsx
 <TaskInput
     type="text"
     id='task'
@@ -72,13 +82,16 @@ to pass an object of configuration as second parameter. Example:
     step={5}
     {...register("minutesAmount", { valueAsNumber: true })}
 />
-________________
+```
 
-6) Write the function that will be called in your form and call
-this function inside the handleSumit function from the useForm ho-.
-ok. Example:
+---
 
-function handleCreateNewCycle(data: NewCycleFormData) {
+## 6) Handle Form Submission
+
+Write the function that will be called in your form and call this function inside the `handleSubmit` function from the `useForm` hook.
+
+```tsx
+function handleCreateNewCycle(data: FormData) {
     console.log(data)
     reset()
 }
@@ -108,3 +121,6 @@ function handleCreateNewCycle(data: NewCycleFormData) {
         Começar
     </StartCountdownButton>
 </form>
+```
+
+---
