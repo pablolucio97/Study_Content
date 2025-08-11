@@ -1,122 +1,137 @@
-Styled Components introduction Course
 
------------------------------------GENERAL USAGE--------------------------------------
+# Styled Components Introduction Course
 
-Component file:
+## General Usage
 
-import React, {useContext} from 'react'
-import {Container, Text1} from '../styles/styles_example'
+**Component File:**
+
+```tsx
+import React from 'react'
+import { Container, Text1 } from '../styles/styles_example'
 
 const ExampleComponent = () => {
-    return(
+    return (
         <Container>
-		<h1>Hello from Styled Components.</h1>
-		<Text1>I'm an exampple.</Text1>
+            <h1>Hello from Styled Components.</h1>
+            <Text1>I'm an example.</Text1>
         </Container>
     )
 }
 
 export default ExampleComponent
+```
 
--------------------------------------------------------------------------------------
+**Styled File:**
 
-Styled file:
-
+```tsx
 import styled from 'styled-components/native';
 
 export const Container = styled.View`
-flex: 1;
-background-color: #fff;
-justify-content: flex-start;
-padding: 30px;
-align-items: center
+    flex: 1;
+    background-color: #fff;
+    justify-content: flex-start;
+    padding: 30px;
+    align-items: center;
 
- &:hover{
-	opacity: .8
- }
+    &:hover {
+        opacity: .8;
+    }
 
- h1{
-   font-size: 32px;
- }
+    h1 {
+        font-size: 32px;
+    }
+`;
 
-`
+export const Text1 = styled.Text`
+    font-size: 30px;
+    color: #55ee;
+    text-align: center;
+`;
+```
 
-export const Text = styled.Text`
-font-size: 30;
-color: #55ee;
-text-align: center;
-`
+---
 
---------------------STYLING COMPONENTS FROM THIRD LIBRARYS----------------------------
+## Styling Components from Third-Party Libraries
 
-1) Import the component and the infterface of the components in  styles.ts. Example:
+1. Import the component and its interface in your styles file:
 
-import Switch, { ReactSwitchProps} from 'react-switch'
+```tsx
+import Switch, { ReactSwitchProps } from 'react-switch';
+```
 
+2. Style the component:
 
-2) Style the component:
+```tsx
+export const Switcher = styled(Switch).attrs<ReactSwitchProps>(({ theme }) => ({
+    offColor: theme.colors.warning,
+    onColor: theme.colors.info
+}))<ReactSwitchProps>`
+    margin: 7px;
+`;
+```
 
-export const Switcher = styled(Switch).attrs<ReactSwitchProps>(
-    ({theme}) => ({
-        offColor: theme.colors.warning,
-        onColor: theme.colors.info
-    }))<ReactSwitchProps>`
-        margin: 7px;
-    `
+---
 
-----------------------PASSING PROPS FROM COMPONENT TO STYLED FILE--------------------
+## Passing Props from Component to Styled File
 
-1) Create the desired prop in the component. Emxaple
+1. Pass the desired prop in the component:
 
- <TitleContainer lineColor={lineColor}/>
+```tsx
+<TitleContainer lineColor={lineColor} />
+```
 
+2. Create an interface and use it in the styled component:
 
-2) Create a insterface and use it in the component of style. Example:
-
-interface ILineColor{
-    lineColor: string
+```tsx
+interface ILineColor {
+    lineColor: string;
 }
 
 export const TitleContainer = styled.div<ILineColor>`
-
- h1{
-        color: ${props => props.lineColor}
+    h1 {
+        color: ${props => props.lineColor};
     }
-
-`
-
-3)Use in your application:
-
-      <ContentHeader 
-        title='Dashboard' 
-        lineColor='#fff'
-	/>
-    
-------------------------------------USING CLASSES------------------------------------- 
-
-To use classes in Styled Components you should to write the classes in the parent com-
-ponent and using in children components. Example:
-    
-export const Container = styled.div`
-  transition: all .32s ease all;
-  & .myClass {
-    padding-bottom: .8rem;
-    box-shadow: 0 0 8px ${palletCollors.primary}
-  }
-  
-   & .myClass2 {
-    padding-bottom: .8rem;
-    box-shadow: 0 0 8px ${palletCollors.primary}
-  }
 `;
+```
 
-------------------------------
+3. Use in your application:
 
+```tsx
+<ContentHeader 
+    title='Dashboard' 
+    lineColor='#fff'
+/>
+```
+
+---
+
+## Using Classes
+
+Styled Components allow you to use classes within a parent component and apply them to children:
+
+```tsx
+export const Container = styled.div`
+    transition: all .32s ease all;
+
+    & .myClass {
+        padding-bottom: .8rem;
+        box-shadow: 0 0 8px ${palletCollors.primary};
+    }
+    
+    & .myClass2 {
+        padding-bottom: .8rem;
+        box-shadow: 0 0 8px ${palletCollors.primary};
+    }
+`;
+```
+
+**Usage:**
+
+```tsx
 const CollapsibleContainer = () => {
-
     return (
         <Container>
-            <SubContainer className='myClass' >
+            <SubContainer className='myClass'>
                 <Title className='myClass2'>{title}</Title>
             </SubContainer>
         </Container>
@@ -124,36 +139,37 @@ const CollapsibleContainer = () => {
 }
 
 export default CollapsibleContainer;
+```
 
------------------------------------USING ANIMATIONS------------------------------------- 
+---
 
-To use animations in styled components you should to import the keyframes, define your 
-animation and use it in your style. Example:
+## Using Animations
 
+```tsx
 import styled, { keyframes } from "styled-components";
-import { palletCollors } from "../../styles/palletCollors";
 
 const myAnimation = keyframes`
-0%{transform: translateX(500%)}
-50%{transform: translateX(-500%); opacity: 0}
-100%{transform: translateX(500%)}
-`
-
-export const Img = styled.div`
-  width: 120px;
-  height: 80px;
-  object-fit: cover;
-  background: green;
-  animation: ${myAnimation} 2s infinite;
+    0% { transform: translateX(500%); }
+    50% { transform: translateX(-500%); opacity: 0; }
+    100% { transform: translateX(500%); }
 `;
 
+export const Img = styled.div`
+    width: 120px;
+    height: 80px;
+    object-fit: cover;
+    background: green;
+    animation: ${myAnimation} 2s infinite;
+`;
+```
 
-------------------------------USING BASE COMPONENTS---------------------------------
+---
 
-Base components is useful to avoid to write duplicated code at writing your compo-
-nents. Example:
+## Using Base Components
 
+Base components help avoid duplicated styles:
 
+```tsx
 export const BaseInput = styled.input`
     background: transparent;
     height: 2.5rem;
@@ -165,69 +181,74 @@ export const BaseInput = styled.input`
     color: ${(props) => props.theme["gray-100"]};
     margin: 0 1rem;
     
-    &:focus{
+    &:focus {
         border-bottom: 2px solid ${(props) => props.theme["green-500"]};
     }
 
-    &::placeholder{
+    &::placeholder {
         color: ${(props) => props.theme["gray-500"]};
     }
-
-    `
+`;
 
 export const TaskInput = styled(BaseInput)`
     flex: 1;
-    &::-webkit-calendar-picker-indicator{
+
+    &::-webkit-calendar-picker-indicator {
         display: none !important;
     }
-`
+`;
 
 export const MinutesAmountInput = styled(BaseInput)`
     width: 4rem;
-`
+`;
+```
 
-----------------------USING STATIC PROPS FROM INTERFACES ON THEME---------------------
+---
 
+## Using Static Props from Interfaces on Theme
+
+```tsx
 const STATUS_COLOR = {
-	green: "green-500",
-	yellow: "yellow-500",
-	red: "red-500",
-} as const
+    green: "green-500",
+    yellow: "yellow-500",
+    red: "red-500",
+} as const;
 
 interface StatusProps {
     statusColor: keyof typeof STATUS_COLOR;
 }
 
 export const Status = styled.span<StatusProps>`
-    &::before{
+    &::before {
         content: '';
         width: 0.5rem;
         height: 0.5rem;
         background-color: ${(props) => props.theme[STATUS_COLOR[props.statusColor]]};
-
     }
-`
+`;
+```
 
------------------------------------GENERAL TIPS--------------------------------------
+---
 
-When you has created a DefaultTheme in declaration file, the theme is accessible for 
-whole application styles file enoughting to passs the theme as prop. Example:
-${props => props.theme.colors.text}
+## General Tips
 
-Create a single interface for each component thinking if the application will rise.
+- When you have a `DefaultTheme` declared, the theme is accessible in all styles through props:  
+  ```tsx
+  ${props => props.theme.colors.text}
+  ```
+- Create a single interface for each component, thinking about future scalability.
+- Sometimes it's necessary to refer to the parent element for hover effects.
+- Use base components to avoid repeating style code.
+- Use `min` and `max` height/width to prevent layout shift.
+- Use `css` from `styled-components` to avoid declaring theme multiple times:
 
-Sometimes is need refer the parent element to see hovering effects.
-
-Use base components to avoid writing duplicated components styling.
-
-Use min and max height/width to avoid layout shift.
-
-Use css from styled components to avoid declaring theme repeated times. Ex:
-
-import styled, {css} from 'styled-components'
+```tsx
+import styled, { css } from 'styled-components';
 
 export const Title = styled.Text`
-${({theme}) => css`
-    color: ${theme.colors.primary};
-    font-size: ${theme.sizes[2]};
-`}
+    ${({ theme }) => css`
+        color: ${theme.colors.primary};
+        font-size: ${theme.sizes[2]};
+    `}
+`;
+```
