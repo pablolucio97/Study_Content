@@ -1,80 +1,254 @@
-PostCSS is a bundler for CSS
 
-1) Install the Tailwnd, PostCSS and the autoprefixer running npm i -D
-tailwndcss postcss autoprefixer.
+# Styled Components Introduction Course
 
------------------
+## General Usage
 
-2) Run npx tailwindcss init -p for start the TailwindCSS and the 
-PostCSS (on Vite projects, does not need to configure postcss).
+**Component File:**
 
------------------
+```tsx
+import React from 'react'
+import { Container, Text1 } from '../styles/styles_example'
 
-3) Open the tailwind.config.cjs file created on the project root and 
-configure the tailwind css passing inside the key "content" your co-
-de path and defining your theme inside the "theme" key. To add exter-
-nal fonts, pass it inside the "extend" key.  Example:
-
-/** @type {import('tailwindcss').Config} */
-module.exports = {
-  content: [
-    './src/**/*.tsx'
-  ],
-  theme: {
-    colors: {
-      transparent: 'transparent',
-
-      white100: '#FFFFFF',
-      white800: '#E0E0E0',
-      
-      gray700: '#7C7C8A',
-      gray800: '#555555',
-
-      black100: '#3A3A3A',
-      black500: '#2F2D2D',
-
-      cyan300: '#9DECF1',
-      cyan500: '#61DAFB'
-    },
-    fontSizes: {
-      xs: 14, sm: 16, md: 18, lg: 20, xl: 24, '2xl': 32
-    },
-    extend: {
-      fontFamily: {
-        sans: 'Inter, sans-serif'
-      }
-    },
-  },
-  plugins: [],
+const ExampleComponent = () => {
+    return (
+        <Container>
+            <h1>Hello from Styled Components.</h1>
+            <Text1>I'm an example.</Text1>
+        </Container>
+    )
 }
 
------------------
+export default ExampleComponent
+```
 
-4) Inside your src folder, create a folder named as "styles" and 
-inside a new file named as global.css importing the tailwind base,
-utilities and components. Example:
+**Styled File:**
 
-@tailwind base;
-@tailwind utilities;
-@tailwind components;
+```tsx
+import styled from 'styled-components/native';
 
------------------
+export const Container = styled.View`
+    flex: 1;
+    background-color: #fff;
+    justify-content: flex-start;
+    padding: 30px;
+    align-items: center;
 
-5) In your application import the file global.css. Example:
+    &:hover {
+        opacity: .8;
+    }
 
-import './styles/global.css'
+    h1 {
+        font-size: 32px;
+    }
+`;
 
-export default function App() {
-  return (
-    <div className='w-screen h-screen bg-black500 flex flex-col items-center justify-center'>
-        <p className='text-white100 font-sans text-sm px-4 py-3'>My App</p>
-    </div>
-  )
+export const Text1 = styled.Text`
+    font-size: 30px;
+    color: #55ee;
+    text-align: center;
+`;
+```
+
+---
+
+## Styling Components from Third-Party Libraries
+
+1. Import the component and its interface in your styles file:
+
+```tsx
+import Switch, { ReactSwitchProps } from 'react-switch';
+```
+
+2. Style the component:
+
+```tsx
+export const Switcher = styled(Switch).attrs<ReactSwitchProps>(({ theme }) => ({
+    offColor: theme.colors.warning,
+    onColor: theme.colors.info
+}))<ReactSwitchProps>`
+    margin: 7px;
+`;
+```
+
+---
+
+## Passing Props from Component to Styled File
+
+1. Pass the desired prop in the component:
+
+```tsx
+<TitleContainer lineColor={lineColor} />
+```
+
+2. Create an interface and use it in the styled component:
+
+```tsx
+interface ILineColor {
+    lineColor: string;
 }
 
-------------------------GENERAL TIPS--------------------------
+export const TitleContainer = styled.div<ILineColor>`
+    h1 {
+        color: ${props => props.lineColor};
+    }
+`;
+```
 
-You can exchange the Tailwind theme for your passing your 
-theme tokens directly inside the 'theme' key or your can ex-
-tend Tailwind theme passing your theme tokens inside the 'ex-
-tends' key.
+3. Use in your application:
+
+```tsx
+<ContentHeader 
+    title='Dashboard' 
+    lineColor='#fff'
+/>
+```
+
+---
+
+## Using Classes
+
+Styled Components allow you to use classes within a parent component and apply them to children:
+
+```tsx
+export const Container = styled.div`
+    transition: all .32s ease all;
+
+    & .myClass {
+        padding-bottom: .8rem;
+        box-shadow: 0 0 8px ${palletCollors.primary};
+    }
+    
+    & .myClass2 {
+        padding-bottom: .8rem;
+        box-shadow: 0 0 8px ${palletCollors.primary};
+    }
+`;
+```
+
+**Usage:**
+
+```tsx
+const CollapsibleContainer = () => {
+    return (
+        <Container>
+            <SubContainer className='myClass'>
+                <Title className='myClass2'>{title}</Title>
+            </SubContainer>
+        </Container>
+    );
+}
+
+export default CollapsibleContainer;
+```
+
+---
+
+## Using Animations
+
+```tsx
+import styled, { keyframes } from "styled-components";
+
+const myAnimation = keyframes`
+    0% { transform: translateX(500%); }
+    50% { transform: translateX(-500%); opacity: 0; }
+    100% { transform: translateX(500%); }
+`;
+
+export const Img = styled.div`
+    width: 120px;
+    height: 80px;
+    object-fit: cover;
+    background: green;
+    animation: ${myAnimation} 2s infinite;
+`;
+```
+
+---
+
+## Using Base Components
+
+Base components help avoid duplicated styles:
+
+```tsx
+export const BaseInput = styled.input`
+    background: transparent;
+    height: 2.5rem;
+    border: 0;
+    border-bottom: 2px solid ${(props) => props.theme["gray-500"]};
+    font-weight: bold;
+    font-size: 1.125rem;
+    padding: 0 0.5rem;
+    color: ${(props) => props.theme["gray-100"]};
+    margin: 0 1rem;
+    
+    &:focus {
+        border-bottom: 2px solid ${(props) => props.theme["green-500"]};
+    }
+
+    &::placeholder {
+        color: ${(props) => props.theme["gray-500"]};
+    }
+`;
+
+export const TaskInput = styled(BaseInput)`
+    flex: 1;
+
+    &::-webkit-calendar-picker-indicator {
+        display: none !important;
+    }
+`;
+
+export const MinutesAmountInput = styled(BaseInput)`
+    width: 4rem;
+`;
+```
+
+---
+
+## Using Static Props from Interfaces on Theme
+
+```tsx
+const STATUS_COLOR = {
+    green: "green-500",
+    yellow: "yellow-500",
+    red: "red-500",
+} as const;
+
+interface StatusProps {
+    statusColor: keyof typeof STATUS_COLOR;
+}
+
+export const Status = styled.span<StatusProps>`
+    &::before {
+        content: '';
+        width: 0.5rem;
+        height: 0.5rem;
+        background-color: ${(props) => props.theme[STATUS_COLOR[props.statusColor]]};
+    }
+`;
+```
+
+---
+
+## General Tips
+
+- When you have a `DefaultTheme` declared, the theme is accessible in all styles through props:  
+  ```tsx
+  ${props => props.theme.colors.text}
+  ```
+- Create a single interface for each component, thinking about future scalability.
+- Sometimes it's necessary to refer to the parent element for hover effects.
+- Use base components to avoid repeating style code.
+- Use `min` and `max` height/width to prevent layout shift.
+- Use `css` from `styled-components` to avoid declaring theme multiple times:
+
+```tsx
+import styled, { css } from 'styled-components';
+
+export const Title = styled.Text`
+    ${({ theme }) => css`
+        color: ${theme.colors.primary};
+        font-size: ${theme.sizes[2]};
+    `}
+`;
+```

@@ -1,3 +1,5 @@
+Styled Components introduction Course
+
 -----------------------------------GENERAL USAGE--------------------------------------
 
 Component file:
@@ -43,12 +45,7 @@ export const Text = styled.Text`
 font-size: 30;
 color: #55ee;
 text-align: center;
-	
-	
 `
-
------------------------CREATING AND USING GLOBAL STYLES-------------------------------
-
 
 --------------------STYLING COMPONENTS FROM THIRD LIBRARYS----------------------------
 
@@ -66,7 +63,6 @@ export const Switcher = styled(Switch).attrs<ReactSwitchProps>(
     }))<ReactSwitchProps>`
         margin: 7px;
     `
-
 
 ----------------------PASSING PROPS FROM COMPONENT TO STYLED FILE--------------------
 
@@ -95,22 +91,6 @@ export const TitleContainer = styled.div<ILineColor>`
         title='Dashboard' 
         lineColor='#fff'
 	/>
-
-------------------------STYLING BROWSER ELEMENTS(WEBKIT)----------------------------
-
-Example: Styling the scrollbar:
-
-    ::-webkit-scrollbar{
-        width: 10px;
-    }
-
-    ::-webkit-scrollbar-thumb{
-        background-color: '#EED23C'
-    }
-
-    ::-webkit-scrollbar-track{
-        background-color: '#55C23A'
-    }
     
 ------------------------------------USING CLASSES------------------------------------- 
 
@@ -167,58 +147,6 @@ export const Img = styled.div`
   animation: ${myAnimation} 2s infinite;
 `;
 
-
----------------------CREATING COMPONENTS WITH STYLE GUIDE STRATEGY---------------------
-
-1) Create the component style.
-
-import styled, { css } from 'styled-components'
-
-export type ButtonVariants = 'primary' | 'secondary' | 'danger' | 'success'
-
-interface ButtonProps {
-    variant: ButtonVariants
-}
-
-const buttonVariants = {
-    primary: 'blue',
-    secondary: 'yellow',
-    danger: 'red',
-    success: 'green',
-}
-
-export const Container = styled.button<ButtonProps>`
-min-width: 120px;
-height: 40px;
-
-display: flex;
-justify-content: center;
-align-items: center;
-
-${props => {
-        return css`background-color: ${buttonVariants[props.variant]}`
-    }}
-`
-
------------------
-
-2) Create the component itself.
-
-import React from 'react';
-import { ButtonVariants, Container } from './styles';
-
-
-interface ButtonProps{
-    variant?: ButtonVariants
-}
-
-export function Button({variant = 'primary'} : ButtonProps) {
-return (
-  <Container variant={variant}>
-    MyButton
-  </Container>
-)
-}
 
 ------------------------------USING BASE COMPONENTS---------------------------------
 
