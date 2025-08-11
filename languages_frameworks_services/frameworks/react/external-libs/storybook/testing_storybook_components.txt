@@ -1,48 +1,45 @@
-1) Run npm i @storybook/addon-interactions @storybook/jest
-@storybook/testing-library @storybook/test-runner -D to 
-install the interactions addon, Jest and React Testing Li-
-brary and the test-runner addon.
+# 📚 Using Storybook Interactions, MSW, and Test Runner
 
-------------
+## 1️⃣ Install Interaction Addon, Jest, and Testing Library
+```bash
+npm i @storybook/addon-interactions @storybook/jest @storybook/testing-library @storybook/test-runner -D
+```
 
-2) Run npm i msw msw-storybook-addon -D to install the
-msw that will work mocking an local api inside your 
-browser service works and the msw-storybook-addon.
+## 2️⃣ Install MSW and MSW Storybook Addon
+```bash
+npm i msw msw-storybook-addon -D
+```
 
--------------
+## 3️⃣ Initialize MSW
+For **Vite** and **Next.js** (which have a `public` folder):
+```bash
+npx msw init public
+```
+Confirm `public` as the workdir.
 
-3) Run npx msw init public (Vite and NextJS has the 
-"public" folder, check if your project has too) and
-confirm "public" as your workdir on the cli.
-
--------------
-
-4) In .storybook/main.cjs add the interactions addon, 
- the interactionsDebugger and pass the path of your 
- public folder thorugh the staticDirs key. Example:
-
+## 4️⃣ Configure `.storybook/main.cjs`
+Add the interactions addon, enable `interactionsDebugger`, and pass the path of your `public` folder through `staticDirs`:
+```javascript
 module.exports = {
-  "stories": [
+  stories: [
     "../src/**/*.stories.mdx",
     "../src/**/*.stories.@(js|jsx|ts|tsx)"
   ],
-  "addons": [
+  addons: [
     "@storybook/addon-links",
     "@storybook/addon-essentials",
     "@storybook/addon-interactions",
     "@storybook/addon-a11y",
   ],
-  "framework": "@storybook/react",
-  "core": {
-    "builder": "@storybook/builder-vite"
+  framework: "@storybook/react",
+  core: {
+    builder: "@storybook/builder-vite"
   },
-  "features": {
-    "storyStoreV7": true,
-    "interactionsDebugger": true
+  features: {
+    storyStoreV7: true,
+    interactionsDebugger: true
   },
-  "staticDirs": [
-    "../public"
-  ],
+  staticDirs: ["../public"],
   viteFinal: (config, { configType }) => {
     if (configType === "PRODUCTION") {
       config.base = '/ignite-lab-design-system/'
@@ -50,22 +47,18 @@ module.exports = {
     return config
   }
 }
+```
 
--------------
-
-5) Add the msw initializer inside the .storybook/
-preview.cjs file. Example:
-
+## 5️⃣ Configure `.storybook/preview.cjs` with MSW
+```javascript
 import { themes } from '@storybook/theming';
 import { initialize, mswDecorator } from 'msw-storybook-addon';
-
 import '../src/styles/global.css';
 
-
 // Initialize MSW
-initialize({onUnhandledRequest: 'bypass'});
+initialize({ onUnhandledRequest: 'bypass' });
 
-// Provide the MSW addon decorator globally
+// Provide MSW addon decorator globally
 export const decorators = [mswDecorator];
 
 export const parameters = {
@@ -80,77 +73,64 @@ export const parameters = {
     theme: themes.dark
   }
 }
+```
 
--------------
-
-6) In your component.stories file, import within and 
-userEvent from '@storybook/testing-library', import 
-expect from '@storybook/jest', write your test inside 
-your component variantion passing a function named as 
-"play" that receives the canvasElement as destructu-
-red param and use it for get the element in the sto-
-rybook canvas. Example:
-
-import { Meta, StoryObj } from '@storybook/react'
-import { within, userEvent, waitFor } from 
-'@storybook/testing-library'
-import { expect } from '@storybook/jest'
-import { SignIn, SignInProps } from './SignIn'
-import { rest } from 'msw'
+## 6️⃣ Writing a Test in a Story
+Example: `SignIn.stories.tsx`
+```typescript
+import { Meta, StoryObj } from '@storybook/react';
+import { within, userEvent, waitFor } from '@storybook/testing-library';
+import { expect } from '@storybook/jest';
+import { SignIn, SignInProps } from './SignIn';
+import { rest } from 'msw';
 
 export default {
-    title: 'Pages/SignIn',
-    component: SignIn,
-    args: {
-        title: 'Ignite Lab 2022'
-    },
-    parameters: {
-        msw: {
-            handlers: [
-                rest.post('/sessions', (req, res, ctx) => {
-                    return res(ctx.json({ res }))
-                })
-            ]
-        }
+  title: 'Pages/SignIn',
+  component: SignIn,
+  args: { title: 'Ignite Lab 2022' },
+  parameters: {
+    msw: {
+      handlers: [
+        rest.post('/sessions', (req, res, ctx) => {
+          return res(ctx.json({ res }));
+        })
+      ]
     }
-} as Meta<SignInProps>
+  }
+} as Meta<SignInProps>;
 
 export const Default: StoryObj<SignInProps> = {
-    play: async ({ canvasElement }) => {
-        const canvas = within(canvasElement)
-        userEvent.type(canvas.getByPlaceholderText('Digite seu e-mail'), 
-        'pablolucio_@hotmail.com')
-        userEvent.type(canvas.getByPlaceholderText('******'), '123456')
-        userEvent.click(canvas.getByRole('button'))
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+    userEvent.type(canvas.getByPlaceholderText('Digite seu e-mail'), 'pablolucio_@hotmail.com');
+    userEvent.type(canvas.getByPlaceholderText('******'), '123456');
+    userEvent.click(canvas.getByRole('button'));
 
-        await waitFor(() => {
-            return expect(canvas.getByText('Authenticado'))
-            .toBeInTheDocument()
-        })
-    }
+    await waitFor(() => {
+      return expect(canvas.getByText('Authenticado')).toBeInTheDocument();
+    });
+  }
+};
+```
+
+## 7️⃣ Viewing Test Results
+Open the **Interactions** tab in your Storybook panel.
+
+## 8️⃣ Run Tests Locally
+Add this script to your `package.json`:
+```json
+"scripts": {
+  "test-storybook": "test-storybook --watch"
 }
+```
+Run:
+```bash
+npm run test-storybook
+```
 
--------------
-
-7) Check your tests results inside the "Interactions" 
-tab on your StoryBook panel.
-
--------------
-
-8) If you wanna to run your tests locally, add a script
-for it executing the test runner and execute this script
-on your machine. Example:
-
-"test-storybook": "test-storybook --watch"
-
-----------------------GENERAL TIPS----------------------
-
-Use wait for to async expected rsults.
-
-Use within to search for an element inside the canvas.
-
-Use rest from msw to simulates api requests.
-
-Use parameters in your component variation to handle
-api requests.
-
+---
+## 💡 General Tips
+- Use `waitFor` for async expected results.
+- Use `within` to search for elements inside the canvas.
+- Use `rest` from `msw` to mock API requests.
+- Use `parameters` in component variations to handle API requests.
