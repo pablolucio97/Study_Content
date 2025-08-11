@@ -98,3 +98,7 @@ export async function handlePrefetchGame(gameId: number) {
   See game
 </button>
 ```
+
+## General Tips
+
+- If you're working with **Next.js** and facing CORS issues, perform your request through the server.
