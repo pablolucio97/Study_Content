@@ -79,13 +79,13 @@ export const models = {
   ))}
 ```
 
-### 19/05/2024
+### 19/05/2025
 - At working with requests on front-end applications, always treat the request try/catch block directly in the screen where you're calling it because it let the error more clear, and gives you the possibility of providing a better UI response for each error.
 
-### 22/05/2024
+### 22/05/2025
 - At creating React's components, always put fixed constants outside the component to avoid unnecessary rerenders.
 
-### 02/07/2024
+### 02/07/2025
 - At working with .png files use large and big sizes even for small viewing to avoid losing quality.
 - Use the API URL.createObjectURL() passing the blob content to be able to render the image content on web.
 - For download files, a server response can be returned as blob to return the blob content, in this case the response type must be explicit as blob. 
@@ -135,3 +135,37 @@ export function ParentComponent() {
 }
 
 ``` 
+
+### 11/08/2025
+- At working with files downloading, configure the files to be downloaded using the original file's name because it will preserver the file extension and make the file correctly executable. 
+- Always apply conditional styling assign it to a variable instead do it directly in the classNam when using Tailwind css, because it get more cleaner and because Tailwind sometimes misses some classes based on variables. The className styles should be completely attached to a prop. Example
+
+```typescript
+  import React from "react";
+
+interface ButtonProps {
+  variant?: "primary" | "secondary";
+  size?: "sm" | "md" | "lg";
+}
+
+export const Button: React.FC<ButtonProps> = ({ variant = "primary", size = "md", children }) => {
+  // ✅ Define styles in a variable so Tailwind can detect all classes at build time
+  const baseStyles = "font-semibold rounded focus:outline-none focus:ring";
+  
+  const variantStyles =
+    variant === "primary"
+      ? "bg-blue-500 text-white hover:bg-blue-600"
+      : "bg-gray-200 text-gray-800 hover:bg-gray-300";
+  
+  const sizeStyles =
+    size === "sm"
+      ? "px-3 py-1 text-sm"
+      : size === "lg"
+      ? "px-6 py-3 text-lg"
+      : "px-4 py-2 text-base";
+
+  const buttonClasses = `${baseStyles} ${variantStyles} ${sizeStyles}`;
+
+  return <button className={buttonClasses}>{children}</button>;
+};
+```
