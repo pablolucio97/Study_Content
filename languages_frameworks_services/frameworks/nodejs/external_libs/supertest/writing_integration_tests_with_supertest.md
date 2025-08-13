@@ -1,4 +1,4 @@
-# Supertest Test Examples
+# Supertest Integration Test Examples
 
 ## Example 1: Listing Categories
 
