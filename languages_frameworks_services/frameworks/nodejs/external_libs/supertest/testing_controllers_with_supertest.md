@@ -1,8 +1,8 @@
--------------------------------SUPERTEST TEST EXAMPLES-----------------------------------
+# Supertest Test Examples
 
-Example 1 (list):
+## Example 1: Listing Categories
 
-
+```typescript
 import { Connection } from 'typeorm'
 import request from 'supertest'
 
@@ -13,11 +13,9 @@ let connection : Connection
 
 describe('list categories', () => {
 
-
     beforeAll(async () => {
         connection = await createConnection()
         await connection.runMigrations()
-
     })
 
     afterAll(async () => {
@@ -25,20 +23,18 @@ describe('list categories', () => {
     })
 
     it('should be able to list all categories', async () => {
-
         const response = await request(app).get('/categories')
-
         expect(response.status).toBe(200)
-
     })
 
 })
+```
 
------------------
+---
 
+## Example 2: Creating a Category (Requires Token)
 
-Example 2 (create, requires token):
-
+```typescript
 import { hash } from 'bcryptjs';
 import { Connection } from 'typeorm';
 import request from 'supertest';
@@ -52,7 +48,6 @@ let connection: Connection;
 describe('Create Category Controller', () => {
 
     beforeAll(async () => {
-
         connection = await createConnection()
         await connection.runMigrations()
 
@@ -66,13 +61,12 @@ describe('Create Category Controller', () => {
         )
     })
 
-    afterAll(async () => { //executed after all test, allow share data between tests
+    afterAll(async () => {
         await connection.dropDatabase()
         await connection.close() 
     })
 
     it('should be able to create a new category', async () => {
-
         const responseToken = await request(app).post('/sessions')
         .send({
             email: 'admin@rentx.com',
@@ -87,12 +81,14 @@ describe('Create Category Controller', () => {
                 description: 'Category Supertest'
             }).set({
                 Authorization: `Bearer ${token}`
-            }) //set comes from request prototype and is used to add props to request
+            })
 
         expect(response.status).toBe(201)
-
     })
 
 })
+```
 
----------------
+**Notes:**
+- `.set()` is used to add custom headers or properties to the request.
+- Use `beforeAll` and `afterAll` to set up and clean up the database for test isolation.
