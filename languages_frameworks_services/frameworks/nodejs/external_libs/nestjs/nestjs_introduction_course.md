@@ -210,6 +210,78 @@ export class AdminController {
 }
 ```
 
+### Interceptors
+Interceptors are classes that **intercept** incoming requests and outgoing responses, allowing you to:
+- **Transform** the result returned by a route handler.
+- **Bind extra logic** before/after method execution.
+- **Log requests and responses**.
+- **Handle response mapping** (e.g., wrapping data in a common structure).
+- **Cache responses**.
+
+They are similar to middleware but operate **closer to the route handler** and have access to both the request and the response.
+
+**Example: Response Formatting Interceptor**
+
+This interceptor wraps every response into a **default format** with the following structure:
+
+```json
+{****
+  "RES": "<original data>",
+  "STATUS": "<HTTP status code>",
+  "SUCCESS": true // or false
+}
+```
+
+1. Creating the interceptor
+```typescript
+import {
+  Injectable,
+  NestInterceptor,
+  ExecutionContext,
+  CallHandler,
+} from '@nestjs/common';
+import { Observable } from 'rxjs';
+import { map, catchError } from 'rxjs/operators';
+
+@Injectable()
+export class ResponseFormatInterceptor implements NestInterceptor {
+  intercept(context: ExecutionContext, next: CallHandler): Observable<any> {
+    const ctx = context.switchToHttp();
+    const response = ctx.getResponse();
+
+    return next.handle().pipe(
+      map((data) => ({
+        RES: data,
+        STATUS: response.statusCode,
+        SUCCESS: true,
+      })),
+      catchError((err) => {
+        throw {
+          RES: err.response || err.message,
+          STATUS: err.status || 500,
+          SUCCESS: false,
+        };
+      }),
+    );
+  }
+}
+```
+
+2. Applying the Interceptor Globally
+```typescript
+import { NestFactory } from '@nestjs/core';
+import { AppModule } from './app.module';
+import { ResponseFormatInterceptor } from './interceptors/response-format.interceptor';
+
+async function bootstrap() {
+  const app = await NestFactory.create(AppModule);
+  app.useGlobalInterceptors(new ResponseFormatInterceptor());
+  await app.listen(3000);
+}
+bootstrap();
+```
+
+
 ## Most Used NestJS CLI Commands
 
 NestJS provides a powerful CLI tool to **generate**, **run**, and **manage** your applications.  
