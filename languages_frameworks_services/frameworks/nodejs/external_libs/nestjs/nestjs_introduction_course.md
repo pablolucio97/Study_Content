@@ -364,4 +364,19 @@ nest add @nestjs/swagger
 nest update
 ```
 
+## Best Practices and General Tips at working with NestJS projects
+
+- Avoid circular dependencies. It is: avoid the A class depends on B and B class depend on A, to do that breaking logic into smaller, reusable modules.
+- Keep modules small and focused. Each module should have a single responsibility.
+- Group controllers, services, and related entities within the same module.
+- Always use DTOs for every request payload and service expected data.
+- Use the NestJS's cli commands to create your controllers, modules, and services files.
+- Handle errors professionally on each controller using builtin `HttpException` according to the case.
+- Use NestJS’s `Logger` service for structured logging.
+- Log key events, warnings, and errors for easier debugging.
+- Apply **Guards** for route protection.
+- Use environment variables for sensitive data (e.g., database credentials, API keys).
+- Use Interceptors for Cross-Cutting Concerns. Response formatting, logging execution time, and caching should be done in **Interceptors**, not in controllers.
+- Keep Configurations Centralized. Store configuration values in a dedicated **ConfigModule** using `@nestjs/config`. Avoid hardcoding values.
+
 
