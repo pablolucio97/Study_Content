@@ -163,3 +163,49 @@ export class UsersController {
 - **DefaultValuePipe**	Provides fallback value if param is missing.
 - **ParseArrayPipe**	Parses and validates arrays from strings.
 - **ParseEnumPipe**	Validates that a value matches an enum value.
+
+### Guards
+In NestJS, **guards** are classes that determine whether a request should be processed by the route handler.  
+They are mainly used for **authorization** and **access control** but can also be used for any custom logic to allow or block a request.
+
+You should use guards when:
+- You need to **restrict access** to routes based on user roles or permissions.
+- You want to check **authentication status**.
+- You want to implement **custom authorization logic**.
+- 
+**Creating and using a simple guard. Role-Based Guard**
+
+1. Creating the guard.
+
+```typescript
+import { Injectable, CanActivate, ExecutionContext, ForbiddenException } from '@nestjs/common';
+
+@Injectable()
+export class RolesGuard implements CanActivate {
+  canActivate(context: ExecutionContext): boolean {
+    const request = context.switchToHttp().getRequest();
+    const user = request.user;
+
+    if (user?.role !== 'admin') {
+      throw new ForbiddenException('Only admins can access this route');
+    }
+
+    return true;
+  }
+}
+```
+2. Using the guard
+
+```typescript
+import { Controller, Get, UseGuards } from '@nestjs/common';
+import { RolesGuard } from './roles.guard';
+
+@Controller('admin')
+export class AdminController {
+  @Get()
+  @UseGuards(RolesGuard)
+  getAdminData() {
+    return { message: 'Welcome Admin!' };
+  }
+}
+```
