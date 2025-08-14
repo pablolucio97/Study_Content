@@ -209,3 +209,87 @@ export class AdminController {
   }
 }
 ```
+
+## Most Used NestJS CLI Commands
+
+NestJS provides a powerful CLI tool to **generate**, **run**, and **manage** your applications.  
+Below are the most common commands you will use in day-to-day development.
+
+---
+
+### 1. `nest new <project-name>`
+**Purpose:** Creates a new NestJS project with the default folder structure.
+
+**Example:**
+```bash
+nest new my-app
+```
+- Prompts you to choose a package manager (`npm` or `yarn`).
+
+---
+
+### 2. `nest generate <schematic>` (alias: `nest g`)
+**Purpose:** Generates files like modules, controllers, services, etc.
+
+**Common usages:**
+```bash
+nest g module users          # Generates a new module
+nest g controller users      # Generates a controller
+nest g service users         # Generates a service
+nest g class my-class        # Generates a plain class
+```
+- Schematics include: `module`, `controller`, `service`, `class`, `interface`, `enum`, `filter`, `pipe`, `guard`, `interceptor`.
+
+---
+
+### 3. `nest build`
+**Purpose:** Compiles the TypeScript project into JavaScript inside the `dist` folder.
+
+**Example:**
+```bash
+nest build
+```
+
+---
+
+### 4. `nest start`
+**Purpose:** Starts the NestJS application.
+
+**Example:**
+```bash
+nest start           # Normal start
+nest start --watch   # Watch mode (reload on changes)
+nest start --debug   # Debug mode
+```
+
+---
+
+### 5. `nest info`
+**Purpose:** Displays information about the current environment and dependencies.
+
+**Example:**
+```bash
+nest info
+```
+
+---
+
+### 6. `nest add <library>`
+**Purpose:** Installs and configures a NestJS-compatible library.
+
+**Example:**
+```bash
+nest add @nestjs/swagger
+```
+
+---
+
+### 7. `nest update`
+**Purpose:** Updates NestJS dependencies to the latest versions.
+
+**Example:**
+```bash
+nest update
+```
+
+
