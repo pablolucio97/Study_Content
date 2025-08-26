@@ -169,3 +169,98 @@ export const Button: React.FC<ButtonProps> = ({ variant = "primary", size = "md"
   return <button className={buttonClasses}>{children}</button>;
 };
 ```
+
+### 26/08/2025
+- At documenting components with StoryBook, creates your React component as a function and comment every single property to have a better StoryBook compatibility. Example:
+```typescript
+// component file index.tsx
+import { ClipboardIcon } from "@phosphor-icons/react";
+import type { ButtonHTMLAttributes } from "react";
+import { sizes } from "../../../theme/theme";
+
+export type ClipboardButtonVariant = "filled" | "outlined";
+
+export interface ClipboardButtonProps
+  extends ButtonHTMLAttributes<HTMLButtonElement> {
+  /** Text that will be copied to the clipboard. */
+  textToCopy: string;
+  /** Button label text. */
+  label?: string;
+  /** Visual style variant. */
+  variant?: ClipboardButtonVariant;
+  /** Icon size in px. */
+  iconSize?: number;
+  /** Called after the text is copied. */
+  onCopy?: () => void;
+}
+
+function ClipboardButton({
+  textToCopy,
+  label = "Copy text",
+  onCopy,
+  iconSize = sizes.medium,
+  variant = "outlined",
+  ...props
+}: ClipboardButtonProps) {
+  return (
+    <button
+      className={`flex items-center justify-center w-fit px-4 py-3 rounded-md gap-2 ${
+        variant === "filled"
+          ? "bg-primary-500 text-white hover:bg-primary-600"
+          : variant === "outlined"
+          ? "border border-primary-500 text-primary-500 hover:bg-primary-500 hover:text-white"
+          : ""
+      }`}
+      onClick={() => {
+        navigator.clipboard.writeText(textToCopy);
+        if (onCopy) {
+          onCopy();
+        }
+      }}
+      {...props}
+    >
+      <ClipboardIcon size={iconSize} />
+      {label}
+    </button>
+  );
+}
+
+export default ClipboardButton;
+```
+
+```typescript
+//storybook file index.tsx 
+import type { Meta, StoryObj } from "@storybook/react-vite";
+import ClipboardButton from ".";
+
+const meta = {
+  title: "Example/ClipboardButton",
+  component: ClipboardButton,
+  tags: ["autodocs"],
+} satisfies Meta<typeof ClipboardButton>;
+
+export default meta;
+
+type Story = StoryObj<typeof ClipboardButton>;
+
+export const Default: Story = {
+  args: {
+    textToCopy: "Hello World",
+    label: "Copy text",
+    variant: "outlined",
+    iconSize: 24,
+    onCopy: () => alert("Text copied to clipboard!"),
+  },
+  argTypes: {
+    variant: {
+      options: ['filled', 'outlined'],
+      control: { type: 'radio' },
+      type: { name: 'string', },
+    },
+  },
+  parameters: {
+    layout: "centered",
+  },
+};
+```
+
