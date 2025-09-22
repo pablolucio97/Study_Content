@@ -818,9 +818,40 @@ Keeping code and schema **in sync** prevents runtime errors and migration drift.
 
 ---
 
+## Understanding queryBuilder and join relations
+
+Example:
+
+```typescript
+
+const queryBuilder = databaseConnection
+  .getRepository(TABLE_NAME)
+  .createQueryBuilder('cliente')
+  .leftJoinAndSelect('cliente.pessoa', 'pessoa')
+  .leftJoinAndSelect('pessoa.enderecos', 'enderecos')
+  .leftJoinAndSelect('pessoa.contatos', 'contatos')
+  .where('cliente.filial = :filial', { filial })
+  .andWhere('pessoa.cpfCnpj = :cpfCnpj', { cpfCnpj });
+```
+
+Explanation:
+  1. cliente → the main table (because you started with createQueryBuilder('cliente')).
+  2. pessoa → joined via cliente.pessoa (a relation from cliente to pessoa).
+  3. enderecos → joined via pessoa.enderecos (not directly from cliente, but from pessoa).
+  4. contatos → joined via pessoa.contatos (again, not directly from cliente, but from pessoa).
+
+<pre>cliente
+ └── pessoa
+     ├── enderecos
+     └── contatos
+</pre>
+
+
+
 ## General tips
 - Ensure your Docker database container’s connection details (host, port, credentials) match your TypeORM config. Keep credentials in environment variables for security.
 - Name **FK columns** consistently (`car_id`, `specification_id`) and match in `@JoinColumn`/`@JoinTable`.
 - In repositories, specify **`relations`** to load associations; use QueryBuilder for complex selections.
 - Keep migrations the **source of truth** in production (avoid `synchronize: true`).
 - For TypeORM v0.3+, prefer `DataSource.getRepository()` and `FindOptions` over deprecated APIs.
+- In real life, you almost never will need to use rightJoin because rightJoin makes the query harder to read and all necessary data already exists in the main table (left).
