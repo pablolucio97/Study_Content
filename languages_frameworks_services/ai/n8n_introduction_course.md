@@ -36,3 +36,18 @@
 - **Merge**: Combine data from multiple branches.
 - **Code**: Add custom JavaScript for advanced logic.
 - **Wait**: Pause workflow execution for a defined duration.
+
+## Running N8N locally
+
+1. Download the n8n official image running the command `docker pull n8nio/n8n`
+2. Wait for the download, and after it, click on "Run" for run the image.
+3. Provide your optional setting informing your container name, port, volume path mirroring and environment variables for your image. Example:
+![alt text](imgs/image.png)
+4. Click on "Run" to start the image and wait for the container starts.
+5. The n8n application will be available at localhost:5678
+6. Register and authenticate on the application.
+
+## Using Templates
+1. Access the left menu and click on "Templates" you'll be redirected to n8n templates website.
+2. Choose a template and click on "Use for free".
+3. Provide the required credentials. It can very based on the services the template requires, like access to Google Calendar, OpenAI, Google Sheets and so on (you can skip it to be configured later).  
