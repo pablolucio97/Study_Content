@@ -6,11 +6,18 @@ Ngrok can be useful to:
 - Expose your application over HTTPS protocol.
 - Be able to communicate with third services that works over HTTPS protocol.
 
+## Using Ngrok
+
+1. Create and authenticate on your Ngrok account.
+2. Copy and pate the command `ngrok config add-authtoken YOUR_TOKEN` on your terminal to configure Ngrok auth credentials.
+3. Run the command `ngrok/ngrok http YOUR_LOCAL_IP:PORT` to run Ngrok from a terminal. Example: `ngrok/ngrok http 192.168.2.123:3334`. 
+
 ## Using Ngrok with Docker
 
 1. Create and sign in on your Ngrok account.
 2. Generate and copy your Ngrok auth token.
 3. Run the command `docker run -it --net="host" -e NGROK_AUTHTOKEN=your_auth_token ngrok/ngrok http your_machine_ip:your_application_port`, example: `docker run -it --net="host" -e NGROK_AUTHTOKEN=your_auth_token  ngrok/ngrok http 192.168.7.129:3334`
+
 
 ## General tips
 - Provide your ip machine instead `localhost` at running the command to mount and expose your URL.
