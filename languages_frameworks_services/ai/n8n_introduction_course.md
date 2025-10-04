@@ -66,8 +66,27 @@ This tutorial is useful for keep using the same Ngrok domain instead needing con
 5. On n8n Webhook node click on "Listen for test event".
 6. Fill the Tally form an the response will be returned at n8n.
 
+## Configuring Nodes that depends on Google authentication and authorization
+1. Access your GCP account.
+2. Create a new project and select it.
+3. Click on "Services and APIs", click on "Library".
+4. Search for the API you want to integrate, eg. "Google Sheets", "Gmail" and so on.
+5. Select the desired API and enable it.
+6. Click on "Credentials", click on "Create", and select "Create OAuth client ID".
+7. Select a Application type (generally web), provide a name, add an authorized redirect URI (should contain the HTTPS protocol), and click on "Create".
+8. Copy the client id and client secret and download the generated JSON file.
+9. Click on the new credential created and click on "Data access", "Add or remove scopes", and enable all scopes and the scope you want to work with, eg. "Google Sheets", "Gmail" and so on.
+10. Click on "Audience" and click on "Publish".
+11. On n8n, on the node that depends on Google, click on "Select credential", click on "Create new credential", and provide the client id and client secret generated.
+12. Execute your service. 
 
 ## Using Templates
 1. Access the left menu and click on "Templates" you'll be redirected to n8n templates website.
 2. Choose a template and click on "Use for free".
 3. Provide the required credentials. It can very based on the services the template requires, like access to Google Calendar, OpenAI, Google Sheets and so on (you can skip it to be configured later).  
+
+# General tips
+- Prefer configuring n8n with Docker and Ngrok using [this repository](https://github.com/Joffcom/n8n-ngrok) because it configures a permanent Ngrok domain persisting the url without resetting it every time the container stops.
+- Configure your URL including the protocol because it avoids conflicts and mismatching between the URL server and URL authorized on services like Google.
+- At working with forms using webhooks, the form id and webhook path must be exactly the same otherwise the communication wont be succeeded. 
+- You should enable each Google API/Service that you need to work with separately and add scopes for it.  
