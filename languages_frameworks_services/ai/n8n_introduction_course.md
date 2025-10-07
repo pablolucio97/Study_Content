@@ -28,6 +28,59 @@
 - **Function**: It's a node that executes an actions app function.
 - **Exit point**: It's the last node of your workflow. It should be executed to tell your workflow was executed successfully.
 
+## Trigger Nodes
+- **Webhook Trigger**: Starts a workflow when it receives an incoming HTTP request (great for integrating external apps).  
+- **Cron Trigger**: Executes workflows on a defined schedule (e.g., every hour, daily, weekly).  
+- **Interval Trigger**: Runs workflows repeatedly at a set interval (seconds, minutes, hours).  
+- **Google Sheets Trigger**: Activates when a row is created/updated in a Google Sheet.  
+- **IMAP Email Trigger**: Triggers when a new email arrives in the configured inbox.  
+
+## Data Transformation Nodes
+- **Set**: Creates or updates fields in items with fixed values, variables, or expressions.  
+- **Function**: Run custom JavaScript across all items in a single function block.  
+- **Function Item**: Apply JavaScript logic individually on each item.  
+- **Merge**: Combine two input streams (append, merge by key, wait for both).  
+- **SplitInBatches**: Breaks a data set into smaller chunks to process sequentially.  
+- **IF**: Conditional branching, sending items down true/false paths based on logic.  
+- **Switch**: Routes data into multiple outputs depending on matching case values.  
+- **Limit**: Restrict the number of items passed forward (useful for testing).  
+- **Rename Keys**: Changes property names of fields in data items.  
+
+## API & HTTP Nodes
+- **HTTP Request**: Send HTTP/HTTPS requests to external APIs (supports auth, headers, body).  
+- **GraphQL**: Perform GraphQL queries or mutations against compatible APIs.  
+- **Webhook**: Expose endpoints to receive or return data to external services.  
+
+## Database Nodes
+- **MySQL**: Run SQL queries, insert, update, or delete rows in a MySQL DB.  
+- **Postgres**: Execute SQL operations in a PostgreSQL database.  
+- **SQLite**: Query or update SQLite databases.  
+- **MongoDB**: Insert, update, query, or delete documents in MongoDB collections.  
+
+## File Nodes
+- **Read Binary File**: Load a file from disk into the workflow as binary data.  
+- **Write Binary File**: Save binary workflow data to a local file.  
+- **Move Binary Data**: Convert fields from JSON into binary data or vice versa.  
+
+## Messaging & Communication Nodes
+- **Email Send**: Sends email via SMTP or third-party email providers.  
+- **Slack**: Post messages, read channel data, or manage users in Slack.  
+- **Telegram**: Send or receive messages with Telegram bots.  
+- **Discord**: Interact with Discord servers (send messages, manage roles/channels).  
+
+## Cloud & Storage Nodes
+- **Google Drive**: Upload, download, or search files in Google Drive.  
+- **Dropbox**: Manage and move files/folders in Dropbox.  
+- **AWS S3**: Upload, download, list, or delete objects from S3 buckets.  
+
+## Utility Nodes
+- **Wait**: Pause execution until a specific time or condition is reached.  
+- **NoOp**: Does nothing, passes input as output (useful for testing/debugging).  
+- **Error Trigger**: Starts when another workflow fails (error handling).  
+- **Execute Workflow**: Call another workflow from within the current workflow.  
+- **Execute Command**: Runs shell/system commands on the host machine.  
+
+
 ## Useful Nodes
 - **HTTP Request**: Send or receive data via APIs.
 - **Set**: Define or update data within the workflow.
@@ -90,3 +143,9 @@ This tutorial is useful for keep using the same Ngrok domain instead needing con
 - Configure your URL including the protocol because it avoids conflicts and mismatching between the URL server and URL authorized on services like Google.
 - At working with forms using webhooks, the form id and webhook path must be exactly the same otherwise the communication wont be succeeded. 
 - You should enable each Google API/Service that you need to work with separately and add scopes for it.  
+- Do not create an Ai agent with too many responsibilities (too many connected tools), prefer creating separated agents and make them communicate between themselves.
+- At working on different projects, keep the each project linked to a separated Google project. Do not mix up projects.
+- Avoid using gpt4 mini model for small tasks, prefer using gpt4-o.
+- At working witch tools linked to an AI Agent, the ability to enable the correct tool will depend on how strong and well formed your prompt is. Having too many tools does not means all these tools will be executed, but are possible to be executed according to your prompt.
+- Use PineCode to store data on vector database when RAG is needed. RAG will be needed when it's necessary to add an external/private context (like a database containing business data) to the AI model instead relying only on the global training database.
+- Always configure the correct dimension of an index at working with an index database.
