@@ -138,6 +138,10 @@ This tutorial is useful for keep using the same Ngrok domain instead needing con
 2. Choose a template and click on "Use for free".
 3. Provide the required credentials. It can very based on the services the template requires, like access to Google Calendar, OpenAI, Google Sheets and so on (you can skip it to be configured later).  
 
+## Using Community nodes
+1. Click on your avatar image at bottom at left panel.
+2. Click on "Settings", "Community Nodes", and type the name of the community node to install, example: "n8n-nodes-evolution-api" and click on install.
+
 # General tips
 - Prefer configuring n8n with Docker and Ngrok using [this repository](https://github.com/Joffcom/n8n-ngrok) because it configures a permanent Ngrok domain persisting the url without resetting it every time the container stops.
 - Configure your URL including the protocol because it avoids conflicts and mismatching between the URL server and URL authorized on services like Google.
@@ -149,3 +153,5 @@ This tutorial is useful for keep using the same Ngrok domain instead needing con
 - At working witch tools linked to an AI Agent, the ability to enable the correct tool will depend on how strong and well formed your prompt is. Having too many tools does not means all these tools will be executed, but are possible to be executed according to your prompt.
 - Use PineCode to store data on vector database when RAG is needed. RAG will be needed when it's necessary to add an external/private context (like a database containing business data) to the AI model instead relying only on the global training database.
 - Always configure the correct dimension of an index at working with an index database.
+- If some recourse is not being listed, check if the credentials for that resource was provided.
+- At working with workflows that uses webhooks and you want to put it on production, use the production URL on the webhook service and activate your flow, otherwise it won't work.
