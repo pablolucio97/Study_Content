@@ -133,6 +133,13 @@ This tutorial is useful for keep using the same Ngrok domain instead needing con
 11. On n8n, on the node that depends on Google, click on "Select credential", click on "Create new credential", and provide the client id and client secret generated.
 12. Execute your service. 
 
+## Configuring Nodes that depends on Redis
+1. Create a Redis node.
+2. Create a database, a role, and an user providing a name and password for this.
+3. Associate this new user into a role with full access scope.
+4. On N8N node select "Create new credential".
+5. Inform the user, password, host for your database and port. 
+
 ## Using Templates
 1. Access the left menu and click on "Templates" you'll be redirected to n8n templates website.
 2. Choose a template and click on "Use for free".
