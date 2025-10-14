@@ -21,6 +21,8 @@
 
 ## Configuring subdomains on Cloudflare
 
+Subdomains are configured to point some services to its respective subdomains.
+
 1. Access your application home dashboard (click on Cloudflare logo).
 2. Click on your registered domain.
 3. Click on "Records".
