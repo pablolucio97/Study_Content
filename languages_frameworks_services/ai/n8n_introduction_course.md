@@ -125,13 +125,14 @@ This tutorial is useful for keep using the same Ngrok domain instead needing con
 3. Click on "Services and APIs", click on "Library".
 4. Search for the API you want to integrate, eg. "Google Sheets", "Gmail" and so on.
 5. Select the desired API and enable it.
-6. Click on "Credentials", click on "Create", and select "Create OAuth client ID".
-7. Select a Application type (generally web), provide a name, add an authorized redirect URI (should contain the HTTPS protocol), and click on "Create".
-8. Copy the client id and client secret and download the generated JSON file.
-9. Click on the new credential created and click on "Data access", "Add or remove scopes", and enable all scopes and the scope you want to work with, eg. "Google Sheets", "Gmail" and so on.
-10. Click on "Audience" and click on "Publish".
-11. On n8n, on the node that depends on Google, click on "Select credential", click on "Create new credential", and provide the client id and client secret generated.
-12. Execute your service. 
+6. Configure the Consent Screen.
+7. Click on "Credentials", click on "Create", and select "Create OAuth client ID".
+8. Select a Application type (generally web), provide a name, add an authorized redirect URI (should contain the HTTPS protocol), and click on "Create".
+9. Copy the client id and client secret and download the generated JSON file.
+10. Click on the new credential created and click on "Data access", "Add or remove scopes", and enable all scopes and the scope you want to work with, eg. "Google Sheets", "Gmail" and so on.
+11. Click on "Audience" and click on "Publish".
+12. On n8n, on the node that depends on Google, click on "Select credential", click on "Create new credential", and provide the client id and client secret generated.
+13. Execute your service. 
 
 ## Configuring Nodes that depends on Redis
 1. Create a Redis node.
@@ -149,6 +150,16 @@ This tutorial is useful for keep using the same Ngrok domain instead needing con
 1. Click on your avatar image at bottom at left panel.
 2. Click on "Settings", "Community Nodes", and type the name of the community node to install, example: "n8n-nodes-evolution-api" and click on install.
 
+## Working with MCP
+
+MCP is  and it's used to simplify a nodes chain where few nodes executes complex jobs that would be required more nodes and grant the flow keeps working even if third APIs changes if this node was built using MCP protocol. 
+**MCP Client**: Is node trigger that can be used to call a MCP server.
+**MCP Server**: Is a third node trigger that is used to call the necessaries nodes to execute a set of actions.
+
+### Creating and using a MCP
+1. Create your MCP server node adding the tools/nodes you want to work.
+2. On the project you want to use it, create a new MCP Client node informing your MCP Server URL to connect to it. 
+
 # General tips
 - Prefer configuring n8n with Docker and Ngrok using [this repository](https://github.com/Joffcom/n8n-ngrok) because it configures a permanent Ngrok domain persisting the url without resetting it every time the container stops.
 - Configure your URL including the protocol because it avoids conflicts and mismatching between the URL server and URL authorized on services like Google.
@@ -162,3 +173,7 @@ This tutorial is useful for keep using the same Ngrok domain instead needing con
 - Always configure the correct dimension of an index at working with an index database.
 - If some recourse is not being listed, check if the credentials for that resource was provided.
 - At working with workflows that uses webhooks and you want to put it on production, use the production URL on the webhook service and activate your flow, otherwise it won't work.
+- Work with third nodes that were built using MCP protocol always as possible cause it grants the flow continues working if something changes on third APIs.
+- At launching your automation to production when it's hosted in some VPS, pay attention on the webhooks production URL, it must very similar for test (with 'test' string) and production (without 'test' string) environments.
+- At working with chats, use the Sentiment Analysis node to feel if your client is speaking in a positive, neutral or negative tone.
+- Do not feed a vectorial database with table data.
