@@ -177,3 +177,4 @@ MCP is  and it's used to simplify a nodes chain where few nodes executes complex
 - At launching your automation to production when it's hosted in some VPS, pay attention on the webhooks production URL, it must very similar for test (with 'test' string) and production (without 'test' string) environments.
 - At working with chats, use the Sentiment Analysis node to feel if your client is speaking in a positive, neutral or negative tone.
 - Do not feed a vectorial database with table data.
+- Pay attention to not connect nodes incorrectly otherwise the flow won't work as expected.
