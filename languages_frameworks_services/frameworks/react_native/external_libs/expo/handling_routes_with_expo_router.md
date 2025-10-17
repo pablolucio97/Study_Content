@@ -86,8 +86,80 @@ const styles = StyleSheet.create({
   },
 });
 ```
+## Handling dynamic navigation from different paths
+1. Create the folder and parameterized file for resource you want to work as dynamic route. Example: create a router named products and a file called [...rest].tsx. Use useLocalSearchParams to extract the rest param.
+```typescript
+import { Link, useLocalSearchParams } from "expo-router";
+import React from "react";
+import { StyleSheet, Text, View } from "react-native";
+
+export default function ProductDetail() {
+  const { res } = useLocalSearchParams<{rest: string[]}>();
+  return (
+    <View style={styles.container}>
+      <Text style={styles.text}>Product Detail  from path {rest.join("/")}</Text>
+      <Link href="/products">Go to Products</Link>
+    </View>
+  );
+}
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  text: {
+    color: "#99eea9",
+  },
+});
+```
+
+2. Create the index for represent the collection of the list of resource to navigate dynamically. Example index.tsx:
+```typescript
+import { ExternalPathString, Link, RelativePathString } from "expo-router";
+import React from "react";
+import { StyleSheet, Text, View } from "react-native";
+
+type Product = {
+  id: number;
+  name: string;
+  href: RelativePathString | ExternalPathString;
+};
+
+export default function Profile() {
+  const products: Product[] = [
+    { id: 4, name: "Product 4", href: "/products/deals/playstation-5" as RelativePathString },
+    { id: 5, name: "Product 5", href: "/products/electronics/playstation-5" as RelativePathString },
+  ];
+
+  return (
+    <View style={styles.container}>
+      <Text style={styles.text}>Products</Text>
+      {products.map((product) => (
+        <Link key={product.id} href={product.href}>
+          {product.name}
+        </Link>
+      ))}
+    </View>
+  );
+}
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  text: {
+    color: "#da4c24",
+  },
+});
+
+```
+
 ## Handling dynamic navigation
-1. Create the folder and parameterized file for resource you want to work as dynamic route. Example: create a router named products and a file called [id].tsx.
+1. Create the folder and parameterized file for resource you want to work as dynamic route. Example: create a router named products and a file called [id].tsx.  Use useLocalSearchParams to extract the id param.
 ```typescript
 import { Link, useLocalSearchParams } from "expo-router";
 import React from "react";
@@ -157,4 +229,91 @@ const styles = StyleSheet.create({
   },
 });
 
+```
+
+## Rendering not found page
+Not found page is useful to be shown when user hit a page that does not exists. To make it work create a file called "+not-found.tsx" under the app directory exporting a React component function.
+
+## Using RootLayout
+Use RootLayout together with Slot component (it's act like a children) to share consistent layout across screens. Example:
+1. Create a file called `_layout.tsx` under app folder.
+```typescript
+import { Link, Slot } from "expo-router";
+import { StyleSheet, Text, View } from "react-native";
+import { SafeAreaView } from "react-native-safe-area-context";
+
+export default function RootLayout() {
+  return (
+    <SafeAreaView style={styles.safeArea}>
+      <View style={styles.header}>
+        <Text style={styles.text}>Header</Text>
+        <Link href="/">Home</Link>
+      </View>
+      <View style={styles.container}>
+        <Slot />
+      </View>
+      <View style={styles.footer}>
+        <Text style={styles.text}>Footer</Text>
+      </View>
+    </SafeAreaView>
+  );
+}
+
+const styles = StyleSheet.create({
+  safeArea: {
+    flex: 1,
+  },
+  header: {
+    width: "100%",
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
+    backgroundColor: "#4af8d58a",
+    padding: 20,
+  },
+  container: {
+    flex: 1,
+    height: "100%",
+    justifyContent: "center",
+    alignItems: "center",
+    backgroundColor: "#cdcdcd",
+  },
+  text: {
+    fontSize: 20,
+    fontWeight: "bold",
+  },
+  footer: {
+    width: "100%",
+    backgroundColor: "#2eaafd",
+    padding: 20,
+    position: "absolute",
+    bottom: 0,
+  },
+});
+
+```
+2.Create an index.tsx file to be render as the first item of the application. Example:
+```typescript
+import { Link } from "expo-router";
+import { View, StyleSheet } from "react-native";
+
+export default function Home() {
+  return (
+    <View style={styles.container}>
+      Home Screen
+      <Link href="/profile">Go to Profile</Link>
+      <Link href="/about">Go to About</Link>
+      <Link href="/products">Go to Products</Link>
+    </View>
+  );
+}
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    width: "100%",
+    justifyContent: "center",
+    alignItems: "center",
+  },
+});
 ```
