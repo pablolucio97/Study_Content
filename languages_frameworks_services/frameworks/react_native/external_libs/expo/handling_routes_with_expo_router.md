@@ -412,8 +412,38 @@ Group routes are useful to navigate to a specific group of routes using the base
 
 Having a _layout.tsx file inside the folder will keep a layout for these screens, but still nested inside the root layout, at least all screens are separated into groups.
 
+## Imperative navigation
+Use router function from expo-router to navigate imperatively. Example:
+```typescript
+import { router } from "expo-router";
+import { Button } from "react-native";
+
+export default function Home() {
+  return (
+    <View style={styles.container}>
+      <Button title="Login" onPress={() => router.push("/login")} />
+    </View>
+  );
+}
+
+```
+
+## Using Redirect component
+Use Redirect component to handle redirection. Example:
+```typescript
+    const isAuthenticated = false;
+
+    if (!isAuthenticated) {
+      return <Redirect href="/login" />;
+    }
+
+```
+
 
 ## General Tips
 - At working with Expo Router, separate all screens into its group and have a specific layout for each group. Keep a _layout.tsx file for each group.
+- Use Link to wrap text and Link with asChild prop with a Pressable to work as button for navigation. 
+- Use relativeToDirectory when you want simple “go deeper inside this section” links like "settings" to resolve under the current folder (e.g., /account/settings).
+- Use router.replace to replace the current screen on navigation state. It's very useful when user authenticates and should not be redirected to auth screen at clicking on go back. 
 
 
