@@ -439,11 +439,95 @@ Use Redirect component to handle redirection. Example:
 
 ```
 
+## Using Stack to handle stack navigation
+
+```typescript
+import { Stack } from "expo-router";
+import { Image } from "react-native";
+
+function ImageLogo() {
+  return (
+    <Image
+      source={require("../../assets/images/favicon.png")}
+      style={{ width: 30, height: 30, marginRight: 12 }}
+    />
+  );
+}
+
+export default function RootLayout() {
+  return (
+    <Stack>
+      <Stack.Screen
+        name="index"
+        options={{
+          title: "Home",
+          headerTitleStyle: { fontWeight: "bold" },
+          headerStyle: { backgroundColor: "#f4511e" },
+          headerTintColor: "#fff",
+        }}
+      />
+      <Stack.Screen
+        name="about"
+        options={{
+          title: "About",
+          headerTitleStyle: { fontWeight: "bold" },
+          headerStyle: { backgroundColor: "#1e54f4" },
+          headerTintColor: "#fff",
+          headerRight: () => <ImageLogo />,
+        }}
+      />
+    </Stack>
+  );
+}
+
+```
+## Using Tab to handle tabs navigation
+
+```typescript
+import FontAwesome from "@expo/vector-icons/FontAwesome";
+import { Link, Tabs } from "expo-router";
+
+export default function TabsLayout() {
+  return (
+    <Tabs
+      screenOptions={{
+        tabBarShowLabel: true,
+        tabBarActiveTintColor: "#55EEE3",
+        tabBarInactiveTintColor: "#e989ee",
+        headerRight: () => <Link href="/">Home</Link>,
+        headerStyle: {
+          backgroundColor: "#71015b",
+          paddingVertical: 24,
+          paddingRight: 40,
+          marginTop: 82
+        },
+      }}
+    >
+      <Tabs.Screen
+        name="tab-one"
+        options={{
+          title: "Tab One",
+          tabBarIcon: () => <FontAwesome name="address-book" />,
+        }}
+      />
+      <Tabs.Screen
+        name="tab-two"
+        options={{
+          title: "Tab Two",
+          tabBarIcon: () => <FontAwesome name="adjust" />,
+        }}
+      />
+    </Tabs>
+  );
+}
+```
+
 
 ## General Tips
 - At working with Expo Router, separate all screens into its group and have a specific layout for each group. Keep a _layout.tsx file for each group.
 - Use Link to wrap text and Link with asChild prop with a Pressable to work as button for navigation. 
 - Use relativeToDirectory when you want simple “go deeper inside this section” links like "settings" to resolve under the current folder (e.g., /account/settings).
 - Use router.replace to replace the current screen on navigation state. It's very useful when user authenticates and should not be redirected to auth screen at clicking on go back. 
+- To render a nested navigation simple render a navigation inside another. Example: You can render a  TabNavigation inside a StackNavigation simply keeping a route that render a TabNavigation layout inside your StackNavigation.
 
 
