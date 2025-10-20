@@ -406,3 +406,14 @@ const styles = StyleSheet.create({
 ## Using nested layouts
 
 To use a nested layout simply create a _layout.tsx.file inside the route folder you want to nest the layout and these screen will be displayed with the custom layout nested inside basic general layout.
+
+## Group Routes
+Group routes are useful to navigate to a specific group of routes using the base path without affecting the url structure. For example: you can access the routes /login or /registration direct from the base path instead /auth/login or /auth/registration. To do it simply create a folder naming it inside parentheses, example: (auth).
+
+Having a _layout.tsx file inside the folder will keep a layout for these screens, but still nested inside the root layout, at least all screens are separated into groups.
+
+
+## General Tips
+- At working with Expo Router, separate all screens into its group and have a specific layout for each group. Keep a _layout.tsx file for each group.
+
+
