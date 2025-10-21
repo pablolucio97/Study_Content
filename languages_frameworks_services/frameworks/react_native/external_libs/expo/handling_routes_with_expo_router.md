@@ -522,6 +522,50 @@ export default function TabsLayout() {
 }
 ```
 
+## Handling Drawer Navigation:
+1. Install the required  running `npx expo install @react-navigation/drawer react-native-gesture-handler react-native-reanimated`.
+2. Create a folder named (drawer).
+3. Create the file representing routes to be navigated.
+4. Create a _layout.tsx file, example:
+```typescript
+import FontAwesome from "@expo/vector-icons/FontAwesome";
+import { Drawer } from "expo-router/drawer";
+import { GestureHandlerRootView } from "react-native-gesture-handler";
+
+export default function RootLayout() {
+  return (
+    <GestureHandlerRootView>
+      <Drawer>
+        <Drawer.Screen
+          name="dashboard"
+          options={{
+            title: "Dashboard",
+            drawerLabel: "Dashboard label",
+            headerStyle: { backgroundColor: "#7e350d" },
+            headerTintColor: "#fff",
+            drawerIcon: () => (
+              <FontAwesome name="dashboard" size={24} color="#3c39e8" />
+            ),
+          }}
+        />
+        <Drawer.Screen
+          name="settings"
+          options={{
+            title: "Settings",
+            drawerLabel: "Settings label",
+            headerStyle: { backgroundColor: "#ae94cb" },
+            headerTintColor: "#fff",
+            drawerIcon: () => (
+              <FontAwesome name="cog" size={24} color="#3c39e8" />
+            ),
+          }}
+        />
+      </Drawer>
+    </GestureHandlerRootView>
+  );
+}
+```
+
 
 ## General Tips
 - At working with Expo Router, separate all screens into its group and have a specific layout for each group. Keep a _layout.tsx file for each group.
