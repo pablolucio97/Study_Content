@@ -581,7 +581,6 @@ function RootLayout() {
 
 ```
 
-
 ## General Tips
 - At working with Expo Router, separate all screens into its group and have a specific layout for each group. Keep a _layout.tsx file for each group.
 - Use Link to wrap text and Link with asChild prop with a Pressable to work as button for navigation. 
@@ -589,5 +588,7 @@ function RootLayout() {
 - Use router.replace to replace the current screen on navigation state. It's very useful when user authenticates and should not be redirected to auth screen at clicking on go back. 
 - To render a nested navigation simple render a navigation inside another. Example: You can render a  TabNavigation inside a StackNavigation simply keeping a route that render a TabNavigation layout inside your StackNavigation.
 - Modals work different on web, check the [Expo WebModals documentation](https://docs.expo.dev/router/advanced/web-modals/).
+- Expo Router provides optionally the possibility of rendering different versions of the same screen according to the platform. To make it work, just create the files according the platform, e.g: about.ios.tsx and about.tsx for android. Check the [Expo platform-specific-modules documentation](https://docs.expo.dev/router/advanced/platform-specific-modules/).
+- Expo supports optionally the option to work with API Routes (similar to NextJS) [Docs](https://docs.expo.dev/router/reference/api-routes/).
 
 
