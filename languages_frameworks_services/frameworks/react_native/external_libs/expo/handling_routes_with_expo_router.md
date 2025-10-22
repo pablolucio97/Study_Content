@@ -565,6 +565,21 @@ export default function RootLayout() {
   );
 }
 ```
+## Handling modals
+A modal in Expo Router is treated as a screen, so to make a modal using Expo Router, just create a regular screen for it and add this screen into the stack. Example:
+```typescript
+import { Stack } from 'expo-router';
+
+function RootLayout() {
+  return (
+      <Stack>
+        <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
+        <Stack.Screen name="modal" options={{ presentation: 'modal' }} />
+      </Stack>
+  );
+}
+
+```
 
 
 ## General Tips
@@ -573,5 +588,6 @@ export default function RootLayout() {
 - Use relativeToDirectory when you want simple “go deeper inside this section” links like "settings" to resolve under the current folder (e.g., /account/settings).
 - Use router.replace to replace the current screen on navigation state. It's very useful when user authenticates and should not be redirected to auth screen at clicking on go back. 
 - To render a nested navigation simple render a navigation inside another. Example: You can render a  TabNavigation inside a StackNavigation simply keeping a route that render a TabNavigation layout inside your StackNavigation.
+- Modals work different on web, check the [Expo WebModals documentation](https://docs.expo.dev/router/advanced/web-modals/).
 
 
