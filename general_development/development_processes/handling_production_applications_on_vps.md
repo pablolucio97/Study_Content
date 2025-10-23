@@ -142,6 +142,38 @@ services:
 docker service ps myapp_api
 docker service logs myapp_api -n 80 --raw` to check if your service is routed and correctly available.
 
+
+## Accessing your database
+Connect to your database using a GUI software like Beekeeper or DBeaver, make sure the referent database service for your application is available on the host (not only internal) network. Maybe it can be necessary map a new port to be available on host.
+
+1. On Portainer dashboard, go to Services → your_service_db.
+2. In the right “Quick navigation” panel click Network & published ports.
+3. In Published ports click + port mapping and add:
+Target port: 5432
+Published port: 5432
+Protocol: tcp
+(If there’s a Publish mode dropdown, choose Host. If not shown, it will use the routing mesh, which is fine on a single VPS.)
+4. Scroll up, click Update the service → confirm (Force update) so Swarm rolls the task.
+
+## Making changes on your server
+1. Edit your code **locally** (never inside a live container).
+2. Rebuild the image:
+   ```bash
+   docker build -t myapp-api:latest .
+   ```
+3. Update the running service:
+   ```bash
+   docker service update --image myapp-api:latest --force myapp_api
+   ```
+4. If migrations or environment variables changed:
+   - Update `.env.swarm`
+   - Redeploy the stack:
+     ```bash
+     docker stack deploy -c stack.yaml myapp
+     ```
+
+⚠️ **Never edit containers directly** — changes will be lost after a redeploy.
+
 ## Mistakes to avoid
 
 | **Problem** | **Root Cause** | **Fix** |
