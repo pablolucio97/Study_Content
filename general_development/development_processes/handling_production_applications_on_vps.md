@@ -198,3 +198,9 @@ Protocol: tcp
 - Automate backups of your database and critical data to avoid loss during redeployments or VPS migrations.
 - Avoid making manual changes inside a running container, such as installing a package or redefined a env var. Instead of it, update your code, Dockerfile, .env or configuration files, rebuild and redeploy the updated container (update the whole stack only if some network or related services configuration has changed).
 - If you manage more than one application on the same VPS, **Docker Swarm + Traefik** is the most stable, secure, and scalable approach. Kubbernets also works, but is way more complex than using Docker Swarm, prefer using Docker Swarm.
+- At changing environment variables, be sure to export it before building a new Docker image for Docker Swarm service running the command 
+```bash
+set -a
+. ./.env.swarm
+set +a
+```
