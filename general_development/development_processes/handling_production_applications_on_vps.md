@@ -204,3 +204,4 @@ set -a
 . ./.env.swarm
 set +a
 ```
+- Every time a Docker container is rebuilt, its necessary reopen Postgres ports on Portainer's dashboard.
