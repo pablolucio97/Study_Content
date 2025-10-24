@@ -205,3 +205,5 @@ set -a
 set +a
 ```
 - Every time a Docker container is rebuilt, its necessary reopen Postgres ports on Portainer's dashboard.
+- If some service linked to some env var does not works, try removing quotes because the real value can be interpreted different depending on the OS.
+- At working with email system, be sure certificate the sender email is real. You can add an email routing for route your domain email to a real domain sender using Email Routing Cloudflare.
