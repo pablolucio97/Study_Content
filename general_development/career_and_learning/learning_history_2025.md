@@ -264,3 +264,42 @@ export const Default: Story = {
 };
 ```
 
+### 28/10/2025
+- At configuring interceptors on Axios, always log the server response details in production safely avoiding to expose sensitive server data. Example:
+
+```typescript
+api.interceptors.response.use(
+  (response: AxiosResponse<IApiSuccessResponse<any>>) => {
+    if (import.meta.env.DEV) {
+      console.log("[RESPONSE SUCCESS] - ", response.data);
+    }
+    return response;
+  },
+  (error: AxiosError<IApiErrorResponse>) => {
+    if (error.response?.status === 429) {
+      showAlertError(
+        "Houve um erro ao tentar realizar sua solicitação. Por favor tente novamente dentro de 1 minuto."
+      );
+    }
+    if (error.response) {
+      if (import.meta.env.DEV) {
+        console.log("[RESPONSE ERROR] - ", error.response.data);
+        return Promise.reject(error.response.data);
+      }
+      const safeError = {
+        STATUS: error.response?.status ?? 500,
+        MESSAGE: "Ocorreu um erro ao processar sua solicitação.",
+        DATA: null,
+      };
+      return Promise.reject(safeError);
+    }
+    if (error.request) {
+      if (import.meta.env.DEV) {
+        console.log("[REQUEST ERROR] - ", error.request.data);
+        return Promise.reject(error.request.data);
+      }
+    }
+  }
+);
+```
+
