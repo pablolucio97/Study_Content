@@ -4,7 +4,7 @@ The Evolution API is an alternative to default n8n chat interface. It's more fri
 
 ## Using the Evolution API
 
-1. Clone this repository.
+1. Clone [this repository](https://github.com/pablolucio97/evolution-api-container).
 2. Generate a 32 characters authentication key (Encryption key 256) using the [ACTE website](https://acte.ltd/utils/randomkeygen).
 3. Paste the generated authentication key as the value for the AUTHENTICATION_API_KEY variable on .env file.
 4. Run the command `docker-compose up` to start the application.
