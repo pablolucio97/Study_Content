@@ -178,3 +178,6 @@ MCP is  and it's used to simplify a nodes chain where few nodes executes complex
 - At working with chats, use the Sentiment Analysis node to feel if your client is speaking in a positive, neutral or negative tone.
 - Do not feed a vectorial database with table data.
 - Pay attention to not connect nodes incorrectly otherwise the flow won't work as expected.
+- At working with nodes locally that depends third containers, like Evolution API for example, you should always connect to it through host.docker.internal instead localhost.
+- In test development a workflow only executes once. To execute your workflow several times you need to use production URLs and activate the workflow (it can be executed just with Docker container running, no necessary maintain the aplication running in the browser.).
+- At working with file uploads, the file to upload value input should be "data" or the same name as the BLOB file.

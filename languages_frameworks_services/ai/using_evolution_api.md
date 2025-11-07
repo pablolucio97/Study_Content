@@ -14,4 +14,25 @@ The Evolution API is an alternative to default n8n chat interface. It's more fri
 8. After the instance was created, click on "Get QR Code", read it using your phone to sync your Whatsapp data. 
 9. On n8n, install the `n8n-nodes-evolution-api` community node.
 
+## Comparison table between Official Meta API and Unofficial APIs like Evolution API
+
+| **Item**              | **Official API**                   | **Unofficial API**                              |
+|-----------------------|------------------------------------|-------------------------------------------------|
+| **Provider**          | Meta (WhatsApp)                    | Unauthorized developers / 3rd-party tools      |
+| **Reliability**       | High                               | Variable                                        |
+| **Security**          | High (end-to-end, licensed)         | Not end-to-end encrypted — risk of leaks        |
+| **Costs**             | Paid (per session / conversation)  | Low or free                                     |
+| **Ban Risk**          | None if you follow policies        | High if you spam or violate rules               |
+| **Support**           | Official support from Meta         | Community / limited vendor support              |
+| **Flexibility**       | Limited by Meta policies & templates| Very flexible (but risky)                      |
+
+## When to choose which
+- **Use the Official API when:**
+  - You handle **sensitive personal data** (CPF, RG, credit card, health info).
+  - You require **legal/compliance guarantees** (LGPD / data protection).
+  - You need stable production support and minimal infra maintenance.
+- **Consider Unofficial APIs when:**
+  - You need quick experimentation, low cost or extreme customization.
+  - The data is non-sensitive and you accept higher operational risk.
+  - You will host on your own infra and can tolerate potential blocks.
    
