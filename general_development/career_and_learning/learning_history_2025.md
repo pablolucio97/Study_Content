@@ -305,4 +305,23 @@ api.interceptors.response.use(
 
 ### 02/12/2025
 - Always there are problems at pulling from team remote branches, try deleting your local branch and recreating it based on the updated remote origin branch running the commands `git branch -D myLocalBranch` and `git checkout -b myLocalBranch origin/remoteBranch`. Ex: `git branch -D develop` and `git checkout -b develop origin/develop`.
+- Create views to replace repeated complex queries, example:
+
+```sql
+# Before (it was being called every time)
+SELECT o.id, o.total, c.name AS customer_name
+FROM orders o
+JOIN customers c ON c.id = o.customer_id
+WHERE o.status = 'PAID' AND c.is_active = true;
+```
+```sql
+#After(with view it's created just once)
+CREATE VIEW paid_orders_with_customer AS
+SELECT o.id, o.total, c.name AS customer_name
+FROM orders o
+JOIN customers c ON c.id = o.customer_id
+WHERE o.status = 'PAID' AND c.is_active = true;
+#And call it:
+SELECT * FROM paid_orders_with_customer;
+```
 
