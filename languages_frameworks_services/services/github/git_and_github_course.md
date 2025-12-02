@@ -306,3 +306,4 @@ Run `git pull` at a specific branch to update that specific branch.
 - The branches of the project vary according to the branches that are created on each machine, so always create new branches when working with local repositories already on GitHub.
 - GitHub can or cannot create a new rebase branch when rebasing branches. If it's created, create a new branch over this branch, for example: `feat/myFeatRebasecommit`, and push over this rebasing branch.
 - Use the command git reset --soft HEAD~1 to not push your last commit if you get some conflict because your local repository is not synced with remote repository. 
+- Always there are problems at pulling from team remote branches, try deleting your local branch and recreating it based on the updated remote origin branch running the commands `git branch -D myLocalBranch` and `git checkout -b myLocalBranch origin/remoteBranch`. Ex: `git branch -D develop` and `git checkout -b develop origin/develop`.

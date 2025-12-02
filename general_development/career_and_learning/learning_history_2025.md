@@ -303,3 +303,6 @@ api.interceptors.response.use(
 );
 ```
 
+### 02/12/2025
+- Always there are problems at pulling from team remote branches, try deleting your local branch and recreating it based on the updated remote origin branch running the commands `git branch -D myLocalBranch` and `git checkout -b myLocalBranch origin/remoteBranch`. Ex: `git branch -D develop` and `git checkout -b develop origin/develop`.
+
