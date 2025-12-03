@@ -15,3 +15,4 @@ Observations:
 - When reporting usage (meters), you use the Subscription Item ID, not the Price ID directly.
 - Local stripe webhook must always  be listening to events if some action on your software depends on Stripe’s events.
 - Card to use on test transactions on Stripe: 4242424242424242 12/34 567
+- Pay attenttion on using the correct Stripe webhook environmant variable for local and production, otherwise the webhook event listener will fail.
