@@ -325,3 +325,6 @@ WHERE o.status = 'PAID' AND c.is_active = true;
 SELECT * FROM paid_orders_with_customer;
 ```
 
+### 03/12/2025
+- At working with back-end application that has no authentication system yet, you can use cookies api according the query-builder/ORM you're using to manage routes and restrict user requests based on session-id for example. 
+
