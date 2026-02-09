@@ -2,7 +2,7 @@
 
 ## Definition
 
-An API gateway is a management tool used to unify a single point of communication between different backend APIs and clients. The gateway need to have security layers because it is the entry point from external world. Its main functionalities are:
+An API gateway is a management tool used to unify a single point of communication between different backend APIs and clients. When we adapt external services inside our backend and expose them to clients through our own routes—rather than allowing clients to call third-party services directly—we are implementing a gateway. The gateway need to have security layers because it is the entry point from external world. Its main functionalities are:
 - Requests callings control (rate limiting)
 - Authentication
 - Logs control
