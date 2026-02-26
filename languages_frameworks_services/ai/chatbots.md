@@ -75,4 +75,5 @@ In chatbots: Improves intent detection, semantic search, and context-aware respo
 - The more complete an input phrase is mount, best for AI understand what to process (convert to vector).
 - At working with chatbots that depends or can be influenced by legal organizations, prefer fixed-response flows over Generative AI because some responses must follow a legal patterns instead of free responses.
 - Each chat response depends on the previous questions context. If its more generic, use generative AI, otherwise train the LLM with your data.
-- 
+- Do not use generative AI isolated at working with business chatbots without providing a solid document.
+- The best approach to build chatbots is using a platform to mount your chatbots according your business flow/questions, and using generative AI guided by deep instructions to responde to open global questions.
