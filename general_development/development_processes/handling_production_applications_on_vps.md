@@ -185,7 +185,38 @@ Protocol: tcp
 | **HTTP 404 from Traefik** | Traefik not started or wrong router rule | Ensure **Traefik stack** is up first and domain **DNS points** to your VPS IP |
 | **Company does not exist error** | Database schema missing | Run inside container:<br>`npx prisma migrate deploy` |
 
+## Updating code on deployed production applications
 
+To make changes on an already deployed stack, make the changes  on your machine, push it to GitHub, pull it on the VPS, generate the image from the VPS to avoid image generation conflicts by SO envinronemnts using the command `docker buildx build \
+  --platform linux/amd64 \
+  -t YOUR_DOCKERHUB_USER/YOUR_IMAGE_NAME:1.0.3 \
+  --push \
+  .`, push it to DockerHub using the command `docker push YOUR_DOCKERHUB_USER/YOUR_IMAGE_NAME:latest`and use this new image on the Docker Swarm yml file used to create a new stack on Portainer. Example 
+  ```yaml
+  version: "3.8"
+  services:
+    api:
+      image: YOUR_DOCKERHUB_USER/blog-manager-api:latest
+      environment:
+        NODE_ENV: production
+        PORT: 3336
+        EVOLUTION_API_BASE_URL: http://76.13.169.34:8081
+      networks:
+        - traefik-public
+      deploy:
+        replicas: 1
+        labels:
+          - traefik.enable=true
+          - traefik.docker.network=traefik-public
+          - traefik.http.routers.blog-manager-api.rule=Host(`blog-manager-api.plssistemas.com.br`)
+          - traefik.http.routers.blog-manager-api.entrypoints=websecure
+          - traefik.http.routers.blog-manager-api.tls.certresolver=letsencrypt
+          - traefik.http.services.blog-manager-api.loadbalancer.server.port=3336
+
+  networks:
+    traefik-public:
+      external: true
+  ```
 
 
 ## General tips
@@ -207,3 +238,4 @@ set +a
 - Every time a Docker container is rebuilt, its necessary reopen Postgres ports on Portainer's dashboard.
 - If some service linked to some env var does not works, try removing quotes because the real value can be interpreted different depending on the OS.
 - At working with email system, be sure certificate the sender email is real. You can add an email routing for route your domain email to a real domain sender using Email Routing Cloudflare.
+- Avoid generating images locally, prefer push the code, pull on the VPS and generate the image from the VPS to avoid image SO envinronment incompatibility issues.
