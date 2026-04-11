@@ -149,6 +149,64 @@ At working with delivery guarantees, you can define the priority of the message 
 - **Local caching** The cache is available only locally. Its more faster, but can't be shared between user sessions. It means the user must repeat all same process in different machines.
 - **Shared caching** The cache is available in an external server where each instance should bump on this server to get the cached. It's more slower, mas generally more recommended. In this type of caching, the database queries can be cached and shared too.
 
+## PRD - Product Requirements Document
+
+A PRD is a document that describes the features, functionality, and requirements of a product. 
+It is used by designers, engineers, and stakeholders to guide the development of the software 
+according to defined business rules, goals, and user needs. Example:
+
+### 1. Overview
+Build a secure authentication system allowing users to register, log in, and manage sessions for the platform.
+
+### 2. Goals
+- Enable user account creation and login  
+- Ensure secure access using JWT  
+- Support password recovery  
+
+### 3. Features
+
+### 3.1 Registration
+- User can sign up with:
+  - Name
+  - Email
+  - Password  
+- Email must be unique  
+- Password must be hashed (bcrypt)
+
+#### 3.2 Login
+- User logs in with email + password  
+- Returns JWT token  
+- Token expiration: 7 days  
+
+### 3.3 Password Recovery
+- User requests reset via email  
+- System sends reset link with token  
+- Token expires in 1 hour  
+
+### 4. Functional Requirements
+- API endpoints:
+  - `POST /auth/register`
+  - `POST /auth/login`
+  - `POST /auth/forgot-password`
+  - `POST /auth/reset-password`
+- Validate inputs using Zod  
+- Store users in PostgreSQL  
+
+### 5. Non-Functional Requirements
+- Response time < 300ms  
+- Secure password storage (bcrypt)  
+- Rate limiting on login attempts  
+
+### 6. Success Metrics
+- 95% successful login rate  
+- <1% authentication errors  
+- Average login time < 200ms  
+
+### 7. Tech Stack
+- Backend: NestJS  
+- Database: PostgreSQL + Prisma  
+- Auth: JWT + Bcrypt  
+
 ## General tips
 - The business team structure reflects directly on the final software architecture. Example: If a team is composed of just one back-end developer, then the front-end application will be embedded on the back-end.
 - Always design your application thinking on the future. It can be done using clean architecture.
