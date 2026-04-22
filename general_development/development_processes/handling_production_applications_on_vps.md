@@ -157,15 +157,17 @@ Protocol: tcp
 
 ## Making changes on your server
 1. Edit your code **locally** (never inside a live container).
-2. Rebuild the image:
+2. Push the changes to GitHub.
+3. Pull it on the VPS.
+4. Rebuild the image from the VPS to avoiding SO mismatching errors:
    ```bash
    docker build -t myapp-api:latest .
    ```
-3. Update the running service:
+5. Update the running service:
    ```bash
    docker service update --image myapp-api:latest --force myapp_api
    ```
-4. If migrations or environment variables changed:
+6. If migrations or environment variables changed:
    - Update `.env.swarm`
    - Redeploy the stack:
      ```bash
