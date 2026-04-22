@@ -13,6 +13,18 @@ The Evolution API is an alternative to default n8n chat interface. It's more fri
 7. Click on "New instance" to create a new instance, and provide your name, channel(choose baileys because it's free), and your phone number and lick on "Save".
 8. After the instance was created, click on "Get QR Code", read it using your phone to sync your Whatsapp data. 
 9. On n8n, install the `n8n-nodes-evolution-api` community node.
+10. Create a new workflow in n8n.
+11. Add a **Webhook** node to receive events from Evolution API.
+12. Copy the webhook URL from the node.
+13. In Evolution Manager, open the webhook settings of your instance.
+14. Paste the n8n webhook URL there.
+15. Enable the webhook and enable the `MESSAGES_UPSERT`, and `MESSAGES_UPDATE` events.
+16. In n8n, activate the workflow.
+17. Send a test message to your WhatsApp number.
+18. Confirm that the webhook node receives the payload.
+19. Add the Evolution API node or an HTTP Request node in n8n to send replies or execute automations.
+20. Configure your Evolution API URL, API key, and instance name inside n8n credentials or workflow variables.
+21. Prefer a public HTTPS URL for n8n in production, and use the production webhook URL instead of the temporary test URL.
 
 ## Comparison table between Official Meta API and Unofficial APIs like Evolution API
 
@@ -35,4 +47,8 @@ The Evolution API is an alternative to default n8n chat interface. It's more fri
   - You need quick experimentation, low cost or extreme customization.
   - The data is non-sensitive and you accept higher operational risk.
   - You will host on your own infra and can tolerate potential blocks.
+
+## General tips
+- Never use a personal Whatsapp number to test n8n workflows, since it will trigger on every real message.
+- Do not activate configs you are not sure, since it can alter the correct flow functionality. 
    
