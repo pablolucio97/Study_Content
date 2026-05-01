@@ -158,7 +158,35 @@ MCP is  and it's used to simplify a nodes chain where few nodes executes complex
 
 ### Creating and using a MCP
 1. Create your MCP server node adding the tools/nodes you want to work.
-2. On the project you want to use it, create a new MCP Client node informing your MCP Server URL to connect to it. 
+2. On the project you want to use it, create a new MCP Client node informing your MCP Server URL to connect to it.
+
+## PRD and BRD
+
+RD (Product Requirements Document) or BRD (Business Requirement Document)D  are a techinical document used to define the flow scope based on the product or business.
+In this example we'll use a car agency PRD.
+
+### Objective
+Automate WhatsApp conversations to qualify leads and respond instantly.
+
+### Inputs
+- Incoming WhatsApp message (Evolution API)
+
+### Business Rules
+- If user asks about price → fetch from database
+- If user greets → respond friendly + ask intent
+- Maintain conversation memory per user
+
+### Integrations
+- Evolution API
+- Google Sheets (lead storage)
+- OpenAI (response generation)
+
+### Output
+- Send contextual response via WhatsApp
+- Save/update lead data
+
+### Flow Summary
+Webhook → Identify user → Load memory → Generate response → Send reply → Save interaction 
 
 # General tips
 - Prefer configuring n8n with Docker and Ngrok using [this repository](https://github.com/Joffcom/n8n-ngrok) because it configures a permanent Ngrok domain persisting the url without resetting it every time the container stops.
@@ -181,3 +209,25 @@ MCP is  and it's used to simplify a nodes chain where few nodes executes complex
 - At working with nodes locally that depends third containers, like Evolution API for example, you should always connect to it through host.docker.internal instead localhost.
 - In test development a workflow only executes once. To execute your workflow several times you need to use production URLs and activate the workflow (it can be executed just with Docker container running, no necessary maintain the aplication running in the browser.).
 - At working with file uploads, the file to upload value input should be "data" or the same name as the BLOB file.
+- Never use a personal Whatsapp number to test n8n workflows, since it will trigger on every real message.
+- Do not activate configs on EvolutionAPI dashboard you are not sure, since it can alter the correct flow functionality.
+- Build each agent with a single responsability and conect them for solve more complex automations.
+- Awalys include a path for each webhook link to easily identify it at calling it.
+- Use `Filter` node instead of `If` node if you have not a false condition or decision.
+- Always only starts creating an automation flow after understanding the business process through a solid PRD (Product Requirements Document) or BRD (Business Requirement Document).
+- Never install an isolated n8n, or another application directly in a VPS, install the Ubuntu SO, and so install the applications you need.
+- At debugging errors on EvolutionAPI, do not trust in the UI, check the container logs.
+- Do not use Ngrok with Evolution API for production applications because it can invalidate session in some time. If it happens, you need to recreate the EvolutionAPI container and create, connect, and configure a new instance.
+- Always install the needed community nodes before creating or importing a template to avoid conflicts.
+- At working with some workflow linked to some credential, add the env in the .env file of the n8n image and create a Code node to read it instead using it directly in the workflow.
+- Add a dedicated env car on the EvolutionAPI image containing its EvolutionAPI API Key to allow requests only from Evolution (avoid attacks from clients liks Postman or Insomnia)
+- Always add human attendence node on all attendence overflow. 
+- Use .first() instead of .item() at reading previous output data if there are IF, Merge, Redis, or another node that can changes the flow in your flow.
+- Enable MESSAGE_UPSERT event on EvolutionAPI dashboard, ottherwise you will not able to see the executions on N8N and always create a filter to bypass event.message_upsert if fromMe is true.
+- Use safe data reading using Optional Chaining Operator (?) at reading possible undefined data from previous nodes.
+- Always use memory tied to user number and calculator on AI agent tools to a more dinamic and natural conversation.
+
+### Human attendence flow
+
+Client send message to the flow (owner number) => Consult Redis if there is some key block living for 4 hours for the client number => If positive, do nothing (to allow human attendence), if negative execute flow normally
+Owner send message to the flow responding a client => Register on Redis a key to block the client number for 4 hours => Then owner and client can have a normal conversation out the flow
