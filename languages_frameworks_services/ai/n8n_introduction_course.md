@@ -160,6 +160,31 @@ MCP is  and it's used to simplify a nodes chain where few nodes executes complex
 1. Create your MCP server node adding the tools/nodes you want to work.
 2. On the project you want to use it, create a new MCP Client node informing your MCP Server URL to connect to it.
 
+## Calling workflows from external applications.
+
+1. Create the workflow configuring the first node with Webhook Trigger Node and configured to responde as "Using response to Webhook Node".
+2. Finishis the workflow creation using the node "Respond to Webhook".
+3. Call it on your application. Example:
+```typescript
+  const callWebhook = async () => {
+    try {
+      const url =
+        "https://steelless-shortsightedly-zaiden.ngrok-free.dev/webhook-test/703c8e04-c3e4-4282-92da-e6d11c0ec3ee";
+      const response = await fetch(url, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ message: "Hello from the homepage!" }),
+      });
+      const data: WebhookPayload = await response.json();
+      console.log(data);
+    } catch (error) {
+      console.error("Error calling webhook:", error);
+    }
+  };
+``` 
+
 ## PRD and BRD
 
 RD (Product Requirements Document) or BRD (Business Requirement Document)D  are a techinical document used to define the flow scope based on the product or business.
@@ -226,6 +251,7 @@ Webhook → Identify user → Load memory → Generate response → Send reply �
 - Enable MESSAGE_UPSERT event on EvolutionAPI dashboard, ottherwise you will not able to see the executions on N8N and always create a filter to bypass event.message_upsert if fromMe is true.
 - Use safe data reading using Optional Chaining Operator (?) at reading possible undefined data from previous nodes.
 - Always use memory tied to user number and calculator on AI agent tools to a more dinamic and natural conversation.
+- On finishing your workflow with RespondToWebhook node, your Webhook first node trigger must be configured to 'Using response to Webhook Node'.
 
 ### Human attendence flow
 
