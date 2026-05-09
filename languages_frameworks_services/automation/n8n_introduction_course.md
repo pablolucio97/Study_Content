@@ -8,6 +8,14 @@
 
 **Automation**: Automation is a set o predictable set of predetermined actions that transfers data from one point to another.
 
+## Architecture of an automation project
+
+![alt text](imgs/image-1.png)
+
+**Front-end:** Whatsapp, web application, forms and so on.
+**Back-end:** Supabase, Qdrant ( a vectorial database used to save data as text), and so on.
+**Third technologies:** Third APIs, RabbitMQ, Webhooks, Stripe, AI agents like Open IA, DeepSeek and so on.
+**Hosting** Docker, third hosting services like Railway, Hostgator, Digital Ocean and so on.
 
 ## N8N concepts
 **Trigger** It's an event. It's used to call next block/actions. It will initiate or launch your workflow.
@@ -252,6 +260,8 @@ Webhook → Identify user → Load memory → Generate response → Send reply �
 - Use safe data reading using Optional Chaining Operator (?) at reading possible undefined data from previous nodes.
 - Always use memory tied to user number and calculator on AI agent tools to a more dinamic and natural conversation.
 - On finishing your workflow with RespondToWebhook node, your Webhook first node trigger must be configured to 'Using response to Webhook Node'.
+- Use Redis keys to communicate between flows. Example: On a payment flow, you can store the orderId with status "pending", and so when the second flow is called, you can call the second workflow and when the webhook is called, it automaticallys updates the data on Redis.
+- Always create a mind map before start creating the automations. It will help to not loose the logic.
 
 ### Human attendence flow
 

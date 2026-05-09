@@ -1,5 +1,31 @@
 # Introduction to AI
 
+## IA concepts and hierarchy
+
+![alt text](imgs/image-2.png)
+
+**Generative AI**: A branch of AI that creates new content such as text, images, music, or code by learning from patterns in existing data. It powers tools like ChatGPT and image generators. Is the final solution created.
+
+**Deep Learning**: A subset of machine learning that uses artificial neural networks with many layers to process complex data like images, speech, or natural language. It excels at pattern recognition. Responsible for recognize speak, images, and so on. Deep Learning is large used on farms where through image recognition is possible to know where to use more insecticide to save the plantation.
+
+**Machine Learning**: A field of AI where algorithms learn from data and improve their performance over time without being explicitly programmed. It includes methods like regression, classification, and clustering.
+
+**Artificial Intelligence (AI)**: The broad concept of machines being able to perform tasks that normally require human intelligence, such as reasoning, learning, and decision-making.
+
+**Large Language Models (LLMs)**: A type of deep learning model trained on massive amounts of text to understand and generate human-like language. They are the engines behind tools like ChatGPT, capable of conversation, summarization, translation, and more.
+
+Doing an analogy using cakes, AI is the kitchen, ML is the recipe process, DL is the layered complexity, LLM is a master recipe book filled with billions of cake recipes, and Generative AI is the baker creating new recipes from scratch.
+
+![alt text](imgs/image-3.png)
+
+**How IA understands data**
+
+AI takes the prompt (the text you type) and breaks it into tokens, which are small pieces of words represented as numbers.
+These tokens are then embedded into vectors, meaning they are placed in a mathematical space where similar meanings are close together (like in the same cluster or quadrant).
+Finally, the LLM processes these embeddings, finding relationships and patterns, and uses that to generate a response that best matches your input.
+
+![alt text](imgs/image-4.png)
+
 ## AI subareas
 
 - **Artificial Intelligence (AI):** The broad field focused on building systems that can perform tasks that usually require human intelligence, such as reasoning, perception, prediction, and decision-making.
@@ -71,6 +97,10 @@ An **AI agent** is a system that receives a goal, reasons about what to do, and 
 - A support assistant that reads the knowledge base before answering is a **RAG agent**.
 - A sales assistant that checks inventory, creates quotes, and schedules meetings is a **tool-using agent**.
 - An automation flow that reads emails, extracts data, updates a CRM, and notifies the team is a **task automation agent**.
+
+## Using databases on AI (Vector Databases)
+
+AI uses Vector Databases to store and search vector embeddings (numerical representations of text, images, etc.). They are essential for modern AI and RAG systems, enabling similarity search and semantic queries. A model that useS external resource documents (text, PDFs, databases) and splits it into small chunks, chunking (like paragraphs in a text), and transformed into embeddings (numerical vectors).  These embeddings are stored in a vectorial database (PineCone, QDrant, Vespa, Chroma and so on) with metadata and links to the original content.
 
 ## General tips
 
