@@ -1,9 +1,12 @@
-### SEO checklist
+# SEO Checklist and Tips
+
+## SEO Checklist
+
 - Responsiveness
 - Usability test
 - Visual consistence
 - Contrast test
-- Page Structure well defined based on a solid site wireframe
+- Page structure well defined based on a solid site wireframe
 - Copy content must be focused on the client, not in the business
 - Programatic SEO configured (sitemap mapping multiple pages)
 - Text length balanced, not too much for a beautiful design however not too less for a good SEO.
@@ -32,10 +35,13 @@
 - Do not create articles with even words or similar titles because it will generate conflicts on Google and Google can hide it from results.
 - The articles can not be repeated or conflict between themselves. Analise it manually, remove the duplicated and merge articles if possible.
 - Google increases the site ranking if it has a solid blog.
-- Sites with 5 pages has more chances to be better positioned than one page websites because it's content is larger.
-- Backlinks are links in others sites pointing to your site.
-- When Instagram profile is ranked before your site, it means your site has a not good SEO.
-- Domains with extension .gov are stronger than regular domains and have priority on engine search.
-- Avoid using videos on hero section. Its beautiful, however it reduces page speed initial loading. If removing the video is not an option, reduces its quality and compress it to file be smaller.
-- SEO is a life term work. Do not offer SEO work for one payment because in the future the client will say he is not obtain results.
-   
+- Sites with 5+ pages have more chances of better positioning than one-page websites because they have larger content.
+- Backlinks are links in other sites pointing to yours — they improve authority.
+- When an Instagram profile ranks before your site, your site has poor SEO.
+- Domains with `.gov` extension are stronger than regular domains and have priority in search engines.
+- Avoid using videos on the hero section — they reduce initial page load speed. If unavoidable, compress the video to a smaller file.
+- Structure content using headings effectively: `h1` for the most important content, down to `h6` for the least important.
+- Craft a compelling meta description (50–160 characters) as it appears in Google search results.
+- SEO is a long-term ongoing work.
+- The better the UX on your site, the more traffic you can receive and the more chances the user will buy your product.
+- Content marketing (blog posts, eBooks, videos) combined with SEO is the most effective organic traffic strategy.
