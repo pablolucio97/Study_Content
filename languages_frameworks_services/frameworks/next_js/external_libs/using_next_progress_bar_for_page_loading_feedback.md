@@ -1,3 +1,5 @@
+
+
 # Using Next Progress Bar for page loading feedback
 
 Next ProgressBar is a feature used for give feedback for the user when a page is loading. 
@@ -27,3 +29,9 @@ export default function App({ Component, pageProps }) {
   )
 }
 ```
+
+---
+
+#nextjs #ui-design #tutorial
+
+**Related:** [[nextjs13+_introduction_course]] | [[nextjs_legacy_introduction_course]]

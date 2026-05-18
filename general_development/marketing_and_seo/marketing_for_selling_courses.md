@@ -1,3 +1,5 @@
+
+
 # Marketing for selling courses
 
 ## How to define the price of a course
@@ -29,3 +31,9 @@ To define a course price you should take the following factors:
 2. Create a page to allow people to subscribe on your event with an "Tank you message after the subscription".
 3. Configure some email marketing tool or implement some API to send email and whatsapp message.
 4. Invite the lead to enter in your whatsapp group.
+
+---
+
+#marketing #tutorial
+
+**Related:** [[marketing_digital_course]] | [[copywriting_and_mind_triggers]] | [[marketing_plan]] | [[social_media_grow_up_strategies]]

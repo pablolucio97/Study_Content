@@ -1,3 +1,5 @@
+
+
 # GENERAL UX/UI TIPS
 
 ## Design and Typography
@@ -53,3 +55,9 @@
 - Style the scrollbar.
 - Maintain the original proportions of images. Calculate the proportions before rendering.
 - Use 2400x1600 resolution for banners. For banner creation, use PNG images with padding and shapes like circles or squares. Ensure good text/background contrast and consider using icons (Flaticon can be a resource).
+
+---
+
+#ui-design #web #mobile #reference
+
+**Related:** [[applying_responsivity_on_complex_UI]] | [[web_applications_development_checklist]] | [[mobile_applications_development_checklist]]

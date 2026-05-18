@@ -1,3 +1,5 @@
+
+
 # 📥 Downloading Files in React Native using `expo-file-system`
 
 This tutorial will walk you through how to download files in a React Native app using the `expo-file-system` API, including saving files on Android using Storage Access Framework.
@@ -117,3 +119,9 @@ const saveAndroidFile = async (fileUri: string, fileName: string) => {
 
 - SAF is required to write files to public storage on Android 10+.
 - For iOS, files are saved within the app sandbox and are not accessible from the Files app unless shared.
+
+---
+
+#expo #react-native #file-storage #mobile #tutorial
+
+**Related:** [[expo_workflows]] | [[exporting_csv_expo_file_system_and_react_native_csv]] | [[doing_uploads_with_multer]]

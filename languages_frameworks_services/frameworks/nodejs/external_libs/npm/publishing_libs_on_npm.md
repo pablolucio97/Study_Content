@@ -1,3 +1,5 @@
+
+
 # Publishing React Components on NPM
 
 1) Visit [npm.com](https://www.npmjs.com/) and search for your library’s name to ensure it’s not already taken.
@@ -40,3 +42,9 @@
 ---
 
 9) In a different project, run `yarn link "your_created_package_name"` to test your newly created package.
+
+---
+
+#nodejs #javascript #react #tutorial
+
+**Related:** [[npm_concepts]] | [[react_course]]

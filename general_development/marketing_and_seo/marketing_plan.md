@@ -1,3 +1,5 @@
+
+
 # Marketing plan for softwares
 
 
@@ -28,3 +30,9 @@
 10. Send emails to all collected clients.
 11. Watch the traffic on your landing page and the selling done.
    
+
+---
+
+#marketing #checklist
+
+**Related:** [[marketing_digital_course]] | [[google_ads]] | [[facebook_pixel_and_facebook_ads]] | [[marketing_for_selling_courses]] | [[social_media_grow_up_strategies]]

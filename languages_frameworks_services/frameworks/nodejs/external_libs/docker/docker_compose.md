@@ -1,3 +1,5 @@
+
+
 ### Docker Compose basic course
 
 Docker Compose is a tool for defining and running multi-container Docker applications. With a single command, you can configure all the services in your application and start them up. Docker Compose uses a YAML file to configure your application's services, networks, and volumes.
@@ -178,3 +180,9 @@ services:
 - Always use dockerize or another async operations image to grant a container that depends another one will wait for.
 - Use healthcheck with a repeated interval or dockerize when you have a container that depends on another. Do not use "Wait for it".
 - At working with multiples docker-compose files and you have to communicate between the services inside these different files, each service inside each docker-compose.yml file must be connected in the same network. You must create a new network running the command `docker network create your-network` and assign all services to this network.
+
+---
+
+#docker #devops #deployment #tutorial
+
+**Related:** [[docker_course]] | [[docker-swarm]] | [[creating_a_crud_using_nestjs_prisma_and_docker]] | [[handling_production_applications_on_vps]]

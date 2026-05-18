@@ -1,3 +1,5 @@
+
+
 # Marketing Digital Course
 
 ## What is Marketing digital?
@@ -230,3 +232,9 @@ Remarketing is the technique of republishing your ads with specific copy and con
 - Be present on all social network platforms, because like on Real State Bank game, will win the game who is in more places at once.
 - Do not focus on a single social network platform, because this platform can be not be used anymore in the future.
 - Content generates new followers, new follower generates attention, attention generates selling.
+
+---
+
+#marketing #course
+
+**Related:** [[copywriting_and_mind_triggers]] | [[marketing_glossary]] | [[marketing_for_selling_courses]] | [[marketing_plan]] | [[social_media_grow_up_strategies]] | [[facebook_pixel_and_facebook_ads]] | [[google_ads]]

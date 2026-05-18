@@ -1,3 +1,5 @@
+
+
 # Chatbots
 
 ## Chatbot techniques
@@ -77,3 +79,9 @@ In chatbots: Improves intent detection, semantic search, and context-aware respo
 - Each chat response depends on the previous questions context. If its more generic, use generative AI, otherwise train the LLM with your data.
 - Do not use generative AI isolated at working with business chatbots without providing a solid document.
 - The best approach to build chatbots is using a platform to mount your chatbots according your business flow/questions, and using generative AI guided by deep instructions to respond to open global questions.
+
+---
+
+#ai #automation #concepts
+
+**Related:** [[introduction_to_ai]] | [[prompt_engineering]] | [[n8n_introduction_course]] | [[using_evolution_api]]

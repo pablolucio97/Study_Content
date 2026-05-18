@@ -1,4 +1,5 @@
 
+
 1 - Create the JwtAdminStrategy class extending the PassportStrategy configuring the authentication options in constructor instanced by the super class method, and validating if the received payload from request has a a bearer token in the header and this token has the property isAdmin encrypted.
 
 - Obs: pay attention on passing the strategy name as second argument to PassportStrategy function to Jwt can distinguish between user and admin tokens.
@@ -95,3 +96,9 @@ export class ListAppVersionsController {
 }
 
 ```
+
+---
+
+#nestjs #authentication #security #tutorial
+
+**Related:** [[nestjs_introduction_course]] | [[handling_authentication_with_jwt_and_passport_using_rsa256]] | [[generating_and_using_jwt_tokens]]

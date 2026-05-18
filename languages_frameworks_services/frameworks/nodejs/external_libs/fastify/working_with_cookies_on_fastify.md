@@ -1,3 +1,5 @@
+
+
 # WORKING WITH COOKIES ON FASTIFY
 
 Cookies are pieces of information that can be read in the response of a request. They are useful for identifying who is sending a request, even if the user is not authenticated, and for sharing context between applications using the user’s browser or client.
@@ -101,3 +103,9 @@ const totalTransactions = await knex('transactions').where('session_id', session
 return { totalTransactions }
 
 })```
+
+---
+
+#nodejs #backend #authentication #tutorial
+
+**Related:** [[working_with_jwt_and_fastify]] | [[creating_global_hook]] | [[saving_cookies_with_nookies]]

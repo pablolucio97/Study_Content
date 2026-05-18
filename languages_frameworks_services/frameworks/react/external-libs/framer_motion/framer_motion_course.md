@@ -1,3 +1,5 @@
+
+
 # Framer Motion Course
 
 Framer Motion is a React component designed to allow you to configure amazing animations for your React projects.  
@@ -83,3 +85,9 @@ export function ReadProgressBar() {
 
 - Using an array to contain your style props works as **keyframes**.  
 - Set the prop `stiffness` if you're using the **spring** as animation type.
+
+---
+
+#react #animations #javascript #course
+
+**Related:** [[react_course]] | [[creating_animations_using_react_native_reanimated]]

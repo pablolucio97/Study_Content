@@ -1,3 +1,5 @@
+
+
 # ECMAScript most used features
 
 ## Arrow Functions
@@ -65,3 +67,9 @@ const value = person[propName]; // Returns 'Alice'
 const value = "Hello World!";
 const isTruthy = !!value; // true
 ``````
+
+---
+
+#javascript #reference
+
+**Related:** [[javascript_course]] | [[ecma_script_versions_and_features]] | [[react_e6+_used_techiniques]]

@@ -1,3 +1,5 @@
+
+
 # USING JWT WITH FASTIFY
 
 ### 1. Install the JWT Library
@@ -112,3 +114,9 @@ const user = await req.jwtVerify()
 return rep.status(200).send({ userId: user.sub })
 }
 ```
+
+---
+
+#nodejs #authentication #security #tutorial
+
+**Related:** [[working_with_cookies_on_fastify]] | [[generating_and_using_jwt_tokens]] | [[verifying_authentication_with_jwt]] | [[creaing_role_verification_using_fastify_and_prisma]]

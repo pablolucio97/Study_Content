@@ -1,4 +1,5 @@
 
+
 # Writing Unity Tests on NodeJS Applications with Vitest
 
 ## 1. Install Vitest and vite-tsconfig-paths
@@ -93,3 +94,9 @@ describe('Register Use Case', () => {
 - Each route has a business rule; your tests should validate those rules.
 - Unit tests **do not connect** to a real database.
 - Mock the database with in-memory repositories implementing the same interfaces.
+
+---
+
+#testing #nodejs #vite #backend #tutorial
+
+**Related:** [[configuring_tests_coverage]] | [[working_with_tests_on_nodejs]] | [[writing_automated_tests_on_nodejs_applications_with_vitest_supertest_and_fastify]]

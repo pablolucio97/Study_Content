@@ -1,3 +1,5 @@
+
+
 # API Gateways concepts
 
 ## Definition
@@ -25,3 +27,9 @@ At building an API Gateway, you must have at least two instances running your ga
 Be careful at using Enterprise Gateways because it can limit the deployment mobility and let the application stuck on the Vendor conditions (Vendor Lock-in).
 Keep your API Gateway stateless to turn easy to scale and available your API Gateway. Try to not have too many instances to deal with the API Gateway
 An API gateway can be used to route routes to different services. Its useful when you have a monolith and desire to migrate new routes to a different service.
+
+---
+
+#api #backend #architecture #concepts
+
+**Related:** [[kong_api_gateway]] | [[back-end_concepts]] | [[microsservices_concepts]] | [[software_architeture_concetps]]

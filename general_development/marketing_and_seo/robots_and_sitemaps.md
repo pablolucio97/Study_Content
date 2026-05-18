@@ -1,4 +1,5 @@
 
+
 # Robots and Sitemap
 
 ## robots.txt
@@ -51,3 +52,9 @@ Submit the sitemap URL in Google Search Console so Google can find and process i
 | **Analogy** | A "do not enter" sign | A map of all rooms in the building |
 
 Both files complement each other: `robots.txt` controls access, `sitemap.xml` guides discovery. A page blocked in `robots.txt` should not appear in `sitemap.xml`.
+
+---
+
+#seo #web #reference
+
+**Related:** [[seo_checklist_and_tips]] | [[improving_seo_on_nextjs_projects]] | [[main_metatags_for_seo]] | [[making_your_website_searchable_on_google]]

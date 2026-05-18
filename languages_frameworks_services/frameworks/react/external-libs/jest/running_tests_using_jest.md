@@ -1,3 +1,5 @@
+
+
 # WORKING WITH TESTS IN REACT
 
 ## TYPES OF TESTS AND CONCEPTS
@@ -570,3 +572,9 @@ it('should be show city weather', async () => {
 - Use **waitFor** for asynchronous tests, especially for elements that take time to render in the Jest test tree.
 - At working with tests using Jest, be careful at using methods started with `query` or `get` because it return different kind of errors because `get` expects for the element existing on test tree, and `get` does not. It has different kind of behaviors.
 ![img](https://i.ibb.co/34xNzPy/Screenshot-2024-10-11-at-08-20-39.png)
+
+---
+
+#testing #react #javascript #tutorial
+
+**Related:** [[tests_concepts]] | [[working_with_tests_on_nodejs]] | [[writing_unity_tests_on_nodejs_applications_with_vitest]]

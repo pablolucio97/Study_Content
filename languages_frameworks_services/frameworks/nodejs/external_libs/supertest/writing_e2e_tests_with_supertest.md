@@ -1,3 +1,5 @@
+
+
 # 🚦 Writing E2E Tests with Supertest
 
 End-to-end (E2E) tests validate your **controllers** and HTTP behavior by spinning up your app and making real HTTP requests.  
@@ -58,3 +60,8 @@ describe('Register e2e', () => {
 - Use **environment variables** (e.g., `NODE_ENV=test`) to load a test config.
 - Assert response **status** and **body** (`expect(response.body).toMatchObject({...})`).
 
+---
+
+#testing #nodejs #backend #tutorial
+
+**Related:** [[tests_concepts]] | [[writing_integration_tests_with_supertest]] | [[working_with_tests_on_nodejs]] | [[configuring_e2e_envinronment_test]]

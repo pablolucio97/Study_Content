@@ -1,3 +1,5 @@
+
+
 # ECMAScript Versions and Features
 
 ## ES1 (1997)
@@ -89,3 +91,9 @@
 - Ergonomic brand checks for Private Fields
 - Top-level await (in modules)
 - RegExp Match Indices
+
+---
+
+#javascript #reference
+
+**Related:** [[ecma_script_most_used_features]] | [[javascript_course]]

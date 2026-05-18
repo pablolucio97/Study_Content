@@ -1,4 +1,5 @@
 
+
 # 🧭 Doing Class Mapper (DTO Mapping) in a Node.js + TypeScript Backend
 
 A **mapper** converts domain entities into **DTOs (Data Transfer Objects)**, so your API returns only what clients should see — with consistent shapes and names.
@@ -272,3 +273,9 @@ export const mapList = <E, D>(items: E[], mapper: Mapper<E, D>): D[] =>
 - **DTOs** keep your API responses clean, safe, and stable.
 - **Mappers** isolate representation logic from business logic.
 - Test your mappers and treat them as part of your contract with clients.
+
+---
+
+#nestjs #backend #typescript #tutorial
+
+**Related:** [[nestjs_introduction_course]] | [[creating_a_crud_using_nestjs_prisma_and_docker]]

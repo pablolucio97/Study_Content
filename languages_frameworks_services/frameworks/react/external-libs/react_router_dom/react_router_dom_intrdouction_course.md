@@ -1,4 +1,5 @@
 
+
 # React Router DOM Introduction Course
 
 React Router DOM is the standard routing library for React applications running in the browser.  
@@ -340,3 +341,8 @@ export default function Menu() {
 - Test **deep linking** (navigating directly to a nested URL) to ensure routes work without manual redirects.
 - If using query params for state, ensure they’re synced with `useSearchParams` to avoid inconsistent behavior.
 
+---
+
+#react #javascript #course
+
+**Related:** [[react_course]] | [[react_navigation_introduction_course]] | [[handling_routes_with_expo_router]]

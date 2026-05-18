@@ -1,3 +1,5 @@
+
+
 # CI CD Concepts and Practices
 
 ## Concepts
@@ -109,3 +111,9 @@ on:
 - You can use already existing actions on GitHub actions available on [GitHub](https://github.com/actions)
 - You can optionally specify IDs for your steps for helping identifying it.
 - Generally the CI on the Develop/Stage is different from the CI on the Production branch. You must create a CI for `develop` with tests instructions, and a CI containing deploy instructions for the `main` branch.
+
+---
+
+#ci-cd #devops #github #concepts
+
+**Related:** [[devops_concepts]] | [[github_actions]] | [[performing_ci_with_dockerfile]] | [[automatizing_ec2_deploy_instances_with_gh_actions]]

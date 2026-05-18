@@ -1,3 +1,5 @@
+
+
 # CLIENT SERVER MODEL
 
 ## CONCEPTS
@@ -55,3 +57,9 @@ Main response status codes:
 - A client can be a PC, phone, IoT devices, or anything else connected to the internet.
 - When we're a back-end server, this can also be a client of a database server provider.
 - The client always waits for the server's response to requests.
+
+---
+
+#web #html #api #concepts
+
+**Related:** [[web_essentials_concepts]] | [[back-end_concepts]] | [[general_html_elements_and_attributes]]

@@ -1,3 +1,5 @@
+
+
 # DOING AUTHENTICATION WITH NEXT AUTH AND GITHUB
 
 1. **Install the next-auth**: Run `yarn add next-auth` and create a new file named `[...nextauth].tsx` inside of `pages/api/auth`.
@@ -87,3 +89,9 @@
        )
      }
      ```
+
+---
+
+#nextjs #authentication #github #tutorial
+
+**Related:** [[doing_authentication_with_next-auth_and_google]] | [[authenticating_using_next-auth]] | [[protecting_requests_with_next-auth-jwt]] | [[nextjs13+_introduction_course]] | [[verifying_authentication_with_jwt]]

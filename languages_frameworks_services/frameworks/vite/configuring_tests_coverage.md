@@ -1,3 +1,5 @@
+
+
 ## CONFIGURING TESTS COVERAGE
 
 Coverage is useful to show you all your tests coverage info.
@@ -25,3 +27,9 @@ Make sure to add this line to your `.gitignore`:
 ```
 coverage/
 ```
+
+---
+
+#testing #vite #tutorial
+
+**Related:** [[vite_introduction_course]] | [[writing_unity_tests_on_nodejs_applications_with_vitest]]

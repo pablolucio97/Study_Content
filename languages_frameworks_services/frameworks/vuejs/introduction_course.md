@@ -1,3 +1,5 @@
+
+
 # VueJS Introduction Course
 
 ## **What is Vue.js?**
@@ -89,3 +91,9 @@
 ✔ Add ESLint for code quality? … No / Yes
 ✔ Add Prettier for code formatting? … No / Yes
 ✔ Add Vue DevTools 7 extension for debugging? (experimental) … No / Yes
+
+---
+
+#vuejs #javascript #web #course
+
+**Related:** [[react_course]] | [[javascript_course]] | [[vite_introduction_course]]

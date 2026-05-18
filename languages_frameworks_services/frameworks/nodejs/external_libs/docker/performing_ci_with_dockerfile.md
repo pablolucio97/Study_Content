@@ -1,3 +1,5 @@
+
+
 # Performing CI with Dockerfile
 
 Creating a CI with Dockerfile is a very useful process to grant your application is working fine on Docker. Your CI must execute the application, run tests and verifications, and generate the build to be used on production.
@@ -80,3 +82,9 @@ jobs:
 ```
 
 3. After this action be performed on GitHub, you be able to download this same image on your local machine or where you need.
+
+---
+
+#docker #ci-cd #devops #tutorial
+
+**Related:** [[docker_course]] | [[github_actions]] | [[ci_cd_concepts_and_practices]]

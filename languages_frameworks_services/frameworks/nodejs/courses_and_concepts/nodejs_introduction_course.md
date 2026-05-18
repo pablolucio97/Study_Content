@@ -1,3 +1,5 @@
+
+
 # NodeJS introduction course, main concepts
 
 # Table of Contents
@@ -654,3 +656,8 @@ Handling errors in child processes is crucial to maintain the stability of your 
 
 The `child_process` module is a powerful tool for expanding the capabilities of Node.js applications, allowing them to interact with the underlying system and execute other processes as needed. Proper management of child processes can greatly enhance the performance and functionality of your application.
 
+---
+
+#nodejs #javascript #backend #course
+
+**Related:** [[back-end_concepts]] | [[nestjs_introduction_course]] | [[applying_solid_on_nodejs]] | [[npm_concepts]]

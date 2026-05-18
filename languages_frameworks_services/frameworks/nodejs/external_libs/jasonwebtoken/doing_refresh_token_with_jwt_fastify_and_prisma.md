@@ -1,3 +1,5 @@
+
+
 # DOING REFRESH TOKEN WITH JWT, FASTIFY, AND PRISMAORM
 
 It is not secure to use a token with long validity (above 20 minutes). For this reason, to avoid forcing the user to log in again to generate a new token, the system generates a new token (refresh token) when the original token has expired.
@@ -121,3 +123,9 @@ Example:
 ### 6. Test the `/system/refresh-token` Endpoint
 
 Test the `/system/refresh-token` request without a body on Insomnia.
+
+---
+
+#nodejs #authentication #security #tutorial
+
+**Related:** [[generating_and_using_jwt_tokens]] | [[doing_refresh_token_with_jwt_and_typeorm]] | [[working_with_jwt_and_fastify]] | [[prismaorm_introduction_course]]

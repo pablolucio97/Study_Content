@@ -1,3 +1,5 @@
+
+
 # DOING AUTHENTICATION WITH NEXT-AUTH AND GOOGLE
 
 1. **Install next-auth**: Run `yarn add next-auth` and create a new file named `[...nextauth].tsx` in `pages/api/auth`.
@@ -102,3 +104,9 @@
        );
      }
      ```
+
+---
+
+#nextjs #authentication #tutorial
+
+**Related:** [[doing_authentication_with_next-auth_and_github]] | [[authenticating_using_next-auth]] | [[protecting_requests_with_next-auth-jwt]] | [[nextjs13+_introduction_course]]

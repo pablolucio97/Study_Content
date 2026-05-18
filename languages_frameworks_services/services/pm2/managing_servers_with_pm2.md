@@ -1,3 +1,5 @@
+
+
 # Managing Servers with PM2
 
 PM2 is a production process manager for Node.js applications that allows you to keep apps alive forever and reload them without downtime.
@@ -32,3 +34,9 @@ To stop your running server, use:
 ## References
 
 - Official site: [https://pm2.keymetrics.io/](https://pm2.keymetrics.io/)
+
+---
+
+#devops #nodejs #deployment #backend #tutorial
+
+**Related:** [[creating_and_accessing_vps_on_hostinger]] | [[handling_production_applications_on_vps]] | [[doing_reverse_proxy_on_ec2_linux_aws_instances]] | [[ubuntu_linux_server_commands]]

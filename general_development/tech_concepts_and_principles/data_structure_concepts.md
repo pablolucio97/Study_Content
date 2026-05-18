@@ -1,3 +1,5 @@
+
+
 # DATA STRUCTURE
 
 ## STACKS
@@ -28,3 +30,9 @@ Binary search is a method that splits the search logarithmically, breaking long 
 - In stacks, the last element that enters is the first to be popped, whereas in queues, the first element that enters is the first to be popped.
 - Stacks and queues have a default length, whereas lists have unlimited length.
 - Use binary search for looping through long arrays.
+
+---
+
+#concepts #backend
+
+**Related:** [[software_engineering_concepts]] | [[software_architeture_concetps]]

@@ -1,4 +1,5 @@
 
+
 # 📜 Documenting APIs with Swagger in Node.js + TypeScript
 
 ## 1️⃣ Install Dependencies
@@ -157,3 +158,9 @@ http://localhost:3333/api-docs
 ## 🔗 Useful References
 - [Swagger OpenAPI 3.0 Specification](https://swagger.io/specification/)
 - [swagger-ui-express GitHub](https://github.com/scottie1984/swagger-ui-express)
+
+---
+
+#nodejs #api #backend #tutorial
+
+**Related:** [[nodejs_introduction_course]] | [[nestjs_introduction_course]] | [[back-end_concepts]]

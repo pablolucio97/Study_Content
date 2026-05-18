@@ -1,3 +1,5 @@
+
+
 # Using Watched List Pattern in Node.js Applications
 
 The Watcher pattern, also known as the Observer pattern, is a behavioral design pattern where an object (the subject) maintains a list of its dependents (observers) and notifies them of any state changes. In Node.js applications, this pattern can be particularly useful for managing real-time data mutations, such as an array of attachments in a post.
@@ -112,3 +114,9 @@ export abstract class WatchedList<T> {
   }
 }
 ```
+
+---
+
+#nodejs #architecture #clean-code #concepts
+
+**Related:** [[domain_driven_design_concepts]] | [[clean_archterure_on_nodejs_applications]]

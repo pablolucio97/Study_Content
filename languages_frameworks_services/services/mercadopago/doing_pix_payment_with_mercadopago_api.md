@@ -1,3 +1,5 @@
+
+
 # Integrating MercadoPago PIX Payments
 
 This guide explains how to integrate PIX payments using MercadoPago in a Next.js application.
@@ -128,3 +130,9 @@ async function updatePayment(qrCode: string, paymentLink: string) {
   setPaymentLink(paymentLink)
 }
 ```
+
+---
+
+#payments #nextjs #api #backend #tutorial
+
+**Related:** [[stripe_implementation_flow]] | [[nextjs13+_introduction_course]]

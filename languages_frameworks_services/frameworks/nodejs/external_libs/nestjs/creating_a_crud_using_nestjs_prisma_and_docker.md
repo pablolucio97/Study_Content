@@ -1,3 +1,5 @@
+
+
 # Creating a CRUD using NestJS, Prisma, and Docker
 
 ## Initializing the project using NestJS 
@@ -140,3 +142,9 @@ export class AppModule {}
 
 
 ```
+
+---
+
+#nestjs #docker #database #backend #tutorial
+
+**Related:** [[nestjs_introduction_course]] | [[prismaorm_introduction_course]] | [[docker_compose]] | [[creating_crud_with_nest_graphql_docker_compose_and_prisma]]

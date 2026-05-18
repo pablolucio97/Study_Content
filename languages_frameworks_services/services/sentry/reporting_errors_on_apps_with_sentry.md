@@ -1,3 +1,5 @@
+
+
 # Reporting Production Errors with Sentry on Node Apps
 
 Sentry is a powerful tool for monitoring and debugging production errors in real time. Here's how to set it up in your Node.js application.
@@ -79,3 +81,9 @@ Import and configure Sentry in your `app.ts` or main server file:
 ## Step 4: Monitor Errors
 
 Once everything is configured, all production errors should automatically appear on your Sentry dashboard.
+
+---
+
+#nodejs #backend #devops #deployment #tutorial
+
+**Related:** [[handling_production_applications_on_vps]] | [[ci_cd_concepts_and_practices]] | [[sonarqube_introduction_course]]

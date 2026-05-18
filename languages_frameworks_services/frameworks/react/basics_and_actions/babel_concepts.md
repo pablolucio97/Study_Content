@@ -1,3 +1,5 @@
+
+
 # Babel Concepts
 
 Babel is a compiler that allows the compilation of JSX to JavaScript and is useful to standardize the application code between different browsers. It converts modern JavaScript (ES2015+) to older browsers.
@@ -105,3 +107,9 @@ Presets in Babel are a set of useful plugins (to avoid installing each plugin se
 
 To extend plugins in Next.js projects, refer to:  
 [Next.js Babel Configuration](https://nextjs.org/docs/advanced-features/customizing-babel-config)
+
+---
+
+#javascript #react #concepts
+
+**Related:** [[webpack_concepts]] | [[react_course]]

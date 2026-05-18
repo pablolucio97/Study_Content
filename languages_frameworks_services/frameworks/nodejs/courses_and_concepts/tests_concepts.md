@@ -1,3 +1,5 @@
+
+
 # TYPES OF TESTS
 
 ## Unit Tests
@@ -26,3 +28,9 @@ The Test Pyramid is a concept that suggests an ideal distribution of different t
 - **Top of the Pyramid**: A few end-to-end tests, which are slower to run but crucial for verifying the overall user experience.
 
 This pyramid structure helps in isolating test contexts and ensuring efficient performance of the test suite.
+
+---
+
+#testing #backend #concepts
+
+**Related:** [[working_with_tests_on_nodejs]] | [[writing_e2e_tests_with_supertest]] | [[writing_integration_tests_with_supertest]] | [[configuring_e2e_tests_on_node_with_vitest_and_npm_run_all]]

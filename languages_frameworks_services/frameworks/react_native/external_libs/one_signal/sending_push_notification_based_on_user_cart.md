@@ -1,3 +1,5 @@
+
+
 # Sending Push Notifications based on user cart context
 
 1 - On the utils/OneSignalNotifications file create a function to create a new tag on One Signal to send the context total cart items. Example:
@@ -20,3 +22,8 @@ export { tagCartUpdate };
 
 4 - Send a new push notification selecting the created segment for cart context.
 
+---
+
+#react-native #notifications #mobile #tutorial
+
+**Related:** [[sending_custom_push_notifications]] | [[sending_push_notifications_on_react-native_using_fcm_and_one_signal]]

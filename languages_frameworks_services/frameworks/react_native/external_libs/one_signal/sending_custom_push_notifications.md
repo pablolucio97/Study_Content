@@ -1,3 +1,5 @@
+
+
 # Sending custom push notifications using One Signal
 
 ## Sending push notifications to all users included in a tag:
@@ -161,3 +163,9 @@ export function Routes() {
 ### General tips
 
 - Only high priority notifications will be delivered and shown on app foreground state. Any priority notifications will be delivered even with quite or in background.
+
+---
+
+#react-native #notifications #mobile #tutorial
+
+**Related:** [[sending_push_notification_based_on_user_cart]] | [[sending_push_notifications_on_react-native_using_fcm_and_one_signal]] | [[expo_workflows]]

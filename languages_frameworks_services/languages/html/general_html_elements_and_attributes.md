@@ -1,4 +1,6 @@
-﻿# HTML ELEMENTS AND ATTRIBUTES=
+
+
+# HTML ELEMENTS AND ATTRIBUTES=
 
 ## GLOBAL ATTRIBUTES
 
@@ -156,3 +158,9 @@
 - The `tabindex` attribute must not be used on the `<dialog>` element.
 - `<link>` elements should be placed in the head.
 - Use HTML native tags rather than `<div>` elements to represent forms.
+
+---
+
+#html #web #reference
+
+**Related:** [[web_essentials_concepts]] | [[client_server_http_model]] | [[main_metatags_for_seo]]

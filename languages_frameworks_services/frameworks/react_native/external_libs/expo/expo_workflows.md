@@ -1,3 +1,5 @@
+
+
 # TYPES OF EXPO WORKFLOWS
 
 ## Manager Workflow
@@ -26,3 +28,9 @@ Is used to create a custom compilation for development (an installable applicati
 - If you're doing the native configurations manually, use `expo-dev-client`. Do not mix `expo prebuild` with `expo-dev-client`. You must choose between using `expo prebuild` or doing the native configuration manually. Do not use these two approaches together.
 - It's preferred to use `expo prebuild` instead of `expo-dev-client` because `expo prebuild` will handle the native configurations based on plugins.
 - You can use plugins with `expo prebuild` to handle all native code instead of doing it manually.
+
+---
+
+#expo #react-native #mobile #concepts
+
+**Related:** [[react_native_course]] | [[doing_app_deploy_to_googleplay]] | [[configuring_ci_cd_with_app_center_ms]]

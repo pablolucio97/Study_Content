@@ -1,3 +1,5 @@
+
+
 # 📦 Generating App Bundle for React Native
 
 This guide will help you generate a signed Android App Bundle for production release.
@@ -108,3 +110,9 @@ android/app/build/outputs/bundle/release/app-release.aab
 ## 🔗 References
 
 - [React Native: Signed APK Android](https://reactnative.dev/docs/signed-apk-android)
+
+---
+
+#react-native #mobile #deployment #tutorial
+
+**Related:** [[doing_app_deploy_to_googleplay]] | [[configurating_app_icon]] | [[expo_workflows]]

@@ -1,3 +1,5 @@
+
+
 ## Steps of OAuth2 authentication flow protocol
 
 Registrar a aplicação no Google Cloud Platform (GCP).
@@ -9,3 +11,9 @@ O servidor da Google valida as informações de login.
 O servidor da Google retorna um token de autenticação para a aplicação.
 
 [oauth2_flow_image](https://i.ibb.co/v3Wh7TX/Screenshot-2023-11-14-at-06-45-32.png)
+
+---
+
+#react-native #authentication #mobile #tutorial
+
+**Related:** [[doing_google_authentication]] | [[doing_apple_authentication]] | [[implementing_oauth2_authentication_on_react_native]]

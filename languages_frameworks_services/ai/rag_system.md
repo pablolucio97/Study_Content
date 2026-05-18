@@ -1,3 +1,5 @@
+
+
 # RAG System
 
 A RAG (Retrieval-Augmented Generation) is a technique where a language model retrieve an external data before generating an answer instead relying only on its training data. The RAG searches a knowledge source (like a database or document collection) to produce more accurate, grounded, and updated responses. The RAG techinique acts improving the response retrievel to external provided data.
@@ -38,3 +40,9 @@ The RAG archiecture is basicaly based on the flow below:
 - Pay attention to not provide documents that contains information that is not correct in real life beucase the RAG system will considerate the document content over real life.
 - Computers in general always works better with numbers because it's more easy to convert in bits. So the embeding models transform the piece of data in a bunch of numeric vetctors and send it to vectorial database.
 - At building Rag Systems, configure the chunk_sizes, chunk_overlaps, and top_keys according to the content you are working on. Pay attenttion to not use chunk_sizes too small, and it getting in the way to highlight top_keys. The more small are chunk_sizes, more top_keys you will need to consider as relevant for your answer. Test these values according the document you are working.
+
+---
+
+#ai #database #concepts
+
+**Related:** [[introduction_to_ai]] | [[prompt_engineering]] | [[chatbots]]

@@ -1,3 +1,5 @@
+
+
 # IMPROVING SEO ON NEXTJS PROJECTS
 
 To enhance SEO in your NextJS projects, focus on Meta Tags, Performance, Accessibility, and Progressive Web Apps (PWAs).
@@ -34,3 +36,9 @@ Performance is gauged by metrics like First Contentful Paint (FCP) and Largest C
   export function reportWebVitals(metric) {
     console.log(metric)
   }
+
+---
+
+#nextjs #seo #web #tutorial
+
+**Related:** [[nextjs13+_introduction_course]] | [[seo_checklist_and_tips]] | [[robots_and_sitemaps]] | [[main_metatags_for_seo]] | [[improving_performance_on_nextjs_projects]]

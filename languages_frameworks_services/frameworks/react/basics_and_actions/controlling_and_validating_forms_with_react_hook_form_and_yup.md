@@ -1,3 +1,5 @@
+
+
 # Controlling and Validating Forms with React Hook Form and Yup
 
 ## 1. Installation
@@ -170,3 +172,9 @@ export default function SignIn() {
   )
 }
 ```
+
+---
+
+#react #forms #javascript #typescript #tutorial
+
+**Related:** [[validating_forms_using_react_hook_form]] | [[controlling_forms_with_react_hook_form]] | [[zod_introduction_course]] | [[react_hooks]]

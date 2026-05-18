@@ -1,3 +1,5 @@
+
+
 # CREATING ROLE VERIFICATION MIDDLEWARE USING FASTIFY AND PRISMA
 
 ### 1. Alter or Add Role Property in Prisma Schema
@@ -162,3 +164,9 @@ app.post('/gyms/create', { onRequest: [verifyUserRole('ADMIN')] }, createGymCont
 }
 
 ```
+
+---
+
+#nodejs #authentication #security #database #tutorial
+
+**Related:** [[working_with_jwt_and_fastify]] | [[prismaorm_introduction_course]] | [[generating_and_using_jwt_tokens]] | [[verifying_authentication_with_jwt]]

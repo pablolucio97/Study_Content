@@ -1,3 +1,5 @@
+
+
 # REACT AND NATIVE DEVELOPMENT GOOD PRACTICES CHECKLIST
 
 ## DEVELOPMENT CHECKLIST
@@ -39,3 +41,9 @@
 
 - Since `setState` is asynchronous, React might still show the previous state.  
   To access the current state immediately, use a the own callback of the setState funcion or the library `react-usestateref`.
+
+---
+
+#react-native #react #mobile #web #checklist
+
+**Related:** [[mobile_applications_development_checklist]] | [[web_applications_development_checklist]] | [[react_native_course]]

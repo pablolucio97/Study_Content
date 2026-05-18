@@ -1,3 +1,5 @@
+
+
 # Learning and experience's tips history
 
 ### 03/01/2025
@@ -328,3 +330,8 @@ SELECT * FROM paid_orders_with_customer;
 ### 03/12/2025
 - At working with back-end application that has no authentication system yet, you can use cookies api according the query-builder/ORM you're using to manage routes and restrict user requests based on session-id for example. 
 
+---
+
+#career #javascript #react #react-native #nodejs #reference
+
+**Related:** [[learning_history_2024]] | [[learning_history_2026]] | [[external_careers_tips]]

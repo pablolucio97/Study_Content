@@ -1,3 +1,5 @@
+
+
 # Versioning Projects with a Changelog
 
 A **Changelog** is a `.md` file containing a chronological list of all meaningful changes made to your software. Maintaining a changelog is useful to provide a history of feature development for developers and end users.
@@ -52,3 +54,9 @@ Each version (tag) should document what was:
 - Generate strong password feature. [Commit](https://github.com/Pablo-Silva-Dev/keepsave-mobile/commit/ef770a904e5a86b45af614ebf06be77613ac3e2d)
 - Export data feature. [Commit](https://github.com/Pablo-Silva-Dev/keepsave-mobile/commit/e464660b83c9758a351dedf2e16a7b60aeac30ea)
 - Copy password feature. [Commit](https://github.com/Pablo-Silva-Dev/keepsave-mobile/commit/87ed03715860162e3f9310d41c7ffcc76273691f)
+
+---
+
+#git #github #devops #tutorial
+
+**Related:** [[git_and_github_course]] | [[git_flow]] | [[github_actions]]

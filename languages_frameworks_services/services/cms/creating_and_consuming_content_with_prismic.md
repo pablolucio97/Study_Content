@@ -1,3 +1,5 @@
+
+
 # CREATING AND CONSUMING CONTENT WITH PRISMIC
 
 Prismic is a CMS that allows you to create content to consume in your apps. Basically, you can create documents, types, images, and establish relationships between them.
@@ -108,3 +110,9 @@ export const getStaticProps: GetStaticProps = async () => {
     };
 }
 ```
+
+---
+
+#web #api #tutorial
+
+**Related:** [[nextjs13+_introduction_course]] | [[react_course]]

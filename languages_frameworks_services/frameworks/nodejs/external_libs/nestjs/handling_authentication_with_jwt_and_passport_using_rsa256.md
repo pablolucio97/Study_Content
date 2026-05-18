@@ -1,3 +1,5 @@
+
+
 # Handling authentication with Jwt and Passport using RSA256 algorithm
 
 
@@ -183,3 +185,8 @@ Reference Project:
 
 [Ignite Nest](https://github.com/pablolucio97/ignite-nestjs)
 
+---
+
+#nestjs #authentication #security #tutorial
+
+**Related:** [[nestjs_introduction_course]] | [[creating_admin_authentication_jwt_strategy]] | [[generating_and_using_jwt_tokens]] | [[data_safety]]

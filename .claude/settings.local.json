@@ -1,0 +1,9 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(python3)",
+      "Bash(grep -rn \"^---$\" /Users/pablosilva/Desktop/coding/studies/study_content --include=\"*.md\")",
+      "Bash(awk -F: '$2 == \"1\"')"
+    ]
+  }
+}

@@ -1,3 +1,5 @@
+
+
 # Web Development Essentials
 
 ## Most Used HTML Web APIs
@@ -45,3 +47,9 @@
    - Custom, reusable, encapsulated HTML tags for web pages and apps.
 10. **Content Delivery Networks (CDNs)**
     - Geographically distributed network of proxy servers for optimized content delivery.
+
+---
+
+#web #html #javascript #concepts
+
+**Related:** [[client_server_http_model]] | [[general_html_elements_and_attributes]] | [[javascript_course]]

@@ -1,4 +1,5 @@
 
+
 # TYPESCRIPT COURSE
 
 ## Concepts
@@ -675,3 +676,9 @@ declare namespace Express {
   }
 }
 ```
+
+---
+
+#typescript #javascript #course
+
+**Related:** [[javascript_course]] | [[classes_concepts_on_typescript]] | [[tsconfig_concepts]] | [[react_course]]

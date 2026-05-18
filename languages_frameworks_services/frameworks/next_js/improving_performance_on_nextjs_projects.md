@@ -1,3 +1,5 @@
+
+
 # DOING DEPLOY AT VERCEL
 
 1. **Pre-Deployment Checks**:
@@ -43,3 +45,9 @@
 - Update your `baseURL` in services/api to the new Vercel URL.
 - If using MongoDB, add environment variables for `MongoURI` and `MongoDbName`.
 - Allow your Mongo cluster to accept connections from all IPs by setting `0.0.0.0/0` as the default IP.
+
+---
+
+#nextjs #performance #web #tutorial
+
+**Related:** [[nextjs13+_introduction_course]] | [[improving_seo_on_nextjs_projects]] | [[improving_queries_with_react_query]]

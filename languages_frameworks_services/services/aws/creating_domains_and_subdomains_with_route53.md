@@ -1,3 +1,5 @@
+
+
 # Creating and Configuring Domains and Subdomains on AWS Route 53
 
 ## Step-by-step Instructions
@@ -40,3 +42,9 @@
 
 - The process is the same whether you're pointing a domain or a subdomain.
 - DNS changes may take a few minutes to propagate globally.
+
+---
+
+#aws #devops #deployment #tutorial
+
+**Related:** [[amazon_web_services]] | [[creating_ec2_instances]] | [[creating_domains_on_cloudflare]]

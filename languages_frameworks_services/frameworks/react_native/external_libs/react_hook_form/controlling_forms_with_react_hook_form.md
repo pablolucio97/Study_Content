@@ -1,4 +1,5 @@
 
+
 ## CONTROLING FORMS WITH REACT HOOK FORM AND YUP
 
 React Hook Form helps control forms with validation while the user fills them out.
@@ -148,3 +149,9 @@ export function Register() {
   )
 }
 ```
+
+---
+
+#react-native #forms #mobile #tutorial
+
+**Related:** [[controlling_and_validating_forms_with_react_hook_form_and_yup]] | [[validating_forms_using_react_hook_form]] | [[zod_introduction_course]]

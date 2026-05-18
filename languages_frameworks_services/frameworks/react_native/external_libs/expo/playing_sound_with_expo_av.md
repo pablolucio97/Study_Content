@@ -1,3 +1,5 @@
+
+
 # Playing sound with expo av
 
 To play sound with Expo Av you need:
@@ -22,3 +24,9 @@ To play sound with Expo Av you need:
     await sound.playAsync();
   }
 ```
+
+---
+
+#expo #react-native #mobile #tutorial
+
+**Related:** [[expo_workflows]] | [[vibrating_the_device_using_expo_haptics]]

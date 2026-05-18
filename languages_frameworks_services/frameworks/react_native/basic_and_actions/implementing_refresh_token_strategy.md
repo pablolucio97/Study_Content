@@ -1,3 +1,5 @@
+
+
 # Implementing Refresh Token strategy
 
 Refresh token strategy is used when the application has a token with a short expiration period (generally until 1 day) and we need a refresh token with a longer expiration period (generally 7 until 15 days) to revalidate the original token and maintain the user able to consume application features.
@@ -269,3 +271,8 @@ export function AuthContextProvider({ children }: AuthContextProvider) {
 }
 ```
 
+---
+
+#react-native #authentication #security #tutorial
+
+**Related:** [[doing_refresh_token_with_jwt_fastify_and_prisma]] | [[doing_refresh_token_with_jwt_and_typeorm]] | [[generating_and_using_jwt_tokens]]

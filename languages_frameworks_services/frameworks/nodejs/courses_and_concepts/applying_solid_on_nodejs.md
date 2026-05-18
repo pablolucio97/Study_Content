@@ -1,3 +1,5 @@
+
+
 # SOLID Concepts
 
 ## The SOLID is five concepts written by Robert Martin that are used to make your code more readable and organized. The SOLID principles should be used when your application tends to grow.
@@ -121,3 +123,8 @@ Handles requests, sends data to useCases, and returns responses. Example:
 `}`
 `export { CreateCategoryController }`
 
+---
+
+#nodejs #clean-code #architecture #concepts
+
+**Related:** [[clean_code_principles]] | [[clean_archterure_on_nodejs_applications]] | [[software_architeture_concetps]] | [[domain_driven_design_concepts]]

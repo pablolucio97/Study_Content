@@ -1,3 +1,5 @@
+
+
 # 🍎 Apple Authentication with Expo (React Native)
 
 This guide walks you through integrating Apple Sign-In in your Expo React Native app.
@@ -163,7 +165,8 @@ expo start -c
 
 **Done! 🎉 Now you can authenticate users via Apple Sign-In!**
 
+---
 
+#expo #react-native #authentication #mobile #tutorial
 
-
-
+**Related:** [[doing_google_authentication]] | [[implementing_social_authentication_using_oauth2_protocol]] | [[expo_workflows]]

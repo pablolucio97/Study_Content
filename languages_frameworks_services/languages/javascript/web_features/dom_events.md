@@ -1,3 +1,5 @@
+
+
 # DOM EVENTS
 
 ## EVENTS
@@ -67,3 +69,9 @@
 - **timeupdate**: Occurs when the playback position changes.
 - **touchcancel**: Occurs when a touch is interrupted.
 - **touchend**: Occurs
+
+---
+
+#javascript #html #web #reference
+
+**Related:** [[document_object]] | [[element_object]] | [[javascript_course]]

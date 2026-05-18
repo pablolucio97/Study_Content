@@ -1,3 +1,5 @@
+
+
 # Doing Sign-In with Google using Firebase
 
 This guide walks you through integrating Google Sign-In using Firebase in a React application.
@@ -156,3 +158,9 @@ export const AuthProvider = ({ children }: ChildrenProps) => {
     )
 }
 ```
+
+---
+
+#firebase #authentication #react #web #tutorial
+
+**Related:** [[doing_authentication_with_next-auth_and_google]] | [[implementing_oauth2_authentication_on_react_native]] | [[working_with_authentications_and_react_native_firebase]] | [[doing_authentication_with_next-auth_and_github]]

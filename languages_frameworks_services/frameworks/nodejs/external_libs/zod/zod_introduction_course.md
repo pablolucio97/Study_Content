@@ -1,3 +1,5 @@
+
+
 # Zod Introduction Course (Practical Guide)
 
 A hands-on introduction to **Zod**, a TypeScript-first schema declaration and validation library. This introduction course is designed for real-world apps (React, React Native, Node/Nest/Express) and focuses on **robust typing**, **runtime validation**, and **clear error handling**.
@@ -581,3 +583,8 @@ err.flatten(); err.format();
 - Always **surface validation errors** in a predictable JSON shape.  
 - Start small: validate **env**, **requests**, **responses** — then grow into **shared schemas** across your app(s).
 
+---
+
+#nodejs #typescript #forms #backend #course
+
+**Related:** [[validating_data_with_pipes_and_zod]] | [[configuring_and_validating_env_vars_with_nestjs_and_zod]] | [[controlling_and_validating_forms_with_react_hook_form_and_yup]] | [[validating_forms_using_react_hook_form]]

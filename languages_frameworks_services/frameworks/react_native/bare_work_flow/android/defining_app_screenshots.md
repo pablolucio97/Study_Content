@@ -1,3 +1,5 @@
+
+
 # 📱 Defining App Screenshots for Play Store & App Store
 
 ## 1. Choose a Figma Template
@@ -29,3 +31,9 @@ Use a Figma template to professionally display your app in Play Store and App St
 ## 3. Edit the Template
 
 Import your screenshots into the Figma template and adjust the design to showcase your app in a professional and engaging way.
+
+---
+
+#react-native #mobile #deployment #tutorial
+
+**Related:** [[doing_app_deploy_to_googleplay]] | [[configurating_app_icon]]

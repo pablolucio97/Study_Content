@@ -1,4 +1,5 @@
 
+
 # Styled Components Introduction Course
 
 ## General Usage
@@ -252,3 +253,9 @@ export const Title = styled.Text`
     `}
 `;
 ```
+
+---
+
+#react #css #ui-design #javascript #course
+
+**Related:** [[using_next_with_styled_components]] | [[styled_components_introduction_course]] | [[react_course]]

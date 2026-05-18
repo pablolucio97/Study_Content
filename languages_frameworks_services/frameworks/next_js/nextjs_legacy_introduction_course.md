@@ -1,3 +1,5 @@
+
+
 # Next.js Legacy Introduction Course
 
 ## Creating a New Next Project
@@ -216,3 +218,9 @@ const Chart = dynamic(() => import("react-apexcharts"), { ssr: false });
 - Use `.env`, `.env.local`, `.env.production`, `.env.development` appropriately.
 
 ---
+
+---
+
+#nextjs #react #web #javascript #typescript #course
+
+**Related:** [[nextjs13+_introduction_course]] | [[react_course]]

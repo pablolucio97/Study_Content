@@ -1,4 +1,5 @@
 
+
 # Creating and Accessing EC2 Instances
 
 ## Creating EC2 Instance
@@ -96,3 +97,8 @@ Example:
 
 - Shutting an instance down can be trick, you need be sure you selected the correct region to see if the instance is alive.
 
+---
+
+#aws #devops #deployment #tutorial
+
+**Related:** [[amazon_web_services]] | [[automatizing_ec2_deploy_instances_with_gh_actions]] | [[doing_reverse_proxy_on_ec2_linux_aws_instances]] | [[creating_and_accessing_vps_on_hostinger]]

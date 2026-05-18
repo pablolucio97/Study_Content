@@ -1,3 +1,5 @@
+
+
 # Applying cache using Redis on NestJS applications
 
 1. Create a class to manage Redis cache methods. Example:
@@ -146,3 +148,9 @@ async remove(@Param('id') id: string) {
 - Always save the cache data as string using JSON.stringify for simplicity.
 - Define a consistent cache key strategy.
 - Combine cache invalidation with TTL.
+
+---
+
+#nestjs #backend #performance #tutorial
+
+**Related:** [[nestjs_introduction_course]] | [[creating_a_crud_using_nestjs_prisma_and_docker]]

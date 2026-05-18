@@ -1,3 +1,5 @@
+
+
 # React Native Testing with Hooks and Styled Components
 
 ## React Hooks Test Example
@@ -152,3 +154,9 @@ describe('Input component', () => {
     })
 })
 ```
+
+---
+
+#react-native #testing #mobile #tutorial
+
+**Related:** [[writting_tests_with_jest_expo]] | [[running_tests_using_jest]] | [[react_hooks]]

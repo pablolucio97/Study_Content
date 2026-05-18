@@ -1,3 +1,5 @@
+
+
 # 🚀 Deploying React Native App to Google Play
 
 ---
@@ -153,3 +155,9 @@ useEffect(() => {
 ### 📚 References:
 
 - [Splash Screen Guide on Notion](https://www.notion.so/Splash-Screen-no-Android-8da844d39d834f28bb578e41313ae493)
+
+---
+
+#react-native #mobile #deployment #tutorial
+
+**Related:** [[generating_app_bundle]] | [[configurating_app_icon]] | [[defining_app_screenshots]] | [[expo_workflows]]

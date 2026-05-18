@@ -1,3 +1,5 @@
+
+
 # Study Content Summary
 
 ## general_development
@@ -427,3 +429,9 @@
 ## linux
 - doing_reverse_proxy_on_ec2_linux_aws_instances.md
 - ubuntu_linux_server_commands.md
+
+---
+
+#reference
+
+**Related:** [[gpt_references]]

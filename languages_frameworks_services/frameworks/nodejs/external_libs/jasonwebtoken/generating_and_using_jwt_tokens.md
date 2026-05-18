@@ -1,3 +1,5 @@
+
+
 # JWT (JSON Web Token)
 
 JWT is an encoded token used to grant authorization for the client to access specific routes or perform actions within your application. Each JWT token is unique and can only be altered by the entity that created it. Any modification to the data changes the JWT token string.
@@ -60,3 +62,9 @@ export default {
   }
 };
 ```
+
+---
+
+#nodejs #authentication #security #concepts
+
+**Related:** [[verifying_authentication_with_jwt]] | [[working_with_jwt_and_fastify]] | [[doing_refresh_token_with_jwt_fastify_and_prisma]] | [[doing_refresh_token_with_jwt_and_typeorm]] | [[data_safety]]

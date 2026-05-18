@@ -1,3 +1,5 @@
+
+
 # Debugging Node.js Applications
 
 Debugging is a more efficient way to discover bugs in your code.
@@ -39,3 +41,9 @@ Debugging is a more efficient way to discover bugs in your code.
 
 5. **Debugging a Specific File:**
    - In the file you want to debug, select the line you desire to investigate and call your function. VS Code will highlight the line where the error is and will indicate the reason for the error.
+
+---
+
+#nodejs #javascript #tutorial
+
+**Related:** [[configuring_dynamic_imports_on_vscode]] | [[nodejs_introduction_course]]

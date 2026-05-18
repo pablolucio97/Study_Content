@@ -1,3 +1,5 @@
+
+
 # BACK-END NOTES
 
 ## Back-end Responsibilities
@@ -189,3 +191,9 @@ app.use(verifyAccountCPFExists);
 - Include the flag `--unhandled-rejections=strict` in your start script in `package.json` to handle uncaught exceptions in promises.
 - A single route can be used with different HTTP methods for various operations.
 - Avoid performing rollbacks on tables in production. Instead, create a new migration to address any issues.
+
+---
+
+#backend #nodejs #api #concepts
+
+**Related:** [[nodejs_introduction_course]] | [[api_gateway_concepts]] | [[software_architeture_concetps]]

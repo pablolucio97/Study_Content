@@ -1,3 +1,5 @@
+
+
 # USING UTTERANCES WITH GITHUB INTEGRATION IN YOUR APPLICATION
 
 **Utterances** is a lightweight comments widget built on GitHub Issues. It enables users to comment on your application pages using their GitHub account.
@@ -51,3 +53,9 @@ Add this container where you want the comments to appear:
 
 - Official Setup Guide: `https://utteranc.es/`
 - GitHub Marketplace: `https://github.com/marketplace/utterances`
+
+---
+
+#github #web #tutorial
+
+**Related:** [[git_and_github_course]] | [[doing_authentication_with_next-auth_and_github]]

@@ -1,3 +1,5 @@
+
+
 # MICROSERVICES CONCEPTS
 
 Microservices architecture involves splitting a system into various independent services (in contrast to monolithic architectures). This architecture typically includes an API Gateway to manage access to these microservices, where access to a specific service or database (monolithic) is determined based on the port linked to that monolithic. Each function of the system is handled by a separate microservice.
@@ -26,3 +28,9 @@ If a particular microservice (monolithic) experiences increased demand, resource
 ## Technology in Microservices
 
 Different programming languages and technologies can be used to build individual microservices, which can communicate with each other to form a cohesive system.
+
+---
+
+#backend #architecture #devops #concepts
+
+**Related:** [[software_architeture_concetps]] | [[api_gateway_concepts]] | [[domain_driven_design_concepts]] | [[rabbitmq_course]] | [[docker_course]]

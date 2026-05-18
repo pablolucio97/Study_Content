@@ -1,3 +1,5 @@
+
+
 # Generating not trusted HTTPS certificates for tests on development 
 1. Check if you have openssl installed on your machine running `openssl -v`, if not, install it using home brew.
 2.  Run the command `openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout mykey.key -out mycert.crt -subj "/C=US/ST=YourState/L=YourCity/O=YourOrganization/CN=your_ip"
@@ -43,3 +45,9 @@ Observations:
 
 - The SSL certificate not be trust for the most browsers and it will stop you performing requests. Not trusted HTTPS certificates can be used only for testing.
 - Use certbot to generate trusted certificates based on your domain.
+
+---
+
+#security #devops #backend #tutorial
+
+**Related:** [[creating_ssl_certificates_with_certbot]] | [[using_ngrok]] | [[creating_and_accessing_vps_on_hostinger]]

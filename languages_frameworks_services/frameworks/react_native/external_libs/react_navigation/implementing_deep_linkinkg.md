@@ -1,3 +1,5 @@
+
+
 # Implementing Deep Linking
 
 1 - Add a scheme to the application configuration file (`app.json`) within the "Expo" property right below "Slug". Use the same name of the application for the scheme.
@@ -138,3 +140,8 @@ export function Routes() {
 
 10 - Now the application in any state (quite, foreground or background) must navigate the user automatically to desired screen passing the specified param.
 
+---
+
+#react-native #mobile #tutorial
+
+**Related:** [[react_navigation_introduction_course]] | [[handling_routes_with_expo_router]] | [[expo_workflows]]

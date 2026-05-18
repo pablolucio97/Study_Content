@@ -1,3 +1,5 @@
+
+
 # 📱 Creating Splash Screen in Expo
 
 ## 1. Prepare Your Splash Image
@@ -65,3 +67,9 @@ npx expo start --clear
 ---
 
 ✅ Your splash screen should now appear when the app launches!
+
+---
+
+#expo #react-native #mobile #ui-design #tutorial
+
+**Related:** [[expo_workflows]] | [[configurating_app_icon]]

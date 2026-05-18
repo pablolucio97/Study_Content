@@ -1,3 +1,5 @@
+
+
 # RabbitMQ Course
 
 ## Introduction
@@ -126,4 +128,8 @@ services:
 - You must grant each message system is being correctly processed. Utilizes a unique ID for each message to track confirmations.
 - By default RabbitMQ UI will shows 7 exchanges.
 
+---
 
+#backend #architecture #api #course
+
+**Related:** [[software_architeture_concetps]] | [[api_gateway_concepts]] | [[kong_api_gateway]]

@@ -1,3 +1,5 @@
+
+
 # Using Firebase and Cloud Firestore with React Native
 
 This guide outlines how to integrate Firebase and Firestore in your React Native app using `@react-native-firebase`.
@@ -200,3 +202,9 @@ function handleDeleteProduct(){
 
 ## References
 - Firestore Docs: https://firebase.google.com/docs/firestore
+
+---
+
+#firebase #react-native #mobile #database #tutorial
+
+**Related:** [[working_with_authentications_and_react_native_firebase]] | [[using_storage_with_react_native]] | [[sending_push_notifications_on_react-native_using_fcm_and_one_signal]] | [[using_realmdb_on_react_native]]

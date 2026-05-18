@@ -1,3 +1,5 @@
+
+
 # UBUNTU LINUX SERVER COMMANDS
 
 - `sudo adduser your_user_name`: Creates a new user for the OS.
@@ -27,3 +29,9 @@
 
 - Log in as **root** to have full user access.
 - Use the **sudo** prefix to grant permissions for administrative commands.
+
+---
+
+#devops #backend #deployment #reference
+
+**Related:** [[doing_reverse_proxy_on_ec2_linux_aws_instances]] | [[creating_and_accessing_vps_on_hostinger]] | [[managing_servers_with_pm2]] | [[handling_production_applications_on_vps]]

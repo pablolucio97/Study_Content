@@ -1,3 +1,5 @@
+
+
 ## 📦 Session Storage in JavaScript
 
 ### ✅ What is Session Storage?
@@ -74,3 +76,9 @@ If you want **shared state across tabs**, consider using:
 | `sessionStorage`| ❌ No                | Until tab closes | Per-tab session state                    |
 | `localStorage`  | ✅ Yes               | Persistent       | Shared user settings, auth token, etc.   |
 | `IndexedDB`     | ✅ Yes               | Persistent       | Structured data like cache or files      |
+
+---
+
+#html #javascript #web #reference
+
+**Related:** [[web_essentials_concepts]] | [[javascript_course]]

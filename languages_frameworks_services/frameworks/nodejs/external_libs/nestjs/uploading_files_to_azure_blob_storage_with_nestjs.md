@@ -1,3 +1,5 @@
+
+
 # Uploading files to Azure Blob Storage and NestJS
 
 1. Register at Azure if you didn't it already.
@@ -165,3 +167,9 @@ export class CreateClassController {
 12. Add the AzureBlobStorageProvider and UploadFileService to your app modules.
 
 13. Call your request expecting for a multipart upload. The file must uploaded in a field named as `file`.
+
+---
+
+#nestjs #file-storage #backend #tutorial
+
+**Related:** [[nestjs_introduction_course]] | [[doing_uploads_with_multer]] | [[doing_uploads_to_s3_with_multer_and_typeorm]]

@@ -1,3 +1,5 @@
+
+
 # DOM OBJECT
 
 ## Props
@@ -135,3 +137,9 @@
 
 **writeln()**:
 - Writes HTML expressions or JavaScript code to the document, adding a newline character after each statement.
+
+---
+
+#javascript #html #web #reference
+
+**Related:** [[dom_events]] | [[element_object]] | [[javascript_course]]

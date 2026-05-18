@@ -1,3 +1,5 @@
+
+
 # SEO Checklist and Tips
 
 ## Eliminatory Criteria (Rebuild the site if any applies)
@@ -107,3 +109,9 @@ Apply when the site offers services and each service has a dedicated page:
 - SEO is a long-term ongoing work.
 - The better the UX on your site, the more traffic you can receive and the more chances the user will buy your product.
 - Content marketing (blog posts, eBooks, videos) combined with SEO is the most effective organic traffic strategy.
+
+---
+
+#seo #web #checklist
+
+**Related:** [[robots_and_sitemaps]] | [[main_metatags_for_seo]] | [[improving_seo_on_nextjs_projects]] | [[making_your_website_searchable_on_google]] | [[google_ads]]

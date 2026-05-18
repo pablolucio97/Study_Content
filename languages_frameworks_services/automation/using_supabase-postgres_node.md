@@ -1,3 +1,5 @@
+
+
 1. Authenticate on your Supabase account.
 2. Create a new database.
 3. Create a new table using the SQL editor passing the SQL to create the table. Example:
@@ -43,3 +45,9 @@ INSERT INTO imoveis (
 [alt text](image.png)
 6. 
    
+
+---
+
+#automation #database #sql #tutorial
+
+**Related:** [[n8n_introduction_course]] | [[sql_introduction_course]]

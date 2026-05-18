@@ -1,3 +1,5 @@
+
+
 # Typing route params
 
 To type route params and have the necessary data in the screen you need to read it you must:
@@ -29,3 +31,9 @@ type RouteParamsProps = {
 ```
 
 3 - Use the data you're receiving according the needs.
+
+---
+
+#react-native #mobile #typescript #tutorial
+
+**Related:** [[react_navigation_introduction_course]] | [[typescript_course]]

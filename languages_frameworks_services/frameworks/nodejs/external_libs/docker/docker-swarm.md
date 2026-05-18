@@ -1,3 +1,5 @@
+
+
 ## ⚙️ What is Docker Swarm?
 
 Docker Swarm turns one or more Docker hosts into a **cluster** that can run applications in a **highly available**, **scalable**, and **declarative** way.
@@ -44,3 +46,9 @@ Both **Docker Swarm** and **Kubernetes (K8s)** are container orchestration syste
 | Multiple Apps | ❌ Hard | ✅ Simple | ✅ Works |
 | Scaling & Load Balancing | ❌ Manual | ✅ Built-in | ✅ Advanced |
 | Learning Curve | 🟢 Low | 🟢 Moderate | 🔴 Steep |
+
+---
+
+#docker #devops #deployment #concepts
+
+**Related:** [[docker_course]] | [[docker_compose]] | [[handling_production_applications_on_vps]] | [[managing_servers_with_pm2]]

@@ -1,3 +1,5 @@
+
+
 # Authenticating using Next Auth
 
 1. Run the command `npm i next-auth`to install next-auth.
@@ -120,3 +122,9 @@ export default function Home() {
 - Pay attention on providing the secret as production environment because it is necessary for Next Auth works correctly.
 - Provide on your Google Cloud Console the correspondent uri paths. Example: `https://book-question-client.vercel.app/api/auth/callback/google` and `https://book-question-client.vercel.app/api/auth/session`. Be sure your application domain is allowed as Authorized JavaScript origins, e.g: `https://book-question-client.vercel.app`.
 - Vercel and similar services only recognizes added environments variables after a new deployment.
+
+---
+
+#nextjs #authentication #tutorial
+
+**Related:** [[doing_authentication_with_next-auth_and_github]] | [[doing_authentication_with_next-auth_and_google]] | [[protecting_requests_with_next-auth-jwt]]

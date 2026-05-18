@@ -1,3 +1,5 @@
+
+
 # Configuring and validating environment variables with NestJS and Zod
 
 Validating environment is useful to not allow you project run without environment variables configuring correctly according your environment typing schema.
@@ -59,3 +61,9 @@ async function bootstrap() {
 }
 bootstrap();
 ```
+
+---
+
+#nestjs #backend #tutorial
+
+**Related:** [[nestjs_introduction_course]] | [[zod_introduction_course]] | [[validating_data_with_pipes_and_zod]]

@@ -1,3 +1,5 @@
+
+
 # N8N Introduction Course
 
 ## General Concepts
@@ -267,3 +269,9 @@ Webhook → Identify user → Load memory → Generate response → Send reply �
 
 Client send message to the flow (owner number) => Consult Redis if there is some key block living for 4 hours for the client number => If positive, do nothing (to allow human attendence), if negative execute flow normally
 Owner send message to the flow responding a client => Register on Redis a key to block the client number for 4 hours => Then owner and client can have a normal conversation out the flow
+
+---
+
+#automation #ai #course
+
+**Related:** [[using_evolution_api]] | [[evolution_api_mismatch_explanations]] | [[chatbots]] | [[using_supabase-postgres_node]]

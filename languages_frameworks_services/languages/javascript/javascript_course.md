@@ -1,4 +1,5 @@
 
+
 # JAVASCRIPT COURSE
 
 ## INSTRUCTIONS AND DECLARATIONS
@@ -2238,3 +2239,9 @@ const name = user?.profile?.name ?? "Guest";
 - Escape user input to prevent XSS attacks.
 - Never store sensitive data (tokens, passwords) in localStorage.
 - Sanitize data sent to and from APIs.
+
+---
+
+#javascript #web #course
+
+**Related:** [[ecma_script_most_used_features]] | [[typescript_course]] | [[react_course]] | [[nodejs_introduction_course]]

@@ -1,3 +1,5 @@
+
+
 # AGILE METHODS
 
 ## CONCEPTS
@@ -81,3 +83,9 @@ Practices include TDD, Continuous Integration, and Code Patterns.
 - Have a PRODUCT VISION BOARD before starting projects.
 - Estimate development time using story points, not hours.
 - Define application criteria before starting a sprint.
+
+---
+
+#architecture #concepts
+
+**Related:** [[software_engineering_concepts]] | [[devops_concepts]] | [[software_architeture_concetps]]

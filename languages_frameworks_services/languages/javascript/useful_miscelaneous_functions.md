@@ -1,3 +1,5 @@
+
+
 ## STRINGS
 
 ```javascript
@@ -231,5 +233,8 @@ const checkStringInitialsAndEnd = () => {
 }
 ```
 
+---
 
+#javascript #reference
 
+**Related:** [[javascript_course]] | [[javascript_main_built_in_objects_methods_list]]

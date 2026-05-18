@@ -1,3 +1,5 @@
+
+
 # Creating a CRUD with NestJS, GraphQL, Docker Compose and PrismaORM
 
 1. Install the dependencies running ` npm i @nestjs/graphql @nestjs/apollo @apollo/server graphql`
@@ -217,3 +219,9 @@ References:
 
 - [NestJS GraphQL docs](https://docs.nestjs.com/graphql/quick-start)
 - [Pablo Lucio's repository reference](https://github.com/pablolucio97/nestjs-graphql-prisma-crud)
+
+---
+
+#graphql #nestjs #docker #database #backend #tutorial
+
+**Related:** [[graphql_course]] | [[nestjs_introduction_course]] | [[prismaorm_introduction_course]] | [[docker_compose]] | [[creating_a_crud_using_nestjs_prisma_and_docker]]

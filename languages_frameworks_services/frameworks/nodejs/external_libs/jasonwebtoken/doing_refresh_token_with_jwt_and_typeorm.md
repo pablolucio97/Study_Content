@@ -1,3 +1,5 @@
+
+
 # WORKING WITH REFRESH TOKEN WITH JWT AND TYPEORM
 
 It is not secure to use a token with long validity (above 20 minutes). For this reason, to avoid forcing the user to log in again to generate a new token, the system generates a new token (refresh token) when the original token has expired.
@@ -343,3 +345,9 @@ Example:
 `authenticateRoutes.post('/sessions', authenticateUserController.handle);`
 
 `export { authenticateRoutes };`
+
+---
+
+#nodejs #authentication #security #database #tutorial
+
+**Related:** [[generating_and_using_jwt_tokens]] | [[doing_refresh_token_with_jwt_fastify_and_prisma]] | [[typeorm_introduction_course]] | [[verifying_authentication_with_jwt]]

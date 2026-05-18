@@ -1,3 +1,5 @@
+
+
 # INTERNATIONAL CAREER INGRESSION TIPS
 
 Having an excellent and accessible portfolio is crucial. Focus on main applications that can quickly enchant people.
@@ -33,3 +35,9 @@ Foreign companies generally do not hire Junior developers due to the higher risk
 - Consider using [Husky](https://www.husky.io) for receiving dollar payments. You'll likely need to provide your Brazilian bank account, and Husky will provide an American bank account. The taxes are around 11% over the wage.
 
 - Prepare for interview questions and practice responses in English.
+
+---
+
+#career #reference
+
+**Related:** [[javascript_full_stack_developer_skills]] | [[learning_history_2024]] | [[learning_history_2025]] | [[react_native_senior_interview_questions]]

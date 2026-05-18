@@ -1,3 +1,5 @@
+
+
 # Understanding GO programs
 
 Go is a compiled language for back-end.
@@ -121,3 +123,9 @@ func (rs *RouteService) GetRoute(id string) (Route, error) {
 	return route, err
 }
 ```
+
+---
+
+#go #backend #concepts
+
+**Related:** [[nodejs_introduction_course]] | [[performing_ci_with_dockerfile]]

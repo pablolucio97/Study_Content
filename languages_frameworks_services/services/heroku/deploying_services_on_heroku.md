@@ -1,3 +1,5 @@
+
+
 # Deploying services on Heroku
 
 Heroku is a back-end host service used for deploying back-end applications with a free tier limit and so paid plans. You can use free tier limit just adding a credit card and then selecting a plan further.
@@ -16,3 +18,9 @@ Heroku is a back-end host service used for deploying back-end applications with 
 - Heroku only will be free if your application does not need and addon e.g: heroku-postgresql:essential-0.
 - Heroku's container runtime environment doesn't support Docker Compose directly, and it handles networking differently compared to local Docker or Docker Compose environments. Use Heroku Postgres (paid, starts from $ 5/month) instead a Docker Postgres image.
 - Deploying dockerized applications on Heroku can be complex and provide some charging because it needs some addons if your application is using some image for database. You can use Supabase to create your database and its table, but it can be a complex and manual process.
+
+---
+
+#heroku #deployment #devops #backend #tutorial
+
+**Related:** [[doing_deploy_at_vercel]] | [[doing_deploy_on_firebase_hosting_using_vite]] | [[creating_and_accessing_vps_on_hostinger]] | [[handling_production_applications_on_vps]]

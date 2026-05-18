@@ -1,3 +1,5 @@
+
+
 # Consuming GraphQL APIs on React applications
 
 1. Create your React application.
@@ -306,3 +308,9 @@ const UsersScreen: React.FC = () => {
 export default UsersScreen;
 
 ```
+
+---
+
+#graphql #react #web #api #tutorial
+
+**Related:** [[graphql_course]] | [[creating_crud_with_nest_graphql_docker_compose_and_prisma]] | [[react_course]]

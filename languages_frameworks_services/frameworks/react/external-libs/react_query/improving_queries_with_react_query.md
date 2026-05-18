@@ -1,3 +1,5 @@
+
+
 # Using React Query
 
 React Query is a useful tool for data fetching that returns more resources to allow better control of your application and uses a cache to avoid unnecessary queries.
@@ -185,3 +187,9 @@ export default function InfinityQuery() {
 
 - Prefetch only data from your own application. Avoid prefetching from third-party APIs.
 - Control your query stale time and some more options using the options from the useQuery hook.
+
+---
+
+#react #state-management #performance #api #tutorial
+
+**Related:** [[using_react_query_on_nextjs]] | [[react_course]] | [[redux_introduction_course]] | [[zustand_introduction_course]]

@@ -1,3 +1,5 @@
+
+
 # Copywriting and Mind Triggers
 
 ## Copywriting
@@ -48,3 +50,9 @@ Mind trigger are stimulus that our unconscious brain will receive to lead us to 
 - Gives guarantee after a long time, this rises your sells and the peoples trend to forgot the guarantee. This risk rises yours sells because pass confidence for your client.
 - Maintains a simple communication trough your adversments and texts, this decreases the critical sense of your client and your sells trend to rise.
 - You are selling for peoples, peoples loves stories. Count stories of superation or histories thats the peoples do not found the solution then show your product.
+
+---
+
+#marketing #concepts
+
+**Related:** [[marketing_digital_course]] | [[marketing_glossary]] | [[marketing_for_selling_courses]] | [[marketing_plan]]

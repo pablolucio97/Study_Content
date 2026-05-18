@@ -1,3 +1,5 @@
+
+
 # Redux Introduction Course
 
 Redux must be used when your application needs to manage complex states to avoid performance issues when using ContextAPI.
@@ -241,3 +243,9 @@ dispatch(markCurrentCycleAsFinishedAction())
 - Use `yield` in sagas as if they were `await`.
 - Keep action types in a `TypeScript enum`.
 - Ensure types are respected in payloads and reducers.
+
+---
+
+#react #state-management #javascript #course
+
+**Related:** [[redux_tool_kit_introduction_course]] | [[zustand_introduction_course]] | [[improving_queries_with_react_query]] | [[react_hooks]]

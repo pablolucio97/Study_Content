@@ -1,3 +1,5 @@
+
+
 # Doing Uploads to AWS S3 Bucket
 
 ## 1. Accessing AWS S3
@@ -198,3 +200,9 @@ import 'express-async-errors';
 
 ## 12. Sending Request via Insomnia
 Perform a POST request to your configured upload endpoint with multipart form-data and test the file upload.
+
+---
+
+#aws #file-storage #nodejs #tutorial
+
+**Related:** [[amazon_web_services]] | [[doing_uploads_with_multer]] | [[typeorm_introduction_course]] | [[uploading_files_to_azure_blob_storage_with_nestjs]]

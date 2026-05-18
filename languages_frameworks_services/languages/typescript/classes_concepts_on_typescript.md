@@ -1,3 +1,5 @@
+
+
 # CLASSES CONCEPTS ON TYPESCRIPT
 
 ## Type of Methods
@@ -147,3 +149,9 @@ export class AppController {
   }
 }
 ```
+
+---
+
+#typescript #javascript #concepts
+
+**Related:** [[typescript_course]] | [[tsconfig_concepts]]

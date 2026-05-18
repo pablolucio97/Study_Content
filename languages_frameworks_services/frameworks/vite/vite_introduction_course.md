@@ -1,3 +1,5 @@
+
+
 # VITE INTRODUCTION COURSE
 
 Vite is a tool that does the application compilation automatically and uses ESModules by default, where it is not necessary to use another bundler pack like WebPack. This tool is more performant. Vite uses the `<script type="module">` tag inside the `index.html` within the `public` folder to manage ESModules. Vite is an alternative to the common React CRA. It was written in Go and is between 10x and 100x faster than the conventional CRA.
@@ -136,3 +138,9 @@ Vite was designed to work seamlessly with React, providing all necessary tooling
   - `vite-plugin-pwa`
   - `vite-plugin-svgr`
   - `vite-plugin-eslint`
+
+---
+
+#vite #javascript #react #web #course
+
+**Related:** [[webpack_concepts]] | [[react_course]] | [[using_environment_variables_on_vite]]

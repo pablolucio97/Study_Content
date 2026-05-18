@@ -1,3 +1,5 @@
+
+
 # Using Serverless framework to deploy Lambda Functions on AWS
 
 1. Install the serverless cli globally running `npm install serverless -g`.
@@ -136,3 +138,9 @@ resources:
 
 [Repository example](https://github.com/pablolucio97/serverless)
 [Serverless Docs](https://www.serverless.com/framework/docs/getting-started)
+
+---
+
+#aws #deployment #devops #backend #tutorial
+
+**Related:** [[using_aws_lambda_with_serverless]] | [[amazon_web_services]] | [[deploying_services_on_heroku]]

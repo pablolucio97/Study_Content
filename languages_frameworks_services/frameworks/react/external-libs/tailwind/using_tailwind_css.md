@@ -1,3 +1,5 @@
+
+
 # TailwindCSS Course
 
 A utility-first CSS framework packed with classes that can be composed to build any design, directly in your markup.
@@ -99,3 +101,9 @@ You can also reference these as CSS variables in arbitrary values:
 ## General Tips
 - If class strings get long, split lines or use a helper like `clsx`/`tailwind-merge` to compose conditionally (we’ll cover patterns later).
 - The last class utility will that class that will be applied.
+
+---
+
+#css #react #web #ui-design #course
+
+**Related:** [[css_course]] | [[applying_responsivity_on_complex_UI]] | [[react_course]]

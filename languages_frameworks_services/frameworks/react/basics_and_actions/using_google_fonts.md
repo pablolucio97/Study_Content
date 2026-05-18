@@ -1,3 +1,5 @@
+
+
 # 🖋️ Using Google Fonts in Your React Project
 
 Follow these steps to import and use a Google Font in your React application:
@@ -53,3 +55,9 @@ import './App.css';
 ---
 
 ✅ Done! Your project is now using the selected Google Font.
+
+---
+
+#react #css #ui-design #tutorial
+
+**Related:** [[react_course]] | [[css_course]] | [[adding_custom_fonts_with_expo]]

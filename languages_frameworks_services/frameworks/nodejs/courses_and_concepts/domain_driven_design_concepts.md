@@ -1,3 +1,5 @@
+
+
 # DOMAIN DRIVEN DESIGN CONCEPTS
 
 ## Domain
@@ -61,3 +63,9 @@ Asynchronous notifications indicating significant occurrences within the domain.
 - **Use Case Uniqueness**: Avoid using the same use case for different entities to prevent future conflicts.
 - **Repository Contracts**: Core system components (entities and use cases) need repositories to connect to the external world, with contracts specifying methods for each use case.
 - **Slug Usage**: Provide a slug for each entity in web applications (instead of using the entity ID).
+
+---
+
+#architecture #backend #concepts
+
+**Related:** [[software_architeture_concetps]] | [[clean_archterure_on_nodejs_applications]] | [[applying_solid_on_nodejs]] | [[subdomains_concepts]] | [[microsservices_concepts]]

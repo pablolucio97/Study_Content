@@ -1,3 +1,5 @@
+
+
 # Handling Pub/Sub Domain Events on NodeJs applications
 
 ## Motivation
@@ -186,4 +188,8 @@ export interface EventHandler {
 }
 ```
 
+---
 
+#nodejs #backend #architecture #concepts
+
+**Related:** [[domain_driven_design_concepts]] | [[microsservices_concepts]] | [[rabbitmq_course]]

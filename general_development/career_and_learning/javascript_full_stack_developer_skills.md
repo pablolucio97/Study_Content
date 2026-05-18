@@ -1,3 +1,5 @@
+
+
 # Important skills that a full stack React, React Native and NodeJS developer should know
 
 ## React front-end developer skills
@@ -80,3 +82,8 @@
 - Implement crash reporting and performance monitoring with tools like Sentry or Firebase Crashlytics.
 - Manage app lifecycle events (foreground, background) effectively.
 
+---
+
+#career #javascript #typescript #react #react-native #nodejs #reference
+
+**Related:** [[external_careers_tips]] | [[react_native_senior_interview_questions]] | [[most_used_free_solutions_mapping_web]] | [[most_used_free_solutions_mapping_mobile]]

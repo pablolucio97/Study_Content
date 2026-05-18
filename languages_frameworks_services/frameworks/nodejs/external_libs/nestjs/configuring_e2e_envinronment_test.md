@@ -1,3 +1,5 @@
+
+
 # Configuring Vitest E2E tests environment 
 
 1 - Run ```npx yarn @swc/core @vitest/coverage-v8 unplugin-swc vitest vite-tsconfig-paths dotenv``` to install swc (a more faster typescript compilation lib), vitest and its plugins.
@@ -112,3 +114,9 @@ test('1 plus 1', () => {
   expect(1 + 1).toBe(2)
 })
 ```
+
+---
+
+#nestjs #testing #backend #tutorial
+
+**Related:** [[nestjs_introduction_course]] | [[writing_e2e_tests_with_supertest]] | [[configuring_e2e_tests_on_node_with_vitest_and_npm_run_all]]

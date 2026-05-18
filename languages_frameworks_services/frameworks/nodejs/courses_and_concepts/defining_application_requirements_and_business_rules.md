@@ -1,3 +1,5 @@
+
+
 # Defining Application Requirements and Business Rules
 
 ## Concepts
@@ -91,3 +93,9 @@ These are the logical business rules that serve as conditions for the requiremen
 **RN**
 - The user needs to enter a new password.
 - The link sent for recovery must expire in 3 hours.
+
+---
+
+#backend #architecture #concepts
+
+**Related:** [[domain_driven_design_concepts]] | [[software_architeture_concetps]] | [[clean_archterure_on_nodejs_applications]]

@@ -1,3 +1,5 @@
+
+
 # React Native Basic Course
 
 ## 📱 What React Native Does
@@ -776,3 +778,8 @@ yarn react-native link <library-name>
 
 ---
 
+---
+
+#react-native #mobile #javascript #typescript #course
+
+**Related:** [[react_course]] | [[expo_workflows]] | [[react_native_senior_interview_questions]] | [[most_used_free_solutions_mapping_mobile]]

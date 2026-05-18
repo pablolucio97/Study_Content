@@ -1,4 +1,5 @@
 
+
 # Google Authentication with Expo
 
 ## 1. Configure `app.json`
@@ -183,3 +184,9 @@ export function SignIn() {
 ---
 
 ✅ Restart your Expo project after setup.
+
+---
+
+#expo #react-native #authentication #mobile #tutorial
+
+**Related:** [[doing_apple_authentication]] | [[implementing_social_authentication_using_oauth2_protocol]] | [[implementing_oauth2_authentication_on_react_native]] | [[expo_workflows]]

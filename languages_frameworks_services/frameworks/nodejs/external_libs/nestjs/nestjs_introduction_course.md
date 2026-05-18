@@ -1,3 +1,5 @@
+
+
 # NestJS Introduction Course
 
 ##  What is NestJS?
@@ -379,4 +381,8 @@ nest update
 - Use Interceptors for Cross-Cutting Concerns. Response formatting, logging execution time, and caching should be done in **Interceptors**, not in controllers.
 - Keep Configurations Centralized. Store configuration values in a dedicated **ConfigModule** using `@nestjs/config`. Avoid hardcoding values.
 
+---
 
+#nestjs #nodejs #backend #typescript #course
+
+**Related:** [[nodejs_introduction_course]] | [[creating_a_crud_using_nestjs_prisma_and_docker]] | [[prismaorm_introduction_course]] | [[handling_authentication_with_jwt_and_passport_using_rsa256]]

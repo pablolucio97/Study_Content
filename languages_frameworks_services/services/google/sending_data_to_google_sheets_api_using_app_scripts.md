@@ -1,3 +1,5 @@
+
+
 # Sending data to Google sheets API using App Scripts
 
  Sending data to Google sheets API using App Scripts is useful to collect data from forms and storage on your own Google sheets.
@@ -101,3 +103,9 @@
     }
   };
 ```
+
+---
+
+#api #automation #backend #tutorial
+
+**Related:** [[n8n_introduction_course]] | [[using_evolution_api]]

@@ -1,3 +1,5 @@
+
+
 # 🚀 Social Media Growth Playbook for Developers & Entrepreneurs  
 *Inspired by insights from Paulo Cuenca, Luana Carolina, Malu Perini, Rafael Kiso, and Flávio Augusto.*
 
@@ -112,3 +114,8 @@
 - Produce videos to Youtube and make cuts to TikTok.
 - TikTok provides higher number of visualization and followers fast, but the public is not loyal.
 
+---
+
+#marketing #career #reference
+
+**Related:** [[marketing_digital_course]] | [[marketing_for_selling_courses]] | [[market_on_youtube]] | [[copywriting_and_mind_triggers]]

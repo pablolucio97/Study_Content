@@ -1,3 +1,5 @@
+
+
 # 🖼️ Using SVG in React Native with react-native-svg-transformer
 
 To use SVG images in a React Native project, especially with Expo, you should install and configure the `react-native-svg-transformer` library.
@@ -81,3 +83,9 @@ Make sure to restart your Expo/React Native server:
 ```bash
 npx expo start -c
 ```
+
+---
+
+#react-native #mobile #ui-design #tutorial
+
+**Related:** [[react_native_course]] | [[react_native_skia_components_and_techiniques]]

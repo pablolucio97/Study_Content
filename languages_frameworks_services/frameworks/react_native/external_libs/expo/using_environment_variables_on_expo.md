@@ -1,3 +1,5 @@
+
+
 # Using environment variables on Expo
 
 1 - Run `yarn add react-native-dotenv` to install the react-native-dot env.
@@ -58,3 +60,9 @@ Obs: Use the `__DEV__ ` NodeJs global environment to check if the app is running
 
 7 - Build your project using `eas build`.
 Obs: Only build your app after added your environment variables to your Expo project's Account.
+
+---
+
+#expo #react-native #mobile #tutorial
+
+**Related:** [[expo_workflows]] | [[creating_and_using_environment_variables_with_next]] | [[using_environment_variables_on_vite]]

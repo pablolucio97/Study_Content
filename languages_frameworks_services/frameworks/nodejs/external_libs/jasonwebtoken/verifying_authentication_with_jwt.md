@@ -1,3 +1,5 @@
+
+
 # Verifying Authentication with JWT
 
 To verify authentication in an application using JWT, you need to create a middleware that checks if the token exists, validates it, and retrieves the user based on the token's payload.
@@ -49,3 +51,9 @@ export async function ensureAuthenticated(
     }
 }
 ```
+
+---
+
+#nodejs #authentication #security #tutorial
+
+**Related:** [[generating_and_using_jwt_tokens]] | [[working_with_jwt_and_fastify]] | [[data_safety]] | [[encrypting_passwords_with_bcryptsjs]]

@@ -1,3 +1,5 @@
+
+
 # Adding Form Validations with React Hook Form and Zod Resolver
 
 ## 1) Install Dependencies
@@ -124,3 +126,9 @@ function handleCreateNewCycle(data: FormData) {
 ```
 
 ---
+
+---
+
+#react #forms #javascript #typescript #tutorial
+
+**Related:** [[controlling_and_validating_forms_with_react_hook_form_and_yup]] | [[controlling_forms_with_react_hook_form]] | [[zod_introduction_course]]

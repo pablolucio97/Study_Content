@@ -1,3 +1,5 @@
+
+
 # Working with Tests on Node.js
 
 ## Types of Tests and Concepts
@@ -155,3 +157,9 @@ import { UsersRepositoryInMemory } from "@modules/accounts/repositories/in-memor
 - Add the flags `--runInBand --detectOpenHandles` to test scripts to run them sequentially and avoid breaking due to previous test results.
   
 - Do not work with databases in unit tests. Create a new repository with an empty array to simulate tests.
+
+---
+
+#testing #nodejs #backend #tutorial
+
+**Related:** [[tests_concepts]] | [[writing_e2e_tests_with_supertest]] | [[writing_integration_tests_with_supertest]] | [[writing_unity_tests_on_nodejs_applications_with_vitest]]

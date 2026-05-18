@@ -1,3 +1,5 @@
+
+
 # Creating an Installable PWA with Next.js
 
 1. **Develop Your Next.js Project:**
@@ -75,3 +77,9 @@
 
 8. **Deploy on Vercel:**
    - Push your code to GitHub and deploy it on the Vercel platform. Your installable PWA application should now be ready for use.
+
+---
+
+#nextjs #web #mobile #offline #tutorial
+
+**Related:** [[nextjs13+_introduction_course]] | [[transforming_your_app_in_a_pwa]]

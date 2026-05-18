@@ -1,3 +1,5 @@
+
+
 # Working with Tests on React Native with Expo
 
 ## Types of Tests and Concepts
@@ -139,3 +141,9 @@ describe('Profile', () => {
 import mockAsyncStorage from '@react-native-async-storage/async-storage/jest/async-storage-mock';
 jest.mock('@react-native-async-storage/async-storage', () => mockAsyncStorage);
 ```
+
+---
+
+#expo #react-native #testing #mobile #tutorial
+
+**Related:** [[expo_workflows]] | [[react_hooks_and_styled_components_test_example]] | [[running_tests_using_jest]]

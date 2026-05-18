@@ -1,3 +1,5 @@
+
+
 # Creating SSL Certificates with Certbot
 
 Certbot is a free and open-source tool for automatically using Let's Encrypt certificates on manually-administrated websites to enable HTTPS.
@@ -53,3 +55,9 @@ Restart your web server:
 `sudo service nginx restart`
 
 Then verify your domain in the browser to confirm SSL is working (you should see `https://`).
+
+---
+
+#devops #security #deployment #tutorial
+
+**Related:** [[creating_ec2_instances]] | [[creating_and_accessing_vps_on_hostinger]] | [[generating_not_trusted_https_certifiates_for_tests]] | [[doing_reverse_proxy_on_ec2_linux_aws_instances]]

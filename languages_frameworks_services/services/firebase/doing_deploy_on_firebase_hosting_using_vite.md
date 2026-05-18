@@ -1,3 +1,5 @@
+
+
 # Doing deploys on Firebase Hosting using Vite.
 
 1. Create the project on Firebase Console.
@@ -20,3 +22,8 @@
 - **Security Rules**: Firebase Hosting allows you to specify headers and other security configurations in the `firebase.json` file, enhancing your app’s security posture.
 - **Cache Control**: Use Firebase's `firebase.json` to set caching headers for your assets to optimize load times and reduce bandwidth usage.
 
+---
+
+#firebase #deployment #vite #web #tutorial
+
+**Related:** [[vite_introduction_course]] | [[doing_deploy_at_vercel]] | [[deploying_services_on_heroku]]

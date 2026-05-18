@@ -1,3 +1,5 @@
+
+
 # Google Ads
 
 Google Ads is the Google's advertisement platform that allow creating ads to be shown on Youtube, Google searching page, partner sites, Google shopping and Google Play Store with partner apps.
@@ -54,4 +56,8 @@ A same campaign should have two or more ads based on its keywords to be possible
 - Each keyword on Google has different costs depending how relevant is the theme and associated keywords.
 - At creating ads on Google, your ads always must match with the keywords configured. Your creative ad must be contain the same words used as keywords.
 
+---
 
+#marketing #seo #tutorial
+
+**Related:** [[facebook_pixel_and_facebook_ads]] | [[marketing_digital_course]] | [[marketing_plan]] | [[seo_checklist_and_tips]]

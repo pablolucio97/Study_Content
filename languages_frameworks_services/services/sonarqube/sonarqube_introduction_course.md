@@ -1,3 +1,5 @@
+
+
 # SonarQube introduction course
 
 ## Concepts
@@ -59,3 +61,8 @@ sonar.tests.inclusions=**/*.spec.ts
 
 6. Wait for the Sonnar analyses and access the results on the generated URL, example: `http://localhost:9000/dashboard?id=sonnar-test&codeScope=overall`
 
+---
+
+#testing #ci-cd #devops #clean-code #course
+
+**Related:** [[ci_cd_concepts_and_practices]] | [[github_actions]] | [[clean_code_principles]] | [[reporting_errors_on_apps_with_sentry]]

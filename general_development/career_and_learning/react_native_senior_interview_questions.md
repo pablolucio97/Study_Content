@@ -1,3 +1,5 @@
+
+
 # Most Asked Senior React Native Interview Questions (With Answers)
 
 ---
@@ -418,3 +420,9 @@ A custom development build of your app (your own Expo Go). It’s a native binar
 - Separate `.env.development`, `.env.staging`, `.env.production`.
 - Reference in build.gradle / Info.plist if needed.
 - Don’t ship secrets — use backend-proxy or secure storage.
+
+---
+
+#react-native #mobile #career #reference #react #javascript #nodejs
+
+**Related:** [[external_careers_tips]] | [[javascript_full_stack_developer_skills]] | [[react_native_course]] | [[most_used_free_solutions_mapping_mobile]]

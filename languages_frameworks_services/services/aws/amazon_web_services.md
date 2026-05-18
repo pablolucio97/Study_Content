@@ -1,4 +1,5 @@
 
+
 # AMAZON WEB SERVICES
 
 ## OVERVIEW
@@ -171,3 +172,9 @@ Elastic file storage for use with EC2.
 - Use CloudFront and caching for performance.
 
 ---
+
+---
+
+#aws #devops #deployment #concepts
+
+**Related:** [[creating_ec2_instances]] | [[creating_domains_and_subdomains_with_route53]] | [[automatizing_ec2_deploy_instances_with_gh_actions]] | [[doing_uploads_to_s3_with_multer_and_typeorm]] | [[using_aws_lambda_with_serverless]]

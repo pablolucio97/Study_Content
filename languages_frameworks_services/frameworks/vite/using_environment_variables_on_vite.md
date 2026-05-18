@@ -1,3 +1,5 @@
+
+
 # Using Environment Variables on Vite
 
 1 - Create a .env.local file in your root folder containing the variables. Example:
@@ -26,3 +28,9 @@ export const client = new ApolloClient({
 3 - Add the .env.local file to .gitignore file.
 
 4 - Restart the project.
+
+---
+
+#vite #javascript #tutorial
+
+**Related:** [[vite_introduction_course]] | [[creating_and_using_environment_variables_with_next]] | [[using_environment_variables_on_expo]]

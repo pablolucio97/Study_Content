@@ -1,3 +1,5 @@
+
+
 # Setting EditorConfig, ESLint, and Prettier Config
 
 ---
@@ -139,3 +141,9 @@ module.exports = {
 - Use `"plugin:react/jsx-runtime"` to avoid JSX scope issues.
 - Prefer script automation (`lint`) to fix code.
 - ESLint config should vary per project type (React, Next.js, React Native, Node, etc.).
+
+---
+
+#javascript #typescript #clean-code #tutorial
+
+**Related:** [[react_course]] | [[typescript_course]]

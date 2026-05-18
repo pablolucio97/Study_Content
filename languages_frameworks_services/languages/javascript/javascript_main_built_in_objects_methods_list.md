@@ -1,3 +1,5 @@
+
+
 # MAIN BUILT IN OBJECTS METHODS LIST
 
 ## STRING
@@ -189,3 +191,9 @@
 - `Number()` - Converts a string or a date to number
 - `parseInt()` - Converts a string to integer number
 - `parseFloat()` - Converts a string to float number
+
+---
+
+#javascript #reference
+
+**Related:** [[javascript_course]] | [[ecma_script_most_used_features]]

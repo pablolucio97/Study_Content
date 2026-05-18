@@ -1,3 +1,5 @@
+
+
 # Facebook Pixel and Facebook Ads
 
 ## Facebook Pixel
@@ -67,3 +69,9 @@ The main goal of having followers on Instagram is converting your followers into
 3. As you going getting followers, go delivering more content through posts and stories. At least 2 posts per week and 1 story per day.
 4. Republish your ad to get more followers, this new ad must contain a public that does not visited your profile.
    
+
+---
+
+#marketing #tutorial
+
+**Related:** [[marketing_digital_course]] | [[google_ads]] | [[marketing_plan]] | [[marketing_glossary]]

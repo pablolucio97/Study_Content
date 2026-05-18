@@ -1,4 +1,5 @@
 
+
 ## Configuring domains and DNS using Cloudflare.
 
 ### What is Cloudflare?
@@ -28,3 +29,9 @@ Subdomains are configured to point some services to its respective subdomains.
 3. Click on "Records".
 4. And click on "Add record", for each subdomain, create a record containing the subdomain and another to www.subdomain (see the image below) and disabling the proxy option.
 5. ![alt text](imgs/image.png)
+
+---
+
+#devops #deployment #security #tutorial
+
+**Related:** [[creating_domains_and_subdomains_with_route53]] | [[creating_ssl_certificates_with_certbot]] | [[creating_and_accessing_vps_on_hostinger]]

@@ -1,3 +1,5 @@
+
+
 # Web Applications Development Checklist
 
 This checklist should be used to check the following requirements before pushing your code to grant quality, scalability, accessibility, and good practices.
@@ -64,3 +66,9 @@ This checklist should be used to check the following requirements before pushing
 - Write unit and integration tests for critical logic and components.
 - Only imports from third libraries (tree shakable libs) the code you really need. Avoid generic imports, e.g. `import * as MUI from "@mui/material"; `
   
+
+---
+
+#mobile #react-native #typescript #checklist
+
+**Related:** [[web_applications_development_checklist]] | [[react_and_react_native_development__good_practices_checklist]] | [[react_native_course]] | [[ux_ui_general_tips]]

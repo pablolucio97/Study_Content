@@ -1,3 +1,5 @@
+
+
 # 📘 Most Used React ES6+ Techniques
 
 This guide lists the most commonly used ES6+ techniques in React development that make your code cleaner and more expressive.
@@ -162,3 +164,9 @@ Build objects with keys defined at runtime.
 const key = "role";
 const user = { [key]: "admin" };
 ```
+
+---
+
+#react #javascript #reference
+
+**Related:** [[react_course]] | [[react_hooks]] | [[ecma_script_most_used_features]]

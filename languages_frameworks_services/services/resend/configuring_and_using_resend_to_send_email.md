@@ -1,4 +1,5 @@
 
+
 # Configuring and Using Resend to send email on NodeJS  applications.
 
 This guide explains how to correctly configure **Resend** to send transactional emails from your own domain — including all important details that caused issues during real-world setup.
@@ -272,3 +273,8 @@ export class ResendEmailSenderService {
 - Avoid capital letters or accents in email usernames.
 - Use a clear HTML structure — inline styles only to avoid be broken displayed by Gmail and Outlook.
 
+---
+
+#email #nodejs #backend #tutorial
+
+**Related:** [[sending_email_in_production_with_ses_and_nodemailer]] | [[creating_domains_on_cloudflare]]

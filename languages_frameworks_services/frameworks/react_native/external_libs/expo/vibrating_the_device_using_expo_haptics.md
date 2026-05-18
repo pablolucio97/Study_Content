@@ -1,3 +1,5 @@
+
+
 # Vibrating the device with Expo Haptics
 
 To vibrate the device with Expo Haptics you need:
@@ -13,3 +15,9 @@ To vibrate the device with Expo Haptics you need:
     await Haptics.notificationAsync(Haptics.NotificationFeedbackType.Error)
   }
 ```
+
+---
+
+#expo #react-native #mobile #tutorial
+
+**Related:** [[expo_workflows]] | [[playing_sound_with_expo_av]]

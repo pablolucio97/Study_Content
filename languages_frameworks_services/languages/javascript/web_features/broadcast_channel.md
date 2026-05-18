@@ -1,3 +1,5 @@
+
+
 # BroadcastChannel API
 
 BroadcastChannel is a native API that allows communication data between 
@@ -45,3 +47,9 @@ export default function Home() {
   )
 
 }
+
+---
+
+#javascript #web #websockets #tutorial
+
+**Related:** [[web_essentials_concepts]] | [[main_web_browser_objects]] | [[javascript_course]]

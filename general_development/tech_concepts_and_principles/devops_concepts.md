@@ -1,3 +1,5 @@
+
+
 # DEVOPS
 
 DevOps is a culture of development that integrates the development team with the operations team, encompassing the processes of Code, Build, Integration, Tests, Releases, Deploy, and Operation to achieve continuous delivery for clients. DevOps does not replace Agile Methods and should be used in conjunction with them.
@@ -121,3 +123,9 @@ In this stage, the application is under monitoring, and testing should continue.
 - Elasticsearch
 - Kibana
 - Logstash
+
+---
+
+#devops #ci-cd #concepts
+
+**Related:** [[ci_cd_concepts_and_practices]] | [[docker_course]] | [[github_actions]] | [[software_architeture_concetps]]

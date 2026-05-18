@@ -1,3 +1,5 @@
+
+
 # Blockchain concepts
 
 ## Blockchain basic working
@@ -21,3 +23,8 @@ In blockchain technology, a block is a set of transactions records that the netw
 
 ---
 
+---
+
+#blockchain #concepts
+
+**Related:** [[solana_protocol]]

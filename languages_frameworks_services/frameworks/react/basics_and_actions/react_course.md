@@ -1,3 +1,5 @@
+
+
 # React Course
 
 ## Introduction
@@ -1011,4 +1013,8 @@ The major difference between useLayoutEffect and useEffect is that useLayoutEffe
 will block the browser from painting until your code inside useLayoutEffect completes, 
 while useEffect doesn't.
 
+---
 
+#react #javascript #typescript #web #course
+
+**Related:** [[react_hooks]] | [[react_most_used_patterns]] | [[nextjs13+_introduction_course]] | [[react_native_course]]

@@ -1,3 +1,5 @@
+
+
 # Subdomains concepts
 
 A subdomain is the set of divisions of the domain of the our system. Generally subdomains are
@@ -30,3 +32,9 @@ Examples:
 
 - Which core must be independent. If you remove a core, an another one must continue working correctly.
 - Maybe you can use third API's to deal with Generic Cors.
+
+---
+
+#backend #architecture #concepts
+
+**Related:** [[domain_driven_design_concepts]] | [[microsservices_concepts]] | [[software_architeture_concetps]]

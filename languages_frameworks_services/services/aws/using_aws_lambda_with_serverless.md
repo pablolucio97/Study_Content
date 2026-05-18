@@ -1,3 +1,5 @@
+
+
 # SERVERLESS
 
 ## Concept
@@ -201,3 +203,9 @@ In `package.json`:
 ```
 
 ## 16–24. Continue in next file due to size...
+
+---
+
+#aws #devops #deployment #tutorial
+
+**Related:** [[amazon_web_services]] | [[using_serverless_to_deploy_lambda_functions_on_aws]]

@@ -1,3 +1,5 @@
+
+
 # Python introduction course
 
 ## Installing and running Python on VS Code
@@ -67,3 +69,9 @@ while True:
 - Even your function does not returns nothing, it's a good practice providing a return declaration at the end of the function.
 - At importing modules, only import the methods you will use because if the library updates you code can have some incompatibilities.
 - Do not use `print()` method on functions you are exporting. Always use `print()` if you need to print something at using this functions.
+
+---
+
+#python #backend #course
+
+**Related:** [[javascript_course]] | [[typescript_course]]

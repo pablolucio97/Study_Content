@@ -1,3 +1,5 @@
+
+
 # Using Next with Styled Components
 
 This guide provides steps to create a Next.js application with Styled Components, ensuring a smooth setup for your project.
@@ -46,3 +48,9 @@ class MyDocument extends Document {
 
 export default MyDocument;
 ```
+
+---
+
+#nextjs #css #ui-design #tutorial
+
+**Related:** [[nextjs13+_introduction_course]] | [[styled_components]] | [[styled_components_introduction_course]]

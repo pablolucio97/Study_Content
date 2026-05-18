@@ -1,3 +1,5 @@
+
+
 # 📚 Using Storybook Interactions, MSW, and Test Runner
 
 ## 1️⃣ Install Interaction Addon, Jest, and Testing Library
@@ -134,3 +136,9 @@ npm run test-storybook
 - Use `within` to search for elements inside the canvas.
 - Use `rest` from `msw` to mock API requests.
 - Use `parameters` in component variations to handle API requests.
+
+---
+
+#testing #react #ui-design #tutorial
+
+**Related:** [[documenting_components_with_storybook]] | [[running_tests_using_jest]]

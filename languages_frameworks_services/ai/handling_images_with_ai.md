@@ -1,3 +1,5 @@
+
+
 # Handling Images with AI
 
 ## Basic idea
@@ -426,3 +428,9 @@ Before requesting an image edit, define:
 - Does the image contain sensitive information?
 
 The clearer the request, the better the AI can understand and modify the image.
+
+---
+
+#ai #concepts
+
+**Related:** [[introduction_to_ai]] | [[prompt_engineering]] | [[rag_system]]

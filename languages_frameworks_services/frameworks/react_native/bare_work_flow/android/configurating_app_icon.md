@@ -1,3 +1,5 @@
+
+
 # 📱 CONFIGURING APP ICON
 
 ## 1. Open Android Project in Android Studio
@@ -56,3 +58,9 @@
   ```
   android/app/src/main/res/mipmap-anydpi-v26/ic_launcher-playstore.png
   ```
+
+---
+
+#react-native #mobile #deployment #tutorial
+
+**Related:** [[doing_app_deploy_to_googleplay]] | [[generating_app_bundle]] | [[creating_splash_screen]]

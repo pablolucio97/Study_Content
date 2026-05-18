@@ -1,4 +1,5 @@
 
+
 # 🔐 Zustand – User Authentication with Persisted Token (Middleware)
 
 Zustand is a minimal state-management library for React.  
@@ -221,3 +222,9 @@ const { user, isAuthenticated } = useAuthStore(
 ## 📚 Resources
 - Zustand Docs – Persist Middleware: https://docs.pmnd.rs/zustand/integrations/persisting-store-data
 - Zustand GitHub: https://github.com/pmndrs/zustand
+
+---
+
+#react #state-management #authentication #javascript #course
+
+**Related:** [[redux_introduction_course]] | [[redux_tool_kit_introduction_course]] | [[improving_queries_with_react_query]] | [[react_hooks]]

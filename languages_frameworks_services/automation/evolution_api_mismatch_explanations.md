@@ -1,3 +1,5 @@
+
+
 # Evolution API Configuration Guide
 
 This guide explains the main concepts you need to understand so you do not keep suffering with Evolution API setup, routing, ports, SSL, and QR code generation.
@@ -720,3 +722,9 @@ You need to configure each one correctly and consistently.
 # 25. One sentence to remember
 
 **Choose either direct port access or reverse-proxy HTTPS, and make every part of the configuration agree with that choice.**
+
+---
+
+#automation #docker #api #tutorial
+
+**Related:** [[using_evolution_api]] | [[n8n_introduction_course]] | [[docker_compose]]

@@ -1,3 +1,5 @@
+
+
 # NextJS Introduction Course
 
 Next.js is a React framework for building full-stack web applications. You use React Components to build user interfaces, and Next.js for additional features and optimizations.
@@ -1057,3 +1059,9 @@ Purely **internal UI action** with easy revalidation → **Server Action**.
 - Always run `npm run build` before deploying.
 - Keep sensitive data in environment variables, not in code. Use the Vercel's dashboard to configure your environment variables.
 - Use a CDN for serving static assets.
+
+---
+
+#nextjs #react #web #javascript #typescript #course
+
+**Related:** [[nextjs_legacy_introduction_course]] | [[react_course]] | [[improving_seo_on_nextjs_projects]] | [[improving_performance_on_nextjs_projects]] | [[doing_deploy_at_vercel]]

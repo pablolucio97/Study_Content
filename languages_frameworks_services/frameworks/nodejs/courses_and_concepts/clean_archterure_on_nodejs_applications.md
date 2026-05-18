@@ -1,3 +1,5 @@
+
+
 # CLEAN ARCHITECTURE ON NODEJS APPLICATIONS
 
 In Clean Architecture, the **useCases** layer must not depend on the **controllers** layer.
@@ -106,3 +108,9 @@ export class PrismaQuestionsRepository implements QuestionsRepository {
   }
 }
 ```
+
+---
+
+#nodejs #architecture #clean-code #concepts
+
+**Related:** [[software_architeture_concetps]] | [[applying_solid_on_nodejs]] | [[domain_driven_design_concepts]] | [[clean_code_principles]]

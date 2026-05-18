@@ -1,4 +1,5 @@
 
+
 ## Prompt Engineering concepts and tips
 
 ### Prompt Engineering
@@ -33,3 +34,9 @@
 - At working prompts, supply relevant examples for the IA, it helps a lot at sharping the final response.
 - At building a chatbot, provide several examples of how the IA should behave.
 - Avoid doing a too much complex task at once, prefer to break it into smaller tasks, it provides better responses.
+
+---
+
+#ai #concepts
+
+**Related:** [[introduction_to_ai]] | [[rag_system]] | [[chatbots]]

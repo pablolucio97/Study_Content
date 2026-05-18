@@ -1,4 +1,5 @@
 
+
 # Sending Emails in Production with SES and Nodemailer
 
 The advantage of using AWS Simple Email Service is that this service sends all emails in a single request, reducing the risk of being marked as spam. You will need to have a domain to use AWS SES.
@@ -117,3 +118,9 @@ Create the file `email.hbs` inside `modules/views/emails`:
 ## 9. Authenticate and Test Email
 
 Authenticate in your application and test the email sending process.
+
+---
+
+#aws #email #backend #tutorial
+
+**Related:** [[amazon_web_services]] | [[configuring_and_using_resend_to_send_email]]

@@ -1,3 +1,5 @@
+
+
 # Intercepting Server Responses
 
 The server your application is consuming data from can return **specific** or **generic** error messages.  
@@ -77,3 +79,9 @@ api.interceptors.response.use(
   }
 );
 ```
+
+---
+
+#react #api #javascript #tutorial
+
+**Related:** [[react_course]] | [[improving_queries_with_react_query]] | [[back-end_concepts]]

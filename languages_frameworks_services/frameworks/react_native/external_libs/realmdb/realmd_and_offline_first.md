@@ -1,3 +1,5 @@
+
+
 # Introduction to RealmDB and Offline First Strategy
 
 ## Overview
@@ -33,3 +35,9 @@ The "offline first" strategy emphasizes ensuring that an application can continu
 - **Strategic Focus**: Offline-first does not have to apply to the entire application. Focus on critical areas that benefit the most from offline functionality.
 
 Observation: RealmDB was designed to be used with MongoDB Atlas, so to use it you'll need provide the app id on your AppProvider.
+
+---
+
+#react-native #database #offline #mobile #course
+
+**Related:** [[react_native_course]] | [[prismaorm_introduction_course]] | [[expo_workflows]]

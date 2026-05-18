@@ -1,3 +1,5 @@
+
+
 # SQL Introduction Course
 
 ## SQL Commands
@@ -213,3 +215,9 @@ ORDER BY orders.amount DESC;
 ```
 
 🔍 **Explanation**: Retrieves only orders above $10, joined with user data, and sorted by the order amount descending.
+
+---
+
+#sql #database #backend #course
+
+**Related:** [[prismaorm_introduction_course]] | [[typeorm_introduction_course]] | [[creating_and_configuring_back_end_applications_using_sequelize_postrges_and_express]]

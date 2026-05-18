@@ -1,3 +1,5 @@
+
+
 # DATA SAFETY
 
 ## Types of Attacks
@@ -43,3 +45,9 @@ Occurs when an application receives thousands of requests simultaneously, causin
 
 - **PCI Compliance**: Look for APIs that are PCI certified for handling credit card transactions.
 - **User Action Logs**: Maintain logs of user actions to provide proof of activities within your application.
+
+---
+
+#security #backend #authentication #concepts
+
+**Related:** [[encrypting_passwords_with_bcryptsjs]] | [[generating_and_using_jwt_tokens]] | [[verifying_authentication_with_jwt]] | [[back-end_concepts]]

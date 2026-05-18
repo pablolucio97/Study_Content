@@ -1,3 +1,5 @@
+
+
 # Creating and configuring applications using SequelizeORM, Postgres e Express
 
 1. Run the command npm init -y to start your NodeJS project.
@@ -131,3 +133,9 @@ services:
 ```
 11. Start your Docker application on your machine, the container running `docker-compose up` and `npm run dev` (according the script you defined at package.json) to start your application.
 12. Your application will be started successfully after the sequelize have been synced your database.
+
+---
+
+#nodejs #database #sql #backend #tutorial
+
+**Related:** [[prismaorm_introduction_course]] | [[typeorm_introduction_course]] | [[sql_introduction_course]] | [[nodejs_introduction_course]]

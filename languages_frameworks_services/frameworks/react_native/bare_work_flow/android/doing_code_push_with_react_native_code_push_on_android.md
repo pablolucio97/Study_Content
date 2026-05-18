@@ -1,3 +1,5 @@
+
+
 # 📦 Doing CodePush OTA in React Native
 
 Code Push OTA (Over-The-Air) allows you to send updates to your app directly to users without needing to go through the app stores, **as long as no native code is changed**.
@@ -129,3 +131,9 @@ This uploads your JavaScript bundle and assets.
 ## 🔗 Reference
 
 https://github.com/microsoft/react-native-code-push/blob/master/docs/setup-android.md
+
+---
+
+#react-native #mobile #deployment #ci-cd #tutorial
+
+**Related:** [[doing_app_deploy_to_googleplay]] | [[expo_workflows]] | [[configuring_ci_cd_with_app_center_ms]]

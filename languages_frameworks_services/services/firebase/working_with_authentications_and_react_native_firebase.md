@@ -1,3 +1,5 @@
+
+
 # Working with Authentication using `@react-native-firebase/auth`
 
 ## Installation
@@ -134,3 +136,9 @@ async function handleLogout() {
   }
 }
 ```
+
+---
+
+#firebase #react-native #mobile #authentication #tutorial
+
+**Related:** [[doing_google_authentication_with_firebase]] | [[using_cloud_firestore_with_react_native]] | [[implementing_oauth2_authentication_on_react_native]] | [[using_storage_with_react_native]]

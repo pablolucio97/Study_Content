@@ -1,3 +1,5 @@
+
+
 # Monitoring Users behaviors with Google Analytics
 
 ---
@@ -101,3 +103,9 @@ export default Routes;
 ## 5. Test Your Integration
 
 Run your application and navigate between routes. Google Analytics will begin tracking screen views automatically.
+
+---
+
+#firebase #web #mobile #marketing #tutorial
+
+**Related:** [[making_your_website_searchable_on_google]] | [[seo_checklist_and_tips]] | [[facebook_pixel_and_facebook_ads]] | [[google_ads]]

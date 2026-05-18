@@ -1,3 +1,5 @@
+
+
 # ELEMENT OBJECT
 
 This object describes any HTML element's properties and methods.
@@ -70,3 +72,9 @@ This object describes any HTML element's properties and methods.
 - **replaceChild()**: Replaces a child with another in an element.
 - **requestFullscreen()**: Displays an element in fullscreen mode.
 - **setAttribute()**: Sets or changes an attribute
+
+---
+
+#javascript #html #web #reference
+
+**Related:** [[document_object]] | [[dom_events]] | [[javascript_course]]

@@ -1,3 +1,5 @@
+
+
 # MAIN WEB BROWSERS OBJECTS
 
 ## WINDOW OBJECT
@@ -138,3 +140,9 @@ Similar to LocalStorage, but it stores data only for the duration of the page se
 - **key(n)**: Returns the name of the nth key in the sessionStorage, or `null` if n is greater than or equal to the number of key/value pairs.
 - **removeItem(key)**: Removes the key/value pair with the given key from the sessionStorage, if it exists.
 - **setItem(key, value)**: Adds a key/value pair to the sessionStorage, or updates the value if the key already exists.
+
+---
+
+#javascript #html #web #reference
+
+**Related:** [[document_object]] | [[dom_events]] | [[web_essentials_concepts]]

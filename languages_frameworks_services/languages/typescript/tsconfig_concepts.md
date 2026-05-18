@@ -1,3 +1,5 @@
+
+
 # TypeScript Config Options
 
 The `tsconfig.json` file allows you to configure all desired options to manage TypeScript behavior in your project. Below are the main options:
@@ -123,3 +125,9 @@ Defines which files/folders to ignore.
 
 - Set `"noImplicitAny": false` if you're dealing with third-party libs with no type declarations.
 - If you're struggling with `import * as x from 'lib'`, add `"esModuleInterop": true` to use `import x from 'lib'`.
+
+---
+
+#typescript #javascript #reference
+
+**Related:** [[typescript_course]] | [[configuring_dynamic_imports_on_vscode]]

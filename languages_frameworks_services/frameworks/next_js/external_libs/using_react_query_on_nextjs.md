@@ -1,3 +1,5 @@
+
+
 # Using React Query with Next.js
 
 ## 3) Create a hook and a query function
@@ -102,3 +104,9 @@ export async function handlePrefetchGame(gameId: number) {
 ## General Tips
 
 - If you're working with **Next.js** and facing CORS issues, perform your request through the server.
+
+---
+
+#nextjs #react #state-management #performance #tutorial
+
+**Related:** [[nextjs13+_introduction_course]] | [[improving_queries_with_react_query]]

@@ -1,3 +1,5 @@
+
+
 # SAVING COOKIES WITH NOOKIES
 
 Nookies is a third-party JavaScript library that facilitates handling cookies with NextJS. It's essential to create cookies in a context to ensure their availability throughout the application.
@@ -109,3 +111,9 @@ api.interceptors.request.use(
   }
 );
 ```
+
+---
+
+#nextjs #authentication #tutorial
+
+**Related:** [[nextjs13+_introduction_course]] | [[working_with_cookies_on_fastify]] | [[authenticating_using_next-auth]]

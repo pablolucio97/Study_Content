@@ -1,3 +1,5 @@
+
+
 # Introduction to Software Architecture
 
 ## Types of Architectures
@@ -225,3 +227,9 @@ Build a secure authentication system allowing users to register, log in, and man
 - Using an API Gateway can help to implement Health check, Rate limiting and others features directly on the API Gateway.
 - Do not try implementing rate limiting, circuit breaker, retry policies, and other features directly on the system, use a Service Mesh/API Gateway to do it.
 - At working with cloud services, do not rely on a single available zone.
+
+---
+
+#architecture #concepts
+
+**Related:** [[clean_code_principles]] | [[clean_archterure_on_nodejs_applications]] | [[domain_driven_design_concepts]] | [[applying_solid_on_nodejs]] | [[software_engineering_concepts]] | [[microsservices_concepts]]

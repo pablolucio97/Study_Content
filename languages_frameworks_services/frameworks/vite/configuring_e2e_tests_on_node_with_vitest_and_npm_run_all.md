@@ -1,4 +1,5 @@
 
+
 ## Configuring E2E Tests on Node.js with Vitest and npm-run-all
 
 End-to-end tests verify the full flow of your application, such as testing routes and business logic in an integrated manner. They are usually executed in CI environments (like GitHub Actions) and require an isolated test environment, typically with its own database schema.
@@ -141,3 +142,9 @@ test('ok', () => {})
 ```bash
 npm run test:e2e
 ```
+
+---
+
+#testing #nodejs #vite #backend #tutorial
+
+**Related:** [[writing_automated_tests_on_nodejs_applications_with_vitest_supertest_and_fastify]] | [[writing_unity_tests_on_nodejs_applications_with_vitest]] | [[configuring_e2e_envinronment_test]]

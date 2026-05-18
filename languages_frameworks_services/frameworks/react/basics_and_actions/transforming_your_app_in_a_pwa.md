@@ -1,3 +1,5 @@
+
+
 # Setting Up Service Worker and Manifest for PWA
 
 ---
@@ -35,3 +37,9 @@ In your `public/index.html`, add:
 - Test app performance at:
   - Chrome DevTools → **Lighthouse** → **Generate Report**
   - [https://webpagetest.org](https://webpagetest.org)
+
+---
+
+#react #web #offline #tutorial
+
+**Related:** [[react_course]] | [[creating_installable_pwa_with_next]]

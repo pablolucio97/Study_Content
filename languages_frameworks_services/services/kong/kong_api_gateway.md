@@ -1,3 +1,5 @@
+
+
 # Kong API Gateway
 
 ## Definition
@@ -87,3 +89,9 @@ To correctly apply Observability on your system through API gateway, you should 
 - Avoid using heavy response formatters if you want to use Response Transformer plugin because it can consume a lot computational resources.
 - Avoid using Basic Authentication on production, use Key Authentication instead.
 - Generally monitoring and logging tools track headers information, and does not watches the request body for performance and security reasons.
+
+---
+
+#api #backend #architecture #devops #concepts
+
+**Related:** [[api_gateway_concepts]] | [[software_architeture_concetps]] | [[creating_crud_with_nest_graphql_docker_compose_and_prisma]]

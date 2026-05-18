@@ -1,3 +1,5 @@
+
+
 # SOFTWARE ENGINEERING CONCEPTS
 
 Software Engineering is the field that studies software development, its lifecycle, concepts, and techniques.
@@ -168,3 +170,9 @@ Lack of source code and support.
 - Manage software changes through a Software Changes Manager.
 - Test each new version before proceeding with further development.
 - Aim for the maximum number of failures with the minimum number of tests.
+
+---
+
+#architecture #concepts
+
+**Related:** [[software_architeture_concetps]] | [[agile_methods_concepts]] | [[devops_concepts]] | [[clean_code_principles]]

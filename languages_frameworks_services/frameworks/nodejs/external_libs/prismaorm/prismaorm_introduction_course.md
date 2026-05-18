@@ -1,3 +1,5 @@
+
+
 # PRISMA ORM COURSE
 
 ## Introduction
@@ -235,3 +237,9 @@ Run the following command to let Prisma synchronize with the existing database a
 - Use transactions to ensure that operations are either fully completed or undone.
 - Be quick when using interactive transactions to avoid long open transactions.
 - Prisma does not create relationship columns in its database tables; these columns appear in a different color in the `Prisma.schema` file when using the Prisma extension on VSCode.
+
+---
+
+#database #nodejs #backend #course
+
+**Related:** [[nestjs_introduction_course]] | [[typeorm_introduction_course]] | [[creating_a_crud_using_nestjs_prisma_and_docker]] | [[sql_introduction_course]]

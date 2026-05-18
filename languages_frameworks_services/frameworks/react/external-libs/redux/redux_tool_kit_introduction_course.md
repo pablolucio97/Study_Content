@@ -1,3 +1,5 @@
+
+
 # 🔐 Redux Toolkit – User Authentication Context Course
 
 Redux Toolkit (RTK) is the official, recommended way to write Redux logic.  
@@ -296,3 +298,9 @@ export default function App() {
 
 - [Redux Toolkit Docs](https://redux-toolkit.js.org/)
 - [React Redux Docs](https://react-redux.js.org/)
+
+---
+
+#react #state-management #authentication #javascript #course
+
+**Related:** [[redux_introduction_course]] | [[zustand_introduction_course]] | [[react_hooks]]

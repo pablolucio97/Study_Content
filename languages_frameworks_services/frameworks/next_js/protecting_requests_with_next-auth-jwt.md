@@ -1,3 +1,5 @@
+
+
 # PROTECTING REQUESTS WITH NEXT-AUTH-JWT
 
 This guide details how to protect HTTP requests in a Next.js project using JWT (JSON Web Tokens) from `next-auth/jwt`.
@@ -45,3 +47,9 @@ This guide details how to protect HTTP requests in a Next.js project using JWT (
       }
       return res.status(401).end();
     });
+
+---
+
+#nextjs #authentication #security #tutorial
+
+**Related:** [[doing_authentication_with_next-auth_and_github]] | [[doing_authentication_with_next-auth_and_google]] | [[authenticating_using_next-auth]] | [[generating_and_using_jwt_tokens]] | [[verifying_authentication_with_jwt]]

@@ -1,3 +1,5 @@
+
+
 # Automating EC2 Instances Deploy Process with GitHub Actions CI/CD
 
 When GitHub identifies you've committed, it runs an action (GitHub Actions) based on commands you've specified. This avoids the need to access the EC2 instance manually to pull code updates.
@@ -125,3 +127,8 @@ jobs:
 - **Jobs** define the processes run by the workflow
 - YAML is space-sensitive—use `-` only with `name` and `uses` (never mix)
 
+---
+
+#aws #ci-cd #github #deployment #tutorial
+
+**Related:** [[creating_ec2_instances]] | [[github_actions]] | [[amazon_web_services]]

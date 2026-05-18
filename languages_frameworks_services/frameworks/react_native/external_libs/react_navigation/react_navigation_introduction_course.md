@@ -1,4 +1,5 @@
 
+
 ## React Navigation Introduction Course
 
 ### Creating a Stack Navigator
@@ -349,3 +350,9 @@ export function TabPrivateRoutes() {
 - Use `<Group screenOptions={{ gestureEnabled: false }}>` to apply screenOptions to multiple screens.
 - Ensure you have `react-native-svg` and `@svgr/cli` or use `expo install react-native-svg` if you're in an Expo environment.
 - To transform SVGs into usable components, use libraries like `react-native-svg-transformer`.
+
+---
+
+#react-native #mobile #typescript #course
+
+**Related:** [[handling_routes_with_expo_router]] | [[implementing_deep_linkinkg]] | [[typing_route_params]] | [[react_router_dom_intrdouction_course]]

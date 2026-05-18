@@ -1,3 +1,5 @@
+
+
 # Creating animations using React Native Reanimated
 
 ## Concepts
@@ -310,6 +312,8 @@ export function MyScreen(){
 
 - Use  Extrapolate.CLAMP to grant the animation/interpolation will not overpass the limit specified by the array.
 
+---
 
+#react-native #animations #mobile #tutorial
 
-
+**Related:** [[handling_gestures_using_react_native_gesture_handle]] | [[react_native_skia_components_and_techiniques]] | [[framer_motion_course]]

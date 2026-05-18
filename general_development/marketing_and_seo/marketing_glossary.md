@@ -1,3 +1,5 @@
+
+
 # Marketing Digital Glossary
 
 **Products:**
@@ -35,3 +37,9 @@ Campaign, Click Mail.
 - **Selling Page**: Its the page where your client will see your product or service details in order to buying it. Sometimes a landing page acts as a selling page.
 - **Digital bait**: Is an asset that we offer in exchange the user email. Generally an e-book.
   
+
+---
+
+#marketing #reference
+
+**Related:** [[marketing_digital_course]] | [[copywriting_and_mind_triggers]] | [[facebook_pixel_and_facebook_ads]] | [[google_ads]]

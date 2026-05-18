@@ -1,3 +1,5 @@
+
+
 # GITHUB ACTIONS 
 
 GitHub Actions is a framework to run custom workflows for software development, reducing CI complexity.
@@ -142,3 +144,9 @@ Go to the **"Actions"** tab on your repository to track status.
 - Every workflow must contain at least one job. 
 - You can use **GitHub-hosted** or **self-hosted** runners  
 - If you're using `yarn`, all CI commands should use `yarn`. If using `npm`, use `npm` consistently.
+
+---
+
+#github #ci-cd #devops #deployment #tutorial
+
+**Related:** [[git_and_github_course]] | [[git_flow]] | [[ci_cd_concepts_and_practices]] | [[devops_concepts]]

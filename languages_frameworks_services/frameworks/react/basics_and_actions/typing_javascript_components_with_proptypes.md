@@ -1,3 +1,5 @@
+
+
 # Typing Props for React JS Components
 
 ---
@@ -51,3 +53,9 @@ PostCard.propTypes = {
 - All props marked with `.isRequired` must be passed to the component.
 - Optional props (like `isActive`) can be omitted.
 - PropTypes help catch bugs during development by validating prop usage.
+
+---
+
+#react #javascript #typescript #tutorial
+
+**Related:** [[react_course]] | [[typescript_course]]

@@ -1,3 +1,5 @@
+
+
 # Validating data using Pipes and Zod
 
 ## Pipes
@@ -94,3 +96,9 @@ export class CreateAccountController {
   }
 }
 ```
+
+---
+
+#nestjs #backend #forms #tutorial
+
+**Related:** [[nestjs_introduction_course]] | [[zod_introduction_course]] | [[configuring_and_validating_env_vars_with_nestjs_and_zod]]

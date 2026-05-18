@@ -1,3 +1,5 @@
+
+
 # GIT FLOW INTRODUCTION COURSE
 
 Git Flow is a method of working with Git in a team environment. It is recommended for version control, semantic versioning, and collaborative development.
@@ -46,3 +48,9 @@ The Git Flow typically includes the following branches: `main`, `develop`, and `
 - There is no single correct convention—each project can have its own Git flow based on team policy or owner preference.
 - Feature branches **must not** interact directly with the `main` branch—only with `develop`.
 - The main benefit of a hotfix branch is to allow urgent fixes to go directly to main (production) without waiting for ongoing development in develop to finish.
+
+---
+
+#git #github #devops #tutorial
+
+**Related:** [[git_and_github_course]] | [[github_actions]] | [[versioning_projects_with_a_changelog]] | [[ci_cd_concepts_and_practices]]

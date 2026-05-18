@@ -1,3 +1,5 @@
+
+
 # Styled Components for React Native introduction course
 
 Styled Components is a library for styling React and React Native applications using tagged template literals. It helps you write actual CSS code to style your components while keeping the concerns of styling and component logic separated.
@@ -193,3 +195,9 @@ export const PowerIcon = styled(Feather)`
 ```tsx
 <PowerIcon name="power" />
 ```
+
+---
+
+#react-native #css #mobile #ui-design #course
+
+**Related:** [[styled_components]] | [[react_native_course]] | [[adding_custom_fonts_with_expo]]

@@ -1,4 +1,5 @@
 
+
 # Clean Code Principles
 
 ## 1) Use Meaningful Names
@@ -122,3 +123,9 @@ for (let i = 0; i < NUMBER_OF_STUDENTS; i++) {
 - Use nouns in PascalCase when declaring classes.
 - Use snake and uppercase when declaring constants.
 - Use verbs in camelCase when declaring functions.
+
+---
+
+#clean-code #architecture #concepts
+
+**Related:** [[applying_solid_on_nodejs]] | [[software_architeture_concetps]] | [[clean_archterure_on_nodejs_applications]] | [[domain_driven_design_concepts]]

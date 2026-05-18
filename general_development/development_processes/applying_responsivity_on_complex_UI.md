@@ -1,4 +1,5 @@
 
+
 # Applying reposivity on complex UI
 
 ## Deinifing the breakpoints
@@ -31,3 +32,9 @@ To define your application breakpoints you must scroll the brwoser horizontally 
 - Know wich techiniques to apply for cards, tables, side panels and so on.
 - When a table is too complex, you can transform it on several cards where each card represents a row.
 - Sometimes an element's width is being controlled by its parent instead by itself, specially when ruled grid-cols or grid-template.
+
+---
+
+#ui-design #css #web #tutorial
+
+**Related:** [[ux_ui_general_tips]] | [[css_course]] | [[web_applications_development_checklist]]

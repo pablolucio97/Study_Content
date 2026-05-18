@@ -1,3 +1,5 @@
+
+
 # Main Meta tags for SEO
 
 Meta tags are tags that are embed inside the head tag for the HMTL docu-
@@ -105,8 +107,8 @@ build with another many tehnologies.
 
 - **Combine Texts with Images**: Integrate images alongside text. Avoid using images as the sole medium for representing text content.
 
+---
 
+#html #seo #web #reference
 
-
-
-
+**Related:** [[seo_checklist_and_tips]] | [[robots_and_sitemaps]] | [[improving_seo_on_nextjs_projects]] | [[making_your_website_searchable_on_google]]

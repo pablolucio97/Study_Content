@@ -1,3 +1,5 @@
+
+
 # Implementing Maps with current user location
 
 ## Implementing Geolocation
@@ -279,3 +281,9 @@ export function Map({ coordinates, ...rest }: Props) {
 }
 
   ```
+
+---
+
+#expo #react-native #maps #mobile #tutorial
+
+**Related:** [[expo_workflows]] | [[react_native_course]]

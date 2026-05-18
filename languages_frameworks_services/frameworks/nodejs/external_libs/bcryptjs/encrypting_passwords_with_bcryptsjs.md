@@ -1,3 +1,5 @@
+
+
 # ENCRYPTING PASSWORD WITH BCRYPTJS
 
 ## 1. Install Bcrypt
@@ -42,3 +44,9 @@ class CreateUserUseCase {
 
 export { CreateUserUseCase };
 ```
+
+---
+
+#nodejs #authentication #security #tutorial
+
+**Related:** [[data_safety]] | [[generating_and_using_jwt_tokens]] | [[verifying_authentication_with_jwt]] | [[handling_authentication_with_jwt_and_passport_using_rsa256]]

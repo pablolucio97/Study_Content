@@ -1,3 +1,5 @@
+
+
 # NPM Concepts
 
 NPM, or **Node Package Manager**, is used to fetch packages for a project, integrate them, or publish your own project for broader use.
@@ -33,3 +35,9 @@ You can start a new project by running `npm init -y`, which will generate a `pac
 - The `pre` and `post` prefixes in script names denote tasks that should run before or after the main script, respectively.
 
 - If cloning a repo and mixing it into a current project, verify that new files work correctly by running `npx yarn tsc --noEmit` (if the project uses TypeScript).
+
+---
+
+#nodejs #javascript #concepts
+
+**Related:** [[nodejs_introduction_course]] | [[publishing_libs_on_npm]]

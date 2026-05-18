@@ -1,3 +1,5 @@
+
+
 # Supertest Integration Test Examples
 
 ## Example 1: Listing Categories
@@ -92,3 +94,9 @@ describe('Create Category Controller', () => {
 **Notes:**
 - `.set()` is used to add custom headers or properties to the request.
 - Use `beforeAll` and `afterAll` to set up and clean up the database for test isolation.
+
+---
+
+#testing #nodejs #backend #tutorial
+
+**Related:** [[tests_concepts]] | [[writing_e2e_tests_with_supertest]] | [[working_with_tests_on_nodejs]]

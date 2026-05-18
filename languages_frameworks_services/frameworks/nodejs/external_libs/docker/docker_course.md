@@ -1,3 +1,5 @@
+
+
 # DOCKER COURSE
 
 ## CONCEPTS
@@ -212,3 +214,9 @@ At working with real projects using Docker, maintain two Dockerfile's, one to ex
 If your Dockerfile is not in the root dir, you must specify the file directory at running, ex: `docker build -t nginx/Dockerfile.prod`.
 
 A file that has multiples `FROM` declaration are files containing multistage building.
+
+---
+
+#docker #devops #deployment #course
+
+**Related:** [[docker_compose]] | [[docker-swarm]] | [[performing_ci_with_dockerfile]] | [[ci_cd_concepts_and_practices]]

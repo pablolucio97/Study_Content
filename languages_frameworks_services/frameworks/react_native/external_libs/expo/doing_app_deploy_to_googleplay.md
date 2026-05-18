@@ -1,4 +1,5 @@
 
+
 # Doing App Deploy to Google Play
 
 ## Creating Splash Screen
@@ -136,3 +137,9 @@ Go to "General Versions" > "Production" > Add target regions.
 - Save > Avaliate > Start Production Release
 
 Wait 1–2 days for Play Store publication.
+
+---
+
+#expo #react-native #mobile #deployment #tutorial
+
+**Related:** [[expo_workflows]] | [[creating_splash_screen]] | [[configurating_app_icon]] | [[configuring_ci_cd_with_app_center_ms]]

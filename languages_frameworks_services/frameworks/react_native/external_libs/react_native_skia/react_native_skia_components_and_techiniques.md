@@ -1,3 +1,5 @@
+
+
 # React Native Skia Components and Techniques examples
 
 ## Component examples
@@ -165,3 +167,9 @@ export function AnimatedStar() {
   )
 }
 ```
+
+---
+
+#react-native #animations #ui-design #mobile #reference
+
+**Related:** [[creating_animations_using_react_native_reanimated]] | [[handling_gestures_using_react_native_gesture_handle]]

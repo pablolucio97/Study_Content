@@ -1,3 +1,5 @@
+
+
 # Handling Websockets with NestJS and React
 
 1. Run `npm i @nestjs/websockets @nestjs/platform-socket.io` to install `@nestjs/websockets ` and `@nestjs/platform-socket.io` libraries to handle websockets.
@@ -165,3 +167,9 @@ useEffect(() => {
 ```
 
 The first call for using websockets is done automatically by the websocket's gateway using HTTP protocol with a GET method including header with the value "Upgrade: websocket".
+
+---
+
+#nestjs #websockets #backend #tutorial
+
+**Related:** [[nestjs_introduction_course]] | [[react_course]]

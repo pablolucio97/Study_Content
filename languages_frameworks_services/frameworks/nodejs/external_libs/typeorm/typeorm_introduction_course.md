@@ -1,4 +1,5 @@
 
+
 # TypeORM Introduction Course
 
 This course covers the **most important concepts** of TypeORM, a popular ORM for Node.js and TypeScript.
@@ -855,3 +856,9 @@ Explanation:
 - Keep migrations the **source of truth** in production (avoid `synchronize: true`).
 - For TypeORM v0.3+, prefer `DataSource.getRepository()` and `FindOptions` over deprecated APIs.
 - In real life, you almost never will need to use rightJoin because rightJoin makes the query harder to read and all necessary data already exists in the main table (left).
+
+---
+
+#database #nodejs #backend #typescript #course
+
+**Related:** [[prismaorm_introduction_course]] | [[creating_and_configuring_back_end_applications_using_sequelize_postrges_and_express]] | [[doing_refresh_token_with_jwt_and_typeorm]] | [[sql_introduction_course]]

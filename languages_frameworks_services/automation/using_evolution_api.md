@@ -1,3 +1,5 @@
+
+
 # Using Evolution API
 
 The Evolution API is an alternative to default n8n chat interface. It's more friendly and has connection to Whatsapp.
@@ -52,3 +54,9 @@ The Evolution API is an alternative to default n8n chat interface. It's more fri
 - Never use a personal Whatsapp number to test n8n workflows, since it will trigger on every real message.
 - Do not activate configs you are not sure, since it can alter the correct flow functionality. 
    
+
+---
+
+#automation #api #tutorial
+
+**Related:** [[n8n_introduction_course]] | [[evolution_api_mismatch_explanations]] | [[chatbots]]

@@ -1,3 +1,5 @@
+
+
 # YouTube
 
 ## Type of YouTube channels
@@ -23,3 +25,9 @@
 - At defining a new video's title, always include the words "How", "You", "Easy", "Fast", "Money", "Secret", "Do not do before watching this video", "What I'd like to know", and so on.
 - At defining a new video's thumbnail, always use images of real people that pass emotions at creating thumbnails.
 - Use the [Social Blade platform](https://socialblade.com/) to spy on a youtube channel metrics and earnings.
+
+---
+
+#marketing #seo #tutorial
+
+**Related:** [[social_media_grow_up_strategies]] | [[marketing_digital_course]] | [[marketing_for_selling_courses]] | [[seo_checklist_and_tips]]

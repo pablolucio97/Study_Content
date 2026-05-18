@@ -1,3 +1,5 @@
+
+
 # JavaScript exercises list:
 
 ### Strings
@@ -64,3 +66,9 @@
 - Invert keys and values of an object.
 - Implement a nested property access function (e.g., access `obj['a']['b']` using a string like `'a.b'`).
 - Aggregate data from an array of objects based on a property (e.g., sum of ages).
+
+---
+
+#javascript #reference
+
+**Related:** [[javascript_course]] | [[ecma_script_most_used_features]]

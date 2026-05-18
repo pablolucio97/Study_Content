@@ -1,3 +1,5 @@
+
+
 ## Handling production applications on VPSs
 
 Managing applications on a VPS (Virtual Private Server) requires attention to configuration, security, and consistency. Follow these best practices to avoid common mistakes and keep your environment stable.
@@ -241,3 +243,9 @@ set +a
 - If some service linked to some env var does not works, try removing quotes because the real value can be interpreted different depending on the OS.
 - At working with email system, be sure certificate the sender email is real. You can add an email routing for route your domain email to a real domain sender using Email Routing Cloudflare.
 - Avoid generating images locally, prefer push the code, pull on the VPS and generate the image from the VPS to avoid image SO envinronment incompatibility issues.
+
+---
+
+#devops #docker #deployment #backend #tutorial
+
+**Related:** [[docker_course]] | [[docker-swarm]] | [[docker_compose]] | [[managing_servers_with_pm2]] | [[creating_and_accessing_vps_on_hostinger]]

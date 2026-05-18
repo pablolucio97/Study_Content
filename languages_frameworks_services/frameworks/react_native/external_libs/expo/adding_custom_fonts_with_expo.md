@@ -1,3 +1,5 @@
+
+
 # Using Custom Fonts with Expo and Styled Components
 
 ## 1. Install the Required Packages
@@ -94,3 +96,9 @@ export const Title = styled.Text`
 - Always match the font names exactly as defined by `@expo-google-fonts`.
 - You can use other fonts like `Archivo`, `Roboto`, etc., by replacing the `useFonts` import.
 - `expo-app-loading` is deprecated in SDK 50+. Use `SplashScreen` or conditional returns in the `App` component if you're on a newer version.
+
+---
+
+#expo #react-native #mobile #ui-design #tutorial
+
+**Related:** [[expo_workflows]] | [[using_google_fonts]] | [[styled_components_introduction_course]]

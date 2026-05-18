@@ -1,3 +1,5 @@
+
+
 # Creating and Using Environment Variables with Next.js
 
 ## Types of Environment Variable Files
@@ -60,3 +62,9 @@
 ## General Tips
 
 - Always save your environment variable files on your local machine or a secure storage, as you will need them if you clone the repository again.
+
+---
+
+#nextjs #web #tutorial
+
+**Related:** [[nextjs13+_introduction_course]] | [[using_environment_variables_on_expo]] | [[using_environment_variables_on_vite]]

@@ -1,3 +1,5 @@
+
+
 # DOING REVERSE PROXY ON EC2 LINUX INSTANCES
 
 Your API should be open for third-party access, but it's not a good practice to open a non-default port (like 3333) on your server. A better practice is to leave the default port (80) open. To achieve this, you need to set up a **Reverse Proxy**.
@@ -32,3 +34,9 @@ server {
 
 5. On /etc/nginx/sites-enabled directory, run sudo service nginx restart, navigates until your project dir and start the server appoint to your 
 server.ts file through node server_file_dir/server.js
+
+---
+
+#aws #devops #deployment #backend #security #tutorial
+
+**Related:** [[creating_ec2_instances]] | [[creating_and_accessing_vps_on_hostinger]] | [[creating_ssl_certificates_with_certbot]] | [[managing_servers_with_pm2]] | [[ubuntu_linux_server_commands]]

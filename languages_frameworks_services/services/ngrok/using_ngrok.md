@@ -1,3 +1,5 @@
+
+
 # Using Ngrok to generate temporary HTTPS URLs
 
 Ngrok is a versatile tool that allows you to create secure tunnels to your localhost environment.  Ngrok provides a temporary public HTTPS URL which redirects to your local development environment without the need for additional configuration or deployment.
@@ -24,3 +26,9 @@ Ngrok can be useful to:
 - Pay attention on the network your application is running. The flag --net must appoint to the correct network.
 - The generated URL is temporary and you should exchange it on your application or REST client every time you rerun the command.
 - If your internet connection network changes, you need to generate a new Ngrok URL based on your new ip because your app have been changed.
+
+---
+
+#devops #backend #security #tutorial
+
+**Related:** [[generating_not_trusted_https_certifiates_for_tests]] | [[creating_ssl_certificates_with_certbot]] | [[handling_production_applications_on_vps]]

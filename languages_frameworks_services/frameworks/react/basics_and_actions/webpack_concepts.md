@@ -1,3 +1,5 @@
+
+
 # 📦 Webpack Concepts
 
 Webpack is a modular building system built with NodeJS. It allows handling CSS, JavaScript, and other assets like images using the correct plugin. The **Webpack loaders** are Node modules that process and transform imported files into client-ready code, checking each file individually.
@@ -73,3 +75,9 @@ Enables importing and using `.sass`/`.scss` files in JavaScript/JSX, converting 
 ---
 
 > ✅ Keep your Webpack config modular and clean for better maintainability and performance!
+
+---
+
+#javascript #react #concepts
+
+**Related:** [[babel_concepts]] | [[vite_introduction_course]] | [[react_course]]

@@ -1,3 +1,5 @@
+
+
 # Handling routes with Expo Router
 Expo Router was developed to make the navigation system implementation easier. Its work based on React Navigation traditional library.
 
@@ -591,4 +593,8 @@ function RootLayout() {
 - Expo Router provides optionally the possibility of rendering different versions of the same screen according to the platform. To make it work, just create the files according the platform, e.g: about.ios.tsx and about.tsx for android. Check the [Expo platform-specific-modules documentation](https://docs.expo.dev/router/advanced/platform-specific-modules/).
 - Expo supports optionally the option to work with API Routes (similar to NextJS) [Docs](https://docs.expo.dev/router/reference/api-routes/).
 
+---
 
+#expo #react-native #mobile #tutorial
+
+**Related:** [[react_navigation_introduction_course]] | [[expo_workflows]] | [[react_router_dom_intrdouction_course]]

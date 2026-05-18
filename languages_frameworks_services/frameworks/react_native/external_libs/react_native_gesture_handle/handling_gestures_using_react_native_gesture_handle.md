@@ -1,3 +1,5 @@
+
+
 # Handling gestures using React Native Gesture Handler
 
 ## Concepts
@@ -147,3 +149,9 @@ import Animated, {
 - Use RectButton or BorderlessButton instead of TouchableOpacity or wrapping it to improve the user experience doing this component looks with the native button of each platform.
   
 - Use the method .activateAfterLongPress(TIME_MS) when two events are running simultaneously (when user is simulating a long press and scrolling the screen for example) and you need some event perform before another one.
+
+---
+
+#react-native #animations #mobile #tutorial
+
+**Related:** [[creating_animations_using_react_native_reanimated]] | [[react_native_skia_components_and_techiniques]] | [[react_native_course]]

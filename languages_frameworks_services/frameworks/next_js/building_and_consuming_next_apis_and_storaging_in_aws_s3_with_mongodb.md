@@ -1,3 +1,5 @@
+
+
 # Building and Consuming API with Next.js and Hosting in AWS S3 with MongoDB
 
 1. **Create Endpoint Folder in Next.js:**
@@ -59,3 +61,9 @@
     - Import your data retrieval function in a Next.js page.
     - Use `getStaticProps` to fetch data at build time.
     - Consume the data in your component/page.
+
+---
+
+#nextjs #aws #database #api #file-storage #tutorial
+
+**Related:** [[nextjs13+_introduction_course]] | [[amazon_web_services]] | [[doing_uploads_to_s3_with_multer_and_typeorm]]

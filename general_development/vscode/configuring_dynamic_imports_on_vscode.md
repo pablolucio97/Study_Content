@@ -1,3 +1,5 @@
+
+
 # Working with Dynamic Path Imports in VSCode and tsconfig
 
 1. **Configuring tsconfig.json:**
@@ -25,3 +27,9 @@
        "dev": "ts-node-dev -r tsconfig-paths/register --transpile-only --respawn src/server.ts",
        "typeorm": "ts-node-dev -r tsconfig-paths/register ./node_modules/typeorm/cli"
        ```
+
+---
+
+#typescript #nodejs #tutorial
+
+**Related:** [[tsconfig_concepts]] | [[debugging_on_vscode]] | [[typescript_course]]

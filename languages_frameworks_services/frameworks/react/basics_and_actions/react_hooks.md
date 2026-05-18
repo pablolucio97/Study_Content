@@ -1,3 +1,5 @@
+
+
 # HOOKS
 
 A special function that allows the use of React features like **state** in a functional component.
@@ -844,3 +846,9 @@ Avoid creating a state for everything. React state keeps a track of the data. Th
 Check the useEffects hooks conditionals and dependence array, duplicity, and execution order at facing Unsatisfactory renderization or side effects
 
 Prefer working with object states to handle objects instead creating a state for each prop in the object.
+
+---
+
+#react #javascript #concepts
+
+**Related:** [[react_course]] | [[react_most_used_patterns]] | [[state-management]]

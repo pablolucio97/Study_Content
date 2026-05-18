@@ -1,3 +1,5 @@
+
+
 # CSS3 Course Overview
 
 ## General Considerations
@@ -170,3 +172,8 @@
 
 - **Default Font Size:** The default font size in most browsers is 16px, equivalent to 1rem.
 
+---
+
+#css #web #html #course
+
+**Related:** [[css_utils]] | [[using_tailwind_css]] | [[applying_responsivity_on_complex_UI]]

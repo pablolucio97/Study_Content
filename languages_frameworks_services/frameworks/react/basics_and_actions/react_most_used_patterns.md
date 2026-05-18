@@ -1,3 +1,5 @@
+
+
 # React most used Patterns
 
 ## Concepts
@@ -1050,3 +1052,9 @@ export function Button({ title, ...rest }: ButtonProps) {
 ```
 
 ```
+
+---
+
+#react #javascript #typescript #clean-code #concepts
+
+**Related:** [[react_course]] | [[react_hooks]] | [[clean_code_principles]]

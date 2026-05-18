@@ -1,3 +1,5 @@
+
+
 # Steps to implementing Stripe on a NextJS project
 
 1. Create the product on Stripe dashboard and save its id to be used hereafter in the checkout session.
@@ -16,3 +18,9 @@ Observations:
 - Local stripe webhook must always  be listening to events if some action on your software depends on Stripe’s events.
 - Card to use on test transactions on Stripe: 4242424242424242 12/34 567
 - Pay attenttion on using the correct Stripe webhook environmant variable for local and production, otherwise the webhook event listener will fail.
+
+---
+
+#stripe #payments #nextjs #web #tutorial
+
+**Related:** [[doing_pix_payment_with_mercadopago_api]] | [[nextjs13+_introduction_course]] | [[protecting_requests_with_next-auth-jwt]]

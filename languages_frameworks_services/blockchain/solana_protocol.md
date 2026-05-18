@@ -1,3 +1,5 @@
+
+
 # Solana Protocol
 
 ## How Solana Protocol works
@@ -74,3 +76,9 @@ The operation of Solana can be conceptualized through six key stages, which prov
 ### References
 [Solana Introduction Guide](https://report.helius.dev/)
 [Solana RPC API](https://solana.com/docs/rpc)
+
+---
+
+#blockchain #concepts
+
+**Related:** [[blockchain_concepts]]
