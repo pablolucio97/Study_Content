@@ -40,6 +40,7 @@ The RAG archiecture is basicaly based on the flow below:
 - Pay attention to not provide documents that contains information that is not correct in real life beucase the RAG system will considerate the document content over real life.
 - Computers in general always works better with numbers because it's more easy to convert in bits. So the embeding models transform the piece of data in a bunch of numeric vetctors and send it to vectorial database.
 - At building Rag Systems, configure the chunk_sizes, chunk_overlaps, and top_keys according to the content you are working on. Pay attenttion to not use chunk_sizes too small, and it getting in the way to highlight top_keys. The more small are chunk_sizes, more top_keys you will need to consider as relevant for your answer. Test these values according the document you are working.
+- Always work with Parent RAG architecture instead of Base RAG splitting the chunks in large chunks (parent chunks) and then splitting them into smaller chunks (children chunks) to finally retrieve it to solve the precision/context correlation problem at building RAGs.
 
 ---
 
