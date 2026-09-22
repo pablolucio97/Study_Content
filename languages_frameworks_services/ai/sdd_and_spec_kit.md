@@ -1,6 +1,107 @@
-# Spec Kit
+# Spec Driven Development (SDD) and Spec Kit
 
-Spec Kit is a toolkit for **Spec-Driven Development (SDD)**. Instead of asking an AI agent to start coding immediately, you first describe the project's rules, the feature requirements, the technical approach, and the work breakdown. The agent then implements code based on those documents.
+## Concepts
+
+### Spec Driven Development (SDD)
+
+Spec Driven Development (SDD) is a software development approach where the specification, not the code, is the source of truth. The spec states **what** the software must do and **why**, in terms of user-visible behavior and acceptance criteria. It deliberately leaves out **how** the software is built: no stack, no framework, no architecture, no file layout.
+
+The "how" is decided later, in a separate planning step, and it is treated as a replaceable implementation of a stable intent. Code is the derived artifact: when the intent changes, the spec changes first and the implementation is regenerated or adjusted to match it, instead of the spec being rewritten afterwards to document whatever the code ended up doing.
+
+This separation is the whole point. If technical decisions leak into the spec, the intent and one possible solution become entangled, and there is no longer a stable answer to "what should this do?" when the stack changes.
+
+SDD is worth the overhead on features that are complex or ambiguous, where stakeholders, developers, and testers need a single shared definition of done, and (with AI agents) it avoids burning tokens on an agent that starts coding before the goal is agreed.
+
+### Spec Kit
+
+Spec Kit is a toolkit for **Spec-Driven Development (SDD)**. Instead of asking an AI agent to start coding immediately, you make the intent explicit first and only then the solution: the project's rules (constitution), the feature's required behavior (specify), the technical approach (plan), and the work breakdown (tasks). The agent then implements code based on those documents.
+
+The command order encodes the what-before-how rule: the `spec.md` template is written to keep implementation details out and to flag anything ambiguous instead of guessing it, and `/speckit.plan` is where the technical decisions belong.
+
+### Executable Spec
+
+An executable spec is **not** a spec that runs in a test runner. It means the spec is precise, unambiguous, and complete enough that an implementation can be generated directly from it: an agent reads the spec and produces working code, so the document "executes" by becoming software instead of sitting next to it as documentation.
+
+The practical test is whether a reader (human or agent) could build the feature from the spec alone and arrive at something that satisfies every acceptance criterion, without asking what was meant. Vague requirements ("the list should be fast", "handle errors gracefully") are the failure mode, because they force the implementer to invent the requirement.
+
+This is different from the BDD sense of "executable specification" (Gherkin scenarios wired to step definitions and run as tests), even though both push toward testable, behavior-level statements.
+
+## Anatomy of a Good Spec
+
+A spec that an agent can implement has five parts:
+
+| Part | Answers | Example |
+| --- | --- | --- |
+| **Goal (what and why)** | Which real problem does this solve, and for whom? | "Let the user see how much they spent this month, so they can decide whether they can afford a large purchase." |
+| **Scope and out of scope** | Which boundaries must the work not cross? | In: monthly total. Out: budgets, categories, export. |
+| **Functional requirements** | What does the system *do*? | "The user can record a transaction with date, description, amount, and type." |
+| **Non-functional requirements** | *How* must the system behave while doing it? | "The listing responds in under 300 ms with 10,000 records." |
+| **Acceptance criteria** | How do we know it is done? | "`POST /transactions` with amount `0` returns `422`." |
+
+Functional requirements are capabilities; non-functional requirements are constraints on performance, security, persistence, usability, and similar qualities. Both belong in the spec, because both are demanded by the problem rather than chosen by the implementer.
+
+### Acceptance Criteria Are Not a "How" Leak
+
+Acceptance criteria may name an endpoint, a status code, or a persisted outcome without breaking the what-before-how rule, because those are the system's observable contract, not its internal design. "Returns `422` for a zero amount" is verifiable behavior; "validates with a `TransactionValidator` class" is a design decision that belongs to the implementer.
+
+## Common Pitfalls When Writing a Spec
+
+### 1. The Spec Is Implementation in Disguise
+
+The most common beginner mistake. When the spec decides the *how*, it takes from the agent exactly the work the agent is good at.
+
+- ❌ `Create a GET /summary endpoint that reads a MonthSummary DTO from the TransactionRepository.`
+- ✅ `The user can see how much they spent in the current month.`
+
+**Antidote — the "why this way?" test:** if the answer is *"because the business requires it"*, it is spec. If the answer is *"because I like it this way"*, it is code, and the decision belongs to the implementer. Class names, function and variable names, folder structure, algorithm choice, and data-structure choice all fail this test.
+
+### 2. Adjectives Instead of Numbers
+
+An adjective sounds like a requirement but cannot be verified. Nobody can fail a build for not being "fast".
+
+- ❌ `The listing must be fast.`
+- ✅ `The listing responds in under 300 ms with 10,000 records.`
+
+**Antidote:** every quality adjective becomes a number or gets deleted. If no number can be defended, the requirement was not real.
+
+### 3. Only the Happy Path
+
+The spec describes what happens when everything works, and leaves the agent to invent the rest, which it will.
+
+**Antidote:** for each behavior, state what happens on invalid input, on a resource that does not exist, and when an external service is down. Error behavior is behavior, so it is specified, not discovered.
+
+### 4. The Spec Is Too Big
+
+A spec that covers the whole product cannot be verified, delivered, or rejected as a unit.
+
+**Antidote:** one spec per increment, not per product. If the acceptance criteria cannot all be checked at the end of one cycle, split the spec.
+
+### 5. No "Out of Scope" Section
+
+This is not a formality. Without it, the increment grows on its own: the agent (or the team) sees an adjacent gap, assumes it belongs to the work, and mixes in effort that was never part of this cycle.
+
+**Antidote:** name the adjacent features explicitly and mark them as out. The nearer a feature is to the current work, the more it needs to be listed.
+
+### 6. Silent Ambiguity
+
+Pronouns and relative terms read fine to the author, who already knows the answer, and read as a coin flip to everyone else: *it*, *the same*, *appropriate*, *as needed*, *similar to the previous one*.
+
+**Antidote:** reread the spec hunting specifically for pronouns and relative terms, and replace each one with the explicit noun or value.
+
+### 7. Glued Requirements
+
+Two requirements on one line cannot be accepted or rejected separately, so a half-correct implementation has no clear verdict.
+
+- ❌ `The user can register and edit transactions, and the system validates the amount.`
+- ✅ One line per requirement: register, edit, validate.
+
+**Antidote:** one requirement per line.
+
+## The Golden Rule
+
+**If a new person on the team can implement the feature by reading only the spec, without asking anyone anything, then the agent can too.**
+
+Treat the agent as a competent developer who just joined and has no context beyond the document. Every question they would have to ask is a gap in the spec. A spec that passes this test is also genuinely useful for onboarding real people.
 
 ## Workflow Order
 
@@ -37,7 +138,7 @@ The constitution is not the description of one feature. It is the project's set 
 
 ### 2. Specify: Feature Requirements
 
-The specification describes the desired behavior without deciding technical details too early.
+The specification describes the desired behavior. Technical details are not merely postponed here, they are out of scope for this document.
 
 **File:** `specs/001-todo-list/spec.md`
 
@@ -261,8 +362,8 @@ At the end of this stage, API clients should be able to execute the four CRUD op
 ## Summary
 
 1. **Constitution** defines the project's rules.
-2. **Specify** defines the user's required behavior.
-3. **Plan** defines the technical solution.
+2. **Specify** defines **what** the feature must do and **why**, with no technical decisions.
+3. **Plan** defines **how** that behavior will be built.
 4. **Tasks** defines the ordered implementation checklist.
 5. **Implement** produces and tests the working application code.
 
