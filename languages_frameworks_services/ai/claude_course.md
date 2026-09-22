@@ -145,6 +145,74 @@ Real use cases:
 - A subagent that handles email summarization while another manages calendar scheduling.
 - A subagent that queries a database while another generates a report based on the results.
 
+### Agent teams
+
+An agent team is the **parallel** evolution of subagents: instead of one specialist running after the other, an **orchestrator** fires several subagents at the same time over the same problem, waits for all of them, and synthesizes a single unified answer. Sequential specialists that would take around 6 minutes can finish in about 2 minutes when they run in parallel.
+
+How the orchestrator coordinates:
+1. **Analyze the task**: break the problem into independent subtasks.
+2. **Select the agents**: pick the most suitable ones based on their descriptions.
+3. **Fire in parallel**: invoke them all at once through the Task tool.
+4. **Wait for the results**: the slowest agent sets the pace, and a failure in one does not block the others.
+5. **Synthesize**: consolidate the outputs, remove duplicates, and prioritize.
+6. **Deliver**: produce the final report in a fixed format (critical, warnings, approved).
+
+Coordination patterns:
+- **Fan-out** (most common): the orchestrator fires N agents in parallel and consolidates one synthesis. Use it when the task has independent dimensions, like security, quality, and tests.
+- **Pipeline**: A1 → A2 → A3, where each stage enriches the previous output. Use it when each agent depends on the one before (lint, test, build, deploy).
+- **Cross review**: A does the work, B reviews A, C reviews B — like a relay race, good for catching mistakes the author cannot see.
+- **Dynamic specialist**: the orchestrator analyzes the problem and decides at runtime which agents to call. Use it when you have a pool of agents and don't know in advance which ones are needed.
+
+Example 1 — pull request review team (fan-out with 4 agents):
+The orchestrator receives the diff and fires `security-review`, `quality-review`, `test-validator`, and `docs-checker` in parallel, then consolidates everything into one report.
+
+```markdown
+---
+name: pr-review-orchestrator
+description: Coordinates the pull request review team.
+tools: Task
+---
+Execution protocol:
+1. Receive the diff.
+2. Fire in parallel: security-review, quality-review, test-validator, docs-checker.
+3. Wait for all of them to finish.
+4. Consolidate in this format:
+   - 🔴 Critical: must be fixed before merging
+   - 🟡 Warnings: should be improved
+   - ✅ Approved: checks that passed
+```
+
+The `orchestrator.md` file is the brain of the team: it defines who to call, in which order, and how to consolidate the results.
+
+Example 2 — refactoring team (mixing patterns):
+1. **Initial analysis**: the orchestrator reads the module, identifies the patterns to improve, and decides which agents to call.
+2. **Parallel phase**: three simultaneous agents — one plans the new structure, one refactors the code, one writes the tests.
+3. **Validation**: the orchestrator waits for all three and checks that the tests pass on the new structure.
+4. **Cross review**: a security agent receives the refactored code and checks that the refactoring did not introduce vulnerabilities.
+5. **Final report**: what changed, tests passing, vulnerabilities checked, plus a summarized diff.
+
+Best practices:
+- Keep each agent focused on a **single domain**.
+- Define the output format explicitly, so the synthesis is predictable.
+- Write the `orchestrator.md` explicitly: who runs, when, and how results are merged.
+- Use a faster, cheaper model (like Haiku) for simple agents.
+- Test each agent individually before putting it in the team.
+
+Common pitfalls:
+- Agents with **overlapping scope** (they duplicate work and findings).
+- Two agents **writing to the same file**, which causes conflicts.
+- Synthesis **without a defined format**, producing an unreadable report.
+- Teams that are **too large** (more than 5 agents).
+- Ignoring the **token cost**: parallel agents multiply consumption.
+
+Real use cases:
+- Automated pull request pipeline with 4 agents in parallel.
+- Architecture analysis from 4 different angles at the same time.
+- Complete feature generation (plan, code, tests, docs) in parallel.
+- Security audit with 4 simultaneous perspectives.
+
+> Quick check: if a task has 4 steps and **each one depends on the previous result**, the right pattern is the **sequential pipeline**, not fan-out.
+
 ### Tools
 
 Tools are **external functionalities** that Claude can call to perform specific actions or retrieve data. They can be provided by MCP servers, connectors, or other integrations.
@@ -269,3 +337,4 @@ Below are the 15 most used connectors and the 3 most common use cases for each.
 - Use subagents at working: subagents can help break down complex tasks into smaller, manageable parts, allowing Claude to handle each part more efficiently and reduce token usage. It allows to isolate context.
 - Agents can be invoked using the `@AgentName` syntax in a conversation, where `AgentName` is the name of the agent you defined.
 - You can also pass parameters to the agent by including them after the agent name, for example: `@Project Manager project_deadline=2024-12-31`.
+- Claude harness already is a task orchestrator, so the agents teams, subagents, and orchestrators are already integrated into the harness, allowing you to manage complex workflows and tasks seamlessly just asking naturally. Only when you want the process to be repeatable and fixed so you need to create your own orchestrator and agents teams.
