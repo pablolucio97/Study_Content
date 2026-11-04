@@ -110,6 +110,8 @@ AI uses Vector Databases to store and search vector embeddings (numerical repres
 - Before using an agent in production, define its goal, available tools, guardrails, and failure-handling rules.
 - Use simple chatbots for predictable flows and AI agents when the system must reason and act.
 - For business-critical use cases, always validate outputs, monitor behavior, and keep a human review step when necessary.
+- RAG must be built only when PDFs or another document base is too large or complex to be handled by simple retrieval methods (above 1 hundread pages or equivalent content size).
+- Give the agent the markdown, not the PDF. Plain text or Markdown works better because PDF tables can come out jumbled.
 
 ---
 
