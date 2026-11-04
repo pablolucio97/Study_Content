@@ -249,6 +249,18 @@ The most used tools are the built-in tools of Claude Code:
 | Commands | Shortcuts that run a built-in action or saved prompt | You, typing `/command` | `/init` to create a `CLAUDE.md` file |
 | Connectors | Ready-made MCP integrations for popular apps | Claude, after you enable them in settings | Gmail connector to summarize unread emails |
 
+## Where each resource lives
+The same name — "Project", "MCP", "Skill" — shows up in Claude AI, Claude Code, and Claude Cowork, but with a different format and a different power in each one. Here is what changes:
+
+| Resource | Claude AI | Claude Code | Claude Cowork |
+| --- | --- | --- | --- |
+| **Projects** | Visual workspace with instructions + files. | `CLAUDE.md` + `.claude/` at the repo root. Versioned in Git. | Project in the Desktop app with Instructions + MCP. |
+| **MCP** | Native plug-and-play connectors. | Configured via `/mcp`. Focused on dev tools. | Main engine. Configured via JSON. |
+| **Skills** | Built-in, they activate on their own. | `.claude/skills/` folder, customizable. | Local skills, reusable routines. |
+| **Models** | Selector in the chat. | `/model` in the terminal. | Selector in the Desktop app. |
+| **Artifacts** | Editable side panel. | — output goes to the repo. | — output goes to the apps. |
+| **Web Search** | Enabled for up-to-date info. | — | Through the Desktop app. |
+
 ## Connectors
 A connector is an integration that gives Claude access to an external app (Gmail, Slack, Notion, GitHub, and so on). Once connected, Claude can read data from that app and, in most cases, also write to it — creating, updating, and sending items on your behalf. Connectors are built on MCP (Model Context Protocol), so each one exposes a set of tools that Claude can call during a conversation.
 
