@@ -231,6 +231,14 @@ tests/
   todo-list.test.tsx
 ```
 
+### 6 Verify: Validation and Testing
+
+During this stage, you should:
+- Run all automated tests.
+- Manually verify that the app behaves according to the acceptance criteria.
+- Check that the project structure matches the expected architecture.
+- Ensure that all technical decisions from the plan are correctly implemented.
+
 At the end of this stage, the app should satisfy the acceptance criteria from `spec.md` and follow the rules from `constitution.md`.
 
 ## Example: Back-End User CRUD API
@@ -358,6 +366,16 @@ tests/
 ```
 
 At the end of this stage, API clients should be able to execute the four CRUD operations while validation, safe responses, and authorization follow the project's constitution.
+
+
+### 6. Verify: Validation and Testing
+
+Execute the following steps to verify validation and testing:
+
+- Run all automated tests.
+- Manually verify that the app behaves according to the acceptance criteria.
+- Check that the project structure matches the expected architecture.
+- Ensure that all technical decisions from the plan are correctly implemented.
 
 ## Summary
 
