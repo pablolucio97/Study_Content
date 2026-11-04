@@ -19,13 +19,16 @@
 ### Prompt techniques
 **Zero-shot**: Is the technique of not providing any example to follow.
 **Few-shot**: Is the technique of providing one or few examples to follow.
-**Chain-of-thought**: This technique is used when you ask the LLM to provide the thinking at replying.
+**Chain-of-thought**: This technique is used when you ask the LLM to provide the thinking at replying, explaining the reasoning behind its answer.
 **Prompt chaining**: Is used when you ask LLM to break a big step into small pieces passing the order of execution of each step.
 
 ### The ideal prompt model
 1. Define the person that the LLM should assume and the goal you want to achieve.
 2. Provide examples for avoiding undesirable results, few shots.
 3. Define the steps that the LLM should take, prompt chaining.
+4. Provide used and expected outputs for the examples, so the LLM can understand the desired results.
+5. Provide enums or predefined options for the LLM to choose from, reducing ambiguity and improving response accuracy always as possible.
+6. Define critical constraints or rules that the LLM must follow while generating responses.
 
 ### Prompt Engineering Tips
 - Understanding and applying prompt engineering techniques helps reduce hallucinations, avoid misuses, and achieve better results when interacting with generative AI and LLMs.
@@ -34,8 +37,31 @@
 - At working prompts, supply relevant examples for the IA, it helps a lot at sharping the final response.
 - At building a chatbot, provide several examples of how the IA should behave.
 - Avoid doing a too much complex task at once, prefer to break it into smaller tasks, it provides better responses.
+- Always define the expected output and constraints clearly to guide the LLM towards generating accurate and relevant responses.
+- Always define the critical constraints and rules that the LLM must follow to ensure the generated responses meet the desired requirements.
 
 ---
+
+**Example of a strong prompt:**
+
+```
+You are an AI assistant specialized in providing concise and accurate explanations of AI concepts.
+Task: Explain the concept of "Prompt Engineering" in a clear and structured manner.
+Constraints:
+- Use simple language suitable for beginners.
+- Provide examples where applicable.
+- Limit the response to 200 words.
+Expected Output:
+- A clear definition of Prompt Engineering.
+- Key techniques and tips for effective prompt creation.
+- Examples illustrating the concept.
+```
+
+**Example of a weak prompt:**
+
+```
+Explain Prompt Engineering.
+```
 
 #ai #concepts
 
