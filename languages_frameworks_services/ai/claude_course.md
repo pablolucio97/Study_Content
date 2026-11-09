@@ -6,8 +6,8 @@ Claude is an AI assistant developed by Anthropic. It is designed to be helpful, 
 ## General concepts
 - Harness: Harness is a tool that allows you to interact with Claude in a structured way. It provides a user-friendly interface for sending prompts and receiving responses from Claude. It's a software layer that puts the LLM inside a loop, allowing you to interact with it in a more controlled manner. You can send files, ask questions, and receive answers in a conversational format.
 
-## MCP, Skills, Commands, and Connectors
-These four concepts are the main ways to extend what Claude can do. In short: **MCP** gives Claude new tools, **Connectors** are ready-made MCP integrations, **Skills** teach Claude how to do a task, and **Commands** are shortcuts you trigger yourself.
+## MCP, Skills, Commands, Connectors, and Plugins
+These five concepts are the main ways to extend what Claude can do. In short: **MCP** gives Claude new tools, **Connectors** are ready-made MCP integrations, **Skills** teach Claude how to do a task, **Commands** are shortcuts you trigger yourself, and **Plugins** are third-party extensions that add new capabilities to Claude, it can be composed with other tools and skills.
 
 ### MCP (Model Context Protocol)
 MCP is an open standard that lets Claude talk to external systems. An **MCP server** exposes tools (actions like `query_database` or `create_issue`) and resources (data like files or records), and an **MCP client** (Claude Code, Claude Desktop) connects to it. Think of it as a "USB-C port" for AI: any app that implements MCP can be plugged into Claude.
@@ -102,6 +102,19 @@ Real use cases:
 - "Create a Notion page with the notes from this conversation" using the Notion connector.
 
 See the [Connectors](#connectors) section below for the most used connectors and what each one can do.
+
+### Plugins
+
+Plugins are **third-party extensions** that add new capabilities to Claude. They can be composed with other tools and skills to create more powerful workflows.
+
+How to use:
+1. On claude.ai, go to **Settings > Plugins**, choose the plugin, and click **Connect** to authenticate and enable it.
+2. In a chat, turn the plugin on or off from the tools menu.
+3. Ask in natural language. Claude will use the plugin to perform the requested actions.
+
+Real use cases:
+- "Translate this document to French" using a translation plugin.
+- "Analyze my sales data" using a data analysis plugin.
 
 ### Agents
 
@@ -241,6 +254,15 @@ The most used tools are the built-in tools of Claude Code:
 - **AskUserQuestion**: asks you a question with options when Claude needs a decision to continue.
 - **Skill**: loads and runs a skill.
 
+### Scheduled tasks (before known as Routines)
+
+Scheduled tasks allow Claude to perform actions at specific times or intervals. They can be used to automate repetitive tasks, such as fetching data, running scripts, or sending notifications.
+
+Real use cases:
+- Running a daily database backup using a PostgreSQL MCP server.
+- Fetching the latest weather forecast every morning using a weather API tool.
+- Sending a weekly summary of project updates via email.
+
 ### Summary table
 | Concept | What it is | Triggered by | Simple example |
 | --- | --- | --- | --- |
@@ -248,7 +270,7 @@ The most used tools are the built-in tools of Claude Code:
 | Skills | Packaged instructions that teach Claude how to do a task | Claude, automatically, when the request matches | A skill that enforces Conventional Commits |
 | Commands | Shortcuts that run a built-in action or saved prompt | You, typing `/command` | `/init` to create a `CLAUDE.md` file |
 | Connectors | Ready-made MCP integrations for popular apps | Claude, after you enable them in settings | Gmail connector to summarize unread emails |
-
+| Plugins | Third-party extensions that add new capabilities to Claude | Claude, after you enable them in settings | Translation plugin to translate documents |
 ## Where each resource lives
 The same name — "Project", "MCP", "Skill" — shows up in Claude AI, Claude Code, and Claude Cowork, but with a different format and a different power in each one. Here is what changes:
 
@@ -337,6 +359,84 @@ Below are the 15 most used connectors and the 3 most common use cases for each.
 
 - Use the [caveman plugin](https://github.com/juliusbrussee/caveman) to manage context efficiently and reduce token usage by storing and reusing relevant conversation snippets. Caveman was develop to reduce redundant response and optimize the conversation flow.
 
+# Claude Code — Commands Cheat Sheet (2026)
+
+## 1. Context and Session Management
+
+| Command | Description | When to use | When to avoid |
+|---|---|---|---|
+| `/btw <question>` | Ask a side question without adding it to the main conversation. | Quick questions about code or implementation decisions. | When the answer needs to become part of the main task. |
+| `/goal <condition>` | Keep working across turns until a completion condition is met or the goal clears. | Tasks with clear acceptance criteria, such as passing all tests. | Open-ended tasks or goals without measurable completion. |
+| `/plan <task>` | Enter planning mode before implementation. | Complex features, architecture decisions, and refactoring. | Trivial changes that do not require planning. |
+| `/compact [instructions]` | Summarize conversation history to free context. | Long sessions approaching context limits. | When detailed conversation history is still essential. |
+| `/context` | Show context-window usage and optimization suggestions. | Diagnosing context consumption or memory pressure. | When context is not a concern. |
+| `/clear` | Start a new conversation with empty context. | Switching to an unrelated task. | When the current conversation contains important working context. |
+| `/resume` | Resume a previous conversation. | Continuing an interrupted task. | Starting an unrelated project or task. |
+| `/branch [name]` | Branch the conversation without losing the original. | Exploring alternative approaches. | Simple sequential changes. |
+| `/rewind` | Restore an earlier code or conversation checkpoint. | Reverting unwanted changes or decisions. | When later changes must be preserved. |
+| `/recap` | Generate a short session summary. | Quickly remembering recent work. | When you need a detailed technical handoff. |
+| `/rename [name]` | Rename the current session. | Organizing multiple project sessions. | Short disposable sessions. |
+| `/export [filename]` | Export the conversation as plain text. | Saving a session for reference or audit. | When the transcript includes secrets that should not be exported. |
+
+## 2. Models, Tokens, and Performance
+
+| Command | Description | When to use | When to avoid |
+|---|---|---|---|
+| `/model [model]` | Switch the Claude model. | Choosing faster models for simple work or stronger models for complex reasoning. | Switching repeatedly without a clear benefit. |
+| `/effort [level]` | Set reasoning effort, subject to model support. | Increasing effort for difficult debugging or architecture decisions. | Maximum effort for trivial tasks. |
+| `/usage` | Display usage, limits, costs, and activity. | Monitoring subscription consumption. | When usage data will not affect a decision. |
+| `/cost` | Alias for `/usage`. | Quickly checking usage information. | When you expect an independent billing report. |
+| `/fast [on|off]` | Toggle fast mode where supported. | Latency-sensitive development workflows. | When extra speed is unnecessary or its cost is undesirable. |
+| `/autocompact [auto|tokens]` | Configure automatic context compaction. | Managing long-running sessions. | When default context management is sufficient. |
+| `/insights` | Analyze local Claude Code usage patterns. | Identifying workflow inefficiencies and recurring problems. | When local session history is insufficient. |
+
+## 3. Code Quality, Testing, and Security
+
+| Command | Description | When to use | When to avoid |
+|---|---|---|---|
+| `/simplify [target]` | Improve changed code for reuse, simplicity, and efficiency. | After implementing features or refactoring. | When you need correctness verification rather than cleanup. |
+| `/review [PR]` | Review code changes or pull requests for correctness issues. | Before merging, releasing, or approving changes. | When no relevant diff or review target exists. |
+| `/code-review [target]` | Run configurable code review with effort levels and optional fixes. | Thorough reviews of important changes. | For minor changes where a full review is disproportionate. |
+| `/security-review` | Identify potential security vulnerabilities in branch changes. | Authentication, authorization, payments, and API changes. | When there is no applicable branch comparison. |
+| `/diff` | Inspect uncommitted code changes and Claude edits. | Reviewing work before committing. | When there are no changes to inspect. |
+| `/verify` | Build, run, and observe application behavior to verify a change. | Checking functionality beyond unit tests. | When the application cannot be launched in the environment. |
+| `/run` | Launch and interact with an application. | Manual-style validation of application changes. | When the project is not executable in the environment. |
+| `/debug [description]` | Enable debugging logs and diagnose session issues. | Investigating Claude Code runtime problems. | Routine coding tasks without tool or session errors. |
+
+## 4. Agents, Parallelism, and Automation
+
+| Command | Description | When to use | When to avoid |
+|---|---|---|---|
+| `/agents` | Show guidance for creating or managing specialized subagents. | Establishing reusable development agents. | Simple tasks manageable in one session. |
+| `/subtask <task>` | Delegate work to a background subagent and receive its result. | Independent research, analysis, or implementation. | Tasks requiring continuous coordination with the main agent. |
+| `/batch <instruction>` | Split large codebase changes into parallel worktree-based tasks. | Large migrations and repetitive changes across modules. | Small changes or tightly coupled tasks. |
+| `/fork [prompt]` | Copy the conversation into a new background session. | Running independent work while continuing the original session. | When shared state or sequential execution is essential. |
+| `/background [prompt]` | Detach the current session into background execution. | Long-running work that should continue without occupying the terminal. | Tasks requiring immediate interaction or supervision. |
+| `/tasks` | Inspect and manage background tasks. | Monitoring delegated work and subagents. | When nothing is running in the background. |
+| `/loop [interval] [prompt]` | Repeat a prompt while the session remains active. | Monitoring deployments, CI jobs, or recurring checks. | Permanent automations that must run independently of the session. |
+| `/schedule [description]` | Create or manage cloud-scheduled tasks, formerly Routines. | Daily reports, automated checks, recurring maintenance. | One-time tasks or tasks requiring immediate execution only. |
+| `/autofix-pr [prompt]` | Monitor a PR and automatically address CI failures or reviewer comments. | Active pull requests needing iterative fixes. | Sensitive changes requiring strict manual approval. |
+| `/remote-control` | Make a local session accessible remotely. | Continuing development from another device. | When remote access is unnecessary or inappropriate. |
+| `/teleport` | Transfer a cloud session into the local terminal. | Continuing cloud development locally. | When no cloud session needs transferring. |
+
+## 5. Project Configuration and Integrations
+
+| Command | Description | When to use | When to avoid |
+|---|---|---|---|
+| `/init` | Generate initial project instructions in CLAUDE.md. | Starting Claude Code in an existing repository. | When the project already has well-maintained instructions. |
+| `/memory` | Manage CLAUDE.md and automatic memory. | Maintaining persistent project knowledge. | Storing temporary information or sensitive secrets. |
+| `/mcp` | Manage MCP servers, authentication, and connections. | Connecting external tools, APIs, and services. | When built-in tools already cover the task. |
+| `/skills` | List and manage available skills. | Discovering reusable development workflows. | When no specialized workflow is needed. |
+| `/plugin` | Install, enable, disable, and manage plugins. | Extending Claude Code functionality. | When the required capability already exists. |
+| `/hooks` | Inspect configured lifecycle hooks. | Auditing automation and tool execution hooks. | When no hooks are involved. |
+| `/permissions` | Configure tool approval and denial rules. | Controlling filesystem, shell, and integration access. | Granting broad permissions without evaluating risk. |
+| `/sandbox` | Toggle sandboxing on supported platforms. | Restricting potentially risky execution. | When required operations cannot work within sandbox boundaries. |
+| `/add-dir <path>` | Allow file access to another working directory. | Working across multiple local repositories. | When access outside the current project is unnecessary. |
+| `/config` | Change Claude Code settings and preferences. | Configuring the development environment. | Changing global preferences for a one-time need. |
+| `/doctor` | Diagnose installation and configuration problems. | Troubleshooting setup issues and invalid configurations. | Routine development when the environment works correctly. |
+| `/help` | Display available commands and help. | Discovering commands supported by the installed version. | When the necessary command is already known. |
+
+
 ## General tips
 - Create projects to organize your work and keep track of your tasks with Claude.
 - Connectors are permission-based: Claude only accesses what the connected account can access, and write actions usually ask for confirmation.
@@ -350,3 +450,5 @@ Below are the 15 most used connectors and the 3 most common use cases for each.
 - Agents can be invoked using the `@AgentName` syntax in a conversation, where `AgentName` is the name of the agent you defined.
 - You can also pass parameters to the agent by including them after the agent name, for example: `@Project Manager project_deadline=2024-12-31`.
 - Claude harness already is a task orchestrator, so the agents teams, subagents, and orchestrators are already integrated into the harness, allowing you to manage complex workflows and tasks seamlessly just asking naturally. Only when you want the process to be repeatable and fixed so you need to create your own orchestrator and agents teams.
+- Use the meta skill skill creator to create reusable skills that can be invoked by agents or subagents, allowing you to encapsulate complex logic and streamline task execution.
+
