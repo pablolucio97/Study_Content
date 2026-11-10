@@ -436,6 +436,16 @@ Below are the 15 most used connectors and the 3 most common use cases for each.
 | `/doctor` | Diagnose installation and configuration problems. | Troubleshooting setup issues and invalid configurations. | Routine development when the environment works correctly. |
 | `/help` | Display available commands and help. | Discovering commands supported by the installed version. | When the necessary command is already known. |
 
+## Data safety, governance, privacy and compliance
+
+To grant user's safety, privacy and compliance, Claude:
+- Uses permission-based connectors to limit access to only authorized data and actions.
+- Employs sandboxing to restrict potentially risky operations.
+- Controls access to external tools and integrations through explicit approval.
+- Ensures sensitive information is not stored in persistent memory without consent.
+- Provides audit trails and logging for actions performed through the platform.
+- Encourages users to review and configure settings to align with organizational governance, privacy, and compliance policies.
+- Has the incognito (ghost) mode to prevent storing sensitive information in persistent memory without explicit consent.
 
 ## General tips
 - Create projects to organize your work and keep track of your tasks with Claude.
@@ -451,4 +461,5 @@ Below are the 15 most used connectors and the 3 most common use cases for each.
 - You can also pass parameters to the agent by including them after the agent name, for example: `@Project Manager project_deadline=2024-12-31`.
 - Claude harness already is a task orchestrator, so the agents teams, subagents, and orchestrators are already integrated into the harness, allowing you to manage complex workflows and tasks seamlessly just asking naturally. Only when you want the process to be repeatable and fixed so you need to create your own orchestrator and agents teams.
 - Use the meta skill skill creator to create reusable skills that can be invoked by agents or subagents, allowing you to encapsulate complex logic and streamline task execution.
+- There is no official command to use incognito mode; it is typically enabled through the platform's settings and in Claude Code it can be partially done using /btw and /clear commands.
 
