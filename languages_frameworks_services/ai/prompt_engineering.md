@@ -148,6 +148,72 @@ Conditional:
 Explain Prompt Engineering.
 ```
 
+## Using summarization techniques
+
+Summarization techniques involve instructing the AI to condense information into a concise and coherent summary. This approach is useful for extracting key points from lengthy texts or generating brief overviews of complex topics.
+
+**Plain text example:**
+
+```
+You are an AI assistant specialized in summarizing complex information.
+Task: Summarize the following text into a concise and coherent summary.
+Constraints:
+- Limit the summary to 1/3 of the original text's words.
+Expected Output:
+- A clear and concise summary of the text.
+Text:
+The quick brown fox jumps over the lazy dog. This sentence contains every letter of the English alphabet and is often used for typing practice and font display purposes. It is a well-known pangram that helps in testing keyboards, fonts, and other text-related applications.
+```
+Expected Output:
+- “The quick brown fox jumps over the lazy dog” is a famous pangram containing every English letter, commonly used to test keyboards and display fonts.
+
+**Json example:**
+
+```
+You are an AI assistant specialized in summarizing complex information.
+Task: Summarize the following text into a concise and coherent summary. Use JSON format for the output.
+Constraints:
+- Limit the summary to 1/3 of the original text's words.
+Expected Output:
+- A clear and concise summary of the text.
+Text:
+Artificial intelligence (AI) is transforming modern businesses by automating repetitive tasks, improving decision-making, and reducing operational costs. Companies increasingly use AI to enhance productivity and provide better customer experiences.
+Customer Service: AI-powered chatbots allow companies to respond to customer inquiries 24/7, reducing response times and minimizing the workload of human support teams.
+Marketing: AI analyzes customer behavior, predicts purchasing patterns, and helps businesses create personalized advertising campaigns. These capabilities improve audience targeting and marketing effectiveness.
+Business Operations: Machine learning and robotic process automation (RPA) streamline administrative tasks, document processing, and workflow management. This reduces human errors and increases efficiency.
+Implementation Challenges: Adopting AI requires financial investment, technical expertise, and reliable data. Businesses must also address privacy concerns, algorithmic bias, and system integration difficulties.
+Conclusion: AI provides significant opportunities for improving business performance. Organizations should begin with small, high-impact applications, evaluate results, and gradually expand their AI adoption.
+```
+Expected Output:
+
+{
+  "title": "AI in Business",
+  "overview": "AI improves productivity, decisions, and cost efficiency.",
+  "applications": {
+    "customer_service": {
+      "technology": "Chatbots",
+      "benefits": ["24/7 support", "Faster responses"]
+    },
+    "marketing": {
+      "technology": "Predictive AI",
+      "benefits": ["Personalization", "Better targeting"]
+    },
+    "operations": {
+      "technology": "ML and RPA",
+      "benefits": ["Automation", "Fewer errors"]
+    }
+  },
+  "challenges": [
+    "Investment",
+    "Technical expertise",
+    "Data quality",
+    "Privacy and bias",
+    "Integration"
+  ],
+  "recommendation": "Start small, measure results, and scale."
+}
+```
+
 #ai #concepts
 
 **Related:** [[introduction_to_ai]] | [[rag_system]] | [[chatbots]]

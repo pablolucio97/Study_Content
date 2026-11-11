@@ -112,6 +112,7 @@ AI uses Vector Databases to store and search vector embeddings (numerical repres
 - For business-critical use cases, always validate outputs, monitor behavior, and keep a human review step when necessary.
 - RAG must be built only when PDFs or another document base is too large or complex to be handled by simple retrieval methods (above 1 hundread pages or equivalent content size).
 - Give the agent the markdown, not the PDF. Plain text or Markdown works better because PDF tables can come out jumbled.
+- Use plain text and JSON summarization techiniques to extract key informations from large texts and documents.
 
 ---
 
