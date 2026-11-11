@@ -264,6 +264,7 @@ Webhook → Identify user → Load memory → Generate response → Send reply �
 - On finishing your workflow with RespondToWebhook node, your Webhook first node trigger must be configured to 'Using response to Webhook Node'.
 - Use Redis keys to communicate between flows. Example: On a payment flow, you can store the orderId with status "pending", and so when the second flow is called, you can call the second workflow and when the webhook is called, it automaticallys updates the data on Redis.
 - Always create a mind map before start creating the automations. It will help to not loose the logic.
+- Use conditional prompts at configuring conversation agents to dynamically adjust responses based on user inputs or context, and include fallback responses for cases where none of the conditions are met.
 
 ### Human attendence flow
 
