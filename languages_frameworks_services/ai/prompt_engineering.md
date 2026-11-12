@@ -169,7 +169,6 @@ Expected Output:
 
 **Json example:**
 
-```
 You are an AI assistant specialized in summarizing complex information.
 Task: Summarize the following text into a concise and coherent summary. Use JSON format for the output.
 Constraints:
@@ -183,8 +182,10 @@ Marketing: AI analyzes customer behavior, predicts purchasing patterns, and help
 Business Operations: Machine learning and robotic process automation (RPA) streamline administrative tasks, document processing, and workflow management. This reduces human errors and increases efficiency.
 Implementation Challenges: Adopting AI requires financial investment, technical expertise, and reliable data. Businesses must also address privacy concerns, algorithmic bias, and system integration difficulties.
 Conclusion: AI provides significant opportunities for improving business performance. Organizations should begin with small, high-impact applications, evaluate results, and gradually expand their AI adoption.
-```
+
 Expected Output:
+
+```
 
 {
   "title": "AI in Business",
@@ -213,6 +214,38 @@ Expected Output:
   "recommendation": "Start small, measure results, and scale."
 }
 ```
+
+## Textual transformation techniques
+
+Textual transformation techniques involve modifying text to achieve a specific goal, such as format changing, paraphrasing, or sentiment analysis. These techniques are commonly used in natural language processing (NLP) tasks to extract meaningful information, improve readability, or adapt content for different contexts.
+
+### Format Changing
+
+Format changing involves converting text from one format to another, such as transforming unstructured text into structured data, converting between markup languages, or reformatting text for different platforms. This technique helps in standardizing data and making it more accessible for further processing.
+
+Examples:
+- Converting a CSV file into JSON format for easier data manipulation.
+- Transforming HTML content into Markdown for better readability on different platforms.
+- Transforming plain text into a structured template for easier processing.
+
+### Paraphrasing
+
+Paraphrasing involves rewording text while preserving its original meaning. This technique is useful for content generation, avoiding plagiarism, and improving readability. NLP models can automatically generate paraphrased versions of text to suit different contexts or audiences.
+
+Examples:
+- Rewriting a news article to create a summary with different wording.
+- Generating multiple versions of marketing copy for A/B testing.
+- Rephrasing customer support responses to maintain a consistent tone.
+
+### Sentiment Analysis
+
+Sentiment analysis involves determining the emotional tone of a piece of text, such as positive, negative, or neutral. This technique is widely used in social media monitoring, customer feedback analysis, and market research to understand public opinion and customer sentiment.
+
+Examples:
+- Analyzing tweets to gauge public sentiment about a new product launch.
+- Evaluating customer reviews to identify common complaints or praise.
+- Monitoring social media mentions to track brand reputation over time.
+
 
 #ai #concepts
 
