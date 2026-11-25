@@ -265,6 +265,102 @@ const agent = createAgent({
 
 ```
 
+### Middlewares
+
+Middlewares in LangChain allow you to intercept and modify requests and responses as they pass through the system. They can be used for tasks such as logging, authentication, input validation, and response transformation. By using middlewares, you can add cross-cutting concerns to your agents without modifying the core logic of your tools or chains.
+
+#### Prebuilt middlewares (most used):
+
+| Middleware | Description |
+|------------|-------------|
+| Tool retry | Automatically retry failed tool calls with exponential backoff. |
+| Model retry | Automatically retry failed model calls with exponential backoff. |
+| Model fallback | Automatically fallback to alternative models when primary fails. |
+| Model refusal | Throw an error when the model refuses, instead of treating the refusal as a final answer. |
+| Summarization | Automatically summarize conversation history when approaching token limits. |
+| Human-in-the-loop | Pause execution for human approval of tool calls. |
+| Model call limit | Limit the number of model calls to prevent excessive costs. |
+| Tool call limit | Control tool execution by limiting call counts. |
+| PII detection | Detect and handle Personally Identifiable Information (PII). |
+| To-do list | Equip agents with task planning and tracking capabilities. |
+| LLM tool selector | Use an LLM to select relevant tools before calling main model. |
+| Provider tool search | Defer tools behind providers’ server-side tool search, surfacing them on demand. |
+| Filesystem | Provide agents with a filesystem for storing context and long-term memories. |
+| Subagent middleware | Add the ability to spawn subagents. |
+| Context editing | Manage conversation context by trimming or clearing tool uses. |
+| LLM tool emulator | Emulate tool execution using an LLM for testing purposes. |
+
+Example of HITL (Human-in-the-Loop) middleware usage in LangChain:
+
+```ts
+import { createAgent, humanInTheLoopMiddleware } from "langchain";
+
+function readEmailTool(emailId: string): string {
+  /** Mock function to read an email by its ID. */
+  return `Email content for ID: ${emailId}`;
+}
+
+function sendEmailTool(recipient: string, subject: string, body: string): string {
+  /** Mock function to send an email. */
+  return `Email sent to ${recipient} with subject '${subject}'`;
+}
+
+const agent = createAgent({
+  model: "gpt-6.1-sol",
+  tools: [readEmailTool, sendEmailTool],
+  middleware: [
+    humanInTheLoopMiddleware({
+      interruptOn: {
+        sendEmailTool: {
+          allowedDecisions: ["approve", "edit", "reject"],
+        },
+        readEmailTool: false,
+      }
+    })
+  ]
+});
+```
+
+#### Custom middlewares
+
+Custom middlewares allow developers to extend the functionality of LangChain agents by intercepting and modifying requests and responses. They can be used to implement custom logging, validation, transformation, or any other behavior that needs to occur before or after tool or model calls. They are implemented by implementing hooks that run at specific point of the agent execution flow.
+
+Main hooks for custom middlewares include:
+- `beforeToolCall`: Runs before a tool is called.
+- `afterToolCall`: Runs after a tool has been called.
+- `beforeModelCall`: Runs before the model is called.
+- `afterModelCall`: Runs after the model has been called.
+- `onError`: Runs when an error occurs during tool or model execution.
+
+Usage example: 
+
+```ts
+import { createMiddleware, AIMessage } from "langchain";
+
+const createMessageLimitMiddleware = (maxMessages: number = 50) => {
+  return createMiddleware({
+    name: "MessageLimitMiddleware",
+    beforeModel: {
+      canJumpTo: ["end"],
+      hook: (state) => {
+        if (state.messages.length === maxMessages) {
+          return {
+            messages: [new AIMessage("Conversation limit reached.")],
+            jumpTo: "end",
+          };
+        }
+        return;
+      }
+    },
+    afterModel: (state) => {
+      const lastMessage = state.messages[state.messages.length - 1];
+      console.log(`Model returned: ${lastMessage.content}`);
+      return;
+    },
+  });
+};
+```
+
 ## Concepts differences
 
 ### Difference between using a SDK and LangChain
